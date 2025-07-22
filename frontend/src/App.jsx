@@ -1,14 +1,22 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client'
-import HeaderHero from './components/HeaderHero.jsx';
-import AboutUs from './components/aboutus.jsx'
-
+import Header from './components/header';
+import Hero from './components/hero';
+ import AboutUs from './components/aboutus.jsx';
 function App() {
   return (
-     <React.StrictMode>
-    <AboutUs />
-  </React.StrictMode>
+    <div className="text-white relative overflow-x-hidden">
+      {/* Particle Background */}
+      <div id="particles-js" className="grid-pattern"></div>
+     
+      <Header />
+      <div className="h-20"></div> {/* Spacer for fixed header */}
+      <Hero />
+     
+      {/* Rest of your content would go here */}
+
+      <AboutUs/>
+    </div>
   );
 }
-
+ 
 export default App;
