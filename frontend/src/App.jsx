@@ -1,11 +1,12 @@
 import React from 'react';
+import ReactDOM from 'react-dom/client'
 import HeaderHero from './components/HeaderHero.jsx';
 
 function App() {
   return (
-    <div>
-      <HeaderHero />
-    </div>
+     <React.StrictMode>
+    <HeaderHero />
+  </React.StrictMode>
   );
 }
 
