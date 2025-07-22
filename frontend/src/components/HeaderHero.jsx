@@ -15,6 +15,7 @@ import {
   FiPhone,
   FiUploadCloud
 } from 'react-icons/fi';
+import { motion } from 'framer-motion'; // Added this import
 
 const HeaderHero = () => {
   const [activeMenu, setActiveMenu] = useState(null);
