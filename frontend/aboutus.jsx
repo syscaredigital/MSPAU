@@ -1,95 +1,77 @@
 import React from "react";
-import { motion } from "framer-motion";
+
+const teamMembers = [
+  { name: "Alex", role: "Solutions Architect", img: "https://i.pravatar.cc/150?img=10" },
+  { name: "Maya", role: "Network Engineer", img: "https://i.pravatar.cc/150?img=11" },
+  { name: "John", role: "Security Analyst", img: "https://i.pravatar.cc/150?img=12" },
+];
 
 const AboutUs = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f172a] to-[#1e293b] text-white font-sans px-4 py-10">
-      <motion.div
-        className="max-w-6xl mx-auto backdrop-blur-lg bg-white/10 p-10 rounded-3xl shadow-xl border border-white/20"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-      >
-        {/* Heading */}
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-gray-800 text-white px-4 py-12">
+      <div className="max-w-6xl mx-auto backdrop-blur-md bg-white/10 p-10 rounded-3xl shadow-2xl border border-white/10">
+        
+        {/* Page Title */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-white mb-4">About Us</h1>
-          <p className="text-gray-300 text-lg">
-            Empowering businesses with innovative IT managed services.
+          <h1 className="text-4xl md:text-5xl font-bold mb-3">About Us</h1>
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+            Your trusted partner in IT Managed Services & Digital Transformation.
           </p>
         </div>
 
         {/* Mission Section */}
-        <motion.div
-          className="grid md:grid-cols-2 gap-10 items-center mb-16"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
+        <div className="grid md:grid-cols-2 gap-10 items-center mb-16">
           <img
-            src="https://source.unsplash.com/600x400/?technology,team"
+            src="https://source.unsplash.com/600x400/?technology,office"
             alt="Our Mission"
-            className="rounded-2xl shadow-lg border border-white/10"
+            className="rounded-xl shadow-lg border border-white/20"
           />
           <div>
             <h2 className="text-3xl font-semibold mb-4">Our Mission</h2>
             <p className="text-gray-300">
-              At MSP Solutions, our mission is to simplify technology
-              management and support, enabling businesses to scale confidently.
-              We combine cutting-edge tools with expert support to ensure
-              seamless digital transformation.
+              At TechServe MSP, our mission is to empower businesses through
+              reliable, scalable, and secure IT solutions. We help organizations
+              stay ahead in a fast-evolving tech world by offering 24/7 support,
+              cloud integration, and cybersecurity solutions tailored to their needs.
             </p>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Our Team Section */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl font-semibold mb-6">Meet the Team</h2>
-          <p className="text-gray-400 mb-10 max-w-xl mx-auto">
-            A passionate group of engineers, strategists, and technologists.
+        {/* Team Section */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-semibold mb-4">Meet Our Team</h2>
+          <p className="text-gray-400 max-w-xl mx-auto mb-8">
+            Professionals with years of experience in managing complex IT ecosystems.
           </p>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {["Alex", "Maya", "John"].map((name, i) => (
+            {teamMembers.map((member, index) => (
               <div
-                key={i}
-                className="bg-white/10 rounded-xl p-6 shadow-md border border-white/10"
+                key={index}
+                className="bg-white/10 rounded-xl p-6 border border-white/10 shadow-md hover:scale-105 transition-transform duration-300"
               >
                 <img
-                  src={`https://i.pravatar.cc/150?img=${i + 10}`}
-                  alt={name}
-                  className="w-20 h-20 rounded-full mx-auto mb-4 border-4 border-white/20"
+                  src={member.img}
+                  alt={member.name}
+                  className="w-20 h-20 mx-auto rounded-full border-4 border-white/30 mb-4"
                 />
-                <h3 className="text-lg font-semibold text-white">{name}</h3>
-                <p className="text-gray-400">Tech Specialist</p>
+                <h3 className="text-lg font-semibold">{member.name}</h3>
+                <p className="text-gray-400 text-sm">{member.role}</p>
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* CTA Section */}
-        <motion.div
-          className="text-center bg-white/5 py-12 px-6 rounded-2xl border border-white/10"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl font-bold mb-4">Partner With Us</h2>
-          <p className="text-gray-300 mb-6 max-w-xl mx-auto">
-            Ready to elevate your IT infrastructure? Let’s discuss how we can
-            support your business goals.
+        <div className="bg-white/5 rounded-2xl p-10 text-center border border-white/10">
+          <h2 className="text-3xl font-bold mb-4">Let’s Work Together</h2>
+          <p className="text-gray-300 mb-6 max-w-lg mx-auto">
+            Get in touch with us today and discover how we can support your IT needs.
           </p>
-          <button className="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-xl shadow-md transition duration-300">
+          <button className="bg-indigo-600 hover:bg-indigo-700 transition duration-300 text-white font-semibold py-3 px-6 rounded-full shadow-lg">
             Contact Us
           </button>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </div>
   );
 };
