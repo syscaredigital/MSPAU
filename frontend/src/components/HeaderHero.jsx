@@ -104,7 +104,7 @@ const HeaderHero = () => {
             {/* Navigation */}
             <nav className="hidden lg:flex items-center space-x-1">
               <a href="#" className="px-4 py-2 flex items-center text-gray-300 hover:text-white transition-colors">
-                <FiHome className="mr-2" /> Home
+                <FiHome className="mr-2" /> HOME
               </a>
               
               {['about', 'services', 'solutions'].map((menu) => (
