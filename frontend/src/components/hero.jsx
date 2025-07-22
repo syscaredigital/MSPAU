@@ -125,7 +125,7 @@ const Hero = () => {
             ></lottie-player>
             
             {/* Floating Service Cards */}
-            <div className="absolute -bottom-10 -left-10 service-card p-4 rounded-lg shadow-lg w-40">
+            <div className="absolute -bottom-[-80px] -left-[10px] service-card p-4 rounded-lg shadow-lg w-40">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 bg-cyan-400/10 rounded-full flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -136,7 +136,7 @@ const Hero = () => {
               </div>
             </div>
             
-            <div className="absolute -top-10 -right- service-card p-4 rounded-lg shadow-lg w-40">
+            <div className="absolute -top-[30px] -right-[80px] service-card p-4 rounded-lg shadow-lg w-40">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 bg-purple-500/10 rounded-full flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -147,7 +147,7 @@ const Hero = () => {
               </div>
             </div>
             
-            <div className="absolute top-1/4 -right-1 service-card p-4 rounded-lg shadow-lg w-40">
+            <div className="absolute top-[80px] -right-[10px] service-card p-4 rounded-lg shadow-lg w-40">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 bg-pink-500/10 rounded-full flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -158,94 +158,66 @@ const Hero = () => {
               </div>
             </div>
           
-<div className="absolute -bottom-10 -left-10 service-card p-4 rounded-lg shadow-lg w-40">
+<div className="absolute -bottom-[35px] -left-10 service-card p-4 rounded-lg shadow-lg w-40">
   <div className="flex items-center gap-2">
     <div className="w-8 h-8 bg-cyan-400/10 rounded-full flex items-center justify-center">
       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
       </svg>
     </div>
-    <span className="font-medium text-sm">IT Support</span>
+    <span className="font-medium text-sm">Solutions</span>
   </div>
 </div>
 
 
-<div className="absolute -top-20 right-10 service-card p-4 rounded-lg shadow-lg w-40">
+<div className="absolute -top-[210px] right-[180px] service-card p-4 rounded-lg shadow-lg w-40">
   <div className="flex items-center gap-2">
     <div className="w-8 h-8 bg-purple-500/10 rounded-full flex items-center justify-center">
       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
       </svg>
     </div>
-    <span className="font-medium text-sm">Security</span>
+    <span className="font-medium text-sm">Internet & VOIP</span>
   </div>
 </div>
 
-<div className="absolute top-1/4 right-10 service-card p-4 rounded-lg shadow-lg w-40">
+<div className="absolute top-[80px] right-[400px] service-card p-4 rounded-lg shadow-lg w-40">
   <div className="flex items-center gap-2">
     <div className="w-8 h-8 bg-pink-500/10 rounded-full flex items-center justify-center">
       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
       </svg>
     </div>
-    <span className="font-medium text-sm">Projects & Automation</span>
+    <span className="font-medium text-sm">Digital Services</span>
   </div>
 </div>
 
-<div className="absolute top-1/2 right-20 service-card p-4 rounded-lg shadow-lg w-40">
+<div className="absolute top-[150px] right-[200px] service-card p-4 rounded-lg shadow-lg w-40">
   <div className="flex items-center gap-2">
     <div className="w-8 h-8 bg-blue-500/10 rounded-full flex items-center justify-center">
       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
       </svg>
     </div>
-    <span className="font-medium text-sm">Web Development</span>
+    <span className="font-medium text-sm">IT Training</span>
   </div>
 </div>
 
-<div className="absolute top-3/4 right-10 service-card p-4 rounded-lg shadow-lg w-40">
+<div className="absolute -top-[150px] -right-[50px] service-card p-4 rounded-lg shadow-lg w-40">
   <div className="flex items-center gap-2">
     <div className="w-8 h-8 bg-green-500/10 rounded-full flex items-center justify-center">
       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
       </svg>
     </div>
-    <span className="font-medium text-sm">Data Analytics</span>
+    <span className="font-medium text-sm">CRM & ERP Solutions</span>
   </div>
 </div>
 
-<div className="absolute top-1/3 right-32 service-card p-4 rounded-lg shadow-lg w-40">
-  <div className="flex items-center gap-2">
-    <div className="w-8 h-8 bg-yellow-500/10 rounded-full flex items-center justify-center">
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-      </svg>
-    </div>
-    <span className="font-medium text-sm">Mobile Apps</span>
-  </div>
-</div>
 
-<div className="absolute bottom-1/4 right-20 service-card p-4 rounded-lg shadow-lg w-40">
-  <div className="flex items-center gap-2">
-    <div className="w-8 h-8 bg-red-500/10 rounded-full flex items-center justify-center">
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-      </svg>
-    </div>
-    <span className="font-medium text-sm">Cloud Services</span>
-  </div>
-</div>
 
-<div className="absolute bottom-10 right-32 service-card p-4 rounded-lg shadow-lg w-40">
-  <div className="flex items-center gap-2">
-    <div className="w-8 h-8 bg-indigo-500/10 rounded-full flex items-center justify-center">
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-      </svg>
-    </div>
-    <span className="font-medium text-sm">UI/UX Design</span>
-  </div>
-</div>
+
+
           </div>
         </div>
       </div>
