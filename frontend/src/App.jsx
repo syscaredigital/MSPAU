@@ -2,20 +2,34 @@ import React from 'react';
 import Header from './components/header';
 import Hero from './components/hero';
  import AboutUs from './components/aboutus.jsx';
+ import Sidebar from "./components/Sidebar";
+import ThemeToggle from "./components/ThemeToggle";
+
+
 function App() {
   return (
-    <div className="text-white relative overflow-x-hidden">
-      {/* Particle Background */}
-      <div id="particles-js" className="grid-pattern"></div>
+    // <div className="text-white relative overflow-x-hidden">
+    //   {/* Particle Background */}
+    //   <div id="particles-js" className="grid-pattern"></div>
      
-      <Header />
-      <div className="h-20"></div> {/* Spacer for fixed header */}
-      <Hero />
+    //   <Header />
+    //   <div className="h-20"></div> {/* Spacer for fixed header */}
+    //   <Hero />
      
-      {/* Rest of your content would go here */}
+    //   {/* Rest of your content would go here */}
 
-      <AboutUs/>
-    </div>
+    //   <div className="relative">
+    //   <Sidebar />
+    //   <ThemeToggle />
+    //   <AboutUs />
+    // </div>
+
+    // </div>
+
+     <div className="relative">
+      <AboutUs />
+     </div>
+
   );
 }
  
