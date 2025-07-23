@@ -1,6 +1,6 @@
 import React from 'react';
 import '../Style/AboutUs.css';
-
+ 
 const AboutUs = () => {
   return (
     <div className="digital-about">
@@ -27,12 +27,12 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
-
+ 
       {/* Digital About Section */}
       <section className="digital-section digital-about">
         <div className="container">
           <div className="section-header">
-            <h2><span className="section-number">01</span>Digital Pioneers</h2>
+            <h2><span className="section-number"></span>Digital Pioneers</h2>
             <p className="section-description">Redefining IT management for the digital age</p>
           </div>
           <div className="content-grid">
@@ -84,12 +84,12 @@ const AboutUs = () => {
           </div>
         </div>
       </section>
-
+ 
       {/* Digital Vision Section */}
       <section className="digital-section digital-vision">
         <div className="container">
           <div className="section-header">
-            <h2><span className="section-number">02</span>Digital Core</h2>
+            <h2><span className="section-number"></span>Digital Core</h2>
             <p className="section-description">Our technological philosophy</p>
           </div>
           <div className="vision-cards">
@@ -114,12 +114,12 @@ const AboutUs = () => {
           </div>
         </div>
       </section>
-
+ 
       {/* Digital Team Section */}
       <section className="digital-section digital-team">
         <div className="container">
           <div className="section-header">
-            <h2><span className="section-number">03</span>Digital Minds</h2>
+            <h2><span className="section-number"></span>Digital Minds</h2>
             <p className="section-description">The architects of your digital future</p>
           </div>
           <div className="team-grid">
@@ -174,12 +174,12 @@ const AboutUs = () => {
           </div>
         </div>
       </section>
-
+ 
       {/* Digital Services Section */}
       <section className="digital-section digital-services">
         <div className="container">
           <div className="section-header">
-            <h2><span className="section-number">04</span>Digital Arsenal</h2>
+            <h2><span className="section-number"></span>Digital Arsenal</h2>
             <p className="section-description">Next-generation managed services</p>
           </div>
           <div className="services-grid">
@@ -228,22 +228,51 @@ const AboutUs = () => {
           </div>
         </div>
       </section>
-
-      {/* Digital CTA */}
-      <div className="digital-cta">
-        <div className="cta-grid">
-          <div className="cta-content">
-            <h3>Ready for Digital Transformation?</h3>
-            <p>Let's architect your future together</p>
-          </div>
-          <div className="cta-buttons">
-            <button className="btn-primary">Schedule Tech Audit</button>
-            <button className="btn-secondary">Explore Solutions</button>
-          </div>
-        </div>
+ 
+      {/* Digital CTA Section */}
+<section className="digital-cta-section">
+  <div className="cta-container">
+    <div className="cta-content">
+      <div className="cta-tech-label">
+        <span className="tech-pulse"></span>
+        <span>READY FOR DIGITAL TRANSFORMATION?</span>
       </div>
+      <h3>Let's Build Your <span className="gradient-text">Future-Ready</span> Infrastructure</h3>
+      <p className="cta-description">
+        Our engineers are standing by to assess your current systems and design a
+        customized roadmap for your digital evolution.
+      </p>
+    </div>
+    <div className="cta-actions">
+      <button className="cta-button cta-primary">
+        <span className="button-text">Request Free Tech Audit</span>
+        <span className="button-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </span>
+      </button>
+      <button className="cta-button cta-secondary">
+        <span className="button-text">Explore Case Studies</span>
+        <span className="button-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 3V5M15 3V5M9 19V21M15 19V21M5 9H3M5 15H3M21 9H19M21 15H19M7 19H17C18.1046 19 19 18.1046 19 17V7C19 5.89543 18.1046 5 17 5H7C5.89543 5 5 5.89543 5 7V17C5 18.1046 5.89543 19 7 19Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div className="cta-tech-grid">
+      <div className="tech-grid-item"></div>
+      <div className="tech-grid-item"></div>
+      <div className="tech-grid-item"></div>
+      <div className="tech-grid-item"></div>
+      <div className="tech-grid-item"></div>
+      <div className="tech-grid-item"></div>
+    </div>
+  </div>
+</section>
     </div>
   );
 };
-
+ 
 export default AboutUs;
