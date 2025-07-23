@@ -25,9 +25,9 @@ function App() {
 
     // </div>
 
-     <div className="relative">
+     
       <AboutUs />
-     </div>
+     
 
   );
 }
