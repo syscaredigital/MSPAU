@@ -7,8 +7,16 @@ import ServicesSection from "../components/servicesection";
 export  default function Home () {
     return (
         <>
-        <Header/>
+        <div className="text-white relative overflow-x-hidden">
+{/* Particle Background */}
+<div id="particles-js" className="grid-pattern"></div>
+<Header/>
+        
+         <div className="h-20"></div> {/* Spacer for fixed header */}
+        
         <Hero />
+        </div>
+        
         <AboutSection />
         <ServicesSection />
         </>

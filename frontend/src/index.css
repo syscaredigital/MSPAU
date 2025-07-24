@@ -4,8 +4,8 @@
  
  
 :root {
-  --primary: #00f5c3;
-  --secondary: #7e22ce;
+  --primary: #001692;
+  --secondary: #00062e;
 }
  
 body {
@@ -19,7 +19,7 @@ body {
 }
  
 .gradient-text {
-  background: linear-gradient(90deg, #00f5c3, #7e22ce, #ec4899);
+  background: linear-gradient(90deg, #001df5, #2b22ce, #4866ec);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

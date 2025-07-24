@@ -33,19 +33,19 @@ const AboutSection = () => {
               
               <div className="space-y-6">
                 <div className="relative group">
-                  <div className="absolute -left-8 top-1 w-3 h-3 bg-purple-400 rounded-full group-hover:scale-150 transition-transform"></div>
+                  <div className="absolute -left-10 top-1 w-3 h-3 bg-purple-400 rounded-full group-hover:scale-150 transition-transform"></div>
                   <h4 className="text-lg font-semibold text-white">2015 - Founded</h4>
                   <p className="text-gray-400">Started with 5 team members focused on endpoint security</p>
                 </div>
                 
                 <div className="relative group">
-                  <div className="absolute -left-8 top-1 w-3 h-3 bg-pink-400 rounded-full group-hover:scale-150 transition-transform"></div>
+                  <div className="absolute -left-10 top-1 w-3 h-3 bg-pink-400 rounded-full group-hover:scale-150 transition-transform"></div>
                   <h4 className="text-lg font-semibold text-white">2018 - First Major Client</h4>
                   <p className="text-gray-400">Secured Fortune 500 company, expanded to 50 employees</p>
                 </div>
                 
                 <div className="relative group">
-                  <div className="absolute -left-8 top-1 w-3 h-3 bg-cyan-400 rounded-full group-hover:scale-150 transition-transform"></div>
+                  <div className="absolute -left-10 top-1 w-3 h-3 bg-cyan-400 rounded-full group-hover:scale-150 transition-transform"></div>
                   <h4 className="text-lg font-semibold text-white">2021 - Global Expansion</h4>
                   <p className="text-gray-400">Opened offices in 3 continents, serving 1000+ clients</p>
                 </div>
@@ -101,7 +101,7 @@ const AboutSection = () => {
             <div className="absolute -bottom-8 -left-8 w-40 h-40 bg-purple-500/10 rounded-full border border-purple-500/20 backdrop-blur-sm z-0"></div>
             
             {/* Tech stack badges */}
-            <div className="absolute -bottom-5 -right-5 flex flex-wrap gap-2">
+            <div className="absolute -bottom-10 -right-2 flex flex-wrap gap-2">
               {['AWS', 'Azure', 'GCP', 'Kubernetes', 'Terraform', 'Ansible'].map((tech, index) => (
                 <div key={index} className="px-3 py-1 bg-[#1e293b] rounded-full text-xs font-medium text-gray-300 border border-gray-700 hover:border-cyan-400 hover:text-cyan-400 transition">
                   {tech}
