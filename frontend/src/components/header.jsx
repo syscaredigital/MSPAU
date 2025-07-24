@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { Link } from 'react-router-dom';
 const Header = () => {
   const [openMenu, setOpenMenu] = useState(null);
 
@@ -66,7 +66,7 @@ const Header = () => {
                 <div className="absolute inset-0 rounded-full bg-cyan-400/10 group-hover:bg-cyan-400/20 blur-md -z-10 transition-all duration-500"></div>
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent bg-size-200 bg-pos-0 hover:bg-pos-100 transition-all duration-500">
-                CyberShield
+                SysCare IT Solutions
               </span>
             </a>
           </div>
@@ -119,16 +119,18 @@ const Header = () => {
             </div>
 
             {/* Other Nav Items */}
-            {['Solutions', 'Industries', 'Resources', 'About Us'].map((item, index) => (
-              <a 
+            {['Solutions', 'Industries', 'Resources', 'About Us'].map((item, index) => {
+              const slug = item.toLowerCase().replace(/\s+/g, '.');
+              return(
+              <Link 
                 key={index} 
-                href="#" 
+                href={`/${slug}`} 
                 className="font-medium text-gray-300 hover:text-white transition relative group"
               >
                 {item}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 transition-all duration-300 group-hover:w-full"></span>
-              </a>
-            ))}
+              </Link>
+            )})}
           </nav>
 
           {/* CTA and Mobile Menu Button */}

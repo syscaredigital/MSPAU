@@ -1,9 +1,11 @@
 import React from 'react';
 import '../Style/AboutUs.css';
- 
+import Header from '../components/header';
 const AboutUs = () => {
   return (
+      
     <div className="digital-about">
+      <Header />
       {/* Digital Hero Section */}
       <div className="digital-hero">
         <div className="hero-grid">
