@@ -1,34 +1,13 @@
 import React from 'react';
 import '../Style/AboutUs.css';
 import Header from '../components/header';
+import PageHero from '../components/pageHero';
 const AboutUs = () => {
   return (
       
     <div className="digital-about">
       <Header />
-      {/* Digital Hero Section */}
-      <div className="digital-hero">
-        <div className="hero-grid">
-          <div className="hero-content">
-            <h1>
-              <span className="gradient-text">SysCare</span>
-              <span className="text-outline">IT Solutions</span>
-            </h1>
-            <p className="hero-subtitle">Digital Transformation Partners</p>
-            <div className="tech-tags">
-              <span>Cloud</span>
-              <span>Cybersecurity</span>
-              <span>AI</span>
-              <span>IoT</span>
-              <span>Blockchain</span>
-            </div>
-          </div>
-          <div className="hero-visual">
-            <div className="digital-circle"></div>
-            <div className="circuit-lines"></div>
-          </div>
-        </div>
-      </div>
+      <PageHero />
  
       {/* Digital About Section */}
       <section className="digital-section digital-about">
