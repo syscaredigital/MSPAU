@@ -1,361 +1,209 @@
-import React, { useState } from 'react';
-import {
-  LightningBoltIcon,
-  ShieldCheckIcon,
-  CloudIcon,
-  ServerIcon,
-  PhoneIcon,
-  ChipIcon,
-  AcademicCapIcon,
-  ChartBarIcon,
-  ArrowRightIcon,
-  XIcon,
-  CheckIcon
-} from '@heroicons/react/outline';
+import React from 'react';
+import { FaTools, FaSolarPanel, FaHome, FaLeaf, FaWater, FaPlug } from 'react-icons/fa';
 
 const ServicesPage = () => {
-  const [activeTab, setActiveTab] = useState('all');
-  const [selectedService, setSelectedService] = useState(null);
-
   const services = [
     {
       id: 1,
-      title: "IT Support",
-      category: "support",
-      icon: <LightningBoltIcon className="w-10 h-10 text-blue-400" />,
-      description: "Comprehensive IT support services including helpdesk, remote assistance, and on-site support with guaranteed response times.",
-      features: [
-        "24/7 Helpdesk Support",
-        "Remote Troubleshooting",
-        "On-Site Technician Dispatch",
-        "Hardware Maintenance",
-        "Software Installation"
-      ],
-      stats: [
-        { label: "Response Time", value: "<15min" },
-        { label: "Resolution Rate", value: "98%" },
-        { label: "Supported Clients", value: "500+" }
-      ]
+      title: "Home Maintenance",
+      description: "Professional home maintenance services across Sydney, Melbourne, and Brisbane. We handle everything from repairs to renovations.",
+      icon: <FaHome className="text-4xl text-green-600" />,
+      popular: true
     },
     {
       id: 2,
-      title: "Security Services",
-      category: "security",
-      icon: <ShieldCheckIcon className="w-10 h-10 text-green-400" />,
-      description: "End-to-end cybersecurity solutions including threat detection, vulnerability assessments, and compliance management.",
-      features: [
-        "Network Security Monitoring",
-        "Penetration Testing",
-        "SIEM Implementation",
-        "Compliance Management",
-        "Security Awareness Training"
-      ],
-      stats: [
-        { label: "Threats Blocked", value: "10M+" },
-        { label: "Compliance", value: "100%" },
-        { label: "Security Audits", value: "200+" }
-      ]
+      title: "Solar Installation",
+      description: "Australia's leading solar panel installation with government rebate assistance. Reduce your power bills with clean energy.",
+      icon: <FaSolarPanel className="text-4xl text-yellow-500" />,
+      popular: true
     },
     {
       id: 3,
-      title: "Cloud Solutions",
-      category: "cloud",
-      icon: <CloudIcon className="w-10 h-10 text-purple-400" />,
-      description: "Migration, management, and optimization of cloud infrastructure across all major platforms.",
-      features: [
-        "Cloud Migration",
-        "Multi-Cloud Management",
-        "Cost Optimization",
-        "Disaster Recovery",
-        "Serverless Architecture"
-      ],
-      stats: [
-        { label: "Uptime", value: "99.99%" },
-        { label: "Cost Savings", value: "40% avg" },
-        { label: "Deployments", value: "1000+" }
-      ]
+      title: "Plumbing Services",
+      description: "24/7 emergency plumbing services. Licensed plumbers serving all major Australian cities with same-day service.",
+      icon: <FaWater className="text-4xl text-blue-500" />,
+      popular: false
     },
     {
       id: 4,
-      title: "Infrastructure & Automation",
-      category: "infrastructure",
-      icon: <ServerIcon className="w-10 h-10 text-yellow-400" />,
-      description: "Design, implementation, and management of scalable IT infrastructure with intelligent automation.",
-      features: [
-        "Network Design & Implementation",
-        "Infrastructure as Code",
-        "CI/CD Pipelines",
-        "Monitoring & Alerting",
-        "Performance Optimization"
-      ],
-      stats: [
-        { label: "Automation", value: "85%" },
-        { label: "Incident Reduction", value: "60% ↓" },
-        { label: "Efficiency Gain", value: "3x" }
-      ]
+      title: "Electrical Work",
+      description: "Fully certified electricians for all your residential and commercial needs. Safety inspections and smart home installations.",
+      icon: <FaPlug className="text-4xl text-red-500" />,
+      popular: false
     },
     {
       id: 5,
-      title: "Internet & VOIP",
-      category: "communication",
-      icon: <PhoneIcon className="w-10 h-10 text-pink-400" />,
-      description: "Reliable internet connectivity and enterprise-grade VOIP solutions for seamless communication.",
-      features: [
-        "Business Internet Solutions",
-        "VOIP Phone Systems",
-        "SD-WAN Implementation",
-        "Unified Communications",
-        "Video Conferencing"
-      ],
-      stats: [
-        { label: "Call Quality", value: "99.9%" },
-        { label: "Downtime", value: "<0.1%" },
-        { label: "Cost Savings", value: "50% avg" }
-      ]
+      title: "Eco-Friendly Solutions",
+      description: "Sustainable home solutions including rainwater tanks, greywater systems, and energy-efficient upgrades.",
+      icon: <FaLeaf className="text-4xl text-green-500" />,
+      popular: true
     },
     {
       id: 6,
-      title: "Digital Services",
-      category: "digital",
-      icon: <ChipIcon className="w-10 h-10 text-indigo-400" />,
-      description: "Digital transformation services including web development, digital marketing, and automation.",
-      features: [
-        "Web & App Development",
-        "Digital Marketing",
-        "Process Automation",
-        "Data Analytics",
-        "E-Commerce Solutions"
-      ],
-      stats: [
-        { label: "ROI", value: "300% avg" },
-        { label: "Projects", value: "250+" },
-        { label: "Automation", value: "90%" }
-      ]
-    },
-    {
-      id: 7,
-      title: "IT Training",
-      category: "training",
-      icon: <AcademicCapIcon className="w-10 h-10 text-red-400" />,
-      description: "Customized IT training programs to upskill your team in the latest technologies.",
-      features: [
-        "Certification Training",
-        "Technical Workshops",
-        "Security Awareness",
-        "Cloud Computing",
-        "DevOps Practices"
-      ],
-      stats: [
-        { label: "Certifications", value: "500+" },
-        { label: "Satisfaction", value: "98%" },
-        { label: "Corporate Clients", value: "200+" }
-      ]
-    },
-    {
-      id: 8,
-      title: "CRM & ERP Solutions",
-      category: "business",
-      icon: <ChartBarIcon className="w-10 h-10 text-teal-400" />,
-      description: "Implementation and customization of CRM and ERP systems to streamline business operations.",
-      features: [
-        "Salesforce Implementation",
-        "Microsoft Dynamics",
-        "SAP Integration",
-        "Custom Workflows",
-        "Data Migration"
-      ],
-      stats: [
-        { label: "Efficiency Gain", value: "50% ↑" },
-        { label: "Implementation Time", value: "30 days avg" },
-        { label: "Clients", value: "150+" }
-      ]
+      title: "Handyman Services",
+      description: "Trusted local handymen for all those odd jobs around your home. No job too small!",
+      icon: <FaTools className="text-4xl text-orange-500" />,
+      popular: false
     }
   ];
 
-  const filteredServices = activeTab === 'all' 
-    ? services 
-    : services.filter(service => service.category === activeTab);
-
-  const openServiceModal = (service) => {
-    setSelectedService(service);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeServiceModal = () => {
-    setSelectedService(null);
-    document.body.style.overflow = 'auto';
-  };
-
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100">
+    <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-900/20 to-purple-900/20">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
-            Our Digital Services
-          </h1>
-          <p className="mt-6 text-xl text-gray-300 max-w-3xl mx-auto">
-            Cutting-edge solutions for your business needs
+      <div className="relative bg-gradient-to-r from-green-600 to-blue-700 text-white py-20">
+        <div className="container mx-auto px-6 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Australian-Owned Services</h1>
+          <p className="text-xl md:text-2xl mb-8">Trusted local professionals serving communities across Australia</p>
+          <button className="bg-yellow-500 hover:bg-yellow-600 text-green-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300">
+            Book a Service
+          </button>
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-8 bg-white rounded-t-full"></div>
+      </div>
+
+      {/* Services Section */}
+      <div className="container mx-auto px-6 py-16">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Services</h2>
+          <div className="w-24 h-1 bg-green-600 mx-auto mb-6"></div>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            We provide high-quality services to homes and businesses across Australia. Proudly serving communities from Perth to the Gold Coast.
           </p>
         </div>
-      </div>
 
-      {/* Services Navigation */}
-      <div className="sticky top-0 z-10 bg-gray-800/80 backdrop-blur-sm border-b border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex overflow-x-auto py-4 space-x-4 scrollbar-hide">
-            <button
-              onClick={() => setActiveTab('all')}
-              className={`px-4 py-2 rounded-full whitespace-nowrap font-medium transition-colors ${
-                activeTab === 'all' 
-                  ? 'bg-blue-600 text-white' 
-                  : 'bg-gray-700/50 text-gray-300 hover:bg-gray-700'
-              }`}
-            >
-              All Services
-            </button>
-            {[
-              { id: 'support', name: 'IT Support' },
-              { id: 'security', name: 'Security' },
-              { id: 'cloud', name: 'Cloud' },
-              { id: 'infrastructure', name: 'Infrastructure' },
-              { id: 'communication', name: 'Internet/VOIP' },
-              { id: 'digital', name: 'Digital' },
-              { id: 'training', name: 'Training' },
-              { id: 'business', name: 'CRM/ERP' }
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-4 py-2 rounded-full whitespace-nowrap font-medium transition-colors ${
-                  activeTab === tab.id 
-                    ? 'bg-blue-600 text-white' 
-                    : 'bg-gray-700/50 text-gray-300 hover:bg-gray-700'
-                }`}
-              >
-                {tab.name}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Services Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredServices.map((service) => (
+          {services.map((service) => (
             <div 
-              key={service.id}
-              onClick={() => openServiceModal(service)}
-              className="group relative bg-gray-800/50 border border-gray-700 rounded-xl p-6 transition-all hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/10 cursor-pointer"
+              key={service.id} 
+              className={`bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl ${service.popular ? 'border-2 border-yellow-400' : 'border border-gray-200'}`}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity"></div>
-              <div className="relative z-10">
-                <div className="w-14 h-14 flex items-center justify-center bg-gray-700 rounded-lg mb-6">
-                  {service.icon}
+              <div className="p-6">
+                <div className="flex justify-between items-start">
+                  <div className="mb-4">
+                    {service.icon}
+                  </div>
+                  {service.popular && (
+                    <span className="bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full">
+                      POPULAR
+                    </span>
+                  )}
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
-                <p className="text-gray-400 mb-6">{service.description}</p>
-                <div className="flex items-center text-blue-400 font-medium">
-                  <span>Learn more</span>
-                  <ArrowRightIcon className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-                </div>
+                <h3 className="text-xl font-bold text-gray-800 mb-3">{service.title}</h3>
+                <p className="text-gray-600 mb-6">{service.description}</p>
+                <button className="text-green-600 font-semibold hover:text-green-800 transition duration-300">
+                  Learn more →
+                </button>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Service Modal */}
-      {selectedService && (
-        <div className="fixed inset-0 z-50 overflow-y-auto">
-          <div 
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity"
-            onClick={closeServiceModal}
-          ></div>
-          
-          <div className="flex items-center justify-center min-h-screen p-4">
-            <div className="relative bg-gray-800 border border-gray-700 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-              <button
-                onClick={closeServiceModal}
-                className="absolute top-4 right-4 p-2 rounded-full bg-gray-700 text-gray-300 hover:text-white hover:bg-gray-600 transition-colors"
-              >
-                <XIcon className="w-5 h-5" />
+      {/* Australian Guarantee Section */}
+      <div className="bg-green-50 py-16">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row items-center">
+            <div className="md:w-1/2 mb-8 md:mb-0">
+              <img 
+                src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
+                alt="Australian Service" 
+                className="rounded-lg shadow-md w-full"
+              />
+            </div>
+            <div className="md:w-1/2 md:pl-12">
+              <h2 className="text-3xl font-bold text-gray-800 mb-6">Our Australian Guarantee</h2>
+              <p className="text-lg text-gray-600 mb-6">
+                As an Australian-owned business, we're committed to providing services that meet the highest standards. All our tradespeople are fully licensed and insured.
+              </p>
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-start">
+                  <svg className="h-6 w-6 text-green-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-gray-700">100% Australian owned and operated</span>
+                </li>
+                <li className="flex items-start">
+                  <svg className="h-6 w-6 text-green-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-gray-700">Licensed and insured professionals</span>
+                </li>
+                <li className="flex items-start">
+                  <svg className="h-6 w-6 text-green-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-gray-700">Competitive pricing with no hidden fees</span>
+                </li>
+                <li className="flex items-start">
+                  <svg className="h-6 w-6 text-green-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-gray-700">Serving metro and regional areas</span>
+                </li>
+              </ul>
+              <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full transition duration-300">
+                Contact Our Team
               </button>
-              
-              <div className="p-6 sm:p-8">
-                <div className="flex items-start gap-6">
-                  <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center bg-gray-700 rounded-lg">
-                    {selectedService.icon}
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-bold text-white">{selectedService.title}</h2>
-                    <p className="text-gray-400 mt-2">{selectedService.description}</p>
-                  </div>
-                </div>
-                
-                <div className="mt-8">
-                  <h3 className="text-xl font-semibold text-white mb-4 pb-2 border-b border-gray-700">
-                    Key Features
-                  </h3>
-                  <ul className="space-y-3">
-                    {selectedService.features.map((feature, index) => (
-                      <li key={index} className="flex items-start">
-                        <CheckIcon className="flex-shrink-0 w-5 h-5 text-green-400 mt-0.5 mr-3" />
-                        <span className="text-gray-300">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div className="mt-8">
-                  <h3 className="text-xl font-semibold text-white mb-4 pb-2 border-b border-gray-700">
-                    Performance Metrics
-                  </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    {selectedService.stats.map((stat, index) => (
-                      <div key={index} className="bg-gray-700/30 border border-gray-700 rounded-lg p-4 text-center">
-                        <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
-                          {stat.value}
-                        </div>
-                        <div className="text-gray-400 text-sm mt-1">{stat.label}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                
-                <div className="mt-8 pt-6 border-t border-gray-700">
-                  <button className="w-full py-3 px-6 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg font-medium text-white hover:from-blue-500 hover:to-purple-500 transition-all flex items-center justify-center">
-                    Request Service Consultation
-                    <ArrowRightIcon className="w-5 h-5 ml-2" />
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
         </div>
-      )}
+      </div>
+
+      {/* Testimonials */}
+      <div className="py-16 bg-white">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center text-gray-800 mb-16">What Our Customers Say</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                quote: "The solar installation team was fantastic! They explained everything clearly and finished ahead of schedule.",
+                name: "Sarah K., Brisbane",
+                rating: 5
+              },
+              {
+                quote: "Finally found a reliable plumber in Melbourne who actually turns up on time. Highly recommend!",
+                name: "Michael T., Melbourne",
+                rating: 5
+              },
+              {
+                quote: "Great service from a local Perth business. The electrician fixed our issue quickly and charged fairly.",
+                name: "Lisa M., Perth",
+                rating: 4
+              }
+            ].map((testimonial, index) => (
+              <div key={index} className="bg-gray-50 p-8 rounded-lg">
+                <div className="flex mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      className={`w-5 h-5 ${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}`}
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-gray-600 italic mb-6">"{testimonial.quote}"</p>
+                <p className="font-semibold text-gray-800">{testimonial.name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
       {/* CTA Section */}
-      <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 border-t border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Ready to Transform Your IT Infrastructure?
-            </h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
-              Our experts will design a customized solution tailored to your business needs.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg font-medium text-white hover:from-blue-500 hover:to-purple-500 transition-all flex items-center justify-center">
-                Get Free Assessment
-                <ArrowRightIcon className="w-5 h-5 ml-2" />
-              </button>
-              <button className="px-6 py-3 bg-gray-700 rounded-lg font-medium text-white hover:bg-gray-600 transition-all flex items-center justify-center">
-                Contact Sales
-                <PhoneIcon className="w-5 h-5 ml-2" />
-              </button>
-            </div>
+      <div className="bg-gradient-to-r from-blue-800 to-green-700 text-white py-16">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Experience Australian Service Excellence?</h2>
+          <p className="text-xl mb-8 max-w-3xl mx-auto">Contact us today for a free quote or to book a service with our local professionals.</p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <button className="bg-yellow-500 hover:bg-yellow-600 text-green-900 font-bold py-3 px-8 rounded-full transition duration-300">
+              Call Now: 1300 123 456
+            </button>
+            <button className="bg-transparent hover:bg-white hover:text-green-800 border-2 border-white text-white font-bold py-3 px-8 rounded-full transition duration-300">
+              Email Us
+            </button>
           </div>
         </div>
       </div>
