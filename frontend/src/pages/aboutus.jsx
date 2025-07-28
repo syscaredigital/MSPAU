@@ -7,7 +7,7 @@ const AboutUs = () => {
       
     <div className="digital-about">
       <Header />
-      <PageHero />
+      //<PageHero />
  
       {/* Digital About Section */}
       <section className="digital-section digital-about">
