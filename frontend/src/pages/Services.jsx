@@ -1,212 +1,166 @@
 import React from 'react';
-import { FaTools, FaSolarPanel, FaHome, FaLeaf, FaWater, FaPlug } from 'react-icons/fa';
 
 const ServicesPage = () => {
   const services = [
     {
-      id: 1,
-      title: "Home Maintenance",
-      description: "Professional home maintenance services across Sydney, Melbourne, and Brisbane. We handle everything from repairs to renovations.",
-      icon: <FaHome className="text-4xl text-green-600" />,
-      popular: true
+      title: "IT Support",
+      description: "Comprehensive IT support services to keep your business running smoothly with minimal downtime.",
+      icon: "💻"
     },
     {
-      id: 2,
-      title: "Solar Installation",
-      description: "Australia's leading solar panel installation with government rebate assistance. Reduce your power bills with clean energy.",
-      icon: <FaSolarPanel className="text-4xl text-yellow-500" />,
-      popular: true
+      title: "Security",
+      description: "Advanced security solutions to protect your digital assets from threats and vulnerabilities.",
+      icon: "🔒"
     },
     {
-      id: 3,
-      title: "Plumbing Services",
-      description: "24/7 emergency plumbing services. Licensed plumbers serving all major Australian cities with same-day service.",
-      icon: <FaWater className="text-4xl text-blue-500" />,
-      popular: false
+      title: "Solutions",
+      description: "Customized IT solutions tailored to your specific business needs and challenges.",
+      icon: "🛠️"
     },
     {
-      id: 4,
-      title: "Electrical Work",
-      description: "Fully certified electricians for all your residential and commercial needs. Safety inspections and smart home installations.",
-      icon: <FaPlug className="text-4xl text-red-500" />,
-      popular: false
+      title: "Projects & Automation",
+      description: "Streamline your operations with our project management and automation services.",
+      icon: "🤖"
     },
     {
-      id: 5,
-      title: "Eco-Friendly Solutions",
-      description: "Sustainable home solutions including rainwater tanks, greywater systems, and energy-efficient upgrades.",
-      icon: <FaLeaf className="text-4xl text-green-500" />,
-      popular: true
+      title: "Internet & VOIP",
+      description: "Reliable internet and VOIP solutions for seamless communication and connectivity.",
+      icon: "🌐"
     },
     {
-      id: 6,
-      title: "Handyman Services",
-      description: "Trusted local handymen for all those odd jobs around your home. No job too small!",
-      icon: <FaTools className="text-4xl text-orange-500" />,
-      popular: false
+      title: "Digital Services",
+      description: "Transform your business with our cutting-edge digital services and online solutions.",
+      icon: "🖥️"
+    },
+    {
+      title: "IT Training",
+      description: "Enhance your team's skills with our professional IT training programs.",
+      icon: "🎓"
+    },
+    {
+      title: "CRM & ERP Solutions",
+      description: "Integrated CRM and ERP systems to optimize your business processes and customer relationships.",
+      icon: "📊"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#ffffff]">
+      {/* Navigation */}
+      <nav className="bg-[#103d5d] text-white p-4 shadow-lg">
+        <div className="container mx-auto flex justify-between items-center">
+          <div className="text-2xl font-bold">TechSolutions</div>
+          <div className="hidden md:flex space-x-6">
+            <a href="#" className="hover:text-[#245684] transition">Home</a>
+            <a href="#" className="hover:text-[#245684] transition">Services</a>
+            <a href="#" className="hover:text-[#245684] transition">About</a>
+            <a href="#" className="hover:text-[#245684] transition">Contact</a>
+          </div>
+          <button className="md:hidden">☰</button>
+        </div>
+      </nav>
+
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-green-600 to-blue-700 text-white py-20">
-        <div className="container mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Australian-Owned Services</h1>
-          <p className="text-xl md:text-2xl mb-8">Trusted local professionals serving communities across Australia</p>
-          <button className="bg-yellow-500 hover:bg-yellow-600 text-green-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300">
-            Book a Service
+      <header className="bg-gradient-to-r from-[#103d5d] to-[#245684] text-white py-20">
+        <div className="container mx-auto text-center px-4">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">Digital Services for Modern Businesses</h1>
+          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+            Empowering your business with cutting-edge technology solutions tailored to your needs.
+          </p>
+          <button className="bg-white text-[#103d5d] px-8 py-3 rounded-full font-bold hover:bg-opacity-90 transition">
+            Get Started
           </button>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-8 bg-white rounded-t-full"></div>
-      </div>
+      </header>
 
       {/* Services Section */}
-      <div className="container mx-auto px-6 py-16">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Services</h2>
-          <div className="w-24 h-1 bg-green-600 mx-auto mb-6"></div>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            We provide high-quality services to homes and businesses across Australia. Proudly serving communities from Perth to the Gold Coast.
-          </p>
-        </div>
+      <section className="py-16 bg-[#ffffff]">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4">Our Services</h2>
+            <div className="w-24 h-1 bg-[#245684] mx-auto"></div>
+            <p className="text-[#170f17] mt-4 max-w-2xl mx-auto">
+              We offer a comprehensive range of IT services to help your business thrive in the digital age.
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service) => (
-            <div 
-              key={service.id} 
-              className={`bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl ${service.popular ? 'border-2 border-yellow-400' : 'border border-gray-200'}`}
-            >
-              <div className="p-6">
-                <div className="flex justify-between items-start">
-                  <div className="mb-4">
-                    {service.icon}
-                  </div>
-                  {service.popular && (
-                    <span className="bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full">
-                      POPULAR
-                    </span>
-                  )}
-                </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3">{service.title}</h3>
-                <p className="text-gray-600 mb-6">{service.description}</p>
-                <button className="text-green-600 font-semibold hover:text-green-800 transition duration-300">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {services.map((service, index) => (
+              <div 
+                key={index}
+                className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-[#245684]"
+              >
+                <div className="text-4xl mb-4">{service.icon}</div>
+                <h3 className="text-xl font-bold text-[#103d5d] mb-2">{service.title}</h3>
+                <p className="text-[#170f17]">{service.description}</p>
+                <button className="mt-4 text-[#245684] font-semibold hover:underline">
                   Learn more →
                 </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Australian Guarantee Section */}
-      <div className="bg-green-50 py-16">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2 mb-8 md:mb-0">
-              <img 
-                src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
-                alt="Australian Service" 
-                className="rounded-lg shadow-md w-full"
-              />
-            </div>
-            <div className="md:w-1/2 md:pl-12">
-              <h2 className="text-3xl font-bold text-gray-800 mb-6">Our Australian Guarantee</h2>
-              <p className="text-lg text-gray-600 mb-6">
-                As an Australian-owned business, we're committed to providing services that meet the highest standards. All our tradespeople are fully licensed and insured.
-              </p>
-              <ul className="space-y-4 mb-8">
-                <li className="flex items-start">
-                  <svg className="h-6 w-6 text-green-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span className="text-gray-700">100% Australian owned and operated</span>
-                </li>
-                <li className="flex items-start">
-                  <svg className="h-6 w-6 text-green-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span className="text-gray-700">Licensed and insured professionals</span>
-                </li>
-                <li className="flex items-start">
-                  <svg className="h-6 w-6 text-green-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span className="text-gray-700">Competitive pricing with no hidden fees</span>
-                </li>
-                <li className="flex items-start">
-                  <svg className="h-6 w-6 text-green-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span className="text-gray-700">Serving metro and regional areas</span>
-                </li>
-              </ul>
-              <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full transition duration-300">
-                Contact Our Team
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Testimonials */}
-      <div className="py-16 bg-white">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-16">What Our Customers Say</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                quote: "The solar installation team was fantastic! They explained everything clearly and finished ahead of schedule.",
-                name: "Sarah K., Brisbane",
-                rating: 5
-              },
-              {
-                quote: "Finally found a reliable plumber in Melbourne who actually turns up on time. Highly recommend!",
-                name: "Michael T., Melbourne",
-                rating: 5
-              },
-              {
-                quote: "Great service from a local Perth business. The electrician fixed our issue quickly and charged fairly.",
-                name: "Lisa M., Perth",
-                rating: 4
-              }
-            ].map((testimonial, index) => (
-              <div key={index} className="bg-gray-50 p-8 rounded-lg">
-                <div className="flex mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <svg
-                      key={i}
-                      className={`w-5 h-5 ${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}`}
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-                <p className="text-gray-600 italic mb-6">"{testimonial.quote}"</p>
-                <p className="font-semibold text-gray-800">{testimonial.name}</p>
               </div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
       {/* CTA Section */}
-      <div className="bg-gradient-to-r from-blue-800 to-green-700 text-white py-16">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Experience Australian Service Excellence?</h2>
-          <p className="text-xl mb-8 max-w-3xl mx-auto">Contact us today for a free quote or to book a service with our local professionals.</p>
+      <section className="py-16 bg-[#245684] text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Business?</h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto">
+            Let's discuss how we can help you achieve your digital goals.
+          </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="bg-yellow-500 hover:bg-yellow-600 text-green-900 font-bold py-3 px-8 rounded-full transition duration-300">
-              Call Now: 1300 123 456
+            <button className="bg-white text-[#103d5d] px-8 py-3 rounded-full font-bold hover:bg-opacity-90 transition">
+              Contact Us
             </button>
-            <button className="bg-transparent hover:bg-white hover:text-green-800 border-2 border-white text-white font-bold py-3 px-8 rounded-full transition duration-300">
-              Email Us
+            <button className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-[#103d5d] transition">
+              Call Now
             </button>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-[#170f17] text-white py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-xl font-bold mb-4">TechSolutions</h3>
+              <p className="text-gray-400">
+                Providing innovative digital solutions to help businesses grow and succeed.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4 text-[#245684]">Services</h4>
+              <ul className="space-y-2">
+                {services.slice(0, 4).map((service, index) => (
+                  <li key={index}><a href="#" className="hover:text-[#245684] transition">{service.title}</a></li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4 text-[#245684]">Services</h4>
+              <ul className="space-y-2">
+                {services.slice(4).map((service, index) => (
+                  <li key={index}><a href="#" className="hover:text-[#245684] transition">{service.title}</a></li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4 text-[#245684]">Contact</h4>
+              <address className="not-italic text-gray-400">
+                <p>123 Tech Street</p>
+                <p>Digital City, DC 10001</p>
+                <p className="mt-2">Phone: (123) 456-7890</p>
+                <p>Email: info@techsolutions.com</p>
+              </address>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+            <p>© {new Date().getFullYear()} TechSolutions. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
