@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '../components/header';
 
 const ServicesPage = () => {
   const services = [
@@ -47,7 +48,8 @@ const ServicesPage = () => {
   return (
     <div className="min-h-screen bg-[#ffffff]">
       {/* Navigation */}
-      <nav className="bg-[#103d5d] text-white p-4 shadow-lg">
+      <Header />
+      {/* <nav className="bg-[#103d5d] text-white p-4 shadow-lg">
         <div className="container mx-auto flex justify-between items-center">
           <div className="text-2xl font-bold">TechSolutions</div>
           <div className="hidden md:flex space-x-6">
@@ -58,18 +60,18 @@ const ServicesPage = () => {
           </div>
           <button className="md:hidden">☰</button>
         </div>
-      </nav>
+      </nav> */}
 
       {/* Hero Section */}
-      <header className="bg-gradient-to-r from-[#103d5d] to-[#245684] text-white py-20">
+      <header className="bg-gradient-to-r from-[#103d5d] to-[#245684] text-white py-20 ">
         <div className="container mx-auto text-center px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">Digital Services for Modern Businesses</h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">Services</h1>
+          {/* <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
             Empowering your business with cutting-edge technology solutions tailored to your needs.
           </p>
           <button className="bg-white text-[#103d5d] px-8 py-3 rounded-full font-bold hover:bg-opacity-90 transition">
             Get Started
-          </button>
+          </button> */}
         </div>
       </header>
 
@@ -77,7 +79,7 @@ const ServicesPage = () => {
       <section className="py-16 bg-[#ffffff]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4">Our Services</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4">SysCare Services</h2>
             <div className="w-24 h-1 bg-[#245684] mx-auto"></div>
             <p className="text-[#170f17] mt-4 max-w-2xl mx-auto">
               We offer a comprehensive range of IT services to help your business thrive in the digital age.

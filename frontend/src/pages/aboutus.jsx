@@ -7,7 +7,18 @@ const AboutUs = () => {
       
     <div className="digital-about">
       <Header />
-      //<PageHero />
+      {/* Hero Section */}
+      <header className="bg-gradient-to-r from-[#103d5d] to-[#245684] text-white py-20">
+        <div className="container mx-auto text-center px-4">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">About Us</h1>
+          {/* <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+            Empowering your business with cutting-edge technology solutions tailored to your needs.
+          </p>
+          <button className="bg-white text-[#103d5d] px-8 py-3 rounded-full font-bold hover:bg-opacity-90 transition">
+            Get Started
+          </button> */}
+        </div>
+      </header>
  
       {/* Digital About Section */}
       <section className="digital-section digital-about">

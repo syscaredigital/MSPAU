@@ -119,7 +119,7 @@ const Header = () => {
             </div>
 
             {/* Other Nav Items */}
-            {['Solutions', 'Industries', 'Resources', 'About Us'].map((item, index) => {
+            {['About Us','Solutions', 'Contact Us'].map((item, index) => {
               const slug = item.toLowerCase().replace(/\s+/g, '.');
               return(
               <Link 
@@ -139,7 +139,7 @@ const Header = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full opacity-100 group-hover:opacity-0 transition-opacity duration-500"></div>
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <span className="relative px-6 py-2 font-medium text-white flex items-center">
-                Contact Sales
+                Free Consultation
                 <svg className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1 duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
