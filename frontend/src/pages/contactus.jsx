@@ -154,7 +154,7 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-[#245684] mb-1">Our Office</h3>
-                    <p className="text-gray-600">123 Tech Park Avenue, Silicon Valley, CA 94025</p>
+                    <p className="text-gray-600">Melbourne Office : Unit 12, Level 10, 401 Docklands Drive, Docklands, VIC 3008</p>
                   </div>
                 </div>
 
@@ -166,8 +166,8 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-[#245684] mb-1">Phone</h3>
-                    <p className="text-gray-600">+1 (800) 123-4567</p>
-                    <p className="text-gray-600">+1 (650) 987-6543</p>
+                
+                    <p className="text-gray-600">1300 69 79 72</p>
                   </div>
                 </div>
 
@@ -179,8 +179,8 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-[#245684] mb-1">Email</h3>
-                    <p className="text-gray-600">info@syscareitsolutions.com</p>
-                    <p className="text-gray-600">support@syscareitsolutions.com</p>
+                    <p className="text-gray-600">info@syscare.com.au</p>
+                    
                   </div>
                 </div>
               </div>
@@ -192,7 +192,7 @@ const ContactPage = () => {
               <div className="space-y-4">
                 <div className="flex justify-between border-b border-gray-200 pb-2">
                   <span className="text-gray-700">Monday - Friday</span>
-                  <span className="font-medium text-[#245684]">8:00 AM - 6:00 PM</span>
+                  <span className="font-medium text-[#245684]">9:00 AM - 6:00 PM</span>
                 </div>
                 <div className="flex justify-between border-b border-gray-200 pb-2">
                   <span className="text-gray-700">Saturday</span>
@@ -207,7 +207,7 @@ const ContactPage = () => {
               <div className="mt-8">
                 <h3 className="text-xl font-semibold text-[#245684] mb-4">Emergency Support</h3>
                 <p className="text-gray-600 mb-4">For critical issues outside business hours, our emergency support team is available 24/7.</p>
-                <p className="text-[#103d5d] font-medium">Emergency Hotline: +1 (800) 765-4321</p>
+                <p className="text-[#103d5d] font-medium">Emergency Hotline: 1300 69 79 72</p>
               </div>
             </div>
           </div>
