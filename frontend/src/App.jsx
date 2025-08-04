@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import Home from  './pages/home.jsx';
 import ServicesPage from './pages/Services.jsx';
+import ContactPage from './pages/contactus.jsx';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path='/home'  element = {<Home />}></Route>
             <Route path='/about-us'  element = {<AboutUs />}></Route>
             <Route path='/syscare-services'  element = {<ServicesPage />}></Route>
+            <Route path='/cuntatus'  element = {<ContactPage/>}></Route>
           </Routes>
           </BrowserRouter>
      </div>
