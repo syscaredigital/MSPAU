@@ -17,7 +17,7 @@ function App() {
             <Route path='/home'  element = {<Home />}></Route>
             <Route path='/about-us'  element = {<AboutUs />}></Route>
             <Route path='/syscare-services'  element = {<ServicesPage />}></Route>
-            <Route path='/cuntatus'  element = {<ContactPage/>}></Route>
+            <Route path='/contact-Us'  element = {<ContactPage />}></Route>
           </Routes>
           </BrowserRouter>
      </div>
