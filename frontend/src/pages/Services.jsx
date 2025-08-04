@@ -127,7 +127,7 @@ const ServicesPage = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">TechSolutions</h3>
+              <h3 className="text-xl font-bold mb-4">SysCare Digital</h3>
               <p className="text-gray-400">
                 Providing innovative digital solutions to help businesses grow and succeed.
               </p>
@@ -151,15 +151,15 @@ const ServicesPage = () => {
             <div>
               <h4 className="font-bold mb-4 text-[#245684]">Contact</h4>
               <address className="not-italic text-gray-400">
-                <p>123 Tech Street</p>
-                <p>Digital City, DC 10001</p>
-                <p className="mt-2">Phone: (123) 456-7890</p>
-                <p>Email: info@techsolutions.com</p>
+                <p>401 Docklands Drive</p>
+                <p>Melbourne,  VIC 3008.</p>
+                <p className="mt-2">Phone: +61 3 8373 4877</p>
+                <p>Email: info@syscare.com.au</p>
               </address>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>© {new Date().getFullYear()} TechSolutions. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} SysCare Digital. All rights reserved.</p>
           </div>
         </div>
       </footer>
