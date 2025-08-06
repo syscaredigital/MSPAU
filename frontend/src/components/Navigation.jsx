@@ -37,8 +37,7 @@ const Navigation = () => {
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center">
-              <span className="text-white text-2xl font-bold">SysCare</span>
-              <span className="text-[#a3d4ff] text-2xl font-bold">IT</span>
+              <img src="frontend\src\assets\logos\SysCare Logo re - created - white.png" alt="LOGO" />
             </Link>
           </div>
           

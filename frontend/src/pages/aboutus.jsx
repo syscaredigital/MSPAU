@@ -342,61 +342,14 @@ const AboutUs = () => {
       </section>
 
       {/* Footer (same as before) */}
-<Footer />
-      {/* Add this to your global CSS */}
-      <style jsx>{`
-        @keyframes float1 {
-          0%, 100% { transform: translate(0, 0) rotate(0deg); }
-          50% { transform: translate(10px, 10px) rotate(5deg); }
-        }
-        @keyframes float2 {
-          0%, 100% { transform: translate(0, 0) rotate(0deg); }
-          50% { transform: translate(-10px, 15px) rotate(-5deg); }
-        }
-        @keyframes float3 {
-          0%, 100% { transform: translate(0, 0) rotate(0deg); }
-          50% { transform: translate(5px, -10px) rotate(3deg); }
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes slideInLeft {
-          from { opacity: 0; transform: translateX(-50px); }
-          to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes slideInRight {
-          from { opacity: 0; transform: translateX(50px); }
-          to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes grow {
-          from { transform: scaleX(0); }
-          to { transform: scaleX(1); }
-        }
-        @keyframes countUp {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes progress {
-          from { width: 0; }
-          to { width: 100%; }
-        }
-        
-        .animate-float1 { animation: float1 8s ease-in-out infinite; }
-        .animate-float2 { animation: float2 10s ease-in-out infinite; }
-        .animate-float3 { animation: float3 12s ease-in-out infinite; }
-        .animate-fadeIn { animation: fadeIn 1s ease-out forwards; }
-        .animate-slideInLeft { animation: slideInLeft 1s ease-out forwards; }
-        .animate-slideInRight { animation: slideInRight 1s ease-out forwards; }
-        .animate-grow { animation: grow 0.8s ease-out forwards; }
-        .animate-countUp { animation: countUp 1s ease-out forwards; }
-        .animate-progress { animation: progress 1.5s ease-out forwards; }
-        
-        .delay-100 { animation-delay: 100ms; }
-        .delay-200 { animation-delay: 200ms; }
-      `}</style>
+
+      <Footer/>
+      
     </div>
+
+    
   );
 };
+
 
 export default AboutUs;

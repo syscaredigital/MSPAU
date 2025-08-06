@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navigation from '../components/Navigation';
+import Footer from '../components/footer';
 
 
 
@@ -105,47 +106,7 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#170f17] text-white py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4">SysCare Digital</h3>
-              <p className="text-gray-400">
-                Providing innovative digital solutions to help businesses grow and succeed.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4 text-[#245684]">Services</h4>
-              <ul className="space-y-2">
-                {services.slice(0, 4).map((service, index) => (
-                  <li key={index}><a href="#" className="hover:text-[#245684] transition">{service.title}</a></li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4 text-[#245684]">Services</h4>
-              <ul className="space-y-2">
-                {services.slice(4).map((service, index) => (
-                  <li key={index}><a href="#" className="hover:text-[#245684] transition">{service.title}</a></li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4 text-[#245684]">Contact</h4>
-              <address className="not-italic text-gray-400">
-                <p>401 Docklands Drive</p>
-                <p>Melbourne,  VIC 3008.</p>
-                <p className="mt-2">Phone: +61 3 8373 4877</p>
-                <p>Email: info@syscare.com.au</p>
-              </address>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>© {new Date().getFullYear()} SysCare Digital. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+     <Footer/>
     </div>
   );
 };
