@@ -3,7 +3,10 @@ import React from 'react';
 
 const AboutSection = () => {
   return (
+
+    
     <section className="relative py-24 bg-gradient-to-b from-[#0f172a] to-[#1e293b] overflow-hidden">
+      
       {/* Decorative floating elements */}
       <div className="absolute top-20 left-10 w-64 h-64 bg-cyan-400/10 rounded-full filter blur-[100px] animate-float1"></div>
       <div className="absolute bottom-20 right-10 w-64 h-64 bg-purple-500/10 rounded-full filter blur-[100px] animate-float2"></div>

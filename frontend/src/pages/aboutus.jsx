@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Navigation from '../components/Navigation';
+import Footer from '../components/footer.jsx';
+
 
 const AboutUs = () => {
   const [animatedStats, setAnimatedStats] = useState(false);
@@ -22,7 +25,7 @@ const AboutUs = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Header (same as before) */}
-
+       <Navigation />
       {/* Hero Section with Gradient Animation */}
       <header className="relative overflow-hidden bg-gradient-to-r from-[#103d5d] to-[#245684] text-white py-24 px-4 sm:px-6 lg:px-8">
         <div className="absolute inset-0 overflow-hidden">
@@ -339,7 +342,7 @@ const AboutUs = () => {
       </section>
 
       {/* Footer (same as before) */}
-
+<Footer />
       {/* Add this to your global CSS */}
       <style jsx>{`
         @keyframes float1 {

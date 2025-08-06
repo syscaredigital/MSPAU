@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight } from 'react-icons/fi';
+import Navigation from '../components/Navigation';
+
 
 const PrivateCloudPage = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -108,6 +110,7 @@ const PrivateCloudPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <Navigation />
       {/* Hero Section */}
       <section 
         className="relative bg-[#103d5d] text-white py-32 overflow-hidden px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
