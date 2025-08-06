@@ -1,270 +1,399 @@
-import React from 'react';
-import '../Style/AboutUs.css';
-import Header from '../components/header';
-import PageHero from '../components/pageHero';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 const AboutUs = () => {
+  const [animatedStats, setAnimatedStats] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const statsSection = document.getElementById('stats-section');
+      if (statsSection) {
+        const rect = statsSection.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          setAnimatedStats(true);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-      
-    <div className="digital-about">
-      <Header />
-      {/* Hero Section */}
-      <header className="bg-gradient-to-r from-[#103d5d] to-[#245684] text-white py-20">
-        <div className="container mx-auto text-center px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">About Us</h1>
-          {/* <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-            Empowering your business with cutting-edge technology solutions tailored to your needs.
+    <div className="min-h-screen bg-white">
+      {/* Header (same as before) */}
+
+      {/* Hero Section with Gradient Animation */}
+      <header className="relative overflow-hidden bg-gradient-to-r from-[#103d5d] to-[#245684] text-white py-24 px-4 sm:px-6 lg:px-8">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full opacity-20">
+            <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-[#a3d4ff] mix-blend-screen filter blur-3xl animate-float1"></div>
+            <div className="absolute top-1/3 right-1/4 w-80 h-80 rounded-full bg-[#a3d4ff] mix-blend-screen filter blur-3xl animate-float2"></div>
+            <div className="absolute bottom-1/4 right-1/3 w-72 h-72 rounded-full bg-[#a3d4ff] mix-blend-screen filter blur-3xl animate-float3"></div>
+          </div>
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto text-center">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fadeIn">
+            About <span className="text-[#a3d4ff]">SysCare</span>
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate-fadeIn delay-100">
+            Pioneering IT solutions with innovation and expertise
           </p>
-          <button className="bg-white text-[#103d5d] px-8 py-3 rounded-full font-bold hover:bg-opacity-90 transition">
-            Get Started
-          </button> */}
+          <div className="animate-bounce mt-12">
+            <svg className="w-8 h-8 mx-auto text-[#a3d4ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+          </div>
         </div>
       </header>
- 
-      {/* Digital About Section */}
-      <section className="digital-section digital-about">
-        <div className="container">
-          <div className="section-header">
-            <h2><span className="section-number"></span>Digital Pioneers</h2>
-            <p className="section-description">Redefining IT management for the digital age</p>
+
+      {/* About Section with Animated Stats */}
+      <section id="stats-section" className="py-16 bg-white px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="text-[#245684] font-semibold uppercase tracking-wider animate-fadeIn">
+              OUR STORY
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mt-2 mb-4 animate-fadeIn">
+              Digital Pioneers in IT Solutions
+            </h2>
+            <div className="w-24 h-1 bg-[#245684] mx-auto animate-grow"></div>
           </div>
-          <div className="content-grid">
-            <div className="digital-card">
-              <div className="card-header">
-                <div className="hexagon">
-                  <svg viewBox="0 0 100 100" className="hex-shape">
-                    <polygon points="50 1 95 25 95 75 50 99 5 75 5 25" />
-                  </svg>
-                  <div className="hex-icon">⌘</div>
+          
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
+            <div className="lg:w-1/2 animate-slideInLeft">
+              <div className="bg-[#103d5d] p-1 rounded-lg inline-block mb-6 hover:rotate-6 transition-transform duration-300">
+                <div className="bg-white p-3 rounded-md text-[#103d5d] text-3xl">
+                  ⌘
                 </div>
-                <h3>Who We Are</h3>
               </div>
-              <p>
+              <h3 className="text-2xl font-bold text-[#170f17] mb-4">Who We Are</h3>
+              <p className="text-gray-700 mb-6">
                 SysCare IT Solutions is a next-generation managed service provider leveraging cutting-edge technologies to deliver unparalleled IT solutions. Founded in 2012, we've evolved from traditional IT support to becoming digital transformation architects.
               </p>
-              <div className="tech-stack">
-                <div className="tech-item">
-                  <div className="tech-dot"></div>
-                  <span>AI-Driven Operations</span>
-                </div>
-                <div className="tech-item">
-                  <div className="tech-dot"></div>
-                  <span>Predictive Analytics</span>
-                </div>
-                <div className="tech-item">
-                  <div className="tech-dot"></div>
-                  <span>Blockchain Security</span>
-                </div>
+              
+              <div className="space-y-3">
+                {["AI-Driven Operations", "Predictive Analytics", "Blockchain Security"].map((item, i) => (
+                  <div key={i} className="flex items-start group">
+                    <div className="mt-1 mr-3">
+                      <div className="w-3 h-3 rounded-full bg-[#245684] group-hover:animate-pulse"></div>
+                    </div>
+                    <span className="text-gray-700 group-hover:text-[#103d5d] transition-colors">{item}</span>
+                  </div>
+                ))}
               </div>
             </div>
-            <div className="stats-grid">
-              <div className="stat-item">
-                <div className="stat-value" data-value="99.99">0</div>
-                <div className="stat-label">Uptime %</div>
-                <div className="stat-bar"></div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-value" data-value="250">0</div>
-                <div className="stat-label">Tech Patents</div>
-                <div className="stat-bar"></div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-value" data-value="1200">0</div>
-                <div className="stat-label">Clients Worldwide</div>
-                <div className="stat-bar"></div>
-              </div>
+            
+            <div className="lg:w-1/2 grid grid-cols-2 gap-6 animate-slideInRight">
+              {[
+                { value: "99.99%", label: "Uptime" },
+                { value: "250+", label: "Tech Patents" },
+                { value: "1200+", label: "Clients Worldwide" },
+                { value: "15+", label: "Years Experience" }
+              ].map((stat, i) => (
+                <div key={i} className="bg-gray-50 p-6 rounded-lg border-l-4 border-[#245684] hover:shadow-lg transition-shadow">
+                  <div className={`text-3xl font-bold text-[#103d5d] mb-2 ${animatedStats ? 'animate-countUp' : ''}`}>
+                    {stat.value}
+                  </div>
+                  <div className="text-gray-600">{stat.label}</div>
+                  <div className="mt-4 h-1 w-full bg-gray-200 overflow-hidden">
+                    <div 
+                      className="h-1 bg-[#245684] animate-progress" 
+                      style={{ width: '100%' }}
+                    ></div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
- 
-      {/* Digital Vision Section */}
-      <section className="digital-section digital-vision">
-        <div className="container">
-          <div className="section-header">
-            <h2><span className="section-number"></span>Digital Core</h2>
-            <p className="section-description">Our technological philosophy</p>
+
+      {/* Vision & Mission Section */}
+<section className="py-20 bg-[#f8fafc] px-4 sm:px-6 lg:px-8">
+  <div className="max-w-7xl mx-auto">
+    <div className="text-center mb-16">
+      <span className="inline-block px-4 py-2 bg-gradient-to-r from-[#103d5d] to-[#245684] text-white text-sm font-medium rounded-full mb-4 shadow-md">
+        OUR CORE PURPOSE
+      </span>
+      <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-6">
+        Building <span className="text-[#245684]">Tomorrow's</span> Technology
+      </h2>
+      <div className="w-24 h-1 bg-gradient-to-r from-[#a3d4ff] to-[#245684] mx-auto"></div>
+    </div>
+    
+    <div className="grid md:grid-cols-2 gap-8">
+      {/* Vision Card - Using gradient background */}
+      <div className="bg-gradient-to-br from-[#103d5d] to-[#1a3d6b] p-0.5 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300">
+        <div className="h-full bg-white rounded-xl p-8">
+          <div className="w-16 h-16 mb-6 rounded-full bg-gradient-to-r from-[#103d5d] to-[#245684] flex items-center justify-center text-white text-2xl shadow-md">
+            👁️
           </div>
-          <div className="vision-cards">
-            <div className="v-card">
-              <div className="v-card-inner">
-                <h3>Vision</h3>
-                <p>
-                  To create a world where technology boundaries disappear, enabling seamless digital experiences through intelligent, self-healing IT ecosystems.
-                </p>
-                <div className="v-card-bg"></div>
-              </div>
-            </div>
-            <div className="v-card">
-              <div className="v-card-inner">
-                <h3>Mission</h3>
-                <p>
-                  To architect the future of business technology by implementing quantum-ready solutions today while maintaining bulletproof operational integrity.
-                </p>
-                <div className="v-card-bg"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
- 
-      {/* Digital Team Section */}
-      <section className="digital-section digital-team">
-        <div className="container">
-          <div className="section-header">
-            <h2><span className="section-number"></span>Digital Minds</h2>
-            <p className="section-description">The architects of your digital future</p>
-          </div>
-          <div className="team-grid">
-            <div className="team-member">
-              <div className="member-avatar">
-                <div className="avatar-bg"></div>
-                <div className="avatar-overlay">
-                  <span>CTO</span>
-                  <span>15+ years</span>
-                </div>
-              </div>
-              <h4>Dr. Elena Petrova</h4>
-              <p>Quantum Computing Specialist</p>
-              <div className="member-tech">
-                <span>AI</span>
-                <span>ML</span>
-                <span>QC</span>
-              </div>
-            </div>
-            <div className="team-member">
-              <div className="member-avatar">
-                <div className="avatar-bg"></div>
-                <div className="avatar-overlay">
-                  <span>CSO</span>
-                  <span>12+ years</span>
-                </div>
-              </div>
-              <h4>Markus Reinhardt</h4>
-              <p>Blockchain Security Expert</p>
-              <div className="member-tech">
-                <span>Sec</span>
-                <span>Crypto</span>
-                <span>ZeroTrust</span>
-              </div>
-            </div>
-            <div className="team-member">
-              <div className="member-avatar">
-                <div className="avatar-bg"></div>
-                <div className="avatar-overlay">
-                  <span>CDO</span>
-                  <span>10+ years</span>
-                </div>
-              </div>
-              <h4>Priya Desai</h4>
-              <p>Data Science Lead</p>
-              <div className="member-tech">
-                <span>BigData</span>
-                <span>AI</span>
-                <span>BI</span>
-              </div>
-            </div>
+          <h3 className="text-2xl font-bold text-[#103d5d] mb-4">
+            Our Vision
+          </h3>
+          <p className="text-gray-700 mb-6">
+            To create a world where technology boundaries disappear, enabling seamless digital experiences through intelligent IT ecosystems.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {["Innovation", "Boundless", "Future"].map((tag, i) => (
+              <span 
+                key={i} 
+                className="px-3 py-1 bg-[#e6f2ff] text-[#103d5d] rounded-full text-sm font-medium hover:bg-[#a3d4ff] transition-colors"
+              >
+                #{tag}
+              </span>
+            ))}
           </div>
         </div>
-      </section>
- 
-      {/* Digital Services Section */}
-      <section className="digital-section digital-services">
-        <div className="container">
-          <div className="section-header">
-            <h2><span className="section-number"></span>Digital Arsenal</h2>
-            <p className="section-description">Next-generation managed services</p>
-          </div>
-          <div className="services-grid">
-            <div className="service-card">
-              <div className="service-icon">
-                <div className="icon-bg"></div>
-                <span>⎔</span>
-              </div>
-              <h3>Quantum-Ready Cloud</h3>
-              <p>
-                Future-proof cloud infrastructure designed for post-quantum cryptography and AI workloads.
-              </p>
-              <div className="service-tech">
-                <span>Q-Encryption</span>
-                <span>AI-Ops</span>
-              </div>
-            </div>
-            <div className="service-card">
-              <div className="service-icon">
-                <div className="icon-bg"></div>
-                <span>⏣</span>
-              </div>
-              <h3>Neural Security</h3>
-              <p>
-                AI-driven threat detection and autonomous response systems with behavioral analytics.
-              </p>
-              <div className="service-tech">
-                <span>AI</span>
-                <span>ML</span>
-              </div>
-            </div>
-            <div className="service-card">
-              <div className="service-icon">
-                <div className="icon-bg"></div>
-                <span>⌬</span>
-              </div>
-              <h3>Data Fabric</h3>
-              <p>
-                Unified data management across hybrid environments with real-time analytics.
-              </p>
-              <div className="service-tech">
-                <span>Blockchain</span>
-                <span>BI</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
- 
-      {/* Digital CTA Section */}
-<section className="digital-cta-section">
-  <div className="cta-container">
-    <div className="cta-content">
-      <div className="cta-tech-label">
-        <span className="tech-pulse"></span>
-        <span>READY FOR DIGITAL TRANSFORMATION?</span>
       </div>
-      <h3>Let's Build Your <span className="gradient-text">Future-Ready</span> Infrastructure</h3>
-      <p className="cta-description">
-        Our engineers are standing by to assess your current systems and design a
-        customized roadmap for your digital evolution.
-      </p>
+
+      {/* Mission Card - Using brand accent color */}
+      <div className="bg-gradient-to-br from-[#245684] to-[#a3d4ff] p-0.5 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300">
+        <div className="h-full bg-white rounded-xl p-8">
+          <div className="w-16 h-16 mb-6 rounded-full bg-gradient-to-r from-[#245684] to-[#a3d4ff] flex items-center justify-center text-white text-2xl shadow-md">
+            🎯
+          </div>
+          <h3 className="text-2xl font-bold text-[#245684] mb-4">
+            Our Mission
+          </h3>
+          <p className="text-gray-700 mb-6">
+            To architect the future of business technology with cutting-edge solutions while maintaining operational excellence and security.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {["Excellence", "Security", "Innovation"].map((tag, i) => (
+              <span 
+                key={i} 
+                className="px-3 py-1 bg-[#e6f2ff] text-[#245684] rounded-full text-sm font-medium hover:bg-[#a3d4ff] transition-colors"
+              >
+                #{tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
-    <div className="cta-actions">
-      <button className="cta-button cta-primary">
-        <span className="button-text">Request Free Tech Audit</span>
-        <span className="button-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </span>
-      </button>
-      <button className="cta-button cta-secondary">
-        <span className="button-text">Explore Case Studies</span>
-        <span className="button-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9 3V5M15 3V5M9 19V21M15 19V21M5 9H3M5 15H3M21 9H19M21 15H19M7 19H17C18.1046 19 19 18.1046 19 17V7C19 5.89543 18.1046 5 17 5H7C5.89543 5 5 5.89543 5 7V17C5 18.1046 5.89543 19 7 19Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </span>
-      </button>
-    </div>
-    <div className="cta-tech-grid">
-      <div className="tech-grid-item"></div>
-      <div className="tech-grid-item"></div>
-      <div className="tech-grid-item"></div>
-      <div className="tech-grid-item"></div>
-      <div className="tech-grid-item"></div>
-      <div className="tech-grid-item"></div>
+
+    {/* Core Values with Brand Colors */}
+    <div className="mt-20">
+      <h3 className="text-2xl font-bold text-[#103d5d] text-center mb-8">
+        Our Core Values
+      </h3>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { 
+            icon: "💡", 
+            title: "Innovation", 
+            desc: "Pushing technological boundaries",
+            bg: "bg-[#e6f2ff]",
+            text: "text-[#103d5d]",
+            border: "border-[#103d5d]"
+          },
+          { 
+            icon: "🛡️", 
+            title: "Integrity", 
+            desc: "Ethical and transparent",
+            bg: "bg-[#d9e8ff]",
+            text: "text-[#1a3d6b]",
+            border: "border-[#1a3d6b]"
+          },
+          { 
+            icon: "🏆", 
+            title: "Excellence", 
+            desc: "Uncompromising quality",
+            bg: "bg-[#cde0ff]",
+            text: "text-[#245684]",
+            border: "border-[#245684]"
+          },
+          { 
+            icon: "❤️", 
+            title: "Passion", 
+            desc: "For technology and people",
+            bg: "bg-[#a3d4ff]",
+            text: "text-[#103d5d]",
+            border: "border-[#103d5d]"
+          }
+        ].map((value, i) => (
+          <div 
+            key={i} 
+            className={`p-6 rounded-lg border-2 ${value.border} ${value.bg} hover:shadow-lg transition-all duration-300 group`}
+          >
+            <div className={`text-4xl mb-4 ${value.text} group-hover:scale-110 transition-transform`}>
+              {value.icon}
+            </div>
+            <h4 className={`text-xl font-bold ${value.text} mb-2`}>{value.title}</h4>
+            <p className={`${value.text} opacity-90`}>{value.desc}</p>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
+
+      {/* Team Section */}
+      <section className="py-16 bg-white px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="text-[#245684] font-semibold uppercase tracking-wider animate-fadeIn">
+              OUR TEAM
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mt-2 mb-4 animate-fadeIn">
+              Meet Our Leadership
+            </h2>
+            <div className="w-24 h-1 bg-[#245684] mx-auto animate-grow"></div>
+            <p className="text-gray-600 mt-4 max-w-2xl mx-auto animate-fadeIn">
+              The brilliant minds driving innovation at SysCare IT Solutions
+            </p>
+          </div>
+          
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Dr. Elena Petrova",
+                title: "Quantum Computing Specialist",
+                role: "CTO",
+                experience: "15+ years",
+                skills: ["AI", "ML", "QC"]
+              },
+              {
+                name: "Markus Reinhardt",
+                title: "Blockchain Security Expert",
+                role: "CSO",
+                experience: "12+ years",
+                skills: ["Sec", "Crypto", "ZeroTrust"]
+              },
+              {
+                name: "Priya Desai",
+                title: "Data Science Lead",
+                role: "CDO",
+                experience: "10+ years",
+                skills: ["BigData", "AI", "BI"]
+              }
+            ].map((member, index) => (
+              <div 
+                key={index} 
+                className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-all duration-300 hover:border-[#a3d4ff]"
+              >
+                <div className="relative h-48 bg-gradient-to-r from-[#103d5d] to-[#245684]">
+                  <div className="absolute inset-0 flex items-center justify-center text-white text-6xl">
+                    {member.name.split(' ').map(n => n[0]).join('')}
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-4">
+                    <div className="flex justify-between">
+                      <span>{member.role}</span>
+                      <span>{member.experience}</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h4 className="text-xl font-bold text-[#170f17]">{member.name}</h4>
+                  <p className="text-gray-600 mb-4">{member.title}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {member.skills.map((skill, i) => (
+                      <span 
+                        key={i} 
+                        className="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm hover:bg-[#245684] hover:text-white transition-colors"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-[#103d5d] text-white px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-flex items-center mb-4 px-4 py-2 bg-white bg-opacity-10 rounded-full animate-pulse">
+              <div className="w-2 h-2 mr-2 rounded-full bg-[#a3d4ff]"></div>
+              <span className="text-sm font-medium">READY FOR DIGITAL TRANSFORMATION?</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fadeIn">
+              Let's Build Your <span className="bg-gradient-to-r from-[#a3d4ff] to-white bg-clip-text text-transparent">Future-Ready</span> Infrastructure
+            </h2>
+            <p className="text-xl mb-8 opacity-90 animate-fadeIn">
+              Our engineers are standing by to assess your current systems and design a customized roadmap for your digital evolution.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fadeIn">
+              <button className="bg-white text-[#103d5d] px-8 py-3 rounded-lg font-bold hover:bg-opacity-90 transition flex items-center justify-center hover:scale-105">
+                <span>Request Free Tech Audit</span>
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </button>
+              <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-[#103d5d] transition flex items-center justify-center hover:scale-105">
+                <span>Explore Case Studies</span>
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer (same as before) */}
+
+      {/* Add this to your global CSS */}
+      <style jsx>{`
+        @keyframes float1 {
+          0%, 100% { transform: translate(0, 0) rotate(0deg); }
+          50% { transform: translate(10px, 10px) rotate(5deg); }
+        }
+        @keyframes float2 {
+          0%, 100% { transform: translate(0, 0) rotate(0deg); }
+          50% { transform: translate(-10px, 15px) rotate(-5deg); }
+        }
+        @keyframes float3 {
+          0%, 100% { transform: translate(0, 0) rotate(0deg); }
+          50% { transform: translate(5px, -10px) rotate(3deg); }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInLeft {
+          from { opacity: 0; transform: translateX(-50px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRight {
+          from { opacity: 0; transform: translateX(50px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes grow {
+          from { transform: scaleX(0); }
+          to { transform: scaleX(1); }
+        }
+        @keyframes countUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes progress {
+          from { width: 0; }
+          to { width: 100%; }
+        }
+        
+        .animate-float1 { animation: float1 8s ease-in-out infinite; }
+        .animate-float2 { animation: float2 10s ease-in-out infinite; }
+        .animate-float3 { animation: float3 12s ease-in-out infinite; }
+        .animate-fadeIn { animation: fadeIn 1s ease-out forwards; }
+        .animate-slideInLeft { animation: slideInLeft 1s ease-out forwards; }
+        .animate-slideInRight { animation: slideInRight 1s ease-out forwards; }
+        .animate-grow { animation: grow 0.8s ease-out forwards; }
+        .animate-countUp { animation: countUp 1s ease-out forwards; }
+        .animate-progress { animation: progress 1.5s ease-out forwards; }
+        
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+      `}</style>
     </div>
   );
 };
- 
+
 export default AboutUs;
