@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+
 const HomePage = () => {
   const [showAllServices, setShowAllServices] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -272,8 +273,7 @@ const HomePage = () => {
           </div>
         )}
       </nav>
-
-      {/* Modern Hero Section */}
+  {/* Modern Hero Section */}
 <section className="relative overflow-hidden bg-gradient-to-br from-[#0f172a] to-[#1e3a8a] text-white">
   {/* Animated background elements */}
   <div className="absolute inset-0 overflow-hidden">
@@ -416,6 +416,7 @@ const HomePage = () => {
     </div>
   </div>
 </section>
+       
 
       {/* About Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">

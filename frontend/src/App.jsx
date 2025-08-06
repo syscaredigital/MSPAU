@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import Home from  './pages/home.jsx';
 import ServicesPage from './pages/Services.jsx';
 import ContactPage from './pages/contactus.jsx';
+import PrivateCloudPage from './pages/SysCarePrivateCloud.jsx';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path='/about-us'  element = {<AboutUs />}></Route>
             <Route path='/syscare-services'  element = {<ServicesPage />}></Route>
             <Route path='/contact-Us'  element = {<ContactPage />}></Route>
+            <Route path='/SysCare-Private-Cloud'  element = {<PrivateCloudPage />}></Route>
           </Routes>
           </BrowserRouter>
      </div>
