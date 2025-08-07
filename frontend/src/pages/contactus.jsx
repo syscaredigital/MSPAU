@@ -70,16 +70,83 @@ const ContactPage = () => {
     <div className="min-h-screen bg-[#f5f7fa]">
       <Header />
       
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-[#103d5d] to-[#245684] text-white py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
-          <p className="text-xl max-w-3xl mx-auto">
-            Have questions or ready to start your IT transformation? Reach out to our expert team today.
-          </p>
-        </div>
-      </div>
+<div className="relative h-screen min-h-[700px] overflow-hidden">
+  {/* Video Background Container */}
+  <div className="absolute inset-0 z-0">
+    {/* Optimized Video */}
+    <video
+      autoPlay
+      loop
+      muted
+      playsInline
+      className="w-full h-full object-cover"
+      poster="/images/hero-video-poster.jpg" // Low-res placeholder
+    >
+      <source src="/videos/hero-bg.webm" type="video/webm" />
+      <source src="/videos/hero-bg.mp4" type="video/mp4" />
+      {/* Fallback Image */}
+      <img 
+        src="/images/hero-fallback.jpg" 
+        alt="IT infrastructure" 
+        className="w-full h-full object-cover"
+      />
+    </video>
+    
+    {/* Color Overlay */}
+    <div className="absolute inset-0 bg-gradient-to-b from-[#103d5d]/90 via-[#103d5d]/70 to-[#0a2a3f]/90"></div>
+  </div>
 
+  {/* Content Overlay */}
+  <div className="relative z-10 h-full flex flex-col justify-center px-6 sm:px-8 lg:px-12">
+    <div className="max-w-5xl mx-auto text-center">
+      
+      {/* Animated Tagline */}
+      <div className="animate-fade-in-up mb-6">
+        <span className="inline-block px-4 py-2 bg-[#4facfe]/20 border border-[#4facfe]/40 text-[#4facfe] rounded-full text-sm font-medium backdrop-blur-sm">
+          Trusted IT Partner Since 2015
+        </span>
+      </div>
+      
+      {/* Main Headline */}
+      <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight animate-fade-in-up delay-100">
+        <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#4facfe] to-[#00f2fe]">
+          Next-Gen IT Solutions
+        </span>
+      </h1>
+      
+      {/* Subheadline */}
+      <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto mb-10 animate-fade-in-up delay-200">
+        Enterprise-grade technology services with 24/7 expert support
+      </p>
+      
+      {/* CTA Buttons */}
+      <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up delay-300">
+        <a
+          href="#contact"
+          className="px-8 py-4 bg-[#4facfe] hover:bg-[#3a9ae8] text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+        >
+          Get Free Assessment
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </a>
+        <a
+          href="/services"
+          className="px-8 py-4 bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#103d5d] font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-2"
+        >
+          Our Services
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {/* Scrolling Indicator */}
+  <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
+    <svg className="w-8 h-8 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7 7m7-7H3"></path>
+    </svg>
+  </div>
+</div>
       {/* Main Content */}
       <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">

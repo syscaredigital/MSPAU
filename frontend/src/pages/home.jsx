@@ -192,7 +192,7 @@ const HomePage = () => {
         
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-blue-500">
-            Next-Gen IT Solutions
+            SysCare IT Solutions
           </span> 
           <br />
           For Your Digital Transformation
