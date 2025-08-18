@@ -1,13 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { FiArrowRight } from 'react-icons/fi';
 
-
 const VideoHero = () => {
   const videoRef = useRef(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   // Video path - UPDATE THIS TO YOUR ACTUAL PATH
-  const videoSrc = '/videos/heroSection.mp4'; // or import from assets
+  const videoSrc = '/videos/hero-bg.mp4'; // or import from assets
 
   useEffect(() => {
     const video = videoRef.current;
@@ -34,9 +33,8 @@ const VideoHero = () => {
       video.removeEventListener('error', handleError);
     };
   }, []);
-console.log("Video path is:", videoSrc); // Verify path is correct
+
   return (
-    
     <section className="relative h-screen w-full overflow-hidden bg-gray-900">
       {/* Video Background */}
       <video

@@ -169,7 +169,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-[#f5f7fa]">
       <Navigation />
-
+<VideoHero />
   {/* Modern Hero Section */}
 <section className="relative overflow-hidden bg-gradient-to-br from-[#0f172a] to-[#1e3a8a] text-white">
   {/* Animated background elements */}

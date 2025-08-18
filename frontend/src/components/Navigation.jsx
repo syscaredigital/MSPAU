@@ -42,16 +42,16 @@ const Navigation = () => {
         id: 'private-cloud',
         name: 'Private Cloud & Hosted Solutions',
         subCategories: [
-          { name: 'SysCare Private Cloud', url: '/services/private-cloud' },
-          { name: 'Hosted Services', url: '/services/hosted-services' }
+          { name: 'SysCare Private Cloud', url: '/SysCare-Private-Cloud' },
+          { name: 'Hosted Services', url: '/Hosted-Services' }
         ]
       },
       {
         id: 'security-services',
         name: 'Security Services & Consultancy',
         subCategories: [
-          { name: 'Cybersecurity Consultancy Services', url: '/services/cybersecurity-consultancy' },
-          { name: 'Managed Security Services', url: '/services/managed-security' }
+          { name: 'Cybersecurity Consultancy Services', url: '/CyberSecurityConsultancyServices' },
+          { name: 'Managed Security Services', url: '/ManagedSecurityServices' }
         ]
       }
     ],
@@ -61,16 +61,16 @@ const Navigation = () => {
         id: 'managed-it',
         name: 'Managed IT Services & Service Desk',
         subCategories: [
-          { name: 'Service Desk', url: '/services/service-desk' },
-          { name: 'Managed IT Services', url: '/services/managed-it' }
+          { name: 'Service Desk', url: '/Service-Desk' },
+          { name: 'Managed IT Services', url: '/Managed-IT-Services' }
         ]
       },
       {
         id: 'project-consultancy',
         name: 'Project & Consultancy Services',
         subCategories: [
-          { name: 'IT Infra Projects', url: '/services/it-infra-projects' },
-          { name: 'Development & Automation', url: '/services/development-automation' }
+          { name: 'IT Infra Projects', url: '/ITInfraProjects' },
+          { name: 'Development & Automation', url: '/DevelopmentAutomation' }
         ]
       }
     ],
@@ -80,16 +80,16 @@ const Navigation = () => {
         id: 'internet-voip',
         name: 'Internet & VOIP',
         subCategories: [
-          { name: 'Connectivity', url: '/services/connectivity' },
-          { name: 'VoIP & Video', url: '/services/voip-video' }
+          { name: 'Connectivity', url: '/Connectivity' },
+          { name: 'VoIP & Video', url: '/VoiceVideo' }
         ]
       },
       {
         id: 'it-training',
         name: 'IT Training',
         subCategories: [
-          { name: 'Security', url: '/services/security-training' },
-          { name: 'Cloud', url: '/services/cloud-training' }
+          { name: 'Security', url: '/Security' },
+          { name: 'Cloud', url: '/Cloud' }
         ]
       }
     ],
@@ -99,16 +99,16 @@ const Navigation = () => {
         id: 'digital-services',
         name: 'Digital Services',
         subCategories: [
-          { name: 'Design & Dev', url: '/services/design-dev' },
-          { name: 'Digital Marketing', url: '/services/digital-marketing' }
+          { name: 'Design & Dev', url: '/DesignDev' },
+          { name: 'Digital Marketing', url: '/DigitalMarketing' }
         ]
       },
       {
         id: 'crm-erp',
         name: 'CRM & ERP Solutions',
         subCategories: [
-          { name: 'Small Business', url: '/services/crm-small-business' },
-          { name: 'Enterprise', url: '/services/erp-enterprise' }
+          { name: 'Small Business', url: '/SmallBusiness' },
+          { name: 'Enterprise', url: '/Enterprise' }
         ]
       }
     ]

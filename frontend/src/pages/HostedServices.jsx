@@ -2,8 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight } from 'react-icons/fi';
 import Navigation from '../components/Navigation';
 
-
-const PrivateCloudPage = () => {
+const HostedServicesPage = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [isVisible, setIsVisible] = useState([false, false, false, false]);
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
@@ -12,32 +11,38 @@ const PrivateCloudPage = () => {
     {
       title: "Private Cloud",
       icon: <FiCloud className="text-[#245684] text-2xl" />,
-      content: "Elevate your business with SysCare Private Cloud, a flagship service by SysCare IT Solutions. Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization."
+      content: "Elevate your business with SysCare Private Cloud, a flagship service by SysCare IT Solutions. Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
     },
     {
       title: "Hosted Servers",
       icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers state-of-the-art Hosted Servers (Virtual Machines), providing clients with a robust and scalable solution tailored to their business needs. Our advanced hosting services guarantee optimal performance, security, and flexibility."
+      content: "SysCare IT Solutions delivers state-of-the-art Hosted Servers (Virtual Machines), providing clients with a robust and scalable solution tailored to their business needs. Our advanced hosting services guarantee optimal performance, security, and flexibility.",
+      image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80"
     },
     {
       title: "Dedicated Virtual Servers",
       icon: <FiCpu className="text-[#245684] text-2xl" />,
-      content: "Elevate your digital capabilities with SysCare IT Solutions' Dedicated Virtual Servers. Tailored for optimal performance and reliability, our state-of-the-art infrastructure ensures seamless operations for your business."
+      content: "Elevate your digital capabilities with SysCare IT Solutions' Dedicated Virtual Servers. Tailored for optimal performance and reliability, our state-of-the-art infrastructure ensures seamless operations for your business.",
+      image: "https://images.unsplash.com/photo-1597852074816-d933c7d2b988?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
     },
     {
       title: "Virtual Desktops",
       icon: <FiCode className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions offers spectrum of services, including Virtual Desktops (VDI) and Remote Desktop Services (RDS). Elevate your business efficiency with our cutting-edge virtualization solutions."
+      content: "SysCare IT Solutions offers spectrum of services, including Virtual Desktops (VDI) and Remote Desktop Services (RDS). Elevate your business efficiency with our cutting-edge virtualization solutions.",
+      image: "https://images.unsplash.com/photo-1581093450021-4a7360e9a9e5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
     },
     {
       title: "Rack Space Hire",
       icon: <FiDatabase className="text-[#245684] text-2xl" />,
-      content: "Elevate your business with SysCare IT Solutions' Rack Space Hire (Co-location) service. Our premium co-location offering provides a secure and efficient environment for your servers and equipment."
+      content: "Elevate your business with SysCare IT Solutions' Rack Space Hire (Co-location) service. Our premium co-location offering provides a secure and efficient environment for your servers and equipment.",
+      image: "https://images.unsplash.com/photo-1597852074816-d933c7d2b988?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
     },
     {
       title: "Leased Servers",
       icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers excellence in IT with its Leased Dedicated Physical Servers service. Elevate your business performance and security with our dedicated servers, exclusively assigned to meet your unique requirements."
+      content: "SysCare IT Solutions delivers excellence in IT with its Leased Dedicated Physical Servers service. Elevate your business performance and security with our dedicated servers, exclusively assigned to meet your unique requirements.",
+      image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80"
     }
   ];
 
@@ -222,90 +227,98 @@ const PrivateCloudPage = () => {
       </section>
 
       {/* Services Overview - Vertical Tabs */}
-      <section 
-        className="py-24 bg-white px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
-        ref={sectionRefs[2]}
-      >
-        <div className="container mx-auto">
-          <h2 
-            className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-16 text-center"
-            style={{
-              opacity: isVisible[2] ? 1 : 0,
-              transform: isVisible[2] ? 'translateY(0)' : 'translateY(20px)',
-              transition: 'opacity 0.6s ease, transform 0.6s ease'
-            }}
-          >
-            Our Cloud & Infrastructure Services
-          </h2>
-          
-          <div 
-            className="flex flex-col lg:flex-row gap-12"
-            style={{
-              opacity: isVisible[2] ? 1 : 0,
-              transform: isVisible[2] ? 'translateY(0)' : 'translateY(30px)',
-              transition: 'opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s'
-            }}
-          >
-            {/* Vertical Tabs */}
-            <div className="lg:w-1/3">
-              <div className="space-y-4">
-                {services.map((service, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setActiveTab(index)}
-                    className={`w-full text-left p-6 rounded-xl transition-all duration-300 ${
-                      activeTab === index
-                        ? 'bg-[#103d5d] text-white shadow-lg'
-                        : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
-                    }`}
-                    style={{
-                      transform: activeTab === index ? 'translateX(12px)' : 'none'
-                    }}
-                  >
-                    <div className="flex items-center">
-                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-6 ${
-                        activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff]'
-                      }`}>
-                        {React.cloneElement(service.icon, {
-                          className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
-                        })}
-                      </div>
-                      <h3 className="text-xl font-medium">{service.title}</h3>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-            
-            {/* Content Area */}
-            <div 
-              id="service-content"
-              className="lg:w-2/3 bg-[#f9fbfe] rounded-xl p-10 border border-[#e1e9f2] shadow-sm"
+<section 
+  className="py-24 bg-white px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
+  ref={sectionRefs[2]}
+>
+  <div className="container mx-auto">
+    <h2 
+      className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-16 text-center"
+      style={{
+        opacity: isVisible[2] ? 1 : 0,
+        transform: isVisible[2] ? 'translateY(0)' : 'translateY(20px)',
+        transition: 'opacity 0.6s ease, transform 0.6s ease'
+      }}
+    >
+      Our Cloud & Infrastructure Services
+    </h2>
+    
+    <div 
+      className="flex flex-col lg:flex-row gap-12"
+      style={{
+        opacity: isVisible[2] ? 1 : 0,
+        transform: isVisible[2] ? 'translateY(0)' : 'translateY(30px)',
+        transition: 'opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s'
+      }}
+    >
+      {/* Vertical Tabs */}
+      <div className="lg:w-1/3">
+        <div className="space-y-4">
+          {services.map((service, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveTab(index)}
+              className={`w-full text-left p-6 rounded-xl transition-all duration-300 ${
+                activeTab === index
+                  ? 'bg-[#103d5d] text-white shadow-lg'
+                  : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
+              }`}
               style={{
-                minHeight: '400px',
-                transition: 'opacity 0.3s ease, transform 0.3s ease'
+                transform: activeTab === index ? 'translateX(12px)' : 'none'
               }}
             >
-              <div className="flex items-start mb-8">
-                <div className="w-16 h-16 rounded-xl bg-[#f0f6ff] flex items-center justify-center mr-8">
-                  {services[activeTab].icon}
+              <div className="flex items-center">
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-6 ${
+                  activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff]'
+                }`}>
+                  {React.cloneElement(service.icon, {
+                    className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
+                  })}
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-[#103d5d] mt-2">{services[activeTab].title}</h3>
+                <h3 className="text-xl font-medium">{service.title}</h3>
               </div>
-              <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed">{services[activeTab].content}</p>
-              <a 
-                href="#" 
-                className="inline-flex items-center text-[#245684] font-medium hover:underline group text-lg"
-              >
-                Learn more
-                <FiChevronRight className="ml-3 transition-transform duration-300 group-hover:translate-x-2" />
-              </a>
-            </div>
-          </div>
+            </button>
+          ))}
         </div>
-      </section>
-
+      </div>
       
+      {/* Content Area */}
+      <div 
+        id="service-content"
+        className="lg:w-2/3 bg-[#f9fbfe] rounded-xl p-10 border border-[#e1e9f2] shadow-sm"
+        style={{
+          minHeight: '400px',
+          transition: 'opacity 0.3s ease, transform 0.3s ease'
+        }}
+      >
+        <div className="flex items-start mb-6">
+          <div className="w-16 h-16 rounded-xl bg-[#f0f6ff] flex items-center justify-center mr-8">
+            {services[activeTab].icon}
+          </div>
+          <h3 className="text-2xl md:text-3xl font-bold text-[#103d5d] mt-2">{services[activeTab].title}</h3>
+        </div>
+
+        {/* Service Graphic - Now positioned under title but above description */}
+        <div className="mb-8 bg-white p-4 rounded-lg border border-[#e1e9f2] shadow-sm">
+          <img 
+            src={services[activeTab].image}
+            alt={`${services[activeTab].title} infrastructure`}
+            className="w-full h-48 object-cover rounded-lg"
+          />
+        </div>
+
+        <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed">{services[activeTab].content}</p>
+        <a 
+          href="#" 
+          className="inline-flex items-center text-[#245684] font-medium hover:underline group text-lg"
+        >
+          Learn more
+          <FiChevronRight className="ml-3 transition-transform duration-300 group-hover:translate-x-2" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* CTA Section */}
       <section className="py-24 bg-[#103d5d] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
@@ -328,4 +341,4 @@ const PrivateCloudPage = () => {
   );
 };
 
-export default PrivateCloudPage;
+export default HostedServicesPage;
