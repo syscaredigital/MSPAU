@@ -156,37 +156,56 @@ const VideoHero = () => {
               </div>
             </div>
 
-            {/* Right Decorative Card */}
-            <div className="relative z-10 hidden lg:block">
-              <div className="relative w-full h-96">
-                <div className="absolute top-0 right-0 w-full h-full bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden border border-white/20">
-                  <div className="absolute inset-0 flex items-center justify-center p-8">
-                    <div className="text-center">
-                      <div className="inline-block p-6 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl mb-6 shadow-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-                        </svg>
-                      </div>
-                      <h3 className="text-2xl font-bold text-white mb-4">Your Digital Transformation Starts Here</h3>
-                      <p className="text-white/80 mb-6">Custom solutions tailored to your business needs</p>
-                      <div className="inline-flex items-center px-4 py-2 bg-white/20 rounded-full text-sm font-medium">
-                        <span>24/7 Support</span>
-                        <div className="ml-2 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/20 rounded-full filter blur-xl"></div>
-                  <div className="absolute bottom-0 left-0 w-40 h-40 bg-blue-300/20 rounded-full filter blur-xl"></div>
-                </div>
-              </div>
-            </div>
+                {/* Right Stacked Cards Section */}
+<div className="relative z-10 hidden lg:flex flex-col items-center space-y-6">
+  {/* Card 1 */}
+  <div className="relative w-80 bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden border border-white/20 transform hover:-translate-y-2 transition-all duration-500">
+    <div className="p-6 text-center">
+      <div className="inline-block p-4 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl mb-4 shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+        </svg>
+      </div>
+      <h3 className="text-xl font-bold text-white mb-2">Digital Transformation</h3>
+      <p className="text-white/80">Tailored solutions to modernize your business</p>
+    </div>
+  </div>
+
+  {/* Card 2 */}
+  <div className="relative w-80 bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden border border-white/20 transform hover:-translate-y-2 transition-all duration-500 delay-100">
+    <div className="p-6 text-center">
+      <div className="inline-block p-4 bg-gradient-to-br from-purple-500 to-purple-700 rounded-xl mb-4 shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M12 6v.01M6 8v2a4 4 0 004 4h0a4 4 0 004-4V8m-6 0h0m6 0h0" />
+        </svg>
+      </div>
+      <h3 className="text-xl font-bold text-white mb-2">Cybersecurity</h3>
+      <p className="text-white/80">Enterprise-grade protection and compliance</p>
+    </div>
+  </div>
+
+  {/* Card 3 */}
+  <div className="relative w-80 bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden border border-white/20 transform hover:-translate-y-2 transition-all duration-500 delay-200">
+    <div className="p-6 text-center">
+      <div className="inline-block p-4 bg-gradient-to-br from-green-500 to-green-700 rounded-xl mb-4 shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7h18M9 3v4m6-4v4M4 11h16M4 15h16M4 19h16" />
+        </svg>
+      </div>
+      <h3 className="text-xl font-bold text-white mb-2">Cloud Solutions</h3>
+      <p className="text-white/80">Scalable infrastructure for every business</p>
+    </div>
+  </div>
+</div>
+
+            
           </div>
         </div>
       </div>
    
 
    {/* ✅ Seamless Infinite Marquee Section */}
-<div className="absolute bottom-20 w-full overflow-hidden z-20">
+<div className="absolute bottom-2 w-full overflow-hidden z-20">
   <div className="group flex w-max animate-marquee hover:[animation-play-state:paused]">
     {/* 1st set of services */}
     {[
