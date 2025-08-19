@@ -348,3 +348,32 @@ body {
   animation: marquee 40s linear infinite; /* slow smooth scroll */
   display: flex;
 }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes rotate-stats {
+  0% { transform: translateY(0); }
+  33% { transform: translateY(-33.33%); }
+  66% { transform: translateY(-66.66%); }
+  100% { transform: translateY(0); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-rotate-stats {
+  animation: rotate-stats 9s ease-in-out infinite;
+}
