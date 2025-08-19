@@ -183,6 +183,69 @@ const VideoHero = () => {
           </div>
         </div>
       </div>
+   
+
+   {/* ✅ Seamless Infinite Marquee Section */}
+<div className="absolute bottom-20 w-full overflow-hidden z-20">
+  <div className="group flex w-max animate-marquee hover:[animation-play-state:paused]">
+    {/* 1st set of services */}
+    {[
+      "SysCare Private Cloud",
+      "Hosted Services",
+      "Service Desk",
+      "Managed IT Services",
+      "Connectivity",
+      "VoIP & Video",
+      "Design & Dev",
+      "Digital Marketing",
+      "Cybersecurity Consultancy Services",
+      "Managed Security Services",
+      "IT Infra Projects",
+      "Development & Automation",
+      "Security",
+      "Cloud",
+      "Small Business",
+      "Enterprise",
+    ].map((service, index) => (
+      <a
+        key={`first-${index}`}
+        href="#"
+        className="mx-6 px-4 py-2 text-white rounded-lg bg-white/5 backdrop-blur-sm border border-white hover:bg-gradient-to-r hover:from-[#103D5d] hover:to-[#103D5d] hover:text-white transition-all duration-300 shadow-md hover:shadow-xl cursor-pointer"
+      >
+        {service}
+      </a>
+    ))}
+
+    {/* 🔁 Duplicate set for seamless loop */}
+    {[
+      "SysCare Private Cloud",
+      "Hosted Services",
+      "Service Desk",
+      "Managed IT Services",
+      "Connectivity",
+      "VoIP & Video",
+      "Design & Dev",
+      "Digital Marketing",
+      "Cybersecurity Consultancy Services",
+      "Managed Security Services",
+      "IT Infra Projects",
+      "Development & Automation",
+      "Security",
+      "Cloud",
+      "Small Business",
+      "Enterprise",
+    ].map((service, index) => (
+      <a
+        key={`second-${index}`}
+        href="#"
+        className="mx-6 px-4 py-2 text-white rounded-lg bg-white/5 backdrop-blur-sm border border-white hover:bg-gradient-to-r hover:from-[#103D5d] hover:to-[#103D5d] hover:text-white transition-all duration-300 shadow-md hover:shadow-xl cursor-pointer"
+      >
+        {service}
+      </a>
+    ))}
+  </div>
+</div>
+
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
