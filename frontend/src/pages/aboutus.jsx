@@ -310,7 +310,7 @@ const AboutUs = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-[#103d5d] text-white px-4 sm:px-6 lg:px-8">
+      <section className="py-16 bg-[#000000] text-white px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center mb-4 px-4 py-2 bg-white bg-opacity-10 rounded-full animate-pulse">
