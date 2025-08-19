@@ -177,14 +177,17 @@ const Navigation = () => {
               onMouseEnter={() => setServicesHover(true)}
               onMouseLeave={() => setServicesHover(false)}
             >
-              <button className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] flex items-center h-full">
+              <Link
+                to="/syscare-services"
+                className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] flex items-center h-full"
+              >
                 Services
                 <FiChevronDown
                   className={`ml-1 transition-transform duration-200 ${
                     servicesHover ? "rotate-180" : ""
                   }`}
                 />
-              </button>
+              </Link>
 
               {servicesHover && (
                 <div className="absolute left-1/2 transform -translate-x-1/2 top-full w-[900px] bg-white shadow-xl rounded-b-lg py-4 z-50">
@@ -266,19 +269,28 @@ const Navigation = () => {
 
             {/* Mobile Services Menu */}
             <div className="relative">
-              <button
-                onClick={() => toggleMobileMainCategory("services")}
-                className="text-white hover:text-[#a3d4ff] w-full text-left px-3 py-2 font-medium transition-all duration-300 flex justify-between items-center"
-              >
-                Services
-                <FiChevronDown
-                  className={`transition-transform duration-200 ${
-                    activeMobileMainCategory === "services"
-                      ? "rotate-180"
-                      : ""
-                  }`}
-                />
-              </button>
+              <div className="flex flex-col">
+                <Link
+                  to="/syscare-services"
+                  className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300"
+                  onClick={toggleMobileMenu}
+                >
+                  Services
+                </Link>
+                <button
+                  onClick={() => toggleMobileMainCategory("services")}
+                  className="text-white hover:text-[#a3d4ff] w-full text-left px-3 py-2 font-medium transition-all duration-300 flex justify-between items-center"
+                >
+                  Browse Services
+                  <FiChevronDown
+                    className={`transition-transform duration-200 ${
+                      activeMobileMainCategory === "services"
+                        ? "rotate-180"
+                        : ""
+                    }`}
+                  />
+                </button>
+              </div>
 
               {activeMobileMainCategory === "services" && (
                 <div className="pl-4 mt-2 space-y-4">

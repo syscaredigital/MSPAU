@@ -308,13 +308,7 @@ const CloudPage = () => {
         </div>
 
         <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed">{services[activeTab].content}</p>
-        <a 
-          href="#" 
-          className="inline-flex items-center text-[#245684] font-medium hover:underline group text-lg"
-        >
-          Learn more
-          <FiChevronRight className="ml-3 transition-transform duration-300 group-hover:translate-x-2" />
-        </a>
+        
       </div>
     </div>
   </div>

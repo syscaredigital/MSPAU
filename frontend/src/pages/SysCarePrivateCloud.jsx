@@ -307,20 +307,20 @@ const PrivateCloudPage = () => {
         </div>
 
         <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed">{services[activeTab].content}</p>
-        <a 
+        {/* <a 
           href="#" 
           className="inline-flex items-center text-[#245684] font-medium hover:underline group text-lg"
         >
           Learn more
           <FiChevronRight className="ml-3 transition-transform duration-300 group-hover:translate-x-2" />
-        </a>
+        </a> */}
       </div>
     </div>
   </div>
 </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-[#103d5d] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
+      <section className="py-24 bg-[#000000] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Ready to Transform Your IT Infrastructure?</h2>
           <p className="text-xl md:text-2xl text-[#c9d8eb] mb-10 max-w-3xl mx-auto">
@@ -336,6 +336,8 @@ const PrivateCloudPage = () => {
           </div>
         </div>
       </section>
+   
+
     </div>
   );
 };
