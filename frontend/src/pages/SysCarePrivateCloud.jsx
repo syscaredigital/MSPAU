@@ -46,28 +46,28 @@ const PrivateCloudPage = () => {
     }
   ];
 
-  const features = [
-    {
-      icon: <FiShield className="text-[#245684] text-2xl" />,
-      title: "Enterprise Security",
-      description: "Military-grade encryption and advanced threat protection"
-    },
-    {
-      icon: <FiCpu className="text-[#245684] text-2xl" />,
-      title: "High Performance",
-      description: "99.99% uptime with SSD storage and high-speed networking"
-    },
-    {
-      icon: <FiWifi className="text-[#245684] text-2xl" />,
-      title: "Dedicated Bandwidth",
-      description: "1Gbps to 10Gbps options available"
-    },
-    {
-      icon: <FiDatabase className="text-[#245684] text-2xl" />,
-      title: "Compliance Ready",
-      description: "Meet industry-specific regulatory requirements"
-    }
-  ];
+  // const features = [
+  //   {
+  //     icon: <FiShield className="text-[#245684] text-2xl" />,
+  //     title: "Enterprise Security",
+  //     description: "Military-grade encryption and advanced threat protection"
+  //   },
+  //   {
+  //     icon: <FiCpu className="text-[#245684] text-2xl" />,
+  //     title: "High Performance",
+  //     description: "99.99% uptime with SSD storage and high-speed networking"
+  //   },
+  //   {
+  //     icon: <FiWifi className="text-[#245684] text-2xl" />,
+  //     title: "Dedicated Bandwidth",
+  //     description: "1Gbps to 10Gbps options available"
+  //   },
+  //   {
+  //     icon: <FiDatabase className="text-[#245684] text-2xl" />,
+  //     title: "Compliance Ready",
+  //     description: "Meet industry-specific regulatory requirements"
+  //   }
+  // ];
 
   useEffect(() => {
     const observers = sectionRefs.map((ref, index) => {
@@ -216,8 +216,7 @@ const PrivateCloudPage = () => {
             >
               <div className="bg-white p-6 rounded-xl border border-[#e1e9f2] shadow-sm hover:shadow-md transition-shadow duration-500">
                 <img 
-                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" 
-                  alt="Private Cloud Infrastructure"
+                  src=""
                   className="w-full h-auto rounded-lg transition-transform duration-500 hover:scale-[1.02]"
                 />
               </div>
