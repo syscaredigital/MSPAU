@@ -133,7 +133,7 @@ const Navigation = () => {
   return (
     <nav
       className={`bg-[#103d5d] shadow-lg sticky top-0 z-50 transition-all duration-500 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -230,7 +230,7 @@ const Navigation = () => {
             </Link>
             <Link
               to="/get-quote"
-              className="bg-[#245684] hover:bg-[#1a3d6b] text-white px-6 py-2 rounded-lg font-medium transition-all duration-300 ml-4 transform hover:scale-105"
+              className="bg-[#FFFFFF] hover:bg-[#1a3d6b] text-[#1a3d6b] hover:text-[#FFFFFF] px-6 py-2 rounded-lg font-medium transition-all duration-300 ml-4 transform hover:scale-105"
             >
               Get Quote
             </Link>

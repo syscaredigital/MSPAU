@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer.jsx';
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaHeadset, FaChevronRight } from 'react-icons/fa';
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -42,6 +43,15 @@ const ContactPage = () => {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(false);
+
+  useEffect(() => {
+    // Trigger animations after component mounts
+    const timer = setTimeout(() => {
+      setHeaderVisible(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -70,85 +80,102 @@ const ContactPage = () => {
     <div className="min-h-screen bg-[#f5f7fa]">
       <Header />
       
-<div className="relative h-screen min-h-[700px] overflow-hidden">
-  {/* Video Background Container */}
-  <div className="absolute inset-0 z-0">
-    {/* Optimized Video */}
-    <video
-      autoPlay
-      loop
-      muted
-      playsInline
-      className="w-full h-full object-cover"
-      poster="/images/hero-video-poster.jpg" // Low-res placeholder
-    >
-      <source src="/videos/hero-bg.webm" type="video/webm" />
-      <source src="/videos/hero-bg.mp4" type="video/mp4" />
-      {/* Fallback Image */}
-      <img 
-        src="/images/hero-fallback.jpg" 
-        alt="IT infrastructure" 
-        className="w-full h-full object-cover"
-      />
-    </video>
-    
-    {/* Color Overlay */}
-    <div className="absolute inset-0 bg-gradient-to-b from-[#103d5d]/90 via-[#103d5d]/70 to-[#0a2a3f]/90"></div>
-  </div>
-
-  {/* Content Overlay */}
-  <div className="relative z-10 h-full flex flex-col justify-center px-6 sm:px-8 lg:px-12">
-    <div className="max-w-5xl mx-auto text-center">
-      
-      {/* Animated Tagline */}
-      <div className="animate-fade-in-up mb-6">
-        <span className="inline-block px-4 py-2 bg-[#4facfe]/20 border border-[#4facfe]/40 text-[#4facfe] rounded-full text-sm font-medium backdrop-blur-sm">
-          Trusted IT Partner Since 2015
-        </span>
+      {/* Contact Header Section */}
+      <div className="relative bg-gradient-to-br from-[#103d5d] to-[#245684] text-white pb-32 pt-24 md:pt-32 px-4 md:px-8 lg:px-16 overflow-hidden" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0 100%)' }}>
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 left-10 w-64 h-64 rounded-full border-2 border-white"></div>
+          <div className="absolute bottom-20 right-16 w-48 h-48 rounded-full border-2 border-white"></div>
+          <div className="absolute top-1/3 right-1/4 w-32 h-32 rounded-full border-2 border-white"></div>
+        </div>
+        
+        {/* Floating elements */}
+        <div className="absolute top-20 left-20 animate-float">
+          <div className="w-12 h-12 rounded-lg bg-white/10 backdrop-blur-sm"></div>
+        </div>
+        <div className="absolute bottom-40 right-32 animate-float-delayed">
+          <div className="w-10 h-10 rounded-lg bg-white/10 backdrop-blur-sm"></div>
+        </div>
+        <div className="absolute top-1/2 left-1/3 animate-float">
+          <div className="w-8 h-8 rounded-lg bg-white/10 backdrop-blur-sm"></div>
+        </div>
+        
+        <div className="container mx-auto max-w-6xl relative z-10">
+          <div className="flex flex-col md:flex-row items-center">
+            <div className="md:w-1/2 mb-10 md:mb-0">
+              <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                Get in <span className="text-[#a3c1e0]">Touch</span> With Us
+              </h1>
+              <p className={`text-xl text-[#c9d8eb] mb-8 max-w-lg transition-all duration-700 delay-100 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                Our team of experts is ready to help you transform your IT infrastructure. Reach out to us for a consultation.
+              </p>
+              <div className={`flex flex-wrap gap-4 transition-all duration-700 delay-200 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                <a href="#contact-form" className="bg-white text-[#103d5d] px-6 py-3 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] flex items-center">
+                  Contact Now <FaChevronRight className="ml-2" />
+                </a>
+                <a href="#contact-methods" className="border-2 border-white text-white px-6 py-3 rounded-md font-medium transition-all duration-300 hover:bg-white hover:text-[#103d5d]">
+                  Other Methods
+                </a>
+              </div>
+            </div>
+            
+            <div className="md:w-1/2 flex justify-center">
+              <div className={`relative transition-all duration-700 delay-300 ${headerVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+                <div className="absolute -inset-6 bg-[#a3c1e0] rounded-2xl rotate-3 opacity-30"></div>
+                <div className="relative bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-2xl">
+                  <div className="text-center p-6">
+                    <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-[#103d5d] flex items-center justify-center">
+                      <FaHeadset className="text-4xl text-[#a3c1e0]" />
+                    </div>
+                    <h3 className="text-2xl font-semibold mb-2">24/7 Support</h3>
+                    <p className="text-[#c9d8eb]">Our team is always available to assist you with any inquiries</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      
-      {/* Main Headline */}
-      <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight animate-fade-in-up delay-100">
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#4facfe] to-[#00f2fe]">
-          Next-Gen IT Solutions
-        </span>
-      </h1>
-      
-      {/* Subheadline */}
-      <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto mb-10 animate-fade-in-up delay-200">
-        Enterprise-grade technology services with 24/7 expert support
-      </p>
-      
-      {/* CTA Buttons */}
-      <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up delay-300">
-        <a
-          href="#contact"
-          className="px-8 py-4 bg-[#4facfe] hover:bg-[#3a9ae8] text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-        >
-          Get Free Assessment
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-          </svg>
-        </a>
-        <a
-          href="/services"
-          className="px-8 py-4 bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#103d5d] font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-2"
-        >
-          Our Services
-        </a>
-      </div>
-    </div>
-  </div>
 
-  {/* Scrolling Indicator */}
-  <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
-    <svg className="w-8 h-8 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7 7m7-7H3"></path>
-    </svg>
-  </div>
-</div>
+      {/* Contact Methods Section */}
+      <section id="contact-methods" className="py-16 px-4 md:px-8 lg:px-16 -mt-20">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Phone */}
+            <div className="bg-white rounded-xl p-6 shadow-md flex flex-col items-center text-center transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-lg border-l-4 border-transparent hover:border-[#245684]">
+              <div className="w-16 h-16 rounded-full bg-[#103d5d] flex items-center justify-center mb-6">
+                <FaPhoneAlt className="text-2xl text-[#a3c1e0] transition-all duration-300 hover:-translate-y-1" />
+              </div>
+              <h3 className="text-xl font-semibold text-[#103d5d] mb-3">Call Us</h3>
+              <p className="text-gray-600 mb-4">Speak directly with our team</p>
+              <a href="tel:1300697972" className="text-[#245684] font-medium hover:underline">1300 69 79 72</a>
+            </div>
+            
+            {/* Email */}
+            <div className="bg-white rounded-xl p-6 shadow-md flex flex-col items-center text-center transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-lg border-l-4 border-transparent hover:border-[#245684]">
+              <div className="w-16 h-16 rounded-full bg-[#103d5d] flex items-center justify-center mb-6">
+                <FaEnvelope className="text-2xl text-[#a3c1e0] transition-all duration-300 hover:-translate-y-1" />
+              </div>
+              <h3 className="text-xl font-semibold text-[#103d5d] mb-3">Email Us</h3>
+              <p className="text-gray-600 mb-4">Send us a message anytime</p>
+              <a href="mailto:info@syscare.com.au" className="text-[#245684] font-medium hover:underline">info@syscare.com.au</a>
+            </div>
+            
+            {/* Office */}
+            <div className="bg-white rounded-xl p-6 shadow-md flex flex-col items-center text-center transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-lg border-l-4 border-transparent hover:border-[#245684]">
+              <div className="w-16 h-16 rounded-full bg-[#103d5d] flex items-center justify-center mb-6">
+                <FaMapMarkerAlt className="text-2xl text-[#a3c1e0] transition-all duration-300 hover:-translate-y-1" />
+              </div>
+              <h3 className="text-xl font-semibold text-[#103d5d] mb-3">Visit Us</h3>
+              <p className="text-gray-600 mb-4">Come see us at our headquarters</p>
+              <p className="text-[#245684] font-medium">Unit 12, Level 10, 401 Docklands Drive, Docklands, VIC 3008</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+      <div id="contact-form" className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <div className="bg-white rounded-xl shadow-lg p-8">
@@ -248,10 +275,7 @@ const ContactPage = () => {
               <div className="space-y-6">
                 <div className="flex items-start">
                   <div className="bg-[#103d5d] text-white p-3 rounded-full mr-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
+                    <FaMapMarkerAlt className="h-6 w-6" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-[#245684] mb-1">Our Office</h3>
@@ -261,9 +285,7 @@ const ContactPage = () => {
 
                 <div className="flex items-start">
                   <div className="bg-[#103d5d] text-white p-3 rounded-full mr-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
+                    <FaPhoneAlt className="h-6 w-6" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-[#245684] mb-1">Phone</h3>
@@ -273,9 +295,7 @@ const ContactPage = () => {
 
                 <div className="flex items-start">
                   <div className="bg-[#103d5d] text-white p-3 rounded-full mr-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
+                    <FaEnvelope className="h-6 w-6" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-[#245684] mb-1">Email</h3>
@@ -324,9 +344,24 @@ const ContactPage = () => {
             </div>
           </div>
         </div>
-        
       </div>
+      
       <Footer />
+      
+      <style jsx>{`
+        @keyframes float {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-15px); }
+          100% { transform: translateY(0px); }
+        }
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+        .animate-float-delayed {
+          animation: float 6s ease-in-out infinite;
+          animation-delay: 2s;
+        }
+      `}</style>
     </div>
   );
 };

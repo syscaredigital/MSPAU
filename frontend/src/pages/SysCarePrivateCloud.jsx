@@ -5,6 +5,7 @@ import Navigation from '../components/Navigation';
 const PrivateCloudPage = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [isVisible, setIsVisible] = useState([false, false, false, false]);
+  const [isMobile, setIsMobile] = useState(false);
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
   const services = [
@@ -46,28 +47,23 @@ const PrivateCloudPage = () => {
     }
   ];
 
-  // const features = [
-  //   {
-  //     icon: <FiShield className="text-[#245684] text-2xl" />,
-  //     title: "Enterprise Security",
-  //     description: "Military-grade encryption and advanced threat protection"
-  //   },
-  //   {
-  //     icon: <FiCpu className="text-[#245684] text-2xl" />,
-  //     title: "High Performance",
-  //     description: "99.99% uptime with SSD storage and high-speed networking"
-  //   },
-  //   {
-  //     icon: <FiWifi className="text-[#245684] text-2xl" />,
-  //     title: "Dedicated Bandwidth",
-  //     description: "1Gbps to 10Gbps options available"
-  //   },
-  //   {
-  //     icon: <FiDatabase className="text-[#245684] text-2xl" />,
-  //     title: "Compliance Ready",
-  //     description: "Meet industry-specific regulatory requirements"
-  //   }
-  // ];
+  useEffect(() => {
+    // Check if window is defined (to avoid SSR issues)
+    if (typeof window !== 'undefined') {
+      const checkIsMobile = () => {
+        setIsMobile(window.innerWidth < 1024); // lg breakpoint
+      };
+      
+      // Initial check
+      checkIsMobile();
+      
+      // Add event listener
+      window.addEventListener('resize', checkIsMobile);
+      
+      // Clean up
+      return () => window.removeEventListener('resize', checkIsMobile);
+    }
+  }, []);
 
   useEffect(() => {
     const observers = sectionRefs.map((ref, index) => {
@@ -226,98 +222,144 @@ const PrivateCloudPage = () => {
       </section>
 
       {/* Services Overview - Vertical Tabs */}
-<section 
-  className="py-24 bg-white px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
-  ref={sectionRefs[2]}
->
-  <div className="container mx-auto">
-    <h2 
-      className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-16 text-center"
-      style={{
-        opacity: isVisible[2] ? 1 : 0,
-        transform: isVisible[2] ? 'translateY(0)' : 'translateY(20px)',
-        transition: 'opacity 0.6s ease, transform 0.6s ease'
-      }}
-    >
-      Our Cloud & Infrastructure Services
-    </h2>
-    
-    <div 
-      className="flex flex-col lg:flex-row gap-12"
-      style={{
-        opacity: isVisible[2] ? 1 : 0,
-        transform: isVisible[2] ? 'translateY(0)' : 'translateY(30px)',
-        transition: 'opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s'
-      }}
-    >
-      {/* Vertical Tabs */}
-      <div className="lg:w-1/3">
-        <div className="space-y-4">
-          {services.map((service, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveTab(index)}
-              className={`w-full text-left p-6 rounded-xl transition-all duration-300 ${
-                activeTab === index
-                  ? 'bg-[#103d5d] text-white shadow-lg'
-                  : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
-              }`}
+      <section 
+        className="py-24 bg-white px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
+        ref={sectionRefs[2]}
+      >
+        <div className="container mx-auto">
+          <h2 
+            className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-16 text-center"
+            style={{
+              opacity: isVisible[2] ? 1 : 0,
+              transform: isVisible[2] ? 'translateY(0)' : 'translateY(20px)',
+              transition: 'opacity 0.6s ease, transform 0.6s ease'
+            }}
+          >
+            Our Cloud & Infrastructure Services
+          </h2>
+          
+          {/* Mobile View - Accordion Style */}
+          {isMobile ? (
+            <div className="space-y-6">
+              {services.map((service, index) => (
+                <div 
+                  key={index}
+                  className="bg-[#f9fbfe] rounded-xl border border-[#e1e9f2] shadow-sm overflow-hidden"
+                >
+                  <button
+                    onClick={() => setActiveTab(activeTab === index ? -1 : index)}
+                    className={`w-full text-left p-6 transition-all duration-300 ${
+                      activeTab === index
+                        ? 'bg-[#103d5d] text-white'
+                        : 'bg-[#f5f9fd] text-[#103d5d]'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center">
+                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-6 ${
+                          activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff]'
+                        }`}>
+                          {React.cloneElement(service.icon, {
+                            className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
+                          })}
+                        </div>
+                        <h3 className="text-xl font-medium">{service.title}</h3>
+                      </div>
+                      <FiChevronRight 
+                        className={`text-xl transition-transform duration-300 ${
+                          activeTab === index ? 'rotate-90' : ''
+                        }`}
+                      />
+                    </div>
+                  </button>
+                  
+                  {activeTab === index && (
+                    <div className="p-6 border-t border-[#e1e9f2]">
+                      <div className="mb-6 bg-white p-4 rounded-lg border border-[#e1e9f2] shadow-sm">
+                        <img 
+                          src={service.image}
+                          alt={`${service.title} infrastructure`}
+                          className="w-full h-48 object-cover rounded-lg"
+                        />
+                      </div>
+                      <p className="text-[#5c6f87] text-lg mb-6 leading-relaxed">{service.content}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : (
+            /* Desktop View - Original Layout */
+            <div 
+              className="flex flex-col lg:flex-row gap-12"
               style={{
-                transform: activeTab === index ? 'translateX(12px)' : 'none'
+                opacity: isVisible[2] ? 1 : 0,
+                transform: isVisible[2] ? 'translateY(0)' : 'translateY(30px)',
+                transition: 'opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s'
               }}
             >
-              <div className="flex items-center">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-6 ${
-                  activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff]'
-                }`}>
-                  {React.cloneElement(service.icon, {
-                    className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
-                  })}
+              {/* Vertical Tabs */}
+              <div className="lg:w-1/3">
+                <div className="space-y-4">
+                  {services.map((service, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setActiveTab(index)}
+                      className={`w-full text-left p-6 rounded-xl transition-all duration-300 ${
+                        activeTab === index
+                          ? 'bg-[#103d5d] text-white shadow-lg'
+                          : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
+                      }`}
+                      style={{
+                        transform: activeTab === index ? 'translateX(12px)' : 'none'
+                      }}
+                    >
+                      <div className="flex items-center">
+                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-6 ${
+                          activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff]'
+                        }`}>
+                          {React.cloneElement(service.icon, {
+                            className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
+                          })}
+                        </div>
+                        <h3 className="text-xl font-medium">{service.title}</h3>
+                      </div>
+                    </button>
+                  ))}
                 </div>
-                <h3 className="text-xl font-medium">{service.title}</h3>
               </div>
-            </button>
-          ))}
-        </div>
-      </div>
-      
-      {/* Content Area */}
-      <div 
-        id="service-content"
-        className="lg:w-2/3 bg-[#f9fbfe] rounded-xl p-10 border border-[#e1e9f2] shadow-sm"
-        style={{
-          minHeight: '400px',
-          transition: 'opacity 0.3s ease, transform 0.3s ease'
-        }}
-      >
-        <div className="flex items-start mb-6">
-          <div className="w-16 h-16 rounded-xl bg-[#f0f6ff] flex items-center justify-center mr-8">
-            {services[activeTab].icon}
-          </div>
-          <h3 className="text-2xl md:text-3xl font-bold text-[#103d5d] mt-2">{services[activeTab].title}</h3>
-        </div>
+              
+              {/* Content Area */}
+              <div 
+                id="service-content"
+                className="lg:w-2/3 bg-[#f9fbfe] rounded-xl p-10 border border-[#e1e9f2] shadow-sm"
+                style={{
+                  minHeight: '400px',
+                  transition: 'opacity 0.3s ease, transform 0.3s ease'
+                }}
+              >
+                <div className="flex items-start mb-6">
+                  <div className="w-16 h-16 rounded-xl bg-[#f0f6ff] flex items-center justify-center mr-8">
+                    {services[activeTab].icon}
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-[#103d5d] mt-2">{services[activeTab].title}</h3>
+                </div>
 
-        {/* Service Graphic - Now positioned under title but above description */}
-        <div className="mb-8 bg-white p-4 rounded-lg border border-[#e1e9f2] shadow-sm">
-          <img 
-            src={services[activeTab].image}
-            alt={`${services[activeTab].title} infrastructure`}
-            className="w-full h-48 object-cover rounded-lg"
-          />
-        </div>
+                {/* Service Graphic - Now positioned under title but above description */}
+                <div className="mb-8 bg-white p-4 rounded-lg border border-[#e1e9f2] shadow-sm">
+                  <img 
+                    src={services[activeTab].image}
+                    alt={`${services[activeTab].title} infrastructure`}
+                    className="w-full h-48 object-cover rounded-lg"
+                  />
+                </div>
 
-        <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed">{services[activeTab].content}</p>
-        {/* <a 
-          href="#" 
-          className="inline-flex items-center text-[#245684] font-medium hover:underline group text-lg"
-        >
-          Learn more
-          <FiChevronRight className="ml-3 transition-transform duration-300 group-hover:translate-x-2" />
-        </a> */}
-      </div>
-    </div>
-  </div>
-</section>
+                <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed">{services[activeTab].content}</p>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section className="py-24 bg-[#000000] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
@@ -336,8 +378,6 @@ const PrivateCloudPage = () => {
           </div>
         </div>
       </section>
-   
-
     </div>
   );
 };

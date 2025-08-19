@@ -323,13 +323,13 @@ const HomePage = () => {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link 
-              to="/contact" 
+              to="/contact-Us" 
               className="px-8 py-3 bg-[#245684] text-white rounded-lg font-semibold hover:bg-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               Get a Free Consultation
             </Link>
             <Link 
-              to="/contact" 
+              to="/contact-Us" 
               className="px-8 py-3 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-[#170f17] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               Contact Support

@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import Navigation from '../components/Navigation';
-import Footer from '../components/footer.jsx';
-
+import React, { useState, useEffect, useRef } from 'react';
 
 const AboutUs = () => {
   const [animatedStats, setAnimatedStats] = useState(false);
-
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const headerRef = useRef(null);
+  
   useEffect(() => {
     const handleScroll = () => {
+      const position = window.pageYOffset;
+      setScrollPosition(position);
+      
+      // Existing stats animation logic
       const statsSection = document.getElementById('stats-section');
       if (statsSection) {
         const rect = statsSection.getBoundingClientRect();
@@ -22,31 +24,99 @@ const AboutUs = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Calculate parallax effect
+  const parallaxStyle = {
+    transform: `translateY(${scrollPosition * 0.5}px)`
+  };
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Header (same as before) */}
-       <Navigation />
-      {/* Hero Section with Gradient Animation */}
-      <header className="relative overflow-hidden bg-gradient-to-r from-[#103d5d] to-[#245684] text-white py-24 px-4 sm:px-6 lg:px-8">
+      {/* Navigation */}
+      <nav className="bg-white shadow-md fixed w-full z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <div className="flex-shrink-0 flex items-center">
+                <span className="text-[#103d5d] font-bold text-xl">SysCare</span>
+                <span className="text-[#a3d4ff] font-light text-xl ml-1">IT</span>
+              </div>
+              <div className="hidden md:ml-6 md:flex md:space-x-8">
+                <a href="#" className="text-[#170f17] hover:text-[#103d5d] px-3 py-2 text-sm font-medium">Home</a>
+                <a href="#" className="text-[#103d5d] border-b-2 border-[#103d5d] px-3 py-2 text-sm font-medium">About</a>
+                <a href="#" className="text-[#170f17] hover:text-[#103d5d] px-3 py-2 text-sm font-medium">Services</a>
+                <a href="#" className="text-[#170f17] hover:text-[#103d5d] px-3 py-2 text-sm font-medium">Case Studies</a>
+                <a href="#" className="text-[#170f17] hover:text-[#103d5d] px-3 py-2 text-sm font-medium">Contact</a>
+              </div>
+            </div>
+            <div className="flex items-center">
+              <button className="bg-[#103d5d] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#245684] transition-colors">
+                Get Started
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Enhanced Header Section */}
+      <header 
+        ref={headerRef}
+        className="relative overflow-hidden bg-gradient-to-r from-[#103d5d] to-[#245684] text-white pt-32 pb-24 px-4 sm:px-6 lg:px-8"
+      >
+        {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
+          {/* Floating particles */}
+          <div className="absolute top-1/4 left-1/4 w-16 h-16 rounded-full bg-white opacity-10 animate-float" style={{animationDelay: '0s'}}></div>
+          <div className="absolute top-1/3 right-1/4 w-10 h-10 rounded-full bg-white opacity-10 animate-float" style={{animationDelay: '1s'}}></div>
+          <div className="absolute bottom-1/4 left-1/3 w-12 h-12 rounded-full bg-white opacity-10 animate-float" style={{animationDelay: '2s'}}></div>
+          <div className="absolute top-1/2 right-1/3 w-14 h-14 rounded-full bg-white opacity-10 animate-float" style={{animationDelay: '3s'}}></div>
+          <div className="absolute bottom-1/3 left-1/2 w-8 h-8 rounded-full bg-white opacity-10 animate-float" style={{animationDelay: '4s'}}></div>
+          
+          {/* Animated gradient circles */}
           <div className="absolute top-0 left-0 w-full h-full opacity-20">
-            <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-[#a3d4ff] mix-blend-screen filter blur-3xl animate-float1"></div>
-            <div className="absolute top-1/3 right-1/4 w-80 h-80 rounded-full bg-[#a3d4ff] mix-blend-screen filter blur-3xl animate-float2"></div>
-            <div className="absolute bottom-1/4 right-1/3 w-72 h-72 rounded-full bg-[#a3d4ff] mix-blend-screen filter blur-3xl animate-float3"></div>
+            <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-[#a3d4ff] mix-blend-screen filter blur-3xl animate-pulse-slow"></div>
+            <div className="absolute top-1/3 right-1/4 w-80 h-80 rounded-full bg-[#a3d4ff] mix-blend-screen filter blur-3xl animate-rotate"></div>
+            <div className="absolute bottom-1/4 right-1/3 w-72 h-72 rounded-full bg-[#a3d4ff] mix-blend-screen filter blur-3xl animate-float-slow"></div>
+          </div>
+          
+          {/* Animated grid lines */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0 bg-grid-white bg-[length:50px_50px] animate-grid-move"></div>
           </div>
         </div>
         
-        <div className="relative max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fadeIn">
-            About <span className="text-[#a3d4ff]">SysCare</span>
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate-fadeIn delay-100">
-            Pioneering IT solutions with innovation and expertise
-          </p>
-          <div className="animate-bounce mt-12">
-            <svg className="w-8 h-8 mx-auto text-[#a3d4ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
+        {/* Content with parallax effect */}
+        <div 
+          className="relative max-w-7xl mx-auto text-center"
+          style={parallaxStyle}
+        >
+          <div className="mb-8 inline-block overflow-hidden">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-typewriter whitespace-nowrap overflow-hidden border-r-4 border-r-white">
+              About <span className="text-[#a3d4ff]">SysCare</span>
+            </h1>
+          </div>
+          
+          <div className="overflow-hidden">
+            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate-slide-in-up opacity-0">
+              Pioneering IT solutions with innovation and expertise
+            </p>
+          </div>
+          
+          {/* Animated CTA button */}
+          <div className="mt-12 animate-bounce-slow">
+            <button className="bg-[#a3d4ff] text-[#103d5d] px-8 py-4 rounded-full font-bold hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto">
+              Discover Our Story
+              <svg className="w-5 h-5 ml-2 animate-bounce-horizontal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </button>
+          </div>
+          
+          {/* Scroll indicator */}
+          <div className="mt-16 animate-bounce">
+            <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center mx-auto p-1">
+              <div className="w-2 h-2 bg-white rounded-full animate-scroll-indicator"></div>
+            </div>
+            <p className="text-sm mt-2 opacity-80">Scroll to explore</p>
           </div>
         </div>
       </header>
@@ -114,125 +184,125 @@ const AboutUs = () => {
       </section>
 
       {/* Vision & Mission Section */}
-<section className="py-20 bg-[#f8fafc] px-4 sm:px-6 lg:px-8">
-  <div className="max-w-7xl mx-auto">
-    <div className="text-center mb-16">
-      <span className="inline-block px-4 py-2 bg-gradient-to-r from-[#103d5d] to-[#245684] text-white text-sm font-medium rounded-full mb-4 shadow-md">
-        OUR CORE PURPOSE
-      </span>
-      <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-6">
-        Building <span className="text-[#245684]">Tomorrow's</span> Technology
-      </h2>
-      <div className="w-24 h-1 bg-gradient-to-r from-[#a3d4ff] to-[#245684] mx-auto"></div>
-    </div>
-    
-    <div className="grid md:grid-cols-2 gap-8">
-      {/* Vision Card - Using gradient background */}
-      <div className="bg-gradient-to-br from-[#103d5d] to-[#1a3d6b] p-0.5 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300">
-        <div className="h-full bg-white rounded-xl p-8">
-          <div className="w-16 h-16 mb-6 rounded-full bg-gradient-to-r from-[#103d5d] to-[#245684] flex items-center justify-center text-white text-2xl shadow-md">
-            👁️
+      <section className="py-20 bg-[#f8fafc] px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="inline-block px-4 py-2 bg-gradient-to-r from-[#103d5d] to-[#245684] text-white text-sm font-medium rounded-full mb-4 shadow-md">
+              OUR CORE PURPOSE
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-6">
+              Building <span className="text-[#245684]">Tomorrow's</span> Technology
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-[#a3d4ff] to-[#245684] mx-auto"></div>
           </div>
-          <h3 className="text-2xl font-bold text-[#103d5d] mb-4">
-            Our Vision
-          </h3>
-          <p className="text-gray-700 mb-6">
-            To create a world where technology boundaries disappear, enabling seamless digital experiences through intelligent IT ecosystems.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {["Innovation", "Boundless", "Future"].map((tag, i) => (
-              <span 
-                key={i} 
-                className="px-3 py-1 bg-[#e6f2ff] text-[#103d5d] rounded-full text-sm font-medium hover:bg-[#a3d4ff] transition-colors"
-              >
-                #{tag}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Mission Card - Using brand accent color */}
-      <div className="bg-gradient-to-br from-[#245684] to-[#a3d4ff] p-0.5 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300">
-        <div className="h-full bg-white rounded-xl p-8">
-          <div className="w-16 h-16 mb-6 rounded-full bg-gradient-to-r from-[#245684] to-[#a3d4ff] flex items-center justify-center text-white text-2xl shadow-md">
-            🎯
-          </div>
-          <h3 className="text-2xl font-bold text-[#245684] mb-4">
-            Our Mission
-          </h3>
-          <p className="text-gray-700 mb-6">
-            To architect the future of business technology with cutting-edge solutions while maintaining operational excellence and security.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {["Excellence", "Security", "Innovation"].map((tag, i) => (
-              <span 
-                key={i} 
-                className="px-3 py-1 bg-[#e6f2ff] text-[#245684] rounded-full text-sm font-medium hover:bg-[#a3d4ff] transition-colors"
-              >
-                #{tag}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {/* Core Values with Brand Colors */}
-    <div className="mt-20">
-      <h3 className="text-2xl font-bold text-[#103d5d] text-center mb-8">
-        Our Core Values
-      </h3>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {[
-          { 
-            icon: "💡", 
-            title: "Innovation", 
-            desc: "Pushing technological boundaries",
-            bg: "bg-[#e6f2ff]",
-            text: "text-[#103d5d]",
-            border: "border-[#103d5d]"
-          },
-          { 
-            icon: "🛡️", 
-            title: "Integrity", 
-            desc: "Ethical and transparent",
-            bg: "bg-[#d9e8ff]",
-            text: "text-[#1a3d6b]",
-            border: "border-[#1a3d6b]"
-          },
-          { 
-            icon: "🏆", 
-            title: "Excellence", 
-            desc: "Uncompromising quality",
-            bg: "bg-[#cde0ff]",
-            text: "text-[#245684]",
-            border: "border-[#245684]"
-          },
-          { 
-            icon: "❤️", 
-            title: "Passion", 
-            desc: "For technology and people",
-            bg: "bg-[#a3d4ff]",
-            text: "text-[#103d5d]",
-            border: "border-[#103d5d]"
-          }
-        ].map((value, i) => (
-          <div 
-            key={i} 
-            className={`p-6 rounded-lg border-2 ${value.border} ${value.bg} hover:shadow-lg transition-all duration-300 group`}
-          >
-            <div className={`text-4xl mb-4 ${value.text} group-hover:scale-110 transition-transform`}>
-              {value.icon}
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Vision Card - Using gradient background */}
+            <div className="bg-gradient-to-br from-[#103d5d] to-[#1a3d6b] p-0.5 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300">
+              <div className="h-full bg-white rounded-xl p-8">
+                <div className="w-16 h-16 mb-6 rounded-full bg-gradient-to-r from-[#103d5d] to-[#245684] flex items-center justify-center text-white text-2xl shadow-md">
+                  👁️
+                </div>
+                <h3 className="text-2xl font-bold text-[#103d5d] mb-4">
+                  Our Vision
+                </h3>
+                <p className="text-gray-700 mb-6">
+                  To create a world where technology boundaries disappear, enabling seamless digital experiences through intelligent IT ecosystems.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {["Innovation", "Boundless", "Future"].map((tag, i) => (
+                    <span 
+                      key={i} 
+                      className="px-3 py-1 bg-[#e6f2ff] text-[#103d5d] rounded-full text-sm font-medium hover:bg-[#a3d4ff] transition-colors"
+                    >
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
-            <h4 className={`text-xl font-bold ${value.text} mb-2`}>{value.title}</h4>
-            <p className={`${value.text} opacity-90`}>{value.desc}</p>
+
+            {/* Mission Card - Using brand accent color */}
+            <div className="bg-gradient-to-br from-[#245684] to-[#a3d4ff] p-0.5 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300">
+              <div className="h-full bg-white rounded-xl p-8">
+                <div className="w-16 h-16 mb-6 rounded-full bg-gradient-to-r from-[#245684] to-[#a3d4ff] flex items-center justify-center text-white text-2xl shadow-md">
+                  🎯
+                </div>
+                <h3 className="text-2xl font-bold text-[#245684] mb-4">
+                  Our Mission
+                </h3>
+                <p className="text-gray-700 mb-6">
+                  To architect the future of business technology with cutting-edge solutions while maintaining operational excellence and security.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {["Excellence", "Security", "Innovation"].map((tag, i) => (
+                    <span 
+                      key={i} 
+                      className="px-3 py-1 bg-[#e6f2ff] text-[#245684] rounded-full text-sm font-medium hover:bg-[#a3d4ff] transition-colors"
+                    >
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
+
+          {/* Core Values with Brand Colors */}
+          <div className="mt-20">
+            <h3 className="text-2xl font-bold text-[#103d5d] text-center mb-8">
+              Our Core Values
+            </h3>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { 
+                  icon: "💡", 
+                  title: "Innovation", 
+                  desc: "Pushing technological boundaries",
+                  bg: "bg-[#e6f2ff]",
+                  text: "text-[#103d5d]",
+                  border: "border-[#103d5d]"
+                },
+                { 
+                  icon: "🛡️", 
+                  title: "Integrity", 
+                  desc: "Ethical and transparent",
+                  bg: "bg-[#d9e8ff]",
+                  text: "text-[#1a3d6b]",
+                  border: "border-[#1a3d6b]"
+                },
+                { 
+                  icon: "🏆", 
+                  title: "Excellence", 
+                  desc: "Uncompromising quality",
+                  bg: "bg-[#cde0ff]",
+                  text: "text-[#245684]",
+                  border: "border-[#245684]"
+                },
+                { 
+                  icon: "❤️", 
+                  title: "Passion", 
+                  desc: "For technology and people",
+                  bg: "bg-[#a3d4ff]",
+                  text: "text-[#103d5d]",
+                  border: "border-[#103d5d]"
+                }
+              ].map((value, i) => (
+                <div 
+                  key={i} 
+                  className={`p-6 rounded-lg border-2 ${value.border} ${value.bg} hover:shadow-lg transition-all duration-300 group`}
+                >
+                  <div className={`text-4xl mb-4 ${value.text} group-hover:scale-110 transition-transform`}>
+                    {value.icon}
+                  </div>
+                  <h4 className={`text-xl font-bold ${value.text} mb-2`}>{value.title}</h4>
+                  <p className={`${value.text} opacity-90`}>{value.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Team Section */}
       <section className="py-16 bg-white px-4 sm:px-6 lg:px-8">
@@ -341,15 +411,228 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Footer (same as before) */}
-
-      <Footer/>
+      {/* Footer */}
+      <footer className="bg-[#103d5d] text-white py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h3 className="text-xl font-bold mb-4">SysCare IT</h3>
+            <p className="text-[#a3d4ff]">Transforming businesses through innovative technology solutions.</p>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-4">Services</h4>
+            <ul className="space-y-2">
+              <li><a href="#" className="text-[#a3d4ff] hover:text-white transition-colors">Cloud Solutions</a></li>
+              <li><a href="#" className="text-[#a3d4ff] hover:text-white transition-colors">Cybersecurity</a></li>
+              <li><a href="#" className="text-[#a3d4ff] hover:text-white transition-colors">AI & ML</a></li>
+              <li><a href="#" className="text-[#a3d4ff] hover:text-white transition-colors">Data Analytics</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-4">Company</h4>
+            <ul className="space-y-2">
+              <li><a href="#" className="text-[#a3d4ff] hover:text-white transition-colors">About Us</a></li>
+              <li><a href="#" className="text-[#a3d4ff] hover:text-white transition-colors">Careers</a></li>
+              <li><a href="#" className="text-[#a3d4ff] hover:text-white transition-colors">Case Studies</a></li>
+              <li><a href="#" className="text-[#a3d4ff] hover:text-white transition-colors">Blog</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-4">Contact</h4>
+            <address className="not-italic text-[#a3d4ff]">
+              <p>123 Tech Avenue</p>
+              <p>San Francisco, CA 94107</p>
+              <p className="mt-2">info@syscareit.com</p>
+              <p>+1 (555) 123-4567</p>
+            </address>
+          </div>
+        </div>
+        <div className="max-w-7xl mx-auto mt-8 pt-8 border-t border-[#245684] text-center text-[#a3d4ff]">
+          <p>© {new Date().getFullYear()} SysCare IT Solutions. All rights reserved.</p>
+        </div>
+      </footer>
       
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        @keyframes float-slow {
+          0%, 100% { transform: translateY(0) scale(1); }
+          50% { transform: translateY(-30px) scale(1.05); }
+        }
+        
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.2; }
+          50% { opacity: 0.4; }
+        }
+        
+        @keyframes rotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        
+        @keyframes typewriter {
+          from { width: 0; }
+          to { width: 100%; }
+        }
+        
+        @keyframes slide-in-up {
+          from { 
+            transform: translateY(50px);
+            opacity: 0;
+          }
+          to { 
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+        
+        @keyframes bounce-slow {
+          0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+          40% {transform: translateY(-10px);}
+          60% {transform: translateY(-5px);}
+        }
+        
+        @keyframes bounce-horizontal {
+          0%, 20%, 50%, 80%, 100% {transform: translateX(0);}
+          40% {transform: translateX(5px);}
+          60% {transform: translateX(3px);}
+        }
+        
+        @keyframes scroll-indicator {
+          0% { transform: translateY(0); opacity: 1; }
+          100% { transform: translateY(20px); opacity: 0; }
+        }
+        
+        @keyframes grid-move {
+          0% { background-position: 0 0; }
+          100% { background-position: 50px 50px; }
+        }
+        
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        
+        @keyframes grow {
+          from { width: 0; }
+          to { width: 100%; }
+        }
+        
+        @keyframes countUp {
+          from { 
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to { 
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes progress {
+          from { width: 0; }
+          to { width: 100%; }
+        }
+        
+        @keyframes slideInLeft {
+          from { 
+            opacity: 0;
+            transform: translateX(-50px);
+          }
+          to { 
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes slideInRight {
+          from { 
+            opacity: 0;
+            transform: translateX(50px);
+          }
+          to { 
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        .bg-grid-white {
+          background-image: linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
+                            linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px);
+        }
+        
+        .animate-float {
+          animation: float 8s ease-in-out infinite;
+        }
+        
+        .animate-float-slow {
+          animation: float-slow 15s ease-in-out infinite;
+        }
+        
+        .animate-pulse-slow {
+          animation: pulse-slow 6s ease-in-out infinite;
+        }
+        
+        .animate-rotate {
+          animation: rotate 20s linear infinite;
+        }
+        
+        .animate-typewriter {
+          animation: typewriter 2s steps(40, end) forwards;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+        
+        .animate-slide-in-up {
+          animation: slide-in-up 1.5s ease-out forwards;
+          animation-delay: 0.5s;
+          opacity: 0;
+        }
+        
+        .animate-bounce-slow {
+          animation: bounce-slow 3s infinite;
+        }
+        
+        .animate-bounce-horizontal {
+          animation: bounce-horizontal 2s infinite;
+        }
+        
+        .animate-scroll-indicator {
+          animation: scroll-indicator 2s infinite;
+        }
+        
+        .animate-grid-move {
+          animation: grid-move 20s linear infinite;
+        }
+        
+        .animate-fadeIn {
+          animation: fadeIn 1s ease-out forwards;
+        }
+        
+        .animate-grow {
+          animation: grow 1s ease-out forwards;
+        }
+        
+        .animate-countUp {
+          animation: countUp 2s ease-out forwards;
+        }
+        
+        .animate-progress {
+          animation: progress 2s ease-out forwards;
+        }
+        
+        .animate-slideInLeft {
+          animation: slideInLeft 1s ease-out forwards;
+        }
+        
+        .animate-slideInRight {
+          animation: slideInRight 1s ease-out forwards;
+        }
+      `}</style>
     </div>
-
-    
   );
 };
-
 
 export default AboutUs;

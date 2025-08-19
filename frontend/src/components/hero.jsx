@@ -85,7 +85,7 @@ const VideoHero = () => {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
-                  to="/services"
+                  to="/syscare-services"
                   className="px-8 py-4 bg-white text-[#1e3a8a] rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center"
                 >
                   <span>Explore Services</span>
@@ -98,7 +98,7 @@ const VideoHero = () => {
                   </svg>
                 </Link>
                 <Link
-                  to="/contact"
+                  to="/contact-Us"
                   className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-[#1e3a8a] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center"
                 >
                   <span>Free Consultation</span>
@@ -153,58 +153,22 @@ const VideoHero = () => {
                     <p className="font-medium">ISO 27001 Certified</p>
                     <p className="text-sm text-white/80">Data Security</p>
                   </div>
+                  <div className="flex items-center space-x-2">
+                  <div className="p-2 bg-white/10 backdrop-blur-sm rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="font-medium">ISO 27001 Certified</p>
+                    <p className="text-sm text-white/80">Data Security</p>
+                  </div>
+                </div>
                 </div>
               </div>
             </div>
 
-                {/* <RightCards/> */}
-{/* Right Cards Section - Stats Rotator */}
-<div className="relative z-10 hidden lg:block">
-  <div className="relative w-full h-96">
-    <div className="absolute top-0 right-0 w-full h-full bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden border border-white/20">
-      <div className="absolute inset-0 flex flex-col items-center justify-center p-8">
-        {/* Rotating Stats */}
-        <div className="h-40 overflow-hidden relative">
-          <div className="animate-rotate-stats">
-            {/* Stat 1 */}
-            <div className="h-40 flex flex-col items-center justify-center">
-              <div className="text-5xl font-bold text-white mb-2">99.9%</div>
-              <div className="text-white/80 text-center">Uptime Guarantee</div>
-              <div className="mt-4 w-16 h-1 bg-blue-400 rounded-full"></div>
-            </div>
-            
-            {/* Stat 2 */}
-            <div className="h-40 flex flex-col items-center justify-center">
-              <div className="text-5xl font-bold text-white mb-2">24/7</div>
-              <div className="text-white/80 text-center">Support Availability</div>
-              <div className="mt-4 w-16 h-1 bg-blue-400 rounded-full"></div>
-            </div>
-            
-            {/* Stat 3 */}
-            <div className="h-40 flex flex-col items-center justify-center">
-              <div className="text-5xl font-bold text-white mb-2">500+</div>
-              <div className="text-white/80 text-center">Satisfied Clients</div>
-              <div className="mt-4 w-16 h-1 bg-blue-400 rounded-full"></div>
-            </div>
-          </div>
-        </div>
-        
-        <p className="text-white/80 mt-6 text-center">Trusted by industry leaders worldwide</p>
-        
-        <div className="inline-flex items-center px-4 py-2 bg-white/20 rounded-full text-sm font-medium mt-6">
-          <span>Learn More</span>
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-          </svg>
-        </div>
-      </div>
-      
-      {/* Background elements */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/20 rounded-full filter blur-xl animate-pulse"></div>
-      <div className="absolute bottom-0 left-0 w-40 h-40 bg-blue-300/20 rounded-full filter blur-xl animate-pulse" style={{animationDelay: '1.5s'}}></div>
-    </div>
-  </div>
-</div>
+                
             
           </div>
         </div>
@@ -236,7 +200,7 @@ const VideoHero = () => {
       <a
         key={`first-${index}`}
         href="#"
-        className="mx-6 px-4 py-2 text-white rounded-lg bg-white/5 backdrop-blur-sm border border-white hover:bg-gradient-to-r hover:from-[#103D5d] hover:to-[#103D5d] hover:text-white transition-all duration-300 shadow-md hover:shadow-xl cursor-pointer"
+        className="mx-6 px-4 py-2 text-white rounded-lg bg-[#103d5d] border border-white/30 hover:bg-gradient-to-r hover:from-[#1a4d76] hover:to-[#1a4d76] hover:text-white transition-all duration-300 shadow-md hover:shadow-xl cursor-pointer"
       >
         {service}
       </a>
@@ -264,7 +228,7 @@ const VideoHero = () => {
       <a
         key={`second-${index}`}
         href="#"
-        className="mx-6 px-4 py-2 text-white rounded-lg bg-white/5 backdrop-blur-sm border border-white hover:bg-gradient-to-r hover:from-[#103D5d] hover:to-[#103D5d] hover:text-white transition-all duration-300 shadow-md hover:shadow-xl cursor-pointer"
+        className="mx-6 px-4 py-2 text-white rounded-lg bg-[#103d5d] border border-white/30 hover:bg-gradient-to-r hover:from-[#1a4d76] hover:to-[#1a4d76] hover:text-white transition-all duration-300 shadow-md hover:shadow-xl cursor-pointer"
       >
         {service}
       </a>
