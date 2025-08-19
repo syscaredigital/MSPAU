@@ -46,28 +46,28 @@ const EnterprisePage = () => {
     }
   ];
 
-  const features = [
-    {
-      icon: <FiShield className="text-[#245684] text-2xl" />,
-      title: "Enterprise Security",
-      description: "Military-grade encryption and advanced threat protection"
-    },
-    {
-      icon: <FiCpu className="text-[#245684] text-2xl" />,
-      title: "High Performance",
-      description: "99.99% uptime with SSD storage and high-speed networking"
-    },
-    {
-      icon: <FiWifi className="text-[#245684] text-2xl" />,
-      title: "Dedicated Bandwidth",
-      description: "1Gbps to 10Gbps options available"
-    },
-    {
-      icon: <FiDatabase className="text-[#245684] text-2xl" />,
-      title: "Compliance Ready",
-      description: "Meet industry-specific regulatory requirements"
-    }
-  ];
+  // const features = [
+  //   {
+  //     icon: <FiShield className="text-[#245684] text-2xl" />,
+  //     title: "Enterprise Security",
+  //     description: "Military-grade encryption and advanced threat protection"
+  //   },
+  //   {
+  //     icon: <FiCpu className="text-[#245684] text-2xl" />,
+  //     title: "High Performance",
+  //     description: "99.99% uptime with SSD storage and high-speed networking"
+  //   },
+  //   {
+  //     icon: <FiWifi className="text-[#245684] text-2xl" />,
+  //     title: "Dedicated Bandwidth",
+  //     description: "1Gbps to 10Gbps options available"
+  //   },
+  //   {
+  //     icon: <FiDatabase className="text-[#245684] text-2xl" />,
+  //     title: "Compliance Ready",
+  //     description: "Meet industry-specific regulatory requirements"
+  //   }
+  // ];
 
   useEffect(() => {
     const observers = sectionRefs.map((ref, index) => {
