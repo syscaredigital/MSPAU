@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Navigation from '../components/Navigation.jsx';
 import VideoHero from '../components/hero.jsx';
 import Footer from '../components/footer.jsx';
-
+import ServicesMarquee from '../components/ServiceMarqee.jsx';
 const HomePage = () => {
   const [showAllServices, setShowAllServices] = useState(false);
   const [stats, setStats] = useState([
@@ -169,6 +169,9 @@ const HomePage = () => {
 
       {/* About Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+       
+ <ServicesMarquee/>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-6">About SysCare IT Solutions</h2>
@@ -355,7 +358,7 @@ const ServiceCard = ({ service, delay = 0 }) => {
         <div className="text-5xl mb-6 hover:scale-110 transition-transform duration-500">{service.icon}</div>
         <h3 className="text-2xl font-bold text-[#245684] mb-4">{service.title}</h3>
         <p className="text-gray-600 mb-6 flex-grow">{service.description}</p>
-        <Link 
+        {/* <Link 
           to="/services" 
           className="text-[#103d5d] font-semibold hover:text-[#245684] transition-all duration-300 flex items-center self-start transform hover:translate-x-2"
         >
@@ -363,7 +366,7 @@ const ServiceCard = ({ service, delay = 0 }) => {
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
           </svg>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

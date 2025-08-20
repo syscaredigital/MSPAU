@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import RightCards from './RightCards';
-
+import ServicesMarquee from './ServiceMarqee';
 const VideoHero = () => {
   const videoRef = useRef(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
@@ -73,7 +72,8 @@ const VideoHero = () => {
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-blue-500">
-                  SysCare IT Solutions
+                  SysCare 
+                  <br></br> IT Solutions
                 </span>
                 <br />
                 For Your Digital Transformation
@@ -160,7 +160,7 @@ const VideoHero = () => {
                     </svg>
                   </div>
                   <div>
-                    <p className="font-medium">ISO 27001 Certified</p>
+                    <p className="font-medium">ISO 9001 Certified</p>
                     <p className="text-sm text-white/80">Data Security</p>
                   </div>
                 </div>
@@ -175,66 +175,8 @@ const VideoHero = () => {
       </div>
    
 
-   {/* ✅ Seamless Infinite Marquee Section */}
-<div className="absolute bottom-2 w-full overflow-hidden z-10">
-  <div className="group flex w-max animate-marquee hover:[animation-play-state:paused]">
-    {/* 1st set of services */}
-    {[
-      "SysCare Private Cloud",
-      "Hosted Services",
-      "Service Desk",
-      "Managed IT Services",
-      "Connectivity",
-      "VoIP & Video",
-      "Design & Dev",
-      "Digital Marketing",
-      "Cybersecurity Consultancy Services",
-      "Managed Security Services",
-      "IT Infra Projects",
-      "Development & Automation",
-      "Security",
-      "Cloud",
-      "Small Business",
-      "Enterprise",
-    ].map((service, index) => (
-      <a
-        key={`first-${index}`}
-        href="#"
-        className="mx-6 px-4 py-2 text-white rounded-lg bg-[#103d5d] border border-white/30 hover:bg-gradient-to-r hover:from-[#1a4d76] hover:to-[#1a4d76] hover:text-white transition-all duration-300 shadow-md hover:shadow-xl cursor-pointer"
-      >
-        {service}
-      </a>
-    ))}
+  
 
-    {/* 🔁 Duplicate set for seamless loop */}
-    {[
-      "SysCare Private Cloud",
-      "Hosted Services",
-      "Service Desk",
-      "Managed IT Services",
-      "Connectivity",
-      "VoIP & Video",
-      "Design & Dev",
-      "Digital Marketing",
-      "Cybersecurity Consultancy Services",
-      "Managed Security Services",
-      "IT Infra Projects",
-      "Development & Automation",
-      "Security",
-      "Cloud",
-      "Small Business",
-      "Enterprise",
-    ].map((service, index) => (
-      <a
-        key={`second-${index}`}
-        href="#"
-        className="mx-6 px-4 py-2 text-white rounded-lg bg-[#103d5d] border border-white/30 hover:bg-gradient-to-r hover:from-[#1a4d76] hover:to-[#1a4d76] hover:text-white transition-all duration-300 shadow-md hover:shadow-xl cursor-pointer"
-      >
-        {service}
-      </a>
-    ))}
-  </div>
-</div>
 
 
       {/* Scroll Indicator */}

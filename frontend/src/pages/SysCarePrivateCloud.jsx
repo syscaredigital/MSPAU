@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
+import SysCarePrivateCloud from '../assets/website-images/SysCare-Private-Cloud.webp';
 import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight } from 'react-icons/fi';
 import Navigation from '../components/Navigation';
-
+import Footer from '../components/footer';
 const PrivateCloudPage = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [isVisible, setIsVisible] = useState([false, false, false, false]);
@@ -212,7 +213,7 @@ const PrivateCloudPage = () => {
             >
               <div className="bg-white p-6 rounded-xl border border-[#e1e9f2] shadow-sm hover:shadow-md transition-shadow duration-500">
                 <img 
-                  src=""
+                  src={SysCarePrivateCloud}
                   className="w-full h-auto rounded-lg transition-transform duration-500 hover:scale-[1.02]"
                 />
               </div>
@@ -378,6 +379,7 @@ const PrivateCloudPage = () => {
           </div>
         </div>
       </section>
+      <Footer/>
     </div>
   );
 };

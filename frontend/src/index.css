@@ -32,20 +32,7 @@ body {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
- 
-.marquee-track {
-  display: flex;
-  animation: marqueeScroll 20s linear infinite;
-}
- 
-@keyframes marqueeScroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
- 
-.marquee:hover .marquee-track {
-  animation-play-state: paused;
-}
+
  
 #particles-js {
   position: absolute;
@@ -341,13 +328,12 @@ body {
 
 @keyframes marquee {
   0%   { transform: translateX(0%); }
-  100% { transform: translateX(-50%); } /* only move half since duplicated */
+  100% { transform: translateX(-50%); } /* half because list is duplicated */
+}
+.animate-marquee {
+  animation: marquee 38s linear infinite;
 }
 
-.animate-marquee {
-  animation: marquee 40s linear infinite; /* slow smooth scroll */
-  display: flex;
-}
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
