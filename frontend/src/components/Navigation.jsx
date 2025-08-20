@@ -145,7 +145,7 @@ const Navigation = () => {
               <img
                 src="/logos/White-Sys.svg"
                 alt="SysCare Logo"
-                className="hidden md:block h-14 w-auto object-contain"
+                className="hidden md:block h-20 w-auto object-contain"
               />
               {/* Mobile Logo */}
               <img
