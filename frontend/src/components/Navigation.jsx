@@ -143,13 +143,13 @@ const Navigation = () => {
             <Link to="/" className="flex-shrink-0 flex items-center">
               {/* Desktop Logo */}
               <img
-                src="/logos/White-Sys.png"
+                src="/logos/White-Sys.svg"
                 alt="SysCare Logo"
-                className="hidden md:block h-12 w-auto object-contain"
+                className="hidden md:block h-14 w-auto object-contain"
               />
               {/* Mobile Logo */}
               <img
-                src="/logos/White-Sys.png"
+                src="/logos/White-Sys.svg"
                 alt="SysCare Logo"
                 className="block md:hidden h-10 w-auto object-contain"
               />

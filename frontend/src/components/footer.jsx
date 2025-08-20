@@ -9,7 +9,7 @@ const Footer = () => {
           {/* Logo & About */}
           <div>
             <div className="flex items-center mb-4">
-              <img src='/logos/White-Sys.png' alt='SysCare Logo' className=' md:block h-12 w-auto object-contain'/>
+              <img src='/logos/White-Sys.svg' alt='SysCare Logo' className=' md:block h-14 w-auto object-contain'/>
             </div>
             <p className="mb-4 text-sm sm:text-base">
               Delivering innovative IT solutions to help businesses thrive in the digital world.
