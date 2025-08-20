@@ -1,7 +1,7 @@
 // components/Navigation.jsx
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FiChevronDown, FiX, FiMenu } from "react-icons/fi";
+import { FiChevronDown, FiX, FiMenu, FiGlobe, FiServer, FiCloud } from "react-icons/fi";
 
 const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -58,8 +58,8 @@ const Navigation = () => {
         id: "private-cloud",
         name: "Private Cloud & Hosted Solutions",
         subCategories: [
-          { name: "SysCare Private Cloud", url: "/SysCare-Private-Cloud" },
-          { name: "Hosted Services", url: "/Hosted-Services" },
+          { name: "SysCare Private Cloud", url: "/SysCare-Private-Cloud", icon: <FiCloud className="inline-block mr-2" /> },
+          { name: "Hosted Services", url: "/Hosted-Services", icon: <FiServer className="inline-block mr-2" /> },
         ],
       },
       {
@@ -205,8 +205,9 @@ const Navigation = () => {
                                   <li key={subIdx}>
                                     <Link
                                       to={subCategory.url}
-                                      className="text-sm text-gray-600 hover:text-[#a3d4ff] block py-1 transition-colors duration-200"
+                                      className="text-sm text-gray-600 hover:text-[#245684] block py-1 transition-colors duration-200"
                                     >
+                                      {subCategory.icon}
                                       {subCategory.name}
                                     </Link>
                                   </li>
