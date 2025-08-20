@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-
+import Navigation from '../components/Navigation';
 const AboutUs = () => {
   const [animatedStats, setAnimatedStats] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -32,30 +32,7 @@ const AboutUs = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="bg-white shadow-md fixed w-full z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <div className="flex-shrink-0 flex items-center">
-                <span className="text-[#103d5d] font-bold text-xl">SysCare</span>
-                <span className="text-[#a3d4ff] font-light text-xl ml-1">IT</span>
-              </div>
-              <div className="hidden md:ml-6 md:flex md:space-x-8">
-                <a href="#" className="text-[#170f17] hover:text-[#103d5d] px-3 py-2 text-sm font-medium">Home</a>
-                <a href="#" className="text-[#103d5d] border-b-2 border-[#103d5d] px-3 py-2 text-sm font-medium">About</a>
-                <a href="#" className="text-[#170f17] hover:text-[#103d5d] px-3 py-2 text-sm font-medium">Services</a>
-                <a href="#" className="text-[#170f17] hover:text-[#103d5d] px-3 py-2 text-sm font-medium">Case Studies</a>
-                <a href="#" className="text-[#170f17] hover:text-[#103d5d] px-3 py-2 text-sm font-medium">Contact</a>
-              </div>
-            </div>
-            <div className="flex items-center">
-              <button className="bg-[#103d5d] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#245684] transition-colors">
-                Get Started
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
+     <Navigation />
 
       {/* Enhanced Header Section */}
       <header 
