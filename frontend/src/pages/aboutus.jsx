@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Navigation from '../components/Navigation';
+import Footer from '../components/footer';
 const AboutUs = () => {
   const [animatedStats, setAnimatedStats] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -388,45 +389,7 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#103d5d] text-white py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h3 className="text-xl font-bold mb-4">SysCare IT</h3>
-            <p className="text-[#a3d4ff]">Transforming businesses through innovative technology solutions.</p>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-4">Services</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-[#a3d4ff] hover:text-white transition-colors">Cloud Solutions</a></li>
-              <li><a href="#" className="text-[#a3d4ff] hover:text-white transition-colors">Cybersecurity</a></li>
-              <li><a href="#" className="text-[#a3d4ff] hover:text-white transition-colors">AI & ML</a></li>
-              <li><a href="#" className="text-[#a3d4ff] hover:text-white transition-colors">Data Analytics</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-4">Company</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-[#a3d4ff] hover:text-white transition-colors">About Us</a></li>
-              <li><a href="#" className="text-[#a3d4ff] hover:text-white transition-colors">Careers</a></li>
-              <li><a href="#" className="text-[#a3d4ff] hover:text-white transition-colors">Case Studies</a></li>
-              <li><a href="#" className="text-[#a3d4ff] hover:text-white transition-colors">Blog</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-4">Contact</h4>
-            <address className="not-italic text-[#a3d4ff]">
-              <p>123 Tech Avenue</p>
-              <p>San Francisco, CA 94107</p>
-              <p className="mt-2">info@syscareit.com</p>
-              <p>+1 (555) 123-4567</p>
-            </address>
-          </div>
-        </div>
-        <div className="max-w-7xl mx-auto mt-8 pt-8 border-t border-[#245684] text-center text-[#a3d4ff]">
-          <p>© {new Date().getFullYear()} SysCare IT Solutions. All rights reserved.</p>
-        </div>
-      </footer>
+     <Footer/>
       
       <style jsx>{`
         @keyframes float {
