@@ -231,7 +231,7 @@ const Navigation = () => {
             </Link>
             <Link
               to="/get-quote"
-              className="bg-[#FFFFFF] hover:bg-[#1a3d6b] text-[#1a3d6b] hover:text-[#FFFFFF] px-6 py-2 rounded-lg font-medium transition-all duration-300 ml-4 transform hover:scale-105"
+              className="bg-[#FFFFFF] hover:bg-[#103d5d] border-[#FFFFFF] text-[#1a3d6b] hover:text-[#FFFFFF] px-6 py-2 rounded-lg font-medium transition-all duration-300 ml-4 transform hover:scale-105 border border-transparent hover:border-[#FFFFFF]"
             >
               Get Quote
             </Link>
