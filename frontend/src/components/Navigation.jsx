@@ -56,7 +56,7 @@ const Navigation = () => {
     [
       {
         id: "private-cloud",
-        name: "Private Cloud & Hosted Solutions",
+        name: "Cloud Solutions",
         subCategories: [
           { name: "SysCare Private Cloud", url: "/SysCare-Private-Cloud", icon: <FiCloud className="inline-block mr-2" /> },
           { name: "Hosted Services", url: "/Hosted-Services", icon: <FiServer className="inline-block mr-2" /> },
@@ -64,7 +64,7 @@ const Navigation = () => {
       },
       {
         id: "security-services",
-        name: "Security Services & Consultancy",
+        name: " IT Security",
         subCategories: [
           {
             name: "Cybersecurity Consultancy Services",
@@ -77,7 +77,7 @@ const Navigation = () => {
     [
       {
         id: "managed-it",
-        name: "Managed IT Services & Service Desk",
+        name: "IT Support",
         subCategories: [
           { name: "Service Desk", url: "/Service-Desk" },
           { name: "Managed IT Services", url: "/Managed-IT-Services" },
@@ -85,10 +85,10 @@ const Navigation = () => {
       },
       {
         id: "project-consultancy",
-        name: "Project & Consultancy Services",
+        name: " Projects & Automation",
         subCategories: [
           { name: "IT Infra Projects", url: "/ITInfraProjects" },
-          { name: "Development & Automation", url: "/DevelopmentAutomation" },
+          { name: "Office IT Automation", url: "/DevelopmentAutomation" },
         ],
       },
     ],
