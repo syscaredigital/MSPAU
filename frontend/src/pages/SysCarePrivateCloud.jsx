@@ -3,6 +3,7 @@ import SysCarePrivateCloud from '../assets/website-images/SysCare-Private-Cloud.
 import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight } from 'react-icons/fi';
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
+
 const PrivateCloudPage = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [isVisible, setIsVisible] = useState([false, false, false, false]);
@@ -38,7 +39,7 @@ const PrivateCloudPage = () => {
       title: "Rack Space Hire",
       icon: <FiDatabase className="text-[#245684] text-2xl" />,
       content: "Elevate your business with SysCare IT Solutions' Rack Space Hire (Co-location) service. Our premium co-location offering provides a secure and efficient environment for your servers and equipment.",
-      image: "https://images.unsplash.com/photo-1597852074816-d933c7d2b988?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+      image: "https://images.unsplash.com/photo-1597852074816-d933c7d2b988?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwa90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
     },
     {
       title: "Leased Servers",
@@ -114,67 +115,20 @@ const PrivateCloudPage = () => {
     <div className="min-h-screen bg-white">
       <Navigation />
       {/* Hero Section */}
-      <section 
-        className="relative bg-[#103d5d] text-white py-32 overflow-hidden px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
-        ref={sectionRefs[0]}
-        style={{
-          opacity: isVisible[0] ? 1 : 0,
-          transform: isVisible[0] ? 'translateY(0)' : 'translateY(40px)',
-          transition: 'opacity 0.8s ease, transform 0.8s ease'
-        }}
-      >
-        <div className="absolute inset-0 bg-[#170f17] opacity-10"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#103d5d] to-transparent z-0"></div>
-        <div className="container mx-auto relative z-10">
-          <div className="max-w-4xl">
-            <span 
-              className="uppercase tracking-wider text-[#a3c1e0] font-medium text-sm block mb-4"
-              style={{
-                opacity: isVisible[0] ? 1 : 0,
-                transform: isVisible[0] ? 'translateX(0)' : 'translateX(-20px)',
-                transition: 'opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s'
-              }}
-            >
-              SysCare IT Solutions
-            </span>
-            <h1 
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mt-4 mb-8 leading-tight"
-              style={{
-                opacity: isVisible[0] ? 1 : 0,
-                transform: isVisible[0] ? 'translateX(0)' : 'translateX(-20px)',
-                transition: 'opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s'
-              }}
-            >
-              Enterprise <span className="text-[#a3c1e0]">Cloud & Infrastructure</span> Solutions
-            </h1>
-            <p 
-              className="text-xl text-[#c9d8eb] max-w-3xl mb-10"
-              style={{
-                opacity: isVisible[0] ? 1 : 0,
-                transform: isVisible[0] ? 'translateX(0)' : 'translateX(-20px)',
-                transition: 'opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s'
-              }}
-            >
-              Transform your business with our cutting-edge managed services designed for security, performance, and scalability.
-            </p>
-            <div 
-              className="flex flex-wrap gap-6 mt-12"
-              style={{
-                opacity: isVisible[0] ? 1 : 0,
-                transform: isVisible[0] ? 'translateX(0)' : 'translateX(-20px)',
-                transition: 'opacity 0.6s ease 0.5s, transform 0.6s ease 0.5s'
-              }}
-            >
-              <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg">
-                Get Started
-              </button>
-              <button className="border-2 border-white hover:bg-white hover:text-[#103d5d] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 hover:scale-[1.02] text-lg">
-                Contact Sales
-              </button>
-            </div>
-          </div>
+      <header className="bg-gradient-to-r from-[#103d5d] to-[#245684] text-white py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 left-10 w-64 h-64 rounded-full border-2 border-white"></div>
+          <div className="absolute bottom-20 right-16 w-48 h-48 rounded-full border-2 border-white"></div>
         </div>
-      </section>
+       
+        <div className="max-w-7xl mx-auto text-center relative z-10">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in-down">Our Services</h1>
+          <p className="text-xl text-[#c9d8eb] max-w-2xl mx-auto animate-fade-in-up delay-100">
+            Comprehensive IT solutions to drive your business forward
+          </p>
+        </div>
+      </header>
 
       {/* Private Cloud Focus Section */}
       <section 
@@ -200,7 +154,7 @@ const PrivateCloudPage = () => {
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
                 Request Private Cloud Demo
-                <FiChevronRight className="inline ml-3 transition-transform duration-300 group-hover:translate-x-2" />
+                <FiChevronRight className="inline ml-3 transition-transform duration-300 group-hover:translateX-2" />
               </button>
             </div>
             <div 
@@ -215,6 +169,7 @@ const PrivateCloudPage = () => {
                 <img 
                   src={SysCarePrivateCloud}
                   className="w-full h-auto rounded-lg transition-transform duration-500 hover:scale-[1.02]"
+                  alt="SysCare Private Cloud Infrastructure"
                 />
               </div>
             </div>
@@ -276,11 +231,12 @@ const PrivateCloudPage = () => {
                   
                   {activeTab === index && (
                     <div className="p-6 border-t border-[#e1e9f2]">
-                      <div className="mb-6 bg-white p-4 rounded-lg border border-[#e1e9f2] shadow-sm">
+                      <div className="mb-6 bg-white p-4 rounded-lg border border-[#e1e9f2] shadow-sm flex justify-center">
                         <img 
                           src={service.image}
                           alt={`${service.title} infrastructure`}
-                          className="w-full h-48 object-cover rounded-lg"
+                          className="w-[500px] h-[500px] object-cover rounded-lg"
+                          style={{ maxWidth: '100%', height: 'auto' }}
                         />
                       </div>
                       <p className="text-[#5c6f87] text-lg mb-6 leading-relaxed">{service.content}</p>
@@ -335,7 +291,7 @@ const PrivateCloudPage = () => {
                 id="service-content"
                 className="lg:w-2/3 bg-[#f9fbfe] rounded-xl p-10 border border-[#e1e9f2] shadow-sm"
                 style={{
-                  minHeight: '400px',
+                  minHeight: '600px',
                   transition: 'opacity 0.3s ease, transform 0.3s ease'
                 }}
               >
@@ -347,11 +303,12 @@ const PrivateCloudPage = () => {
                 </div>
 
                 {/* Service Graphic - Now positioned under title but above description */}
-                <div className="mb-8 bg-white p-4 rounded-lg border border-[#e1e9f2] shadow-sm">
+                <div className="mb-8  p-4   flex justify-center">
                   <img 
                     src={services[activeTab].image}
                     alt={`${services[activeTab].title} infrastructure`}
-                    className="w-full h-48 object-cover rounded-lg"
+                    className="w-[250px] h-[250px] object-cover rounded-lg"
+                    style={{ maxWidth: '100%', height: 'auto' }}
                   />
                 </div>
 

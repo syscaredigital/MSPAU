@@ -336,30 +336,6 @@ const ServicesPage = () => {
           </div>
         </section>
 
-        {/* Stats Section */}
-        <section className="py-16 bg-gradient-to-r from-[#103d5d] to-[#245684] text-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-              <div className="p-6">
-                <div className="text-4xl font-bold mb-2">200+</div>
-                <div className="text-lg">Happy Clients</div>
-              </div>
-              <div className="p-6">
-                <div className="text-4xl font-bold mb-2">15+</div>
-                <div className="text-lg">Years Experience</div>
-              </div>
-              <div className="p-6">
-                <div className="text-4xl font-bold mb-2">98%</div>
-                <div className="text-lg">Client Retention</div>
-              </div>
-              <div className="p-6">
-                <div className="text-4xl font-bold mb-2">24/7</div>
-                <div className="text-lg">Support Available</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Process Section */}
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
