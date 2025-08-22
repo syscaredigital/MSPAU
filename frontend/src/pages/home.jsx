@@ -201,8 +201,8 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Services Section - Updated with Animations */}
-      <div className="bg-white py-16 md:py-24 relative overflow-hidden">
+      {/* Services Section - Updated with Border */}
+      <div className="bg-white py-16 md:py-24 relative overflow-hidden border border-gray-200 rounded-lg mx-4 sm:mx-6 lg:mx-8">
         {/* Animated background elements */}
         <div className="absolute -top-24 -left-24 w-48 h-48 rounded-full bg-blue-100 opacity-30 animate-pulse-slow"></div>
         <div className="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-blue-200 opacity-20 animate-pulse-slower"></div>
