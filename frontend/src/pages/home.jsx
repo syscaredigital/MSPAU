@@ -4,6 +4,7 @@ import Navigation from '../components/Navigation.jsx';
 import VideoHero from '../components/hero.jsx';
 import Footer from '../components/footer.jsx';
 import ServicesMarquee from '../components/ServiceMarqee.jsx';
+
 const HomePage = () => {
   const [showAllServices, setShowAllServices] = useState(false);
   const [stats, setStats] = useState([
@@ -14,54 +15,62 @@ const HomePage = () => {
   ]);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
-  // Services Data
-  const coreServices = [
+  // All Services Data
+  const allServices = [
     {
       id: 1,
-      title: "IT Support",
-      description: "Comprehensive IT support services to keep your business running smoothly 24/7.",
-      icon: "💻"
+      title: "Cloud Solutions",
+      description: "Comprehensive cloud services including migration, management, and optimization for your business.",
+      icon: "☁️"
     },
     {
       id: 2,
-      title: "Security Solutions",
-      description: "Advanced security solutions to protect your business from cyber threats.",
+      title: "IT Security",
+      description: "Advanced security solutions to protect your business from cyber threats and data breaches.",
       icon: "🔒"
     },
     {
       id: 3,
-      title: "Projects & Automation",
-      description: "Custom IT projects and automation solutions to streamline your operations.",
-      icon: "⚙️"
-    }
-  ];
-
-  const additionalServices = [
+      title: "IT Support",
+      description: "24/7 IT support services to keep your business running smoothly without interruptions.",
+      icon: "💻"
+    },
     {
       id: 4,
-      title: "Internet & VOIP",
-      description: "Reliable internet and VOIP solutions for seamless communication.",
-      icon: "📶"
+      title: "Projects & Automation",
+      description: "Custom IT projects and automation solutions to streamline your operations and increase efficiency.",
+      icon: "⚙️"
     },
     {
       id: 5,
-      title: "Digital Services",
-      description: "Transform your business with our cutting-edge digital services.",
-      icon: "🌐"
+      title: "Internet & VOIP",
+      description: "Reliable internet and VOIP solutions for seamless communication and connectivity.",
+      icon: "📶"
     },
     {
       id: 6,
       title: "IT Training",
-      description: "Professional IT training to upskill your team and maximize productivity.",
+      description: "Professional IT training to upskill your team and maximize productivity and security awareness.",
       icon: "🎓"
     },
     {
       id: 7,
+      title: "Digital Services",
+      description: "Transform your business with our cutting-edge digital services and digital transformation strategies.",
+      icon: "🌐"
+    },
+    {
+      id: 8,
       title: "CRM & ERP Solutions",
-      description: "Integrated CRM and ERP solutions to optimize your business processes.",
+      description: "Integrated CRM and ERP solutions to optimize your business processes and customer relationships.",
       icon: "📊"
     }
   ];
+
+  // Get first 4 services for initial display
+  const initialServices = allServices.slice(0, 4);
+  // Get remaining services
+  const additionalServices = allServices.slice(4);
 
   // Testimonials Data
   const testimonials = [
@@ -155,7 +164,6 @@ const HomePage = () => {
     setShowAllServices(!showAllServices);
   };
 
- 
   const goToTestimonial = (index) => {
     setCurrentTestimonial(index);
   };
@@ -164,13 +172,11 @@ const HomePage = () => {
     <div className="min-h-screen bg-[#f5f7fa]">
       <Navigation />
 
-  
-       <VideoHero/>
+      <VideoHero/>
 
       {/* About Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-       
- <ServicesMarquee/>
+        <ServicesMarquee/>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
@@ -195,55 +201,133 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Services Section */}
-      <div className="bg-[#f0f4f8] py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Services Section - Updated with Animations */}
+      <div className="bg-white py-16 md:py-24 relative overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute -top-24 -left-24 w-48 h-48 rounded-full bg-blue-100 opacity-30 animate-pulse-slow"></div>
+        <div className="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-blue-200 opacity-20 animate-pulse-slower"></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4">Our {showAllServices ? 'Complete' : 'Core'} Services</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {showAllServices ? 'Our full range of IT solutions to meet all your business needs.' : 'Comprehensive IT solutions designed to meet your business needs and drive growth.'}
+            <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4 animate-fade-in">
+              Our IT Services
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-delay">
+              Comprehensive IT solutions designed to meet all your business technology needs
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Core Services - Always shown */}
-            {coreServices.map((service, index) => (
-              <ServiceCard 
+          {/* Services Grid - Show first 4 services */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {initialServices.map((service, index) => (
+              <AnimatedServiceCard 
                 key={service.id} 
                 service={service} 
-                delay={index * 100}
+                index={index}
+                animationDelay={index * 0.1}
               />
             ))}
-            
-            {/* Additional Services - Shown when expanded */}
-            {showAllServices && 
-              additionalServices.map((service, index) => (
-                <ServiceCard 
-                  key={service.id} 
-                  service={service} 
-                  delay={(index + coreServices.length) * 100}
-                />
-              ))
-            }
           </div>
 
-          <div className="text-center mt-12">
+          {/* Additional Services - Show when expanded */}
+          {showAllServices && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+              {additionalServices.map((service, index) => (
+                <AnimatedServiceCard 
+                  key={service.id} 
+                  service={service} 
+                  index={index + initialServices.length}
+                  animationDelay={index * 0.1}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Show More/Less Button with Animation */}
+          <div className="text-center mt-12 animate-bounce-gentle">
             <button 
               onClick={toggleServices}
-              className="px-8 py-3 bg-[#103d5d] text-white rounded-lg font-semibold hover:bg-[#245684] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              className="px-8 py-3 bg-gradient-to-r from-[#103d5d] to-[#245684] text-white rounded-lg font-semibold hover:from-[#245684] hover:to-[#103d5d] transition-all duration-500 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center mx-auto relative overflow-hidden group"
             >
-              {showAllServices ? 'Show Less Services' : 'View All Services'}
+              <span className="relative z-10">
+                {showAllServices ? (
+                  <>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 inline" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clipRule="evenodd" />
+                    </svg>
+                    Show Less Services
+                  </>
+                ) : (
+                  <>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 inline" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                    Show More Services
+                  </>
+                )}
+              </span>
+              <span className="absolute inset-0 bg-gradient-to-r from-[#245684] to-[#103d5d] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
             </button>
           </div>
         </div>
+        
+        {/* Add CSS for animations */}
+        <style jsx>{`
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          @keyframes pulseSlow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+          }
+          @keyframes pulseSlower {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+          }
+          @keyframes bounceGentle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+          }
+          @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+          }
+          .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+          }
+          .animate-fade-in-delay {
+            animation: fadeIn 1s ease-out 0.3s forwards;
+            opacity: 0;
+          }
+          .animate-pulse-slow {
+            animation: pulseSlow 6s infinite ease-in-out;
+          }
+          .animate-pulse-slower {
+            animation: pulseSlower 8s infinite ease-in-out;
+          }
+          .animate-bounce-gentle {
+            animation: bounceGentle 2s infinite ease-in-out;
+          }
+          .animate-float {
+            animation: float 3s infinite ease-in-out;
+          }
+        `}</style>
       </div>
 
       {/* Stats Section */}
-      <div id="stats-section" className="bg-gradient-to-r from-[#103d5d] to-[#245684] text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div id="stats-section" className="bg-gradient-to-r from-[#103d5d] to-[#245684] text-white py-16 relative overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute top-0 left-0 w-full h-full opacity-10">
+          <div className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-white animate-float"></div>
+          <div className="absolute top-1/2 right-1/4 w-24 h-24 rounded-full bg-white animate-float" style={{animationDelay: '1s'}}></div>
+          <div className="absolute bottom-1/4 left-1/3 w-20 h-20 rounded-full bg-white animate-float" style={{animationDelay: '2s'}}></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {stats.map((stat) => (
-              <div key={stat.id}>
+              <div key={stat.id} className="animate-fade-in">
                 <div className="text-4xl md:text-5xl font-bold mb-2">
                   {stat.isPercentage ? stat.value : stat.value}+
                   {stat.isPercentage && <span>%</span>}
@@ -259,8 +343,8 @@ const HomePage = () => {
       {/* Testimonials Carousel Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4">What Our Clients Say</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4 animate-fade-in">What Our Clients Say</h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-delay">
             Trusted by businesses across various industries for our reliable IT solutions.
           </p>
         </div>
@@ -271,12 +355,12 @@ const HomePage = () => {
               style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}>
               {testimonials.map((testimonial) => (
                 <div key={testimonial.id} className="w-full flex-shrink-0 px-4">
-                  <div className="bg-white p-8 rounded-xl shadow-lg">
+                  <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
                     <div className="flex flex-col md:flex-row items-center mb-6">
                       <img 
                         src={testimonial.image} 
                         alt={testimonial.author} 
-                        className="w-20 h-20 rounded-full object-cover mb-4 md:mb-0 md:mr-6"
+                        className="w-20 h-20 rounded-full object-cover mb-4 md:mb-0 md:mr-6 hover:scale-105 transition-transform duration-300"
                       />
                       <div>
                         <div className="flex mb-2">
@@ -309,7 +393,7 @@ const HomePage = () => {
               <button
                 key={index}
                 onClick={() => goToTestimonial(index)}
-                className={`w-3 h-3 rounded-full ${currentTestimonial === index ? 'bg-[#103d5d]' : 'bg-gray-300'}`}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${currentTestimonial === index ? 'bg-[#103d5d] scale-125' : 'bg-gray-300'}`}
                 aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}
@@ -318,16 +402,22 @@ const HomePage = () => {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-[#170f17] text-white py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your IT Infrastructure?</h2>
-          <p className="text-xl mb-8 max-w-3xl mx-auto">
+      <div className="bg-[#170f17] text-white py-16 md:py-24 relative overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute top-0 left-0 w-full h-full opacity-10">
+          <div className="absolute top-1/4 right-1/4 w-40 h-40 rounded-full bg-white animate-pulse-slow"></div>
+          <div className="absolute bottom-1/4 left-1/4 w-32 h-32 rounded-full bg-white animate-pulse-slower"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fade-in">Ready to Transform Your IT Infrastructure?</h2>
+          <p className="text-xl mb-8 max-w-3xl mx-auto animate-fade-in-delay">
             Contact us today to discuss how SysCare IT Solutions can help your business achieve its technology goals.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link 
               to="/contact-Us" 
-              className="px-8 py-3 bg-[#245684] text-white rounded-lg font-semibold hover:bg-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              className="px-8 py-3 bg-[#245684] text-white rounded-lg font-semibold hover:bg-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl animate-bounce-gentle"
             >
               Get a Free Consultation
             </Link>
@@ -341,32 +431,39 @@ const HomePage = () => {
         </div>
       </div>
 
-<Footer/>
-      
+      <Footer/>
     </div>
   );
 };
 
-// Service Card Component
-const ServiceCard = ({ service, delay = 0 }) => {
+// Animated Service Card Component
+const AnimatedServiceCard = ({ service, animationDelay = 0 }) => {
   return (
     <div 
-      className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-2 h-full"
-      style={{ animationDelay: `${delay}ms` }}
+      className="group bg-white rounded-xl shadow-md overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-2 h-full border border-gray-100 animate-fade-in"
+      style={{ animationDelay: `${animationDelay}s` }}
     >
-      <div className="p-8 h-full flex flex-col">
-        <div className="text-5xl mb-6 hover:scale-110 transition-transform duration-500">{service.icon}</div>
-        <h3 className="text-2xl font-bold text-[#245684] mb-4">{service.title}</h3>
-        <p className="text-gray-600 mb-6 flex-grow">{service.description}</p>
-        {/* <Link 
-          to="/services" 
-          className="text-[#103d5d] font-semibold hover:text-[#245684] transition-all duration-300 flex items-center self-start transform hover:translate-x-2"
-        >
-          Learn more
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-          </svg>
-        </Link> */}
+      <div className="p-6 h-full flex flex-col relative">
+        {/* Hover effect background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-blue-100 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+        
+        <div className="relative z-10">
+          {/* Icon with animation */}
+          <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-500 animate-float">
+            {service.icon}
+          </div>
+          
+          {/* Title */}
+          <h3 className="text-xl font-bold text-[#245684] mb-3 group-hover:text-[#103d5d] transition-colors duration-300">
+            {service.title}
+          </h3>
+          
+          {/* Description */}
+          <p className="text-gray-600 mb-4 flex-grow text-sm group-hover:text-gray-800 transition-colors duration-300">
+            {service.description}
+          </p>
+          
+        </div>
       </div>
     </div>
   );

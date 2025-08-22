@@ -373,7 +373,7 @@ const ServicesPage = () => {
         </section>
 
         {/* CTA Section */}
-        <section id="contact" className="py-16 bg-[#103d5d] text-white px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <section id="contact" className="py-16 bg-[#000000] text-white px-4 sm:px-6 lg:px-8 relative overflow-hidden">
           {/* Background pattern */}
           <div className="absolute inset-0 opacity-5">
             <div className="absolute top-0 left-0 w-32 h-32 border-2 border-white rounded-full"></div>
