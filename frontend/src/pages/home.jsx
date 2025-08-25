@@ -202,7 +202,7 @@ const HomePage = () => {
       </div>
 
       {/* Services Section - Updated with Border */}
-      <div className="bg-white py-16 md:py-24 relative overflow-hidden border border-gray-200 rounded-lg mx-4 sm:mx-6 lg:mx-8">
+      <div className="bg-white py-16 md:py-24 relative overflow-hidden border border-gray rounded-lg mx-4 sm:mx-6 lg:mx-8">
         {/* Animated background elements */}
         <div className="absolute -top-24 -left-24 w-48 h-48 rounded-full bg-blue-100 opacity-30 animate-pulse-slow"></div>
         <div className="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-blue-200 opacity-20 animate-pulse-slower"></div>
@@ -440,7 +440,7 @@ const HomePage = () => {
 const AnimatedServiceCard = ({ service, animationDelay = 0 }) => {
   return (
     <div 
-      className="group bg-white rounded-xl shadow-md overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-2 h-full border border-gray-100 animate-fade-in"
+      className="group bg-white rounded-xl shadow-md overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-2 h-full border border-[#103d5d] animate-fade-in"
       style={{ animationDelay: `${animationDelay}s` }}
     >
       <div className="p-6 h-full flex flex-col relative">
