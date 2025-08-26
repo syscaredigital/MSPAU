@@ -9,17 +9,19 @@ const VideoHero = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(150);
   const [isMarqueePaused, setIsMarqueePaused] = useState(false);
+  const [rotationAngle, setRotationAngle] = useState(0);
 
   const videoSrc = '/video/hero-video.mp4';
-  
+
   const services = [
     { name: "Cloud Solutions", link: "/services/cloud" },
-    { name: "Cybersecurity", link: "/services/cybersecurity" },
-    { name: "Data Analytics", link: "/services/data-analytics" },
-    { name: "AI & ML", link: "/services/ai-ml" },
-    { name: "IT Consulting", link: "/services/consulting" },
-    { name: "DevOps", link: "/services/devops" },
-    { name: "Digital Transformation", link: "/services/digital-transformation" }
+    { name: "IT Security", link: "/services/it-security" },
+    { name: "IT Support", link: "/services/it-support" },
+    { name: "Projects & Automation", link: "/services/projects-automation" },
+    { name: "Internet & VOIP", link: "/services/internet-voip" },
+    { name: "IT Training", link: "/services/it-training" },
+    { name: "Digital Services", link: "/services/digital-services" },
+    { name: "CRM & ERP Solutions", link: "/services/crm-erp" }
   ];
 
   const typingTexts = [
@@ -48,9 +50,15 @@ const VideoHero = () => {
     video.addEventListener('loadeddata', handleLoadedData);
     video.addEventListener('error', handleError);
 
+    // Setup rotation animation
+    const rotationInterval = setInterval(() => {
+      setRotationAngle(prev => (prev + 0.5) % 360);
+    }, 50);
+
     return () => {
       video.removeEventListener('loadeddata', handleLoadedData);
       video.removeEventListener('error', handleError);
+      clearInterval(rotationInterval);
     };
   }, []);
 
@@ -80,24 +88,22 @@ const VideoHero = () => {
   }, [currentWordIndex, isDeleting, currentTextIndex, typingTexts]);
 
   const handleServiceClick = (serviceLink) => {
-    // In a real application, you would navigate to the service page
     console.log(`Navigating to: ${serviceLink}`);
-    // Example: navigate(serviceLink);
     alert(`Navigating to ${serviceLink}`);
   };
 
   return (
     <section className="relative h-screen w-full overflow-hidden bg-gray-900">
       {/* Services Marquee at the top */}
-      <div 
+      <div
         className="absolute top-0 left-0 w-full z-30 bg-gradient-to-r from-blue-600 to-blue-800 py-3 overflow-hidden"
         onMouseEnter={() => setIsMarqueePaused(true)}
         onMouseLeave={() => setIsMarqueePaused(false)}
       >
         <div className={`flex whitespace-nowrap ${isMarqueePaused ? '' : 'animate-marquee'}`}>
           {services.map((service, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="inline-flex items-center mx-8 text-white cursor-pointer group"
               onClick={() => handleServiceClick(service.link)}
             >
@@ -107,8 +113,8 @@ const VideoHero = () => {
           ))}
           {/* Duplicate for seamless loop */}
           {services.map((service, index) => (
-            <div 
-              key={`dup-${index}`} 
+            <div
+              key={`dup-${index}`}
               className="inline-flex items-center mx-8 text-white cursor-pointer group"
               onClick={() => handleServiceClick(service.link)}
             >
@@ -137,7 +143,7 @@ const VideoHero = () => {
 
       {/* Animated gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-gray-900/80 to-purple-900/70 z-10"></div>
-      
+     
       {/* Animated grid pattern overlay */}
       <div className="absolute inset-0 z-0 opacity-20 bg-grid-pattern"></div>
 
@@ -211,7 +217,7 @@ const VideoHero = () => {
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                     <path
                       fillRule="evenodd"
-                      d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                      d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-极速2h7.586l-2.293-2.293a1 1 0 010-1.414z"
                       clipRule="evenodd"
                     />
                   </svg>
@@ -248,7 +254,7 @@ const VideoHero = () => {
                           key={i}
                           xmlns="http://www.w3.org/2000/svg"
                           className="h-4 w-4 text-yellow-400"
-                          viewBox="0 0 20 20"
+                          viewBox="极速0 0 20 20"
                           fill="currentColor"
                         >
                           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -273,7 +279,7 @@ const VideoHero = () => {
                       <p className="text-xs text-white/80">Certified</p>
                     </div>
                   </div>
-                  
+                 
                   <div className="flex items-center space-x-2">
                     <div className="p-2 bg-white/10 backdrop-blur-sm rounded-lg">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -281,7 +287,7 @@ const VideoHero = () => {
                       </svg>
                     </div>
                     <div>
-                      <p className="font-medium text-sm">ISO 9001</p>
+                      <p className="font-medium text极速-sm">ISO 9001</p>
                       <p className="text-xs text-white/80">Certified</p>
                     </div>
                   </div>
@@ -289,30 +295,51 @@ const VideoHero = () => {
               </div>
             </div>
 
-            {/* Right Content - Rotating Services Circle */}
+            {/* Right Content - Dynamic Horizontal Services Rotation */}
             <div className="hidden lg:flex justify-center items-center">
-              <div className="relative w-80 h-80">
-                {/* Outer ring */}
-                <div className="absolute inset-0 rounded-full border-4 border-blue-500/20 animate-pulse-slow"></div>
+              <div className="relative w-96 h-96">
+                {/* Outer ring with rotation */}
+                <div 
+                  className="absolute inset-0 rounded-full border-4 border-blue-500/20"
+                  style={{
+                    transform: `rotate(${rotationAngle}deg)`,
+                    transition: 'transform 0.1s linear'
+                  }}
+                >
+                  {/* Inner ring with counter-rotation */}
+                  <div 
+                    className="absolute inset-10 rounded-full border-2 border-blue-400/30"
+                    style={{
+                      transform: `rotate(${-rotationAngle * 0.5}deg)`,
+                      transition: 'transform 0.1s linear'
+                    }}
+                  ></div>
+                </div>
+               
+                {/* Central element - stays fixed */}
+                <div className="absolute inset-0 flex items-center justify-center z-10">
+                  <div className="w-40 h-40 rounded-full bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-white text-center p-4 shadow-2xl shadow-blue-500/30 border border-blue-400/50">
+                    <div>
+                      <div className="text-4xl font-bold">360°</div>
+                      <div className="text-sm mt-1">IT Solutions</div>
+                    </div>
+                  </div>
+                </div>
                 
-                {/* Inner ring */}
-                <div className="absolute inset-10 rounded-full border-2 border-blue-400/30"></div>
-                
-                {/* Rotating services */}
+                {/* Services positioned around circle with dynamic rotation */}
                 {services.map((service, index) => {
-                  const angle = (index / services.length) * 2 * Math.PI;
-                  const x = 50 + 35 * Math.cos(angle);
-                  const y = 50 + 35 * Math.sin(angle);
+                  const angle = (index / services.length) * 360 + rotationAngle;
+                  const radius = 160; // Distance from center
                   
                   return (
                     <div
                       key={index}
-                      className="absolute w-24 h-24 flex items-center justify-center text-center text-white font-medium text-sm bg-blue-600/10 backdrop-blur-sm rounded-lg border border-blue-400/30 transform -translate-x-1/2 -translate-y-1/2 animate-rotate-infinite cursor-pointer group hover:bg-blue-600/20 transition-all"
+                      className="absolute w-24 h-24 flex items-center justify-center text-center text-white font-medium text-sm bg-blue-600/10 backdrop-blur-sm rounded-lg border border-blue-400/30 cursor-pointer group hover:bg-blue-600/20 transition-all z-20"
                       style={{
-                        left: `${x}%`,
-                        top: `${y}%`,
-                        animationDelay: `${index * 0.5}s`,
-                        transformOrigin: '50% 50%'
+                        left: `calc(50% + ${radius * Math.cos((angle * Math.PI) / 180)}px)`,
+                        top: `calc(50% + ${radius * Math.sin((angle * Math.PI) / 180)}px)`,
+                        transform: 'translate(-50%, -50%)',
+                        transition: 'left 0.1s linear, top 0.1s linear'
                       }}
                       onClick={() => handleServiceClick(service.link)}
                     >
@@ -323,16 +350,6 @@ const VideoHero = () => {
                     </div>
                   );
                 })}
-                
-                {/* Central element */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-white text-center p-4 shadow-2xl shadow-blue-500/30 border border-blue-400/50">
-                    <div>
-                      <div className="text-3xl font-bold">360°</div>
-                      <div className="text-xs mt-1">IT Solutions</div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -357,13 +374,6 @@ const VideoHero = () => {
         }
         .animate-marquee {
           animation: marquee 20s linear infinite;
-        }
-        @keyframes rotate-infinite {
-          from { transform: translate(-50%, -50%) rotate(0deg) translateX(140px) rotate(0deg); }
-          to { transform: translate(-50%, -50%) rotate(360deg) translateX(140px) rotate(-360deg); }
-        }
-        .animate-rotate-infinite {
-          animation: rotate-infinite 20s linear infinite;
         }
         @keyframes float {
           0% { transform: translateY(0px); }
