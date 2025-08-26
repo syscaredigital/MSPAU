@@ -337,7 +337,7 @@ const VideoHero = () => {
                   return (
                     <div
                       key={index}
-                      className="absolute w-40 h-15 flex items-center justify-center text-center text-white font-medium bg-[#103d5d] backdrop-blur-sm rounded-lg border border-white cursor-pointer group hover:bg-white/20 transition-all z-20"
+                      className="absolute w-40 h-15 flex items-center justify-center text-center text-white font-medium bg-white/10 backdrop-blur-sm rounded-lg border border-white cursor-pointer group hover:bg-white/20 transition-all z-20"
                       style={{
                         left: `calc(50% + ${radius * Math.cos((angle * Math.PI) / 180)}px)`,
                         top: `calc(50% + ${radius * Math.sin((angle * Math.PI) / 180)}px)`,
