@@ -93,10 +93,10 @@ const VideoHero = () => {
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-gray-900">
+    <section className="relative h-screen w-full overflow-hidden bg-black">
       {/* Services Marquee at the top */}
       <div
-        className="absolute top-0 left-0 w-full z-30 bg-gradient-to-r from-blue-600 to-blue-800 py-3 overflow-hidden"
+        className="absolute top-0 left-0 w-full z-30 bg-gradient-to-r from-[#103d5d] to-[#245684] py-3 overflow-hidden"
         onMouseEnter={() => setIsMarqueePaused(true)}
         onMouseLeave={() => setIsMarqueePaused(false)}
       >
@@ -107,8 +107,8 @@ const VideoHero = () => {
               className="inline-flex items-center mx-8 text-white cursor-pointer group"
               onClick={() => handleServiceClick(service.link)}
             >
-              <span className="w-2 h-2 bg-blue-300 rounded-full mr-3 group-hover:bg-blue-100 transition-colors"></span>
-              <span className="font-medium text-sm md:text-base group-hover:text-blue-100 transition-colors">{service.name}</span>
+              <span className="w-2 h-2 bg-white rounded-full mr-3 group-hover:bg-[#245684] transition-colors"></span>
+              <span className="font-medium text-sm md:text-base group-hover:text-[#245684] transition-colors">{service.name}</span>
             </div>
           ))}
           {/* Duplicate for seamless loop */}
@@ -118,8 +118,8 @@ const VideoHero = () => {
               className="inline-flex items-center mx-8 text-white cursor-pointer group"
               onClick={() => handleServiceClick(service.link)}
             >
-              <span className="w-2 h-2 bg-blue-300 rounded-full mr-3 group-hover:bg-blue-100 transition-colors"></span>
-              <span className="font-medium text-sm md:text-base group-hover:text-blue-100 transition-colors">{service.name}</span>
+              <span className="w-2 h-2 bg-white rounded-full mr-3 group-hover:bg-[#245684] transition-colors"></span>
+              <span className="font-medium text-sm md:text-base group-hover:text-[#245684] transition-colors">{service.name}</span>
             </div>
           ))}
         </div>
@@ -142,7 +142,7 @@ const VideoHero = () => {
       </video>
 
       {/* Animated gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-gray-900/80 to-purple-900/70 z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-[#103d5d]/70 via-black/80 to-[#245684]/70 z-10"></div>
      
       {/* Animated grid pattern overlay */}
       <div className="absolute inset-0 z-0 opacity-20 bg-grid-pattern"></div>
@@ -152,7 +152,7 @@ const VideoHero = () => {
         {[...Array(15)].map((_, i) => (
           <div
             key={i}
-            className="absolute rounded-full bg-blue-500 opacity-10 animate-float"
+            className="absolute rounded-full bg-[#245684] opacity-10 animate-float"
             style={{
               width: Math.random() * 20 + 5 + 'px',
               height: Math.random() * 20 + 5 + 'px',
@@ -177,30 +177,30 @@ const VideoHero = () => {
             {/* Left Content with Typing Text */}
             <div className="z-10 text-white">
               <div className="mb-6">
-                <span className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-blue-300 border border-blue-500/30">
+                <span className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-white/30">
                   <span className="relative flex h-2 w-2 mr-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
                   </span>
                   INNOVATIVE IT SOLUTIONS
                 </span>
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-[#245684]">
                   SysCare
                 </span>
                 <br />
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-blue-500">
+                <span className="text-white">
                   IT Solutions
                 </span>
               </h1>
 
               {/* Typing text effect */}
               <div className="h-12 mb-6">
-                <p className="text-xl md:text-2xl text-blue-100 font-medium">
+                <p className="text-xl md:text-2xl text-white font-medium">
                   {typingTexts[currentTextIndex].substring(0, currentWordIndex)}
-                  <span className="animate-pulse inline-block w-1 h-6 bg-blue-400 align-middle ml-1"></span>
+                  <span className="animate-pulse inline-block w-1 h-6 bg-white align-middle ml-1"></span>
                 </p>
               </div>
 
@@ -211,25 +211,25 @@ const VideoHero = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   to="/syscare-services"
-                  className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/30 flex items-center justify-center"
+                  className="px-8 py-4 bg-gradient-to-r from-[#103d5d] to-[#245684] text-white rounded-lg font-semibold hover:from-[#245684] hover:to-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/30 flex items-center justify-center"
                 >
                   <span>Explore Services</span>
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                     <path
                       fillRule="evenodd"
-                      d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-极速2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                      d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
                       clipRule="evenodd"
                     />
                   </svg>
                 </Link>
                 <Link
                   to="/contact-Us"
-                  className="px-8 py-4 bg-transparent border-2 border-blue-500 text-white rounded-lg font-semibold hover:bg-blue-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/20 flex items-center justify-center"
+                  className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-white/20 flex items-center justify-center"
                 >
                   <span>Free Consultation</span>
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    <path d="M2.003 极速5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                    <path d="M18 8.118l-8 4-8-4极速V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                   </svg>
                 </Link>
               </div>
@@ -240,7 +240,7 @@ const VideoHero = () => {
                   <div className="flex -space-x-3">
                     {[1, 2, 3, 4].map((item) => (
                       <div key={item} className="relative">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 border-2 border-white flex items-center justify-center text-white font-bold text-xs">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#103d5d] to-[#245684] border-2 border-white flex items-center justify-center text-white font-bold text-xs">
                           {`C${item}`}
                         </div>
                       </div>
@@ -254,10 +254,10 @@ const VideoHero = () => {
                           key={i}
                           xmlns="http://www.w3.org/2000/svg"
                           className="h-4 w-4 text-yellow-400"
-                          viewBox="极速0 0 20 20"
+                          viewBox="0 0 20 20"
                           fill="currentColor"
                         >
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72极速c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
                       ))}
                       <span className="ml-2 text-sm">5.0 Rating</span>
@@ -270,7 +270,7 @@ const VideoHero = () => {
                 <div className="flex items-center space-x-4">
                   <div className="flex items-center space-x-2">
                     <div className="p-2 bg-white/10 backdrop-blur-sm rounded-lg">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                       </svg>
                     </div>
@@ -282,12 +282,12 @@ const VideoHero = () => {
                  
                   <div className="flex items-center space-x-2">
                     <div className="p-2 bg-white/10 backdrop-blur-sm rounded-lg">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="极速0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                       </svg>
                     </div>
                     <div>
-                      <p className="font-medium text极速-sm">ISO 9001</p>
+                      <p className="font-medium text-sm">ISO 9001</p>
                       <p className="text-xs text-white/80">Certified</p>
                     </div>
                   </div>
@@ -297,10 +297,10 @@ const VideoHero = () => {
 
             {/* Right Content - Dynamic Horizontal Services Rotation */}
             <div className="hidden lg:flex justify-center items-center">
-              <div className="relative w-96 h-96">
+              <div className="relative w-[550px] h-[550px]">
                 {/* Outer ring with rotation */}
                 <div 
-                  className="absolute inset-0 rounded-full border-4 border-blue-500/20"
+                  className="absolute inset-0 rounded-full border-4 border-white/20"
                   style={{
                     transform: `rotate(${rotationAngle}deg)`,
                     transition: 'transform 0.1s linear'
@@ -308,7 +308,7 @@ const VideoHero = () => {
                 >
                   {/* Inner ring with counter-rotation */}
                   <div 
-                    className="absolute inset-10 rounded-full border-2 border-blue-400/30"
+                    className="absolute inset-12 rounded-full border-2 border-white/30"
                     style={{
                       transform: `rotate(${-rotationAngle * 0.5}deg)`,
                       transition: 'transform 0.1s linear'
@@ -317,24 +317,27 @@ const VideoHero = () => {
                 </div>
                
                 {/* Central element - stays fixed */}
-                <div className="absolute inset-0 flex items-center justify-center z-10">
-                  <div className="w-40 h-40 rounded-full bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-white text-center p-4 shadow-2xl shadow-blue-500/30 border border-blue-400/50">
-                    <div>
-                      <div className="text-4xl font-bold">360°</div>
-                      <div className="text-sm mt-1">IT Solutions</div>
-                    </div>
-                  </div>
-                </div>
+<div className="absolute inset-0 flex items-center justify-center z-10">
+<div className="w-52 h-52 rounded-full bg-gradient-to-br from-[#103d5d] to-[#245684] flex items-center justify-center text-white text-center p-6 shadow-2xl shadow-[#245684]/30 border border-white/30">
+<div>
+      {/* Replaced 360° text with image */}
+<img 
+        src="/images/Slogo.png" 
+        alt="360° IT Solutions" 
+        className="w-20 h-20 mx-auto mb-2" />
+</div>
+</div>
+</div>
                 
                 {/* Services positioned around circle with dynamic rotation */}
                 {services.map((service, index) => {
                   const angle = (index / services.length) * 360 + rotationAngle;
-                  const radius = 160; // Distance from center
+                  const radius = 230;
                   
                   return (
                     <div
                       key={index}
-                      className="absolute w-24 h-24 flex items-center justify-center text-center text-white font-medium text-sm bg-blue-600/10 backdrop-blur-sm rounded-lg border border-blue-400/30 cursor-pointer group hover:bg-blue-600/20 transition-all z-20"
+                      className="absolute w-40 h-15 flex items-center justify-center text-center text-white font-medium bg-[#103d5d] backdrop-blur-sm rounded-lg border border-white cursor-pointer group hover:bg-white/20 transition-all z-20"
                       style={{
                         left: `calc(50% + ${radius * Math.cos((angle * Math.PI) / 180)}px)`,
                         top: `calc(50% + ${radius * Math.sin((angle * Math.PI) / 180)}px)`,
@@ -343,9 +346,9 @@ const VideoHero = () => {
                       }}
                       onClick={() => handleServiceClick(service.link)}
                     >
-                      <div className="p-2">
-                        <div className="w-4 h-4 bg-blue-400 rounded-full mx-auto mb-2 group-hover:bg-blue-200 transition-colors"></div>
-                        {service.name}
+                      <div className="p-3">
+                        <div className="w-5 h-5 bg-white rounded-full mx-auto mb-2 group-hover:bg-[#245684] transition-colors"></div>
+                        <span className="text-xs leading-tight">{service.name}</span>
                       </div>
                     </div>
                   );
@@ -358,10 +361,10 @@ const VideoHero = () => {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-        <div className="flex flex-col items-center text-gray-400">
+        <div className="flex flex-col items-center text-white">
           <span className="text-sm mb-2">Scroll to explore</span>
-          <div className="w-6 h-10 border-2 border-gray-600 rounded-full flex justify-center">
-            <div className="w-1 h-2 bg-gray-400 mt-2 rounded-full animate-scroll"></div>
+          <div className="w-6 h-10 border-2 border-white/60 rounded-full flex justify-center">
+            <div className="w-1 h-2 bg-white mt-2 rounded-full animate-scroll"></div>
           </div>
         </div>
       </div>
@@ -398,8 +401,8 @@ const VideoHero = () => {
           animation: scroll 2s infinite;
         }
         .bg-grid-pattern {
-          background-image: linear-gradient(to right, rgba(55, 65, 81, 0.3) 1px, transparent 1px),
-                            linear-gradient(to bottom, rgba(55, 65, 81, 0.3) 1px, transparent 1px);
+          background-image: linear-gradient(to right, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+                            linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
           background-size: 40px 40px;
         }
       `}</style>
