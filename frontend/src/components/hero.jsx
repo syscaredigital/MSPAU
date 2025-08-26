@@ -1,11 +1,33 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ServicesMarquee from './ServiceMarqee';
+
 const VideoHero = () => {
   const videoRef = useRef(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+  const [isMarqueePaused, setIsMarqueePaused] = useState(false);
 
   const videoSrc = '/video/hero-video.mp4';
+  
+  const services = [
+    { name: "Cloud Solutions", link: "/services/cloud" },
+    { name: "Cybersecurity", link: "/services/cybersecurity" },
+    { name: "Data Analytics", link: "/services/data-analytics" },
+    { name: "AI & ML", link: "/services/ai-ml" },
+    { name: "IT Consulting", link: "/services/consulting" },
+    { name: "DevOps", link: "/services/devops" },
+    { name: "Digital Transformation", link: "/services/digital-transformation" }
+  ];
+
+  const typingTexts = [
+    "Transforming businesses with innovative technology",
+    "Driving growth through digital solutions",
+    "Securing your digital future",
+    "Optimizing operations with cutting-edge IT"
+  ];
 
   useEffect(() => {
     const video = videoRef.current;
@@ -32,8 +54,71 @@ const VideoHero = () => {
     };
   }, []);
 
+  // Typing effect
+  useEffect(() => {
+    const handleTyping = () => {
+      const currentText = typingTexts[currentTextIndex];
+      const updatedWord = isDeleting
+        ? currentText.substring(0, currentWordIndex - 1)
+        : currentText.substring(0, currentWordIndex + 1);
+
+      setCurrentWordIndex(updatedWord.length);
+
+      if (!isDeleting && updatedWord === currentText) {
+        setTimeout(() => setIsDeleting(true), 1000);
+      } else if (isDeleting && updatedWord === '') {
+        setIsDeleting(false);
+        setCurrentTextIndex((prev) => (prev + 1) % typingTexts.length);
+        setTypingSpeed(150);
+      } else {
+        setTypingSpeed(isDeleting ? 50 : 150);
+      }
+    };
+
+    const typingTimer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(typingTimer);
+  }, [currentWordIndex, isDeleting, currentTextIndex, typingTexts]);
+
+  const handleServiceClick = (serviceLink) => {
+    // In a real application, you would navigate to the service page
+    console.log(`Navigating to: ${serviceLink}`);
+    // Example: navigate(serviceLink);
+    alert(`Navigating to ${serviceLink}`);
+  };
+
   return (
     <section className="relative h-screen w-full overflow-hidden bg-gray-900">
+      {/* Services Marquee at the top */}
+      <div 
+        className="absolute top-0 left-0 w-full z-30 bg-gradient-to-r from-blue-600 to-blue-800 py-3 overflow-hidden"
+        onMouseEnter={() => setIsMarqueePaused(true)}
+        onMouseLeave={() => setIsMarqueePaused(false)}
+      >
+        <div className={`flex whitespace-nowrap ${isMarqueePaused ? '' : 'animate-marquee'}`}>
+          {services.map((service, index) => (
+            <div 
+              key={index} 
+              className="inline-flex items-center mx-8 text-white cursor-pointer group"
+              onClick={() => handleServiceClick(service.link)}
+            >
+              <span className="w-2 h-2 bg-blue-300 rounded-full mr-3 group-hover:bg-blue-100 transition-colors"></span>
+              <span className="font-medium text-sm md:text-base group-hover:text-blue-100 transition-colors">{service.name}</span>
+            </div>
+          ))}
+          {/* Duplicate for seamless loop */}
+          {services.map((service, index) => (
+            <div 
+              key={`dup-${index}`} 
+              className="inline-flex items-center mx-8 text-white cursor-pointer group"
+              onClick={() => handleServiceClick(service.link)}
+            >
+              <span className="w-2 h-2 bg-blue-300 rounded-full mr-3 group-hover:bg-blue-100 transition-colors"></span>
+              <span className="font-medium text-sm md:text-base group-hover:text-blue-100 transition-colors">{service.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Video Background */}
       <video
         ref={videoRef}
@@ -43,50 +128,84 @@ const VideoHero = () => {
         playsInline
         preload="auto"
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-          isVideoLoaded ? 'opacity-100' : 'opacity-0'
+          isVideoLoaded ? 'opacity-50' : 'opacity-0'
         }`}
       >
         <source src={videoSrc} type="video/mp4" />
         Your browser does not support HTML5 video.
       </video>
 
+      {/* Animated gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-gray-900/80 to-purple-900/70 z-10"></div>
+      
+      {/* Animated grid pattern overlay */}
+      <div className="absolute inset-0 z-0 opacity-20 bg-grid-pattern"></div>
+
+      {/* Floating particles */}
+      <div className="absolute inset-0 z-0">
+        {[...Array(15)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full bg-blue-500 opacity-10 animate-float"
+            style={{
+              width: Math.random() * 20 + 5 + 'px',
+              height: Math.random() * 20 + 5 + 'px',
+              top: Math.random() * 100 + '%',
+              left: Math.random() * 100 + '%',
+              animationDelay: Math.random() * 5 + 's',
+              animationDuration: Math.random() * 10 + 10 + 's'
+            }}
+          ></div>
+        ))}
+      </div>
+
       {/* Fallback image */}
       {!isVideoLoaded && (
         <div className="absolute inset-0 bg-[url('/images/hero-fallback.jpg')] bg-cover bg-center"></div>
       )}
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/40 z-10"></div>
-
-      {/* ✅ New Content Section */}
-      <div className="relative z-20 h-full flex items-center">
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-40">
+      {/* Main Content */}
+      <div className="relative z-20 h-full flex items-center pt-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
+            {/* Left Content with Typing Text */}
             <div className="z-10 text-white">
               <div className="mb-6">
-                <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium tracking-wider animate-pulse">
+                <span className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-blue-300 border border-blue-500/30">
+                  <span className="relative flex h-2 w-2 mr-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                  </span>
                   INNOVATIVE IT SOLUTIONS
                 </span>
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-blue-500">
-                  SysCare 
-                  <br></br> IT Solutions
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">
+                  SysCare
                 </span>
                 <br />
-                For Your Digital Transformation
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-blue-500">
+                  IT Solutions
+                </span>
               </h1>
 
-              <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl">
+              {/* Typing text effect */}
+              <div className="h-12 mb-6">
+                <p className="text-xl md:text-2xl text-blue-100 font-medium">
+                  {typingTexts[currentTextIndex].substring(0, currentWordIndex)}
+                  <span className="animate-pulse inline-block w-1 h-6 bg-blue-400 align-middle ml-1"></span>
+                </p>
+              </div>
+
+              <p className="text-lg text-white/90 mb-8 max-w-2xl">
                 We deliver cutting-edge technology solutions that drive business growth and optimize operations through innovative IT strategies.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   to="/syscare-services"
-                  className="px-8 py-4 bg-white text-[#1e3a8a] rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center"
+                  className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/30 flex items-center justify-center"
                 >
                   <span>Explore Services</span>
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
@@ -99,7 +218,7 @@ const VideoHero = () => {
                 </Link>
                 <Link
                   to="/contact-Us"
-                  className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-[#1e3a8a] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center"
+                  className="px-8 py-4 bg-transparent border-2 border-blue-500 text-white rounded-lg font-semibold hover:bg-blue-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/20 flex items-center justify-center"
                 >
                   <span>Free Consultation</span>
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
@@ -109,17 +228,16 @@ const VideoHero = () => {
                 </Link>
               </div>
 
-              {/* ✅ Clients + ISO Badge */}
+              {/* Trust indicators */}
               <div className="mt-12 flex flex-wrap items-center gap-6">
                 <div className="flex items-center">
                   <div className="flex -space-x-3">
                     {[1, 2, 3, 4].map((item) => (
-                      <img
-                        key={item}
-                        src={`https://randomuser.me/api/portraits/${item % 2 === 0 ? 'women' : 'men'}/${30 + item}.jpg`}
-                        alt="Client"
-                        className="w-10 h-10 rounded-full border-2 border-white hover:scale-110 transition-transform duration-300"
-                      />
+                      <div key={item} className="relative">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 border-2 border-white flex items-center justify-center text-white font-bold text-xs">
+                          {`C${item}`}
+                        </div>
+                      </div>
                     ))}
                   </div>
                   <div className="ml-4">
@@ -136,55 +254,145 @@ const VideoHero = () => {
                           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
                       ))}
-                      <span className="ml-2">5.0 Rating</span>
+                      <span className="ml-2 text-sm">5.0 Rating</span>
                     </div>
                   </div>
                 </div>
 
                 <div className="hidden sm:block h-8 w-px bg-white/30"></div>
 
-                <div className="flex items-center space-x-2">
-                  <div className="p-2 bg-white/10 backdrop-blur-sm rounded-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="font-medium">ISO 27001 Certified</p>
-                    <p className="text-sm text-white/80">Data Security</p>
-                  </div>
+                <div className="flex items-center space-x-4">
                   <div className="flex items-center space-x-2">
-                  <div className="p-2 bg-white/10 backdrop-blur-sm rounded-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
+                    <div className="p-2 bg-white/10 backdrop-blur-sm rounded-lg">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="font-medium text-sm">ISO 27001</p>
+                      <p className="text-xs text-white/80">Certified</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-medium">ISO 9001 Certified</p>
-                    <p className="text-sm text-white/80">Data Security</p>
+                  
+                  <div className="flex items-center space-x-2">
+                    <div className="p-2 bg-white/10 backdrop-blur-sm rounded-lg">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="font-medium text-sm">ISO 9001</p>
+                      <p className="text-xs text-white/80">Certified</p>
+                    </div>
                   </div>
-                </div>
                 </div>
               </div>
             </div>
 
+            {/* Right Content - Rotating Services Circle */}
+            <div className="hidden lg:flex justify-center items-center">
+              <div className="relative w-80 h-80">
+                {/* Outer ring */}
+                <div className="absolute inset-0 rounded-full border-4 border-blue-500/20 animate-pulse-slow"></div>
                 
-            
+                {/* Inner ring */}
+                <div className="absolute inset-10 rounded-full border-2 border-blue-400/30"></div>
+                
+                {/* Rotating services */}
+                {services.map((service, index) => {
+                  const angle = (index / services.length) * 2 * Math.PI;
+                  const x = 50 + 35 * Math.cos(angle);
+                  const y = 50 + 35 * Math.sin(angle);
+                  
+                  return (
+                    <div
+                      key={index}
+                      className="absolute w-24 h-24 flex items-center justify-center text-center text-white font-medium text-sm bg-blue-600/10 backdrop-blur-sm rounded-lg border border-blue-400/30 transform -translate-x-1/2 -translate-y-1/2 animate-rotate-infinite cursor-pointer group hover:bg-blue-600/20 transition-all"
+                      style={{
+                        left: `${x}%`,
+                        top: `${y}%`,
+                        animationDelay: `${index * 0.5}s`,
+                        transformOrigin: '50% 50%'
+                      }}
+                      onClick={() => handleServiceClick(service.link)}
+                    >
+                      <div className="p-2">
+                        <div className="w-4 h-4 bg-blue-400 rounded-full mx-auto mb-2 group-hover:bg-blue-200 transition-colors"></div>
+                        {service.name}
+                      </div>
+                    </div>
+                  );
+                })}
+                
+                {/* Central element */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-white text-center p-4 shadow-2xl shadow-blue-500/30 border border-blue-400/50">
+                    <div>
+                      <div className="text-3xl font-bold">360°</div>
+                      <div className="text-xs mt-1">IT Solutions</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-   
-
-  
-
-
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-          <div className="w-1 h-2 bg-white mt-2 rounded-full animate-pulse"></div>
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+        <div className="flex flex-col items-center text-gray-400">
+          <span className="text-sm mb-2">Scroll to explore</span>
+          <div className="w-6 h-10 border-2 border-gray-600 rounded-full flex justify-center">
+            <div className="w-1 h-2 bg-gray-400 mt-2 rounded-full animate-scroll"></div>
+          </div>
         </div>
       </div>
+
+      {/* Custom animations */}
+      <style jsx>{`
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+          animation: marquee 20s linear infinite;
+        }
+        @keyframes rotate-infinite {
+          from { transform: translate(-50%, -50%) rotate(0deg) translateX(140px) rotate(0deg); }
+          to { transform: translate(-50%, -50%) rotate(360deg) translateX(140px) rotate(-360deg); }
+        }
+        .animate-rotate-infinite {
+          animation: rotate-infinite 20s linear infinite;
+        }
+        @keyframes float {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+          100% { transform: translateY(0px); }
+        }
+        .animate-float {
+          animation: float 5s infinite ease-in-out;
+        }
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.5; }
+        }
+        .animate-pulse-slow {
+          animation: pulse-slow 3s infinite;
+        }
+        @keyframes scroll {
+          0% { transform: translateY(0); opacity: 1; }
+          100% { transform: translateY(10px); opacity: 0; }
+        }
+        .animate-scroll {
+          animation: scroll 2s infinite;
+        }
+        .bg-grid-pattern {
+          background-image: linear-gradient(to right, rgba(55, 65, 81, 0.3) 1px, transparent 1px),
+                            linear-gradient(to bottom, rgba(55, 65, 81, 0.3) 1px, transparent 1px);
+          background-size: 40px 40px;
+        }
+      `}</style>
     </section>
   );
 };
