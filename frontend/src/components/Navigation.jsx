@@ -1,7 +1,7 @@
 // components/Navigation.jsx
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FiChevronDown, FiX, FiMenu, FiGlobe, FiServer, FiCloud } from "react-icons/fi";
+import { FiChevronDown, FiX, FiMenu, FiGlobe, FiServer, FiCloud, FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
 
 const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -58,8 +58,8 @@ const Navigation = () => {
         id: "private-cloud",
         name: "Cloud Solutions",
         subCategories: [
-          { name: "SysCare Private Cloud", url: "/SysCare-Private-Cloud", icon: <FiCloud className="inline-block mr-2" /> },
-          { name: "Hosted Services", url: "/Hosted-Services", icon: <FiServer className="inline-block mr-2" /> },
+          { name: "SysCare Private Cloud", url: "/SysCare-Private-Cloud", icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
+          { name: "Hosted Services", url: "/Hosted-Services", icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
         ],
       },
       {
@@ -69,8 +69,12 @@ const Navigation = () => {
           {
             name: "Cybersecurity Consultancy Services",
             url: "/CyberSecurityConsultancyServices",
+            icon: <FiArrowRightCircle className="inline-block text-xl mr-2" />
+            
           },
-          { name: "Managed Security Services", url: "/ManagedSecurityServices" },
+          { name: "Managed Security Services", url: "/ManagedSecurityServices",
+            icon: <FiArrowRightCircle className="inline-block text-xl mr-2" />
+           },
         ],
       },
     ],
@@ -79,16 +83,16 @@ const Navigation = () => {
         id: "managed-it",
         name: "IT Support",
         subCategories: [
-          { name: "Service Desk", url: "/Service-Desk" },
-          { name: "Managed IT Services", url: "/Managed-IT-Services" },
+          { name: "Service Desk", url: "/Service-Desk",icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
+          { name: "Managed IT Services", url: "/Managed-IT-Services",icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
         ],
       },
       {
         id: "project-consultancy",
         name: " Projects & Automation",
         subCategories: [
-          { name: "IT Infra Projects", url: "/ITInfraProjects" },
-          { name: "Office IT Automation", url: "/DevelopmentAutomation" },
+          { name: "IT Infra Projects", url: "/ITInfraProjects", icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
+          { name: "Office IT Automation", url: "/DevelopmentAutomation",  icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
         ],
       },
     ],
@@ -97,16 +101,16 @@ const Navigation = () => {
         id: "internet-voip",
         name: "Internet & VOIP",
         subCategories: [
-          { name: "Connectivity", url: "/Connectivity" },
-          { name: "VoIP & Video", url: "/VoiceVideo" },
+          { name: "Connectivity", url: "/Connectivity",  icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
+          { name: "VoIP & Video", url: "/VoiceVideo",  icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
         ],
       },
       {
         id: "it-training",
         name: "IT Training",
         subCategories: [
-          { name: "Security", url: "/Security" },
-          { name: "Cloud", url: "/Cloud" },
+          { name: "Security", url: "/Security",  icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
+          { name: "Cloud", url: "/Cloud",  icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
         ],
       },
     ],
@@ -115,16 +119,16 @@ const Navigation = () => {
         id: "digital-services",
         name: "Digital Services",
         subCategories: [
-          { name: "Design & Dev", url: "/DesignDev" },
-          { name: "Digital Marketing", url: "/DigitalMarketing" },
+          { name: "Design & Dev", url: "/DesignDev",  icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
+          { name: "Digital Marketing", url: "/DigitalMarketing",  icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
         ],
       },
       {
         id: "crm-erp",
         name: "CRM & ERP Solutions",
         subCategories: [
-          { name: "Small Business", url: "/SmallBusiness" },
-          { name: "Enterprise", url: "/Enterprise" },
+          { name: "Small Business", url: "/SmallBusiness",  icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
+          { name: "Enterprise", url: "/Enterprise",  icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
         ],
       },
     ],

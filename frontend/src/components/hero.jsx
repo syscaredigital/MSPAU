@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FiGlobe, FiServer, FiCloud, FiShield, FiUserPlus, FiPackage, FiBook, FiSmartphone } from "react-icons/fi";
 
 const VideoHero = () => {
   const videoRef = useRef(null);
@@ -14,14 +15,14 @@ const VideoHero = () => {
   const videoSrc = '/video/hero-video.mp4';
 
   const services = [
-    { name: "Cloud Solutions", link: "/services/cloud" },
-    { name: "IT Security", link: "/services/it-security" },
-    { name: "IT Support", link: "/services/it-support" },
-    { name: "Projects & Automation", link: "/services/projects-automation" },
-    { name: "Internet & VOIP", link: "/services/internet-voip" },
-    { name: "IT Training", link: "/services/it-training" },
-    { name: "Digital Services", link: "/services/digital-services" },
-    { name: "CRM & ERP Solutions", link: "/services/crm-erp" }
+    { name: "Cloud Solutions", link: "/services/cloud", icon: <FiCloud className="inline-block text-4xl mr-2" /> },
+    { name: "IT Security", link: "/services/it-security", icon: <FiShield className="inline-block text-4xl mr-2"/> },
+    { name: "IT Support", link: "/services/it-support", icon: <FiUserPlus className="inline-block text-4xl mr-2"/> },
+    { name: "Projects & Automation", link: "/services/projects-automation", icon: <FiPackage className="inline-block text-4xl mr-2"/> },
+    { name: "Internet & VOIP", link: "/services/internet-voip", icon: <FiGlobe className="inline-block text-4xl mr-2"/> },
+    { name: "IT Training", link: "/services/it-training", icon: <FiBook className="inline-block text-4xl mr-2"/> },
+    { name: "Digital Services", link: "/services/digital-services", icon: <FiSmartphone className="inline-block text-4xl mr-2"/> },
+    { name: "CRM & ERP Solutions", link: "/services/crm-erp", icon: <FiServer className="inline-block text-4xl mr-2"/> }
   ];
 
   const typingTexts = [
@@ -93,10 +94,10 @@ const VideoHero = () => {
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-black">
-      {/* Services Marquee at the top */}
+    <section className="relative min-h-screen w-full overflow-hidden bg-black">
+      {/* Services Marquee at the bottom */}
       <div
-        className="absolute top-0 left-0 w-full z-30 bg-gradient-to-r from-[#103d5d] to-[#245684] py-3 overflow-hidden"
+        className="absolute bottom-0 left-0 w-full z-30 bg-gradient-to-r from-[#103d5d] to-[#245684] py-3 overflow-hidden"
         onMouseEnter={() => setIsMarqueePaused(true)}
         onMouseLeave={() => setIsMarqueePaused(false)}
       >
@@ -104,7 +105,7 @@ const VideoHero = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className="inline-flex items-center mx-8 text-white cursor-pointer group"
+              className="inline-flex items-center mx-4 md:mx-8 text-white cursor-pointer group"
               onClick={() => handleServiceClick(service.link)}
             >
               <span className="w-2 h-2 bg-white rounded-full mr-3 group-hover:bg-[#245684] transition-colors"></span>
@@ -197,21 +198,21 @@ const VideoHero = () => {
               </h1>
 
               {/* Typing text effect */}
-              <div className="h-12 mb-6">
+              <div className="min-h-[3rem] md:min-h-[3.5rem] mb-6">
                 <p className="text-xl md:text-2xl text-white font-medium">
                   {typingTexts[currentTextIndex].substring(0, currentWordIndex)}
                   <span className="animate-pulse inline-block w-1 h-6 bg-white align-middle ml-1"></span>
                 </p>
               </div>
 
-              <p className="text-lg text-white/90 mb-8 max-w-2xl">
+              <p className="text-base sm:text-lg text-white/90 mb-8 max-w-2xl">
                 We deliver cutting-edge technology solutions that drive business growth and optimize operations through innovative IT strategies.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
                 <Link
                   to="/syscare-services"
-                  className="px-8 py-4 bg-gradient-to-r from-[#103d5d] to-[#245684] text-white rounded-lg font-semibold hover:from-[#245684] hover:to-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/30 flex items-center justify-center"
+                  className="w-full sm:w-auto px-8 py-4  bg-gradient-to-r from-[#103d5d] to-[#245684] text-white rounded-lg font-semibold hover:from-[#245684] hover:to-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/30 flex items-center justify-center"
                 >
                   <span>Explore Services</span>
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
@@ -224,7 +225,7 @@ const VideoHero = () => {
                 </Link>
                 <Link
                   to="/contact-Us"
-                  className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-white/20 flex items-center justify-center"
+                  className="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-white/20 flex items-center justify-center"
                 >
                   <span>Free Consultation</span>
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
@@ -253,7 +254,7 @@ const VideoHero = () => {
                         <svg
                           key={i}
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4 text-yellow-400"
+                          className="h-5 w-5 md:h-4 md:w-4 text-yellow-400"
                           viewBox="0 0 20 20"
                           fill="currentColor"
                         >
@@ -297,7 +298,7 @@ const VideoHero = () => {
 
             {/* Right Content - Dynamic Horizontal Services Rotation */}
             <div className="hidden lg:flex justify-center items-center">
-              <div className="relative w-[550px] h-[550px]">
+              <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px] lg:w-[550px] lg:h-[550px]">
                 {/* Outer ring with rotation */}
                 <div 
                   className="absolute inset-0 rounded-full border-4 border-white/20"
@@ -337,7 +338,7 @@ const VideoHero = () => {
                   return (
                     <div
                       key={index}
-                      className="absolute w-40 h-15 flex items-center justify-center text-center text-white font-medium bg-white/10 backdrop-blur-sm rounded-lg border border-white cursor-pointer group hover:bg-white/20 transition-all z-20"
+                      className="absolute w-40 h-15 flex items-center justify-center text-center text-white font-medium cursor-pointer group  transition-all z-20"
                       style={{
                         left: `calc(50% + ${radius * Math.cos((angle * Math.PI) / 180)}px)`,
                         top: `calc(50% + ${radius * Math.sin((angle * Math.PI) / 180)}px)`,
@@ -347,7 +348,7 @@ const VideoHero = () => {
                       onClick={() => handleServiceClick(service.link)}
                     >
                       <div className="p-3">
-                        <div className="w-5 h-5 bg-white rounded-full mx-auto mb-2 group-hover:bg-[#245684] transition-colors"></div>
+                        <div>{service.icon}</div>
                         <span className="text-xs leading-tight">{service.name}</span>
                       </div>
                     </div>
@@ -360,7 +361,7 @@ const VideoHero = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20">
         <div className="flex flex-col items-center text-white">
           <span className="text-sm mb-2">Scroll to explore</span>
           <div className="w-6 h-10 border-2 border-white/60 rounded-full flex justify-center">
