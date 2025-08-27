@@ -109,7 +109,7 @@ const VideoHero = () => {
               onClick={() => handleServiceClick(service.link)}
             >
               <span className="w-2 h-2 bg-white rounded-full mr-3 group-hover:bg-[#245684] transition-colors"></span>
-              <span className="font-medium text-sm md:text-base group-hover:text-[#245684] transition-colors">{service.name}</span>
+              <span className="font-medium text-sm md:text-base group-hover:text-[#fff] transition-colors">{service.name}</span>
             </div>
           ))}
           {/* Duplicate for seamless loop */}
