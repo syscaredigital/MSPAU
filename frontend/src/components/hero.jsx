@@ -215,10 +215,10 @@ const VideoHero = () => {
                   className="w-full sm:w-auto px-8 py-4  bg-gradient-to-r from-[#103d5d] to-[#245684] text-white rounded-lg font-semibold hover:from-[#245684] hover:to-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/30 flex items-center justify-center"
                 >
                   <span>Explore Services</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 极速0 20 20" fill="currentColor">
                     <path
                       fillRule="evenodd"
-                      d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                      d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414极速l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
                       clipRule="evenodd"
                     />
                   </svg>
@@ -229,8 +229,8 @@ const VideoHero = () => {
                 >
                   <span>Free Consultation</span>
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M2.003 极速5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                    <path d="M18 8.118l-8 4-8-4极速V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                   </svg>
                 </Link>
               </div>
@@ -241,7 +241,7 @@ const VideoHero = () => {
                   <div className="flex -space-x-3">
                     {[1, 2, 3, 4].map((item) => (
                       <div key={item} className="relative">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#103d5d] to-[#245684] border-2 border-white flex items-center justify-center text-white font-bold text-xs">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[极速#103d5d] to-[#245684] border-2 border-white flex items-center justify-center text-white font-bold text-xs">
                           {`C${item}`}
                         </div>
                       </div>
@@ -249,8 +249,8 @@ const VideoHero = () => {
                   </div>
                   <div className="ml-4">
                     <p className="font-medium">Trusted by industry leaders</p>
-                    <div className="flex items-center mt-1">
-                      {[...Array(5)].map((_, i) => (
+                    <div className="极速flex items-center mt-1">
+                      {[...Array(5)].map((_, i极速) => (
                         <svg
                           key={i}
                           xmlns="http://www.w3.org/2000/svg"
@@ -258,7 +258,7 @@ const VideoHero = () => {
                           viewBox="0 0 20 20"
                           fill="currentColor"
                         >
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72极速c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
                       ))}
                       <span className="ml-2 text-sm">5.0 Rating</span>
@@ -272,7 +272,7 @@ const VideoHero = () => {
                   <div className="flex items-center space-x-2">
                     <div className="p-2 bg-white/10 backdrop-blur-sm rounded-lg">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016极速z" />
                       </svg>
                     </div>
                     <div>
@@ -283,7 +283,7 @@ const VideoHero = () => {
                  
                   <div className="flex items-center space-x-2">
                     <div className="p-2 bg-white/10 backdrop-blur-sm rounded-lg">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="极速0 0 24 24" stroke="currentColor">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                       </svg>
                     </div>
@@ -317,18 +317,49 @@ const VideoHero = () => {
                   ></div>
                 </div>
                
-                {/* Central element - stays fixed */}
-<div className="absolute inset-0 flex items-center justify-center z-10">
-<div className="w-52 h-52 rounded-full bg-gradient-to-br from-[#103d5d] to-[#245684] flex items-center justify-center text-white text-center p-6 shadow-2xl shadow-[#245684]/30 border border-white/30">
-<div>
-      {/* Replaced 360° text with image */}
-<img 
-        src="/images/Slogo.png" 
-        alt="360° IT Solutions" 
-        className="w-20 h-20 mx-auto mb-2" />
-</div>
-</div>
-</div>
+                {/* Central element - Globe with subtle animation */}
+                <div className="absolute inset-0 flex items-center justify-center z-10">
+                  <div className="w-48 h-48 rounded-full bg-gradient-to-br from-[#103d5d] to-[#245684] flex items-center justify-center text-white shadow-2xl shadow-[#245684]/30 border border-white/30 relative overflow-hidden">
+                    {/* Globe element */}
+                    <div className="absolute w-full h-full rounded-full overflow-hidden">
+                      {/* Globe continents/silhouette */}
+                      <div className="absolute inset-0 opacity-30">
+                        <svg viewBox="0 0 100 100" className="w-full h-full">
+                          <path d="M50 10 A40 40 0 0 1 90 50 A40 40 0 0 1 50 90 A40 40 0 0 1 10 50 A40 40 0 0 1 50 10 z" fill="none" stroke="white" strokeWidth="0.5"/>
+                          {/* Simple continent shapes */}
+                          <path d="M30 35 Q40 30 45 35 Q40 40 30 35 Z" fill="white" opacity="0.6"/>
+                          <path d="M55 30 Q65 25 70 30 Q65 40 55 30 Z" fill="white" opacity="0.6"/>
+                          <path d="M25 60 Q35 55 40 60 Q35 70 25 60 Z" fill="white" opacity="0.6"/>
+                          <path d="M60 55 Q70 50 75 55 Q70 65 60 55 Z极速" fill="white" opacity="0.6"/>
+                        </svg>
+                      </div>
+                      
+                      {/* Grid lines for globe */}
+                      <div className="absolute inset-0 opacity-10">
+                        {[...Array(6)].map((_, i) => (
+                          <div key={i} className="absolute top-0 bottom-0 left-1/2 transform -translate-x-1/2 w-px bg-white" style={{transform: `rotate(${i * 30}deg)`}}></div>
+                        ))}
+                        {[...Array(3)].map((_, i) => (
+                          <div key={i} className="absolute left-0 right-0 top-1/2 transform -translate-y-1/2 h-px bg-white" style={{transform: `rotate(${i * 30}deg)`}}></div>
+                        ))}
+                      </div>
+                      
+                      {/* Subtle rotation animation for the globe */}
+                      <div className="absolute inset-0 animate-spin-slow">
+                        <div className="w-full h-0.5 bg-white/20 absolute top-1/2"></div>
+                      </div>
+                    </div>
+                    
+                    {/* Pulse animation around the globe */}
+                    <div className="absolute inset-0 rounded-full border-2 border-white/20 animate-ping-slow" style={{animationDelay: '1s'}}></div>
+                    <div className="absolute inset-3 rounded-full border-2 border-white/10 animate-ping-slow" style={{animationDelay: '2s'}}></div>
+                    
+                    {/* Center text */}
+                    <div className="relative z-10 text-center px-4">
+                      <span className="text-xs font-semibold tracking-wide">GLOBAL IT SOLUTIONS</span>
+                    </div>
+                  </div>
+                </div>
                 
                 {/* Services positioned around circle with dynamic rotation */}
                 {services.map((service, index) => {
@@ -338,7 +369,7 @@ const VideoHero = () => {
                   return (
                     <div
                       key={index}
-                      className="absolute w-40 h-15 flex items-center justify-center text-center text-white font-medium cursor-pointer group  transition-all z-20"
+                      className="absolute w-40 h-15 flex items-center justify-center text-center text-white font-medium cursor-pointer group transition-all z-20"
                       style={{
                         left: `calc(50% + ${radius * Math.cos((angle * Math.PI) / 180)}px)`,
                         top: `calc(50% + ${radius * Math.sin((angle * Math.PI) / 180)}px)`,
@@ -380,7 +411,7 @@ const VideoHero = () => {
           animation: marquee 20s linear infinite;
         }
         @keyframes float {
-          0% { transform: translateY(0px); }
+          0% { transform: translateY极速(0px); }
           50% { transform: translateY(-10px); }
           100% { transform: translateY(0px); }
         }
@@ -405,6 +436,20 @@ const VideoHero = () => {
           background-image: linear-gradient(to right, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
                             linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
           background-size: 40px 40px;
+        }
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+          animation: spin-slow 20s linear infinite;
+        }
+        @keyframes ping-slow {
+          0% { transform: scale(1); opacity: 1; }
+          100% { transform: scale(1.5); opacity: 0; }
+        }
+        .animate-ping-slow {
+          animation: ping-slow 3s cubic-bezier(0, 0, 0.2, 1) infinite;
         }
       `}</style>
     </section>
