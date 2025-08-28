@@ -1,17 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 import { FaHeadset, FaChevronRight } from 'react-icons/fa';
 
 // Header Component
 const Header = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,15 +32,10 @@ const Header = () => {
 
 const AboutUs = () => {
   const [animatedStats, setAnimatedStats] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
   const [headerVisible, setHeaderVisible] = useState(false);
-  const headerRef = useRef(null);
   
   useEffect(() => {
     const handleScroll = () => {
-      const position = window.pageYOffset;
-      setScrollPosition(position);
-      
       // Existing stats animation logic
       const statsSection = document.getElementById('stats-section');
       if (statsSection) {
@@ -68,11 +58,6 @@ const AboutUs = () => {
       clearTimeout(timer);
     };
   }, []);
-
-  // Calculate parallax effect
-  const parallaxStyle = {
-    transform: `translateY(${scrollPosition * 0.5}px)`
-  };
 
   return (
     <div className="min-h-screen bg-white">
