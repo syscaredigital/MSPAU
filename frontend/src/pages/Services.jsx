@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { FaHeadset, FaChevronRight, FaCloud, FaShieldAlt, FaTools, FaRobot, FaGraduationCap, FaLightbulb, FaChartLine, FaGlobe, FaTimes } from 'react-icons/fa';
-import Navigation from '../components/Navigation';
-import Footer from '../components/footer';
 
 // Header Component
 const Header = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,53 +29,106 @@ const Header = () => {
 
   return (
     <header className={`fixed w-full bg-white shadow-md transition-transform duration-300 z-50 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
-      <Navigation />
+      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+        <div className="flex items-center">
+          <div className="w-10 h-10 bg-[#103d5d] rounded-lg flex items-center justify-center mr-3">
+            <FaCloud className="text-white text-xl" />
+          </div>
+          <span className="text-2xl font-bold text-[#103d5d]">SysCare</span>
+        </div>
+        
+        <nav className="hidden md:flex space-x-8">
+          <a href="/" className="text-gray-700 hover:text-[#245684] transition-colors">Home</a>
+          <a href="/services" className="text-[#245684] font-medium">Services</a>
+          <a href="/about" className="text-gray-700 hover:text-[#245684] transition-colors">About</a>
+          <a href="/contact" className="text-gray-700 hover:text-[#245684] transition-colors">Contact</a>
+        </nav>
+        
+        <button className="md:hidden text-gray-700" onClick={toggleMobileMenu}>
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+      
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-white py-4 px-4 border-t">
+          <a href="/" className="block py-2 text-gray-700 hover:text-[#245684]">Home</a>
+          <a href="/services" className="block py-2 text-[#245684] font-medium">Services</a>
+          <a href="/about" className="block py-2 text-gray-700 hover:text-[#245684]">About</a>
+          <a href="/contact" className="block py-2 text-gray-700 hover:text-[#245684]">Contact</a>
+        </div>
+      )}
     </header>
   );
 };
 
+// Footer Component
+const Footer = () => {
+  return (
+    <footer className="bg-[#103d5d] text-white py-12 px-4">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <h3 className="text-xl font-bold mb-4">SysCare IT Solutions</h3>
+          <p className="text-gray-300">Providing comprehensive IT services to help your business thrive in the digital age.</p>
+        </div>
+        
+        <div>
+          <h3 className="text-xl font-bold mb-4">Contact Us</h3>
+          <p className="text-gray-300">123 Tech Street</p>
+          <p className="text-gray-300">Sydney, NSW 2000</p>
+          <p className="text-gray-300">Phone: 1300 697 972</p>
+          <p className="text-gray-300">Email: info@syscare.com</p>
+        </div>
+        
+        <div>
+          <h3 className="text-xl font-bold mb-4">Quick Links</h3>
+          <ul className="space-y-2">
+            <li><a href="/" className="text-gray-300 hover:text-white">Home</a></li>
+            <li><a href="/services" className="text-gray-300 hover:text-white">Services</a></li>
+            <li><a href="/about" className="text-gray-300 hover:text-white">About</a></li>
+            <li><a href="/contact" className="text-gray-300 hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div className="container mx-auto mt-8 pt-8 border-t border-gray-700 text-center text-gray-300">
+        <p>© 2023 SysCare IT Solutions. All rights reserved.</p>
+      </div>
+    </footer>
+  );
+};
 
-
-
-
-// SubServiceModal Component - Positioned near the clicked service
+// SubServiceModal Component with Positioning
 const SubServiceModal = ({ isOpen, onClose, subService, mainService, position }) => {
   const modalRef = useRef(null);
   
   useEffect(() => {
     if (isOpen && modalRef.current) {
-      const modal = modalRef.current;
-      const modalRect = modal.getBoundingClientRect();
+      // Adjust position if modal goes out of viewport
+      const modalRect = modalRef.current.getBoundingClientRect();
       const viewportWidth = window.innerWidth;
       const viewportHeight = window.innerHeight;
       
-      // Calculate initial position (centered near the clicked element)
       let top = position.top;
       let left = position.left;
       
-      // Adjust if modal goes off screen to the right
+      // Adjust horizontal position if modal goes off screen
       if (left + modalRect.width > viewportWidth - 20) {
         left = viewportWidth - modalRect.width - 20;
       }
       
-      // Adjust if modal goes off screen to the left
-      if (left < 20) {
-        left = 20;
-      }
-      
-      // Adjust if modal goes off screen to the bottom
+      // Adjust vertical position if modal goes off screen
       if (top + modalRect.height > viewportHeight - 20) {
         top = viewportHeight - modalRect.height - 20;
       }
       
-      // Adjust if modal goes off screen to the top
-      if (top < 20) {
-        top = 20;
-      }
+      if (top < 20) top = 20;
+      if (left < 20) left = 20;
       
-      modal.style.top = `${top}px`;
-      modal.style.left = `${left}px`;
-      modal.style.transform = 'none'; // Remove any transforms
+      modalRef.current.style.top = `${top}px`;
+      modalRef.current.style.left = `${left}px`;
     }
   }, [isOpen, position]);
 
@@ -82,11 +138,11 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService, position })
   const isPrivateCloud = subService.title === "SysCare Private Cloud";
   
   return (
-    <div className="fixed inset-0 z-50" onClick={onClose}>
+    <div className="fixed inset-0 bg-black bg-opacity-70 z-50 backdrop-blur-sm" onClick={onClose}>
       <div 
         ref={modalRef}
         className="bg-white rounded-lg max-w-md w-full max-h-[85vh] overflow-y-auto border border-gray-200 shadow-xl absolute"
-        style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} // Default center position
+        style={{ top: position.top, left: position.left }}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-between items-center p-4 border-b border-gray-200 bg-[#103d5d] text-white">
@@ -163,8 +219,9 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService, position })
 };
 
 const ServicesPage = () => {
-  const [headerVisible, setHeaderVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const [expandedService, setExpandedService] = useState(null);
+  const [headerVisible, setHeaderVisible] = useState(false);
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedSubService, setSelectedSubService] = useState(null);
   const [selectedMainService, setSelectedMainService] = useState(null);
@@ -174,6 +231,7 @@ const ServicesPage = () => {
   useEffect(() => {
     // Trigger animations after component mounts
     const timer = setTimeout(() => {
+      setIsVisible(true);
       setHeaderVisible(true);
     }, 100);
     return () => clearTimeout(timer);
@@ -187,21 +245,20 @@ const ServicesPage = () => {
     }
   };
 
- const openSubServiceModal = (mainService, subService, event) => {
-  const rect = event.currentTarget.getBoundingClientRect();
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-  
-  // Position modal near the clicked element (top-right corner of the element)
-  setModalPosition({
-    top: rect.top + scrollTop,
-    left: rect.left + scrollLeft + rect.width
-  });
-  
-  setSelectedMainService(mainService);
-  setSelectedSubService(subService);
-  setIsModalOpen(true);
-};
+  const openSubServiceModal = (mainService, subService, event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // Position modal near the clicked element
+    setModalPosition({
+      top: rect.top + scrollTop - 10,
+      left: rect.left + rect.width + 20
+    });
+    
+    setSelectedMainService(mainService);
+    setSelectedSubService(subService);
+    setIsModalOpen(true);
+  };
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -360,62 +417,62 @@ const ServicesPage = () => {
       />
       
       {/* Add padding to account for fixed header */}
-            <div className="pt-20">
-              {/* Contact Header Section (from Contact Page) */}
-              <div className="relative bg-gradient-to-br from-[#103d5d] to-[#245684] text-white pb-32 pt-24 md:pt-32 px-4 md:px-8 lg:px-16 overflow-hidden" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0 100%)' }}>
-                {/* Background decorative elements */}
-                <div className="absolute inset-0 opacity-10">
-                  <div className="absolute top-10 left-10 w-64 h-64 rounded-full border-2 border-white"></div>
-                  <div className="absolute bottom-20 right-16 w-48 h-48 rounded-full border-2 border-white"></div>
-                  <div className="absolute top-1/3 right-1/4 w-32 h-32 rounded-full border-2 border-white"></div>
+      <div className="pt-20">
+        {/* Hero Section */}
+        <div className="relative bg-gradient-to-br from-[#103d5d] to-[#245684] text-white pb-24 pt-20 md:pt-28 px-4 md:px-8 lg:px-16 overflow-hidden" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0 100%)' }}>
+          {/* Background decorative elements */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-10 left-10 w-64 h-64 rounded-full border-2 border-white"></div>
+            <div className="absolute bottom-20 right-16 w-48 h-48 rounded-full border-2 border-white"></div>
+            <div className="absolute top-1/3 right-1/4 w-32 h-32 rounded-full border-2 border-white"></div>
+          </div>
+          
+          {/* Floating elements */}
+          <div className="absolute top-20 left-20 animate-float">
+            <div className="w-12 h-12 rounded-lg bg-white/10 backdrop-blur-sm"></div>
+          </div>
+          <div className="absolute bottom-40 right-32 animate-float-delayed">
+            <div className="w-10 h-10 rounded-lg bg-white/10 backdrop-blur-sm"></div>
+          </div>
+          <div className="absolute top-1/2 left-1/3 animate-float">
+            <div className="w-8 h-8 rounded-lg bg-white/10 backdrop-blur-sm"></div>
+          </div>
+          
+          <div className="container mx-auto max-w-6xl relative z-10">
+            <div className="flex flex-col md:flex-row items-center">
+              <div className="md:w-1/2 mb-8 md:mb-0">
+                <h1 className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                  Our <span className="text-[#a3c1e0]">Services</span>
+                </h1>
+                <p className={`text-lg text-[#c9d8eb] mb-6 max-w-lg transition-all duration-700 delay-100 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                  Comprehensive IT solutions to drive your business forward and transform your IT infrastructure.
+                </p>
+                <div className={`flex flex-wrap gap-3 transition-all duration-700 delay-200 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                  <a href="#services" className="bg-white text-[#103d5d] px-5 py-2 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] flex items-center text-sm">
+                    Explore Services <FaChevronRight className="ml-2" />
+                  </a>
+                  <a href="#contact" className="border border-white text-white px-5 py-2 rounded-md font-medium transition-all duration-300 hover:bg-white hover:text-[#103d5d] text-sm">
+                    Contact Us
+                  </a>
                 </div>
-                
-                {/* Floating elements */}
-                <div className="absolute top-20 left-20 animate-float">
-                  <div className="w-12 h-12 rounded-lg bg-white/10 backdrop-blur-sm"></div>
-                </div>
-                <div className="absolute bottom-40 right-32 animate-float-delayed">
-                  <div className="w-10 h-10 rounded-lg bg-white/10 backdrop-blur-sm"></div>
-                </div>
-                <div className="absolute top-1/2 left-1/3 animate-float">
-                  <div className="w-8 h-8 rounded-lg bg-white/10 backdrop-blur-sm"></div>
-                </div>
-                
-                <div className="container mx-auto max-w-6xl relative z-10">
-                  <div className="flex flex-col md:flex-row items-center">
-                    <div className="md:w-1/2 mb-10 md:mb-0">
-                      <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                        SysCare <span className="text-[#a3c1e0]">Services</span>
-                      </h1>
-                      <p className={`text-xl text-[#c9d8eb] mb-8 max-w-lg transition-all duration-700 delay-100 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                        Pioneering the future of IT solutions with innovation, expertise, and unwavering commitment to excellence.
-                      </p>
-                      <div className={`flex flex-wrap gap-4 transition-all duration-700 delay-200 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                        <a href="#stats-section" className="bg-white text-[#103d5d] px-6 py-3 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] flex items-center">
-                          Our Story <FaChevronRight className="ml-2" />
-                        </a>
-                        <a href="#team" className="border-2 border-white text-white px-6 py-3 rounded-md font-medium transition-all duration-300 hover:bg-white hover:text-[#103d5d]">
-                          Meet Our Team
-                        </a>
+              </div>
+              
+              <div className="md:w-1/2 flex justify-center">
+                <div className={`relative transition-all duration-700 delay-300 ${headerVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+                  <div className="absolute -inset-4 bg-[#a3c1e0] rounded-xl rotate-3 opacity-30"></div>
+                  <div className="relative bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 shadow-xl">
+                    <div className="text-center p-4">
+                      <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-[#103d5d] flex items-center justify-center">
+                        <FaHeadset className="text-3xl text-[#a3c1e0]" />
                       </div>
-                    </div>
-                    
-                    <div className="md:w-1/2 flex justify-center">
-                      <div className={`relative transition-all duration-700 delay-300 ${headerVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-                        <div className="absolute -inset-6 bg-[#a3c1e0] rounded-2xl rotate-3 opacity-30"></div>
-                        <div className="relative bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-2xl">
-                          <div className="text-center p-6">
-                            <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-[#103d5d] flex items-center justify-center">
-                              <FaHeadset className="text-4xl text-[#a3c1e0]" />
-                            </div>
-                            <h3 className="text-2xl font-semibold mb-2">Since 2012</h3>
-                            <p className="text-[#c9d8eb]">Over a decade of excellence in IT solutions and digital transformation</p>
-                          </div>
-                        </div>
-                      </div>
+                      <h3 className="text-xl font-semibold mb-2">Expert Support</h3>
+                      <p className="text-[#c9d8eb] text-sm">Our team of experts is ready to help you transform your IT infrastructure</p>
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Services Section */}
@@ -537,11 +594,11 @@ const ServicesPage = () => {
                 <p className="text-gray-600 text-sm">We provide ongoing maintenance and support</p>
               </div>
             </div>
-            </div>
+          </div>
         </section>
 
         {/* CTA Section */}
-        <section id="contact" className="py-12 bg-[#000000] text-white px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <section id="contact" className="py-12 bg-[#103d5d] text-white px-4 sm:px-6 lg:px-8 relative overflow-hidden">
           {/* Background pattern */}
           <div className="absolute inset-0 opacity-5">
             <div className="absolute top-0 left-0 w-32 h-32 border-2 border-white rounded-full"></div>
@@ -565,8 +622,8 @@ const ServicesPage = () => {
             </div>
           </div>
         </section>
-<Footer/>
-        
+
+        <Footer/>
       </div>
       
       <style jsx>{`
