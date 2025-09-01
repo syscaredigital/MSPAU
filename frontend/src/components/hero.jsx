@@ -169,7 +169,7 @@ const VideoHero = () => {
       )}
 
       {/* Main Content */}
-      <div className="relative z-20 h-full flex items-center pt-16">
+      <div className="relative z-20 h-full flex items-center pt-16 pr-40">
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 w-full">
           {/* Changed to flex with proper alignment */}
           <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between">
@@ -187,11 +187,11 @@ const VideoHero = () => {
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-[#245684]">
-                  SysCare
+                  SysCare                               
                 </span>
                 <br />
                 <span className="text-white">
-                  IT Solutions
+                  IT Solutions                                                                                        
                 </span>
               </h1>
 
@@ -295,7 +295,7 @@ const VideoHero = () => {
             </div>
 
             {/* Right Content - Dynamic Horizontal Services Rotation */}
-            <div className="hidden lg:flex justify-center items-center lg:w-1/2">
+            <div className="hidden lg:flex  lg:w-1/2 justify-center items-center ">
               <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px] lg:w-[550px] lg:h-[550px]">
                 {/* Outer ring with rotation */}
                 <div 
