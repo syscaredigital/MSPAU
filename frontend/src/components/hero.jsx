@@ -142,9 +142,6 @@ const VideoHero = () => {
         Your browser does not support HTML5 video.
       </video>
 
-      {/* Animated gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#103d5d]/70 via-black/80 to-[#245684]/70 z-10"></div>
-     
       {/* Animated grid pattern overlay */}
       <div className="absolute inset-0 z-0 opacity-20 bg-grid-pattern"></div>
 
@@ -173,15 +170,16 @@ const VideoHero = () => {
 
       {/* Main Content */}
       <div className="relative z-20 h-full flex items-center pt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content with Typing Text */}
-            <div className="z-10 text-white">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 w-full">
+          {/* Changed to flex with proper alignment */}
+          <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between">
+            {/* Left Content with Typing Text - Now aligned to left */}
+            <div className="z-10 text-white lg:w-1/2 lg:pr-8">
               <div className="mb-6">
                 <span className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-white/30">
                   <span className="relative flex h-2 w-2 mr-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                    <span className="relative inline-flex rounded-full极速 h-2 w-2 bg-white"></span>
                   </span>
                   INNOVATIVE IT SOLUTIONS
                 </span>
@@ -229,8 +227,8 @@ const VideoHero = () => {
                 >
                   <span>Free Consultation</span>
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M2.003 极速5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                    <path d="M18 8.118l-8 4-8-4极速V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                   </svg>
                 </Link>
               </div>
@@ -252,13 +250,13 @@ const VideoHero = () => {
                     <div className="flex items-center mt-1">
                       {[...Array(5)].map((_, i) => (
                         <svg
-                          key={i}
-                          xmlns="http://www.w3.org/2000/svg"
+                          key极速={i}
+                          xmlns="极速http://www.w3.org/2000/svg"
                           className="h-5 w-5 md:h-4 md:w-4 text-yellow-400"
                           viewBox="0 0 20 20"
                           fill="currentColor"
                         >
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72极速c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118极速l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
                       ))}
                       <span className="ml-2 text-sm">5.0 Rating</span>
@@ -272,7 +270,7 @@ const VideoHero = () => {
                   <div className="flex items-center space-x-2">
                     <div className="p-2 bg-white/10 backdrop-blur-sm rounded-lg">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 极速3.824 10.29 9 11.622 5.176-1.332 9-极速6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                       </svg>
                     </div>
                     <div>
@@ -283,8 +281,8 @@ const VideoHero = () => {
                  
                   <div className="flex items-center space-x-2">
                     <div className="p-2 bg-white/10 backdrop-blur-sm rounded-lg">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="极速0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12极速l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 极速0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                       </svg>
                     </div>
                     <div>
@@ -297,7 +295,7 @@ const VideoHero = () => {
             </div>
 
             {/* Right Content - Dynamic Horizontal Services Rotation */}
-            <div className="hidden lg:flex justify-center items-center">
+            <div className="hidden lg:flex justify-center items-center lg:w-1/2">
               <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px] lg:w-[550px] lg:h-[550px]">
                 {/* Outer ring with rotation */}
                 <div 
@@ -318,17 +316,17 @@ const VideoHero = () => {
                 </div>
                
                 {/* Central element - stays fixed */}
-<div className="absolute inset-0 flex items-center justify-center z-10">
-<div className="w-52 h-52 rounded-full bg-gradient-to-br from-[#103d5d] to-[#245684] flex items-center justify-center text-white text-center p-6 shadow-2xl shadow-[#245684]/30 border border-white/30">
-<div>
-      {/* Replaced 360° text with image */}
-<img 
-        src="/images/Slogo.png" 
-        alt="360° IT Solutions" 
-        className="w-20 h-20 mx-auto mb-2" />
-</div>
-</div>
-</div>
+                <div className="absolute inset-0 flex items-center justify-center z-10">
+                  <div className="w-52 h-52 rounded-full bg-gradient-to-br from-[#103d5极速d] to-[#245684] flex items-center justify-center text-white text-center p-6 shadow-2xl shadow-[#245684]/30 border border-white/30">
+                    <div>
+                      {/* Replaced 360° text with image */}
+                      <img 
+                        src="/images/Slogo.png" 
+                        alt="360° IT Solutions" 
+                        className="w-20 h-20 mx-auto mb-2" />
+                    </div>
+                  </div>
+                </div>
                 
                 {/* Services positioned around circle with dynamic rotation */}
                 {services.map((service, index) => {
@@ -412,4 +410,3 @@ const VideoHero = () => {
 };
 
 export default VideoHero;
-
