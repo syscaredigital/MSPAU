@@ -445,17 +445,8 @@ const ServicesPage = () => {
                       onClick={() => toggleService(index)}
                       className="text-[#245684] font-medium flex items-center hover:underline text-sm"
                     >
-                      {expandedService === index ? 'Show less' : 'Learn more'}
-                      <svg 
-                        className={`w-4 h-4 ml-1 transition-transform duration-300 ${
-                          expandedService === index ? 'transform rotate-180' : ''
-                        }`}
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-                      </svg>
+                      
+                      
                     </button>
                   </div>
                 </div>
