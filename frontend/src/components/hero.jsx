@@ -438,7 +438,7 @@ const VideoHero = () => {
                           height: `${circleDimensions.centerSize * 0.4}px`
                         }} 
                       />
-                      <p className={`font-medium ${circleDimensions.textSize}`}> IT Solutions</p>
+                      
                     </div>
                   </div>
                 </div>
