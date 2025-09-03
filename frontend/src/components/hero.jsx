@@ -137,7 +137,7 @@ const VideoHero = () => {
       return {
         containerSize: circleSize,
         centerSize: circleSize * 0.5,
-        radius: circleSize * 0.35,
+        radius: circleSize * 0.40,
         serviceWidth: circleSize * 0.3,
         serviceHeight: circleSize * 0.1,
         iconSize: 'text-xl',
@@ -157,8 +157,8 @@ const VideoHero = () => {
       return {
         containerSize: circleSize,
         centerSize: circleSize * 0.5,
-        radius: circleSize * 0.45,
-        serviceWidth: circleSize * 0.2,
+        radius: circleSize * 0.4,
+        serviceWidth: circleSize * 0.4,
         serviceHeight: circleSize * 0.15,
         iconSize: 'text-3xl',
         textSize: 'text-base'
@@ -169,10 +169,10 @@ const VideoHero = () => {
   const circleDimensions = getCircleDimensions();
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-black">
+    <section className="relative min-h-screen w-full overflow-hidden bg-black ">
       {/* Services Marquee at the bottom - Hidden on mobile, shown on tablet/desktop */}
       <div
-        className="hidden md:block absolute bottom-0 left-0 w-full z-30 bg-gradient-to-r from-[#103d5d] to-[#245684] py-3 overflow-hidden"
+        className="hidden md:block absolute bottom-0  left-0 w-full z-30 bg-gradient-to-r from-[#103d5d] to-[#245684] py-3 overflow-hidden"
         onMouseEnter={() => setIsMarqueePaused(true)}
         onMouseLeave={() => setIsMarqueePaused(false)}
       >
