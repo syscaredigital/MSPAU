@@ -11,7 +11,6 @@ const VideoHero = () => {
   const [typingSpeed, setTypingSpeed] = useState(150);
   const [isMarqueePaused, setIsMarqueePaused] = useState(false);
   const [rotationAngle, setRotationAngle] = useState(0);
-  const [showMobileServices, setShowMobileServices] = useState(false);
   const [circleSize, setCircleSize] = useState(calculateCircleSize());
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
@@ -170,76 +169,42 @@ const VideoHero = () => {
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-black ">
-      {/* Services Marquee at the bottom - Hidden on mobile, shown on tablet/desktop */}
+     {/* Services Marquee - Shown on all devices */}
+<div
+  className="block absolute bottom-0 left-0 w-full z-30 bg-gradient-to-r from-[#103d5d] to-[#245684] py-2 sm:py-3 overflow-hidden"
+  onMouseEnter={() => setIsMarqueePaused(true)}
+  onMouseLeave={() => setIsMarqueePaused(false)}
+>
+  <div className={`flex whitespace-nowrap ${isMarqueePaused ? '' : 'animate-marquee'}`}>
+    {services.map((service, index) => (
       <div
-        className="hidden md:block absolute bottom-0  left-0 w-full z-30 bg-gradient-to-r from-[#103d5d] to-[#245684] py-3 overflow-hidden"
-        onMouseEnter={() => setIsMarqueePaused(true)}
-        onMouseLeave={() => setIsMarqueePaused(false)}
+        key={index}
+        className="inline-flex items-center mx-3 sm:mx-6 text-white cursor-pointer group"
+        onClick={() => handleServiceClick(service.link)}
       >
-        <div className={`flex whitespace-nowrap ${isMarqueePaused ? '' : 'animate-marquee'}`}>
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className="inline-flex items-center mx-4 md:mx-8 text-white cursor-pointer group"
-              onClick={() => handleServiceClick(service.link)}
-            >
-              <span className="w-2 h-2 bg-white rounded-full mr-3 group-hover:bg-[#245684] transition-colors"></span>
-              <span className="font-medium text-sm md:text-base group-hover:text-[#fff] transition-colors">{service.name}</span>
-            </div>
-          ))}
-          {/* Duplicate for seamless loop */}
-          {services.map((service, index) => (
-            <div
-              key={`dup-${index}`}
-              className="inline-flex items-center mx-8 text-white cursor-pointer group"
-              onClick={() => handleServiceClick(service.link)}
-            >
-              <span className="w-2 h-2 bg-white rounded-full mr-3 group-hover:bg-[#245684] transition-colors"></span>
-              <span className="font-medium text-sm md:text-base group-hover:text-[#245684] transition-colors">{service.name}</span>
-            </div>
-          ))}
-        </div>
+        <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full mr-2 group-hover:bg-[#245684] transition-colors"></span>
+        <span className="font-medium text-xs sm:text-sm md:text-base group-hover:text-[#fff] transition-colors">
+          {service.name}
+        </span>
       </div>
+    ))}
 
-      {/* Mobile Services Menu Button */}
-      {isMobile && (
-        <div className="md:hidden fixed top-4 right-4 z-40">
-          <button 
-            onClick={() => setShowMobileServices(!showMobileServices)}
-            className="p-3 bg-[#103d5d] rounded-full text-white shadow-lg"
-          >
-            {showMobileServices ? <FiX size={24} /> : <FiMenu size={24} />}
-          </button>
-        </div>
-      )}
+    {/* Duplicate for seamless loop */}
+    {services.map((service, index) => (
+      <div
+        key={`dup-${index}`}
+        className="inline-flex items-center mx-3 sm:mx-6 text-white cursor-pointer group"
+        onClick={() => handleServiceClick(service.link)}
+      >
+        <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full mr-2 group-hover:bg-[#245684] transition-colors"></span>
+        <span className="font-medium text-xs sm:text-sm md:text-base group-hover:text-[#245684] transition-colors">
+          {service.name}
+        </span>
+      </div>
+    ))}
+  </div>
+</div>
 
-      {/* Mobile Services Menu */}
-      {isMobile && showMobileServices && (
-        <div className="md:hidden fixed inset-0 z-30 bg-[#103d5d] bg-opacity-95 p-6 overflow-y-auto">
-          <div className="pt-16">
-            <h2 className="text-2xl font-bold text-white mb-6">Our Services</h2>
-            <div className="grid grid-cols-1 gap-4">
-              {services.map((service, index) => (
-                <div
-                  key={index}
-                  className="p-4 bg-white bg-opacity-10 rounded-lg text-white cursor-pointer"
-                  onClick={() => {
-                    handleServiceClick(service.link);
-                    setShowMobileServices(false);
-                  }}
-                >
-                  <div className="flex items-center">
-                    <div className="mr-3">
-                      {service.icon}
-                    </div>
-                    <span className="font-medium">{service.name}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Video Background */}
       <video
