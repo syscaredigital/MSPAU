@@ -158,7 +158,7 @@ const VideoHero = () => {
         containerSize: circleSize,
         centerSize: circleSize * 0.5,
         radius: circleSize * 0.45,
-        serviceWidth: circleSize * 0.4,
+        serviceWidth: circleSize * 0.2,
         serviceHeight: circleSize * 0.15,
         iconSize: 'text-3xl',
         textSize: 'text-base'
