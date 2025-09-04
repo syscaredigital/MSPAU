@@ -399,8 +399,8 @@ const VideoHero = () => {
                         alt="360° IT Solutions" 
                         className="mx-auto mb-2"
                         style={{
-                          width: `${circleDimensions.centerSize * 0.4}px`,
-                          height: `${circleDimensions.centerSize * 0.4}px`
+                          width: `${circleDimensions.centerSize * 0.2}px`,
+                          height: `${circleDimensions.centerSize * 0.2}px`
                         }} 
                       />
                       
