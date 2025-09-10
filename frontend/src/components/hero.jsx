@@ -20,7 +20,7 @@ const VideoHero = () => {
   const videoSources = {
     mobile: '/video/hero-videom.mp4',
     tablet: '/video/hero-video.mp4',
-    desktop: '/video/hero-videod.mp4'
+    desktop: '/video/hero-video.mp4'
   };
 
   const services = [
