@@ -14,8 +14,14 @@ const VideoHero = () => {
   const [circleSize, setCircleSize] = useState(calculateCircleSize());
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
+  const [videoSource, setVideoSource] = useState('');
 
-  const videoSrc = '/video/hero-video.mp4';
+  // Different video sources for different devices
+  const videoSources = {
+    mobile: '/video/hero-video-mobile.mp4',
+    tablet: '/video/hero-video-tablet.mp4',
+    desktop: '/video/hero-video-desktop.mp4'
+  };
 
   const services = [
     { name: "Cloud Solutions", link: "/services/cloud", icon: <FiCloud className="service-icon" /> },
@@ -48,9 +54,21 @@ const VideoHero = () => {
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      setIsMobile(width < 768);
-      setIsTablet(width >= 768 && width < 1024);
+      const isMobileDevice = width < 768;
+      const isTabletDevice = width >= 768 && width < 1024;
+      
+      setIsMobile(isMobileDevice);
+      setIsTablet(isTabletDevice);
       setCircleSize(calculateCircleSize());
+      
+      // Set appropriate video source based on device
+      if (isMobileDevice) {
+        setVideoSource(videoSources.mobile);
+      } else if (isTabletDevice) {
+        setVideoSource(videoSources.tablet);
+      } else {
+        setVideoSource(videoSources.desktop);
+      }
     };
 
     // Initial setup
@@ -62,6 +80,7 @@ const VideoHero = () => {
 
   useEffect(() => {
     const video = videoRef.current;
+    if (!video) return;
 
     const handleLoadedData = () => {
       setIsVideoLoaded(true);
@@ -90,7 +109,7 @@ const VideoHero = () => {
       video.removeEventListener('error', handleError);
       clearInterval(rotationInterval);
     };
-  }, [isMobile]);
+  }, [isMobile, videoSource]); // Added videoSource dependency
 
   // Typing effect
   useEffect(() => {
@@ -169,42 +188,41 @@ const VideoHero = () => {
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-black ">
-     {/* Services Marquee - Shown on all devices */}
-<div
-  className="block absolute bottom-0 left-0 w-full z-30 bg-gradient-to-r from-[#103d5d] to-[#245684] py-2 sm:py-3 overflow-hidden"
-  onMouseEnter={() => setIsMarqueePaused(true)}
-  onMouseLeave={() => setIsMarqueePaused(false)}
->
-  <div className={`flex whitespace-nowrap ${isMarqueePaused ? '' : 'animate-marquee'}`}>
-    {services.map((service, index) => (
+      {/* Services Marquee - Shown on all devices */}
       <div
-        key={index}
-        className="inline-flex items-center mx-3 sm:mx-6 text-white cursor-pointer group"
-        onClick={() => handleServiceClick(service.link)}
+        className="block absolute bottom-0 left-0 w-full z-30 bg-gradient-to-r from-[#103d5d] to-[#245684] py-2 sm:py-3 overflow-hidden"
+        onMouseEnter={() => setIsMarqueePaused(true)}
+        onMouseLeave={() => setIsMarqueePaused(false)}
       >
-        <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full mr-2 group-hover:bg-[#245684] transition-colors"></span>
-        <span className="font-medium text-xs sm:text-sm md:text-base group-hover:text-[#fff] transition-colors">
-          {service.name}
-        </span>
-      </div>
-    ))}
+        <div className={`flex whitespace-nowrap ${isMarqueePaused ? '' : 'animate-marquee'}`}>
+          {services.map((service, index) => (
+            <div
+              key={index}
+              className="inline-flex items-center mx-3 sm:mx-6 text-white cursor-pointer group"
+              onClick={() => handleServiceClick(service.link)}
+            >
+              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full mr-2 group-hover:bg-[#245684] transition-colors"></span>
+              <span className="font-medium text-xs sm:text-sm md:text-base group-hover:text-[#fff] transition-colors">
+                {service.name}
+              </span>
+            </div>
+          ))}
 
-    {/* Duplicate for seamless loop */}
-    {services.map((service, index) => (
-      <div
-        key={`dup-${index}`}
-        className="inline-flex items-center mx-3 sm:mx-6 text-white cursor-pointer group"
-        onClick={() => handleServiceClick(service.link)}
-      >
-        <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full mr-2 group-hover:bg-[#245684] transition-colors"></span>
-        <span className="font-medium text-xs sm:text-sm md:text-base group-hover:text-[#245684] transition-colors">
-          {service.name}
-        </span>
+          {/* Duplicate for seamless loop */}
+          {services.map((service, index) => (
+            <div
+              key={`dup-${index}`}
+              className="inline-flex items-center mx-3 sm:mx-6 text-white cursor-pointer group"
+              onClick={() => handleServiceClick(service.link)}
+            >
+              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full mr-2 group-hover:bg-[#245684] transition-colors"></span>
+              <span className="font-medium text-xs sm:text-sm md:text-base group-hover:text-[#245684] transition-colors">
+                {service.name}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
-    ))}
-  </div>
-</div>
-
 
       {/* Video Background */}
       <video
@@ -218,8 +236,9 @@ const VideoHero = () => {
           isVideoLoaded ? 'opacity-50' : 'opacity-0'
         }`}
         onClick={playVideoOnMobile}
+        key={videoSource} // Force re-render when video source changes
       >
-        <source src={videoSrc} type="video/mp4" />
+        <source src={videoSource} type="video/mp4" />
         Your browser does not support HTML5 video.
       </video>
 
@@ -307,8 +326,8 @@ const VideoHero = () => {
                 >
                   <span className="text-sm md:text-base">Free Consultation</span>
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5 ml-2" viewBox="0 极速0 20 20" fill="currentColor">
-                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 极速0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8极速.118z" />
                   </svg>
                 </Link>
               </div>
@@ -331,12 +350,12 @@ const VideoHero = () => {
                       {[...Array(5)].map((_, i) => (
                         <svg
                           key={i}
-                          xmlns="http://www.w3.org/2000/svg"
+                          xmlns="http://www.w极速.org/2000/svg"
                           className="h-4 w-4 md:h-5 md:w-5 text-yellow-400"
                           viewBox="0 0 20 20"
                           fill="currentColor"
                         >
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118极速l1.07-3.292a1 1 0 00-.364-极速1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
                       ))}
                       <span className="ml-2 text-xs md:text-sm">5.0 Rating</span>
@@ -346,11 +365,11 @@ const VideoHero = () => {
 
                 <div className="hidden sm:block h-6 md:h-8 w-px bg-white/30"></div>
 
-                <div className="flex items-center space-x-3 md:space-x-4">
+                <div className="极速flex items-center space-x-3 md:space-x-4">
                   <div className="flex items-center space-x-2">
                     <div className="p-1 md:p-2 bg-white/10 backdrop-blur-sm rounded-lg">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3极速.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                       </svg>
                     </div>
                     <div>
@@ -444,7 +463,7 @@ const VideoHero = () => {
         <div className="absolute bottom-20 md:bottom-12 left-1/2 transform -translate-x-1/2 z-20">
           <div className="flex flex-col items-center text-white">
             <span className="text-sm mb-2">Scroll to explore</span>
-            <div className="w-6 h-10 border-2 border-white/60 rounded-full flex justify-center">
+            <div className="w-6 h-10 border-2 border-white/极速60 rounded-full flex justify-center">
               <div className="w-1 h-2 bg-white mt-2 rounded-full animate-scroll"></div>
             </div>
           </div>
