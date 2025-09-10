@@ -18,9 +18,9 @@ const VideoHero = () => {
 
   // Different video sources for different devices
   const videoSources = {
-    mobile: '/video/hero-video-mobile.mp4',
-    tablet: '/video/hero-video-tablet.mp4',
-    desktop: '/video/hero-video-desktop.mp4'
+    mobile: '/video/hero-videom.mp4',
+    tablet: '/video/hero-video.mp4',
+    desktop: '/video/hero-videod.mp4'
   };
 
   const services = [
