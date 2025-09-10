@@ -1,7 +1,36 @@
 // components/Navigation.jsx
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FiChevronDown, FiX, FiMenu, FiGlobe, FiServer, FiCloud, FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
+import { 
+  FiChevronDown, 
+  FiX, 
+  FiMenu, 
+  FiArrowRightCircle,
+  FiCloud,
+  FiShield,
+  FiHeadphones,
+  FiSettings,
+  FiWifi,
+  FiBookOpen,
+  FiLayout,
+  FiDatabase,
+  FiServer,
+  FiGlobe,
+  FiVideo,
+  FiCode,
+  FiBarChart2,
+  FiUsers,
+  FiMonitor,
+  FiCpu,
+  FiLock,
+  FiMessageSquare,
+  FiTool,
+  FiAward,
+  FiPenTool,
+  FiTrendingUp,
+  FiBox,
+  FiBriefcase
+} from "react-icons/fi";
 
 const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -58,8 +87,8 @@ const Navigation = () => {
         id: "private-cloud",
         name: "Cloud Solutions",
         subCategories: [
-          { name: "SysCare Private Cloud", url: "/SysCare-Private-Cloud", icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
-          { name: "Hosted Services", url: "/Hosted-Services", icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
+          { name: "SysCare Private Cloud", url: "/SysCare-Private-Cloud", icon: <FiCloud className="inline-block text-xl mr-2" /> },
+          { name: "Hosted Services", url: "/Hosted-Services", icon: <FiServer className="inline-block text-xl mr-2" /> },
         ],
       },
       {
@@ -69,11 +98,10 @@ const Navigation = () => {
           {
             name: "Cybersecurity Consultancy Services",
             url: "/CyberSecurityConsultancyServices",
-            icon: <FiArrowRightCircle className="inline-block text-xl mr-2" />
-            
+            icon: <FiShield className="inline-block text-xl mr-2" />
           },
           { name: "Managed Security Services", url: "/ManagedSecurityServices",
-            icon: <FiArrowRightCircle className="inline-block text-xl mr-2" />
+            icon: <FiLock className="inline-block text-xl mr-2" />
            },
         ],
       },
@@ -83,16 +111,16 @@ const Navigation = () => {
         id: "managed-it",
         name: "IT Support",
         subCategories: [
-          { name: "Service Desk", url: "/Service-Desk",icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
-          { name: "Managed IT Services", url: "/Managed-IT-Services",icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
+          { name: "Service Desk", url: "/Service-Desk", icon: <FiHeadphones className="inline-block text-xl mr-2" /> },
+          { name: "Managed IT Services", url: "/Managed-IT-Services", icon: <FiTool className="inline-block text-xl mr-2" /> },
         ],
       },
       {
         id: "project-consultancy",
         name: " Projects & Automation",
         subCategories: [
-          { name: "IT Infra Projects", url: "/ITInfraProjects", icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
-          { name: "Office IT Automation", url: "/DevelopmentAutomation",  icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
+          { name: "IT Infra Projects", url: "/ITInfraProjects", icon: <FiSettings className="inline-block text-xl mr-2" /> },
+          { name: "Office IT Automation", url: "/DevelopmentAutomation", icon: <FiCpu className="inline-block text-xl mr-2" /> },
         ],
       },
     ],
@@ -101,16 +129,16 @@ const Navigation = () => {
         id: "internet-voip",
         name: "Internet & VOIP",
         subCategories: [
-          { name: "Connectivity", url: "/Connectivity",  icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
-          { name: "VoIP & Video", url: "/VoiceVideo",  icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
+          { name: "Connectivity", url: "/Connectivity", icon: <FiWifi className="inline-block text-xl mr-2" /> },
+          { name: "VoIP & Video", url: "/VoiceVideo", icon: <FiVideo className="inline-block text-xl mr-2" /> },
         ],
       },
       {
         id: "it-training",
         name: "IT Training",
         subCategories: [
-          { name: "Security", url: "/Security",  icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
-          { name: "Cloud", url: "/Cloud",  icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
+          { name: "Security", url: "/Security", icon: <FiAward className="inline-block text-xl mr-2" /> },
+          { name: "Cloud", url: "/Cloud", icon: <FiBookOpen className="inline-block text-xl mr-2" /> },
         ],
       },
     ],
@@ -119,16 +147,16 @@ const Navigation = () => {
         id: "digital-services",
         name: "Digital Services",
         subCategories: [
-          { name: "Design & Dev", url: "/DesignDev",  icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
-          { name: "Digital Marketing", url: "/DigitalMarketing",  icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
+          { name: "Design & Dev", url: "/DesignDev", icon: <FiPenTool className="inline-block text-xl mr-2" /> },
+          { name: "Digital Marketing", url: "/DigitalMarketing", icon: <FiTrendingUp className="inline-block text-xl mr-2" /> },
         ],
       },
       {
         id: "crm-erp",
         name: "CRM & ERP Solutions",
         subCategories: [
-          { name: "Small Business", url: "/SmallBusiness",  icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
-          { name: "Enterprise", url: "/Enterprise",  icon: <FiArrowRightCircle className="inline-block text-xl mr-2" /> },
+          { name: "Small Business", url: "/SmallBusiness", icon: <FiBriefcase className="inline-block text-xl mr-2" /> },
+          { name: "Enterprise", url: "/Enterprise", icon: <FiMonitor className="inline-block text-xl mr-2" /> },
         ],
       },
     ],
@@ -209,7 +237,7 @@ const Navigation = () => {
                                   <li key={subIdx}>
                                     <Link
                                       to={subCategory.url}
-                                      className="text-sm text-gray-600 hover:text-[#245684] block py-1 transition-colors duration-200"
+                                      className="text-sm text-gray-600 hover:text-[#245684] block py-1 transition-colors duration-200 flex items-center"
                                     >
                                       {subCategory.icon}
                                       {subCategory.name}
@@ -229,7 +257,7 @@ const Navigation = () => {
 
             <Link
               to="/contact-Us"
-              className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff]"
+              className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d5d]"
             >
               Contact Us
             </Link>
@@ -321,9 +349,10 @@ const Navigation = () => {
                             <div key={subIdx}>
                               <Link
                                 to={subCategory.url}
-                                className="text-white hover:text-[#a3d4ff] block px-3 py-1 font-medium transition-all duration-300 opacity-80"
+                                className="text-white hover:text-[#a3d4ff] block px-3 py-1 font-medium transition-all duration-300 opacity-80 flex items-center"
                                 onClick={toggleMobileMenu}
                               >
+                                {subCategory.icon}
                                 {subCategory.name}
                               </Link>
                             </div>
