@@ -4,6 +4,162 @@ import Navigation from '../components/Navigation.jsx';
 import VideoHero from '../components/hero.jsx';
 import Footer from '../components/footer.jsx';
 
+// Add CSS animations in a style tag
+const animationStyles = `
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes bounceGentle {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+  
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .animate-float-delayed {
+    animation: float 3s ease-in-out 0.5s infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 2s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slower {
+    animation: pulse 3s ease-in-out infinite;
+  }
+  
+  .animate-slide-in-right {
+    animation: slideInRight 0.5s ease-out forwards;
+  }
+  
+  .animate-bounce-gentle {
+    animation: bounceGentle 2s infinite ease-in-out;
+  }
+  
+  .service-card {
+    transition: all 0.3s ease;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .stagger-animation > * {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  .stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
+  .stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
+  .stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
+  .stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
+  .stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
+  .stagger-animation > *:nth-child(6) { animation-delay: 0.6s; }
+  .stagger-animation > *:nth-child(7) { animation-delay: 0.7s; }
+  .stagger-animation > *:nth-child(8) { animation-delay: 0.8s; }
+  
+  .testimonial-slide {
+    transition: transform 0.5s ease-in-out;
+  }
+
+  /* Cyber video background styles */
+  .cyber-video-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+  
+  .cyber-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(16, 61, 93, 0.7), rgba(36, 86, 132, 0.7));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    z-index: 2;
+  }
+  
+  .cyber-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+`;
 
 const HomePage = () => {
   const [showAllServices, setShowAllServices] = useState(false);
@@ -101,7 +257,6 @@ const HomePage = () => {
   ];
 
   useEffect(() => {
-    
     // Start counter animation when stats section is in view
     const observer = new IntersectionObserver(
       (entries) => {
@@ -170,15 +325,17 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-[#f5f7fa]">
+      {/* Add animation styles */}
+      <style>{animationStyles}</style>
+      
       <Navigation />
 
       <VideoHero/>
 
       {/* About Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
+          <div className="animate-fade-in-up">
             <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-6">About SysCare IT Solutions</h2>
             <p className="text-lg text-gray-600 mb-6">
               Founded in 2010, SysCare IT Solutions has been at the forefront of delivering exceptional IT services to businesses of all sizes. Our team of certified professionals brings decades of combined experience in managing complex IT environments.
@@ -187,14 +344,29 @@ const HomePage = () => {
               We take pride in our customer-centric approach, ensuring that every solution we deliver aligns perfectly with your business objectives and growth strategy.
             </p>
             <div className="flex flex-wrap gap-4">
-              <div className="bg-[#103d5d] text-white px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300">150+ Clients</div>
-              <div className="bg-[#245684] text-white px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300">24/7 Support</div>
-              <div className="bg-[#170f17] text-white px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300">Certified Experts</div>
+              <div className="bg-[#103d5d] text-white px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300 animate-pulse-slow">150+ Clients</div>
+              <div className="bg-[#245684] text-white px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300 animate-pulse-slow" style={{animationDelay: '0.5s'}}>24/7 Support</div>
+              <div className="bg-[#170f17] text-white px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300 animate-pulse-slow" style={{animationDelay: '1s'}}>Certified Experts</div>
             </div>
           </div>
-          <div className="bg-gray-200 rounded-xl overflow-hidden h-96">
-            <div className="w-full h-full bg-gradient-to-r from-[#103d5d] to-[#245684] flex items-center justify-center text-white">
-              <p className="text-xl">Company Image/Video</p>
+          <div className="cyber-video-container rounded-xl overflow-hidden h-96 animate-fade-in-up" style={{animationDelay: '0.3s'}}>
+            {/* Cyber/Technology Background Video */}
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline 
+              className="cyber-video"
+              poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+            >
+              <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-digital-waves-9885-large.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div className="cyber-video-overlay">
+              <div className="text-center p-6">
+                <h3 className="text-2xl font-bold mb-4">Cybersecurity & Technology</h3>
+                <p className="text-lg">Protecting your digital assets with cutting-edge solutions</p>
+              </div>
             </div>
           </div>
         </div>
@@ -203,21 +375,21 @@ const HomePage = () => {
       {/* Services Section - Updated with Border */}
       <div className="bg-white py-16 md:py-24 relative overflow-hidden border border-gray rounded-lg mx-4 sm:mx-6 lg:mx-8">
         {/* Animated background elements */}
-        <div className="absolute -top-24 -left-24 w-48 h-48 rounded-full bg-blue-100 opacity-30 animate-pulse-slow"></div>
-        <div className="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-blue-200 opacity-20 animate-pulse-slower"></div>
+        <div className="absolute -top-24 -left-24 w-48 h-48 rounded-full bg-blue-100 opacity-30 animate-pulse-slower"></div>
+        <div className="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-blue-200 opacity-20 animate-pulse-slower" style={{animationDelay: '1s'}}></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4 animate-fade-in">
               Our IT Services
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-delay">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
               Comprehensive IT solutions designed to meet all your business technology needs
             </p>
           </div>
 
           {/* Services Grid - Show first 4 services */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 stagger-animation">
             {initialServices.map((service, index) => (
               <AnimatedServiceCard 
                 key={service.id} 
@@ -230,7 +402,7 @@ const HomePage = () => {
 
           {/* Additional Services - Show when expanded */}
           {showAllServices && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6 stagger-animation">
               {additionalServices.map((service, index) => (
                 <AnimatedServiceCard 
                   key={service.id} 
@@ -269,49 +441,6 @@ const HomePage = () => {
             </button>
           </div>
         </div>
-        
-        {/* Add CSS for animations */}
-        <style jsx>{`
-          @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-          @keyframes pulseSlow {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-          }
-          @keyframes pulseSlower {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-          }
-          @keyframes bounceGentle {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-          }
-          @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-          }
-          .animate-fade-in {
-            animation: fadeIn 1s ease-out forwards;
-          }
-          .animate-fade-in-delay {
-            animation: fadeIn 1s ease-out 0.3s forwards;
-            opacity: 0;
-          }
-          .animate-pulse-slow {
-            animation: pulseSlow 6s infinite ease-in-out;
-          }
-          .animate-pulse-slower {
-            animation: pulseSlower 8s infinite ease-in-out;
-          }
-          .animate-bounce-gentle {
-            animation: bounceGentle 2s infinite ease-in-out;
-          }
-          .animate-float {
-            animation: float 3s infinite ease-in-out;
-          }
-        `}</style>
       </div>
 
       {/* Stats Section */}
@@ -324,7 +453,7 @@ const HomePage = () => {
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center stagger-animation">
             {stats.map((stat) => (
               <div key={stat.id} className="animate-fade-in">
                 <div className="text-4xl md:text-5xl font-bold mb-2">
@@ -343,18 +472,18 @@ const HomePage = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4 animate-fade-in">What Our Clients Say</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-delay">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
             Trusted by businesses across various industries for our reliable IT solutions.
           </p>
         </div>
 
         <div className="relative max-w-4xl mx-auto">
           <div className="overflow-hidden">
-            <div className="flex transition-transform duration-500 ease-in-out"
+            <div className="flex testimonial-slide"
               style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}>
               {testimonials.map((testimonial) => (
                 <div key={testimonial.id} className="w-full flex-shrink-0 px-4">
-                  <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 animate-fade-in-up">
                     <div className="flex flex-col md:flex-row items-center mb-6">
                       <img 
                         src={testimonial.image} 
@@ -404,16 +533,16 @@ const HomePage = () => {
       <div className="bg-[#170f17] text-white py-16 md:py-24 relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute top-0 left-0 w-full h-full opacity-10">
-          <div className="absolute top-1/4 right-1/4 w-40 h-40 rounded-full bg-white animate-pulse-slow"></div>
-          <div className="absolute bottom-1/4 left-1/4 w-32 h-32 rounded-full bg-white animate-pulse-slower"></div>
+          <div className="absolute top-1/4 right-1/4 w-40 h-40 rounded-full bg-white animate-pulse-slower"></div>
+          <div className="absolute bottom-1/4 left-1/4 w-32 h-32 rounded-full bg-white animate-pulse-slower" style={{animationDelay: '1s'}}></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fade-in">Ready to Transform Your IT Infrastructure?</h2>
-          <p className="text-xl mb-8 max-w-3xl mx-auto animate-fade-in-delay">
+          <p className="text-xl mb-8 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
             Contact us today to discuss how SysCare IT Solutions can help your business achieve its technology goals.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 stagger-animation">
             <Link 
               to="/contact-Us" 
               className="px-8 py-3 bg-[#245684] text-white rounded-lg font-semibold hover:bg-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl animate-bounce-gentle"
@@ -439,7 +568,7 @@ const HomePage = () => {
 const AnimatedServiceCard = ({ service, animationDelay = 0 }) => {
   return (
     <div 
-      className="group bg-white rounded-xl shadow-md overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-2 h-full border border-[#103d5d] animate-fade-in"
+      className="group bg-white rounded-xl shadow-md overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-2 h-full border border-[#103d5d] animate-fade-in-up"
       style={{ animationDelay: `${animationDelay}s` }}
     >
       <div className="p-6 h-full flex flex-col relative">
