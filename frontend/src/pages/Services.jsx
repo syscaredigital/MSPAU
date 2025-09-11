@@ -6,8 +6,13 @@ import { FaHeadset, FaChevronRight, FaCloud, FaShieldAlt, FaTools, FaRobot, FaGr
 
 // Header Component
 const Header = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,7 +79,7 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
                     <FaServer className="text-blue-600 mr-2" />
                     <h5 className="font-medium text-blue-800">Dedicated Virtual Servers</h5>
                   </div>
-                  <p className="textsm text-blue-700">Isolated virtual servers with guaranteed resources</p>
+                  <p className="text-sm text-blue-700">Isolated virtual servers with guaranteed resources</p>
                 </div>
                 <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
                   <div className="flex items-center mb-2">
@@ -125,46 +130,31 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
   );
 };
 
-// Tech Background Pattern Component
-const TechBackgroundPattern = () => {
+// Particle Background Component
+const ParticleBackground = () => {
   return (
-    <div className="absolute inset-0 overflow-hidden ">
-      {/* Circuit pattern lines */}
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 border border-[#245684] rounded-full"></div>
-      <div className="absolute top-1/3 right-1/4 w-48 h-48 border border-[#245684] rounded-full"></div>
-      <div className="absolute bottom-1/4 left-1/3 w-56 h-56 border border-[#245684] rounded-full"></div>
-      
-      {/* Horizontal lines */}
-      <div className="absolute top-1/2 left-0 w-full h-px bg-[#245684]"></div>
-      <div className="absolute top-1/3 left-0 w-full h-px bg-[#245684]"></div>
-      <div className="absolute top-2/3 left-0 w-full h-px bg-[#245684]"></div>
-      
-      {/* Vertical lines */}
-      <div className="absolute left-1/4 top-0 h-full w-px bg-[#245684]"></div>
-      <div className="absolute left-1/2 top-0 h-full w-px bg-[#245684]"></div>
-      <div className="absolute left-3/4 top-0 h-full w-px bg-[#245684]"></div>
-      
-      {/* Connection dots */}
-      {[...Array(25)].map((_, i) => (
+    <div className="absolute inset-0 overflow-hidden opacity-5">
+      {[...Array(15)].map((_, i) => (
         <div
           key={i}
-          className="absolute w-2 h-2 bg-[#245684] rounded-full"
+          className="absolute rounded-full bg-[#245684] animate-pulse"
           style={{
+            width: `${Math.random() * 20 + 5}px`,
+            height: `${Math.random() * 20 + 5}px`,
             top: `${Math.random() * 100}%`,
             left: `${Math.random() * 100}%`,
+            animationDuration: `${Math.random() * 5 + 5}s`,
+            animationDelay: `${Math.random() * 2}s`,
           }}
         ></div>
       ))}
-      
-      {/* Floating tech elements */}
-      <div className="absolute top-1/4 left-1/2 w-8 h-8 border-2 border-[#245684] rounded-lg animate-pulse"></div>
-      <div className="absolute top-2/3 right-1/3 w-6 h-6 border-2 border-[#245684] rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
-      <div className="absolute bottom-1/4 left-1/4 w-10 h-10 border-2 border-[#245684] animate-pulse" style={{animationDelay: '2s'}}></div>
     </div>
   );
 };
 
 const ServicesPage = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [expandedService, setExpandedService] = useState(null);
   const [headerVisible, setHeaderVisible] = useState(false);
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedSubService, setSelectedSubService] = useState(null);
@@ -174,10 +164,19 @@ const ServicesPage = () => {
   useEffect(() => {
     // Trigger animations after component mounts
     const timer = setTimeout(() => {
+      setIsVisible(true);
       setHeaderVisible(true);
     }, 100);
     return () => clearTimeout(timer);
   }, []);
+
+  const toggleService = (index) => {
+    if (expandedService === index) {
+      setExpandedService(null);
+    } else {
+      setExpandedService(index);
+    }
+  };
 
   const openSubServiceModal = (mainService, subService) => {
     setSelectedMainService(mainService);
@@ -399,10 +398,10 @@ const ServicesPage = () => {
           </div>
         </div>
 
-        {/* Services Section with Enhanced Background */}
+        {/* Services Section with Particle Background */}
         <section id="services" className="py-16 bg-[#f8fafc] px-4 sm:px-6 lg:px-8 -mt-20 relative overflow-hidden">
-          {/* Enhanced Tech Background Pattern */}
-          <TechBackgroundPattern />
+          {/* Particle Background */}
+          <ParticleBackground />
           
           <div className="max-w-7xl mx-auto relative z-10">
             <div className="text-center mb-12">
@@ -462,6 +461,16 @@ const ServicesPage = () => {
                         </div>
                       ))}
                     </div>
+                  </div>
+                  
+                  <div className="px-5 pb-4">
+                    <button 
+                      onClick={() => toggleService(index)}
+                      className="text-[#245684] font-medium flex items-center hover:underline text-sm"
+                    >
+                      
+                      
+                    </button>
                   </div>
                 </div>
               ))}
