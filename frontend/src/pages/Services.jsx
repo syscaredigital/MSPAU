@@ -128,7 +128,7 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
 // Tech Background Pattern Component
 const TechBackgroundPattern = () => {
   return (
-    <div className="absolute inset-0 overflow-hidden opacity-[0.03]">
+    <div className="absolute inset-0 overflow-hidden ">
       {/* Circuit pattern lines */}
       <div className="absolute top-1/4 left-1/4 w-64 h-64 border border-[#245684] rounded-full"></div>
       <div className="absolute top-1/3 right-1/4 w-48 h-48 border border-[#245684] rounded-full"></div>
