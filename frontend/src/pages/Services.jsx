@@ -56,10 +56,8 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
           </button>
         </div>
         <div className="p-6">
-          <p className="text-gray-700 mb-4">{subService.description}</p>
-          
           {isPrivateCloud ? (
-            <div className="mt-6">
+            <div className="mt-2">
               <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Our Private Cloud Solutions:</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
