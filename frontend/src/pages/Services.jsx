@@ -79,7 +79,7 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
                     <FaServer className="text-blue-600 mr-2" />
                     <h5 className="font-medium text-blue-800">Dedicated Virtual Servers</h5>
                   </div>
-                  <p className="text-sm text-blue-700">Isolated virtual servers with guaranteed resources</p>
+                  <p className="textsm text-blue-700">Isolated virtual servers with guaranteed resources</p>
                 </div>
                 <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
                   <div className="flex items-center mb-2">
@@ -126,6 +126,45 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
           </Link>
         </div>
       </div>
+    </div>
+  );
+};
+
+// Tech Background Pattern Component
+const TechBackgroundPattern = () => {
+  return (
+    <div className="absolute inset-0 overflow-hidden opacity-[0.03]">
+      {/* Circuit pattern lines */}
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 border border-[#245684] rounded-full"></div>
+      <div className="absolute top-1/3 right-1/4 w-48 h-48 border border-[#245684] rounded-full"></div>
+      <div className="absolute bottom-1/4 left-1/3 w-56 h-56 border border-[#245684] rounded-full"></div>
+      
+      {/* Horizontal lines */}
+      <div className="absolute top-1/2 left-0 w-full h-px bg-[#245684]"></div>
+      <div className="absolute top-1/3 left-0 w-full h-px bg-[#245684]"></div>
+      <div className="absolute top-2/3 left-0 w-full h-px bg-[#245684]"></div>
+      
+      {/* Vertical lines */}
+      <div className="absolute left-1/4 top-0 h-full w-px bg-[#245684]"></div>
+      <div className="absolute left-1/2 top-0 h-full w-px bg-[#245684]"></div>
+      <div className="absolute left-3/4 top-0 h-full w-px bg-[#245684]"></div>
+      
+      {/* Connection dots */}
+      {[...Array(25)].map((_, i) => (
+        <div
+          key={i}
+          className="absolute w-2 h-2 bg-[#245684] rounded-full"
+          style={{
+            top: `${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`,
+          }}
+        ></div>
+      ))}
+      
+      {/* Floating tech elements */}
+      <div className="absolute top-1/4 left-1/2 w-8 h-8 border-2 border-[#245684] rounded-lg animate-pulse"></div>
+      <div className="absolute top-2/3 right-1/3 w-6 h-6 border-2 border-[#245684] rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
+      <div className="absolute bottom-1/4 left-1/4 w-10 h-10 border-2 border-[#245684] animate-pulse" style={{animationDelay: '2s'}}></div>
     </div>
   );
 };
@@ -376,9 +415,12 @@ const ServicesPage = () => {
           </div>
         </div>
 
-        {/* Services Section */}
-        <section id="services" className="py-16 bg-[#f8fafc] px-4 sm:px-6 lg:px-8 -mt-20">
-          <div className="max-w-7xl mx-auto">
+        {/* Services Section with Enhanced Background */}
+        <section id="services" className="py-16 bg-[#f8fafc] px-4 sm:px-6 lg:px-8 -mt-20 relative overflow-hidden">
+          {/* Enhanced Tech Background Pattern */}
+          <TechBackgroundPattern />
+          
+          <div className="max-w-7xl mx-auto relative z-10">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4">SysCare Services</h2>
               <div className="w-24 h-1 bg-[#245684] mx-auto mb-6"></div>
