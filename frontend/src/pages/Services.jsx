@@ -6,13 +6,8 @@ import { FaHeadset, FaChevronRight, FaCloud, FaShieldAlt, FaTools, FaRobot, FaGr
 
 // Header Component
 const Header = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -170,8 +165,6 @@ const TechBackgroundPattern = () => {
 };
 
 const ServicesPage = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [expandedService, setExpandedService] = useState(null);
   const [headerVisible, setHeaderVisible] = useState(false);
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedSubService, setSelectedSubService] = useState(null);
@@ -181,19 +174,10 @@ const ServicesPage = () => {
   useEffect(() => {
     // Trigger animations after component mounts
     const timer = setTimeout(() => {
-      setIsVisible(true);
       setHeaderVisible(true);
     }, 100);
     return () => clearTimeout(timer);
   }, []);
-
-  const toggleService = (index) => {
-    if (expandedService === index) {
-      setExpandedService(null);
-    } else {
-      setExpandedService(index);
-    }
-  };
 
   const openSubServiceModal = (mainService, subService) => {
     setSelectedMainService(mainService);
@@ -478,16 +462,6 @@ const ServicesPage = () => {
                         </div>
                       ))}
                     </div>
-                  </div>
-                  
-                  <div className="px-5 pb-4">
-                    <button 
-                      onClick={() => toggleService(index)}
-                      className="text-[#245684] font-medium flex items-center hover:underline text-sm"
-                    >
-                      
-                      
-                    </button>
                   </div>
                 </div>
               ))}
