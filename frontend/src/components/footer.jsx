@@ -3,18 +3,22 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#103d5d] text-white py-12">
+    <footer className="bg-[#103d5d] text-white py-8 md:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {/* Logo & About */}
-          <div>
-            <div className="flex items-center mb-4">
-              <img src='/logos/White-Sys.svg' alt='SysCare Logo' className=' md:block h-20 w-auto object-contain'/>
+          <div className="xs:col-span-2 md:col-span-1">
+            <div className="flex justify-center xs:justify-start items-center mb-4">
+              <img 
+                src='/logos/White-Sys.svg' 
+                alt='SysCare Logo' 
+                className='h-16 md:h-20 w-auto object-contain'
+              />
             </div>
-            <p className="mb-4 text-sm sm:text-base">
+            <p className="mb-4 text-xs xs:text-sm sm:text-base text-center xs:text-left">
               Delivering innovative IT solutions to help businesses thrive in the digital world.
             </p>
-            <div className="flex flex-wrap gap-3 mt-2">
+            <div className="flex flex-wrap justify-center xs:justify-start gap-3 mt-2">
               {/* Social Icons */}
               {[
                 { href: '#', label: 'Facebook', icon: 'M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z' },
@@ -28,7 +32,7 @@ const Footer = () => {
                   className="hover:text-[#a3d4ff] transition-transform duration-300 transform hover:scale-125"
                   aria-label={social.label}
                 >
-                  <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d={social.icon} />
                   </svg>
                 </a>
@@ -38,11 +42,11 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
-            <ul className="space-y-2 text-sm sm:text-base">
+            <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Services</h3>
+            <ul className="space-y-1 sm:space-y-2 text-xs xs:text-sm sm:text-base">
               {['IT Support','Security Solutions','Projects & Automation','Internet & VOIP','Digital Services','IT Training','CRM & ERP Solutions'].map((item,index)=>(
                 <li key={index}>
-                  <Link to="/services" className="hover:text-[#a3d4ff] transition-colors duration-300">{item}</Link>
+                  <Link to="/services" className="hover:text-[#a3d4ff] transition-colors duration-300 block py-1">{item}</Link>
                 </li>
               ))}
             </ul>
@@ -50,27 +54,27 @@ const Footer = () => {
 
           {/* Company */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Company</h3>
-            <ul className="space-y-2 text-sm sm:text-base">
+            <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Company</h3>
+            <ul className="space-y-1 sm:space-y-2 text-xs xs:text-sm sm:text-base">
               {['About Us','Services','Contact Us','Blog'].map((item,index)=>(
                 <li key={index}>
-                  <Link to={`/${item.toLowerCase().replace(/\s/g,'')}`} className="hover:text-[#a3d4ff] transition-colors duration-300">{item}</Link>
+                  <Link to={`/${item.toLowerCase().replace(/\s/g,'')}`} className="hover:text-[#a3d4ff] transition-colors duration-300 block py-1">{item}</Link>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Contact */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Contact</h3>
-            <div className="space-y-3 text-sm sm:text-base">
+          <div className="xs:col-span-2 md:col-span-1">
+            <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Contact</h3>
+            <div className="space-y-2 sm:space-y-3 text-xs xs:text-sm sm:text-base">
               <div>
                 <h4 className="font-medium">Melbourne</h4>
-                <p>Level 10, Suite 1012, 401 Docklands Dr, Docklands, VIC 3008</p>
+                <p className="break-words">Level 10, Suite 1012, 401 Docklands Dr, Docklands, VIC 3008</p>
               </div>
               <div>
                 <h4 className="font-medium">Sydney</h4>
-                <p>Level 36, Gateway, 1 Macquarie Pl, Sydney, NSW 2000</p>
+                <p className="break-words">Level 36, Gateway, 1 Macquarie Pl, Sydney, NSW 2000</p>
               </div>
               <div>
                 <h4 className="font-medium">Phone</h4>
@@ -78,14 +82,14 @@ const Footer = () => {
               </div>
               <div>
                 <h4 className="font-medium">Email</h4>
-                <p>info@syscare.com.au</p>
+                <p className="break-all">info@syscare.com.au</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Footer Bottom */}
-        <div className="mt-12 pt-8 border-t border-[#245684] text-center text-sm sm:text-base">
+        <div className="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-[#245684] text-center text-xs xs:text-sm sm:text-base">
           <p>&copy; {new Date().getFullYear()} SysCare IT Solutions. All rights reserved.</p>
         </div>
       </div>
