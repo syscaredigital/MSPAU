@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import SysCarePrivateCloud from '../assets/website-images/SysCare-Private-Cloud.webp';
-import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight } from 'react-icons/fi';
+
+import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight, FiMonitor, FiSmartphone, FiBox, FiGlobe, FiRefreshCw, FiCheckSquare, FiLock, FiBarChart2, FiShoppingCart, FiMessageCircle, FiArchive, FiEye, FiKey } from 'react-icons/fi';
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
@@ -13,40 +13,142 @@ const ManagedITServicesPage = () => {
 
   const services = [
     {
-      title: "Private Cloud",
+      title: "Managed Servers",
+      icon: <FiServer className="text-[#245684] text-2xl" />,
+      content: "Comprehensive server management including monitoring, maintenance, and optimization to ensure your critical infrastructure operates at peak performance with maximum uptime.",
+      image: "/images/Managed-Servers.png"
+    },
+    {
+      title: "Managed Endpoints",
+      icon: <FiMonitor className="text-[#245684] text-2xl" />,
+      content: "Complete endpoint protection with AV, malware protection, DNS filtering, EDR, and XDR solutions to secure all devices in your network against evolving threats.",
+      image: "/images/Managed-Endpoints.png"
+    },
+    {
+      title: "Mobile Device Management",
+      icon: <FiSmartphone className="text-[#245684] text-2xl" />,
+      content: "Centralized management of mobile devices across your organization, ensuring security policies are enforced and corporate data remains protected on all mobile platforms.",
+      image: "/images/Mobile-Device-Management.png"
+    },
+    {
+      title: "IT Asset Management",
+      icon: <FiBox className="text-[#245684] text-2xl" />,
+      content: "Complete lifecycle management of your IT assets from procurement to retirement, ensuring optimal utilization and cost efficiency across your technology investments.",
+      image: "/images/IT-Asset-Management.png"
+    },
+    {
+      title: "Domain & DNS Management",
+      icon: <FiGlobe className="text-[#245684] text-2xl" />,
+      content: "Professional management of your domain portfolio and DNS infrastructure to ensure reliability, security, and optimal performance of your online presence.",
+      image: "/images/Domain-DNS-Management.png"
+    },
+    {
+      title: "Windows OS Patch Management",
+      icon: <FiRefreshCw className="text-[#245684] text-2xl" />,
+      content: "Systematic approach to deploying, testing, and installing patches across your Windows environment to maintain security and stability while minimizing disruption.",
+      image: "/images/Windows-Patch-Management.png"
+    },
+    {
+      title: "Application Patch Management",
+      icon: <FiCheckSquare className="text-[#245684] text-2xl" />,
+      content: "Comprehensive patching for all business applications to eliminate vulnerabilities and ensure compatibility across your software ecosystem.",
+      image: "/images/Application-Patch-Management.png"
+    },
+    {
+      title: "Vulnerability Management",
+      icon: <FiShield className="text-[#245684] text-2xl" />,
+      content: "Proactive identification, assessment, and remediation of security vulnerabilities across your entire IT infrastructure before they can be exploited.",
+      image: "/images/Vulnerability-Management.png"
+    },
+    {
+      title: "MS 365 Portal Management",
       icon: <FiCloud className="text-[#245684] text-2xl" />,
-      content: "Elevate your business with SysCare Private Cloud, a flagship service by SysCare IT Solutions. Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.",
-      image: "/images/SysCare-Private-Cloud.png"
+      content: "Expert administration of your Microsoft 365 environment including user management, license allocation, and configuration of productivity tools.",
+      image: "/images/MS365-Portal-Management.png"
     },
     {
-      title: "Hosted Servers",
-      icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers state-of-the-art Hosted Servers (Virtual Machines), providing clients with a robust and scalable solution tailored to their business needs. Our advanced hosting services guarantee optimal performance, security, and flexibility.",
-      image: "/images/Hosted-Servers.png"
+      title: "AD/Azure/Entra ID Management",
+      icon: <FiLock className="text-[#245684] text-2xl" />,
+      content: "Comprehensive identity and access management across on-premises Active Directory, Azure AD, and Entra ID to ensure secure and efficient access control.",
+      image: "/images/Identity-Management.png"
     },
     {
-      title: "Dedicated Virtual Servers",
-      icon: <FiCpu className="text-[#245684] text-2xl" />,
-      content: "Elevate your digital capabilities with SysCare IT Solutions' Dedicated Virtual Servers. Tailored for optimal performance and reliability, our state-of-the-art infrastructure ensures seamless operations for your business.",
-      image: "/images/Dedicated-Virtual-Servers.png"
+      title: "M365 Security & Compliance",
+      icon: <FiShield className="text-[#245684] text-2xl" />,
+      content: "Implementation and management of security policies, data loss prevention, and compliance configurations within your Microsoft 365 environment.",
+      image: "/images/M365-Security-Compliance.png"
     },
     {
-      title: "Virtual Desktops",
-      icon: <FiCode className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions offers spectrum of services, including Virtual Desktops (VDI) and Remote Desktop Services (RDS). Elevate your business efficiency with our cutting-edge virtualization solutions.",
-      image: "/images/Virtual-Desktops.png"
+      title: "Managed WIFI",
+      icon: <FiWifi className="text-[#245684] text-2xl" />,
+      content: "End-to-end management of your wireless infrastructure including design, implementation, monitoring, and optimization for reliable connectivity.",
+      image: "/images/Managed-WIFI.png"
     },
     {
-      title: "Rack Space Hire",
+      title: "Managed Firewall",
+      icon: <FiBarChart2 className="text-[#245684] text-2xl" />,
+      content: "Professional configuration, monitoring, and maintenance of your firewall infrastructure to provide robust network security and traffic management.",
+      image: "/images/Managed-Firewall.png"
+    },
+    {
+      title: "Managed VPN Access",
+      icon: <FiLock className="text-[#245684] text-2xl" />,
+      content: "Secure remote access solutions with properly configured and maintained VPN infrastructure for your mobile workforce and remote offices.",
+      image: "/images/Managed-VPN.png"
+    },
+    {
+      title: "Managed DR & BCP",
       icon: <FiDatabase className="text-[#245684] text-2xl" />,
-      content: "Elevate your business with SysCare IT Solutions' Rack Space Hire (Co-location) service. Our premium co-location offering provides a secure and efficient environment for your servers and equipment.",
-      image: "/images/Rack-Space-Hire.png"
+      content: "Comprehensive disaster recovery and business continuity planning and implementation to ensure your business can withstand and quickly recover from disruptions.",
+      image: "/images/Managed-DR-BCP.png"
     },
     {
-      title: "Leased Servers",
-      icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers excellence in IT with its Leased Dedicated Physical Servers service. Elevate your business performance and security with our dedicated servers, exclusively assigned to meet your unique requirements.",
-      image: "/images/Leased-Servers.png"
+      title: "SW Licence Management",
+      icon: <FiCheckSquare className="text-[#245684] text-2xl" />,
+      content: "Optimization of software licensing across your organization to ensure compliance, reduce costs, and maintain appropriate licensing for all applications.",
+      image: "/images/SW-License-Management.png"
+    },
+    {
+      title: "HW Procurement",
+      icon: <FiShoppingCart className="text-[#245684] text-2xl" />,
+      content: "End-to-end hardware procurement services leveraging our industry relationships to source quality equipment at competitive prices with full lifecycle support.",
+      image: "/images/HW-Procurement.png"
+    },
+    {
+      title: "IT Consultancy Services",
+      icon: <FiMessageCircle className="text-[#245684] text-2xl" />,
+      content: "Strategic IT guidance and planning services to align your technology investments with business objectives and maximize ROI from your IT infrastructure.",
+      image: "/images/IT-Consultancy.png"
+    },
+    {
+      title: "Centralized Email Signature Management",
+      icon: <FiMessageCircle className="text-[#245684] text-2xl" />,
+      content: "Professional management of corporate email signatures across your organization to maintain brand consistency and compliance with regulatory requirements.",
+      image: "/images/Email-Signature-Management.png"
+    },
+    {
+      title: "Managed Email Archival",
+      icon: <FiArchive className="text-[#245684] text-2xl" />,
+      content: "Secure, compliant email archiving solutions that ensure business continuity, facilitate e-discovery, and meet regulatory retention requirements.",
+      image: "/images/Managed-Email-Archival.png"
+    },
+    {
+      title: "Endpoint Monitoring & Management",
+      icon: <FiEye className="text-[#245684] text-2xl" />,
+      content: "24/7 monitoring and management of all endpoints in your environment to ensure performance, security, and compliance with organizational policies.",
+      image: "/images/Endpoint-Monitoring.png"
+    },
+    {
+      title: "Device Encryption Management",
+      icon: <FiKey className="text-[#245684] text-2xl" />,
+      content: "Comprehensive encryption management across all devices to protect sensitive data and ensure compliance with data protection regulations.",
+      image: "/images/Device-Encryption-Management.png"
+    },
+    {
+      title: "Managed Spam Protection",
+      icon: <FiShield className="text-[#245684] text-2xl" />,
+      content: "Advanced spam and phishing protection solutions to minimize unwanted emails and protect your organization from email-based threats.",
+      image: "/images/Managed-Spam-Protection.png"
     }
   ];
 
@@ -177,15 +279,15 @@ const ManagedITServicesPage = () => {
          
           {/* Animated CTA button */}
           <div className="mt-12 animate-bounce-slow">
-  <a href="/syscare-services" className="inline-block"> {/* Or external URL like "https://example.com/services" */}
-    <button className="bg-[#a3d4ff] text-[#103d5d] px-8 py-4 rounded-full font-bold hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto">
-      Explore Our Services
-      <svg className="w-5 h-5 ml-2 animate-bounce-horizontal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-      </svg>
-    </button>
-  </a>
-</div>
+            <a href="/syscare-services" className="inline-block">
+              <button className="bg-[#a3d4ff] text-[#103d5d] px-8 py-4 rounded-full font-bold hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto">
+                Explore Our Services
+                <svg className="w-5 h-5 ml-2 animate-bounce-horizontal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </button>
+            </a>
+          </div>
          
           {/* Scroll indicator */}
           <div className="mt-16 animate-bounce">
@@ -197,7 +299,7 @@ const ManagedITServicesPage = () => {
         </div>
       </header>
 
-      {/* Private Cloud Focus Section */}
+      {/* Managed IT Focus Section */}
       <section 
         className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
         ref={sectionRefs[1]}
@@ -212,15 +314,15 @@ const ManagedITServicesPage = () => {
             }}
           >
             <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">SysCare Private Cloud</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Comprehensive Managed IT Services</h2>
               <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
-                Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.
+                Our end-to-end managed IT services provide organizations with complete technology management, security, and operational efficiency. Tailored to meet diverse business needs, SysCare Managed IT ensures seamless operations, robust security protocols, and optimal resource utilization.
               </p>
               <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
-                Experience the pinnacle of reliability and performance as our dedicated team of experts customizes solutions to optimize your operations. Trust SysCare Private Cloud for a sophisticated, streamlined, and secure IT infrastructure, enabling you to focus on what truly matters – the growth and success of your business.
+                Experience the pinnacle of reliability and performance as our dedicated team of experts manages your entire IT infrastructure. Trust SysCare Managed IT Services for sophisticated, streamlined, and secure technology operations, enabling you to focus on what truly matters – the growth and success of your business.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
-                Request Private Cloud Demo
+                Request IT Assessment
                 <FiChevronRight className="inline ml-3 transition-transform duration-300 group-hover:translateX-2" />
               </button>
             </div>
@@ -234,9 +336,9 @@ const ManagedITServicesPage = () => {
             >
               <div className="bg-white p-6 rounded-xl border border-[#e1e9f2] shadow-sm hover:shadow-md transition-shadow duration-500">
                 <img 
-                  src={SysCarePrivateCloud}
+                  
                   className="w-full h-auto rounded-lg transition-transform duration-500 hover:scale-[1.02]"
-                  alt="SysCare Private Cloud Infrastructure"
+                  alt="SysCare Managed IT Services"
                 />
               </div>
             </div>
@@ -258,7 +360,7 @@ const ManagedITServicesPage = () => {
               transition: 'opacity 0.6s ease, transform 0.6s ease'
             }}
           >
-            Our Cloud & Infrastructure Services
+            Our Comprehensive Managed IT Services
           </h2>
           
           {/* Mobile View - Accordion Style */}
@@ -324,7 +426,7 @@ const ManagedITServicesPage = () => {
             >
               {/* Vertical Tabs */}
               <div className="lg:w-1/3">
-                <div className="space-y-4">
+                <div className="space-y-4 max-h-[600px] overflow-y-auto pr-4">
                   {services.map((service, index) => (
                     <button
                       key={index}
@@ -387,26 +489,27 @@ const ManagedITServicesPage = () => {
       </section>
 
       {/* CTA Section */}
-<section className="py-24 bg-[#000000] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
-  <div className="container mx-auto text-center">
-    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Ready to Transform Your IT Infrastructure?</h2>
-    <p className="text-xl md:text-2xl text-[#c9d8eb] mb-10 max-w-3xl mx-auto">
-      Our experts are ready to design the perfect solution for your business needs.
-    </p>
-    <div className="flex flex-col sm:flex-row justify-center gap-6">
-      <a href="/contact-Us" className="inline-block"> 
-        <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-12 py-5 rounded-md font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] text-lg">
-          Get Started Today
-        </button>
-      </a>
-      <a href="/contact-Us" className="inline-block"> 
-        <button className="border-2 border-white hover:bg-white hover:text-[#103d5d] text-white px-12 py-5 rounded-md font-medium transition-all duration-300 hover:scale-[1.02] text-lg">
-          Speak to an Expert
-        </button>
-      </a>
-    </div>
-  </div>
-</section>
+      <section className="py-24 bg-[#000000] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
+        <div className="container mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Ready to Transform Your IT Management?</h2>
+          <p className="text-xl md:text-2xl text-[#c9d8eb] mb-10 max-w-3xl mx-auto">
+            Our experts are ready to design the perfect managed IT solution for your business needs.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-6">
+            <a href="/contact-Us" className="inline-block"> 
+              <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-12 py-5 rounded-md font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] text-lg">
+                Get Started Today
+              </button>
+            </a>
+            <a href="/contact-Us" className="inline-block"> 
+              <button className="border-2 border-white hover:bg-white hover:text-[#103d5d] text-white px-12 py-5 rounded-md font-medium transition-all duration-300 hover:scale-[1.02] text-lg">
+                Speak to an Expert
+              </button>
+            </a>
+          </div>
+        </div>
+      </section>
+      
       <Footer/>
 
       {/* Add CSS animations */}
