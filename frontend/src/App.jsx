@@ -17,7 +17,7 @@ import DigitalMarketingPage from './pages/DigitalMarketing.jsx';
 import CyberSecurityConsultancyServicesPage from './pages/CyberSecurityConsultancyServices.jsx';
 import ManagedSecurityServicesPage from './pages/ManagedSecurityServices.jsx';
 import ITInfraProjectsPage from './pages/ITInfraProjects.jsx';
-import DevelopmentAutomationPage from './pages/Development&Automation.jsx';
+import DevelopmentAutomationPage from './pages/ITAutomation.jsx';
 import SmallBusinessPage from './pages/SmallBusiness.jsx';
 import EnterprisePage from './pages/Enterprise.jsx';
 
