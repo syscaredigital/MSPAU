@@ -13,41 +13,30 @@ const ConnectivityPage = () => {
 
   const services = [
     {
-      title: "Private Cloud",
+      title: "Business Internet",
       icon: <FiCloud className="text-[#245684] text-2xl" />,
       content: "Elevate your business with SysCare Private Cloud, a flagship service by SysCare IT Solutions. Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.",
       image: "/images/SysCare-Private-Cloud.png"
     },
     {
-      title: "Hosted Servers",
+      title: "Private WAN/MPLS",
       icon: <FiServer className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions delivers state-of-the-art Hosted Servers (Virtual Machines), providing clients with a robust and scalable solution tailored to their business needs. Our advanced hosting services guarantee optimal performance, security, and flexibility.",
       image: "/images/Hosted-Servers.png"
     },
     {
-      title: "Dedicated Virtual Servers",
+      title: "SDWAN",
       icon: <FiCpu className="text-[#245684] text-2xl" />,
       content: "Elevate your digital capabilities with SysCare IT Solutions' Dedicated Virtual Servers. Tailored for optimal performance and reliability, our state-of-the-art infrastructure ensures seamless operations for your business.",
       image: "/images/Dedicated-Virtual-Servers.png"
     },
     {
-      title: "Virtual Desktops",
+      title: "VPN & Remote Access",
       icon: <FiCode className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions offers spectrum of services, including Virtual Desktops (VDI) and Remote Desktop Services (RDS). Elevate your business efficiency with our cutting-edge virtualization solutions.",
       image: "/images/Virtual-Desktops.png"
     },
-    {
-      title: "Rack Space Hire",
-      icon: <FiDatabase className="text-[#245684] text-2xl" />,
-      content: "Elevate your business with SysCare IT Solutions' Rack Space Hire (Co-location) service. Our premium co-location offering provides a secure and efficient environment for your servers and equipment.",
-      image: "/images/Rack-Space-Hire.png"
-    },
-    {
-      title: "Leased Servers",
-      icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers excellence in IT with its Leased Dedicated Physical Servers service. Elevate your business performance and security with our dedicated servers, exclusively assigned to meet your unique requirements.",
-      image: "/images/Leased-Servers.png"
-    }
+    
   ];
 
   useEffect(() => {

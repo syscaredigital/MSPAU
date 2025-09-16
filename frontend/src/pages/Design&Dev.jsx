@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import SysCarePrivateCloud from '../assets/website-images/SysCare-Private-Cloud.webp';
-import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight } from 'react-icons/fi';
+import { FiCode, FiLayout, FiShield, FiShoppingCart, FiSearch, FiSmartphone, FiTrendingUp, FiBarChart, FiLink, FiPenTool, FiServer, FiDatabase, FiChevronRight } from 'react-icons/fi';
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
@@ -11,44 +10,147 @@ const DesignDevPage = () => {
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const headerRef = useRef(null);
 
+  // Updated services to match your requirements
   const services = [
     {
-      title: "Private Cloud",
-      icon: <FiCloud className="text-[#245684] text-2xl" />,
-      content: "Elevate your business with SysCare Private Cloud, a flagship service by SysCare IT Solutions. Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.",
-      image: "/images/SysCare-Private-Cloud.png"
+      category: "Website Design & Development",
+      services: [
+        {
+          title: "Website Design",
+          icon: <FiLayout className="text-[#245684] text-2xl" />,
+          content: "Professional website design services that create visually appealing, user-friendly interfaces tailored to your brand identity and business objectives.",
+        },
+        {
+          title: "UI/UX Design",
+          icon: <FiLayout className="text-[#245684] text-2xl" />,
+          content: "User-centered design approach focusing on creating intuitive, engaging experiences that maximize user satisfaction and conversion rates.",
+        },
+        {
+          title: "Website Development",
+          icon: <FiCode className="text-[#245684] text-2xl" />,
+          content: "Custom website development using modern technologies to build responsive, high-performance websites that meet your specific requirements.",
+        },
+        {
+          title: "Website Security",
+          icon: <FiShield className="text-[#245684] text-2xl" />,
+          content: "Comprehensive security solutions including SSL certificates, vulnerability scanning, and protection against cyber threats to keep your website safe.",
+        },
+        {
+          title: "E-commerce Development",
+          icon: <FiShoppingCart className="text-[#245684] text-2xl" />,
+          content: "Complete e-commerce solutions with secure payment gateways, inventory management, and shopping cart functionality to grow your online business.",
+        },
+        {
+          title: "SEO-Friendly Website Development",
+          icon: <FiSearch className="text-[#245684] text-2xl" />,
+          content: "Websites built with SEO best practices to ensure maximum visibility and ranking potential on search engines from day one.",
+        },
+        {
+          title: "Website Redesign",
+          icon: <FiLayout className="text-[#245684] text-2xl" />,
+          content: "Transform your outdated website into a modern, responsive, and effective digital presence that aligns with current trends and technologies.",
+        },
+        {
+          title: "Analytics Integration",
+          icon: <FiBarChart className="text-[#245684] text-2xl" />,
+          content: "Implementation of tracking and analytics tools to measure performance, user behavior, and conversion metrics for data-driven decisions.",
+        },
+        {
+          title: "Mobile App Development",
+          icon: <FiSmartphone className="text-[#245684] text-2xl" />,
+          content: "Native and cross-platform mobile application development for iOS and Android to extend your digital presence to mobile users.",
+        },
+        {
+          title: "Domain and Hosting Services",
+          icon: <FiServer className="text-[#245684] text-2xl" />,
+          content: "Complete domain registration and reliable hosting solutions with guaranteed uptime, security, and technical support.",
+        },
+        {
+          title: "Custom Web Solutions",
+          icon: <FiCode className="text-[#245684] text-2xl" />,
+          content: "Tailor-made web applications and solutions designed to address your specific business challenges and operational needs.",
+        }
+      ]
     },
     {
-      title: "Hosted Servers",
-      icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers state-of-the-art Hosted Servers (Virtual Machines), providing clients with a robust and scalable solution tailored to their business needs. Our advanced hosting services guarantee optimal performance, security, and flexibility.",
-      image: "/images/Hosted-Servers.png"
-    },
-    {
-      title: "Dedicated Virtual Servers",
-      icon: <FiCpu className="text-[#245684] text-2xl" />,
-      content: "Elevate your digital capabilities with SysCare IT Solutions' Dedicated Virtual Servers. Tailored for optimal performance and reliability, our state-of-the-art infrastructure ensures seamless operations for your business.",
-      image: "/images/Dedicated-Virtual-Servers.png"
-    },
-    {
-      title: "Virtual Desktops",
-      icon: <FiCode className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions offers spectrum of services, including Virtual Desktops (VDI) and Remote Desktop Services (RDS). Elevate your business efficiency with our cutting-edge virtualization solutions.",
-      image: "/images/Virtual-Desktops.png"
-    },
-    {
-      title: "Rack Space Hire",
-      icon: <FiDatabase className="text-[#245684] text-2xl" />,
-      content: "Elevate your business with SysCare IT Solutions' Rack Space Hire (Co-location) service. Our premium co-location offering provides a secure and efficient environment for your servers and equipment.",
-      image: "/images/Rack-Space-Hire.png"
-    },
-    {
-      title: "Leased Servers",
-      icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers excellence in IT with its Leased Dedicated Physical Servers service. Elevate your business performance and security with our dedicated servers, exclusively assigned to meet your unique requirements.",
-      image: "/images/Leased-Servers.png"
+      category: "SEO Services",
+      services: [
+        {
+          title: "SEO",
+          icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
+          content: "Comprehensive search engine optimization strategies to improve your website's visibility and organic search rankings.",
+        },
+        {
+          title: "Keyword Research and Strategy",
+          icon: <FiSearch className="text-[#245684] text-2xl" />,
+          content: "In-depth keyword analysis and strategic planning to target the most valuable search terms for your business.",
+        },
+        {
+          title: "Local SEO",
+          icon: <FiSearch className="text-[#245684] text-2xl" />,
+          content: "Optimization strategies focused on improving visibility in local search results and Google My Business listings.",
+        },
+        {
+          title: "Content Creation and Optimization",
+          icon: <FiPenTool className="text-[#245684] text-2xl" />,
+          content: "Creation of high-quality, engaging content optimized for both users and search engines to drive traffic and conversions.",
+        },
+        {
+          title: "SEO Reporting and Analytics",
+          icon: <FiBarChart className="text-[#245684] text-2xl" />,
+          content: "Detailed performance reports and analytics to track SEO progress, measure ROI, and inform strategy adjustments.",
+        },
+        {
+          title: "On-Page Optimization",
+          icon: <FiLayout className="text-[#245684] text-2xl" />,
+          content: "Optimization of website elements including meta tags, headings, content, and internal linking structure.",
+        },
+        {
+          title: "E-commerce SEO",
+          icon: <FiShoppingCart className="text-[#245684] text-2xl" />,
+          content: "Specialized SEO strategies for online stores focusing on product pages, category optimization, and conversion rate enhancement.",
+        },
+        {
+          title: "Technical SEO",
+          icon: <FiCode className="text-[#245684] text-2xl" />,
+          content: "Technical improvements to website infrastructure, speed, indexing, and crawlability for better search engine performance.",
+        },
+        {
+          title: "SEO for Mobile",
+          icon: <FiSmartphone className="text-[#245684] text-2xl" />,
+          content: "Optimization strategies specifically focused on improving mobile search visibility and user experience.",
+        },
+        {
+          title: "SEO for Video Content",
+          icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
+          content: "Optimization of video content to improve visibility in search results and video platforms like YouTube.",
+        },
+        {
+          title: "SEO Audit and Analysis",
+          icon: <FiBarChart className="text-[#245684] text-2xl" />,
+          content: "Comprehensive website audits to identify SEO issues, opportunities, and develop actionable improvement plans.",
+        },
+        {
+          title: "Link Building & Outreach",
+          icon: <FiLink className="text-[#245684] text-2xl" />,
+          content: "Strategic acquisition of high-quality backlinks from authoritative websites to improve domain authority and rankings.",
+        },
+        {
+          title: "Conversion Rate Optimization (CRO)",
+          icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
+          content: "Data-driven optimization of website elements to increase the percentage of visitors who complete desired actions.",
+        },
+        {
+          title: "Schema Markup & Structured Data Implementation",
+          icon: <FiCode className="text-[#245684] text-2xl" />,
+          content: "Implementation of structured data markup to enhance search result appearances with rich snippets and knowledge panels.",
+        }
+      ]
     }
   ];
+
+  const [activeCategory, setActiveCategory] = useState(0);
+  const [activeService, setActiveService] = useState(0);
 
   useEffect(() => {
     // Check if window is defined (to avoid SSR issues)
@@ -110,7 +212,7 @@ const DesignDevPage = () => {
         content.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
       }, 50);
     }
-  }, [activeTab]);
+  }, [activeCategory, activeService]);
 
   // Parallax effect for header
   const [parallaxStyle, setParallaxStyle] = useState({});
@@ -154,8 +256,6 @@ const DesignDevPage = () => {
             <div className="absolute top-1/3 right-1/4 w-80 h-80 rounded-full bg-[#a3d4ff] mix-blend-screen filter blur-3xl animate-rotate"></div>
             <div className="absolute bottom-1/4 right-1/3 w-72 h-72 rounded-full bg-[#a3d4ff] mix-blend-screen filter blur-3xl animate-float-slow"></div>
           </div>
-         
-          
         </div>
        
         {/* Content with parallax effect */}
@@ -165,27 +265,27 @@ const DesignDevPage = () => {
         >
           <div className="mb-8 inline-block overflow-hidden">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-typewriter whitespace-nowrap overflow-hidden border-r-4 border-r-white">
-              Design <span className="text-[#a3d4ff]">& Dev</span>
+              Design <span className="text-[#a3d4ff]">& Development</span>
             </h1>
           </div>
          
           <div className="overflow-hidden">
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate-slide-in-up opacity-0">
-              Comprehensive IT solutions to drive your business forward
+              Comprehensive web design, development, and SEO solutions to drive your digital presence forward
             </p>
           </div>
          
           {/* Animated CTA button */}
           <div className="mt-12 animate-bounce-slow">
-  <a href="/syscare-services" className="inline-block"> {/* Or external URL like "https://example.com/services" */}
-    <button className="bg-[#a3d4ff] text-[#103d5d] px-8 py-4 rounded-full font-bold hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto">
-      Explore Our Services
-      <svg className="w-5 h-5 ml-2 animate-bounce-horizontal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-      </svg>
-    </button>
-  </a>
-</div>
+            <a href="#services">
+              <button className="bg-[#a3d4ff] text-[#103d5d] px-8 py-4 rounded-full font-bold hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto">
+                Explore Our Services
+                <svg className="w-5 h-5 ml-2 animate-bounce-horizontal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </button>
+            </a>
+          </div>
          
           {/* Scroll indicator */}
           <div className="mt-16 animate-bounce">
@@ -197,55 +297,9 @@ const DesignDevPage = () => {
         </div>
       </header>
 
-      {/* Private Cloud Focus Section */}
-      <section 
-        className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
-        ref={sectionRefs[1]}
-      >
-        <div className="container mx-auto">
-          <div 
-            className="flex flex-col lg:flex-row gap-16 items-center"
-            style={{
-              opacity: isVisible[1] ? 1 : 0,
-              transform: isVisible[1] ? 'translateY(0)' : 'translateY(40px)',
-              transition: 'opacity 0.8s ease, transform 0.8s ease'
-            }}
-          >
-            <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">SysCare Private Cloud</h2>
-              <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
-                Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.
-              </p>
-              <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
-                Experience the pinnacle of reliability and performance as our dedicated team of experts customizes solutions to optimize your operations. Trust SysCare Private Cloud for a sophisticated, streamlined, and secure IT infrastructure, enabling you to focus on what truly matters – the growth and success of your business.
-              </p>
-              <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
-                Request Private Cloud Demo
-                <FiChevronRight className="inline ml-3 transition-transform duration-300 group-hover:translateX-2" />
-              </button>
-            </div>
-            <div 
-              className="lg:w-1/2"
-              style={{
-                opacity: isVisible[1] ? 1 : 0,
-                transform: isVisible[1] ? 'scale(1)' : 'scale(0.95)',
-                transition: 'opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s'
-              }}
-            >
-              <div className="bg-white p-6 rounded-xl border border-[#e1e9f2] shadow-sm hover:shadow-md transition-shadow duration-500">
-                <img 
-                  src={SysCarePrivateCloud}
-                  className="w-full h-auto rounded-lg transition-transform duration-500 hover:scale-[1.02]"
-                  alt="SysCare Private Cloud Infrastructure"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Services Overview - Vertical Tabs */}
       <section 
+        id="services"
         className="py-24 bg-white px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
         ref={sectionRefs[2]}
       >
@@ -258,21 +312,43 @@ const DesignDevPage = () => {
               transition: 'opacity 0.6s ease, transform 0.6s ease'
             }}
           >
-            Our Cloud & Infrastructure Services
+            Our Design & Development Services
           </h2>
+          
+          {/* Category Selection */}
+          <div className="flex justify-center mb-12">
+            <div className="bg-[#f5f9fd] p-2 rounded-xl inline-flex">
+              {services.map((category, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setActiveCategory(index);
+                    setActiveService(0);
+                  }}
+                  className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
+                    activeCategory === index
+                      ? 'bg-[#103d5d] text-white shadow-md'
+                      : 'text-[#103d5d] hover:bg-[#e1e9f2]'
+                  }`}
+                >
+                  {category.category}
+                </button>
+              ))}
+            </div>
+          </div>
           
           {/* Mobile View - Accordion Style */}
           {isMobile ? (
             <div className="space-y-6">
-              {services.map((service, index) => (
+              {services[activeCategory].services.map((service, index) => (
                 <div 
                   key={index}
                   className="bg-[#f9fbfe] rounded-xl border border-[#e1e9f2] shadow-sm overflow-hidden"
                 >
                   <button
-                    onClick={() => setActiveTab(activeTab === index ? -1 : index)}
+                    onClick={() => setActiveService(activeService === index ? -1 : index)}
                     className={`w-full text-left p-6 transition-all duration-300 ${
-                      activeTab === index
+                      activeService === index
                         ? 'bg-[#103d5d] text-white'
                         : 'bg-[#f5f9fd] text-[#103d5d]'
                     }`}
@@ -280,33 +356,28 @@ const DesignDevPage = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
                         <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-6 ${
-                          activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff]'
+                          activeService === index ? 'bg-white/20' : 'bg-[#f0f6ff]'
                         }`}>
                           {React.cloneElement(service.icon, {
-                            className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
+                            className: `${activeService === index ? 'text-white' : 'text-[#245684]'} text-2xl`
                           })}
                         </div>
                         <h3 className="text-xl font-medium">{service.title}</h3>
                       </div>
                       <FiChevronRight 
                         className={`text-xl transition-transform duration-300 ${
-                          activeTab === index ? 'rotate-90' : ''
+                          activeService === index ? 'rotate-90' : ''
                         }`}
                       />
                     </div>
                   </button>
                   
-                  {activeTab === index && (
+                  {activeService === index && (
                     <div className="p-6 border-t border-[#e1e9f2]">
-                      <div className="mb-6 bg-white p-4 rounded-lg border border-[#e1e9f2] shadow-sm flex justify-center">
-                        <img 
-                          src={service.image}
-                          alt={`${service.title} infrastructure`}
-                          className="w-[500px] h-[500px] object-cover rounded-lg"
-                          style={{ maxWidth: '100%', height: 'auto' }}
-                        />
-                      </div>
                       <p className="text-[#5c6f87] text-lg mb-6 leading-relaxed">{service.content}</p>
+                      <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-6 py-3 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg text-sm">
+                        Learn More
+                      </button>
                     </div>
                   )}
                 </div>
@@ -324,26 +395,26 @@ const DesignDevPage = () => {
             >
               {/* Vertical Tabs */}
               <div className="lg:w-1/3">
-                <div className="space-y-4">
-                  {services.map((service, index) => (
+                <div className="space-y-4 max-h-[600px] overflow-y-auto pr-4">
+                  {services[activeCategory].services.map((service, index) => (
                     <button
                       key={index}
-                      onClick={() => setActiveTab(index)}
+                      onClick={() => setActiveService(index)}
                       className={`w-full text-left p-6 rounded-xl transition-all duration-300 ${
-                        activeTab === index
+                        activeService === index
                           ? 'bg-[#103d5d] text-white shadow-lg'
                           : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
                       }`}
                       style={{
-                        transform: activeTab === index ? 'translateX(12px)' : 'none'
+                        transform: activeService === index ? 'translateX(12px)' : 'none'
                       }}
                     >
                       <div className="flex items-center">
                         <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-6 ${
-                          activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff]'
+                          activeService === index ? 'bg-white/20' : 'bg-[#f0f6ff]'
                         }`}>
                           {React.cloneElement(service.icon, {
-                            className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
+                            className: `${activeService === index ? 'text-white' : 'text-[#245684]'} text-2xl`
                           })}
                         </div>
                         <h3 className="text-xl font-medium">{service.title}</h3>
@@ -364,49 +435,92 @@ const DesignDevPage = () => {
               >
                 <div className="flex items-start mb-6">
                   <div className="w-16 h-16 rounded-xl bg-[#f0f6ff] flex items-center justify-center mr-8">
-                    {services[activeTab].icon}
+                    {services[activeCategory].services[activeService].icon}
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-[#103d5d] mt-2">{services[activeTab].title}</h3>
+                  <h3 className="text-2xl md:text-3xl font-bold text-[#103d5d] mt-2">
+                    {services[activeCategory].services[activeService].title}
+                  </h3>
                 </div>
 
-                {/* Service Graphic - Now positioned under title but above description */}
-                <div className="mb-8  p-4   flex justify-center">
-                  <img 
-                    src={services[activeTab].image}
-                    alt={`${services[activeTab].title} infrastructure`}
-                    className="w-[250px] h-[250px] object-cover rounded-lg"
-                    style={{ maxWidth: '100%', height: 'auto' }}
-                  />
+                <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed">
+                  {services[activeCategory].services[activeService].content}
+                </p>
+                
+                <div className="mt-12">
+                  <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-8 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
+                    Get This Service
+                    <FiChevronRight className="inline ml-3 transition-transform duration-300 group-hover:translate-x-1" />
+                  </button>
                 </div>
-
-                <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed">{services[activeTab].content}</p>
               </div>
             </div>
           )}
         </div>
       </section>
 
+      {/* Process Section */}
+      <section className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
+        <div className="container mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-16 text-center">Our Process</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="bg-white p-8 rounded-xl border border-[#e1e9f2] shadow-sm text-center">
+              <div className="w-16 h-16 bg-[#f0f6ff] rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl font-bold text-[#245684]">1</span>
+              </div>
+              <h3 className="text-xl font-bold text-[#103d5d] mb-4">Discovery</h3>
+              <p className="text-[#5c6f87]">We learn about your business, goals, and target audience to create a tailored strategy.</p>
+            </div>
+            
+            <div className="bg-white p-8 rounded-xl border border-[#e1e9f2] shadow-sm text-center">
+              <div className="w-16 h-16 bg-[#f0f6ff] rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl font-bold text-[#245684]">2</span>
+              </div>
+              <h3 className="text-xl font-bold text-[#103d5d] mb-4">Design</h3>
+              <p className="text-[#5c6f87]">Our designers create intuitive, visually appealing interfaces that align with your brand.</p>
+            </div>
+            
+            <div className="bg-white p-8 rounded-xl border border-[#e1e9f2] shadow-sm text-center">
+              <div className="w-16 h-16 bg-[#f0f6ff] rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl font-bold text-[#245684]">3</span>
+              </div>
+              <h3 className="text-xl font-bold text-[#103d5d] mb-4">Development</h3>
+              <p className="text-[#5c6f87]">Our developers build your solution using the latest technologies and best practices.</p>
+            </div>
+            
+            <div className="bg-white p-8 rounded-xl border border-[#e1e9f2] shadow-sm text-center">
+              <div className="w-16 h-16 bg-[#f0f6ff] rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl font-bold text-[#245684]">4</span>
+              </div>
+              <h3 className="text-xl font-bold text-[#103d5d] mb-4">Launch & Support</h3>
+              <p className="text-[#5c6f87]">We deploy your solution and provide ongoing support to ensure continued success.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
-<section className="py-24 bg-[#000000] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
-  <div className="container mx-auto text-center">
-    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Ready to Transform Your IT Infrastructure?</h2>
-    <p className="text-xl md:text-2xl text-[#c9d8eb] mb-10 max-w-3xl mx-auto">
-      Our experts are ready to design the perfect solution for your business needs.
-    </p>
-    <div className="flex flex-col sm:flex-row justify-center gap-6">
-      <a href="/contact-Us" className="inline-block"> 
-        <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-12 py-5 rounded-md font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] text-lg">
-          Get Started Today
-        </button>
-      </a>
-      <a href="/contact-Us" className="inline-block"> 
-        <button className="border-2 border-white hover:bg-white hover:text-[#103d5d] text-white px-12 py-5 rounded-md font-medium transition-all duration-300 hover:scale-[1.02] text-lg">
-          Speak to an Expert
-        </button>
-      </a>
-    </div>
-  </div>
-</section>
+      <section className="py-24 bg-[#000000] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
+        <div className="container mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Ready to Transform Your Digital Presence?</h2>
+          <p className="text-xl md:text-2xl text-[#c9d8eb] mb-10 max-w-3xl mx-auto">
+            Our experts are ready to design and develop the perfect solution for your business needs.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-6">
+            <a href="/contact-Us" className="inline-block"> 
+              <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-12 py-5 rounded-md font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] text-lg">
+                Get Started Today
+              </button>
+            </a>
+            <a href="/contact-Us" className="inline-block"> 
+              <button className="border-2 border-white hover:bg-white hover:text-[#103d5d] text-white px-12 py-5 rounded-md font-medium transition-all duration-300 hover:scale-[1.02] text-lg">
+                Speak to an Expert
+              </button>
+            </a>
+          </div>
+        </div>
+      </section>
+      
       <Footer/>
 
       {/* Add CSS animations */}
@@ -426,10 +540,6 @@ const DesignDevPage = () => {
         @keyframes rotate {
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
-        }
-        @keyframes grid-move {
-          0% { background-position: 0 0; }
-          100% { background-position: 50px 50px; }
         }
         @keyframes typewriter {
           from { width: 0; }
@@ -469,9 +579,6 @@ const DesignDevPage = () => {
         .animate-rotate {
           animation: rotate 20s linear infinite;
         }
-        .animate-grid-move {
-          animation: grid-move 20s linear infinite;
-        }
         .animate-typewriter {
           animation: typewriter 2s steps(40) 1s both;
         }
@@ -486,10 +593,6 @@ const DesignDevPage = () => {
         }
         .animate-scroll-indicator {
           animation: scroll-indicator 2s infinite;
-        }
-        .bg-grid-white {
-          background-image: linear-gradient(to right, white 1px, transparent 1px),
-                            linear-gradient(to bottom, white 1px, transparent 1px);
         }
       `}</style>
     </div>
