@@ -4,150 +4,225 @@ import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevr
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
+const FAQS = [
+  {
+    question: "What is included in your Help Desk Support service?",
+    answer: (
+      <>
+        Our Help Desk Support includes a comprehensive ticketing system, guaranteed SLA response times,
+        remote troubleshooting, user support for Level 1 to Level 3 issues, and regular reporting on
+        service metrics. We provide 24/7 monitoring and ensure prompt resolution of all IT-related queries.
+      </>
+    ),
+  },
+  {
+    question: "How quickly do you respond to support tickets?",
+    answer: (
+      <>
+        Our response times are guaranteed based on the severity level of the issue:
+        <ul className="mt-4 space-y-2">
+          <li><span className="font-medium text-[#245684] mr-2">• Critical (P1):</span>Within 15 minutes</li>
+          <li><span className="font-medium text-[#245684] mr-2">• High (P2):</span>Within 1 hour</li>
+          <li><span className="font-medium text-[#245684] mr-2">• Medium (P3):</span>Within 4 hours</li>
+          <li><span className="font-medium text-[#245684] mr-2">• Low (P4):</span>Within 8 business hours</li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    question: "What's the difference between Remote and On-Site IT Support?",
+    answer: (
+      <>
+        <span className="font-medium text-[#245684]">Remote Support</span> is provided virtually
+        for issues that can be resolved without physical presence, such as software troubleshooting,
+        password resets, and configuration changes.<br /><br />
+        <span className="font-medium text-[#245684]">On-Site Support</span> involves our technicians
+        visiting your location to resolve hardware-related issues, network infrastructure problems,
+        or complex installations that require physical intervention.
+      </>
+    ),
+  },
+  {
+    question: "Do you offer after-hours or emergency support?",
+    answer: (
+      <>
+        Yes, we offer 24/7 emergency support for critical issues that impact business operations.
+        Our after-hours support comes with different SLA terms and may involve additional charges
+        based on your service agreement. We recommend discussing your specific after-hours needs
+        with our team to create a tailored support plan.
+      </>
+    ),
+  },
+  {
+    question: "How do you ensure the security of our systems during remote sessions?",
+    answer: (
+      <>
+        We use enterprise-grade, encrypted remote access tools with multi-factor authentication.
+        All our technicians undergo rigorous security training and background checks. Sessions are
+        logged and monitored, and we never access systems without explicit permission. Additionally,
+        we comply with Australian data protection regulations to ensure your information remains secure.
+      </>
+    ),
+  },
+  {
+    question: "Can you support our industry-specific software applications?",
+    answer: (
+      <>
+        In most cases, yes. Our team has experience with a wide range of industry-specific applications
+        across various sectors including healthcare, legal, finance, and retail. During our onboarding process,
+        we conduct a thorough assessment of your software environment and provide training to our technicians
+        on your specific applications. For highly specialized software, we may recommend establishing a relationship
+        with the vendor for deep technical issues while we handle the infrastructure and general support aspects.
+      </>
+    ),
+  },
+];
+
 const ManagedITServicesPage = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [isVisible, setIsVisible] = useState([false, false, false, false]);
   const [isMobile, setIsMobile] = useState(false);
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const headerRef = useRef(null);
+   const [activeFaq, setActiveFaq] = useState(null);
 
   const services = [
     {
       title: "Managed Servers",
       icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "Comprehensive server management including monitoring, maintenance, and optimization to ensure your critical infrastructure operates at peak performance with maximum uptime.",
+      content: "At SysCare IT Solutions, we provide complete Managed Server Services that ensure your infrastructure runs smoothly 24/7. Our team proactively monitors server performance, applies critical updates, and performs scheduled maintenance to keep your systems secure and reliable. With automated backups and disaster recovery planning, we safeguard your business data against potential failures. We handle configuration, optimization, and health checks, so your servers operate at peak performance. Our managed approach minimizes downtime and maximizes efficiency, giving your team uninterrupted access to essential applications and resources. Whether you run physical, virtual, or cloud-based servers, SysCare ensures stability, scalability, and resilience.",
       image: "/images/Managed-Servers.png"
     },
     {
       title: "Managed Endpoints",
       icon: <FiMonitor className="text-[#245684] text-2xl" />,
-      content: "Complete endpoint protection with AV, malware protection, DNS filtering, EDR, and XDR solutions to secure all devices in your network against evolving threats.",
+      content: "SysCare delivers enterprise-grade Managed Endpoint Protection to secure every device across your business. From antivirus and malware defense to DNS filtering and advanced EDR/XDR solutions, we provide multiple layers of protection against evolving cyber threats. Our security team continuously monitors endpoints for suspicious activity, applying rapid remediation when risks are detected. We manage updates, policies, and configurations to keep devices compliant and resilient. By preventing unauthorized access and blocking malicious traffic, we reduce the risk of breaches. With SysCare managing your endpoints, your business enjoys stronger security, improved productivity, and peace of mind knowing every user device is protected.",
       image: "/images/Managed-Endpoints.png"
     },
     {
       title: "Mobile Device Management",
       icon: <FiSmartphone className="text-[#245684] text-2xl" />,
-      content: "Centralized management of mobile devices across your organization, ensuring security policies are enforced and corporate data remains protected on all mobile platforms.",
+      content: "SysCare IT Solutions provides Mobile Device Management (MDM) solution. Seamlessly integrating into your business framework, our MDM services empower you to efficiently manage and secure your mobile devices. With a focus on professional-grade security protocols, SysCare ensures data integrity while facilitating streamlined device configurations and updates. Experience heightened control over your mobile fleet, enhanced security features, and simplified administration with SysCare's MDM solution. Elevate your business mobility seamlessly and securely with our tailored Mobile Device Management services.",
       image: "/images/Mobile-Device-Management.png"
     },
     {
       title: "IT Asset Management",
       icon: <FiBox className="text-[#245684] text-2xl" />,
-      content: "Complete lifecycle management of your IT assets from procurement to retirement, ensuring optimal utilization and cost efficiency across your technology investments.",
+      content: "SysCare IT Solutions provides comprehensive IT Asset Management services to optimize your business operations. Our expert team ensures careful tracking, maintenance, and strategic utilization of your IT assets. From procurement to disposal, we provide a seamless process, ensuring regulatory compliance and cost-effectiveness. Leverage our sophisticated IT Asset Management solutions to enhance efficiency, reduce risks, and streamline your IT infrastructure. Trust SysCare for a professional approach to safeguarding and maximizing the value of your IT investments.",
       image: "/images/IT-Asset-Management.png"
     },
     {
       title: "Domain & DNS Management",
       icon: <FiGlobe className="text-[#245684] text-2xl" />,
-      content: "Professional management of your domain portfolio and DNS infrastructure to ensure reliability, security, and optimal performance of your online presence.",
-      image: "/images/Domain-DNS-Management.png"
+      content: "SysCare IT Solutions offers Domain & DNS Management, providing seamless control and optimization of your digital presence. Our expert team ensures precise domain registration, strategic management, and efficient DNS configurations. With a focus on security and reliability, we safeguard your online identity. Trust SysCare for streamlined domain and DNS services, empowering your business with a solid and secure online foundation. Experience hassle-free management and optimization of your digital assets with our professional and dedicated Domain & DNS Management solutions.",
+      image: "/images/Domain-&-DNS-Management.png"
     },
     {
       title: "Windows OS Patch Management",
       icon: <FiRefreshCw className="text-[#245684] text-2xl" />,
-      content: "Systematic approach to deploying, testing, and installing patches across your Windows environment to maintain security and stability while minimizing disruption.",
-      image: "/images/Windows-Patch-Management.png"
+      content: "SysCare IT Solutions offers top-tier Windows Patch Management for PCs. Our adept team ensures seamless and secure updates for your computer systems, enhancing performance and safeguarding against vulnerabilities. With a focus on efficiency and reliability, SysCare meticulously manages the patching process, minimizing downtime and optimizing your PC infrastructure. Rely on SysCare for a professional approach to Windows Patch Management, ensuring your systems operate at peak performance while maintaining robust security standards.",
+      image: "/images/Windows-OS-Patch-Management.png"
     },
     {
       title: "Application Patch Management",
       icon: <FiCheckSquare className="text-[#245684] text-2xl" />,
-      content: "Comprehensive patching for all business applications to eliminate vulnerabilities and ensure compatibility across your software ecosystem.",
+      content: "SysCare IT Solutions extends patch management beyond operating systems, offering full Application Patch Management for business-critical software. Our team ensures applications remain updated with the latest security fixes and performance enhancements. By addressing vulnerabilities quickly, we reduce the window of exposure to cyberattacks. We maintain patch schedules tailored to your workflows, minimizing disruption to productivity. From productivity tools like Microsoft 365 to industry-specific applications, SysCare manages the patching process end-to-end. This proactive approach ensures your applications remain compliant, efficient, and secure. With SysCare, you can focus on business growth while we handle application integrity.",
       image: "/images/Application-Patch-Management.png"
     },
     {
       title: "Vulnerability Management",
       icon: <FiShield className="text-[#245684] text-2xl" />,
-      content: "Proactive identification, assessment, and remediation of security vulnerabilities across your entire IT infrastructure before they can be exploited.",
+      content: "SysCare provides robust Vulnerability Management Services to help businesses identify, prioritize, and address IT risks. Our team performs continuous vulnerability scans across networks, servers, endpoints, and applications. Detected risks are assessed for severity and impact, allowing us to prioritize remediation efforts effectively. We apply patches, configurations, or compensating controls to reduce exposure before attackers exploit weaknesses. With ongoing monitoring and detailed reporting, we help businesses maintain compliance with security standards. SysCare’s vulnerability management reduces risk, improves resilience, and strengthens your overall cybersecurity posture, ensuring your systems remain secure against evolving threats.",
       image: "/images/Vulnerability-Management.png"
     },
     {
       title: "MS 365 Portal Management",
       icon: <FiCloud className="text-[#245684] text-2xl" />,
-      content: "Expert administration of your Microsoft 365 environment including user management, license allocation, and configuration of productivity tools.",
-      image: "/images/MS365-Portal-Management.png"
+      content: "SysCare IT Solutions offers MS Exchange Portal Management, providing seamless and secure management of your email communication infrastructure. Our dedicated team of experts ensures the efficient operation of Microsoft Exchange, guaranteeing optimal performance, data integrity, and enhanced collaboration within your organization. From user account management to security configurations and troubleshooting, SysCare's professional approach ensures your MS Exchange environment remains robust and reliable. Trust us for comprehensive administration services that streamline your email communication, leaving you free to focus on your core business functions with confidence. Elevate your communication infrastructure with SysCare's expertise in MS Exchange Portal Administration.",
+      image: "/images/MS-365-Portal-Management.png"
     },
     {
       title: "AD/Azure/Entra ID Management",
       icon: <FiLock className="text-[#245684] text-2xl" />,
-      content: "Comprehensive identity and access management across on-premises Active Directory, Azure AD, and Entra ID to ensure secure and efficient access control.",
-      image: "/images/Identity-Management.png"
+      content: "SysCare IT Solutions is providing comprehensive AD/Azure/Entra ID Management services, encompassing User Management and File & Folder Security Management. Our skilled professionals ensure seamless operation of your Active Directory, optimizing user access and enhancing security protocols. With a focus on precision and efficiency, SysCare delivers tailored solutions to safeguard your digital assets. Rely on us for expert administration, robust user management, and file and folder security measures. Elevate your IT infrastructure with SysCare's adept AD/Azure/ Entra ID Management services, offering a secure and streamlined experience for your organization.",
+      image: "/images/AD-Azure-Entra-AD Management.png"
     },
     {
       title: "M365 Security & Compliance",
       icon: <FiShield className="text-[#245684] text-2xl" />,
-      content: "Implementation and management of security policies, data loss prevention, and compliance configurations within your Microsoft 365 environment.",
-      image: "/images/M365-Security-Compliance.png"
+      content: "SysCare IT Solutions delivers unparalleled MS 365 Security & Compliance Management services, ensuring robust protection and regulatory adherence for your business. Our expert team meticulously configures and monitors security protocols, shielding your data from threats. With a focus on compliance, we implement measures that align with industry standards, safeguarding your organization's integrity. Rely on SysCare for a seamless integration of Microsoft 365 security features, providing peace of mind and empowering your business with a resilient shield against cyber threats. Elevate your security posture with our proactive and comprehensive MS 365 Security & Compliance Management solutions.",
+      image: "/images/M365-Security-&-Compliance-Management.png"
     },
     {
       title: "Managed WIFI",
       icon: <FiWifi className="text-[#245684] text-2xl" />,
-      content: "End-to-end management of your wireless infrastructure including design, implementation, monitoring, and optimization for reliable connectivity.",
+      content: "SysCare offers fully Managed Wi-Fi Solutions that provide fast, reliable, and secure wireless connectivity for businesses. We design and implement Wi-Fi networks tailored to your office size, user load, and performance needs. Our team manages configuration, monitoring, and troubleshooting, ensuring maximum uptime and performance. Security features, including encryption and access controls, are enforced to protect against unauthorized access. With proactive monitoring, we identify and resolve issues before users experience disruption. Whether supporting remote workers, office staff, or guest access, SysCare ensures your Wi-Fi network delivers consistent performance and scalability as your business grows. ",
       image: "/images/Managed-WIFI.png"
     },
     {
       title: "Managed Firewall",
       icon: <FiBarChart2 className="text-[#245684] text-2xl" />,
-      content: "Professional configuration, monitoring, and maintenance of your firewall infrastructure to provide robust network security and traffic management.",
-      image: "/images/Managed-Firewall.png"
+      content: "SysCare IT Solutions is safeguarding your digital assets with our cutting-edge Managed On-Premises Firewall service. As a trusted provider, we manage and optimize your firewall infrastructure, ensuring robust protection against cyber threats. Our expert team monitors, updates, and fine-tunes the firewall to align with evolving security needs, providing a proactive defense for your on-premises environment. With SysCare, you can rely on a seamless and secure IT infrastructure, allowing you to focus on your core business functions while we handle the intricacies of firewall management with utmost professionalism and expertise. Your security is our priority.",
+      image: "/images/Managed-Firwall.png"
     },
     {
       title: "Managed VPN Access",
       icon: <FiLock className="text-[#245684] text-2xl" />,
-      content: "Secure remote access solutions with properly configured and maintained VPN infrastructure for your mobile workforce and remote offices.",
-      image: "/images/Managed-VPN.png"
+      content: "SysCare provides secure, reliable Managed VPN Access to enable remote employees to connect to your business systems safely. We configure and manage VPN infrastructure with encryption and authentication protocols, ensuring data is protected in transit. Our solutions support seamless, user-friendly access while maintaining strict security controls. By monitoring VPN usage and applying policy-based access, we reduce risks of unauthorized entry. SysCare’s VPN services empower remote and hybrid teams with secure connectivity to internal resources, improving flexibility while safeguarding sensitive business data.",
+      image: "/images/Managed-VPN-Access.png"
     },
     {
       title: "Managed DR & BCP",
       icon: <FiDatabase className="text-[#245684] text-2xl" />,
-      content: "Comprehensive disaster recovery and business continuity planning and implementation to ensure your business can withstand and quickly recover from disruptions.",
-      image: "/images/Managed-DR-BCP.png"
+      content: "SysCare IT Solutions presents an unparalleled Disaster Recovery (DR) and Business Continuity Planning (BCP) solution, featuring Cloud Backup to our secure Private Cloud. Safeguard your critical data with our state-of-the-art infrastructure, ensuring swift recovery in the face of unforeseen disasters. Our expert team orchestrates seamless Cloud Backup, providing a robust foundation for comprehensive Disaster Recovery strategies. Rely on SysCare's Private Cloud for unmatched data protection, minimizing downtime, and ensuring business continuity with a resilient DR and BCP framework. Elevate your data security with SysCare's cutting-edge solutions tailored to meet your business resilience needs.",
+      image: "/images/Managed-DR-&-BCP.png"
     },
     {
-      title: "SW Licence Management",
+      title: "Software Licence Management",
       icon: <FiCheckSquare className="text-[#245684] text-2xl" />,
-      content: "Optimization of software licensing across your organization to ensure compliance, reduce costs, and maintain appropriate licensing for all applications.",
-      image: "/images/SW-License-Management.png"
+      content: "SysCare IT Solutions provides Software License Management, providing a comprehensive suite of services tailored to meet diverse client needs. Our seasoned professionals navigate the complex landscape of software procurement, ensuring optimal licensing solutions for your business. With a focus on cost efficiency and compliance, SysCare streamlines the acquisition process, offering expert guidance on licensing strategies and negotiations. Trust us to secure the right software licenses, manage compliance effectively, and optimize your software investments for enhanced operational efficiency. SysCare – your partner in strategic and streamlined Software License Management.",
+      image: "/images/SW-Licencing.png"
     },
     {
-      title: "HW Procurement",
+      title: "Hardware Procurement",
       icon: <FiShoppingCart className="text-[#245684] text-2xl" />,
-      content: "End-to-end hardware procurement services leveraging our industry relationships to source quality equipment at competitive prices with full lifecycle support.",
+      content: "SysCare IT Solutions offers Hardware Procurement, providing clients with streamlined, efficient, and cost-effective solutions. Our expert team navigates the complexities of procurement, ensuring the acquisition of top-quality hardware and accessories that align with your specific needs. From sourcing to delivery, SysCare takes pride in vendor management, cost optimization, and timely supply chain coordination. Elevate your IT infrastructure with our professional procurement services, where reliability and excellence converge to meet your hardware requirements seamlessly. Trust SysCare for a strategic and hassle-free approach to computer hardware and accessories procurement.",
       image: "/images/HW-Procurement.png"
     },
     {
       title: "IT Consultancy Services",
       icon: <FiMessageCircle className="text-[#245684] text-2xl" />,
-      content: "Strategic IT guidance and planning services to align your technology investments with business objectives and maximize ROI from your IT infrastructure.",
-      image: "/images/IT-Consultancy.png"
+      content: "SysCare IT Solutions provides a comprehensive suite of services, prominently featuring our distinguished IT Consultancy Services. Backed by a team of seasoned professionals, we offer strategic guidance tailored to your business needs. Our consultancy services encompass a thorough analysis of your IT landscape, ensuring optimal solutions for efficiency and growth. From system optimization to technology adoption, SysCare's expert advice propels your business forward. Rely on us for insightful, proactive, and personalized IT consultancy, empowering your organization to navigate the dynamic tech landscape with confidence and success. Elevate your IT strategy with SysCare's unmatched expertise.",
+      image: "/images/IT-Consultancy-Services-and-Advice.png"
     },
     {
       title: "Centralized Email Signature Management",
       icon: <FiMessageCircle className="text-[#245684] text-2xl" />,
-      content: "Professional management of corporate email signatures across your organization to maintain brand consistency and compliance with regulatory requirements.",
-      image: "/images/Email-Signature-Management.png"
+      content: "SysCare IT Solutions excels in providing a suite of services, including Centralized E-Mail Signature Management. Seamlessly ensuring uniform and professional email signatures across your organization, our solution streamlines brand consistency and compliance. With SysCare's expertise, you can effortlessly manage and update email signatures company-wide, reflecting professionalism and brand integrity. Experience the efficiency and uniformity of Centralized E-Mail Signature Management with SysCare IT Solutions – your trusted partner in optimizing business communications.",
+      image: "/images/Centralise-E-Mail-Signature-Management.png"
     },
     {
       title: "Managed Email Archival",
       icon: <FiArchive className="text-[#245684] text-2xl" />,
-      content: "Secure, compliant email archiving solutions that ensure business continuity, facilitate e-discovery, and meet regulatory retention requirements.",
-      image: "/images/Managed-Email-Archival.png"
+      content: "At SysCare IT Solutions, we provide Managed Email Archival is to secure, store, and manage business emails in compliance with legal and regulatory requirements. Our solution ensures every inbound and outbound email is captured, indexed, and stored securely for easy retrieval when needed. This protects your business against data loss, legal disputes, and compliance violations. With advanced search and retrieval capabilities, employees can quickly access historical emails without burdening IT teams. SysCare’s archival system prevents mailbox overload, enhances storage efficiency, and supports business continuity. We safeguard sensitive communication while keeping your email environment organized, compliant, and secure.",
+      image: "/images/Managed-E-Mail-Archival.png"
     },
     {
       title: "Endpoint Monitoring & Management",
       icon: <FiEye className="text-[#245684] text-2xl" />,
-      content: "24/7 monitoring and management of all endpoints in your environment to ensure performance, security, and compliance with organizational policies.",
-      image: "/images/Endpoint-Monitoring.png"
+      content: "SysCare IT Solutions delivers proactive Endpoint Monitoring Management to keep all your business devices performing at their best. Our team continuously monitors desktops, laptops, and servers for health, performance, and security issues. Automated alerts allow us to detect and resolve problems before they impact your operations. We manage updates, configurations, and security policies to ensure every device stays compliant and protected. Real-time reporting gives you full visibility into your IT environment. With SysCare managing your endpoints, downtime is reduced, productivity is enhanced, and risks are minimized. We ensure your workforce has stable and secure technology to rely on every day.",
+      image: "/images/Endpoint-Monitoring-&-Management.png"
     },
     {
       title: "Device Encryption Management",
       icon: <FiKey className="text-[#245684] text-2xl" />,
-      content: "Comprehensive encryption management across all devices to protect sensitive data and ensure compliance with data protection regulations.",
+      content: "Protecting sensitive business data is a priority, and that’s why SysCare offers robust Device Encryption Management services. We implement advanced encryption protocols across laptops, desktops, and mobile devices to safeguard information against theft or unauthorized access. Whether a device is lost, stolen, or compromised, encryption ensures that data remains unreadable to outsiders. SysCare manages encryption keys, policies, and compliance requirements to simplify administration. Our solutions are designed to balance strong security with seamless usability, ensuring employees can work efficiently without extra barriers. With SysCare managing encryption, your business can meet compliance standards while keeping critical data secure.",
       image: "/images/Device-Encryption-Management.png"
     },
     {
       title: "Managed Spam Protection",
       icon: <FiShield className="text-[#245684] text-2xl" />,
-      content: "Advanced spam and phishing protection solutions to minimize unwanted emails and protect your organization from email-based threats.",
+      content: "At SysCare IT Solutions, we provide advanced Managed Spam Protection to defend your business email environment against unwanted and malicious messages. Our filtering systems block spam, phishing attempts, and malware before they reach user inboxes, reducing the risk of data breaches. By stopping harmful emails at the source, we protect employees from falling victim to scams and prevent downtime caused by email threats. SysCare continuously updates filtering rules and threat intelligence to stay ahead of evolving attacks. With reduced inbox clutter, employees can focus on productivity while enjoying a safer email experience. SysCare ensures your business communication remains clean, efficient, and secure.",
       image: "/images/Managed-Spam-Protection.png"
     }
   ];
@@ -232,6 +307,10 @@ const ManagedITServicesPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Split FAQs for two columns
+  const faqsLeft = FAQS.slice(0, 3);
+  const faqsRight = FAQS.slice(3, 6);
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -314,12 +393,12 @@ const ManagedITServicesPage = () => {
             }}
           >
             <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Comprehensive Managed IT Services</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">SysCare Managed IT Services</h2>
               <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
-                Our end-to-end managed IT services provide organizations with complete technology management, security, and operational efficiency. Tailored to meet diverse business needs, SysCare Managed IT ensures seamless operations, robust security protocols, and optimal resource utilization.
+                At SysCare IT Solutions Pty Ltd, we provide end-to-end Managed IT Services in Melbourne and Sydney, helping businesses stay secure, productive, and future ready. Our proactive approach ensures your IT infrastructure is monitored, maintained, and optimized 24/7, so you can focus on running your business while we take care of the technology.
               </p>
               <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
-                Experience the pinnacle of reliability and performance as our dedicated team of experts manages your entire IT infrastructure. Trust SysCare Managed IT Services for sophisticated, streamlined, and secure technology operations, enabling you to focus on what truly matters – the growth and success of your business.
+                Whether you need cloud managed services in Sydney, IT outsourcing in Melbourne, or nationwide coverage across Australia, our tailored solutions give you enterprise level IT management at a predictable cost. From servers and endpoints to security, networks, and compliance, SysCare Managed IT Solutions Australia is your trusted partner for reliable and scalable IT support.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
                 Request IT Assessment
@@ -360,7 +439,7 @@ const ManagedITServicesPage = () => {
               transition: 'opacity 0.6s ease, transform 0.6s ease'
             }}
           >
-            Our Comprehensive Managed IT Services
+            Our Managed IT Services
           </h2>
           
           {/* Mobile View - Accordion Style */}
@@ -510,6 +589,113 @@ const ManagedITServicesPage = () => {
         </div>
       </section>
       
+      {/* FAQ Section */}
+            <section
+              className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
+              ref={sectionRefs[3]}
+            >
+              <div className="container mx-auto">
+                <h2
+                  className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-16 text-center"
+                  style={{
+                    opacity: isVisible[3] ? 1 : 0,
+                    transform: isVisible[3] ? 'translateY(0)' : 'translateY(20px)',
+                    transition: 'opacity 0.6s ease, transform 0.6s ease'
+                  }}
+                >
+                  Frequently Asked Questions
+                </h2>
+                <div className="max-w-5xl mx-auto">
+                  {/* Responsive: Stack on mobile, 2 cols on md+ */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {[faqsLeft, faqsRight].map((faqCol, colIdx) => (
+                      <div key={colIdx} className="space-y-6">
+                        {faqCol.map((faq, idx) => {
+                          const qIdx = colIdx * 3 + idx + 1;
+                          return (
+                            <div
+                              className={`rounded-xl border bg-white border-[#e1e9f2] shadow transition-all duration-500 group
+                                ${activeFaq === qIdx ? 'ring-2 ring-[#245684] ring-opacity-40 scale-[1.02] shadow-xl' : ''}
+                              `}
+                              key={qIdx}
+                              style={{
+                                opacity: isVisible[3] ? 1 : 0,
+                                transform: isVisible[3]
+                                  ? 'scale(1)'
+                                  : 'scale(0.95)',
+                                transition: `opacity 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1), transform 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1)`
+                              }}
+                            >
+                              <button
+                                onClick={() => setActiveFaq(activeFaq === qIdx ? null : qIdx)}
+                                className={`w-full flex justify-between items-center text-left p-6 rounded-xl transition-all duration-300
+                                  ${activeFaq === qIdx
+                                    ? 'bg-gradient-to-r from-[#103d5d] to-[#245684] text-white shadow'
+                                    : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
+                                  }
+                                `}
+                              >
+                                <h3 className="text-xl font-semibold flex items-center gap-2">
+                                  <span
+                                    className={`inline-block w-3 h-3 rounded-full mr-2 transition-all duration-300
+                                      ${activeFaq === qIdx ? 'bg-[#a3d4ff] scale-110 shadow-lg' : 'bg-[#245684] scale-90'}
+                                    `}
+                                  ></span>
+                                  {faq.question}
+                                </h3>
+                                <FiChevronRight
+                                  className={`text-2xl transition-transform duration-300
+                                    ${activeFaq === qIdx ? 'rotate-90 text-[#a3d4ff]' : ''}
+                                  `}
+                                />
+                              </button>
+                              <div
+                                className={`faq-answer transition-all duration-500 overflow-hidden
+                                  ${activeFaq === qIdx ? 'max-h-[500px] opacity-100 py-4 px-6' : 'max-h-0 opacity-0 py-0 px-6'}
+                                `}
+                                style={{
+                                  background: activeFaq === qIdx
+                                    ? 'linear-gradient(90deg, #f5f9fd 65%, #a3d4ff1a 100%)'
+                                    : undefined
+                                }}
+                              >
+                                {activeFaq === qIdx && (
+                                  <p className="text-[#5c6f87] text-lg leading-relaxed animate-fadein">
+                                    {faq.answer}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </div>
+                  {/* Additional Support CTA */}
+                  <div className="mt-16 text-center">
+                    <p className="text-xl text-[#4a5d72] mb-8">
+                      Still have questions? Our team is ready to help.
+                    </p>
+                    <a href="/contact-Us" className="inline-block">
+                      <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg">
+                        Contact Our Support Team
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {/* Animations for FAQ */}
+              <style jsx>{`
+                @keyframes fadein {
+                  from { opacity: 0; transform: translateY(16px);}
+                  to { opacity: 1; transform: translateY(0);}
+                }
+                .animate-fadein {
+                  animation: fadein 0.6s cubic-bezier(.4,0,.2,1);
+                }
+              `}</style>
+            </section>
+
       <Footer/>
 
       {/* Add CSS animations */}
