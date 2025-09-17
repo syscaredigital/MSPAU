@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import SysCarePrivateCloud from '../assets/website-images/SysCare-Private-Cloud.webp';
-import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight } from 'react-icons/fi';
+
+import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight, FiMonitor, FiSmartphone, FiBox, FiGlobe, FiRefreshCw, FiCheckSquare, FiLock, FiBarChart2, FiShoppingCart, FiMessageCircle, FiArchive, FiEye, FiKey } from 'react-icons/fi';
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
-const ManagedSecurityServicesPage = () => {
+const ManagedITServicesPage = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [isVisible, setIsVisible] = useState([false, false, false, false]);
   const [isMobile, setIsMobile] = useState(false);
@@ -13,40 +13,82 @@ const ManagedSecurityServicesPage = () => {
 
   const services = [
     {
-      title: "Private Cloud",
+      title: "Centralized Event Log Management, Monitoring & Response",
+      icon: <FiServer className="text-[#245684] text-2xl" />,
+      content: "Comprehensive collection, monitoring, and analysis of event logs across your entire infrastructure with automated response protocols to quickly address security incidents.",
+      image: "/images/Event-Log-Management.png"
+    },
+    {
+      title: "Email Security & Protection",
+      icon: <FiShield className="text-[#245684] text-2xl" />,
+      content: "Advanced email security solutions protecting against phishing, malware, spam, and business email compromise with advanced threat detection and response capabilities.",
+      image: "/images/Email-Security.png"
+    },
+    {
+      title: "Endpoint Security & Protection",
+      icon: <FiMonitor className="text-[#245684] text-2xl" />,
+      content: "Comprehensive endpoint protection with next-gen antivirus, EDR, behavioral analysis, and threat hunting to secure all devices against sophisticated attacks.",
+      image: "/images/Endpoint-Security.png"
+    },
+    {
+      title: "Firewall Management & Monitoring (IDS/IPS)",
+      icon: <FiBarChart2 className="text-[#245684] text-2xl" />,
+      content: "Professional management of firewall infrastructure with intrusion detection and prevention systems to monitor and block malicious network activity in real-time.",
+      image: "/images/Firewall-Management.png"
+    },
+    {
+      title: "Managed Cloud Security",
       icon: <FiCloud className="text-[#245684] text-2xl" />,
-      content: "Elevate your business with SysCare Private Cloud, a flagship service by SysCare IT Solutions. Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.",
-      image: "/images/SysCare-Private-Cloud.png"
+      content: "End-to-end cloud security management for public, private, and hybrid cloud environments including configuration auditing, access controls, and data protection.",
+      image: "/images/Cloud-Security.png"
     },
     {
-      title: "Hosted Servers",
-      icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers state-of-the-art Hosted Servers (Virtual Machines), providing clients with a robust and scalable solution tailored to their business needs. Our advanced hosting services guarantee optimal performance, security, and flexibility.",
-      image: "/images/Hosted-Servers.png"
+      title: "Identity & Access Management (IAM)",
+      icon: <FiLock className="text-[#245684] text-2xl" />,
+      content: "Comprehensive identity and access management solutions including multi-factor authentication, single sign-on, and privileged access management.",
+      image: "/images/IAM.png"
     },
     {
-      title: "Dedicated Virtual Servers",
+      title: "Network Security Monitoring",
+      icon: <FiWifi className="text-[#245684] text-2xl" />,
+      content: "Continuous monitoring of network traffic and infrastructure to detect anomalies, suspicious activities, and potential security breaches across your environment.",
+      image: "/images/Network-Security-Monitoring.png"
+    },
+    {
+      title: "Vulnerability Management",
+      icon: <FiShield className="text-[#245684] text-2xl" />,
+      content: "Proactive identification, assessment, prioritization, and remediation of security vulnerabilities across your entire IT infrastructure before they can be exploited.",
+      image: "/images/Vulnerability-Management.png"
+    },
+    {
+      title: "Security Awareness Training & Assessment",
+      icon: <FiMessageCircle className="text-[#245684] text-2xl" />,
+      content: "Comprehensive security awareness programs including training, phishing simulations, and assessment to build a human firewall within your organization.",
+      image: "/images/Security-Training.png"
+    },
+    {
+      title: "Threat Simulation",
       icon: <FiCpu className="text-[#245684] text-2xl" />,
-      content: "Elevate your digital capabilities with SysCare IT Solutions' Dedicated Virtual Servers. Tailored for optimal performance and reliability, our state-of-the-art infrastructure ensures seamless operations for your business.",
-      image: "/images/Dedicated-Virtual-Servers.png"
+      content: "Advanced threat simulation exercises including red teaming, purple teaming, and penetration testing to identify and address security gaps in your defenses.",
+      image: "/images/Threat-Simulation.png"
     },
     {
-      title: "Virtual Desktops",
-      icon: <FiCode className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions offers spectrum of services, including Virtual Desktops (VDI) and Remote Desktop Services (RDS). Elevate your business efficiency with our cutting-edge virtualization solutions.",
-      image: "/images/Virtual-Desktops.png"
+      title: "Security Monitoring and Incident Management (SIEM)",
+      icon: <FiEye className="text-[#245684] text-2xl" />,
+      content: "24/7 security information and event management with correlation, analysis, and incident response capabilities to detect and respond to threats in real-time.",
+      image: "/images/SIEM.png"
     },
     {
-      title: "Rack Space Hire",
+      title: "Managed 24/7 SOC",
       icon: <FiDatabase className="text-[#245684] text-2xl" />,
-      content: "Elevate your business with SysCare IT Solutions' Rack Space Hire (Co-location) service. Our premium co-location offering provides a secure and efficient environment for your servers and equipment.",
-      image: "/images/Rack-Space-Hire.png"
+      content: "Fully managed Security Operations Center providing round-the-clock monitoring, threat detection, and incident response services with expert security analysts.",
+      image: "/images/SOC.png"
     },
     {
-      title: "Leased Servers",
+      title: "Managed 24/7 NOC",
       icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers excellence in IT with its Leased Dedicated Physical Servers service. Elevate your business performance and security with our dedicated servers, exclusively assigned to meet your unique requirements.",
-      image: "/images/Leased-Servers.png"
+      content: "Network Operations Center services providing continuous monitoring, maintenance, and optimization of your network infrastructure to ensure maximum uptime.",
+      image: "/images/NOC.png"
     }
   ];
 
@@ -165,7 +207,7 @@ const ManagedSecurityServicesPage = () => {
         >
           <div className="mb-8 inline-block overflow-hidden">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-typewriter whitespace-nowrap overflow-hidden border-r-4 border-r-white">
-              Managed <span className="text-[#a3d4ff]">Security Services</span>
+              Managed <span className="text-[#a3d4ff]">IT Services</span>
             </h1>
           </div>
          
@@ -177,15 +219,15 @@ const ManagedSecurityServicesPage = () => {
          
           {/* Animated CTA button */}
           <div className="mt-12 animate-bounce-slow">
-  <a href="/syscare-services" className="inline-block"> {/* Or external URL like "https://example.com/services" */}
-    <button className="bg-[#a3d4ff] text-[#103d5d] px-8 py-4 rounded-full font-bold hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto">
-      Explore Our Services
-      <svg className="w-5 h-5 ml-2 animate-bounce-horizontal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-      </svg>
-    </button>
-  </a>
-</div>
+            <a href="/syscare-services" className="inline-block">
+              <button className="bg-[#a3d4ff] text-[#103d5d] px-8 py-4 rounded-full font-bold hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto">
+                Explore Our Services
+                <svg className="w-5 h-5 ml-2 animate-bounce-horizontal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </button>
+            </a>
+          </div>
          
           {/* Scroll indicator */}
           <div className="mt-16 animate-bounce">
@@ -197,7 +239,7 @@ const ManagedSecurityServicesPage = () => {
         </div>
       </header>
 
-      {/* Private Cloud Focus Section */}
+      {/* Managed IT Focus Section */}
       <section 
         className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
         ref={sectionRefs[1]}
@@ -212,15 +254,15 @@ const ManagedSecurityServicesPage = () => {
             }}
           >
             <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">SysCare Private Cloud</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Comprehensive Managed IT Services</h2>
               <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
-                Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.
+                Our end-to-end managed IT services provide organizations with complete technology management, security, and operational efficiency. Tailored to meet diverse business needs, SysCare Managed IT ensures seamless operations, robust security protocols, and optimal resource utilization.
               </p>
               <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
-                Experience the pinnacle of reliability and performance as our dedicated team of experts customizes solutions to optimize your operations. Trust SysCare Private Cloud for a sophisticated, streamlined, and secure IT infrastructure, enabling you to focus on what truly matters – the growth and success of your business.
+                Experience the pinnacle of reliability and performance as our dedicated team of experts manages your entire IT infrastructure. Trust SysCare Managed IT Services for sophisticated, streamlined, and secure technology operations, enabling you to focus on what truly matters – the growth and success of your business.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
-                Request Private Cloud Demo
+                Request IT Assessment
                 <FiChevronRight className="inline ml-3 transition-transform duration-300 group-hover:translateX-2" />
               </button>
             </div>
@@ -234,9 +276,9 @@ const ManagedSecurityServicesPage = () => {
             >
               <div className="bg-white p-6 rounded-xl border border-[#e1e9f2] shadow-sm hover:shadow-md transition-shadow duration-500">
                 <img 
-                  src={SysCarePrivateCloud}
+                  
                   className="w-full h-auto rounded-lg transition-transform duration-500 hover:scale-[1.02]"
-                  alt="SysCare Private Cloud Infrastructure"
+                  alt="SysCare Managed IT Services"
                 />
               </div>
             </div>
@@ -258,7 +300,7 @@ const ManagedSecurityServicesPage = () => {
               transition: 'opacity 0.6s ease, transform 0.6s ease'
             }}
           >
-            Our Cloud & Infrastructure Services
+            Our Comprehensive Managed IT Services
           </h2>
           
           {/* Mobile View - Accordion Style */}
@@ -324,7 +366,7 @@ const ManagedSecurityServicesPage = () => {
             >
               {/* Vertical Tabs */}
               <div className="lg:w-1/3">
-                <div className="space-y-4">
+                <div className="space-y-4 max-h-[600px] overflow-y-auto pr-4">
                   {services.map((service, index) => (
                     <button
                       key={index}
@@ -387,26 +429,27 @@ const ManagedSecurityServicesPage = () => {
       </section>
 
       {/* CTA Section */}
-<section className="py-24 bg-[#000000] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
-  <div className="container mx-auto text-center">
-    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Ready to Transform Your IT Infrastructure?</h2>
-    <p className="text-xl md:text-2xl text-[#c9d8eb] mb-10 max-w-3xl mx-auto">
-      Our experts are ready to design the perfect solution for your business needs.
-    </p>
-    <div className="flex flex-col sm:flex-row justify-center gap-6">
-      <a href="/contact-Us" className="inline-block"> 
-        <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-12 py-5 rounded-md font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] text-lg">
-          Get Started Today
-        </button>
-      </a>
-      <a href="/contact-Us" className="inline-block"> 
-        <button className="border-2 border-white hover:bg-white hover:text-[#103d5d] text-white px-12 py-5 rounded-md font-medium transition-all duration-300 hover:scale-[1.02] text-lg">
-          Speak to an Expert
-        </button>
-      </a>
-    </div>
-  </div>
-</section>
+      <section className="py-24 bg-[#000000] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
+        <div className="container mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Ready to Transform Your IT Management?</h2>
+          <p className="text-xl md:text-2xl text-[#c9d8eb] mb-10 max-w-3xl mx-auto">
+            Our experts are ready to design the perfect managed IT solution for your business needs.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-6">
+            <a href="/contact-Us" className="inline-block"> 
+              <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-12 py-5 rounded-md font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] text-lg">
+                Get Started Today
+              </button>
+            </a>
+            <a href="/contact-Us" className="inline-block"> 
+              <button className="border-2 border-white hover:bg-white hover:text-[#103d5d] text-white px-12 py-5 rounded-md font-medium transition-all duration-300 hover:scale-[1.02] text-lg">
+                Speak to an Expert
+              </button>
+            </a>
+          </div>
+        </div>
+      </section>
+      
       <Footer/>
 
       {/* Add CSS animations */}
@@ -496,4 +539,4 @@ const ManagedSecurityServicesPage = () => {
   );
 };
 
-export default ManagedSecurityServicesPage;
+export default ManagedITServicesPage;

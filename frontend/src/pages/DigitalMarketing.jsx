@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SysCarePrivateCloud from '../assets/website-images/SysCare-Private-Cloud.webp';
-import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight } from 'react-icons/fi';
+import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight, FiImage, FiVideo, FiTrendingUp, FiLayers, FiPieChart } from 'react-icons/fi';
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
@@ -13,40 +13,214 @@ const DigitalMarketingPage = () => {
 
   const services = [
     {
-      title: "Private Cloud",
-      icon: <FiCloud className="text-[#245684] text-2xl" />,
-      content: "Elevate your business with SysCare Private Cloud, a flagship service by SysCare IT Solutions. Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.",
-      image: "/images/SysCare-Private-Cloud.png"
+      title: "Graphic Design",
+      icon: <FiImage className="text-[#245684] text-2xl" />,
+      content: "Professional graphic design services that create visually compelling materials to represent your brand across all platforms and mediums.",
+      image: "/images/Graphic-Design.png"
     },
     {
-      title: "Hosted Servers",
-      icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers state-of-the-art Hosted Servers (Virtual Machines), providing clients with a robust and scalable solution tailored to their business needs. Our advanced hosting services guarantee optimal performance, security, and flexibility.",
-      image: "/images/Hosted-Servers.png"
+      title: "Logo Design",
+      icon: <FiImage className="text-[#245684] text-2xl" />,
+      content: "Custom logo design services that create memorable, distinctive brand identities that communicate your company's values and vision.",
+      image: "/images/Logo-Design.png"
     },
     {
-      title: "Dedicated Virtual Servers",
-      icon: <FiCpu className="text-[#245684] text-2xl" />,
-      content: "Elevate your digital capabilities with SysCare IT Solutions' Dedicated Virtual Servers. Tailored for optimal performance and reliability, our state-of-the-art infrastructure ensures seamless operations for your business.",
-      image: "/images/Dedicated-Virtual-Servers.png"
+      title: "Business Cards & Stationery",
+      icon: <FiImage className="text-[#245684] text-2xl" />,
+      content: "Professional business card and stationery design that creates a cohesive brand identity across all your printed materials.",
+      image: "/images/Business-Cards-Stationery.png"
     },
     {
-      title: "Virtual Desktops",
-      icon: <FiCode className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions offers spectrum of services, including Virtual Desktops (VDI) and Remote Desktop Services (RDS). Elevate your business efficiency with our cutting-edge virtualization solutions.",
-      image: "/images/Virtual-Desktops.png"
+      title: "Social Media Graphics",
+      icon: <FiImage className="text-[#245684] text-2xl" />,
+      content: "Eye-catching social media graphics designed to increase engagement, followers, and brand recognition across all platforms.",
+      image: "/images/Social-Media-Graphics.png"
     },
     {
-      title: "Rack Space Hire",
-      icon: <FiDatabase className="text-[#245684] text-2xl" />,
-      content: "Elevate your business with SysCare IT Solutions' Rack Space Hire (Co-location) service. Our premium co-location offering provides a secure and efficient environment for your servers and equipment.",
-      image: "/images/Rack-Space-Hire.png"
+      title: "Flyers, Posters & Brochures",
+      icon: <FiImage className="text-[#245684] text-2xl" />,
+      content: "Professional print design services for flyers, posters, and brochures that effectively communicate your message and drive action.",
+      image: "/images/Flyers-Posters-Brochures.png"
     },
     {
-      title: "Leased Servers",
-      icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers excellence in IT with its Leased Dedicated Physical Servers service. Elevate your business performance and security with our dedicated servers, exclusively assigned to meet your unique requirements.",
-      image: "/images/Leased-Servers.png"
+      title: "Presentations & Infographics",
+      icon: <FiImage className="text-[#245684] text-2xl" />,
+      content: "Engaging presentations and informative infographics that transform complex information into visually appealing, easy-to-understand content.",
+      image: "/images/Presentations-Infographics.png"
+    },
+    {
+      title: "Web Graphics",
+      icon: <FiImage className="text-[#245684] text-2xl" />,
+      content: "Custom web graphics, banners, and elements designed to enhance your website's visual appeal and user experience.",
+      image: "/images/Web-Graphics.png"
+    },
+    {
+      title: "Digital Branding",
+      icon: <FiImage className="text-[#245684] text-2xl" />,
+      content: "Comprehensive digital branding services that create a consistent, recognizable brand identity across all digital platforms.",
+      image: "/images/Digital-Branding.png"
+    },
+    {
+      title: "Product Mockups",
+      icon: <FiImage className="text-[#245684] text-2xl" />,
+      content: "Professional product mockup services that showcase your products in realistic settings to enhance marketing materials and presentations.",
+      image: "/images/Product-Mockups.png"
+    },
+    {
+      title: "Video Editing",
+      icon: <FiVideo className="text-[#245684] text-2xl" />,
+      content: "Professional video editing services that transform raw footage into polished, engaging content for various platforms and purposes.",
+      image: "/images/Video-Editing.png"
+    },
+    {
+      title: "YouTube Video Editing",
+      icon: <FiVideo className="text-[#245684] text-2xl" />,
+      content: "Specialized YouTube video editing services optimized for audience retention, engagement, and platform-specific best practices.",
+      image: "/images/YouTube-Video-Editing.png"
+    },
+    {
+      title: "Social Media Shorts",
+      icon: <FiVideo className="text-[#245684] text-2xl" />,
+      content: "Short-form video content creation and editing optimized for social media platforms like Instagram Reels, TikTok, and YouTube Shorts.",
+      image: "/images/Social-Media-Shorts.png"
+    },
+    {
+      title: "Intro & Outro Creation",
+      icon: <FiVideo className="text-[#245684] text-2xl" />,
+      content: "Custom intro and outro creation for videos that establish brand consistency and professional presentation across all content.",
+      image: "/images/Intro-Outro-Creation.png"
+    },
+    {
+      title: "Corporate Videos",
+      icon: <FiVideo className="text-[#245684] text-2xl" />,
+      content: "Professional corporate video production and editing for training, presentations, company announcements, and brand storytelling.",
+      image: "/images/Corporate-Videos.png"
+    },
+    {
+      title: "Documentary Edits",
+      icon: <FiVideo className="text-[#245684] text-2xl" />,
+      content: "Documentary-style video editing that tells compelling stories through careful sequencing, pacing, and narrative development.",
+      image: "/images/Documentary-Edits.png"
+    },
+    {
+      title: "Product Promo Videos",
+      icon: <FiVideo className="text-[#245684] text-2xl" />,
+      content: "Engaging product promotion videos that highlight features, benefits, and use cases to drive interest and conversions.",
+      image: "/images/Product-Promo-Videos.png"
+    },
+    {
+      title: "Subtitles & Captions",
+      icon: <FiVideo className="text-[#245684] text-2xl" />,
+      content: "Professional subtitle and captioning services that improve accessibility, engagement, and SEO for your video content.",
+      image: "/images/Subtitles-Captions.png"
+    },
+    {
+      title: "Interview Editing",
+      icon: <FiVideo className="text-[#245684] text-2xl" />,
+      content: "Expert interview editing that highlights key moments, maintains narrative flow, and creates engaging content from conversation footage.",
+      image: "/images/Interview-Editing.png"
+    },
+    {
+      title: "Digital Marketing",
+      icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
+      content: "Comprehensive digital marketing strategies that drive growth, engagement, and conversions across multiple online channels.",
+      image: "/images/Digital-Marketing.png"
+    },
+    {
+      title: "Search Ads",
+      icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
+      content: "Strategic search advertising campaigns on Google and other search engines that target users actively looking for your products or services.",
+      image: "/images/Search-Ads.png"
+    },
+    {
+      title: "Display Ads",
+      icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
+      content: "Visual display advertising campaigns across websites and platforms to increase brand awareness and reach potential customers.",
+      image: "/images/Display-Ads.png"
+    },
+    {
+      title: "YouTube Ads",
+      icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
+      content: "Targeted YouTube advertising campaigns that leverage video content to engage audiences and drive conversions.",
+      image: "/images/YouTube-Ads.png"
+    },
+    {
+      title: "Meta Ads",
+      icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
+      content: "Strategic advertising on Meta platforms (Facebook, Instagram) that targets specific demographics and interests for maximum ROI.",
+      image: "/images/Meta-Ads.png"
+    },
+    {
+      title: "Prospecting & Retargeting Ads",
+      icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
+      content: "Dual-strategy advertising that both reaches new potential customers and re-engages previous visitors to maximize conversion opportunities.",
+      image: "/images/Prospecting-Retargeting-Ads.png"
+    },
+    {
+      title: "Shopping Ads",
+      icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
+      content: "Product-focused shopping advertisements that showcase your inventory directly to potential customers searching for similar items.",
+      image: "/images/Shopping-Ads.png"
+    },
+    {
+      title: "Awareness Campaigns",
+      icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
+      content: "Brand awareness campaigns designed to increase visibility, recognition, and top-of-mind presence among your target audience.",
+      image: "/images/Awareness-Campaigns.png"
+    },
+    {
+      title: "Keyword Research for Social Media",
+      icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
+      content: "Comprehensive keyword research specifically for social media platforms to optimize content, hashtags, and discoverability.",
+      image: "/images/Keyword-Research-Social-Media.png"
+    },
+    {
+      title: "Social Media Management",
+      icon: <FiLayers className="text-[#245684] text-2xl" />,
+      content: "Complete social media management services that handle content creation, posting, engagement, and strategy across all platforms.",
+      image: "/images/Social-Media-Management.png"
+    },
+    {
+      title: "Account Setup & Profile Optimization",
+      icon: <FiLayers className="text-[#245684] text-2xl" />,
+      content: "Professional social media account setup and optimization to ensure your profiles are complete, branded, and optimized for discovery.",
+      image: "/images/Account-Setup-Profile-Optimization.png"
+    },
+    {
+      title: "Content Creation & Optimization for Social Media",
+      icon: <FiLayers className="text-[#245684] text-2xl" />,
+      content: "Strategic social media content creation and optimization designed to increase engagement, followers, and platform algorithm favorability.",
+      image: "/images/Content-Creation-Optimization.png"
+    },
+    {
+      title: "Content Scheduling",
+      icon: <FiLayers className="text-[#245684] text-2xl" />,
+      content: "Strategic content scheduling services that ensure consistent posting at optimal times for maximum reach and engagement.",
+      image: "/images/Content-Scheduling.png"
+    },
+    {
+      title: "Research & Trend Analysis",
+      icon: <FiLayers className="text-[#245684] text-2xl" />,
+      content: "Comprehensive research and trend analysis to keep your social media strategy current, relevant, and ahead of competitors.",
+      image: "/images/Research-Trend-Analysis.png"
+    },
+    {
+      title: "Analytics & Reporting",
+      icon: <FiPieChart className="text-[#245684] text-2xl" />,
+      content: "Detailed analytics and performance reporting that provides insights into campaign effectiveness and guides future strategy decisions.",
+      image: "/images/Analytics-Reporting.png"
+    },
+    {
+      title: "Paid Campaigns",
+      icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
+      content: "Strategic paid social media campaigns that target specific audiences, objectives, and conversion goals with measurable results.",
+      image: "/images/Paid-Campaigns.png"
+    },
+    {
+      title: "Visual Branding",
+      icon: <FiImage className="text-[#245684] text-2xl" />,
+      content: "Comprehensive visual branding services that create a cohesive, recognizable visual identity across all social media platforms and content.",
+      image: "/images/Visual-Branding.png"
     }
   ];
 
@@ -171,7 +345,7 @@ const DigitalMarketingPage = () => {
          
           <div className="overflow-hidden">
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate-slide-in-up opacity-0">
-              Comprehensive IT solutions to drive your business forward
+              Comprehensive digital marketing solutions to drive your business forward
             </p>
           </div>
          
@@ -197,7 +371,7 @@ const DigitalMarketingPage = () => {
         </div>
       </header>
 
-      {/* Private Cloud Focus Section */}
+      {/* Focus Section */}
       <section 
         className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
         ref={sectionRefs[1]}
@@ -212,15 +386,15 @@ const DigitalMarketingPage = () => {
             }}
           >
             <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">SysCare Private Cloud</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Digital Marketing Solutions</h2>
               <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
-                Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.
+                Our comprehensive digital marketing services empower businesses with targeted strategies that drive growth, engagement, and conversions. From graphic design to social media management, we create cohesive campaigns that deliver measurable results.
               </p>
               <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
-                Experience the pinnacle of reliability and performance as our dedicated team of experts customizes solutions to optimize your operations. Trust SysCare Private Cloud for a sophisticated, streamlined, and secure IT infrastructure, enabling you to focus on what truly matters – the growth and success of your business.
+                Experience the power of integrated digital marketing as our dedicated team of experts develops customized solutions to optimize your online presence. Trust our digital marketing services for sophisticated, data-driven strategies that enable you to focus on what truly matters – the growth and success of your business.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
-                Request Private Cloud Demo
+                Request Marketing Consultation
                 <FiChevronRight className="inline ml-3 transition-transform duration-300 group-hover:translateX-2" />
               </button>
             </div>
@@ -236,7 +410,7 @@ const DigitalMarketingPage = () => {
                 <img 
                   src={SysCarePrivateCloud}
                   className="w-full h-auto rounded-lg transition-transform duration-500 hover:scale-[1.02]"
-                  alt="SysCare Private Cloud Infrastructure"
+                  alt="Digital Marketing Solutions"
                 />
               </div>
             </div>
@@ -258,7 +432,7 @@ const DigitalMarketingPage = () => {
               transition: 'opacity 0.6s ease, transform 0.6s ease'
             }}
           >
-            Our Cloud & Infrastructure Services
+            Our Digital Marketing Services
           </h2>
           
           {/* Mobile View - Accordion Style */}
@@ -301,7 +475,7 @@ const DigitalMarketingPage = () => {
                       <div className="mb-6 bg-white p-4 rounded-lg border border-[#e1e9f2] shadow-sm flex justify-center">
                         <img 
                           src={service.image}
-                          alt={`${service.title} infrastructure`}
+                          alt={`${service.title} service`}
                           className="w-[500px] h-[500px] object-cover rounded-lg"
                           style={{ maxWidth: '100%', height: 'auto' }}
                         />
@@ -324,7 +498,7 @@ const DigitalMarketingPage = () => {
             >
               {/* Vertical Tabs */}
               <div className="lg:w-1/3">
-                <div className="space-y-4">
+                <div className="space-y-4 max-h-[600px] overflow-y-auto pr-4">
                   {services.map((service, index) => (
                     <button
                       key={index}
@@ -373,7 +547,7 @@ const DigitalMarketingPage = () => {
                 <div className="mb-8  p-4   flex justify-center">
                   <img 
                     src={services[activeTab].image}
-                    alt={`${services[activeTab].title} infrastructure`}
+                    alt={`${services[activeTab].title} service`}
                     className="w-[250px] h-[250px] object-cover rounded-lg"
                     style={{ maxWidth: '100%', height: 'auto' }}
                   />
@@ -389,9 +563,9 @@ const DigitalMarketingPage = () => {
       {/* CTA Section */}
 <section className="py-24 bg-[#000000] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
   <div className="container mx-auto text-center">
-    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Ready to Transform Your IT Infrastructure?</h2>
+    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Ready to Transform Your Digital Presence?</h2>
     <p className="text-xl md:text-2xl text-[#c9d8eb] mb-10 max-w-3xl mx-auto">
-      Our experts are ready to design the perfect solution for your business needs.
+      Our experts are ready to design the perfect digital marketing solution for your business needs.
     </p>
     <div className="flex flex-col sm:flex-row justify-center gap-6">
       <a href="/contact-Us" className="inline-block"> 
