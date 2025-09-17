@@ -6,73 +6,50 @@ import Footer from '../components/footer';
 
 const FAQS = [
   {
-    question: "What is included in your Help Desk Support service?",
+    question: "1. What are Managed IT Services, and how can they benefit my business?",
     answer: (
       <>
-        Our Help Desk Support includes a comprehensive ticketing system, guaranteed SLA response times,
-        remote troubleshooting, user support for Level 1 to Level 3 issues, and regular reporting on
-        service metrics. We provide 24/7 monitoring and ensure prompt resolution of all IT-related queries.
+         Managed IT Services from SysCare IT Solutions cover the full spectrum of IT support, monitoring, and management. From servers and endpoints to firewalls, Microsoft 365, and security compliance, we proactively handle your IT environment so your team can focus on core business goals. This reduces downtime, enhances security, and optimizes performance, all while lowering long-term IT costs.
       </>
     ),
   },
   {
-    question: "How quickly do you respond to support tickets?",
+    question: "2. How does SysCare IT Solutions ensure the security of our systems?",
     answer: (
       <>
-        Our response times are guaranteed based on the severity level of the issue:
-        <ul className="mt-4 space-y-2">
-          <li><span className="font-medium text-[#245684] mr-2">• Critical (P1):</span>Within 15 minutes</li>
-          <li><span className="font-medium text-[#245684] mr-2">• High (P2):</span>Within 1 hour</li>
-          <li><span className="font-medium text-[#245684] mr-2">• Medium (P3):</span>Within 4 hours</li>
-          <li><span className="font-medium text-[#245684] mr-2">• Low (P4):</span>Within 8 business hours</li>
-        </ul>
+        SysCare implements multi-layered protection across your IT environment. This includes Managed Endpoints (AV/Malware/DNS/EDR/XDR), Device Encryption, Managed Firewalls, VPN Access, and Spam Protection. We also manage patching, vulnerabilities, and Microsoft 365 security settings to keep your systems aligned with industry standards. Our proactive approach ensures your business stays ahead of evolving cyber threats.
       </>
     ),
   },
   {
-    question: "What's the difference between Remote and On-Site IT Support?",
+    question: "3. Do you provide Managed IT Services for small and medium-sized businesses in Melbourne and Sydney?",
     answer: (
       <>
-        <span className="font-medium text-[#245684]">Remote Support</span> is provided virtually
-        for issues that can be resolved without physical presence, such as software troubleshooting,
-        password resets, and configuration changes.<br /><br />
-        <span className="font-medium text-[#245684]">On-Site Support</span> involves our technicians
-        visiting your location to resolve hardware-related issues, network infrastructure problems,
-        or complex installations that require physical intervention.
+         Absolutely. SysCare specializes in delivering Managed IT Services for SMBs in Melbourne and Sydney. Our solutions are tailored to fit your scale and budget, ensuring you get enterprise-level IT support without the overhead of a large internal IT team. We help small and growing businesses stay secure, compliant, and competitive in today’s fast-moving digital environment.
       </>
     ),
   },
   {
-    question: "Do you offer after-hours or emergency support?",
+    question: "4. How does SysCare handle patch management for Windows and business applications?",
     answer: (
       <>
-        Yes, we offer 24/7 emergency support for critical issues that impact business operations.
-        Our after-hours support comes with different SLA terms and may involve additional charges
-        based on your service agreement. We recommend discussing your specific after-hours needs
-        with our team to create a tailored support plan.
+         SysCare manages both Windows OS Patch Management and Application Patch Management to keep systems secure and up to date. We apply patches strategically to minimize disruption, ensuring vulnerabilities are closed before attackers can exploit them. Our automated processes reduce downtime, improve compliance, and keep your IT environment stable and resilient.
       </>
     ),
   },
   {
-    question: "How do you ensure the security of our systems during remote sessions?",
+    question: "5. Can SysCare help with IT compliance and regulatory requirements?",
     answer: (
       <>
-        We use enterprise-grade, encrypted remote access tools with multi-factor authentication.
-        All our technicians undergo rigorous security training and background checks. Sessions are
-        logged and monitored, and we never access systems without explicit permission. Additionally,
-        we comply with Australian data protection regulations to ensure your information remains secure.
+         Yes. Our services include M365 Security & Compliance Management, Device Encryption, and Email Archival, all aligned with industry regulations. Whether your business needs to comply with standards like ISO, GDPR, or local data protection laws, SysCare ensures your IT systems meet security and compliance obligations, reducing legal and operational risks.
       </>
     ),
   },
   {
-    question: "Can you support our industry-specific software applications?",
+    question: "6. What makes SysCare’s Managed IT Services different from break-fix IT support?",
     answer: (
       <>
-        In most cases, yes. Our team has experience with a wide range of industry-specific applications
-        across various sectors including healthcare, legal, finance, and retail. During our onboarding process,
-        we conduct a thorough assessment of your software environment and provide training to our technicians
-        on your specific applications. For highly specialized software, we may recommend establishing a relationship
-        with the vendor for deep technical issues while we handle the infrastructure and general support aspects.
+         Unlike break-fix IT models where support is reactive, SysCare’s Managed IT Services are proactive. We continuously monitor, patch, and secure your systems to prevent problems before they occur. Services like Endpoint Monitoring, DR & BCP (Disaster Recovery & Business Continuity Planning), and Asset Management ensure stability and resilience. This proactive approach saves costs, reduces downtime, and delivers predictable IT performance.
       </>
     ),
   },
