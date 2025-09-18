@@ -449,9 +449,12 @@ const CyberSecurityConsultancyServicesPage = () => {
 
                 {/* Service Graphic - Now positioned under title but above description */}
                 <div className="mb-8 p-4 flex justify-center">
-                  <div className="w-48 h-48 bg-gradient-to-br from-[#103d5d] to-[#245684] rounded-lg flex items-center justify-center">
-                    {services[activeTab].icon}
-                  </div>
+                  <img 
+                    src={services[activeTab].image}
+                    alt={`${services[activeTab].title} infrastructure`}
+                    className="w-[150px] h-[150px] object-cover rounded-lg"
+                    style={{ maxWidth: '100%', height: 'auto' }}
+                  />
                 </div>
 
                 <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed">{services[activeTab].content}</p>
