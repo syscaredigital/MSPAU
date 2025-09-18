@@ -4,48 +4,89 @@ import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevr
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
+const FAQS = [
+  {
+    question: "1. What is a Cloud Security Posture Assessment (CSPA) and why does my business need it?",
+    answer: "A Cloud Security Posture Assessment evaluates the security of your cloud infrastructure, identifying misconfigurations, vulnerabilities, and compliance gaps. SysCare IT Solutions provides CSPA to ensure your cloud environment is secure, compliant, and resilient against cyber threats, helping businesses in Melbourne and Sydney safeguard critical data.",
+  },
+  {
+    question: "2. How does Vulnerability Scanning & Penetration Testing (VAPT) protect my business?",
+    answer: "VAPT identifies weaknesses in your IT systems and tests them against real-world cyberattack methods. At SysCare, our consultants perform detailed scanning and penetration testing to detect risks before attackers do, providing actionable insights to strengthen your defenses.",
+  },
+  {
+    question: "3. Why are Security Analytics & Reporting important for MS365 and Azure users?",
+    answer: "MS365 and Azure are widely used, but they're also frequent cyber targets. SysCare offers advanced Security Analytics & Reporting to detect unusual activity, monitor compliance, and provide detailed reports that help businesses make informed security decisions while staying ahead of potential threats.",
+  },
+  {
+    question: "4. Can SysCare help us develop Security Policies and Procedures?",
+    answer: "Yes. Our cybersecurity consultants specialize in creating tailored Security Policies and Procedures that align with industry standards and regulations. We ensure your employees follow clear, consistent, and effective security practices that protect your business against evolving cyber risks.",
+  },
+  {
+    question: "5. How does Cyber Incident Response & Emergency Support work?",
+    answer: "If your business faces a cyberattack, SysCare's Incident Response team provides rapid support to contain, investigate, and remediate the incident. We minimize downtime, reduce damage, and restore operations quickly, ensuring your business continuity in the face of cyber threats.",
+  },
+  {
+    question: "6. Do you offer ongoing monitoring after a cybersecurity audit or assessment?",
+    answer: "Yes. Cybersecurity is not a one-time task. After completing audits or posture assessments, SysCare offers continuous monitoring, reporting, and managed services to keep your systems secure as new threats emerge.",
+  },
+];
+
 const CyberSecurityConsultancyServicesPage = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [isVisible, setIsVisible] = useState([false, false, false, false]);
   const [isMobile, setIsMobile] = useState(false);
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const headerRef = useRef(null);
+  const [activeFaq, setActiveFaq] = useState(null);
+  
 
   const services = [
     {
       title: "Cloud Security Posture Assessment",
       icon: <FiCloud className="text-[#245684] text-2xl" />,
-      content: "Elevate your business with SysCare Private Cloud, a flagship service by SysCare IT Solutions. Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.",
-      image: "/images/SysCare-Private-Cloud.png"
+      content: "Elevate your cloud security with SysCare IT Solutions' Cloud Security Posture Assessment (CSPA). Our comprehensive service meticulously evaluates your cloud environment, identifying vulnerabilities and ensuring compliance with industry standards. Our seasoned experts conduct a thorough analysis, providing insights to fortify your cloud security posture.",
+      image: "/images/CloudSecurity-Posture-Assessment.png"
     },
     {
       title: "Vulnerability Scanning & Penetration Testing (VAPT)",
-      icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers state-of-the-art Hosted Servers (Virtual Machines), providing clients with a robust and scalable solution tailored to their business needs. Our advanced hosting services guarantee optimal performance, security, and flexibility.",
+      icon: <FiShield className="text-[#245684] text-2xl" />,
+      content: "SysCare IT Solutions delivers unparalleled cybersecurity with our expertly crafted Vulnerability Scanning & Penetration Testing services. Safeguard your digital assets through thorough examination and proactive measures. Our adept team carefully identifies vulnerabilities within your systems, providing comprehensive insights.",
       image: "/images/Hosted-Servers.png"
     },
     {
       title: "Security Analytics & Reporting (MS365, Azure)",
       icon: <FiCpu className="text-[#245684] text-2xl" />,
-      content: "Elevate your digital capabilities with SysCare IT Solutions' Dedicated Virtual Servers. Tailored for optimal performance and reliability, our state-of-the-art infrastructure ensures seamless operations for your business.",
+      content: "Elevate your organization's security posture with SysCare IT Solutions' comprehensive Security Analytics & Reporting services tailored for MS365 and Azure environments. Our seasoned experts employ advanced analytics to proactively identify and mitigate potential threats.",
       image: "/images/Dedicated-Virtual-Servers.png"
     },
     {
       title: "Security Policy & Procedure Development",
       icon: <FiCode className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions offers spectrum of services, including Virtual Desktops (VDI) and Remote Desktop Services (RDS). Elevate your business efficiency with our cutting-edge virtualization solutions.",
+      content: "SysCare IT Solutions provides Security Policy & Procedure Development, delivering paramount expertise to fortify your digital landscape. Our seasoned professionals craft policies tailored to your unique business needs, ensuring robust defense against cyber threats.",
       image: "/images/Virtual-Desktops.png"
     },
     {
       title: "Security Audit & Compliance",
       icon: <FiDatabase className="text-[#245684] text-2xl" />,
-      content: "Elevate your business with SysCare IT Solutions' Rack Space Hire (Co-location) service. Our premium co-location offering provides a secure and efficient environment for your servers and equipment.",
+      content: "SysCare IT Solutions excels in ensuring robust cybersecurity through our Security Audit & Compliance services. Our expert team conducts thorough assessments, identifying vulnerabilities and ensuring compliance with industry standards and regulations.",
       image: "/images/Rack-Space-Hire.png"
     },
     {
       title: "Cyber Incident Response & Emergency Support",
       icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers excellence in IT with its Leased Dedicated Physical Servers service. Elevate your business performance and security with our dedicated servers, exclusively assigned to meet your unique requirements.",
+      content: "SysCare IT Solutions excels in Cyber Incident Response & Emergency Support, providing swift and expert solutions to safeguard your digital assets. Our dedicated team, equipped with extensive experience, promptly responds to cyber threats.",
+      image: "/images/Leased-Servers.png"
+    },
+    {
+      title: "End User Security Assessment",
+      icon: <FiWifi className="text-[#245684] text-2xl" />,
+      content: "Explore peace of mind with SysCare IT Solutions' End User Security Assessment. Our comprehensive service is designed to fortify your organization's defenses by evaluating and enhancing end-user security protocols.",
+      image: "/images/Leased-Servers.png"
+    },
+    {
+      title: "Consultancy Services",
+      icon: <FiChevronRight className="text-[#245684] text-2xl" />,
+      content: "SysCare IT Solutions delivers unparalleled Consultancy services, guiding clients with strategic insights to optimize their IT landscape. Our seasoned professionals collaborate closely, providing expert analysis and tailored recommendations.",
       image: "/images/Leased-Servers.png"
     }
   ];
@@ -130,6 +171,46 @@ const CyberSecurityConsultancyServicesPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Calculate equal heights for FAQ items
+  useEffect(() => {
+    if (FAQS.length > 0) {
+      const calculateHeights = () => {
+        const questionElements = document.querySelectorAll('.faq-question');
+        let maxHeight = 0;
+        
+        // Reset heights first to get natural heights
+        questionElements.forEach(el => {
+          el.style.height = 'auto';
+        });
+        
+        // Find the maximum height
+        questionElements.forEach(el => {
+          if (el.offsetHeight > maxHeight) {
+            maxHeight = el.offsetHeight;
+          }
+        });
+        
+        // Set all to the maximum height
+        questionElements.forEach(el => {
+          el.style.height = `${maxHeight}px`;
+        });
+        
+      };
+      
+      // Calculate after component mounts and on window resize
+      calculateHeights();
+      window.addEventListener('resize', calculateHeights);
+      
+      return () => {
+        window.removeEventListener('resize', calculateHeights);
+      };
+    }
+  }, [FAQS.length, isMobile]);
+
+  // Split FAQs for two columns
+  const faqsLeft = FAQS.slice(0, 3);
+  const faqsRight = FAQS.slice(3, 6);
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -154,8 +235,6 @@ const CyberSecurityConsultancyServicesPage = () => {
             <div className="absolute top-1/3 right-1/4 w-80 h-80 rounded-full bg-[#a3d4ff] mix-blend-screen filter blur-3xl animate-rotate"></div>
             <div className="absolute bottom-1/4 right-1/3 w-72 h-72 rounded-full bg-[#a3d4ff] mix-blend-screen filter blur-3xl animate-float-slow"></div>
           </div>
-         
-          
         </div>
        
         {/* Content with parallax effect */}
@@ -171,21 +250,21 @@ const CyberSecurityConsultancyServicesPage = () => {
          
           <div className="overflow-hidden">
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate-slide-in-up opacity-0">
-              Comprehensive IT solutions to drive your business forward
+              Comprehensive cybersecurity solutions to protect your business
             </p>
           </div>
          
           {/* Animated CTA button */}
           <div className="mt-12 animate-bounce-slow">
-  <a href="/syscare-services" className="inline-block"> {/* Or external URL like "https://example.com/services" */}
-    <button className="bg-[#a3d4ff] text-[#103d5d] px-8 py-4 rounded-full font-bold hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto">
-      Explore Our Services
-      <svg className="w-5 h-5 ml-2 animate-bounce-horizontal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-      </svg>
-    </button>
-  </a>
-</div>
+            <a href="/syscare-services" className="inline-block">
+              <button className="bg-[#a3d4ff] text-[#103d5d] px-8 py-4 rounded-full font-bold hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto">
+                Explore Our Services
+                <svg className="w-5 h-5 ml-2 animate-bounce-horizontal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </button>
+            </a>
+          </div>
          
           {/* Scroll indicator */}
           <div className="mt-16 animate-bounce">
@@ -197,7 +276,7 @@ const CyberSecurityConsultancyServicesPage = () => {
         </div>
       </header>
 
-      {/* Private Cloud Focus Section */}
+      {/* Cybersecurity Focus Section */}
       <section 
         className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
         ref={sectionRefs[1]}
@@ -212,15 +291,15 @@ const CyberSecurityConsultancyServicesPage = () => {
             }}
           >
             <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">SysCare Private Cloud</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">SysCare Cybersecurity Consultancy</h2>
               <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
-                Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.
+                At SysCare IT Solutions Pty Ltd, we provide trusted cybersecurity consultancy in Australia to help businesses strengthen their security posture and defend against today's evolving cyber threats. Whether you need a cyber security consultant in Sydney or dedicated IT security support for small businesses in Melbourne, our experts deliver proactive, tailored strategies that protect your systems, data, and people.
               </p>
               <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
-                Experience the pinnacle of reliability and performance as our dedicated team of experts customizes solutions to optimize your operations. Trust SysCare Private Cloud for a sophisticated, streamlined, and secure IT infrastructure, enabling you to focus on what truly matters – the growth and success of your business.
+                Cyber-attacks are becoming more frequent and more sophisticated, targeting businesses of all sizes. Our mission is to help you identify risks, implement best practices, and achieve compliance through end-to-end cyber security consultancy services. From assessing vulnerabilities to responding to incidents, SysCare is your trusted partner for securing IT environments across Australia.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
-                Request Private Cloud Demo
+                Request Security Assessment
                 <FiChevronRight className="inline ml-3 transition-transform duration-300 group-hover:translateX-2" />
               </button>
             </div>
@@ -236,7 +315,7 @@ const CyberSecurityConsultancyServicesPage = () => {
                 <img 
                   src={SysCarePrivateCloud}
                   className="w-full h-auto rounded-lg transition-transform duration-500 hover:scale-[1.02]"
-                  alt="SysCare Private Cloud Infrastructure"
+                  alt="SysCare Cybersecurity Services"
                 />
               </div>
             </div>
@@ -258,7 +337,7 @@ const CyberSecurityConsultancyServicesPage = () => {
               transition: 'opacity 0.6s ease, transform 0.6s ease'
             }}
           >
-            Our Cloud & Infrastructure Services
+            Our Cybersecurity Consultancy Services
           </h2>
           
           {/* Mobile View - Accordion Style */}
@@ -299,12 +378,9 @@ const CyberSecurityConsultancyServicesPage = () => {
                   {activeTab === index && (
                     <div className="p-6 border-t border-[#e1e9f2]">
                       <div className="mb-6 bg-white p-4 rounded-lg border border-[#e1e9f2] shadow-sm flex justify-center">
-                        <img 
-                          src={service.image}
-                          alt={`${service.title} infrastructure`}
-                          className="w-[500px] h-[500px] object-cover rounded-lg"
-                          style={{ maxWidth: '100%', height: 'auto' }}
-                        />
+                        <div className="w-32 h-32 bg-gradient-to-br from-[#103d5d] to-[#245684] rounded-lg flex items-center justify-center">
+                          {service.icon}
+                        </div>
                       </div>
                       <p className="text-[#5c6f87] text-lg mb-6 leading-relaxed">{service.content}</p>
                     </div>
@@ -322,9 +398,11 @@ const CyberSecurityConsultancyServicesPage = () => {
                 transition: 'opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s'
               }}
             >
-              {/* Vertical Tabs */}
+              {/* Vertical Tabs - Conditionally scrollable */}
               <div className="lg:w-1/3">
-                <div className="space-y-4">
+                <div 
+                  className={`space-y-4 ${services.length > 6 ? 'max-h-[600px] overflow-y-auto pr-4' : ''}`}
+                >
                   {services.map((service, index) => (
                     <button
                       key={index}
@@ -370,13 +448,10 @@ const CyberSecurityConsultancyServicesPage = () => {
                 </div>
 
                 {/* Service Graphic - Now positioned under title but above description */}
-                <div className="mb-8  p-4   flex justify-center">
-                  <img 
-                    src={services[activeTab].image}
-                    alt={`${services[activeTab].title} infrastructure`}
-                    className="w-[250px] h-[250px] object-cover rounded-lg"
-                    style={{ maxWidth: '100%', height: 'auto' }}
-                  />
+                <div className="mb-8 p-4 flex justify-center">
+                  <div className="w-48 h-48 bg-gradient-to-br from-[#103d5d] to-[#245684] rounded-lg flex items-center justify-center">
+                    {services[activeTab].icon}
+                  </div>
                 </div>
 
                 <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed">{services[activeTab].content}</p>
@@ -387,26 +462,124 @@ const CyberSecurityConsultancyServicesPage = () => {
       </section>
 
       {/* CTA Section */}
-<section className="py-24 bg-[#000000] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
-  <div className="container mx-auto text-center">
-    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Ready to Transform Your IT Infrastructure?</h2>
-    <p className="text-xl md:text-2xl text-[#c9d8eb] mb-10 max-w-3xl mx-auto">
-      Our experts are ready to design the perfect solution for your business needs.
-    </p>
-    <div className="flex flex-col sm:flex-row justify-center gap-6">
-      <a href="/contact-Us" className="inline-block"> 
-        <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-12 py-5 rounded-md font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] text-lg">
-          Get Started Today
-        </button>
-      </a>
-      <a href="/contact-Us" className="inline-block"> 
-        <button className="border-2 border-white hover:bg-white hover:text-[#103d5d] text-white px-12 py-5 rounded-md font-medium transition-all duration-300 hover:scale-[1.02] text-lg">
-          Speak to an Expert
-        </button>
-      </a>
-    </div>
-  </div>
-</section>
+      <section className="py-24 bg-[#000000] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
+        <div className="container mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Ready to Enhance Your Cybersecurity?</h2>
+          <p className="text-xl md:text-2xl text-[#c9d8eb] mb-10 max-w-3xl mx-auto">
+            Our experts are ready to design the perfect security solution for your business needs.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-6">
+            <a href="/contact-Us" className="inline-block"> 
+              <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-12 py-5 rounded-md font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] text-lg">
+                Get Started Today
+              </button>
+            </a>
+            <a href="/contact-Us" className="inline-block"> 
+              <button className="border-2 border-white hover:bg-white hover:text-[#103d5d] text-white px-12 py-5 rounded-md font-medium transition-all duration-300 hover:scale-[1.02] text-lg">
+                Speak to an Expert
+              </button>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section
+        className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
+        ref={sectionRefs[3]}
+      >
+        <div className="container mx-auto">
+          <h2
+            className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-16 text-center"
+            style={{
+              opacity: isVisible[3] ? 1 : 0,
+              transform: isVisible[3] ? 'translateY(0)' : 'translateY(20px)',
+              transition: 'opacity 0.6s ease, transform 0.6s ease'
+            }}
+          >
+            Frequently Asked Questions
+          </h2>
+          <div className="max-w-5xl mx-auto">
+            {/* Responsive: Stack on mobile, 2 cols on md+ */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {[faqsLeft, faqsRight].map((faqCol, colIdx) => (
+                <div key={colIdx} className="space-y-6">
+                  {faqCol.map((faq, idx) => {
+                    const qIdx = colIdx * 3 + idx + 1;
+                    return (
+                      <div
+                        className={`rounded-xl border bg-white border-[#e1e9f2] shadow transition-all duration-500 group
+                          ${activeFaq === qIdx ? 'ring-2 ring-[#245684] ring-opacity-40 scale-[1.02] shadow-xl' : ''}
+                        `}
+                        key={qIdx}
+                        style={{
+                          opacity: isVisible[3] ? 1 : 0,
+                          transform: isVisible[3]
+                            ? 'scale(1)'
+                            : 'scale(0.95)',
+                          transition: `opacity 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1), transform 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1)`
+                        }}
+                      >
+                        <button
+                          onClick={() => setActiveFaq(activeFaq === qIdx ? null : qIdx)}
+                          className={`w-full flex justify-between items-center text-left p-6 rounded-xl transition-all duration-300 faq-question
+                            ${activeFaq === qIdx
+                              ? 'bg-gradient-to-r from-[#103d5d] to-[#245684] text-white shadow'
+                              : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
+                            }
+                          `}
+                        >
+                          <h3 className="text-xl font-semibold flex items-center gap-2">
+                            <span
+                              className={`inline-block w-3 h-3 rounded-full mr-2 transition-all duration-300
+                                ${activeFaq === qIdx ? 'bg-[#a3d4ff] scale-110 shadow-lg' : 'bg-[#245684] scale-90'}
+                              `}
+                            ></span>
+                            {faq.question}
+                          </h3>
+                          <FiChevronRight
+                            className={`text-2xl transition-transform duration-300
+                              ${activeFaq === qIdx ? 'rotate-90 text-[#a3d4ff]' : ''}
+                            `}
+                          />
+                        </button>
+                        <div
+                          className={`faq-answer transition-all duration-500 overflow-hidden
+                            ${activeFaq === qIdx ? 'max-h-[500px] opacity-100 py-4 px-6' : 'max-h-0 opacity-0 py-0 px-6'}
+                          `}
+                          style={{
+                            background: activeFaq === qIdx
+                              ? 'linear-gradient(90deg, #f5f9fd 65%, #a3d4ff1a 100%)'
+                              : undefined
+                          }}
+                        >
+                          {activeFaq === qIdx && (
+                            <p className="text-[#5c6f87] text-lg leading-relaxed animate-fadein">
+                              {faq.answer}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
+            {/* Additional Support CTA */}
+            <div className="mt-16 text-center">
+              <p className="text-xl text-[#4a5d72] mb-8">
+                Still have questions? Our team is ready to help.
+              </p>
+              <a href="/contact-Us" className="inline-block">
+                <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg">
+                  Contact Our Support Team
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer/>
 
       {/* Add CSS animations */}
@@ -426,10 +599,6 @@ const CyberSecurityConsultancyServicesPage = () => {
         @keyframes rotate {
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
-        }
-        @keyframes grid-move {
-          0% { background-position: 0 0; }
-          100% { background-position: 50px 50px; }
         }
         @keyframes typewriter {
           from { width: 0; }
@@ -457,6 +626,10 @@ const CyberSecurityConsultancyServicesPage = () => {
           0% { transform: translateY(0); opacity: 1; }
           100% { transform: translateY(26px); opacity: 0; }
         }
+        @keyframes fadein {
+          from { opacity: 0; transform: translateY(16px);}
+          to { opacity: 1; transform: translateY(0);}
+        }
         .animate-float {
           animation: float 6s ease-in-out infinite;
         }
@@ -468,9 +641,6 @@ const CyberSecurityConsultancyServicesPage = () => {
         }
         .animate-rotate {
           animation: rotate 20s linear infinite;
-        }
-        .animate-grid-move {
-          animation: grid-move 20s linear infinite;
         }
         .animate-typewriter {
           animation: typewriter 2s steps(40) 1s both;
@@ -487,9 +657,8 @@ const CyberSecurityConsultancyServicesPage = () => {
         .animate-scroll-indicator {
           animation: scroll-indicator 2s infinite;
         }
-        .bg-grid-white {
-          background-image: linear-gradient(to right, white 1px, transparent 1px),
-                            linear-gradient(to bottom, white 1px, transparent 1px);
+        .animate-fadein {
+          animation: fadein 0.6s cubic-bezier(.4,0,.2,1);
         }
       `}</style>
     </div>

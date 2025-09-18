@@ -15,49 +15,49 @@ const ManagedITServicesPage = () => {
     {
       title: "Centralized Event Log Management, Monitoring & Response",
       icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "Comprehensive collection, monitoring, and analysis of event logs across your entire infrastructure with automated response protocols to quickly address security incidents.",
+      content: "SysCare IT Solutions excels in providing Centralized Event Log Management, Monitoring, and Response services, ensuring a robust and secure IT environment for our clients. Our comprehensive solution involves meticulous log monitoring, swift detection of potential issues, and proactive responses to mitigate risks promptly. With a focus on centralization, we streamline event log management, offering real-time insights into system activities. Count on SysCare for a proactive approach to security, efficient monitoring, and timely responses, bolstering the resilience of your IT infrastructure. Elevate your organization's security posture with our expert Centralized Event Log Management services.",
       image: "/images/Event-Log-Management.png"
     },
     {
       title: "Email Security & Protection",
       icon: <FiShield className="text-[#245684] text-2xl" />,
-      content: "Advanced email security solutions protecting against phishing, malware, spam, and business email compromise with advanced threat detection and response capabilities.",
+      content: "SysCare IT Solutions is safeguarding your digital communication with our Email Security & Protection services. Our comprehensive solutions are designed to fortify your organization's email ecosystem against cyber threats. From advanced threat detection to robust encryption, we prioritize the confidentiality and integrity of your communications. With SysCare's expertise, you can trust that your emails are shielded from phishing attacks, malware, and unauthorized access. Elevate your cybersecurity posture and ensure the resilience of your email infrastructure with our professional Email Security & Protection services. Your business communication, our priority.",
       image: "/images/Email-Security.png"
     },
     {
       title: "Endpoint Security & Protection",
       icon: <FiMonitor className="text-[#245684] text-2xl" />,
-      content: "Comprehensive endpoint protection with next-gen antivirus, EDR, behavioral analysis, and threat hunting to secure all devices against sophisticated attacks.",
+      content: "SysCare IT Solutions ensures robust Endpoint Security & Protection, safeguarding your business with a comprehensive suite of services. Our expert team employs advanced measures to fortify endpoints, mitigating cybersecurity threats and ensuring data integrity. With cutting-edge technologies and proactive monitoring, SysCare guarantees a secure environment for your organization. Trust us to deliver tailored solutions, enhancing your defense against evolving cyber risks. Partner with SysCare for unparalleled Endpoint Security & Protection, where your business continuity is our top priority.",
       image: "/images/Endpoint-Security.png"
     },
     {
       title: "Firewall Management & Monitoring (IDS/IPS)",
       icon: <FiBarChart2 className="text-[#245684] text-2xl" />,
-      content: "Professional management of firewall infrastructure with intrusion detection and prevention systems to monitor and block malicious network activity in real-time.",
+      content: "SysCare IT Solutions provides Firewall Management & Monitoring (IDS/IPS), providing paramount security solutions for clients. Our dedicated team ensures proactive surveillance of your network, employing cutting-edge Intrusion Detection Systems (IDS) and Intrusion Prevention Systems (IPS). We meticulously manage and monitor firewalls, deploying robust measures to safeguard your digital assets. With SysCare, your organization gains a fortified defense against cyber threats, ensuring uninterrupted operations and peace of mind. Partner with us for expert Firewall Management & Monitoring, reinforcing your cybersecurity posture with state-of-the-art technology and vigilant oversight. Your protection is our priority at SysCare IT Solutions.",
       image: "/images/Firewall-Management.png"
     },
     {
       title: "Managed Cloud Security",
       icon: <FiCloud className="text-[#245684] text-2xl" />,
-      content: "End-to-end cloud security management for public, private, and hybrid cloud environments including configuration auditing, access controls, and data protection.",
+      content: "SysCare IT Solutions presents Managed Cloud Security, a pinnacle in safeguarding your digital assets. Our comprehensive suite of services ensures the integrity, confidentiality, and availability of your data in the cloud environment. With proactive monitoring, threat detection, and compliance management, we fortify your cloud infrastructure against cyber threats. Our team of seasoned experts employs cutting-edge technologies to deliver a robust defense mechanism, allowing you to focus on your core business functions without compromise. Elevate your security posture with SysCare's Managed Cloud Security – your trusted partner in navigating the digital landscape securely and confidently.",
       image: "/images/Cloud-Security.png"
     },
     {
       title: "Identity & Access Management (IAM)",
       icon: <FiLock className="text-[#245684] text-2xl" />,
-      content: "Comprehensive identity and access management solutions including multi-factor authentication, single sign-on, and privileged access management.",
+      content: "SysCare IT Solutions offers Identity & Access Management (IAM), providing a sophisticated suite of services for enhanced security and streamlined access control. Our IAM solutions empower organizations with robust user authentication, seamless access permissions, and comprehensive identity governance. With cutting-edge technologies and meticulous attention to detail, SysCare ensures airtight security measures, regulatory compliance, and user-friendly access protocols. Elevate your organization's security posture with SysCare's IAM expertise—where every access point is fortified, and every identity is meticulously managed for optimal operational efficiency. Trust us to safeguard your digital assets with precision and reliability.",
       image: "/images/IAM.png"
     },
     {
       title: "Network Security Monitoring",
       icon: <FiWifi className="text-[#245684] text-2xl" />,
-      content: "Continuous monitoring of network traffic and infrastructure to detect anomalies, suspicious activities, and potential security breaches across your environment.",
+      content: "Explore peace of mind with SysCare IT Solutions' Network Security Monitoring service. Our expert team employs cutting-edge technology to vigilantly oversee and safeguard your network infrastructure. With real-time threat detection, rapid incident response, and proactive security measures, we ensure the resilience of your network against evolving cyber threats. Trust SysCare for a robust defense, providing you with comprehensive insights and continuous monitoring to fortify your digital assets. Elevate your security posture with our dedicated Network Security Monitoring service, delivering reliability and protection in an ever-evolving digital landscape.",
       image: "/images/Network-Security-Monitoring.png"
     },
     {
       title: "Vulnerability Management",
       icon: <FiShield className="text-[#245684] text-2xl" />,
-      content: "Proactive identification, assessment, prioritization, and remediation of security vulnerabilities across your entire IT infrastructure before they can be exploited.",
+      content: "SysCare IT Solutions delivers comprehensive Vulnerability Management services, encompassing meticulous scanning and efficient remediation strategies. Our expert team employs advanced techniques to identify and address potential vulnerabilities in your systems, ensuring a proactive approach to cybersecurity. With a focus on precision and thoroughness, we safeguard your infrastructure, providing peace of mind in an ever-evolving digital landscape. Trust SysCare for robust Vulnerability Management solutions, fortifying your business against potential threats with cutting-edge technology and strategic remediation measures. Your security is our priority.",
       image: "/images/Vulnerability-Management.png"
     },
     {
@@ -69,13 +69,13 @@ const ManagedITServicesPage = () => {
     {
       title: "Threat Simulation",
       icon: <FiCpu className="text-[#245684] text-2xl" />,
-      content: "Advanced threat simulation exercises including red teaming, purple teaming, and penetration testing to identify and address security gaps in your defenses.",
+      content: " SysCare IT Solutions delivers cutting-edge Threat Simulation services, providing clients with a proactive approach to cybersecurity. Our seasoned experts simulate real-world cyber threats to assess and fortify your organization's defenses. Through sophisticated techniques, we identify vulnerabilities, evaluate response mechanisms, and enhance overall resilience. SysCare's Threat Simulation ensures that your business is well-prepared to face evolving cyber threats, safeguarding critical assets and maintaining operational continuity. Trust us to fortify your cybersecurity posture with strategic simulations, empowering your team to respond effectively to potential threats. Secure your business with SysCare's advanced Threat Simulation services.",
       image: "/images/Threat-Simulation.png"
     },
     {
       title: "Security Monitoring and Incident Management (SIEM)",
       icon: <FiEye className="text-[#245684] text-2xl" />,
-      content: "24/7 security information and event management with correlation, analysis, and incident response capabilities to detect and respond to threats in real-time.",
+      content: "SysCare IT Solutions excels in Security Monitoring and Incident Management (SIEM), providing a comprehensive suite of services to safeguard your digital assets. Our expert team employs state-of-the-art technology to monitor and detect security threats in real-time. With a proactive approach, we swiftly respond to incidents, minimizing potential damage and ensuring the integrity of your IT environment. Trust SysCare for robust SIEM solutions that fortify your defenses, enhance threat visibility, and guarantee a resilient security posture. Safeguard your business with our cutting-edge Security Monitoring and Incident Management servicesyour shield against evolving cyber threats.",
       image: "/images/SIEM.png"
     },
     {
@@ -254,12 +254,9 @@ const ManagedITServicesPage = () => {
             }}
           >
             <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Comprehensive Managed IT Services</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Managed Security with SysCare IT Solutions</h2>
               <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
-                Our end-to-end managed IT services provide organizations with complete technology management, security, and operational efficiency. Tailored to meet diverse business needs, SysCare Managed IT ensures seamless operations, robust security protocols, and optimal resource utilization.
-              </p>
-              <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
-                Experience the pinnacle of reliability and performance as our dedicated team of experts manages your entire IT infrastructure. Trust SysCare Managed IT Services for sophisticated, streamlined, and secure technology operations, enabling you to focus on what truly matters – the growth and success of your business.
+                In today’s digital-first world, businesses face an ever-growing number of cyber threats. From ransomware and phishing to insider risks and cloud vulnerabilities, the challenges are complex and constantly evolving. SysCare IT Solutions, a trusted Managed Security Services Provider in Melbourne and Sydney, delivers proactive, round-the-clock protection to safeguard your business-critical data, infrastructure, and users. Our Managed Security Services (MSS) are tailored to meet the needs of organizations of all sizes, ensuring compliance, resilience, and business continuity.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
                 Request IT Assessment
@@ -300,7 +297,7 @@ const ManagedITServicesPage = () => {
               transition: 'opacity 0.6s ease, transform 0.6s ease'
             }}
           >
-            Our Comprehensive Managed IT Services
+            Our Managed Security Services
           </h2>
           
           {/* Mobile View - Accordion Style */}
@@ -416,7 +413,7 @@ const ManagedITServicesPage = () => {
                   <img 
                     src={services[activeTab].image}
                     alt={`${services[activeTab].title} infrastructure`}
-                    className="w-[250px] h-[250px] object-cover rounded-lg"
+                    className="w-[150px] h-[150px] object-cover rounded-lg"
                     style={{ maxWidth: '100%', height: 'auto' }}
                   />
                 </div>
