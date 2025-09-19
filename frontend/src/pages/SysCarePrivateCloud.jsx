@@ -4,50 +4,97 @@ import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevr
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
+const FAQS = [
+  {
+    question: "1. What cloud solutions does SysCare IT Solutions provide?",
+    answer: (
+      <>
+         We deliver end-to-end cloud services including hosted servers (public, private, and hybrid), virtual desktops (VDI & RDS), dedicated private cloud servers, rack space hire (co-location), and leased physical servers.
+      </>
+    ),
+  },
+  {
+    question: "2. Do you offer cloud solutions in Melbourne and Sydney?",
+    answer: (
+      <>
+         Yes. SysCare provides cloud solutions in Melbourne, Sydney, and Australia-wide, with services tailored to meet local business needs and compliance requirements.
+      </>
+    ),
+  },
+  {
+    question: "3. Do you provide cloud solutions for remote or hybrid workforces?",
+    answer: (
+      <>
+          Yes. Our Virtual Desktops (VDI & RDS) allow employees to securely access desktops and apps from anywhere, making them ideal for remote and hybrid teams.
+      </>
+    ),
+  },
+  {
+    question: "4. Who should consider private cloud or dedicated servers?",
+    answer: (
+      <>
+          Businesses in industries with strict compliance or high-security requirements such as finance, legal, or healthcare benefit from private cloud and leased dedicated servers for maximum control and data sovereignty.
+      </>
+    ),
+  },
+  {
+    question: "5. Can small and medium businesses (SMBs) benefit from cloud solutions?",
+    answer: (
+      <>
+          Yes. Our cloud solutions are scalable and cost-efficient, allowing SMBs to access enterprise-grade infrastructure without heavy upfront investment.
+      </>
+    ),
+  },
+  {
+    question: "6. What support does SysCare provide after setup?",
+    answer: (
+      <>
+          We provide 24/7 monitoring, proactive maintenance, and ongoing managed support, ensuring your systems stay optimized and secure at all times.
+      </>
+    ),
+  },
+];
+
 const PrivateCloudPage = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [isVisible, setIsVisible] = useState([false, false, false, false]);
   const [isMobile, setIsMobile] = useState(false);
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const headerRef = useRef(null);
+  const [activeFaq, setActiveFaq] = useState(null);
 
   const services = [
     {
-      title: "Private Cloud",
+      title: "Hosted Servers (Virtual Machines) ",
       icon: <FiCloud className="text-[#245684] text-2xl" />,
-      content: "Elevate your business with SysCare Private Cloud, a flagship service by SysCare IT Solutions. Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.",
-      image: "/images/SysCare-Private-Cloud.png"
-    },
-    {
-      title: "Hosted Servers",
-      icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers state-of-the-art Hosted Servers (Virtual Machines), providing clients with a robust and scalable solution tailored to their business needs. Our advanced hosting services guarantee optimal performance, security, and flexibility.",
+      content: "SysCare provides Hosted Server solutions designed for businesses that require flexibility and scalability. Our virtual machines can be deployed across public, private, or hybrid cloud environments, depending on your performance and security needs. With 24/7 monitoring and managed support, we ensure uptime, reliability, and cost efficiency. Whether you’re scaling up operations or consolidating workloads, our hosted servers give you enterprise-grade infrastructure without the capital expense.",
       image: "/images/Hosted-Servers.png"
     },
     {
-      title: "Dedicated Virtual Servers",
+      title: "Virtual Desktops (VDI) & Remote Desktop Services (RDS)",
+      icon: <FiServer className="text-[#245684] text-2xl" />,
+      content: "With SysCare’s Virtual Desktop Infrastructure (VDI) and RDS solutions, your workforce can securely access desktops and applications from anywhere. Perfect for hybrid and remote teams, our virtual desktops improve productivity while reducing endpoint management overheads. We deliver secure, scalable, and performance-optimized virtual desktop environments that adapt to your business requirements.",
+      image: "/images/Virtual-Desktops-(VDI)-&-RDS.png"
+    },
+    {
+      title: "Dedicated Virtual Servers (Private Cloud)",
       icon: <FiCpu className="text-[#245684] text-2xl" />,
-      content: "Elevate your digital capabilities with SysCare IT Solutions' Dedicated Virtual Servers. Tailored for optimal performance and reliability, our state-of-the-art infrastructure ensures seamless operations for your business.",
+      content: "For businesses needing maximum control and compliance, SysCare offers Dedicated Virtual Servers hosted in a secure Private Cloud. This ensures complete isolation, customizable configurations, and enterprise-grade performance. Ideal for industries with strict data security needs, our private cloud solutions guarantee data sovereignty, compliance, and peace of mind.",
       image: "/images/Dedicated-Virtual-Servers.png"
     },
     {
-      title: "Virtual Desktops",
+      title: "Rack Space Hire (Co-Location Services)",
       icon: <FiCode className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions offers spectrum of services, including Virtual Desktops (VDI) and Remote Desktop Services (RDS). Elevate your business efficiency with our cutting-edge virtualization solutions.",
-      image: "/images/Virtual-Desktops.png"
-    },
-    {
-      title: "Rack Space Hire",
-      icon: <FiDatabase className="text-[#245684] text-2xl" />,
-      content: "Elevate your business with SysCare IT Solutions' Rack Space Hire (Co-location) service. Our premium co-location offering provides a secure and efficient environment for your servers and equipment.",
+      content: "SysCare provides Rack Space Hire and Co-location services for businesses that want to host their physical servers in a secure, high-performance data center. With redundant power, cooling, and connectivity, our co-location services reduce the risks and costs of managing on-premises infrastructure. This allows you to focus on business operations while we ensure your servers stay online and secure.",
       image: "/images/Rack-Space-Hire.png"
     },
     {
-      title: "Leased Servers",
-      icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers excellence in IT with its Leased Dedicated Physical Servers service. Elevate your business performance and security with our dedicated servers, exclusively assigned to meet your unique requirements.",
+      title: "Leased Dedicated Physical Servers",
+      icon: <FiDatabase className="text-[#245684] text-2xl" />,
+      content: "Need the power of dedicated hardware without the upfront investment? SysCare’s Leased Dedicated Servers provide enterprise-class physical infrastructure tailored to your workloads. These servers are hosted in secure Australian data centers, giving you reliability, scalability, and predictable monthly costs. Our team manages the setup, monitoring, and ongoing maintenance, ensuring you get maximum performance with zero hassle.",
       image: "/images/Leased-Servers.png"
-    }
+    },
+    
   ];
 
   useEffect(() => {
@@ -130,6 +177,11 @@ const PrivateCloudPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+// Split FAQs for two columns
+  const faqsLeft = FAQS.slice(0, 3);
+  const faqsRight = FAQS.slice(3, 6);
+
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -165,7 +217,7 @@ const PrivateCloudPage = () => {
         >
           <div className="mb-8 inline-block overflow-hidden">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-typewriter whitespace-nowrap overflow-hidden border-r-4 border-r-white">
-              SysCare <span className="text-[#a3d4ff]">Private Cloud</span>
+              Cloud <span className="text-[#a3d4ff]">Solutions</span>
             </h1>
           </div>
          
@@ -210,7 +262,7 @@ const PrivateCloudPage = () => {
             }}
           >
             <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">SysCare Private Cloud</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Cloud Solutions</h2>
               <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
                 In today’s fast-paced digital world, businesses need flexible, reliable, and secure IT infrastructure. At SysCare IT Solutions Pty Ltd, we deliver end-to-end cloud solutions in Melbourne, Sydney, and Australia-wide, tailored to meet the needs of modern organizations. Whether you’re looking for cloud migration services, hybrid cloud environments, or managed cloud services, our expert team helps you harness the power of the cloud to drive innovation, efficiency, and growth.
               </p>
@@ -408,254 +460,111 @@ const PrivateCloudPage = () => {
 
 
 {/* FAQ Section */}
-<section className="py-24 bg-gradient-to-b from-[#f0f7ff] to-[#e6f2ff] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
-  <div className="container mx-auto">
-    <div className="text-center mb-16">
-      <h2 className="text-4xl md:text-5xl font-bold text-[#103d5d] mb-6">
-        Frequently Asked Questions
-      </h2>
-      <p className="text-xl text-[#5c6f87] max-w-3xl mx-auto">
-        Everything you need to know about our Private Cloud services
-      </p>
-    </div>
-    
-    <div className="max-w-7xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Left Column */}
-        <div>
-          {/* FAQ Item 1 */}
-          <div className="mb-6 overflow-hidden">
-            <button 
-              className="flex justify-between items-center w-full p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 text-left group"
-              onClick={() => document.getElementById('answer-1').classList.toggle('hidden')}
+            <section
+              className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
+              ref={sectionRefs[3]}
             >
-              <h3 className="text-xl font-semibold text-[#103d5d] group-hover:text-[#245684] transition-colors duration-300">
-                How does SysCare ensure data security in the Private Cloud?
-              </h3>
-              <svg 
-                className="w-6 h-6 text-[#245684] transform transition-transform duration-300 group-hover:rotate-180" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div 
-              id="answer-1" 
-              className="hidden bg-white mt-1 rounded-xl p-6 border border-[#e1e9f2] animate-fadeIn"
-            >
-              <p className="text-[#5c6f87]">
-                We implement multi-layered security including enterprise-grade firewalls, end-to-end encryption, 
-                regular security audits, and compliance with industry standards. All data is stored in UK-based 
-                Tier 3+ data centers with 24/7 physical security and biometric access controls.
-              </p>
-            </div>
-          </div>
-          
-          {/* FAQ Item 2 */}
-          <div className="mb-6 overflow-hidden">
-            <button 
-              className="flex justify-between items-center w-full p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 text-left group"
-              onClick={() => document.getElementById('answer-2').classList.toggle('hidden')}
-            >
-              <h3 className="text-xl font-semibold text-[#103d5d] group-hover:text-[#245684] transition-colors duration-300">
-                What scalability options are available with your Private Cloud?
-              </h3>
-              <svg 
-                className="w-6 h-6 text-[#245684] transform transition-transform duration-300 group-hover:rotate-180" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div 
-              id="answer-2" 
-              className="hidden bg-white mt-1 rounded-xl p-6 border border-[#e1e9f2] animate-fadeIn"
-            >
-              <p className="text-[#5c6f87]">
-                Our Private Cloud offers flexible scaling with the ability to add resources on-demand. 
-                You can scale compute, storage, and memory independently without downtime, with options 
-                ranging from small business solutions to enterprise-grade infrastructure. Our auto-scaling
-                features can automatically adjust resources based on your workload patterns.
-              </p>
-            </div>
-          </div>
-          
-          {/* FAQ Item 3 */}
-          <div className="mb-6 overflow-hidden">
-            <button 
-              className="flex justify-between items-center w-full p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 text-left group"
-              onClick={() => document.getElementById('answer-3').classList.toggle('hidden')}
-            >
-              <h3 className="text-xl font-semibold text-[#103d5d] group-hover:text-[#245684] transition-colors duration-300">
-                How does your disaster recovery solution work?
-              </h3>
-              <svg 
-                className="w-6 h-6 text-[#245684] transform transition-transform duration-300 group-hover:rotate-180" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div 
-              id="answer-3" 
-              className="hidden bg-white mt-1 rounded-xl p-6 border border-[#e1e9f2] animate-fadeIn"
-            >
-              <p className="text-[#5c6f87]">
-                We offer automated backup solutions with point-in-time recovery, geo-redundant storage options, 
-                and failover capabilities. Our disaster recovery can achieve RPO (Recovery Point Objective) of 
-                minutes and RTO (Recovery Time Objective) of under 4 hours for critical systems. We regularly test
-                our DR protocols to ensure business continuity.
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        {/* Right Column */}
-        <div>
-          {/* FAQ Item 4 */}
-          <div className="mb-6 overflow-hidden">
-            <button 
-              className="flex justify-between items-center w-full p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 text-left group"
-              onClick={() => document.getElementById('answer-4').classList.toggle('hidden')}
-            >
-              <h3 className="text-xl font-semibold text-[#103d5d] group-hover:text-[#245684] transition-colors duration-300">
-                What compliance standards does your infrastructure meet?
-              </h3>
-              <svg 
-                className="w-6 h-6 text-[#245684] transform transition-transform duration-300 group-hover:rotate-180" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div 
-              id="answer-4" 
-              className="hidden bg-white mt-1 rounded-xl p-6 border border-[#e1e9f2] animate-fadeIn"
-            >
-              <p className="text-[#5c6f87]">
-                Our data centers and infrastructure comply with ISO 27001, GDPR, and are designed to meet 
-                requirements for various industry-specific regulations. We can also support customers needing 
-                compliance with PCI DSS, HIPAA, and other frameworks through tailored configurations. Regular
-                audits and certifications ensure ongoing compliance.
-              </p>
-            </div>
-          </div>
-          
-          {/* FAQ Item 5 */}
-          <div className="mb-6 overflow-hidden">
-            <button 
-              className="flex justify-between items-center w-full p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 text-left group"
-              onClick={() => document.getElementById('answer-5').classList.toggle('hidden')}
-            >
-              <h3 className="text-xl font-semibold text-[#103d5d] group-hover:text-[#245684] transition-colors duration-300">
-                Can I migrate my existing infrastructure to your Private Cloud?
-              </h3>
-              <svg 
-                className="w-6 h-6 text-[#245684] transform transition-transform duration-300 group-hover:rotate-180" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div 
-              id="answer-5" 
-              className="hidden bg-white mt-1 rounded-xl p-6 border border-[#e1e9f2] animate-fadeIn"
-            >
-              <p className="text-[#5c6f87]">
-                Yes, we offer comprehensive migration services including assessment, planning, and execution. 
-                Our team supports migrations from various platforms including VMware, Hyper-V, AWS, and Azure, 
-                with minimal downtime through our specialized migration tools and expertise. We provide a detailed
-                migration plan and runbook before beginning any migration process.
-              </p>
-            </div>
-          </div>
-          
-          {/* FAQ Item 6 */}
-          <div className="mb-6 overflow-hidden">
-            <button 
-              className="flex justify-between items-center w-full p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 text-left group"
-              onClick={() => document.getElementById('answer-6').classList.toggle('hidden')}
-            >
-              <h3 className="text-xl font-semibold text-[#103d5d] group-hover:text-[#245684] transition-colors duration-300">
-                What support levels are available with your Private Cloud?
-              </h3>
-              <svg 
-                className="w-6 h-6 text-[#245684] transform transition-transform duration-300 group-hover:rotate-180" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div 
-              id="answer-6" 
-              className="hidden bg-white mt-1 rounded-xl p-6 border border-[#e1e9f2] animate-fadeIn"
-            >
-              <p className="text-[#5c6f87]">
-                We offer 24/7/365 support with response times from 15 minutes for critical issues. 
-                Our support includes proactive monitoring, regular health checks, and dedicated account 
-                management. Enterprise customers can opt for custom SLAs with guaranteed uptime of 99.99%.
-                We also provide a customer portal for ticket tracking and resource management.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    {/* Additional CTA */}
-    <div className="text-center mt-16">
-      <div className="inline-block p-1 bg-gradient-to-r from-[#245684] to-[#1a4066] rounded-full animate-pulse-slow">
-        <div className="bg-white rounded-full p-2">
-          <div className="bg-gradient-to-r from-[#245684] to-[#1a4066] rounded-full px-8 py-4">
-            <p className="text-white text-lg font-medium">
-              Still have questions? Contact our team for more information
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="mt-8">
-        <a href="/contact-Us" className="inline-block">
-          <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
-            Contact Our Team
-            <svg className="w-5 h-5 inline ml-2 transition-transform duration-300 group-hover:translateX-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </button>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-{/* Add to your style section */}
-<style jsx>{`
-  .animate-fadeIn {
-    animation: fadeIn 0.5s ease-out forwards;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-`}</style>
+              <div className="container mx-auto">
+                <h2
+                  className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-16 text-center"
+                  style={{
+                    opacity: isVisible[3] ? 1 : 0,
+                    transform: isVisible[3] ? 'translateY(0)' : 'translateY(20px)',
+                    transition: 'opacity 0.6s ease, transform 0.6s ease'
+                  }}
+                >
+                  Frequently Asked Questions
+                </h2>
+                <div className="max-w-5xl mx-auto">
+                  {/* Responsive: Stack on mobile, 2 cols on md+ */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {[faqsLeft, faqsRight].map((faqCol, colIdx) => (
+                      <div key={colIdx} className="space-y-6">
+                        {faqCol.map((faq, idx) => {
+                          const qIdx = colIdx * 3 + idx + 1;
+                          return (
+                            <div
+                              className={`rounded-xl border bg-white border-[#e1e9f2] shadow transition-all duration-500 group
+                                ${activeFaq === qIdx ? 'ring-2 ring-[#245684] ring-opacity-40 scale-[1.02] shadow-xl' : ''}
+                              `}
+                              key={qIdx}
+                              style={{
+                                opacity: isVisible[3] ? 1 : 0,
+                                transform: isVisible[3]
+                                  ? 'scale(1)'
+                                  : 'scale(0.95)',
+                                transition: `opacity 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1), transform 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1)`
+                              }}
+                            >
+                              <button
+                                onClick={() => setActiveFaq(activeFaq === qIdx ? null : qIdx)}
+                                className={`w-full flex justify-between items-center text-left p-6 rounded-xl transition-all duration-300
+                                  ${activeFaq === qIdx
+                                    ? 'bg-gradient-to-r from-[#103d5d] to-[#245684] text-white shadow'
+                                    : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
+                                  }
+                                `}
+                              >
+                                <h3 className="text-xl font-semibold flex items-center gap-2">
+                                  <span
+                                    className={`inline-block w-3 h-3 rounded-full mr-2 transition-all duration-300
+                                      ${activeFaq === qIdx ? 'bg-[#a3d4ff] scale-110 shadow-lg' : 'bg-[#245684] scale-90'}
+                                    `}
+                                  ></span>
+                                  {faq.question}
+                                </h3>
+                                <FiChevronRight
+                                  className={`text-2xl transition-transform duration-300
+                                    ${activeFaq === qIdx ? 'rotate-90 text-[#a3d4ff]' : ''}
+                                  `}
+                                />
+                              </button>
+                              <div
+                                className={`faq-answer transition-all duration-500 overflow-hidden
+                                  ${activeFaq === qIdx ? 'max-h-[500px] opacity-100 py-4 px-6' : 'max-h-0 opacity-0 py-0 px-6'}
+                                `}
+                                style={{
+                                  background: activeFaq === qIdx
+                                    ? 'linear-gradient(90deg, #f5f9fd 65%, #a3d4ff1a 100%)'
+                                    : undefined
+                                }}
+                              >
+                                {activeFaq === qIdx && (
+                                  <p className="text-[#5c6f87] text-lg leading-relaxed animate-fadein">
+                                    {faq.answer}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </div>
+                  {/* Additional Support CTA */}
+                  <div className="mt-16 text-center">
+                    <p className="text-xl text-[#4a5d72] mb-8">
+                      Still have questions? Our team is ready to help.
+                    </p>
+                    <a href="/contact-Us" className="inline-block">
+                      <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg">
+                        Contact Our Support Team
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {/* Animations for FAQ */}
+              <style jsx>{`
+                @keyframes fadein {
+                  from { opacity: 0; transform: translateY(16px);}
+                  to { opacity: 1; transform: translateY(0);}
+                }
+                .animate-fadein {
+                  animation: fadein 0.6s cubic-bezier(.4,0,.2,1);
+                }
+              `}</style>
+            </section>
 
       <Footer/>
 

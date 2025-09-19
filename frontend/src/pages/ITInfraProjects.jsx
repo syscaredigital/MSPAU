@@ -4,37 +4,89 @@ import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevr
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
+const FAQS = [
+  {
+    question: "1. What are IT infra projects, and why are they important for businesses?",
+    answer: (
+      <>
+          IT infra projects involve the planning, design, and implementation of core IT systems such as networks, cloud environments, and productivity platforms. They are critical because they ensure businesses have secure, scalable, and reliable infrastructure to support operations, collaboration, and growth.
+      </>
+    ),
+  },
+  {
+    question: "2. What does IT infrastructure design include?",
+    answer: (
+      <>
+         IT infrastructure design covers the blueprinting of your organization’s technology environment. This includes network architecture, data storage, cloud environments, and security controls. At SysCare, we create tailored infrastructure designs that improve performance, enhance security, and support long-term scalability.
+      </>
+    ),
+  },
+  {
+    question: "3. How can SysCare help with IT network infrastructure design and implementation?",
+    answer: (
+      <>
+          SysCare specializes in creating robust network infrastructures. We design secure and efficient networks, implement advanced firewalls, switches, and Wi-Fi solutions, and ensure everything is optimized for reliability, scalability, and business continuity.
+      </>
+    ),
+  },
+  {
+    question: "4. What are the benefits of migrating to Office 365 with SysCare?",
+    answer: (
+      <>
+         Migrating to Office 365 with SysCare ensures a smooth, secure, and disruption-free process. We handle the migration of Exchange emails, OneDrive, and SharePoint, enabling better collaboration, remote accessibility, and enhanced productivity with Microsoft’s trusted cloud tools.
+      </>
+    ),
+  },
+  {
+    question: "5. How does SysCare manage Microsoft Azure setup and migration?",
+    answer: (
+      <>
+          Our Azure experts create a tailored migration roadmap for your workloads, applications, and databases. We ensure compliance, optimize performance, and establish a secure cloud environment that leverages Azure’s advanced features like AI, analytics, and enterprise-grade security
+      </>
+    ),
+  },
+  {
+    question: "6. Why should businesses consider AWS cloud setup and migration?",
+    answer: (
+      <>
+          AWS provides flexibility, scalability, and resilience for modern businesses. SysCare helps organizations transition workloads into AWS, ensuring cost efficiency, high availability, and security. This empowers companies to innovate while maintaining operational stability.
+      </>
+    ),
+  },
+];
+
 const ITInfraProjectsPage = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [isVisible, setIsVisible] = useState([false, false, false, false]);
   const [isMobile, setIsMobile] = useState(false);
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const headerRef = useRef(null);
+  const [activeFaq, setActiveFaq] = useState(null);
 
   const services = [
     {
       title: "IT Network Infrastructure Design & Implementation",
       icon: <FiCloud className="text-[#245684] text-2xl" />,
-      content: "Elevate your business with SysCare Private Cloud, a flagship service by SysCare IT Solutions. Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.",
-      image: "/images/SysCare-Private-Cloud.png"
+      content: "Syscare IT Solutions, excels in IT Network Infrastructure Design & Implementation. Our expert team designs customized solutions to optimize your network for peak performance, security, and scalability. From strategic planning to seamless execution, we ensure a robust and efficient network tailored to your business needs. With cutting-edge technologies and industry best practices, Syscare elevates your network infrastructure, enhancing connectivity, reliability, and overall business productivity. Partner with us for a seamlessly designed and implemented IT network that propels your business into the future.",
+      image: "/images/IT-Network-Infrastructure-Design-Implementation.png"
     },
     {
       title: "Office 365 (Exchange, OneDrive, SharePoint) Migration",
       icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers state-of-the-art Hosted Servers (Virtual Machines), providing clients with a robust and scalable solution tailored to their business needs. Our advanced hosting services guarantee optimal performance, security, and flexibility.",
-      image: "/images/Hosted-Servers.png"
+      content: "Syscare IT Solutions excels in seamless Office 365 migration, encompassing Exchange, OneDrive, and SharePoint. Our expert team ensures a swift and secure transition, preserving your data integrity and minimizing downtime. Unlock the full potential of Office 365 with our tailored migration solutions, optimizing collaboration and productivity. Trust Syscare for a professional, hassle-free migration experience, empowering your business with the latest Microsoft suite capabilities.",
+      image: "/images/Office-365-Migration.png"
     },
     {
       title: "Microsoft Azure Setup/Migration",
       icon: <FiCpu className="text-[#245684] text-2xl" />,
-      content: "Elevate your digital capabilities with SysCare IT Solutions' Dedicated Virtual Servers. Tailored for optimal performance and reliability, our state-of-the-art infrastructure ensures seamless operations for your business.",
-      image: "/images/Dedicated-Virtual-Servers.png"
+      content: "SysCare IT Solutions excels in Microsoft Azure Setup and Migration, providing seamless transitions for businesses into the cloud. Our expert team orchestrates a strategic and efficient migration process tailored to your unique requirements. Leveraging the power of Microsoft Azure, we ensure a secure and scalable cloud environment for your operations. Trust SysCare for a smooth and professional transition, optimizing your business with the latest in cloud technology. Elevate your infrastructure with our Microsoft Azure Setup/Migration services, delivering reliability and performance for your organization's digital transformation journey.",
+      image: "/images/Microsoft-Azure-SetupMigration.png"
     },
     {
       title: "AWS Cloud Setup/Migration",
       icon: <FiCode className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions offers spectrum of services, including Virtual Desktops (VDI) and Remote Desktop Services (RDS). Elevate your business efficiency with our cutting-edge virtualization solutions.",
-      image: "/images/Virtual-Desktops.png"
+      content: "SysCare IT Solutions excels in AWS Cloud Setup/Migration, providing seamless transitions for businesses into the robust AWS cloud environment. Our expert team carefully plans and executes tailored setups and migrations, ensuring optimal performance, scalability, and security. From initial assessment to post-migration support, SysCare ensures a smooth and efficient transition, empowering businesses to leverage the full potential of AWS services. Trust SysCare for a reliable and professional approach to AWS Cloud Setup/Migration, paving the way for enhanced efficiency and innovation in your digital landscape.",
+      image: "/images/AWS-Cloud-SetupMigration.png"
     },
     
   ];
@@ -119,6 +171,10 @@ const ITInfraProjectsPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+// Split FAQs for two columns
+  const faqsLeft = FAQS.slice(0, 3);
+  const faqsRight = FAQS.slice(3, 6);
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -154,7 +210,7 @@ const ITInfraProjectsPage = () => {
         >
           <div className="mb-8 inline-block overflow-hidden">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-typewriter whitespace-nowrap overflow-hidden border-r-4 border-r-white">
-              IT <span className="text-[#a3d4ff]">Infra Project</span>
+              IT <span className="text-[#a3d4ff]">Infrastructure Project</span>
             </h1>
           </div>
          
@@ -201,12 +257,12 @@ const ITInfraProjectsPage = () => {
             }}
           >
             <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">SysCare Private Cloud</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">IT Infrastructure Projects – SysCare IT Solutions</h2>
               <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
-                Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.
+                In today’s competitive digital landscape, businesses need robust and scalable IT infrastructure to operate efficiently and securely. At SysCare IT Solutions Pty Ltd, we specialize in delivering comprehensive IT infra projects tailored to the unique requirements of organizations across Melbourne, Sydney, and Australia. Our focus is on providing cutting-edge IT infrastructure design and implementation that empowers your business to scale with confidence, improve efficiency, and reduce risks.
               </p>
               <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
-                Experience the pinnacle of reliability and performance as our dedicated team of experts customizes solutions to optimize your operations. Trust SysCare Private Cloud for a sophisticated, streamlined, and secure IT infrastructure, enabling you to focus on what truly matters – the growth and success of your business.
+                Whether you’re migrating to Microsoft 365, setting up cloud environments in Azure or AWS, or building a secure network infrastructure from the ground up, SysCare ensures your IT projects are executed seamlessly, on time, and within budget.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
                 Request Private Cloud Demo
@@ -247,7 +303,7 @@ const ITInfraProjectsPage = () => {
               transition: 'opacity 0.6s ease, transform 0.6s ease'
             }}
           >
-            Our Cloud & Infrastructure Services
+            Our IT Infrastructure Project Services
           </h2>
           
           {/* Mobile View - Accordion Style */}
@@ -363,7 +419,7 @@ const ITInfraProjectsPage = () => {
                   <img 
                     src={services[activeTab].image}
                     alt={`${services[activeTab].title} infrastructure`}
-                    className="w-[250px] h-[250px] object-cover rounded-lg"
+                    className="w-[150px] h-[150px] object-cover rounded-lg"
                     style={{ maxWidth: '100%', height: 'auto' }}
                   />
                 </div>
@@ -396,6 +452,114 @@ const ITInfraProjectsPage = () => {
     </div>
   </div>
 </section>
+
+{/* FAQ Section */}
+            <section
+              className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
+              ref={sectionRefs[3]}
+            >
+              <div className="container mx-auto">
+                <h2
+                  className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-16 text-center"
+                  style={{
+                    opacity: isVisible[3] ? 1 : 0,
+                    transform: isVisible[3] ? 'translateY(0)' : 'translateY(20px)',
+                    transition: 'opacity 0.6s ease, transform 0.6s ease'
+                  }}
+                >
+                  Frequently Asked Questions
+                </h2>
+                <div className="max-w-5xl mx-auto">
+                  {/* Responsive: Stack on mobile, 2 cols on md+ */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {[faqsLeft, faqsRight].map((faqCol, colIdx) => (
+                      <div key={colIdx} className="space-y-6">
+                        {faqCol.map((faq, idx) => {
+                          const qIdx = colIdx * 3 + idx + 1;
+                          return (
+                            <div
+                              className={`rounded-xl border bg-white border-[#e1e9f2] shadow transition-all duration-500 group
+                                ${activeFaq === qIdx ? 'ring-2 ring-[#245684] ring-opacity-40 scale-[1.02] shadow-xl' : ''}
+                              `}
+                              key={qIdx}
+                              style={{
+                                opacity: isVisible[3] ? 1 : 0,
+                                transform: isVisible[3]
+                                  ? 'scale(1)'
+                                  : 'scale(0.95)',
+                                transition: `opacity 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1), transform 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1)`
+                              }}
+                            >
+                              <button
+                                onClick={() => setActiveFaq(activeFaq === qIdx ? null : qIdx)}
+                                className={`w-full flex justify-between items-center text-left p-6 rounded-xl transition-all duration-300
+                                  ${activeFaq === qIdx
+                                    ? 'bg-gradient-to-r from-[#103d5d] to-[#245684] text-white shadow'
+                                    : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
+                                  }
+                                `}
+                              >
+                                <h3 className="text-xl font-semibold flex items-center gap-2">
+                                  <span
+                                    className={`inline-block w-3 h-3 rounded-full mr-2 transition-all duration-300
+                                      ${activeFaq === qIdx ? 'bg-[#a3d4ff] scale-110 shadow-lg' : 'bg-[#245684] scale-90'}
+                                    `}
+                                  ></span>
+                                  {faq.question}
+                                </h3>
+                                <FiChevronRight
+                                  className={`text-2xl transition-transform duration-300
+                                    ${activeFaq === qIdx ? 'rotate-90 text-[#a3d4ff]' : ''}
+                                  `}
+                                />
+                              </button>
+                              <div
+                                className={`faq-answer transition-all duration-500 overflow-hidden
+                                  ${activeFaq === qIdx ? 'max-h-[500px] opacity-100 py-4 px-6' : 'max-h-0 opacity-0 py-0 px-6'}
+                                `}
+                                style={{
+                                  background: activeFaq === qIdx
+                                    ? 'linear-gradient(90deg, #f5f9fd 65%, #a3d4ff1a 100%)'
+                                    : undefined
+                                }}
+                              >
+                                {activeFaq === qIdx && (
+                                  <p className="text-[#5c6f87] text-lg leading-relaxed animate-fadein">
+                                    {faq.answer}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </div>
+                  {/* Additional Support CTA */}
+                  <div className="mt-16 text-center">
+                    <p className="text-xl text-[#4a5d72] mb-8">
+                      Still have questions? Our team is ready to help.
+                    </p>
+                    <a href="/contact-Us" className="inline-block">
+                      <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg">
+                        Contact Our Support Team
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {/* Animations for FAQ */}
+              <style jsx>{`
+                @keyframes fadein {
+                  from { opacity: 0; transform: translateY(16px);}
+                  to { opacity: 1; transform: translateY(0);}
+                }
+                .animate-fadein {
+                  animation: fadein 0.6s cubic-bezier(.4,0,.2,1);
+                }
+              `}</style>
+            </section>
+
       <Footer/>
 
       {/* Add CSS animations */}

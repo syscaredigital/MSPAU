@@ -1,8 +1,59 @@
 import React, { useState, useEffect, useRef } from 'react';
-
 import { FiMail, FiShield, FiCloud, FiDatabase, FiServer, FiArchive, FiHardDrive, FiUsers } from 'react-icons/fi';
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
+
+const FAQS = [
+  {
+    question: "1. What are Managed IT Services, and how can they benefit my business?",
+    answer: (
+      <>
+         Managed IT Services from SysCare IT Solutions cover the full spectrum of IT support, monitoring, and management. From servers and endpoints to firewalls, Microsoft 365, and security compliance, we proactively handle your IT environment so your team can focus on core business goals. This reduces downtime, enhances security, and optimizes performance, all while lowering long-term IT costs.
+      </>
+    ),
+  },
+  {
+    question: "2. How does SysCare IT Solutions ensure the security of our systems?",
+    answer: (
+      <>
+        SysCare implements multi-layered protection across your IT environment. This includes Managed Endpoints (AV/Malware/DNS/EDR/XDR), Device Encryption, Managed Firewalls, VPN Access, and Spam Protection. We also manage patching, vulnerabilities, and Microsoft 365 security settings to keep your systems aligned with industry standards. Our proactive approach ensures your business stays ahead of evolving cyber threats.
+      </>
+    ),
+  },
+  {
+    question: "3. Do you provide Managed IT Services for small and medium-sized businesses in Melbourne and Sydney?",
+    answer: (
+      <>
+         Absolutely. SysCare specializes in delivering Managed IT Services for SMBs in Melbourne and Sydney. Our solutions are tailored to fit your scale and budget, ensuring you get enterprise-level IT support without the overhead of a large internal IT team. We help small and growing businesses stay secure, compliant, and competitive in today’s fast-moving digital environment.
+      </>
+    ),
+  },
+  {
+    question: "4. How does SysCare handle patch management for Windows and business applications?",
+    answer: (
+      <>
+         SysCare manages both Windows OS Patch Management and Application Patch Management to keep systems secure and up to date. We apply patches strategically to minimize disruption, ensuring vulnerabilities are closed before attackers can exploit them. Our automated processes reduce downtime, improve compliance, and keep your IT environment stable and resilient.
+      </>
+    ),
+  },
+  {
+    question: "5. Can SysCare help with IT compliance and regulatory requirements?",
+    answer: (
+      <>
+         Yes. Our services include M365 Security & Compliance Management, Device Encryption, and Email Archival, all aligned with industry regulations. Whether your business needs to comply with standards like ISO, GDPR, or local data protection laws, SysCare ensures your IT systems meet security and compliance obligations, reducing legal and operational risks.
+      </>
+    ),
+  },
+  {
+    question: "6. What makes SysCare’s Managed IT Services different from break-fix IT support?",
+    answer: (
+      <>
+         Unlike break-fix IT models where support is reactive, SysCare’s Managed IT Services are proactive. We continuously monitor, patch, and secure your systems to prevent problems before they occur. Services like Endpoint Monitoring, DR & BCP (Disaster Recovery & Business Continuity Planning), and Asset Management ensure stability and resilience. This proactive approach saves costs, reduces downtime, and delivers predictable IT performance.
+      </>
+    ),
+  },
+];
+
 
 const HostedServicesPage = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -10,54 +61,55 @@ const HostedServicesPage = () => {
   const [isMobile, setIsMobile] = useState(false);
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const headerRef = useRef(null);
+  
 
   const services = [
     {
       title: "Hosted Exchange/E-Mail",
       icon: <FiMail className="text-[#245684] text-2xl" />,
-      content: "Professional hosted email solutions with enterprise-grade reliability and security. Our hosted Exchange services provide seamless email management with full compatibility across all devices and platforms.",
-      image: "/images/Hosted-Exchange.png"
+      content: "Elevate your business communication with SysCare IT Solutions' Hosted Exchange/E-Mail services. Our comprehensive offering ensures seamless and secure email solutions tailored to your organizational needs. Experience the reliability of our hosted platform, providing advanced features, robust security, and around-the-clock support. With SysCare, enjoy the benefits of a professionally managed and scalable email infrastructure, allowing your team to stay connected and productive. Choose SysCare for a cutting-edge Hosted Exchange/E-Mail solution that prioritizes efficiency, security, and a hassle-free experience for your business communication needs.",
+      image: "/images/Hosted-ExchangeE-Mail.png"
     },
     {
       title: "Advanced Spam Filtering",
       icon: <FiShield className="text-[#245684] text-2xl" />,
-      content: "Advanced spam and threat protection that blocks malicious emails before they reach your inbox. Our multi-layered filtering system protects against phishing, malware, and zero-day attacks.",
-      image: "/images/Spam-Filtering.png"
+      content: "SysCare IT Solutions is safeguarding your communication channels with our advanced E-Mail Spam Filtering service. Our robust solution employs cutting-edge technology to proactively identify and eliminate unwanted emails, ensuring your inbox remains clutter-free and secure. With a focus on precision and efficiency, our spam filtering system guarantees a seamless email experience, allowing you to concentrate on what matters most – your business. Rely on SysCare for state-of-the-art E-Mail Spam Filtering that prioritizes your email security, enhances productivity, and provides a worry-free communication environment.",
+      image: "/images/Advanced-Spam-Filtering.png"
     },
     {
       title: "E-Mail Backup (M365 Backup)",
       icon: <FiDatabase className="text-[#245684] text-2xl" />,
-      content: "Comprehensive email backup solutions for Microsoft 365 environments. Ensure business continuity with automated, secure backups that protect against data loss from accidental deletion or security breaches.",
-      image: "/images/Email-Backup.png"
+      content: "SysCare IT Solutions delivers an unparalleled E-Mail Backup service, ensuring the safeguarding of critical communication data for our valued clients. Our carefully designed solution offers seamless and automated backup processes, providing peace of mind in the face of unforeseen events. With state-of-the-art technology and a commitment to data integrity, SysCare ensures the protection of your vital email communications. Experience the reliability and security of our E-Mail Backup service – an essential component in fortifying your business against potential data loss, empowering you to focus on your core operations with confidence. Choose SysCare for comprehensive and trustworthy email data protection.",
+      image: "/images/E-Mail-Backup.png"
     },
     {
       title: "E-Mail Archival (M365 Archival)",
       icon: <FiArchive className="text-[#245684] text-2xl" />,
-      content: "Secure email archiving with advanced search and retrieval capabilities. Meet compliance requirements and preserve critical business communications with our robust archival solutions.",
-      image: "/images/Email-Archival.png"
+      content: "SysCare IT Solutions delivers an unparalleled E-Mail Backup service, ensuring the safeguarding of critical communication data for our valued clients. Our carefully designed solution offers seamless and automated backup processes, providing peace of mind in the face of unforeseen events. With state-of-the-art technology and a commitment to data integrity, SysCare ensures the protection of your vital email communications. Experience the reliability and security of our E-Mail Backup service – an essential component in fortifying your business against potential data loss, empowering you to focus on your core operations with confidence. Choose SysCare for comprehensive and trustworthy email data protection.",
+      image: "/images/E-Mail-Archival .png"
     },
     {
       title: "SharePoint Backup (M365 Backup)",
       icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "Complete SharePoint Online backup and recovery solutions. Protect your collaborative workspaces, documents, and business data with automated, versioned backups.",
+      content: "SysCare IT Solutions presents a sophisticated SharePoint Backup service, ensuring the safeguarding of your crucial data with precision and reliability. Our comprehensive solution employs advanced backup strategies, guaranteeing the protection of your SharePoint environment. With meticulous attention to detail, we mitigate data loss risks, providing peace of mind to clients. SysCare's SharePoint Backup service combines cutting-edge technology and expert oversight, offering a seamless and secure backup process. Rely on us to fortify your SharePoint data, reinforcing your business continuity strategy with a resilient and efficient backup solution tailored to your unique needs.",
       image: "/images/SharePoint-Backup.png"
     },
     {
       title: "OneDrive Backup (M365 Backup)",
       icon: <FiHardDrive className="text-[#245684] text-2xl" />,
-      content: "Secure backup for OneDrive business files and personal documents. Ensure your cloud-stored data is protected against accidental deletion, ransomware, and synchronization errors.",
+      content: "SysCare IT Solutions delivers an impeccable OneDrive Backup service as part of its comprehensive range of offerings. Safeguard your crucial data with our professional-grade backup solutions, ensuring seamless protection and accessibility. Our expert team carefully configures and manages the backup process, providing you with peace of mind and eliminating the risk of data loss. Experience the reliability and efficiency of SysCare's OneDrive Backup service, tailored to meet the highest standards of data security and accessibility. Choose SysCare for a robust and proactive approach to safeguarding your valuable digital assets.",
       image: "/images/OneDrive-Backup.png"
     },
     {
       title: "MS Teams Backup (M365 Backup)",
       icon: <FiUsers className="text-[#245684] text-2xl" />,
-      content: "Comprehensive backup for Microsoft Teams conversations, files, and channels. Preserve critical collaborative content and ensure business continuity for your team communications.",
-      image: "/images/Teams-Backup.png"
+      content: "Elevate your business continuity with SysCare IT Solutions' MS Teams Backup service. Our comprehensive solution ensures the safeguarding of your critical communication and collaboration data within the Microsoft Teams platform. With robust backup mechanisms and streamlined recovery processes, we provide peace of mind by protecting against data loss, accidental deletions, or unforeseen disruptions. Trust SysCare to fortify your digital workspace, enabling seamless collaboration while maintaining the integrity and availability of your MS Teams data. Invest in resilience; choose SysCare IT Solutions for secure and reliable MS Teams Backup services.",
+      image: "/images/MS-Teams-Backup.png"
     },
     {
       title: "Cloud Backup",
       icon: <FiCloud className="text-[#245684] text-2xl" />,
-      content: "Enterprise-grade cloud backup solutions for all your business data. Our secure, scalable backup services protect your critical information with military-grade encryption and geographically redundant storage.",
+      content: "SysCare IT Solutions delivers unparalleled Cloud Backup services, ensuring the safety and accessibility of your critical data. Our robust and secure cloud infrastructure guarantees seamless backup, minimizing the risk of data loss. With state-of-the-art technology, we provide automated, scalable, and reliable solutions tailored to your business needs. Experience peace of mind knowing that your data is protected, easily recoverable, and compliant with industry standards. Choose SysCare for a proactive approach to data security, allowing you to focus on your core business while we safeguard your valuable information in the cloud.",
       image: "/images/Cloud-Backup.png"
     }
   ];
@@ -142,6 +194,7 @@ const HostedServicesPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  
   return (
     <div className="min-h-screen bg-white">
       <Navigation />

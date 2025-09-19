@@ -16,32 +16,32 @@ const DevelopmentAutomationPage = () => {
     {
       title: "SharePoint Workflows",
       icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers state-of-the-art Hosted Servers (Virtual Machines), providing clients with a robust and scalable solution tailored to their business needs. Our advanced hosting services guarantee optimal performance, security, and flexibility.",
-      image: "/images/Hosted-Servers.png"
+      content: "SysCare IT Solutions is providing a suite of services, including our specialized expertise in SharePoint Workflows. Elevate your business processes with seamless automation and collaboration through our meticulously designed SharePoint Workflows. Our professional team ensures streamlined task management, document approval, and data integration, enhancing overall efficiency. Trust SysCare for innovative solutions that empower your organization with the dynamic capabilities of SharePoint Workflows, optimizing workflow orchestration and fostering collaborative success. Experience precision, reliability, and enhanced productivity with our tailored SharePoint Workflow solutions.",
+      image: "/images/SharePoint-Workflows.png"
     },
     {
       title: "PowerApps & PowerBI",
       icon: <FiCpu className="text-[#245684] text-2xl" />,
-      content: "Elevate your digital capabilities with SysCare IT Solutions' Dedicated Virtual Servers. Tailored for optimal performance and reliability, our state-of-the-art infrastructure ensures seamless operations for your business.",
-      image: "/images/Dedicated-Virtual-Servers.png"
+      content: "SysCare IT Solutions offers services delivering dynamic PowerApps and PowerBI services, providing clients with a seamless blend of efficiency and analytics. Our expert team harnesses the power of Microsoft's cutting-edge platforms to craft custom PowerApps tailored to your business needs, streamlining processes and boosting productivity. Additionally, our PowerBI services empower you with insightful data visualizations and analytics, transforming raw data into actionable insights. Elevate your business capabilities with SysCare's specialized PowerApps and PowerBI services, designed to drive innovation and enhance decision-making. Experience the synergy of technology and business intelligence with SysCare IT Solutions.",
+      image: "/images/PowerApps-PowerBI.png"
     },
     {
       title: "Power Automation",
       icon: <FiCode className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions offers spectrum of services, including Virtual Desktops (VDI) and Remote Desktop Services (RDS). Elevate your business efficiency with our cutting-edge virtualization solutions.",
-      image: "/images/Virtual-Desktops.png"
+      content: "SysCare IT Solutions supports businesses in embracing AI Transformation to drive innovation and efficiency. By integrating artificial intelligence into office operations, we enable smarter decision-making, predictive analytics, and process optimization. From AI-assisted reporting to automated customer responses, our solutions reduce workload and enhance operational performance.",
+      image: "/images/Power-Automation.png"
     },
     {
       title: "AI Transformation",
       icon: <FiDatabase className="text-[#245684] text-2xl" />,
-      content: "Elevate your business with SysCare IT Solutions' Rack Space Hire (Co-location) service. Our premium co-location offering provides a secure and efficient environment for your servers and equipment.",
-      image: "/images/Rack-Space-Hire.png"
+      content: "SysCare IT Solutions supports businesses in embracing AI Transformation to drive innovation and efficiency. By integrating artificial intelligence into office operations, we enable smarter decision-making, predictive analytics, and process optimization. From AI-assisted reporting to automated customer responses, our solutions reduce workload and enhance operational performance.",
+      image: "/images/AI-Transformation.png"
     },
     {
       title: "Copilot / Copilot Studio",
       icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers excellence in IT with its Leased Dedicated Physical Servers service. Elevate your business performance and security with our dedicated servers, exclusively assigned to meet your unique requirements.",
-      image: "/images/Leased-Servers.png"
+      content: "Leverage the power of Microsoft Copilot and Copilot Studio with SysCare. We implement intelligent automation and AI-driven assistance to enhance productivity in Microsoft 365 applications. Copilot helps users generate content, analyze data, and automate repetitive tasks, enabling your workforce to focus on strategic initiatives rather than administrative work.",
+      image: "/images/Copilot -Copilot-Studio.png"
     }
   ];
 
@@ -207,12 +207,12 @@ const DevelopmentAutomationPage = () => {
             }}
           >
             <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">SysCare Private Cloud</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Office IT Automation – SysCare IT Solutions</h2>
               <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
-                Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.
+                In today’s fast-paced business environment, efficiency and productivity are critical. SysCare IT Solutions Pty Ltd provides advanced Office IT Automation solutions for businesses in Melbourne, Sydney, and across Australia. Our services are designed to streamline repetitive tasks, enhance collaboration, and empower your workforce with intelligent technology.
               </p>
               <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
-                Experience the pinnacle of reliability and performance as our dedicated team of experts customizes solutions to optimize your operations. Trust SysCare Private Cloud for a sophisticated, streamlined, and secure IT infrastructure, enabling you to focus on what truly matters – the growth and success of your business.
+                With our Office IT Automation services, companies can reduce manual work, optimize processes, and unlock the full potential of Microsoft’s modern tools. From SharePoint workflows to AI-powered automation, SysCare delivers tailored solutions that transform everyday operations into efficient, scalable processes.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
                 Request Private Cloud Demo
@@ -253,7 +253,7 @@ const DevelopmentAutomationPage = () => {
               transition: 'opacity 0.6s ease, transform 0.6s ease'
             }}
           >
-            Our Cloud & Infrastructure Services
+            Our Office IT Automation Services
           </h2>
           
           {/* Mobile View - Accordion Style */}
@@ -369,7 +369,7 @@ const DevelopmentAutomationPage = () => {
                   <img 
                     src={services[activeTab].image}
                     alt={`${services[activeTab].title} infrastructure`}
-                    className="w-[250px] h-[250px] object-cover rounded-lg"
+                    className="w-[150px] h-[150px] object-cover rounded-lg"
                     style={{ maxWidth: '100%', height: 'auto' }}
                   />
                 </div>
