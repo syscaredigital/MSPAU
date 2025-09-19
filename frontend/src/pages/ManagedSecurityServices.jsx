@@ -4,12 +4,64 @@ import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevr
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
+const FAQS = [
+  {
+    question: "1. What are Managed Security Services (MSS)?",
+    answer: (
+      <>
+          Managed Security Services are outsourced solutions where a provider like SysCare IT Solutions monitors, manages, and protects your IT infrastructure from cyber threats. This includes firewalls, endpoints, cloud systems, networks, and more.
+      </>
+    ),
+  },
+  {
+    question: "2. Why should my business in Melbourne or Sydney consider Managed Security Services?",
+    answer: (
+      <>
+        Cyberattacks are increasing in frequency and complexity. Businesses in Melbourne and Sydney rely on MSS providers like SysCare to ensure 24/7 monitoring, compliance, and protection without the cost of building an in-house security team.
+      </>
+    ),
+  },
+  {
+    question: "3. What does a Managed Security Services Provider (MSSP) do?",
+    answer: (
+      <>
+         An MSSP delivers proactive security monitoring, vulnerability management, incident response, and compliance support. At SysCare, we act as your extended security team, detecting and responding to threats before they cause harm.
+      </>
+    ),
+  },
+  {
+    question: "4. How do Managed Security Services differ from in-house IT security?",
+    answer: (
+      <>
+          In-house IT teams often lack the resources for continuous monitoring. SysCare’s managed security services provide 24/7 SOC and NOC operations, advanced threat intelligence, and specialized expertise at a fraction of the cost.
+      </>
+    ),
+  },
+  {
+    question: "5. Do you offer 24/7 monitoring?",
+    answer: (
+      <>
+          Yes. SysCare operates a fully managed 24/7 Security Operations Centre (SOC) and Network Operations Centre (NOC) to ensure your business is always protected, day and night.
+      </>
+    ),
+  },
+  {
+    question: "6. How does SysCare handle firewall management and monitoring?",
+    answer: (
+      <>
+         We configure, monitor, and maintain enterprise firewalls with IDS/IPS features. This ensures your network perimeter is secured, malicious traffic is blocked, and security rules are always up to date.
+      </>
+    ),
+  },
+];
+
 const ManagedITServicesPage = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [isVisible, setIsVisible] = useState([false, false, false, false]);
   const [isMobile, setIsMobile] = useState(false);
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const headerRef = useRef(null);
+  const [activeFaq, setActiveFaq] = useState(null);
 
   const services = [
     {
@@ -171,6 +223,10 @@ const ManagedITServicesPage = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Split FAQs for two columns
+  const faqsLeft = FAQS.slice(0, 3);
+  const faqsRight = FAQS.slice(3, 6);
 
   return (
     <div className="min-h-screen bg-white">
@@ -447,6 +503,113 @@ const ManagedITServicesPage = () => {
         </div>
       </section>
       
+{/* FAQ Section */}
+            <section
+              className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
+              ref={sectionRefs[3]}
+            >
+              <div className="container mx-auto">
+                <h2
+                  className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-16 text-center"
+                  style={{
+                    opacity: isVisible[3] ? 1 : 0,
+                    transform: isVisible[3] ? 'translateY(0)' : 'translateY(20px)',
+                    transition: 'opacity 0.6s ease, transform 0.6s ease'
+                  }}
+                >
+                  Frequently Asked Questions
+                </h2>
+                <div className="max-w-5xl mx-auto">
+                  {/* Responsive: Stack on mobile, 2 cols on md+ */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {[faqsLeft, faqsRight].map((faqCol, colIdx) => (
+                      <div key={colIdx} className="space-y-6">
+                        {faqCol.map((faq, idx) => {
+                          const qIdx = colIdx * 3 + idx + 1;
+                          return (
+                            <div
+                              className={`rounded-xl border bg-white border-[#e1e9f2] shadow transition-all duration-500 group
+                                ${activeFaq === qIdx ? 'ring-2 ring-[#245684] ring-opacity-40 scale-[1.02] shadow-xl' : ''}
+                              `}
+                              key={qIdx}
+                              style={{
+                                opacity: isVisible[3] ? 1 : 0,
+                                transform: isVisible[3]
+                                  ? 'scale(1)'
+                                  : 'scale(0.95)',
+                                transition: `opacity 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1), transform 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1)`
+                              }}
+                            >
+                              <button
+                                onClick={() => setActiveFaq(activeFaq === qIdx ? null : qIdx)}
+                                className={`w-full flex justify-between items-center text-left p-6 rounded-xl transition-all duration-300
+                                  ${activeFaq === qIdx
+                                    ? 'bg-gradient-to-r from-[#103d5d] to-[#245684] text-white shadow'
+                                    : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
+                                  }
+                                `}
+                              >
+                                <h3 className="text-xl font-semibold flex items-center gap-2">
+                                  <span
+                                    className={`inline-block w-3 h-3 rounded-full mr-2 transition-all duration-300
+                                      ${activeFaq === qIdx ? 'bg-[#a3d4ff] scale-110 shadow-lg' : 'bg-[#245684] scale-90'}
+                                    `}
+                                  ></span>
+                                  {faq.question}
+                                </h3>
+                                <FiChevronRight
+                                  className={`text-2xl transition-transform duration-300
+                                    ${activeFaq === qIdx ? 'rotate-90 text-[#a3d4ff]' : ''}
+                                  `}
+                                />
+                              </button>
+                              <div
+                                className={`faq-answer transition-all duration-500 overflow-hidden
+                                  ${activeFaq === qIdx ? 'max-h-[500px] opacity-100 py-4 px-6' : 'max-h-0 opacity-0 py-0 px-6'}
+                                `}
+                                style={{
+                                  background: activeFaq === qIdx
+                                    ? 'linear-gradient(90deg, #f5f9fd 65%, #a3d4ff1a 100%)'
+                                    : undefined
+                                }}
+                              >
+                                {activeFaq === qIdx && (
+                                  <p className="text-[#5c6f87] text-lg leading-relaxed animate-fadein">
+                                    {faq.answer}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </div>
+                  {/* Additional Support CTA */}
+                  <div className="mt-16 text-center">
+                    <p className="text-xl text-[#4a5d72] mb-8">
+                      Still have questions? Our team is ready to help.
+                    </p>
+                    <a href="/contact-Us" className="inline-block">
+                      <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg">
+                        Contact Our Support Team
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {/* Animations for FAQ */}
+              <style jsx>{`
+                @keyframes fadein {
+                  from { opacity: 0; transform: translateY(16px);}
+                  to { opacity: 1; transform: translateY(0);}
+                }
+                .animate-fadein {
+                  animation: fadein 0.6s cubic-bezier(.4,0,.2,1);
+                }
+              `}</style>
+            </section>
+
       <Footer/>
 
       {/* Add CSS animations */}

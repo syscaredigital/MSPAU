@@ -44,50 +44,50 @@ const CyberSecurityConsultancyServicesPage = () => {
     {
       title: "Cloud Security Posture Assessment",
       icon: <FiCloud className="text-[#245684] text-2xl" />,
-      content: "Elevate your cloud security with SysCare IT Solutions' Cloud Security Posture Assessment (CSPA). Our comprehensive service meticulously evaluates your cloud environment, identifying vulnerabilities and ensuring compliance with industry standards. Our seasoned experts conduct a thorough analysis, providing insights to fortify your cloud security posture.",
+      content: "Elevate your cloud security with SysCare IT Solutions' Cloud Security Posture Assessment (CSPA). Our comprehensive service meticulously evaluates your cloud environment, identifying vulnerabilities and ensuring compliance with industry standards. Our seasoned experts conduct a thorough analysis, providing insights to fortify your cloud security posture. With SysCare's CSPA, proactively safeguard your data, mitigate risks, and uphold regulatory requirements. Trust us to optimize your cloud security framework, empowering your business with resilient protection in the digital landscape. Enhance your peace of mind and fortify your cloud infrastructure with SysCare's expertise in Cloud Security Posture Assessment.",
       image: "/images/CloudSecurity-Posture-Assessment.png"
     },
     {
       title: "Vulnerability Scanning & Penetration Testing (VAPT)",
       icon: <FiShield className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers unparalleled cybersecurity with our expertly crafted Vulnerability Scanning & Penetration Testing services. Safeguard your digital assets through thorough examination and proactive measures. Our adept team carefully identifies vulnerabilities within your systems, providing comprehensive insights.",
-      image: "/images/Hosted-Servers.png"
+      content: "SysCare IT Solutions delivers unparalleled cybersecurity with our expertly crafted Vulnerability Scanning & Penetration Testing services. Safeguard your digital assets through thorough examination and proactive measures. Our adept team carefully identifies vulnerabilities within your systems, providing comprehensive insights. With rigorous penetration testing, we simulate real-world cyber threats to fortify your defenses. Partner with SysCare for robust security solutions, ensuring your business remains resilient in the face of evolving cyber risks. Trust us to fortify your digital infrastructure, because security isn't just a service – it's our commitment to your peace of mind.",
+      image: "/images/Vulnerability-Scanning-&-Penetration-Testing.png"
     },
     {
       title: "Security Analytics & Reporting (MS365, Azure)",
       icon: <FiCpu className="text-[#245684] text-2xl" />,
-      content: "Elevate your organization's security posture with SysCare IT Solutions' comprehensive Security Analytics & Reporting services tailored for MS365 and Azure environments. Our seasoned experts employ advanced analytics to proactively identify and mitigate potential threats.",
-      image: "/images/Dedicated-Virtual-Servers.png"
+      content: "Elevate your organization's security posture with SysCare IT Solutions' comprehensive Security Analytics & Reporting services tailored for MS365 and Azure environments. Our seasoned experts employ advanced analytics to proactively identify and mitigate potential threats, ensuring robust protection for your digital assets. With a focus on Microsoft's powerful platforms, we deliver insightful reporting that empowers informed decision-making. SysCare's Security Analytics & Reporting solutions guarantee a vigilant defense, providing peace of mind in an ever-evolving cybersecurity landscape. Choose SysCare for a proactive and sophisticated approach to safeguarding your MS365 and Azure environments.",
+      image: "/images/Security-Analytics-&-Reporting-(MS365, Azure).png"
     },
     {
       title: "Security Policy & Procedure Development",
       icon: <FiCode className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions provides Security Policy & Procedure Development, delivering paramount expertise to fortify your digital landscape. Our seasoned professionals craft policies tailored to your unique business needs, ensuring robust defense against cyber threats.",
-      image: "/images/Virtual-Desktops.png"
+      content: "SysCare IT Solutions provides Security Policy & Procedure Development, delivering paramount expertise to fortify your digital landscape. Our seasoned professionals craft policies tailored to your unique business needs, ensuring robust defense against cyber threats. With a proactive approach, we establish comprehensive procedures that align with industry standards and regulatory requirements. Elevate your security posture with SysCare's meticulous attention to detail, fostering a resilient and compliant environment. Trust us to safeguard your assets through strategic policy development, empowering your organization against evolving security challenges.",
+      image: "/images/Security-Policy-&-Procedure-Development.png"
     },
     {
       title: "Security Audit & Compliance",
       icon: <FiDatabase className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions excels in ensuring robust cybersecurity through our Security Audit & Compliance services. Our expert team conducts thorough assessments, identifying vulnerabilities and ensuring compliance with industry standards and regulations.",
-      image: "/images/Rack-Space-Hire.png"
+      content: "SysCare IT Solutions excels in ensuring robust cybersecurity through our Security Audit & Compliance services. Our expert team conducts thorough assessments, identifying vulnerabilities and ensuring compliance with industry standards and regulations. With a meticulous approach, we fortify your digital infrastructure, providing comprehensive security solutions tailored to your unique needs. Rely on SysCare for cutting-edge technology, proactive risk mitigation, and a commitment to maintaining the highest standards of security and compliance. Safeguard your business with our Security Audit & Compliance services, empowering you to navigate the digital landscape with confidence and resilience.",
+      image: "/images/Security-Audit-&-Compliance.png"
     },
     {
       title: "Cyber Incident Response & Emergency Support",
       icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions excels in Cyber Incident Response & Emergency Support, providing swift and expert solutions to safeguard your digital assets. Our dedicated team, equipped with extensive experience, promptly responds to cyber threats.",
-      image: "/images/Leased-Servers.png"
+      content: "SysCare IT Solutions excels in Cyber Incident Response & Emergency Support, providing swift and expert solutions to safeguard your digital assets. Our dedicated team, equipped with extensive experience, promptly responds to cyber threats, minimizing potential damage and ensuring business continuity. With a proactive and professional approach, we mitigate risks, conduct thorough investigations, and implement effective strategies to counteract incidents. SysCare is your trusted partner in navigating the complexities of cybersecurity emergencies, ensuring a resilient defense against evolving threats. Rely on us for robust incident response that prioritizes the security and stability of your business",
+      image: "/images/Cyber-Incident-Response-&-Emergency-Support.png"
     },
     {
       title: "End User Security Assessment",
       icon: <FiWifi className="text-[#245684] text-2xl" />,
-      content: "Explore peace of mind with SysCare IT Solutions' End User Security Assessment. Our comprehensive service is designed to fortify your organization's defenses by evaluating and enhancing end-user security protocols.",
-      image: "/images/Leased-Servers.png"
+      content: "Explore peace of mind with SysCare IT Solutions' End User Security Assessment. Our comprehensive service is designed to fortify your organization's defenses by evaluating and enhancing end-user security protocols. With a focus on threat prevention, we conduct thorough assessments to identify vulnerabilities, educate users on best practices, and implement robust security measures. Trust our expert team to safeguard your business against evolving cyber threats. SysCare IT Solutions – where security meets seamless user experience. Elevate your defense strategy today.",
+      image: "/images/End-User-Security-Assessment.png"
     },
     {
       title: "Consultancy Services",
       icon: <FiChevronRight className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers unparalleled Consultancy services, guiding clients with strategic insights to optimize their IT landscape. Our seasoned professionals collaborate closely, providing expert analysis and tailored recommendations.",
-      image: "/images/Leased-Servers.png"
+      content: "SysCare IT Solutions delivers unparalleled Consultancy services, guiding clients with strategic insights to optimize their IT landscape. Our seasoned professionals collaborate closely, providing expert analysis and tailored recommendations to enhance efficiency and drive innovation. Whether you seek advice on system upgrades, cybersecurity, or IT strategy, SysCare's consultancy ensures informed decisions for your business's technological advancement. Rely on our meticulous guidance to navigate the complexities of the IT landscape, aligning your goals with robust solutions. Choose SysCare for proactive consultancy that empowers your business to thrive in the dynamic realm of technology.",
+      image: "/images/Consultancy-Services.png"
     }
   ];
 

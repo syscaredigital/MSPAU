@@ -212,10 +212,10 @@ const PrivateCloudPage = () => {
             <div className="lg:w-1/2">
               <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">SysCare Private Cloud</h2>
               <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
-                Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.
+                In today’s fast-paced digital world, businesses need flexible, reliable, and secure IT infrastructure. At SysCare IT Solutions Pty Ltd, we deliver end-to-end cloud solutions in Melbourne, Sydney, and Australia-wide, tailored to meet the needs of modern organizations. Whether you’re looking for cloud migration services, hybrid cloud environments, or managed cloud services, our expert team helps you harness the power of the cloud to drive innovation, efficiency, and growth.
               </p>
               <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
-                Experience the pinnacle of reliability and performance as our dedicated team of experts customizes solutions to optimize your operations. Trust SysCare Private Cloud for a sophisticated, streamlined, and secure IT infrastructure, enabling you to focus on what truly matters – the growth and success of your business.
+                From public and private cloud deployments to cloud security and consulting, SysCare ensures your business benefits from seamless connectivity, reduced costs, and enterprise-grade reliability.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
                 Request Private Cloud Demo
@@ -256,7 +256,7 @@ const PrivateCloudPage = () => {
               transition: 'opacity 0.6s ease, transform 0.6s ease'
             }}
           >
-            Our Cloud & Infrastructure Services
+            Our Cloud Solutions & Services
           </h2>
           
           {/* Mobile View - Accordion Style */}
