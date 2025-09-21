@@ -4,37 +4,83 @@ import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevr
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
+const FAQS = [
+  {
+    question: "1. What is business internet, and how is it different from home internet?",
+    answer: (
+      <>
+        Business internet provides enterprise-grade speed, reliability, and service-level agreements (SLAs), unlike home internet. SysCare delivers business internet designed for high performance, minimal downtime, and 24/7 support, ensuring your operations always run smoothly.      </>
+    ),
+  },
+  {
+    question: "2. Why is reliable internet connectivity important for businesses?",
+    answer: (
+      <>
+         Reliable internet connectivity is essential for communication, cloud applications, collaboration tools, and secure data transfer. With SysCare’s connectivity solutions, businesses gain uptime guarantees, faster speeds, and robust security.      </>
+    ),
+  },
+  {
+    question: "3. What is Private WAN/MPLS, and when should my business use it?",
+    answer: (
+      <>
+        Private WAN/MPLS is a secure, dedicated network that connects multiple business sites. It is ideal for organizations that handle sensitive data, require consistent performance, and need secure communication between offices or data centers.      </>
+    ),
+  },
+  {
+    question: "4. How does SD-WAN improve business connectivity?",
+    answer: (
+      <>
+        SD-WAN intelligently manages multiple internet connections (MPLS, broadband, 4G/5G), automatically routing traffic for speed, reliability, and cost efficiency. SysCare’s SD-WAN boosts application performance, enhances security, and provides centralized management.      </>
+    ),
+  },
+  {
+    question: "5. Is SD-WAN a replacement for MPLS?",
+    answer: (
+      <>
+          Not always. While SD-WAN is a cost-effective, flexible alternative to MPLS, many businesses use a hybrid model with both. SysCare helps you choose the right solution depending on your performance, cost, and security requirements.      </>
+    ),
+  },
+  {
+    question: "6. What is a VPN, and how does it support remote work?",
+    answer: (
+      <>
+        A VPN (Virtual Private Network) allows employees to securely access company systems from anywhere. SysCare’s VPN & Remote Access solutions use encryption and multi-factor authentication to protect data while enabling remote and hybrid teams to work productively.      </>
+    ),
+  },
+];
+
 const ConnectivityPage = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [isVisible, setIsVisible] = useState([false, false, false, false]);
   const [isMobile, setIsMobile] = useState(false);
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const headerRef = useRef(null);
+  const [activeFaq, setActiveFaq] = useState(null);
 
   const services = [
     {
       title: "Business Internet",
       icon: <FiCloud className="text-[#245684] text-2xl" />,
       content: "Elevate your business with SysCare Private Cloud, a flagship service by SysCare IT Solutions. Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.",
-      image: "/images/SysCare-Private-Cloud.png"
+      image: "/images/Business-Internet.png"
     },
     {
       title: "Private WAN/MPLS",
       icon: <FiServer className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions delivers state-of-the-art Hosted Servers (Virtual Machines), providing clients with a robust and scalable solution tailored to their business needs. Our advanced hosting services guarantee optimal performance, security, and flexibility.",
-      image: "/images/Hosted-Servers.png"
+      image: "/images/Private-WANMPLS.png"
     },
     {
       title: "SDWAN",
       icon: <FiCpu className="text-[#245684] text-2xl" />,
       content: "Elevate your digital capabilities with SysCare IT Solutions' Dedicated Virtual Servers. Tailored for optimal performance and reliability, our state-of-the-art infrastructure ensures seamless operations for your business.",
-      image: "/images/Dedicated-Virtual-Servers.png"
+      image: "/images/SDWAN.png"
     },
     {
       title: "VPN & Remote Access",
       icon: <FiCode className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions offers spectrum of services, including Virtual Desktops (VDI) and Remote Desktop Services (RDS). Elevate your business efficiency with our cutting-edge virtualization solutions.",
-      image: "/images/Virtual-Desktops.png"
+      image: "/images/VPN-Remote-Access.png"
     },
     
   ];
@@ -119,6 +165,10 @@ const ConnectivityPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+// Split FAQs for two columns
+  const faqsLeft = FAQS.slice(0, 3);
+  const faqsRight = FAQS.slice(3, 6);
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -201,12 +251,12 @@ const ConnectivityPage = () => {
             }}
           >
             <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">SysCare Private Cloud</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Connectivity Solutions </h2>
               <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
-                Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.
+                In today’s digital world, seamless connectivity is the backbone of every successful business. Whether you’re running a small office, a large enterprise, or managing multiple branches across Australia, reliable internet connectivity is critical for productivity, collaboration, and growth. At SysCare IT Solutions Pty Ltd, we deliver secure, scalable, and high-performance connectivity solutions tailored to your unique business needs.
               </p>
               <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
-                Experience the pinnacle of reliability and performance as our dedicated team of experts customizes solutions to optimize your operations. Trust SysCare Private Cloud for a sophisticated, streamlined, and secure IT infrastructure, enabling you to focus on what truly matters – the growth and success of your business.
+                From high-speed business internet to advanced networking options like Private WAN/MPLS, SD-WAN, and VPN & Remote Access, SysCare ensures your teams stay connected anytime, anywhere. With our expertise, you gain more than just internet – you gain resilient, future-proof connectivity designed to support your operations without interruption.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
                 Request Private Cloud Demo
@@ -363,7 +413,7 @@ const ConnectivityPage = () => {
                   <img 
                     src={services[activeTab].image}
                     alt={`${services[activeTab].title} infrastructure`}
-                    className="w-[250px] h-[250px] object-cover rounded-lg"
+                    className="w-[150px] h-[150px] object-cover rounded-lg"
                     style={{ maxWidth: '100%', height: 'auto' }}
                   />
                 </div>
@@ -396,7 +446,115 @@ const ConnectivityPage = () => {
     </div>
   </div>
 </section>
-      <Footer/>
+
+{/* FAQ Section */}
+            <section
+              className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
+              ref={sectionRefs[3]}
+            >
+              <div className="container mx-auto">
+                <h2
+                  className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-16 text-center"
+                  style={{
+                    opacity: isVisible[3] ? 1 : 0,
+                    transform: isVisible[3] ? 'translateY(0)' : 'translateY(20px)',
+                    transition: 'opacity 0.6s ease, transform 0.6s ease'
+                  }}
+                >
+                  Frequently Asked Questions
+                </h2>
+                <div className="max-w-5xl mx-auto">
+                  {/* Responsive: Stack on mobile, 2 cols on md+ */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {[faqsLeft, faqsRight].map((faqCol, colIdx) => (
+                      <div key={colIdx} className="space-y-6">
+                        {faqCol.map((faq, idx) => {
+                          const qIdx = colIdx * 3 + idx + 1;
+                          return (
+                            <div
+                              className={`rounded-xl border bg-white border-[#e1e9f2] shadow transition-all duration-500 group
+                                ${activeFaq === qIdx ? 'ring-2 ring-[#245684] ring-opacity-40 scale-[1.02] shadow-xl' : ''}
+                              `}
+                              key={qIdx}
+                              style={{
+                                opacity: isVisible[3] ? 1 : 0,
+                                transform: isVisible[3]
+                                  ? 'scale(1)'
+                                  : 'scale(0.95)',
+                                transition: `opacity 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1), transform 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1)`
+                              }}
+                            >
+                              <button
+                                onClick={() => setActiveFaq(activeFaq === qIdx ? null : qIdx)}
+                                className={`w-full flex justify-between items-center text-left p-6 rounded-xl transition-all duration-300
+                                  ${activeFaq === qIdx
+                                    ? 'bg-gradient-to-r from-[#103d5d] to-[#245684] text-white shadow'
+                                    : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
+                                  }
+                                `}
+                              >
+                                <h3 className="text-xl font-semibold flex items-center gap-2">
+                                  <span
+                                    className={`inline-block w-3 h-3 rounded-full mr-2 transition-all duration-300
+                                      ${activeFaq === qIdx ? 'bg-[#a3d4ff] scale-110 shadow-lg' : 'bg-[#245684] scale-90'}
+                                    `}
+                                  ></span>
+                                  {faq.question}
+                                </h3>
+                                <FiChevronRight
+                                  className={`text-2xl transition-transform duration-300
+                                    ${activeFaq === qIdx ? 'rotate-90 text-[#a3d4ff]' : ''}
+                                  `}
+                                />
+                              </button>
+                              <div
+                                className={`faq-answer transition-all duration-500 overflow-hidden
+                                  ${activeFaq === qIdx ? 'max-h-[500px] opacity-100 py-4 px-6' : 'max-h-0 opacity-0 py-0 px-6'}
+                                `}
+                                style={{
+                                  background: activeFaq === qIdx
+                                    ? 'linear-gradient(90deg, #f5f9fd 65%, #a3d4ff1a 100%)'
+                                    : undefined
+                                }}
+                              >
+                                {activeFaq === qIdx && (
+                                  <p className="text-[#5c6f87] text-lg leading-relaxed animate-fadein">
+                                    {faq.answer}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </div>
+                  {/* Additional Support CTA */}
+                  <div className="mt-16 text-center">
+                    <p className="text-xl text-[#4a5d72] mb-8">
+                      Still have questions? Our team is ready to help.
+                    </p>
+                    <a href="/contact-Us" className="inline-block">
+                      <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg">
+                        Contact Our Support Team
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {/* Animations for FAQ */}
+              <style jsx>{`
+                @keyframes fadein {
+                  from { opacity: 0; transform: translateY(16px);}
+                  to { opacity: 1; transform: translateY(0);}
+                }
+                .animate-fadein {
+                  animation: fadein 0.6s cubic-bezier(.4,0,.2,1);
+                }
+              `}</style>
+            </section>
+
+<Footer/>
 
       {/* Add CSS animations */}
       <style jsx>{`
