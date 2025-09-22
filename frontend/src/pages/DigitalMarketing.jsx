@@ -12,214 +12,182 @@ const DigitalMarketingPage = () => {
   const headerRef = useRef(null);
 
   const services = [
-    {
-      title: "Graphic Design",
-      icon: <FiImage className="text-[#245684] text-2xl" />,
-      content: "Professional graphic design services that create visually compelling materials to represent your brand across all platforms and mediums.",
-      image: "/images/Graphic-Design.png"
-    },
+
     {
       title: "Logo Design",
       icon: <FiImage className="text-[#245684] text-2xl" />,
-      content: "Custom logo design services that create memorable, distinctive brand identities that communicate your company's values and vision.",
+      content: "Your logo is the face of your brand, and our design team ensures it makes a lasting impression. We create modern, professional, and meaningful logos that capture your business identity and communicate your values. Whether you’re launching a startup or rebranding, SysCare delivers versatile logo designs that work across digital and print media. Our goal is to craft visuals that build recognition and trust with your audience.",
       image: "/images/Logo-Design.png"
     },
     {
       title: "Business Cards & Stationery",
       icon: <FiImage className="text-[#245684] text-2xl" />,
-      content: "Professional business card and stationery design that creates a cohesive brand identity across all your printed materials.",
+      content: "First impressions matter, and custom-designed business cards and stationery add credibility to your brand. We create high-quality, creative, and professional business essentials that reflect your unique style. From business cards to letterheads, envelopes, and corporate templates, SysCare ensures consistency across all touchpoints. With our designs, your brand stands out in every interaction.",
       image: "/images/Business-Cards-Stationery.png"
     },
     {
       title: "Social Media Graphics",
       icon: <FiImage className="text-[#245684] text-2xl" />,
-      content: "Eye-catching social media graphics designed to increase engagement, followers, and brand recognition across all platforms.",
+      content: "Engaging social media graphics are key to boosting your online presence. We design eye-catching visuals tailored to platforms like Facebook, Instagram, LinkedIn, and YouTube. From profile banners to post templates, we ensure every design is optimized for performance and engagement. SysCare helps your brand maintain a consistent, professional look across all channels.",
       image: "/images/Social-Media-Graphics.png"
     },
     {
       title: "Flyers, Posters & Brochures",
       icon: <FiImage className="text-[#245684] text-2xl" />,
-      content: "Professional print design services for flyers, posters, and brochures that effectively communicate your message and drive action.",
+      content: "Traditional marketing materials still drive results when designed effectively. We create impactful flyers, posters, and brochures that communicate your brand message clearly. Whether for events, promotions, or product launches, our designs grab attention and drive action. SysCare ensures your print and digital collateral is professional, memorable, and on-brand.",
       image: "/images/Flyers-Posters-Brochures.png"
     },
     {
       title: "Presentations & Infographics",
       icon: <FiImage className="text-[#245684] text-2xl" />,
-      content: "Engaging presentations and informative infographics that transform complex information into visually appealing, easy-to-understand content.",
+      content: "Presentations and infographics should be more than just informative they should inspire and engage. SysCare designs compelling presentations and data-driven infographics that simplify complex ideas. Whether for corporate pitches, training, or marketing campaigns, we ensure your message is communicated with clarity and creativity. Our designs enhance storytelling and keep your audience focused.",
       image: "/images/Presentations-Infographics.png"
     },
     {
       title: "Web Graphics",
       icon: <FiImage className="text-[#245684] text-2xl" />,
-      content: "Custom web graphics, banners, and elements designed to enhance your website's visual appeal and user experience.",
+      content: "Your website deserves visuals that enhance its usability and appeal. SysCare creates optimized web graphics, including banners, icons, and illustrations, tailored to your website’s style. Our designs improve user experience, reinforce branding, and support conversion goals. We ensure all graphics are responsive, fast-loading, and SEO-friendly for maximum impact.",
       image: "/images/Web-Graphics.png"
     },
     {
       title: "Digital Branding",
       icon: <FiImage className="text-[#245684] text-2xl" />,
-      content: "Comprehensive digital branding services that create a consistent, recognizable brand identity across all digital platforms.",
+      content: "Digital branding goes beyond logos it’s about creating a consistent identity across all platforms. SysCare develops brand kits, guidelines, and visual elements that strengthen recognition online. From typography to color palettes, we align every aspect with your business goals. Our branding services help businesses stand out in Sydney, Melbourne, and beyond.",
       image: "/images/Digital-Branding.png"
     },
     {
       title: "Product Mockups",
       icon: <FiImage className="text-[#245684] text-2xl" />,
-      content: "Professional product mockup services that showcase your products in realistic settings to enhance marketing materials and presentations.",
+      content: "Showcase your products with professional mockups that highlight quality and appeal. SysCare designs realistic 2D and 3D product mockups for marketing, e-commerce, and presentations. Our visuals give your audience a clear sense of how products will look and feel, building trust and boosting conversions.",
       image: "/images/Product-Mockups.png"
     },
-    {
-      title: "Video Editing",
-      icon: <FiVideo className="text-[#245684] text-2xl" />,
-      content: "Professional video editing services that transform raw footage into polished, engaging content for various platforms and purposes.",
-      image: "/images/Video-Editing.png"
-    },
+
     {
       title: "YouTube Video Editing",
       icon: <FiVideo className="text-[#245684] text-2xl" />,
-      content: "Specialized YouTube video editing services optimized for audience retention, engagement, and platform-specific best practices.",
+      content: "Videos are powerful tools for marketing, and our YouTube editing services ensure your content is professional and engaging. SysCare edits raw footage into polished videos with transitions, effects, and branding elements. Whether for tutorials, reviews, or promotional content, we help you grow your channel and boost engagement.",
       image: "/images/YouTube-Video-Editing.png"
     },
     {
       title: "Social Media Shorts",
       icon: <FiVideo className="text-[#245684] text-2xl" />,
-      content: "Short-form video content creation and editing optimized for social media platforms like Instagram Reels, TikTok, and YouTube Shorts.",
+      content: "Short-form video is dominating platforms like Instagram, TikTok, and YouTube Shorts. SysCare creates high-impact short videos tailored for fast-scrolling audiences. Our edits maximize engagement with creative visuals, trending formats, and optimized storytelling that capture attention within seconds.",
       image: "/images/Social-Media-Shorts.png"
     },
     {
       title: "Intro & Outro Creation",
       icon: <FiVideo className="text-[#245684] text-2xl" />,
-      content: "Custom intro and outro creation for videos that establish brand consistency and professional presentation across all content.",
+      content: "Professional video intros and outros help establish brand identity. We design custom animations and branded sequences that enhance the look of your videos. SysCare ensures your content starts strong and ends with a memorable call-to-action, driving audience retention and loyalty.",
       image: "/images/Intro-Outro-Creation.png"
     },
     {
       title: "Corporate Videos",
       icon: <FiVideo className="text-[#245684] text-2xl" />,
-      content: "Professional corporate video production and editing for training, presentations, company announcements, and brand storytelling.",
+      content: "Corporate storytelling builds credibility and trust. SysCare produces high-quality corporate videos for training, presentations, and brand storytelling. Our team combines visuals, audio, and branding to deliver compelling content that represents your business professionally.",
       image: "/images/Corporate-Videos.png"
     },
     {
       title: "Documentary Edits",
       icon: <FiVideo className="text-[#245684] text-2xl" />,
-      content: "Documentary-style video editing that tells compelling stories through careful sequencing, pacing, and narrative development.",
+      content: "Documentary-style videos require precision and storytelling expertise. SysCare edits documentaries with attention to detail, pacing, and clarity. We ensure your content is engaging, informative, and visually captivating while maintaining authenticity.",
       image: "/images/Documentary-Edits.png"
     },
     {
       title: "Product Promo Videos",
       icon: <FiVideo className="text-[#245684] text-2xl" />,
-      content: "Engaging product promotion videos that highlight features, benefits, and use cases to drive interest and conversions.",
+      content: "Product videos are essential for boosting sales. SysCare designs professional promo videos that showcase your products’ features and benefits. We highlight quality, usability, and value in ways that resonate with your audience.",
       image: "/images/Product-Promo-Videos.png"
     },
     {
       title: "Subtitles & Captions",
       icon: <FiVideo className="text-[#245684] text-2xl" />,
-      content: "Professional subtitle and captioning services that improve accessibility, engagement, and SEO for your video content.",
+      content: "Accessibility and engagement go hand in hand. SysCare provides professional subtitle and caption services for videos to expand reach and improve comprehension. Our services ensure your content is accessible to wider audiences, including international viewers.",
       image: "/images/Subtitles-Captions.png"
     },
     {
       title: "Interview Editing",
       icon: <FiVideo className="text-[#245684] text-2xl" />,
-      content: "Expert interview editing that highlights key moments, maintains narrative flow, and creates engaging content from conversation footage.",
+      content: "Well-edited interviews make a lasting impact. SysCare edits interview content for clarity, flow, and engagement, ensuring your message is delivered effectively. Whether for corporate profiles or podcasts, we help you create professional, polished videos.",
       image: "/images/Interview-Editing.png"
     },
+    
     {
-      title: "Digital Marketing",
+      title: "Paid Social Media Campaigns",
       icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
-      content: "Comprehensive digital marketing strategies that drive growth, engagement, and conversions across multiple online channels.",
-      image: "/images/Digital-Marketing.png"
-    },
-    {
-      title: "Search Ads",
-      icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
-      content: "Strategic search advertising campaigns on Google and other search engines that target users actively looking for your products or services.",
-      image: "/images/Search-Ads.png"
-    },
-    {
-      title: "Display Ads",
-      icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
-      content: "Visual display advertising campaigns across websites and platforms to increase brand awareness and reach potential customers.",
-      image: "/images/Display-Ads.png"
-    },
-    {
-      title: "YouTube Ads",
-      icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
-      content: "Targeted YouTube advertising campaigns that leverage video content to engage audiences and drive conversions.",
-      image: "/images/YouTube-Ads.png"
+      content: "SysCare helps businesses in Sydney and Melbourne run effective paid social campaigns that drive ROI. We create Meta Ads, shopping ads, prospecting campaigns, retargeting strategies, and awareness campaigns to capture your audience at every stage of the funnel. With precise targeting and creative ad design, we ensure maximum reach and conversions.",
+      image: "/images/Paid-Social-Media-Campaigns.png"
     },
     {
       title: "Meta Ads",
       icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
-      content: "Strategic advertising on Meta platforms (Facebook, Instagram) that targets specific demographics and interests for maximum ROI.",
+      content: "Meta (Facebook and Instagram) remains a powerful platform for digital marketing. SysCare designs and manages tailored Meta Ads that increase visibility, generate leads, and boost engagement. Our campaigns are data-driven, ensuring your ad spend delivers measurable results",
       image: "/images/Meta-Ads.png"
     },
     {
       title: "Prospecting & Retargeting Ads",
       icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
-      content: "Dual-strategy advertising that both reaches new potential customers and re-engages previous visitors to maximize conversion opportunities.",
+      content: "We help businesses grow by reaching new audiences (prospecting) while re-engaging existing visitors (retargeting). SysCare creates ads that nurture leads through the funnel, boosting conversion rates and strengthening customer relationships",
       image: "/images/Prospecting-Retargeting-Ads.png"
     },
     {
       title: "Shopping Ads",
       icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
-      content: "Product-focused shopping advertisements that showcase your inventory directly to potential customers searching for similar items.",
+      content: "E-commerce businesses benefit from our expertly managed shopping ads. SysCare optimizes product listings, visuals, and targeting to drive online sales. Our strategies maximize visibility across platforms like Google Shopping and Meta.",
       image: "/images/Shopping-Ads.png"
     },
     {
       title: "Awareness Campaigns",
       icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
-      content: "Brand awareness campaigns designed to increase visibility, recognition, and top-of-mind presence among your target audience.",
+      content: "Building brand awareness is the first step in customer acquisition. SysCare develops targeted awareness campaigns to introduce your brand to new audiences. With engaging visuals and messaging, we help your business stay top of mind.",
       image: "/images/Awareness-Campaigns.png"
     },
     {
       title: "Keyword Research for Social Media",
       icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
-      content: "Comprehensive keyword research specifically for social media platforms to optimize content, hashtags, and discoverability.",
+      content: "Success in social media marketing starts with the right keywords. SysCare conducts in-depth research to identify trending search terms and optimize your campaigns for discovery. This ensures your content reaches the right audience at the right time.",
       image: "/images/Keyword-Research-Social-Media.png"
     },
-    {
-      title: "Social Media Management",
-      icon: <FiLayers className="text-[#245684] text-2xl" />,
-      content: "Complete social media management services that handle content creation, posting, engagement, and strategy across all platforms.",
-      image: "/images/Social-Media-Management.png"
-    },
+   
     {
       title: "Account Setup & Profile Optimization",
       icon: <FiLayers className="text-[#245684] text-2xl" />,
-      content: "Professional social media account setup and optimization to ensure your profiles are complete, branded, and optimized for discovery.",
+      content: "A strong online presence starts with professional account setup. SysCare sets up and optimizes social media profiles across platforms for branding consistency and visibility. From bios to visuals, we ensure your profiles reflect professionalism.",
       image: "/images/Account-Setup-Profile-Optimization.png"
     },
     {
       title: "Content Creation & Optimization for Social Media",
       icon: <FiLayers className="text-[#245684] text-2xl" />,
-      content: "Strategic social media content creation and optimization designed to increase engagement, followers, and platform algorithm favorability.",
+      content: "Engaging content fuels successful campaigns. SysCare designs posts, captions, and visuals optimized for audience engagement and platform algorithms. We create content that builds connections and drives action.",
       image: "/images/Content-Creation-Optimization.png"
     },
     {
       title: "Content Scheduling",
       icon: <FiLayers className="text-[#245684] text-2xl" />,
-      content: "Strategic content scheduling services that ensure consistent posting at optimal times for maximum reach and engagement.",
+      content: "Consistency is critical in digital marketing. SysCare provides strategic content scheduling to ensure regular posting and audience engagement. Our scheduling services free up your time while keeping your brand visible.",
       image: "/images/Content-Scheduling.png"
     },
     {
       title: "Research & Trend Analysis",
       icon: <FiLayers className="text-[#245684] text-2xl" />,
-      content: "Comprehensive research and trend analysis to keep your social media strategy current, relevant, and ahead of competitors.",
+      content: "Trends drive social media success. SysCare analyzes market and platform trends to keep your campaigns relevant and impactful. We ensure your content leverages opportunities to connect with audiences effectively.",
       image: "/images/Research-Trend-Analysis.png"
     },
     {
       title: "Analytics & Reporting",
       icon: <FiPieChart className="text-[#245684] text-2xl" />,
-      content: "Detailed analytics and performance reporting that provides insights into campaign effectiveness and guides future strategy decisions.",
+      content: "Transparency matters. SysCare delivers detailed analytics and performance reports to track campaign success. Our insights highlight strengths and areas for improvement, helping refine strategies for better results.",
       image: "/images/Analytics-Reporting.png"
     },
     {
       title: "Paid Campaigns",
       icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
-      content: "Strategic paid social media campaigns that target specific audiences, objectives, and conversion goals with measurable results.",
+      content: "From social media to search engines, SysCare designs targeted paid campaigns that maximize ROI. We tailor campaigns for specific business goals, whether lead generation, sales, or brand visibility.",
       image: "/images/Paid-Campaigns.png"
     },
     {
       title: "Visual Branding",
       icon: <FiImage className="text-[#245684] text-2xl" />,
-      content: "Comprehensive visual branding services that create a cohesive, recognizable visual identity across all social media platforms and content.",
+      content: "Strong branding is essential for recognition. SysCare creates consistent visual branding across all digital platforms, reinforcing identity and credibility. Our designs help your business stand out in competitive markets.",
       image: "/images/Visual-Branding.png"
     }
   ];
@@ -386,12 +354,9 @@ const DigitalMarketingPage = () => {
             }}
           >
             <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Digital Marketing Solutions</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Multimedia and Digital Marketing Services – SysCare IT Solutions</h2>
               <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
-                Our comprehensive digital marketing services empower businesses with targeted strategies that drive growth, engagement, and conversions. From graphic design to social media management, we create cohesive campaigns that deliver measurable results.
-              </p>
-              <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
-                Experience the power of integrated digital marketing as our dedicated team of experts develops customized solutions to optimize your online presence. Trust our digital marketing services for sophisticated, data-driven strategies that enable you to focus on what truly matters – the growth and success of your business.
+                At SysCare IT Solutions Pty Ltd, we help businesses in Sydney, Melbourne, and across Australia elevate their digital presence with creative multimedia designs and results-driven digital marketing services. Whether you’re searching for a reliable multimedia agency or the best digital marketing company in Melbourne, our tailored solutions empower your brand to stand out in competitive markets.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
                 Request Marketing Consultation
@@ -432,7 +397,7 @@ const DigitalMarketingPage = () => {
               transition: 'opacity 0.6s ease, transform 0.6s ease'
             }}
           >
-            Our Digital Marketing Services
+            Multimedia and  Digital Marketing   Services
           </h2>
           
           {/* Mobile View - Accordion Style */}

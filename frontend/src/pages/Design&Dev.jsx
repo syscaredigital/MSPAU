@@ -4,163 +4,203 @@ import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevr
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
+const FAQS = [
+  {
+    question: "1. What makes SysCare IT Solutions a trusted web design company in Sydney and Melbourne?",
+    answer: (
+      <>
+        SysCare IT Solutions delivers modern, responsive, and SEO-friendly websites tailored to your brand. Our team focuses on user experience, performance, and security, ensuring your website drives results while representing your business professionally. </>
+    ),
+  },
+  {
+    question: "2. Do you offer custom web development solutions in Australia?",
+    answer: (
+      <>
+        Yes. We provide custom web development in Australia for businesses with unique needs. From enterprise platforms to bespoke applications, our developers build scalable, secure, and tailored solutions beyond standard templates.</>
+    ),
+  },
+  {
+    question: "3. How do your web design services help small businesses?",
+    answer: (
+      <>
+          Our web design services for small businesses create affordable, professional websites that establish credibility online. We integrate user-friendly navigation, mobile responsiveness, and SEO to help small businesses compete effectively.</>
+    ),
+  },
+  {
+    question: "4. Can you redesign an existing website to improve its performance?",
+    answer: (
+      <>
+        Absolutely. Our website redesign services update outdated websites with modern design, better functionality, and enhanced SEO. This improves user engagement, conversions, and overall digital presence.</>
+    ),
+  },
+  {
+    question: "5. Do you provide ecommerce website development in Melbourne and Sydney?",
+    answer: (
+      <>
+        Yes. We specialize in ecommerce website development in Melbourne and Sydney, offering secure payment gateways, optimized product catalogs, and smooth checkout experiences. Our ecommerce solutions boost sales and customer satisfaction.</>
+    ),
+  },
+  {
+    question: "6. What platforms do you use for website development?",
+    answer: (
+      <>
+        We work with multiple platforms, including WordPress, custom-built frameworks, and enterprise-level solutions. Our team ensures your site is scalable, secure, and aligned with your business requirements.</>
+    ),
+  },
+];
+
 const DesignDevPage = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [isVisible, setIsVisible] = useState([false, false, false, false]);
   const [isMobile, setIsMobile] = useState(false);
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const headerRef = useRef(null);
+  const [activeFaq, setActiveFaq] = useState(null);
 
   const services = [
     {
       title: "Website Design",
       icon: <FiLayout className="text-[#245684] text-2xl" />,
-      content: "Professional website design services that create visually appealing, user-friendly interfaces tailored to your brand identity and business objectives.",
+      content: "At SysCare IT Solutions, we specialize in creating modern, responsive, and visually appealing websites tailored to your unique brand identity. Whether you’re a corporate firm, a retail business, or a creative professional, our web design services in Sydney and Melbourne are crafted to help your business stand out in the competitive digital space. We focus on blending creativity with functionality, ensuring every design reflects professionalism while being easy to navigate. With an emphasis on mobile responsiveness and user engagement, our websites are built to perform seamlessly across all devices. From layouts to branding consistency, we ensure your online presence is a true extension of your business values.",
       image: "/images/Website-Design.png"
     },
     {
       title: "UI/UX Design",
       icon: <FiLayout className="text-[#245684] text-2xl" />,
-      content: "User-centered design approach focusing on creating intuitive, engaging experiences that maximize user satisfaction and conversion rates.",
+      content: "User experience is at the heart of every successful website, and at SysCare IT Solutions, our UI/UX design services are focused on delivering intuitive, user-friendly, and aesthetically pleasing digital interfaces. Our designers study user behavior and apply best practices to create websites that guide visitors effortlessly from one step to the next. Smooth navigation, structured content flow, and engaging visuals work together to provide an enjoyable browsing experience. With an emphasis on accessibility and modern design standards, our UI/UX services ensure higher engagement and improved customer satisfaction. We create websites that are not just beautiful, but also practical and business focused.",
       image: "/images/UI-UX-Design.png"
     },
     {
       title: "Website Development",
       icon: <FiCode className="text-[#245684] text-2xl" />,
-      content: "Custom website development using modern technologies to build responsive, high-performance websites that meet your specific requirements.",
+      content: "SysCare IT Solutions is a trusted website development company in Sydney and Melbourne, delivering robust, scalable, and high-performing websites for businesses across industries. Our expert developers handle everything from WordPress websites and ecommerce platforms to custom-built applications and enterprise-level systems. We focus on clean coding, reliable performance, and long-term scalability to ensure your website evolves with your business. Our development process includes extensive testing, ensuring speed, security, and functionality are never compromised. Whether you’re looking for a simple business site or a feature-rich web application, SysCare provides tailored solutions that meet your goals.",
       image: "/images/Website-Development.png"
     },
     {
       title: "Website Security",
       icon: <FiShield className="text-[#245684] text-2xl" />,
-      content: "Comprehensive security solutions including SSL certificates, vulnerability scanning, and protection against cyber threats to keep your website safe.",
-      image: "/images/Website-Security.png"
+      content: "Security is no longer optional, it’s essential. At SysCare IT Solutions, we provide advanced website security solutions that protect your business and customers from cyber threats. Our services include SSL certification, malware protection, intrusion prevention, and real-time monitoring to keep your website safe and reliable. By implementing strong firewalls and regular updates, we minimize vulnerabilities and protect sensitive data. With the rise in phishing and cyberattacks, our proactive approach ensures that your website remains trustworthy and compliant with industry standards. SysCare gives you peace of mind by making security a built-in feature of your digital presence.",
+      image: "/images/E-commerce-Development.png"
     },
     {
       title: "E-commerce Development",
       icon: <FiShoppingCart className="text-[#245684] text-2xl" />,
-      content: "Complete e-commerce solutions with secure payment gateways, inventory management, and shopping cart functionality to grow your online business.",
-      image: "/images/Ecommerce-Development.png"
+      content: "SysCare IT Solutions specializes in ecommerce website development in Melbourne and Sydney, building online stores that are secure, engaging, and conversion focused. We design platforms with seamless navigation, optimized product catalogs, and secure payment gateways to enhance customer trust and sales. Our ecommerce solutions include integrations with popular payment systems, shipping providers, and inventory management tools. With mobile responsiveness and speed optimization, your store is designed to deliver a smooth shopping experience on any device. Whether you’re launching a new online business or upgrading an existing store, SysCare builds ecommerce solutions tailored to drive growth.",
+      image: "/images/E-commerce-Website-Development.png"
     },
     {
       title: "SEO-Friendly Website Development",
       icon: <FiSearch className="text-[#245684] text-2xl" />,
-      content: "Websites built with SEO best practices to ensure maximum visibility and ranking potential on search engines from day one.",
-      image: "/images/SEO-Development.png"
+      content: "A great website is wasted if it can’t be found. At SysCare IT Solutions, we build SEO-friendly websites from the ground up, ensuring every page is optimized for search engines. Our development process includes fast loading speeds, mobile responsiveness, structured data, and keyword-rich content implementation. By following SEO best practices in design and coding, we help your website rank higher from day one. Our team also ensures metadata optimization, clean URLs, and strong site architecture for better visibility. With SysCare, you get more than a website you get a digital asset designed to attract and convert traffic.",
+      image: "/images/SEO-Friendly-Website-Development.png"
     },
     {
       title: "Website Redesign",
       icon: <FiLayout className="text-[#245684] text-2xl" />,
-      content: "Transform your outdated website into a modern, responsive, and effective digital presence that aligns with current trends and technologies.",
+      content: "If your website looks outdated or fails to deliver results, SysCare IT Solutions offers website redesign services to give your digital presence a fresh start. Our team is revamping your existing site with modern design, improved functionality, and better performance. From upgrading navigation and visuals to integrating the latest SEO practices, we transform your underperforming site into a high-performing business tool. Our redesign approach focuses on user engagement, ensuring the site reflects your brand identity while being optimized for conversions. Whether minor tweaks or complete overhauls, SysCare ensures your new website is ready for the future.",
       image: "/images/Website-Redesign.png"
     },
     {
       title: "Analytics Integration",
       icon: <FiBarChart className="text-[#245684] text-2xl" />,
-      content: "Implementation of tracking and analytics tools to measure performance, user behavior, and conversion metrics for data-driven decisions.",
+      content: "Data is the foundation of informed decision-making. At SysCare IT Solutions, we integrate powerful analytics tools such as Google Analytics, Tag Manager, and reporting dashboards into your website. These tools help track traffic, conversions, user behavior, and campaign performance. By providing clear, actionable insights, we empower your business to understand what works and where improvements are needed. With detailed reporting, you can fine-tune marketing strategies, optimize content, and enhance the customer journey. SysCare ensures that your website isn’t just live it’s measurable, transparent, and strategically aligned with your goals.",
       image: "/images/Analytics-Integration.png"
     },
     {
       title: "Mobile App Development",
       icon: <FiSmartphone className="text-[#245684] text-2xl" />,
-      content: "Native and cross-platform mobile application development for iOS and Android to extend your digital presence to mobile users.",
+      content: "In the age of smartphones, mobile presence is crucial. SysCare IT Solutions extends your digital strategy with mobile app development for iOS and Android platforms. Our apps are designed for speed, performance, and user engagement, giving businesses a direct way to connect with customers. Whether you need an ecommerce app, a customer service platform, or a business productivity tool, our team delivers tailored mobile solutions. We ensure seamless integration with existing systems, intuitive UI/UX, and secure operations. With SysCare, your mobile app becomes an extension of your brand, empowering growth and accessibility.",
       image: "/images/Mobile-App-Development.png"
     },
     {
       title: "Domain and Hosting Services",
       icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "Complete domain registration and reliable hosting solutions with guaranteed uptime, security, and technical support.",
-      image: "/images/Domain-Hosting.png"
+      content: "Your website’s foundation begins with reliable hosting and domain services. SysCare IT Solutions provides secure, high-performance domain registration and hosting solutions designed to keep your website accessible and stable. Our hosting includes guaranteed uptime, fast loading speeds, and technical support to ensure uninterrupted service. We also manage domain registration, renewals, and transfers, giving you a one-stop solution for managing your digital assets. With scalable hosting packages, businesses of all sizes can find reliable solutions to suit their needs. SysCare ensures your website infrastructure is as strong as your brand.",
+      image: "/images/Domain-and-Hosting-Services.png"
     },
     {
       title: "Custom Web Solutions",
       icon: <FiCode className="text-[#245684] text-2xl" />,
-      content: "Tailor-made web applications and solutions designed to address your specific business challenges and operational needs.",
+      content: "Every business is unique and so should be its digital presence. At SysCare IT Solutions, we deliver custom web development solutions in Australia designed to handle complex business requirements. Whether it’s an industry-specific platform, integration with third-party applications, or advanced functionality, we build tailored systems that align with your processes. Our developers work closely with you to understand business challenges and craft scalable, secure, and user-friendly solutions. With SysCare’s custom web solutions, you don’t settle for off-the-shelf templates you gain a powerful digital platform built exclusively for your goals.",
       image: "/images/Custom-Web-Solutions.png"
-    },
-    {
-      title: "SEO",
-      icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
-      content: "Comprehensive search engine optimization strategies to improve your website's visibility and organic search rankings.",
-      image: "/images/SEO.png"
     },
     {
       title: "Keyword Research and Strategy",
       icon: <FiSearch className="text-[#245684] text-2xl" />,
-      content: "In-depth keyword analysis and strategic planning to target the most valuable search terms for your business.",
-      image: "/images/Keyword-Research.png"
+      content: "At SysCare IT Solutions, our SEO success starts with in-depth keyword research and strategy. We analyze your industry, competitors, and customer behavior to identify high-performing keywords that attract relevant traffic. By targeting both broad and niche search terms, we ensure your website connects with the right audience at the right time. Our tailored keyword strategies help improve visibility, boost search rankings, and maximize ROI. With continuous monitoring and optimization, SysCare ensures your business stays ahead in an ever-changing digital landscape.",
+      image: "/images/Keyword-Research-and-Strategy.png"
     },
     {
       title: "Local SEO",
       icon: <FiSearch className="text-[#245684] text-2xl" />,
-      content: "Optimization strategies focused on improving visibility in local search results and Google My Business listings.",
+      content: "If your business serves customers in Melbourne, Sydney, or other Australian regions, Local SEO is critical. SysCare optimizes your Google Business Profile, local citations, and geo-targeted content to boost visibility in location-based searches. We help your business appear in near me searches and local map results, driving more foot traffic and local leads. With structured reviews, local keyword targeting, and directory listings, we enhance your community presence. Our Local SEO strategies are designed to put your business in front of the people who matter most local customers ready to act.",
       image: "/images/Local-SEO.png"
     },
     {
       title: "Content Creation and Optimization",
       icon: <FiPenTool className="text-[#245684] text-2xl" />,
-      content: "Creation of high-quality, engaging content optimized for both users and search engines to drive traffic and conversions.",
-      image: "/images/Content-Creation.png"
+      content: "High-quality content drives traffic and builds trust. SysCare IT Solutions offers content creation and optimization services designed to engage your audience while improving search rankings. We develop blogs, landing pages, and web content optimized with the right keywords, structure, and calls to action. Our team ensures content is original, valuable, and aligned with your business goals. Beyond creation, we optimize existing content for better readability, SEO performance, and conversions. With SysCare, your website becomes a powerful tool for attracting and nurturing leads.",
+      image: "/images/Content-Creation-and-Optimization.png"
     },
     {
       title: "SEO Reporting and Analytics",
       icon: <FiBarChart className="text-[#245684] text-2xl" />,
-      content: "Detailed performance reports and analytics to track SEO progress, measure ROI, and inform strategy adjustments.",
-      image: "/images/SEO-Reporting.png"
+      content: "Transparency is at the core of our approach. SysCare provides SEO reporting and analytics services that deliver actionable insights into your website’s performance. We track rankings, traffic, conversions, and user behavior using advanced tools like Google Analytics and Search Console. Our detailed reports highlight successes, pinpoint areas for improvement, and outline strategic recommendations. With real-time data and performance monitoring, you can make informed business decisions and measure ROI effectively. SysCare ensures you always have a clear picture of your SEO progress.",
+      image: "/images/SEO-Reporting-and-Analytics.png"
     },
     {
       title: "On-Page Optimization",
       icon: <FiLayout className="text-[#245684] text-2xl" />,
-      content: "Optimization of website elements including meta tags, headings, content, and internal linking structure.",
+      content: "SysCare IT Solutions specializes in on-page SEO optimization, ensuring every element of your website works to improve visibility. We optimize meta titles, descriptions, headers, image tags, internal linking, and page speed to boost search rankings. Our process also includes keyword integration, structured content, and mobile-friendly adjustments for maximum performance. By enhancing the technical and content aspects of each page, we ensure both users and search engines find your website relevant and engaging. With SysCare, on-page SEO becomes a solid foundation for long-term growth.",
       image: "/images/On-Page-Optimization.png"
     },
     {
       title: "E-commerce SEO",
       icon: <FiShoppingCart className="text-[#245684] text-2xl" />,
-      content: "Specialized SEO strategies for online stores focusing on product pages, category optimization, and conversion rate enhancement.",
-      image: "/images/Ecommerce-SEO.png"
+      content: "Running an online store requires more than great products, it needs visibility. SysCare offers ecommerce SEO services designed to optimize product pages, categories, and site structure for higher rankings. We implement keyword-rich product descriptions, schema markup, and secure, fast-loading designs to improve both traffic and conversions. Our strategies include optimizing images, checkout processes, and reviews to boost search visibility and enhance customer trust. Whether you’re on Shopify, WooCommerce, or Magento, SysCare ensures your online store ranks higher and sells more.",
+      image: "/images/E-commerce-SEO.png"
     },
     {
       title: "Technical SEO",
       icon: <FiCode className="text-[#245684] text-2xl" />,
-      content: "Technical improvements to website infrastructure, speed, indexing, and crawlability for better search engine performance.",
+      content: "Behind every high-performance website is a strong technical foundation. SysCare IT Solutions provides technical SEO services that enhance crawlability, indexation, and overall site health. We fix broken links, optimize site architecture, implement XML sitemaps, and ensure HTTPS security. Our experts also improve site speed, mobile responsiveness, and structured data to meet search engine standards. With SysCare’s technical SEO, your website becomes search engine-friendly, ensuring every update and feature works toward better rankings and user experience.",
       image: "/images/Technical-SEO.png"
     },
     {
       title: "SEO for Mobile",
       icon: <FiSmartphone className="text-[#245684] text-2xl" />,
-      content: "Optimization strategies specifically focused on improving mobile search visibility and user experience.",
-      image: "/images/Mobile-SEO.png"
+      content: "With most users browsing on mobile devices, mobile SEO is more important than ever. SysCare optimizes your website for speed, design, and usability on smartphones and tablets. We ensure mobile-friendly layouts, fast load times, and seamless navigation to improve user engagement. Our mobile SEO strategies also include responsive design, AMP optimization, and voice search readiness. By prioritizing mobile performance, we help your business capture the growing audience that shops and searches on the go.",
+      image: "/images/SEO-for-Mobile.png"
     },
     {
       title: "SEO for Video Content",
       icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
-      content: "Optimization of video content to improve visibility in search results and video platforms like YouTube.",
-      image: "/images/Video-SEO.png"
+      content: "Video has become one of the most powerful tools for digital engagement. SysCare provides SEO for video content, ensuring your YouTube videos, webinars, and website-embedded videos are optimized for search engines. From keyword-rich titles and descriptions to video transcripts and schema markup, we improve discoverability and rankings. Our strategies enhance visibility across Google and video search platforms, increasing views and audience retention. With SysCare’s video SEO, your multimedia content becomes a driver of traffic and brand awareness.",
+      image: "/images/SEO-for-Video-Content.png"
     },
     {
       title: "SEO Audit and Analysis",
       icon: <FiBarChart className="text-[#245684] text-2xl" />,
-      content: "Comprehensive website audits to identify SEO issues, opportunities, and develop actionable improvement plans.",
-      image: "/images/SEO-Audit.png"
+      content: "A strong strategy begins with knowing where you stand. SysCare conducts comprehensive SEO audits to identify strengths, weaknesses, and opportunities on your website. We analyze technical issues, keyword performance, content gaps, and backlink profiles to develop a clear action plan. Our SEO analysis highlights the fixes and improvements needed to achieve higher rankings and better conversions. With SysCare, you gain a detailed roadmap to maximize your digital potential and outperform competitors.",
+      image: "/images/SEO-Audit-and-Analysis.png"
     },
     {
       title: "Link Building & Outreach",
       icon: <FiLink className="text-[#245684] text-2xl" />,
-      content: "Strategic acquisition of high-quality backlinks from authoritative websites to improve domain authority and rankings.",
-      image: "/images/Link-Building.png"
+      content: "Backlinks remain one of the strongest ranking factors in SEO. SysCare’s link building and outreach services focus on building high-quality, relevant links from trusted websites. We use ethical, white-hat strategies to enhance your domain authority and drive referral traffic. Our outreach campaigns target industry blogs, publications, and partners to secure long-term credibility for your website. By improving your backlink profile, SysCare boosts your visibility, authority, and search rankings.",
+      image: "/images/Link-Building-&-Outreach.png"
     },
     {
       title: "Conversion Rate Optimization (CRO)",
       icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
-      content: "Data-driven optimization of website elements to increase the percentage of visitors who complete desired actions.",
-      image: "/images/CRO.png"
+      content: "Driving traffic is only half the job—the real success lies in conversions. SysCare provides conversion rate optimization (CRO) services to turn visitors into leads and customers. We analyze user behavior, heatmaps, and funnel performance to identify drop-off points and areas for improvement. Our CRO strategies include A/B testing, UI/UX enhancements, and optimized CTAs to increase engagement. With SysCare, your website doesn’t just attract traffic—it generates measurable business results.",
+      image: "/images/Conversion-Rate-Optimization.png"
     },
     {
       title: "Schema Markup & Structured Data Implementation",
       icon: <FiCode className="text-[#245684] text-2xl" />,
-      content: "Implementation of structured data markup to enhance search result appearances with rich snippets and knowledge panels.",
-      image: "/images/Schema-Markup.png"
+      content: "Enhance your search visibility with SysCare’s schema markup and structured data implementation services. We add schema tags to your website to help search engines better understand your content and display rich results in SERPs. This includes star ratings, FAQs, events, product details, and more. Structured data improves click-through rates by making your listings stand out with enhanced snippets. With SysCare, you gain a technical SEO edge that maximizes exposure and improves rankings.",
+      image: "/images/Schema-Markup-Structured-Data-Implementation.png"
     }
   ];
 
@@ -244,6 +284,10 @@ const DesignDevPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+// Split FAQs for two columns
+  const faqsLeft = FAQS.slice(0, 3);
+  const faqsRight = FAQS.slice(3, 6);
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -326,12 +370,12 @@ const DesignDevPage = () => {
             }}
           >
             <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Website Design & Development</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Web Design & Development Services – SysCare IT Solutions</h2>
               <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
-                Our comprehensive web design and development services create visually appealing, user-friendly websites tailored to your brand identity and business objectives. We focus on creating intuitive, engaging experiences that maximize user satisfaction and conversion rates.
+                In today’s digital-first world, your website is often the first impression potential customers have of your business. At SysCare IT Solutions, we deliver professional web design services in Melbourne and Sydney that combine creativity, technology, and strategy. Whether you’re a small business owner, a growing startup, or an established enterprise, our expert team builds websites that are visually engaging, highly functional, and optimized for search engines.
               </p>
               <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
-                From custom website development to e-commerce solutions, we use modern technologies to build responsive, high-performance websites. Our approach ensures seamless data management, robust security protocols, and efficient resource utilization for optimal online presence.
+                As a leading web design company in Australia, we specialize in custom website development, ecommerce solutions, WordPress websites, and SEO-driven strategies. Our focus is on designing websites that don’t just look great, but also perform—helping you attract, engage, and convert visitors into customers.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
                 Request Website Consultation
@@ -488,7 +532,7 @@ const DesignDevPage = () => {
                   <img 
                     src={services[activeTab].image}
                     alt={`${services[activeTab].title} infrastructure`}
-                    className="w-[250px] h-[250px] object-cover rounded-lg"
+                    className="w-[150px] h-[150px] object-cover rounded-lg"
                     style={{ maxWidth: '100%', height: 'auto' }}
                   />
                 </div>
@@ -521,7 +565,115 @@ const DesignDevPage = () => {
     </div>
   </div>
 </section>
-      <Footer/>
+
+{/* FAQ Section */}
+            <section
+              className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
+              ref={sectionRefs[3]}
+            >
+              <div className="container mx-auto">
+                <h2
+                  className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-16 text-center"
+                  style={{
+                    opacity: isVisible[3] ? 1 : 0,
+                    transform: isVisible[3] ? 'translateY(0)' : 'translateY(20px)',
+                    transition: 'opacity 0.6s ease, transform 0.6s ease'
+                  }}
+                >
+                  Frequently Asked Questions
+                </h2>
+                <div className="max-w-5xl mx-auto">
+                  {/* Responsive: Stack on mobile, 2 cols on md+ */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {[faqsLeft, faqsRight].map((faqCol, colIdx) => (
+                      <div key={colIdx} className="space-y-6">
+                        {faqCol.map((faq, idx) => {
+                          const qIdx = colIdx * 3 + idx + 1;
+                          return (
+                            <div
+                              className={`rounded-xl border bg-white border-[#e1e9f2] shadow transition-all duration-500 group
+                                ${activeFaq === qIdx ? 'ring-2 ring-[#245684] ring-opacity-40 scale-[1.02] shadow-xl' : ''}
+                              `}
+                              key={qIdx}
+                              style={{
+                                opacity: isVisible[3] ? 1 : 0,
+                                transform: isVisible[3]
+                                  ? 'scale(1)'
+                                  : 'scale(0.95)',
+                                transition: `opacity 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1), transform 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1)`
+                              }}
+                            >
+                              <button
+                                onClick={() => setActiveFaq(activeFaq === qIdx ? null : qIdx)}
+                                className={`w-full flex justify-between items-center text-left p-6 rounded-xl transition-all duration-300
+                                  ${activeFaq === qIdx
+                                    ? 'bg-gradient-to-r from-[#103d5d] to-[#245684] text-white shadow'
+                                    : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
+                                  }
+                                `}
+                              >
+                                <h3 className="text-xl font-semibold flex items-center gap-2">
+                                  <span
+                                    className={`inline-block w-3 h-3 rounded-full mr-2 transition-all duration-300
+                                      ${activeFaq === qIdx ? 'bg-[#a3d4ff] scale-110 shadow-lg' : 'bg-[#245684] scale-90'}
+                                    `}
+                                  ></span>
+                                  {faq.question}
+                                </h3>
+                                <FiChevronRight
+                                  className={`text-2xl transition-transform duration-300
+                                    ${activeFaq === qIdx ? 'rotate-90 text-[#a3d4ff]' : ''}
+                                  `}
+                                />
+                              </button>
+                              <div
+                                className={`faq-answer transition-all duration-500 overflow-hidden
+                                  ${activeFaq === qIdx ? 'max-h-[500px] opacity-100 py-4 px-6' : 'max-h-0 opacity-0 py-0 px-6'}
+                                `}
+                                style={{
+                                  background: activeFaq === qIdx
+                                    ? 'linear-gradient(90deg, #f5f9fd 65%, #a3d4ff1a 100%)'
+                                    : undefined
+                                }}
+                              >
+                                {activeFaq === qIdx && (
+                                  <p className="text-[#5c6f87] text-lg leading-relaxed animate-fadein">
+                                    {faq.answer}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </div>
+                  {/* Additional Support CTA */}
+                  <div className="mt-16 text-center">
+                    <p className="text-xl text-[#4a5d72] mb-8">
+                      Still have questions? Our team is ready to help.
+                    </p>
+                    <a href="/contact-Us" className="inline-block">
+                      <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg">
+                        Contact Our Support Team
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {/* Animations for FAQ */}
+              <style jsx>{`
+                @keyframes fadein {
+                  from { opacity: 0; transform: translateY(16px);}
+                  to { opacity: 1; transform: translateY(0);}
+                }
+                .animate-fadein {
+                  animation: fadein 0.6s cubic-bezier(.4,0,.2,1);
+                }
+              `}</style>
+            </section>
+
+<Footer/>
 
       {/* Add CSS animations */}
       <style jsx>{`

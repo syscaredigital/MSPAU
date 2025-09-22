@@ -263,7 +263,7 @@ const VoiceVideoPage = () => {
             }}
           >
             <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">SysCare Private Cloud</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Internet and VoIP</h2>
               <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
                 Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.
               </p>
@@ -309,7 +309,7 @@ const VoiceVideoPage = () => {
               transition: 'opacity 0.6s ease, transform 0.6s ease'
             }}
           >
-            Our Cloud & Infrastructure Services
+            Our VoIP and Video Services
           </h2>
           
           {/* Mobile View - Accordion Style */}
