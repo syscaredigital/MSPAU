@@ -5,42 +5,38 @@ import Footer from '../components/footer';
 
 const FAQS = [
   {
-    question: "1. What are Managed IT Services, and how can they benefit my business?",
+    question: "1. What are Hosted Solutions, and how can they benefit my business?",
     answer: (
       <>
-         Managed IT Services from SysCare IT Solutions cover the full spectrum of IT support, monitoring, and management. From servers and endpoints to firewalls, Microsoft 365, and security compliance, we proactively handle your IT environment so your team can focus on core business goals. This reduces downtime, enhances security, and optimizes performance, all while lowering long-term IT costs.
-      </>
+        Hosted Solutions are cloud-based services like email hosting, backups, and collaboration tools managed by SysCare IT Solutions. They reduce IT overheads, improve data protection, and ensure seamless communication and productivity for businesses of all sizes.      </>
     ),
   },
   {
-    question: "2. How does SysCare IT Solutions ensure the security of our systems?",
+    question: "2. Why should I choose SysCare’s Hosted Exchange / E-Mail services?",
     answer: (
       <>
-        SysCare implements multi-layered protection across your IT environment. This includes Managed Endpoints (AV/Malware/DNS/EDR/XDR), Device Encryption, Managed Firewalls, VPN Access, and Spam Protection. We also manage patching, vulnerabilities, and Microsoft 365 security settings to keep your systems aligned with industry standards. Our proactive approach ensures your business stays ahead of evolving cyber threats.
-      </>
+        Our Hosted Exchange / E-Mail service provides enterprise-grade communication with robust security, 24/7 availability, and professional management. Unlike on-premises servers, you won’t need to worry about maintenance, downtime, or complex upgrades—SysCare handles it all.      </>
     ),
   },
   {
-    question: "3. Do you provide Managed IT Services for small and medium-sized businesses in Melbourne and Sydney?",
+    question: "3. How does SysCare’s Advanced Spam Filtering work?",
     answer: (
       <>
-         Absolutely. SysCare specializes in delivering Managed IT Services for SMBs in Melbourne and Sydney. Our solutions are tailored to fit your scale and budget, ensuring you get enterprise-level IT support without the overhead of a large internal IT team. We help small and growing businesses stay secure, compliant, and competitive in today’s fast-moving digital environment.
-      </>
+        We use advanced filtering technology to block spam, phishing attempts, and malicious emails before they reach your inbox. This keeps your communication secure, minimizes risks, and saves employees time by eliminating irrelevant or dangerous emails.      </>
     ),
   },
   {
-    question: "4. How does SysCare handle patch management for Windows and business applications?",
+    question: "4. Do I really need an E-Mail Backup if I use Microsoft 365?",
     answer: (
       <>
-         SysCare manages both Windows OS Patch Management and Application Patch Management to keep systems secure and up to date. We apply patches strategically to minimize disruption, ensuring vulnerabilities are closed before attackers can exploit them. Our automated processes reduce downtime, improve compliance, and keep your IT environment stable and resilient.
-      </>
+        E-Mail Backup ensures recoverability in case of data loss, while E-Mail Archival securely stores emails for long-term compliance, record-keeping, and easy retrieval. SysCare provides both, ensuring your business meets operational and legal requirements..      </>
     ),
   },
   {
-    question: "5. Can SysCare help with IT compliance and regulatory requirements?",
+    question: "6. How secure is SysCare’s SharePoint Backup service?",
     answer: (
       <>
-         Yes. Our services include M365 Security & Compliance Management, Device Encryption, and Email Archival, all aligned with industry regulations. Whether your business needs to comply with standards like ISO, GDPR, or local data protection laws, SysCare ensures your IT systems meet security and compliance obligations, reducing legal and operational risks.
+         Our SharePoint Backup service uses encrypted and automated processes to safeguard all files, workflows, and configurations. We ensure that your data is fully recoverable in the event of deletion, corruption, or cyberattacks, giving you complete business continuity.
       </>
     ),
   },
@@ -61,7 +57,7 @@ const HostedServicesPage = () => {
   const [isMobile, setIsMobile] = useState(false);
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const headerRef = useRef(null);
-  
+  const [activeFaq, setActiveFaq] = useState(null);
 
   const services = [
     {
@@ -194,6 +190,9 @@ const HostedServicesPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Split FAQs for two columns
+  const faqsLeft = FAQS.slice(0, 3);
+  const faqsRight = FAQS.slice(3, 6);
   
   return (
     <div className="min-h-screen bg-white">
@@ -476,6 +475,113 @@ const HostedServicesPage = () => {
         </div>
       </section>
       
+{/* FAQ Section */}
+            <section
+              className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
+              ref={sectionRefs[3]}
+            >
+              <div className="container mx-auto">
+                <h2
+                  className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-16 text-center"
+                  style={{
+                    opacity: isVisible[3] ? 1 : 0,
+                    transform: isVisible[3] ? 'translateY(0)' : 'translateY(20px)',
+                    transition: 'opacity 0.6s ease, transform 0.6s ease'
+                  }}
+                >
+                  Frequently Asked Questions
+                </h2>
+                <div className="max-w-5xl mx-auto">
+                  {/* Responsive: Stack on mobile, 2 cols on md+ */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {[faqsLeft, faqsRight].map((faqCol, colIdx) => (
+                      <div key={colIdx} className="space-y-6">
+                        {faqCol.map((faq, idx) => {
+                          const qIdx = colIdx * 3 + idx + 1;
+                          return (
+                            <div
+                              className={`rounded-xl border bg-white border-[#e1e9f2] shadow transition-all duration-500 group
+                                ${activeFaq === qIdx ? 'ring-2 ring-[#245684] ring-opacity-40 scale-[1.02] shadow-xl' : ''}
+                              `}
+                              key={qIdx}
+                              style={{
+                                opacity: isVisible[3] ? 1 : 0,
+                                transform: isVisible[3]
+                                  ? 'scale(1)'
+                                  : 'scale(0.95)',
+                                transition: `opacity 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1), transform 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1)`
+                              }}
+                            >
+                              <button
+                                onClick={() => setActiveFaq(activeFaq === qIdx ? null : qIdx)}
+                                className={`w-full flex justify-between items-center text-left p-6 rounded-xl transition-all duration-300
+                                  ${activeFaq === qIdx
+                                    ? 'bg-gradient-to-r from-[#103d5d] to-[#245684] text-white shadow'
+                                    : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
+                                  }
+                                `}
+                              >
+                                <h3 className="text-xl font-semibold flex items-center gap-2">
+                                  <span
+                                    className={`inline-block w-3 h-3 rounded-full mr-2 transition-all duration-300
+                                      ${activeFaq === qIdx ? 'bg-[#a3d4ff] scale-110 shadow-lg' : 'bg-[#245684] scale-90'}
+                                    `}
+                                  ></span>
+                                  {faq.question}
+                                </h3>
+                                <FiChevronRight
+                                  className={`text-2xl transition-transform duration-300
+                                    ${activeFaq === qIdx ? 'rotate-90 text-[#a3d4ff]' : ''}
+                                  `}
+                                />
+                              </button>
+                              <div
+                                className={`faq-answer transition-all duration-500 overflow-hidden
+                                  ${activeFaq === qIdx ? 'max-h-[500px] opacity-100 py-4 px-6' : 'max-h-0 opacity-0 py-0 px-6'}
+                                `}
+                                style={{
+                                  background: activeFaq === qIdx
+                                    ? 'linear-gradient(90deg, #f5f9fd 65%, #a3d4ff1a 100%)'
+                                    : undefined
+                                }}
+                              >
+                                {activeFaq === qIdx && (
+                                  <p className="text-[#5c6f87] text-lg leading-relaxed animate-fadein">
+                                    {faq.answer}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </div>
+                  {/* Additional Support CTA */}
+                  <div className="mt-16 text-center">
+                    <p className="text-xl text-[#4a5d72] mb-8">
+                      Still have questions? Our team is ready to help.
+                    </p>
+                    <a href="/contact-Us" className="inline-block">
+                      <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg">
+                        Contact Our Support Team
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {/* Animations for FAQ */}
+              <style jsx>{`
+                @keyframes fadein {
+                  from { opacity: 0; transform: translateY(16px);}
+                  to { opacity: 1; transform: translateY(0);}
+                }
+                .animate-fadein {
+                  animation: fadein 0.6s cubic-bezier(.4,0,.2,1);
+                }
+              `}</style>
+            </section>
+
       <Footer/>
 
       {/* Add CSS animations */}

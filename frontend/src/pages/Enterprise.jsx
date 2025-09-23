@@ -4,25 +4,71 @@ import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevr
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
+const FAQS = [
+  {
+    question: "1. Which enterprise CRM and ERP platforms does SysCare implement?",
+    answer: (
+      <>
+        We specialize in global enterprise solutions such as SAP S/4HANA and Microsoft Dynamics 365, offering implementation, customization, and ongoing support to ensure maximum ROI for large organizations</>
+    ),
+  },
+  {
+    question: "2. What is SAP S/4HANA, and why is it ideal for enterprises?",
+    answer: (
+      <>
+        SAP S/4HANA is an intelligent ERP system that runs on SAP’s in-memory HANA database. It provides real-time analytics, predictive insights, and seamless operations, making it ideal for enterprises that need scalability, accuracy, and advanced decision-making.</>
+    ),
+  },
+  {
+    question: "3. How secure are enterprise CRM and ERP platforms?",
+    answer: (
+      <>
+          Both SAP S/4HANA and Microsoft Dynamics 365 offer enterprise-grade security with encryption, access control, compliance tools, and cloud-based safeguards. SysCare ensures every deployment follows best practices for data security and regulatory compliance.</>
+    ),
+  },
+  {
+    question: "4. Can enterprise CRM and ERP systems integrate with existing tools?",
+    answer: (
+      <>
+        Yes. Both SAP and Microsoft solutions integrate with third-party applications, legacy systems, and cloud services. SysCare ensures smooth integration so your enterprise continues operating without disruption.</>
+    ),
+  },
+  {
+    question: "5. Why choose SysCare IT Solutions for enterprise CRM & ERP services?",
+    answer: (
+      <>
+       SysCare combines technical expertise with industry experience to deliver enterprise CRM and ERP solutions that are reliable, scalable, and aligned with your business goals. We offer consultation, implementation, training, and ongoing support for enterprises in Melbourne, Sydney, and across Australia.</>
+    ),
+  },
+  {
+    question: "6. Why should enterprises invest in ERP solutions?",
+    answer: (
+      <>
+        Investing in enterprise ERP solutions improves productivity, reduces manual errors, enhances reporting accuracy, and connects multiple departments under one system. This integration ensures smarter decision-making and cost efficiency at scale.</>
+    ),
+  },
+];
+
 const EnterprisePage = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [isVisible, setIsVisible] = useState([false, false, false, false]);
   const [isMobile, setIsMobile] = useState(false);
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const headerRef = useRef(null);
+  const [activeFaq, setActiveFaq] = useState(null);
 
   const services = [
     {
       title: "SAP S/4HANA",
       icon: <FiCloud className="text-[#245684] text-2xl" />,
-      content: "Elevate your business with SysCare Private Cloud, a flagship service by SysCare IT Solutions. Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.",
-      image: "/images/SysCare-Private-Cloud.png"
+      content: "SysCare specializes in implementing SAP S/4HANA, one of the most advanced enterprise ERP solutions available. Built on SAP’s in-memory HANA database, this intelligent ERP system delivers real-time analytics, predictive insights, and streamlined business operations. From financial planning to supply chain management, SAP S/4HANA helps enterprises make smarter, faster decisions. Whether you operate in manufacturing, retail, or professional services, our team customizes SAP solutions to fit your unique requirements and scale with your growth.",
+      image: "/images/SAP-S-4HANA.png"
     },
     {
       title: "Microsoft Dynamics 365",
       icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers state-of-the-art Hosted Servers (Virtual Machines), providing clients with a robust and scalable solution tailored to their business needs. Our advanced hosting services guarantee optimal performance, security, and flexibility.",
-      image: "/images/Hosted-Servers.png"
+      content: "We provide tailored solutions with Microsoft Dynamics 365, a flexible and integrated suite of enterprise CRM and ERP applications. Dynamics 365 enables enterprises to connect sales, marketing, finance, operations, and customer service under a single platform. With AI-driven insights, seamless Microsoft 365 integration, and scalable cloud deployment, it empowers large organizations to adapt quickly and deliver exceptional customer experiences. At SysCare, we ensure smooth implementation, customization, and ongoing support to maximize the value of Dynamics 365 for your enterprise.",
+      image: "/images/Microsoft-Dynamics-365.png"
     },
    
   ];
@@ -107,6 +153,10 @@ const EnterprisePage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+// Split FAQs for two columns
+  const faqsLeft = FAQS.slice(0, 3);
+  const faqsRight = FAQS.slice(3, 6);
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -189,12 +239,12 @@ const EnterprisePage = () => {
             }}
           >
             <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">SysCare Private Cloud</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Our Enterprise CRM & ERP Services</h2>
               <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
-                Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.
+                Future-focused enterprises rely on technology to deliver growth and resilience. With SysCare IT Solutions, your business can unlock the power of enterprise CRM and ERP solutions such as SAP S/4HANA and Microsoft Dynamics 365. Whether your goal is operational efficiency, better customer experiences, or digital transformation, SysCare is your trusted partner for success.
               </p>
               <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
-                Experience the pinnacle of reliability and performance as our dedicated team of experts customizes solutions to optimize your operations. Trust SysCare Private Cloud for a sophisticated, streamlined, and secure IT infrastructure, enabling you to focus on what truly matters – the growth and success of your business.
+                Ready to modernize your enterprise operations? Contact SysCare IT Solutions today to discover how our tailored CRM and ERP solutions can help you lead with confidence.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
                 Request Private Cloud Demo
@@ -351,7 +401,7 @@ const EnterprisePage = () => {
                   <img 
                     src={services[activeTab].image}
                     alt={`${services[activeTab].title} infrastructure`}
-                    className="w-[250px] h-[250px] object-cover rounded-lg"
+                    className="w-[150px] h-[150px] object-cover rounded-lg"
                     style={{ maxWidth: '100%', height: 'auto' }}
                   />
                 </div>
@@ -384,7 +434,115 @@ const EnterprisePage = () => {
     </div>
   </div>
 </section>
-      <Footer/>
+
+{/* FAQ Section */}
+            <section
+              className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
+              ref={sectionRefs[3]}
+            >
+              <div className="container mx-auto">
+                <h2
+                  className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-16 text-center"
+                  style={{
+                    opacity: isVisible[3] ? 1 : 0,
+                    transform: isVisible[3] ? 'translateY(0)' : 'translateY(20px)',
+                    transition: 'opacity 0.6s ease, transform 0.6s ease'
+                  }}
+                >
+                  Frequently Asked Questions
+                </h2>
+                <div className="max-w-5xl mx-auto">
+                  {/* Responsive: Stack on mobile, 2 cols on md+ */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {[faqsLeft, faqsRight].map((faqCol, colIdx) => (
+                      <div key={colIdx} className="space-y-6">
+                        {faqCol.map((faq, idx) => {
+                          const qIdx = colIdx * 3 + idx + 1;
+                          return (
+                            <div
+                              className={`rounded-xl border bg-white border-[#e1e9f2] shadow transition-all duration-500 group
+                                ${activeFaq === qIdx ? 'ring-2 ring-[#245684] ring-opacity-40 scale-[1.02] shadow-xl' : ''}
+                              `}
+                              key={qIdx}
+                              style={{
+                                opacity: isVisible[3] ? 1 : 0,
+                                transform: isVisible[3]
+                                  ? 'scale(1)'
+                                  : 'scale(0.95)',
+                                transition: `opacity 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1), transform 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1)`
+                              }}
+                            >
+                              <button
+                                onClick={() => setActiveFaq(activeFaq === qIdx ? null : qIdx)}
+                                className={`w-full flex justify-between items-center text-left p-6 rounded-xl transition-all duration-300
+                                  ${activeFaq === qIdx
+                                    ? 'bg-gradient-to-r from-[#103d5d] to-[#245684] text-white shadow'
+                                    : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
+                                  }
+                                `}
+                              >
+                                <h3 className="text-xl font-semibold flex items-center gap-2">
+                                  <span
+                                    className={`inline-block w-3 h-3 rounded-full mr-2 transition-all duration-300
+                                      ${activeFaq === qIdx ? 'bg-[#a3d4ff] scale-110 shadow-lg' : 'bg-[#245684] scale-90'}
+                                    `}
+                                  ></span>
+                                  {faq.question}
+                                </h3>
+                                <FiChevronRight
+                                  className={`text-2xl transition-transform duration-300
+                                    ${activeFaq === qIdx ? 'rotate-90 text-[#a3d4ff]' : ''}
+                                  `}
+                                />
+                              </button>
+                              <div
+                                className={`faq-answer transition-all duration-500 overflow-hidden
+                                  ${activeFaq === qIdx ? 'max-h-[500px] opacity-100 py-4 px-6' : 'max-h-0 opacity-0 py-0 px-6'}
+                                `}
+                                style={{
+                                  background: activeFaq === qIdx
+                                    ? 'linear-gradient(90deg, #f5f9fd 65%, #a3d4ff1a 100%)'
+                                    : undefined
+                                }}
+                              >
+                                {activeFaq === qIdx && (
+                                  <p className="text-[#5c6f87] text-lg leading-relaxed animate-fadein">
+                                    {faq.answer}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </div>
+                  {/* Additional Support CTA */}
+                  <div className="mt-16 text-center">
+                    <p className="text-xl text-[#4a5d72] mb-8">
+                      Still have questions? Our team is ready to help.
+                    </p>
+                    <a href="/contact-Us" className="inline-block">
+                      <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg">
+                        Contact Our Support Team
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {/* Animations for FAQ */}
+              <style jsx>{`
+                @keyframes fadein {
+                  from { opacity: 0; transform: translateY(16px);}
+                  to { opacity: 1; transform: translateY(0);}
+                }
+                .animate-fadein {
+                  animation: fadein 0.6s cubic-bezier(.4,0,.2,1);
+                }
+              `}</style>
+            </section>
+
+<Footer/>
 
       {/* Add CSS animations */}
       <style jsx>{`

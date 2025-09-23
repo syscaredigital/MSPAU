@@ -4,31 +4,77 @@ import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevr
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
+const FAQS = [
+  {
+    question: "1. What is a CRM and why is it important for small businesses?",
+    answer: (
+      <>
+        A CRM (Customer Relationship Management) system helps small businesses manage customer interactions, track sales pipelines, and improve customer service. It ensures you never miss a lead, builds stronger relationships, and drives revenue growth.</>
+    ),
+  },
+  {
+    question: "2. What is an ERP and how does it benefit small businesses?",
+    answer: (
+      <>
+        An ERP (Enterprise Resource Planning) system integrates finance, operations, inventory, HR, and supply chain into one platform. For small businesses, it reduces manual work, provides real-time insights, and ensures smoother day-to-day operations.</>
+    ),
+  },
+  {
+    question: "3. Is CRM and ERP software expensive for small businesses?",
+    answer: (
+      <>
+          Not necessarily. Many small business CRM and ERP solutions like ZOHO are very cost-effective, while advanced options like SAP or Microsoft are scalable investments. SysCare tailors solutions to match your budget.</>
+    ),
+  },
+  {
+    question: "4. Do I need IT staff to manage CRM or ERP systems?",
+    answer: (
+      <>
+        No. Most modern CRM and ERP solutions are cloud-based and user-friendly. SysCare provides training and ongoing support so your staff can easily use the system without needing a dedicated IT team.</>
+    ),
+  },
+  {
+    question: "5. How do I choose between SAP Business One, Microsoft Business Central, and ZOHO?",
+    answer: (
+      <>
+       Each has strengths: SAP Business One is ideal for scaling businesses, Microsoft Business Central integrates seamlessly with Microsoft 365, and ZOHO is perfect for affordability and simplicity. SysCare helps you select the right fit based on your goals.</>
+    ),
+  },
+  {
+    question: "6. Can CRM and ERP work together for small businesses?",
+    answer: (
+      <>
+        Yes. CRM and ERP can be integrated to give small businesses a 360-degree view of operations and customers. This ensures smooth data flow between sales, finance, inventory, and customer service.</>
+    ),
+  },
+];
+
 const SmallBusinessPage = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [isVisible, setIsVisible] = useState([false, false, false, false]);
   const [isMobile, setIsMobile] = useState(false);
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const headerRef = useRef(null);
+  const [activeFaq, setActiveFaq] = useState(null);
 
   const services = [
     {
       title: "SAP Business One",
       icon: <FiCloud className="text-[#245684] text-2xl" />,
-      content: "Elevate your business with SysCare Private Cloud, a flagship service by SysCare IT Solutions. Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.",
-      image: "/images/SysCare-Private-Cloud.png"
+      content: "SysCare IT Solutions implements SAP Business One, one of the most powerful and trusted small business ERP solutions worldwide. Designed for growing businesses, SAP Business One integrates finance, sales, purchasing, inventory, and customer management in one platform. With real-time reporting and analytics, it helps business owners make data-driven decisions while improving operational efficiency. As your technology partner, SysCare customizes SAP Business One to suit your industry needs, ensuring scalability and compliance as your business expands.",
+      image: "/images/SAP-Business-One.png"
     },
     {
       title: "Microsoft Business Central",
       icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers state-of-the-art Hosted Servers (Virtual Machines), providing clients with a robust and scalable solution tailored to their business needs. Our advanced hosting services guarantee optimal performance, security, and flexibility.",
-      image: "/images/Hosted-Servers.png"
+      content: "As a best small business ERP and CRM hybrid solution, Microsoft Dynamics 365 Business Central is a comprehensive platform that combines ERP functionality with CRM features. SysCare helps small businesses implement and manage Business Central to optimize processes such as accounting, supply chain, HR, and sales management. Fully integrated with Microsoft 365, it offers seamless collaboration across Outlook, Excel, and Teams. For businesses in Melbourne and Sydney looking for flexibility, Business Central provides a secure, cloud-based solution with enterprise-level capabilities tailored for small businesses.",
+      image: "/images/Microsoft-Business-Central.png"
     },
     {
       title: "ZOHO CRM/ERP",
       icon: <FiCpu className="text-[#245684] text-2xl" />,
-      content: "Elevate your digital capabilities with SysCare IT Solutions' Dedicated Virtual Servers. Tailored for optimal performance and reliability, our state-of-the-art infrastructure ensures seamless operations for your business.",
-      image: "/images/Dedicated-Virtual-Servers.png"
+      content: "For businesses seeking affordability without compromising functionality, SysCare recommends ZOHO CRM and ERP solutions. ZOHO CRM is one of the best small business CRM platforms, designed to improve lead management, automate workflows, and strengthen customer engagement. Coupled with ZOHO ERP tools, it provides an integrated environment to manage finance, inventory, and HR. SysCare helps configure and customize ZOHO solutions so your business can enjoy a user-friendly, scalable, and cost-effective system that supports long-term growth.",
+      image: "/images/ZOHO-CRMERP.png"
     },
     
   ];
@@ -113,6 +159,10 @@ const SmallBusinessPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+// Split FAQs for two columns
+  const faqsLeft = FAQS.slice(0, 3);
+  const faqsRight = FAQS.slice(3, 6);
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -195,12 +245,12 @@ const SmallBusinessPage = () => {
             }}
           >
             <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">SysCare Private Cloud</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Small Business CRM & ERP Solutions – SysCare IT Solutions</h2>
               <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
-                Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.
+                In today’s competitive business environment, small businesses need more than just hard work. They need smart tools that streamline operations, improve customer management, and enable growth. That’s where small business CRM and ERP solutions come in. At SysCare IT Solutions Pty Ltd, we provide tailored solutions that help small businesses in Melbourne, Sydney, and across Australia achieve greater efficiency, smarter decision-making, and stronger customer relationships.
               </p>
               <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
-                Experience the pinnacle of reliability and performance as our dedicated team of experts customizes solutions to optimize your operations. Trust SysCare Private Cloud for a sophisticated, streamlined, and secure IT infrastructure, enabling you to focus on what truly matters – the growth and success of your business.
+                Whether you are looking for the best small business CRM software to manage sales and marketing, or the best small business ERP system to handle accounting, supply chain, and operations, SysCare has the expertise and partnerships to deliver the right solution for your needs.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
                 Request Private Cloud Demo
@@ -241,7 +291,7 @@ const SmallBusinessPage = () => {
               transition: 'opacity 0.6s ease, transform 0.6s ease'
             }}
           >
-            Our Cloud & Infrastructure Services
+            Our Small Business CRM & ERP Solutions
           </h2>
           
           {/* Mobile View - Accordion Style */}
@@ -357,7 +407,7 @@ const SmallBusinessPage = () => {
                   <img 
                     src={services[activeTab].image}
                     alt={`${services[activeTab].title} infrastructure`}
-                    className="w-[250px] h-[250px] object-cover rounded-lg"
+                    className="w-[150px] h-[150px] object-cover rounded-lg"
                     style={{ maxWidth: '100%', height: 'auto' }}
                   />
                 </div>
@@ -390,7 +440,115 @@ const SmallBusinessPage = () => {
     </div>
   </div>
 </section>
-      <Footer/>
+
+{/* FAQ Section */}
+            <section
+              className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
+              ref={sectionRefs[3]}
+            >
+              <div className="container mx-auto">
+                <h2
+                  className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-16 text-center"
+                  style={{
+                    opacity: isVisible[3] ? 1 : 0,
+                    transform: isVisible[3] ? 'translateY(0)' : 'translateY(20px)',
+                    transition: 'opacity 0.6s ease, transform 0.6s ease'
+                  }}
+                >
+                  Frequently Asked Questions
+                </h2>
+                <div className="max-w-5xl mx-auto">
+                  {/* Responsive: Stack on mobile, 2 cols on md+ */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {[faqsLeft, faqsRight].map((faqCol, colIdx) => (
+                      <div key={colIdx} className="space-y-6">
+                        {faqCol.map((faq, idx) => {
+                          const qIdx = colIdx * 3 + idx + 1;
+                          return (
+                            <div
+                              className={`rounded-xl border bg-white border-[#e1e9f2] shadow transition-all duration-500 group
+                                ${activeFaq === qIdx ? 'ring-2 ring-[#245684] ring-opacity-40 scale-[1.02] shadow-xl' : ''}
+                              `}
+                              key={qIdx}
+                              style={{
+                                opacity: isVisible[3] ? 1 : 0,
+                                transform: isVisible[3]
+                                  ? 'scale(1)'
+                                  : 'scale(0.95)',
+                                transition: `opacity 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1), transform 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1)`
+                              }}
+                            >
+                              <button
+                                onClick={() => setActiveFaq(activeFaq === qIdx ? null : qIdx)}
+                                className={`w-full flex justify-between items-center text-left p-6 rounded-xl transition-all duration-300
+                                  ${activeFaq === qIdx
+                                    ? 'bg-gradient-to-r from-[#103d5d] to-[#245684] text-white shadow'
+                                    : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
+                                  }
+                                `}
+                              >
+                                <h3 className="text-xl font-semibold flex items-center gap-2">
+                                  <span
+                                    className={`inline-block w-3 h-3 rounded-full mr-2 transition-all duration-300
+                                      ${activeFaq === qIdx ? 'bg-[#a3d4ff] scale-110 shadow-lg' : 'bg-[#245684] scale-90'}
+                                    `}
+                                  ></span>
+                                  {faq.question}
+                                </h3>
+                                <FiChevronRight
+                                  className={`text-2xl transition-transform duration-300
+                                    ${activeFaq === qIdx ? 'rotate-90 text-[#a3d4ff]' : ''}
+                                  `}
+                                />
+                              </button>
+                              <div
+                                className={`faq-answer transition-all duration-500 overflow-hidden
+                                  ${activeFaq === qIdx ? 'max-h-[500px] opacity-100 py-4 px-6' : 'max-h-0 opacity-0 py-0 px-6'}
+                                `}
+                                style={{
+                                  background: activeFaq === qIdx
+                                    ? 'linear-gradient(90deg, #f5f9fd 65%, #a3d4ff1a 100%)'
+                                    : undefined
+                                }}
+                              >
+                                {activeFaq === qIdx && (
+                                  <p className="text-[#5c6f87] text-lg leading-relaxed animate-fadein">
+                                    {faq.answer}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </div>
+                  {/* Additional Support CTA */}
+                  <div className="mt-16 text-center">
+                    <p className="text-xl text-[#4a5d72] mb-8">
+                      Still have questions? Our team is ready to help.
+                    </p>
+                    <a href="/contact-Us" className="inline-block">
+                      <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg">
+                        Contact Our Support Team
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {/* Animations for FAQ */}
+              <style jsx>{`
+                @keyframes fadein {
+                  from { opacity: 0; transform: translateY(16px);}
+                  to { opacity: 1; transform: translateY(0);}
+                }
+                .animate-fadein {
+                  animation: fadein 0.6s cubic-bezier(.4,0,.2,1);
+                }
+              `}</style>
+            </section>
+
+<Footer/>
 
       {/* Add CSS animations */}
       <style jsx>{`
