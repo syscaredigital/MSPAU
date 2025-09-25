@@ -93,7 +93,7 @@ const AboutUs = () => {
                   About <span className="text-[#a3c1e0]">SysCare</span>
                 </h1>
                 <p className={`text-xl text-[#c9d8eb] mb-8 max-w-lg transition-all duration-700 delay-100 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                  Pioneering the future of IT solutions with innovation, expertise, and unwavering commitment to excellence.
+                  At SysCare IT Solutions Pty Ltd, we are more than just a technology provider—we are your trusted IT partner.
                 </p>
                 <div className={`flex flex-wrap gap-4 transition-all duration-700 delay-200 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <a href="#stats-section" className="bg-white text-[#103d5d] px-6 py-3 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] flex items-center">
@@ -114,7 +114,7 @@ const AboutUs = () => {
                         <FaHeadset className="text-4xl text-[#a3c1e0]" />
                       </div>
                       <h3 className="text-2xl font-semibold mb-2">Since 2012</h3>
-                      <p className="text-[#c9d8eb]">Over a decade of excellence in IT solutions and digital transformation</p>
+                      <p className="text-[#c9d8eb]">With years of experience as a Managed Services Provider in Australia, we support businesses across Melbourne and Sydney with reliable IT solutions and proactive managed security services.</p>
                     </div>
                   </div>
                 </div>
@@ -131,7 +131,7 @@ const AboutUs = () => {
                 OUR STORY
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mt-2 mb-4 animate-fadeIn">
-                Digital Pioneers in IT Solutions
+                About SysCare IT Solutions
               </h2>
               <div className="w-24 h-1 bg-[#245684] mx-auto animate-grow"></div>
             </div>
@@ -143,13 +143,18 @@ const AboutUs = () => {
                     ⌘
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold text-[#170f17] mb-4">Who We Are</h3>
+                <h3 className="text-2xl font-bold text-[#170f17] mb-4">Our Background </h3>
                 <p className="text-gray-700 mb-6">
-                  SysCare IT Solutions is a next-generation managed service provider leveraging cutting-edge technologies to deliver unparalleled IT solutions. Founded in 2012, we've evolved from traditional IT support to becoming digital transformation architects.
+                  Technology without security is a risk no business can afford. That’s why SysCare is not only a trusted Managed Services Provider in Australia but also a highly skilled Managed Security Service Provider (MSSP). Our security-first approach ensures your data, systems, and networks remain safe from ever-changing cyber threats.
                 </p>
                 
-                <div className="space-y-3">
-                  {["AI-Driven Operations", "Predictive Analytics", "Blockchain Security"].map((item, i) => (
+                <div className="space-y-4">
+                  {[
+                    "Trust & Integrity – Building long-term partnerships with transparency.",
+                    "Innovation – Delivering modern IT solutions that drive growth.", 
+                    "Reliability – Providing consistent, 24/7 support when you need it most.",
+                    "Customer Success – Your business goals are at the heart of what we do."
+                  ].map((item, i) => (
                     <div key={i} className="flex items-start group">
                       <div className="mt-1 mr-3">
                         <div className="w-3 h-3 rounded-full bg-[#245684] group-hover:animate-pulse"></div>
@@ -209,7 +214,7 @@ const AboutUs = () => {
                     Our Vision
                   </h3>
                   <p className="text-gray-700 mb-6">
-                    To create a world where technology boundaries disappear, enabling seamless digital experiences through intelligent IT ecosystems.
+                    At SysCare IT Solutions, our vision is to become the most trusted IT partner and leading Managed Security Service Provider in Australia, recognized for delivering excellence in technology and cybersecurity. We aim to shape a safer digital future for businesses in Melbourne, Sydney, and beyond by combining innovation, expertise, and customer-first service.
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {["Innovation", "Boundless", "Future"].map((tag, i) => (
@@ -231,10 +236,10 @@ const AboutUs = () => {
                     🎯
                   </div>
                   <h3 className="text-2xl font-bold text-[#245684] mb-4">
-                    Our Mission
+                    Our Mission as an MSP
                   </h3>
                   <p className="text-gray-700 mb-6">
-                    To architect the future of business technology with cutting-edge solutions while maintaining operational excellence and security.
+                    Our mission is simple: to make technology work seamlessly for your business. As an experienced MSP with proven expertise, we focus on delivering proactive, secure, and scalable IT solutions that reduce downtime, improve productivity, and keep your business protected against evolving cyber threats.
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {["Excellence", "Security", "Innovation"].map((tag, i) => (
@@ -253,38 +258,38 @@ const AboutUs = () => {
             {/* Core Values with Brand Colors */}
             <div className="mt-20">
               <h3 className="text-2xl font-bold text-[#103d5d] text-center mb-8">
-                Our Core Values
+                Core Values of SysCare IT Solutions
               </h3>
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
                   { 
                     icon: "💡", 
-                    title: "Innovation", 
-                    desc: "Pushing technological boundaries",
+                    title: "Proactive Innovation", 
+                    desc: "We stay ahead of technology trends and cyber threats, delivering forward-thinking IT and security solutions that future-proof your business.",
                     bg: "bg-[#e6f2ff]",
                     text: "text-[#103d5d]",
                     border: "border-[#103d5d]"
                   },
                   { 
                     icon: "🛡️", 
-                    title: "Integrity", 
-                    desc: "Ethical and transparent",
+                    title: "Uncompromising Security", 
+                    desc: "Protecting your business is our top priority. We embed security into every service we provide, ensuring your systems, data, and people remain safe.",
                     bg: "bg-[#d9e8ff]",
                     text: "text-[#1a3d6b]",
                     border: "border-[#1a3d6b]"
                   },
                   { 
                     icon: "🏆", 
-                    title: "Excellence", 
-                    desc: "Uncompromising quality",
+                    title: "Client-Centric Partnership", 
+                    desc: " We don’t just provide IT services we build lasting partnerships by understanding your goals and aligning our solutions with your success.",
                     bg: "bg-[#cde0ff]",
                     text: "text-[#245684]",
                     border: "border-[#245684]"
                   },
                   { 
                     icon: "❤️", 
-                    title: "Passion", 
-                    desc: "For technology and people",
+                    title: "Excellence Through Reliability", 
+                    desc: "From 24/7 support to seamless IT management, we are committed to delivering consistent, dependable services that your business can trust.",
                     bg: "bg-[#a3d4ff]",
                     text: "text-[#103d5d]",
                     border: "border-[#103d5d]"
@@ -318,7 +323,7 @@ const AboutUs = () => {
               </h2>
               <div className="w-24 h-1 bg-[#245684] mx-auto animate-grow"></div>
               <p className="text-gray-600 mt-4 max-w-2xl mx-auto animate-fadeIn">
-                The brilliant minds driving innovation at SysCare IT Solutions
+                Our dedicated team, based in Melbourne and Sydney, is made up of IT specialists, security experts, and customer-focused professionals who share one vision: to empower businesses through technology.
               </p>
             </div>
             
@@ -387,13 +392,13 @@ const AboutUs = () => {
             <div className="max-w-4xl mx-auto text-center">
               <div className="inline-flex items-center mb-4 px-4 py-2 bg-white bg-opacity-10 rounded-full animate-pulse">
                 <div className="w-2 h-2 mr-2 rounded-full bg-[#a3d4ff]"></div>
-                <span className="text-sm font-medium">READY FOR DIGITAL TRANSFORMATION?</span>
+                <span className="text-sm font-medium">Choosing SysCare means ?</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fadeIn">
-                Let's Build Your <span className="bg-gradient-to-r from-[#a3d4ff] to-white bg-clip-text text-transparent">Future-Ready</span> Infrastructure
+                Experience with <span className="bg-gradient-to-r from-[#a3d4ff] to-white bg-clip-text text-transparent">a professional IT services </span>provider
               </h2>
               <p className="text-xl mb-8 opacity-90 animate-fadeIn">
-                Our engineers are standing by to assess your current systems and design a customized roadmap for your digital evolution.
+                With local expertise in Melbourne and Sydney, and national capabilities across Australia, we are here to help your business succeed securely. To learn more about how SysCare IT Solutions can be the IT partner your business can trust.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fadeIn">
                 <a href="/contact" className="bg-white text-[#103d5d] px-8 py-3 rounded-lg font-bold hover:bg-opacity-90 transition flex items-center justify-center hover:scale-105">

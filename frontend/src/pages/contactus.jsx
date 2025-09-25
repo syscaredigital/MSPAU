@@ -104,10 +104,10 @@ const ContactPage = () => {
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-10 md:mb-0">
               <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                Get in <span className="text-[#a3c1e0]">Touch</span> With Us
+                Contact <span className="text-[#a3c1e0]">SysCare</span> <br></br>IT Solutions
               </h1>
               <p className={`text-xl text-[#c9d8eb] mb-8 max-w-lg transition-all duration-700 delay-100 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                Our team of experts is ready to help you transform your IT infrastructure. Reach out to us for a consultation.
+                Whether you’re looking for 24/7 support contact, service inquiries, or expert advice, the team at SysCare IT Solutions is ready to assist.
               </p>
               <div className={`flex flex-wrap gap-4 transition-all duration-700 delay-200 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                 <a href="#contact-form" className="bg-white text-[#103d5d] px-6 py-3 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] flex items-center">
@@ -128,7 +128,7 @@ const ContactPage = () => {
                       <FaHeadset className="text-4xl text-[#a3c1e0]" />
                     </div>
                     <h3 className="text-2xl font-semibold mb-2">24/7 Support</h3>
-                    <p className="text-[#c9d8eb]">Our team is always available to assist you with any inquiries</p>
+                    <p className="text-[#c9d8eb]">Reach out today to discuss how we can simplify and secure your IT.</p>
                   </div>
                 </div>
               </div>
@@ -325,7 +325,7 @@ const ContactPage = () => {
 
               <div className="mt-8">
                 <h3 className="text-xl font-semibold text-[#245684] mb-4">Emergency Support</h3>
-                <p className="text-gray-600 mb-4">For critical issues outside business hours, our emergency support team is available 24/7.</p>
+                <p className="text-gray-600 mb-4">Technology issues don’t keep office hours and neither do we. With our 24/7 support contact, SysCare IT Solutions ensures your business stays online, secure, and productive at all times.</p>
                 <p className="text-[#103d5d] font-medium">Emergency Hotline: 1300 69 79 72</p>
               </div>
             </div>

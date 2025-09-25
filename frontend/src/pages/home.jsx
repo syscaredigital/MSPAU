@@ -336,12 +336,12 @@ const HomePage = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in-up">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-6">About SysCare IT Solutions</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-6">Managed IT Services in Australia | SysCare IT Solutions</h2>
             <p className="text-lg text-gray-600 mb-6">
-              Founded in 2010, SysCare IT Solutions has been at the forefront of delivering exceptional IT services to businesses of all sizes. Our team of certified professionals brings decades of combined experience in managing complex IT environments.
+               At SysCare IT Solutions, we deliver reliable managed IT services in Melbourne, advanced IT support in Sydney, and proactive managed security services across Australia. Whether you need a full-service MSP in Melbourne or a trusted MSSP in Australia, we’ve got your business covered.
             </p>
             <p className="text-lg text-gray-600 mb-8">
-              We take pride in our customer-centric approach, ensuring that every solution we deliver aligns perfectly with your business objectives and growth strategy.
+              Based in Melbourne and Sydney, SysCare IT Solutions supports businesses of all sizes across Australia. From small startups to growing enterprises, we deliver cost-effective and scalable IT solutions that reduce downtime, enhance security, and improve productivity.
             </p>
             <div className="flex flex-wrap gap-4">
               <div className="bg-[#103d5d] text-white px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300 animate-pulse-slow">150+ Clients</div>
@@ -381,10 +381,10 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4 animate-fade-in">
-              Our IT Services
+              Our Managed IT & Security Solutions
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
-              Comprehensive IT solutions designed to meet all your business technology needs
+              As a leading MSP in Melbourne and MSSP in Australia, we offer a wide range of solutions to keep your business secure and efficient:
             </p>
           </div>
 
@@ -538,9 +538,9 @@ const HomePage = () => {
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fade-in">Ready to Transform Your IT Infrastructure?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fade-in">Partner with SysCare IT Solutions </h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
-            Contact us today to discuss how SysCare IT Solutions can help your business achieve its technology goals.
+            Partner with SysCare IT Solutions – Your dedicated provider of managed IT services in Melbourne, IT support in Sydney, and trusted cybersecurity services nationwide. Discover how we can protect and empower your business with tailored IT solutions.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 stagger-animation">
             <Link 
@@ -553,7 +553,7 @@ const HomePage = () => {
               to="/contact-Us" 
               className="px-8 py-3 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-[#170f17] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
-              Contact Support
+              Contact Us Now
             </Link>
           </div>
         </div>
