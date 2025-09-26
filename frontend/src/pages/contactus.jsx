@@ -5,13 +5,11 @@ import Footer from '../components/footer.jsx';
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaHeadset, FaChevronRight } from 'react-icons/fa';
 
 const Header = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
+  
+  const [ setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
+  
 
   useEffect(() => {
     const handleScroll = () => {

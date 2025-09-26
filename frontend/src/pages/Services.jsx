@@ -161,7 +161,7 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
   const isConnectivity = subService.title === "Connectivity";
   const isVoIP = subService.title === "VoIP & Video";
   const isDesignDevelopment = subService.title === "Design & Development";
-  const isDigitalMarketing = subService.title === "Digital Marketing";
+  const isDigitalMarketing = subService.title === "Multimedia & Digital Marketing";
   const isSmallBusinessCRM = subService.title === "Small Business Solutions";
   const isEnterpriseCRM = subService.title === "Enterprise Solutions";
   const isSecurityTraining = subService.title === "Security Training";
@@ -226,8 +226,8 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Service Desk Features:</h4>
           <div className="grid grid-cols-1 gap-3">
             <div className="bg-green-50 p-3 rounded-lg border border-green-100">
-              <h5 className="font-medium text-green-800">Help Desk Support Ticketing System</h5>
-              <p className="text-sm text-green-700">Guaranteed SLA Response Time</p>
+              <h5 className="font-medium text-green-800">Help Desk Support Ticketing System &  Guaranteed SLA Response Time</h5>
+              
             </div>
             <div className="bg-green-50 p-3 rounded-lg border border-green-100">
               <h5 className="font-medium text-green-800">Remote IT User Support</h5>
@@ -426,30 +426,24 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
     if (isDesignDevelopment) {
       return (
         <div className="mt-2">
-          <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Design & Development Services:</h4>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {[
+          <div>
+            <h4 className="font-semibold text-[#103d5d] mb-2 ">Design & Development Services:</h4>
+             {[
               "Website Design", "UI/UX Design", "Website Development", "Website Security",
               "E-commerce Development", "SEO-Friendly Website Development", "Website Redesign",
               "Analytics Integration", "Mobile App Development", "Domain and Hosting Services",
               "Custom Web Solutions"
             ].map((service, index) => (
-              <div key={index} className="bg-orange-50 p-3 rounded-lg border border-orange-100">
-                <p className="text-sm text-orange-700 font-medium">{service}</p>
+              <div key={index} className="bg-orange-50 p-2 rounded-lg border border-orange-100 mb-2">
+                <p className="text-xs text-orange-700 ">{service}</p>
               </div>
             ))}
-          </div>
-        </div>
-      );
-    }
-
-    if (isDigitalMarketing) {
-      return (
-        <div className="mt-2">
-          <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Digital Marketing Services:</h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            </div>
+           
             <div>
-              <h5 className="font-semibold text-[#103d5d] mb-2">SEO Services:</h5>
+              <h4 className="font-semibold text-[#103d5d] mb-2">SEO Services:</h4>
               {[
                 "Keyword Research and Strategy", "Local SEO", "Content Creation and Optimization",
                 "SEO Reporting and Analytics", "On-Page Optimization", "E-commerce SEO",
@@ -462,26 +456,78 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
                 </div>
               ))}
             </div>
+          </div>
+        
+          </div>
+        
+      );
+
+    }
+
+    if (isDigitalMarketing) {
+      return (
+        <div className="mt-2">
+          <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">MultiMedia Services:</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
-              <h5 className="font-semibold text-[#103d5d] mb-2">MultiMedia & Digital Marketing:</h5>
+              <h5 className="font-semibold text-[#103d5d] mb-2">Graphic Design:</h5>
               {[
-                "Graphic Design", "Logo Design", "Business Cards & Stationery", "Social Media Graphics",
+                "Logo Design", "Business Cards & Stationery", "Social Media Graphics",
                 "Flyers, Posters & Brochures", "Presentations & Infographics", "Web Graphics",
-                "Digital Branding", "Product Mockups", "Video Editing", "YouTube Video Editing",
+                "Digital Branding", "Product Mockups"
+              ].map((service, index) => (
+                <div key={index} className="bg-yellow-50 p-2 rounded-lg border border-yellow-100 mb-2">
+                  <p className="text-xs text-yellow-700">{service}</p>
+                </div>
+              ))}
+            </div>
+            <div>
+              <h5 className="font-semibold text-[#103d5d] mb-2">Video Editing:</h5>
+              {[
+                 "Video Editing", "YouTube Video Editing",
                 "Social Media Shorts", "Intro & Outro Creation", "Corporate Videos", "Documentary Edits",
-                "Product Promo Videos", "Subtitles & Captions", "Interview Editing", "Digital Marketing",
-                "Paid Social Media Campaigns", "Meta Ads", "Prospecting & Retargeting Ads", "Shopping Ads",
-                "Awareness Campaigns", "Keyword Research for Social Media", "Social media management",
-                "Account Setup & Profile Optimization", "Content Creation & Optimization for Social Media",
-                "Content Scheduling", "Research & Trend Analysis", "Analytics & Reporting", "Paid Campaigns",
-                "Visual Branding"
+                "Product Promo Videos", "Subtitles & Captions", "Interview Editing" ,
+                
               ].map((service, index) => (
                 <div key={index} className="bg-pink-50 p-2 rounded-lg border border-pink-100 mb-2">
                   <p className="text-xs text-pink-700">{service}</p>
                 </div>
               ))}
             </div>
+            </div>
+          
+             <div>
+              <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Digital Marketing Services:</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div>
+                <h5 className="font-semibold text-[#103d5d] mb-2">Digital Marketing:</h5>
+              {[
+                "Paid Social Media Campaigns ","Meta Ads","Prospecting & Retargeting Ads","Shopping Ads","Awareness Campaigns","Keyword Research for Social Media",
+
+              ].map((service, index) => (
+                <div key={index} className="bg-yellow-50 p-2 rounded-lg border border-yellow-100 mb-2">
+                  <p className="text-xs text-yellow-700">{service}</p>
+                </div>
+              ))}
+              </div>
+              
+            
+            <div>
+              <h5 className="font-semibold text-[#103d5d] mb-2">Social Media Management:</h5>
+              {[
+                "Account Setup & Profile Optimization", "Content Creation & Optimization for Social Media",
+                "Content Scheduling", "Research & Trend Analysis", "Analytics & Reporting", "Paid Campaigns",
+                "Visual Branding"
+
+              ].map((service, index) => (
+                <div key={index} className="bg-yellow-50 p-2 rounded-lg border border-yellow-100 mb-2">
+                  <p className="text-xs text-yellow-700">{service}</p>
+                </div>
+              ))}
+            </div>
           </div>
+        </div>
+      
         </div>
       );
     }
@@ -733,7 +779,7 @@ const ServicesPage = () => {
       category: "infrastructure",
       subs: [
         {
-          title: "SysCare Private Cloud",
+          title: "Cloud Solutions",
           description: "Dedicated private cloud infrastructure tailored to your organization's specific needs with enhanced security and customization options."
         },
         {
@@ -782,7 +828,7 @@ const ServicesPage = () => {
           description: "Custom design and development services including website design, UI/UX, e-commerce, mobile apps, and custom web solutions."
         },
         {
-          title: "Digital Marketing",
+          title: "Multimedia & Digital Marketing",
           description: "Comprehensive digital marketing services including SEO, social media management, content creation, and paid advertising campaigns."
         }
       ]
@@ -832,10 +878,11 @@ const ServicesPage = () => {
     ? services 
     : services.filter(service => service.category === activeCategory);
 
+      console.log("🚀 ~ ServicesPage ~ <style>{animationStyles}</style>:", <style>{animationStyles}</style>)
   return (
-    <div className="min-h-screen bg-[#f8fafc]">
+    <div className="min-h-screen  bg-white">
       {/* Add animation styles */}
-      <style>{animationStyles}</style>
+      {/*<style>{animationStyles}</style>*/}
       
       {/* Use the Header component instead of Navigation */}
       <Header />
@@ -848,64 +895,66 @@ const ServicesPage = () => {
         mainService={selectedMainService}
       />
       
+      
       {/* Add padding to account for fixed header */}
-      <div className="pt-20">
-        {/* Hero Section */}
-        <div className="relative bg-gradient-to-br from-[#103d5d] to-[#245684] text-white pb-32 pt-24 md:pt-32 px-4 md:px-8 lg:px-16 overflow-hidden" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0 100%)' }}>
-          {/* Background decorative elements */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-10 left-10 w-64 h-64 rounded-full border-2 border-white"></div>
-            <div className="absolute bottom-20 right-16 w-48 h-48 rounded-full border-2 border-white"></div>
-            <div className="absolute top-1/3 right-1/4 w-32 h-32 rounded-full border-2 border-white"></div>
-          </div>
-          
-          {/* Floating elements */}
-          <div className="absolute top-20 left-20 animate-float">
-            <div className="w-12 h-12 rounded-lg bg-white/10 backdrop-blur-sm"></div>
-          </div>
-          <div className="absolute bottom-40 right-32 animate-float-delayed">
-            <div className="w-10 h-10 rounded-lg bg-white/10 backdrop-blur-sm"></div>
-          </div>
-          <div className="absolute top-1/2 left-1/3 animate-float">
-            <div className="w-8 h-8 rounded-lg bg-white/10 backdrop-blur-sm"></div>
-          </div>
-          
-          <div className="container mx-auto max-w-6xl relative z-10">
-            <div className="flex flex-col md:flex-row items-center">
-              <div className="md:w-1/2 mb-10 md:mb-0">
-                <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-fade-in-up ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                  Our <span className="text-[#a3c1e0]">Services</span>
-                </h1>
-                <p className={`text-xl text-[#c9d8eb] mb-8 max-w-lg animate-fade-in-up delay-100 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                  Comprehensive IT solutions to drive your business forward and transform your IT infrastructure.
-                </p>
-                <div className={`flex flex-wrap gap-4 animate-fade-in-up delay-200 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                  <a href="#services" className="bg-white text-[#103d5d] px-6 py-3 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] flex items-center animate-pulse-slow">
-                    Explore Services <FaChevronRight className="ml-2" />
-                  </a>
-                  <a href="#contact" className="border-2 border-white text-white px-6 py-3 rounded-md font-medium transition-all duration-300 hover:bg-white hover:text-[#103d5d]">
-                    Contact Us
-                  </a>
+            <div className="pt-20">
+              {/* Contact Header Section (from Contact Page) */}
+              <div className="relative bg-gradient-to-br from-[#103d5d] to-[#245684] text-white pb-32 pt-24 md:pt-32 px-4 md:px-8 lg:px-16 overflow-hidden" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0 100%)' }}>
+                {/* Background decorative elements */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute top-10 left-10 w-64 h-64 rounded-full border-2 border-white"></div>
+                  <div className="absolute bottom-20 right-16 w-48 h-48 rounded-full border-2 border-white"></div>
+                  <div className="absolute top-1/3 right-1/4 w-32 h-32 rounded-full border-2 border-white"></div>
                 </div>
-              </div>
-              
-              <div className="md:w-1/2 flex justify-center">
-                <div className={`relative animate-fade-in delay-300 ${headerVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-                  <div className="absolute -inset-6 bg-[#a3c1e0] rounded-2xl rotate-3 opacity-30"></div>
-                  <div className="relative bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-2xl">
-                    <div className="text-center p-6">
-                      <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-[#103d5d] flex items-center justify-center animate-pulse-slow">
-                        <FaHeadset className="text-4xl text-[#a3c1e0]" />
+                
+                {/* Floating elements */}
+                <div className="absolute top-20 left-20 animate-float">
+                  <div className="w-12 h-12 rounded-lg bg-white/10 backdrop-blur-sm"></div>
+                </div>
+                <div className="absolute bottom-40 right-32 animate-float-delayed">
+                  <div className="w-10 h-10 rounded-lg bg-white/10 backdrop-blur-sm"></div>
+                </div>
+                <div className="absolute top-1/2 left-1/3 animate-float">
+                  <div className="w-8 h-8 rounded-lg bg-white/10 backdrop-blur-sm"></div>
+                </div>
+                
+                <div className="container mx-auto max-w-6xl relative z-10">
+                  <div className="flex flex-col md:flex-row items-center">
+                    <div className="md:w-1/2 mb-10 md:mb-0">
+                      <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                        About <span className="text-[#a3c1e0]">SysCare</span>
+                      </h1>
+                      <p className={`text-xl text-[#c9d8eb] mb-8 max-w-lg transition-all duration-700 delay-100 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                        At SysCare IT Solutions Pty Ltd, we are more than just a technology provider—we are your trusted IT partner.
+                      </p>
+                      <div className={`flex flex-wrap gap-4 transition-all duration-700 delay-200 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                        <a href="#stats-section" className="bg-white text-[#103d5d] px-6 py-3 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] flex items-center">
+                          Our Story <FaChevronRight className="ml-2" />
+                        </a>
+                        <a href="#team" className="border-2 border-white text-white px-6 py-3 rounded-md font-medium transition-all duration-300 hover:bg-white hover:text-[#103d5d]">
+                          Meet Our Team
+                        </a>
                       </div>
-                      <h3 className="text-2xl font-semibold mb-2">Expert Support</h3>
-                      <p className="text-[#c9d8eb]">Our team of experts is ready to help you transform your IT infrastructure</p>
+                    </div>
+                    
+                    <div className="md:w-1/2 flex justify-center">
+                      <div className={`relative transition-all duration-700 delay-300 ${headerVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+                        <div className="absolute -inset-6 bg-[#a3c1e0] rounded-2xl rotate-3 opacity-30"></div>
+                        <div className="relative bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-2xl">
+                          <div className="text-center p-6">
+                            <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-[#103d5d] flex items-center justify-center">
+                              <FaHeadset className="text-4xl text-[#a3c1e0]" />
+                            </div>
+                            <h3 className="text-2xl font-semibold mb-2">Since 2012</h3>
+                            <p className="text-[#c9d8eb]">With years of experience as a Managed Services Provider in Australia, we support businesses across Melbourne and Sydney with reliable IT solutions and proactive managed security services.</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
+        
 
         {/* Services Section with Particle Background */}
         <section id="services" className="py-16 bg-[#f8fafc] px-4 sm:px-6 lg:px-8 -mt-20 relative overflow-hidden">
