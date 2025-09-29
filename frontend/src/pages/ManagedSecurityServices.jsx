@@ -110,12 +110,12 @@ const ManagedITServicesPage = () => {
       title: "Vulnerability Management",
       icon: <FiShield className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions delivers comprehensive Vulnerability Management services, encompassing meticulous scanning and efficient remediation strategies. Our expert team employs advanced techniques to identify and address potential vulnerabilities in your systems, ensuring a proactive approach to cybersecurity. With a focus on precision and thoroughness, we safeguard your infrastructure, providing peace of mind in an ever-evolving digital landscape. Trust SysCare for robust Vulnerability Management solutions, fortifying your business against potential threats with cutting-edge technology and strategic remediation measures. Your security is our priority.",
-      image: "/images/Vulnerability-Management.png"
+      image: "/images/Vulnerability-Management2.png"
     },
     {
       title: "Security Awareness Training & Assessment",
       icon: <FiMessageCircle className="text-[#245684] text-2xl" />,
-      content: "Comprehensive security awareness programs including training, phishing simulations, and assessment to build a human firewall within your organization.",
+      content: "At SysCare IT Solutions, we understand that employees are often the first line of defense and sometimes the weakest link in cybersecurity. That’s why we deliver tailored Security Awareness Training & Assessment programs designed to educate and empower your staff. Our training covers phishing recognition, social engineering tactics, password hygiene, and safe online behavior. We use interactive workshops, real-world simulations, and periodic assessments to reinforce learning and track progress. By turning your employees into a human firewall, SysCare helps reduce risk, improve compliance, and foster a culture of security awareness across your organization.",
       image: "/images/Security-Training.png"
     },
     {
@@ -133,13 +133,13 @@ const ManagedITServicesPage = () => {
     {
       title: "Managed 24/7 SOC",
       icon: <FiDatabase className="text-[#245684] text-2xl" />,
-      content: "Fully managed Security Operations Center providing round-the-clock monitoring, threat detection, and incident response services with expert security analysts.",
+      content: " SysCare IT Solutions operates a dedicated 24/7 Security Operations Centre (SOC) to protect your business from evolving cyber threats. Our expert analysts continuously monitor your systems, networks, and endpoints using advanced threat detection tools and AI-driven analytics. When suspicious activity is detected, we respond instantly to contain and mitigate risks before they escalate into major incidents. From malware outbreaks to insider threats, our SOC provides proactive threat hunting, incident response, and compliance reporting. With SysCare managing your security around the clock, you gain peace of mind knowing your digital assets are always protected.",
       image: "/images/SOC.png"
     },
     {
       title: "Managed 24/7 NOC",
       icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "Network Operations Center services providing continuous monitoring, maintenance, and optimization of your network infrastructure to ensure maximum uptime.",
+      content: "Reliable network performance is the backbone of any modern business. SysCare IT Solutions runs a 24/7 Network Operations Centre (NOC) dedicated to ensuring your systems are always fast, available, and secure. Our NOC team monitors network uptime, bandwidth, latency, and hardware health in real time, identifying and resolving issues before they impact your business. From routine maintenance to advanced troubleshooting, we keep your network optimized for maximum performance. Whether you operate locally or across multiple sites, SysCare’s managed NOC services ensure seamless connectivity, business continuity, and reduced downtime allowing your teams to stay productive without disruption.",
       image: "/images/NOC.png"
     }
   ];
