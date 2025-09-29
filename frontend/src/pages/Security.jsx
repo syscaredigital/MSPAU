@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SysCarePrivateCloud from '../assets/website-images/SysCare-Private-Cloud.webp';
-import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight } from 'react-icons/fi';
+import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight, FiChevronDown } from 'react-icons/fi';
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
 const SecurityPage = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const [expandedCategory, setExpandedCategory] = useState(null);
   const [isVisible, setIsVisible] = useState([false, false, false, false]);
   const [isMobile, setIsMobile] = useState(false);
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
@@ -16,16 +17,71 @@ const SecurityPage = () => {
       title: "Microsoft",
       icon: <FiCloud className="text-[#245684] text-2xl" />,
       content: "Elevate your business with SysCare Private Cloud, a flagship service by SysCare IT Solutions. Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.",
-      image: "/images/SysCare-Private-Cloud.png"
+      image: "/images/SysCare-Private-Cloud.png",
+      courses: [
+        {
+          name: "Microsoft Azure Fundamentals",
+          description: "Learn cloud concepts, Azure services, Azure workloads, security and privacy in Azure, as well as Azure pricing and support."
+        },
+        {
+          name: "Microsoft Security, Compliance, and Identity Fundamentals",
+          description: "Understand security, compliance, and identity concepts and related cloud-based Microsoft solutions."
+        },
+        {
+          name: "Microsoft Azure Administrator",
+          description: "Learn to implement, manage, and monitor identity, governance, storage, compute, and virtual networks in a cloud environment."
+        },
+        {
+          name: "Microsoft Azure Security Technologies",
+          description: "Master managing identity and access, implementing platform protection, managing security operations, and securing data and applications."
+        },
+        {
+          name: "Microsoft 365 Certified: Enterprise Administrator Expert",
+          description: "Learn to deploy and manage Microsoft 365 services including identities, security, compliance, and supporting technologies."
+        },
+        {
+          name: "Azure Solutions Architect Expert",
+          description: "Design and implement solutions that run on Azure, including aspects like compute, network, storage, and security."
+        }
+      ]
     },
     {
       title: "EC-Council",
       icon: <FiServer className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions delivers state-of-the-art Hosted Servers (Virtual Machines), providing clients with a robust and scalable solution tailored to their business needs. Our advanced hosting services guarantee optimal performance, security, and flexibility.",
-      image: "/images/Hosted-Servers.png"
+      image: "/images/Hosted-Servers.png",
+      courses: [
+        {
+          name: "Certified Ethical Hacker (CEH)",
+          description: "Learn to think and act like a hacker to identify vulnerabilities and strengthen systems against cyber attacks."
+        },
+        {
+          name: "Computer Hacking Forensic Investigator (CHFI)",
+          description: "Master the skills to detect hacking attacks and properly extract evidence to report the crime and conduct audits."
+        },
+        {
+          name: "Certified Network Defender (CND)",
+          description: "Learn to protect, detect, and respond to network security threats with hands-on labs and real-world scenarios."
+        },
+        {
+          name: "Certified Security Analyst (ECSA)",
+          description: "Advanced penetration testing course that teaches the methodologies and techniques used by professional security testers."
+        },
+        {
+          name: "Certified Chief Information Security Officer (CCISO)",
+          description: "Executive-level program that trains information security professionals in managing and leading information security programs."
+        },
+        {
+          name: "Certified Application Security Engineer (CASE)",
+          description: "Learn secure software development practices and how to identify and mitigate security vulnerabilities in applications."
+        }
+      ]
     },
-    
   ];
+
+  const toggleCategory = (index) => {
+    setExpandedCategory(expandedCategory === index ? null : index);
+  };
 
   useEffect(() => {
     // Check if window is defined (to avoid SSR issues)
@@ -154,15 +210,15 @@ const SecurityPage = () => {
          
           {/* Animated CTA button */}
           <div className="mt-12 animate-bounce-slow">
-  <a href="/syscare-services" className="inline-block"> {/* Or external URL like "https://example.com/services" */}
-    <button className="bg-[#a3d4ff] text-[#103d5d] px-8 py-4 rounded-full font-bold hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto">
-      Explore Our Services
-      <svg className="w-5 h-5 ml-2 animate-bounce-horizontal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-      </svg>
-    </button>
-  </a>
-</div>
+            <a href="/syscare-services" className="inline-block">
+              <button className="bg-[#a3d4ff] text-[#103d5d] px-8 py-4 rounded-full font-bold hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto">
+                Explore Our Services
+                <svg className="w-5 h-5 ml-2 animate-bounce-horizontal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </button>
+            </a>
+          </div>
          
           {/* Scroll indicator */}
           <div className="mt-16 animate-bounce">
@@ -284,6 +340,37 @@ const SecurityPage = () => {
                         />
                       </div>
                       <p className="text-[#5c6f87] text-lg mb-6 leading-relaxed">{service.content}</p>
+                      
+                      {/* Courses Section for Mobile */}
+                      <div className="mt-8">
+                        <button
+                          onClick={() => toggleCategory(index)}
+                          className="flex items-center justify-between w-full text-left mb-4"
+                        >
+                          <h4 className="text-lg font-semibold text-[#103d5d]">
+                            Available Courses ({service.courses.length})
+                          </h4>
+                          <FiChevronDown 
+                            className={`transform transition-transform duration-300 ${
+                              expandedCategory === index ? 'rotate-180' : ''
+                            }`}
+                          />
+                        </button>
+                        
+                        {expandedCategory === index && (
+                          <div className="space-y-4 mt-4">
+                            {service.courses.map((course, courseIndex) => (
+                              <div 
+                                key={courseIndex}
+                                className="bg-white p-4 rounded-lg border border-[#e1e9f2] shadow-sm"
+                              >
+                                <h5 className="font-semibold text-[#245684] mb-2">{course.name}</h5>
+                                <p className="text-[#5c6f87] text-sm">{course.description}</p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   )}
                 </div>
@@ -343,11 +430,13 @@ const SecurityPage = () => {
                   <div className="w-16 h-16 rounded-xl bg-[#f0f6ff] flex items-center justify-center mr-8">
                     {services[activeTab].icon}
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-[#103d5d] mt-2">{services[activeTab].title}</h3>
+                  <div className="flex-1">
+                    <h3 className="text-2xl md:text-3xl font-bold text-[#103d5d] mt-2">{services[activeTab].title}</h3>
+                  </div>
                 </div>
 
-                {/* Service Graphic - Now positioned under title but above description */}
-                <div className="mb-8  p-4   flex justify-center">
+                {/* Service Graphic */}
+                <div className="mb-8 p-4 flex justify-center">
                   <img 
                     src={services[activeTab].image}
                     alt={`${services[activeTab].title} infrastructure`}
@@ -357,33 +446,67 @@ const SecurityPage = () => {
                 </div>
 
                 <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed">{services[activeTab].content}</p>
+
+                {/* Courses Toggle Button - UPDATED with #103d5d background */}
+                <button
+                  onClick={() => toggleCategory(activeTab)}
+                  className="flex items-center mb-8 text-white bg-[#103d5d] hover:bg-[#0a2a42] transition-colors duration-300 px-6 py-3 rounded-lg font-medium shadow-md hover:shadow-lg"
+                >
+                  <span>
+                    {expandedCategory === activeTab ? 'Hide' : 'View'} Available Courses ({services[activeTab].courses.length})
+                  </span>
+                  <FiChevronDown 
+                    className={`ml-2 transform transition-transform duration-300 ${
+                      expandedCategory === activeTab ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+
+                {/* Courses Section */}
+                {expandedCategory === activeTab && (
+                  <div className="mt-8">
+                    <h4 className="text-xl font-bold text-[#103d5d] mb-6">Available Courses</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {services[activeTab].courses.map((course, courseIndex) => (
+                        <div 
+                          key={courseIndex}
+                          className="bg-white p-5 rounded-lg border border-[#e1e9f2] shadow-sm hover:shadow-md transition-shadow duration-300"
+                        >
+                          <h5 className="font-semibold text-[#245684] mb-3 text-lg">{course.name}</h5>
+                          <p className="text-[#5c6f87] text-sm leading-relaxed">{course.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}
         </div>
       </section>
 
-        {/* CTA Section */}
-<section className="py-24 bg-[#000000] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
-  <div className="container mx-auto text-center">
-    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Ready to Transform Your IT Infrastructure?</h2>
-    <p className="text-xl md:text-2xl text-[#c9d8eb] mb-10 max-w-3xl mx-auto">
-      Our experts are ready to design the perfect solution for your business needs.
-    </p>
-    <div className="flex flex-col sm:flex-row justify-center gap-6">
-      <a href="/contact-Us" className="inline-block"> 
-        <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-12 py-5 rounded-md font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] text-lg">
-          Get Started Today
-        </button>
-      </a>
-      <a href="/contact-Us" className="inline-block"> 
-        <button className="border-2 border-white hover:bg-white hover:text-[#103d5d] text-white px-12 py-5 rounded-md font-medium transition-all duration-300 hover:scale-[1.02] text-lg">
-          Speak to an Expert
-        </button>
-      </a>
-    </div>
-  </div>
-</section>
+      {/* CTA Section */}
+      <section className="py-24 bg-[#000000] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
+        <div className="container mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Ready to Transform Your IT Infrastructure?</h2>
+          <p className="text-xl md:text-2xl text-[#c9d8eb] mb-10 max-w-3xl mx-auto">
+            Our experts are ready to design the perfect solution for your business needs.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-6">
+            <a href="/contact-Us" className="inline-block"> 
+              <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-12 py-5 rounded-md font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] text-lg">
+                Get Started Today
+              </button>
+            </a>
+            <a href="/contact-Us" className="inline-block"> 
+              <button className="border-2 border-white hover:bg-white hover:text-[#103d5d] text-white px-12 py-5 rounded-md font-medium transition-all duration-300 hover:scale-[1.02] text-lg">
+                Speak to an Expert
+              </button>
+            </a>
+          </div>
+        </div>
+      </section>
+      
       <Footer/>
 
       {/* Add CSS animations */}
