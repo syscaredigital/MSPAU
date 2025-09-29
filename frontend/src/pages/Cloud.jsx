@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SysCarePrivateCloud from '../assets/website-images/SysCare-Private-Cloud.webp';
-import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight } from 'react-icons/fi';
+import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight, FiChevronDown } from 'react-icons/fi';
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
 const CloudPage = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const [expandedCategory, setExpandedCategory] = useState(null);
   const [isVisible, setIsVisible] = useState([false, false, false, false]);
   const [isMobile, setIsMobile] = useState(false);
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
@@ -16,22 +17,103 @@ const CloudPage = () => {
       title: "Microsoft",
       icon: <FiCloud className="text-[#245684] text-2xl" />,
       content: "Elevate your business with SysCare Private Cloud, a flagship service by SysCare IT Solutions. Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.",
-      image: "/images/SysCare-Private-Cloud.png"
+      image: "/images/SysCare-Private-Cloud.png",
+      courses: [
+        {
+          name: "Microsoft Azure Fundamentals",
+          description: "Learn cloud concepts, Azure services, Azure workloads, security and privacy in Azure, as well as Azure pricing and support."
+        },
+        {
+          name: "Microsoft Azure Administrator",
+          description: "Learn to implement, manage, and monitor identity, governance, storage, compute, and virtual networks in a cloud environment."
+        },
+        {
+          name: "Azure Solutions Architect Expert",
+          description: "Design and implement solutions that run on Azure, including aspects like compute, network, storage, and security."
+        },
+        {
+          name: "Microsoft 365 Certified: Enterprise Administrator Expert",
+          description: "Learn to deploy and manage Microsoft 365 services including identities, security, compliance, and supporting technologies."
+        },
+        {
+          name: "Azure DevOps Engineer Expert",
+          description: "Design and implement DevOps practices for version control, compliance, infrastructure as code, and monitoring."
+        },
+        {
+          name: "Azure Security Engineer Associate",
+          description: "Implement security controls and threat protection, manage identity and access, and protect data, applications, and networks."
+        }
+      ]
     },
     {
       title: "AWS",
       icon: <FiServer className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions delivers state-of-the-art Hosted Servers (Virtual Machines), providing clients with a robust and scalable solution tailored to their business needs. Our advanced hosting services guarantee optimal performance, security, and flexibility.",
-      image: "/images/Hosted-Servers.png"
+      image: "/images/Hosted-Servers.png",
+      courses: [
+        {
+          name: "AWS Cloud Practitioner",
+          description: "Learn the fundamentals of AWS Cloud including basic architectural principles, key services, and the value proposition of AWS."
+        },
+        {
+          name: "AWS Solutions Architect Associate",
+          description: "Design and deploy scalable, highly available, and fault-tolerant systems on AWS."
+        },
+        {
+          name: "AWS Developer Associate",
+          description: "Learn to develop and maintain applications on the AWS platform and write code that optimizes performance."
+        },
+        {
+          name: "AWS SysOps Administrator Associate",
+          description: "Deploy, manage, and operate scalable, highly available, and fault-tolerant systems on AWS."
+        },
+        {
+          name: "AWS Solutions Architect Professional",
+          description: "Advanced course for designing distributed systems and applications on the AWS platform."
+        },
+        {
+          name: "AWS DevOps Engineer Professional",
+          description: "Master provisioning, operating, and managing distributed application systems on the AWS platform."
+        }
+      ]
     },
     {
-      title: "Google",
+      title: "Google Cloud",
       icon: <FiCpu className="text-[#245684] text-2xl" />,
       content: "Elevate your digital capabilities with SysCare IT Solutions' Dedicated Virtual Servers. Tailored for optimal performance and reliability, our state-of-the-art infrastructure ensures seamless operations for your business.",
-      image: "/images/Dedicated-Virtual-Servers.png"
+      image: "/images/Dedicated-Virtual-Servers.png",
+      courses: [
+        {
+          name: "Google Cloud Digital Leader",
+          description: "Understand cloud concepts, Google Cloud products and services, and how businesses use Google Cloud."
+        },
+        {
+          name: "Google Cloud Associate Cloud Engineer",
+          description: "Learn to deploy applications, monitor operations, and manage enterprise solutions on Google Cloud."
+        },
+        {
+          name: "Google Cloud Professional Cloud Architect",
+          description: "Design, develop, and manage robust, secure, scalable, highly available, and dynamic solutions on Google Cloud."
+        },
+        {
+          name: "Google Cloud Professional Data Engineer",
+          description: "Design data processing systems and machine learning models using Google Cloud technologies."
+        },
+        {
+          name: "Google Cloud Professional Cloud DevOps Engineer",
+          description: "Balance service reliability and delivery speed while developing software delivery processes."
+        },
+        {
+          name: "Google Cloud Professional Cloud Security Engineer",
+          description: "Design and implement secure infrastructure and applications on Google Cloud Platform."
+        }
+      ]
     },
-    
   ];
+
+  const toggleCategory = (index) => {
+    setExpandedCategory(expandedCategory === index ? null : index);
+  };
 
   useEffect(() => {
     // Check if window is defined (to avoid SSR issues)
@@ -154,21 +236,21 @@ const CloudPage = () => {
          
           <div className="overflow-hidden">
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate-slide-in-up opacity-0">
-              Comprehensive IT solutions to drive your business forward
+              Comprehensive cloud solutions to drive your business forward
             </p>
           </div>
          
           {/* Animated CTA button */}
           <div className="mt-12 animate-bounce-slow">
-  <a href="/syscare-services" className="inline-block"> {/* Or external URL like "https://example.com/services" */}
-    <button className="bg-[#a3d4ff] text-[#103d5d] px-8 py-4 rounded-full font-bold hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto">
-      Explore Our Services
-      <svg className="w-5 h-5 ml-2 animate-bounce-horizontal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-      </svg>
-    </button>
-  </a>
-</div>
+            <a href="/syscare-services" className="inline-block">
+              <button className="bg-[#a3d4ff] text-[#103d5d] px-8 py-4 rounded-full font-bold hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto">
+                Explore Our Services
+                <svg className="w-5 h-5 ml-2 animate-bounce-horizontal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </button>
+            </a>
+          </div>
          
           {/* Scroll indicator */}
           <div className="mt-16 animate-bounce">
@@ -290,6 +372,37 @@ const CloudPage = () => {
                         />
                       </div>
                       <p className="text-[#5c6f87] text-lg mb-6 leading-relaxed">{service.content}</p>
+                      
+                      {/* Courses Section for Mobile */}
+                      <div className="mt-8">
+                        <button
+                          onClick={() => toggleCategory(index)}
+                          className="flex items-center justify-between w-full text-left mb-4"
+                        >
+                          <h4 className="text-lg font-semibold text-[#103d5d]">
+                            Available Courses ({service.courses.length})
+                          </h4>
+                          <FiChevronDown 
+                            className={`transform transition-transform duration-300 ${
+                              expandedCategory === index ? 'rotate-180' : ''
+                            }`}
+                          />
+                        </button>
+                        
+                        {expandedCategory === index && (
+                          <div className="space-y-4 mt-4">
+                            {service.courses.map((course, courseIndex) => (
+                              <div 
+                                key={courseIndex}
+                                className="bg-white p-4 rounded-lg border border-[#e1e9f2] shadow-sm"
+                              >
+                                <h5 className="font-semibold text-[#245684] mb-2">{course.name}</h5>
+                                <p className="text-[#5c6f87] text-sm">{course.description}</p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   )}
                 </div>
@@ -349,11 +462,13 @@ const CloudPage = () => {
                   <div className="w-16 h-16 rounded-xl bg-[#f0f6ff] flex items-center justify-center mr-8">
                     {services[activeTab].icon}
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-[#103d5d] mt-2">{services[activeTab].title}</h3>
+                  <div className="flex-1">
+                    <h3 className="text-2xl md:text-3xl font-bold text-[#103d5d] mt-2">{services[activeTab].title}</h3>
+                  </div>
                 </div>
 
-                {/* Service Graphic - Now positioned under title but above description */}
-                <div className="mb-8  p-4   flex justify-center">
+                {/* Service Graphic */}
+                <div className="mb-8 p-4 flex justify-center">
                   <img 
                     src={services[activeTab].image}
                     alt={`${services[activeTab].title} infrastructure`}
@@ -363,6 +478,39 @@ const CloudPage = () => {
                 </div>
 
                 <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed">{services[activeTab].content}</p>
+
+                {/* Courses Toggle Button */}
+                <button
+                  onClick={() => toggleCategory(activeTab)}
+                  className="flex items-center mb-8 text-white bg-[#103d5d] hover:bg-[#0a2a42] transition-colors duration-300 px-6 py-3 rounded-lg font-medium shadow-md hover:shadow-lg"
+                >
+                  <span>
+                    {expandedCategory === activeTab ? 'Hide' : 'View'} Available Courses ({services[activeTab].courses.length})
+                  </span>
+                  <FiChevronDown 
+                    className={`ml-2 transform transition-transform duration-300 ${
+                      expandedCategory === activeTab ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+
+                {/* Courses Section */}
+                {expandedCategory === activeTab && (
+                  <div className="mt-8">
+                    <h4 className="text-xl font-bold text-[#103d5d] mb-6">Available Courses</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {services[activeTab].courses.map((course, courseIndex) => (
+                        <div 
+                          key={courseIndex}
+                          className="bg-white p-5 rounded-lg border border-[#e1e9f2] shadow-sm hover:shadow-md transition-shadow duration-300"
+                        >
+                          <h5 className="font-semibold text-[#245684] mb-3 text-lg">{course.name}</h5>
+                          <p className="text-[#5c6f87] text-sm leading-relaxed">{course.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}
@@ -372,9 +520,9 @@ const CloudPage = () => {
       {/* CTA Section */}
       <section className="py-24 bg-[#000000] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Partner with SysCare IT Solutions today</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Ready to Transform Your Cloud Infrastructure?</h2>
           <p className="text-xl md:text-2xl text-[#c9d8eb] mb-10 max-w-3xl mx-auto">
-            streamline your IT, strengthen your security, and scale your business with expert-managed services.
+            Our cloud experts are ready to design the perfect solution for your business needs.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
             <a href="/contact-Us" className="inline-block"> 
@@ -390,6 +538,7 @@ const CloudPage = () => {
           </div>
         </div>
       </section>
+      
       <Footer/>
 
       {/* Add CSS animations */}

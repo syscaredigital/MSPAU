@@ -325,69 +325,36 @@ const VideoHero = () => {
                   className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-white/20 flex items-center justify-center"
                 >
                   <span className="text-sm md:text-base">Free Consultation</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5 ml-2" viewBox="0 极速0 20 20" fill="currentColor">
-                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 极速0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8极速.118z" />
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                   </svg>
                 </Link>
               </div>
 
-              {/* Trust indicators */}
-              <div className="mt-8 md:mt-12 flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-start gap-4 md:gap-6">
-                <div className="flex items-center">
-                  <div className="flex -space-x-2 md:-space-x-3">
-                    {[1, 2, 3, 4].map((item) => (
-                      <div key={item} className="relative">
-                        <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-[#103d5d] to-[#245684] border-2 border-white flex items-center justify-center text-white font-bold text-xs">
-                          {`C${item}`}
-                        </div>
-                      </div>
-                    ))}
+              {/* ISO Certifications Only */}
+              <div className="mt-8 md:mt-12 flex items-center justify-center lg:justify-start space-x-4 md:space-x-6">
+                <div className="flex items-center space-x-2">
+                  <div className="p-1 md:p-2 bg-white/10 backdrop-blur-sm rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
                   </div>
-                  <div className="ml-3 md:ml-4">
-                    <p className="font-medium text-sm md:text-base">Trusted by industry leaders</p>
-                    <div className="flex items-center mt-1">
-                      {[...Array(5)].map((_, i) => (
-                        <svg
-                          key={i}
-                          xmlns="http://www.w极速.org/2000/svg"
-                          className="h-4 w-4 md:h-5 md:w-5 text-yellow-400"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118极速l1.07-3.292a1 1 0 00-.364-极速1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                      ))}
-                      <span className="ml-2 text-xs md:text-sm">5.0 Rating</span>
-                    </div>
+                  <div>
+                    <p className="font-medium text-xs md:text-sm">ISO 27001</p>
+                    <p className="text-xs text-white/80">Certified</p>
                   </div>
                 </div>
-
-                <div className="hidden sm:block h-6 md:h-8 w-px bg-white/30"></div>
-
-                <div className="极速flex items-center space-x-3 md:space-x-4">
-                  <div className="flex items-center space-x-2">
-                    <div className="p-1 md:p-2 bg-white/10 backdrop-blur-sm rounded-lg">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="font-medium text-xs md:text-sm">ISO 27001</p>
-                      <p className="text-xs text-white/80">Certified</p>
-                    </div>
+               
+                <div className="flex items-center space-x-2">
+                  <div className="p-1 md:p-2 bg-white/10 backdrop-blur-sm rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
                   </div>
-                 
-                  <div className="flex items-center space-x-2">
-                    <div className="p-1 md:p-2 bg-white/10 backdrop-blur-sm rounded-lg">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="font-medium text-xs md:text-sm">ISO 9001</p>
-                      <p className="text-xs text-white/80">Certified</p>
-                    </div>
+                  <div>
+                    <p className="font-medium text-xs md:text-sm">ISO 9001</p>
+                    <p className="text-xs text-white/80">Certified</p>
                   </div>
                 </div>
               </div>
@@ -463,7 +430,7 @@ const VideoHero = () => {
         <div className="absolute bottom-20 md:bottom-12 left-1/2 transform -translate-x-1/2 z-20">
           <div className="flex flex-col items-center text-white">
             <span className="text-sm mb-2">Scroll to explore</span>
-            <div className="w-6 h-10 border-2 border-white/极速60 rounded-full flex justify-center">
+            <div className="w-6 h-10 border-2 border-white/60 rounded-full flex justify-center">
               <div className="w-1 h-2 bg-white mt-2 rounded-full animate-scroll"></div>
             </div>
           </div>
