@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FiMail, FiShield, FiCloud, FiDatabase, FiServer, FiArchive, FiHardDrive, FiUsers } from 'react-icons/fi';
+import { FiMail, FiShield, FiCloud, FiDatabase, FiServer, FiArchive, FiHardDrive, FiUsers, FiChevronRight } from 'react-icons/fi';
+
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
@@ -41,7 +42,7 @@ const FAQS = [
     ),
   },
   {
-    question: "6. What makes SysCare’s Managed IT Services different from break-fix IT support?",
+    question: "7. What makes SysCare’s Managed IT Services different from break-fix IT support?",
     answer: (
       <>
          Unlike break-fix IT models where support is reactive, SysCare’s Managed IT Services are proactive. We continuously monitor, patch, and secure your systems to prevent problems before they occur. Services like Endpoint Monitoring, DR & BCP (Disaster Recovery & Business Continuity Planning), and Asset Management ensure stability and resilience. This proactive approach saves costs, reduces downtime, and delivers predictable IT performance.
@@ -82,7 +83,7 @@ const HostedServicesPage = () => {
       title: "E-Mail Archival (M365 Archival)",
       icon: <FiArchive className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions delivers an unparalleled E-Mail Backup service, ensuring the safeguarding of critical communication data for our valued clients. Our carefully designed solution offers seamless and automated backup processes, providing peace of mind in the face of unforeseen events. With state-of-the-art technology and a commitment to data integrity, SysCare ensures the protection of your vital email communications. Experience the reliability and security of our E-Mail Backup service – an essential component in fortifying your business against potential data loss, empowering you to focus on your core operations with confidence. Choose SysCare for comprehensive and trustworthy email data protection.",
-      image: "/images/E-Mail-Archival .png"
+      image: "/images/E-Mail-Archival.png"
     },
     {
       title: "SharePoint Backup (M365 Backup)",
@@ -298,7 +299,7 @@ const HostedServicesPage = () => {
             >
               <div className="bg-white p-6 rounded-xl border border-[#e1e9f2] shadow-sm hover:shadow-md transition-shadow duration-500">
                 <img 
-                  
+                  src="/images/Hosted-Services.png"
                   className="w-full h-auto rounded-lg transition-transform duration-500 hover:scale-[1.02]"
                   alt="SysCare Hosted Services"
                 />
@@ -577,8 +578,8 @@ const HostedServicesPage = () => {
                   to { opacity: 1; transform: translateY(0);}
                 }
                 .animate-fadein {
-                  animation: fadein 0.6s cubic-bezier(.4,0,.2,1);
-                }
+  animation: fadein 0.6s cubic-bezier(.4,0,.2,1);
+}
               `}</style>
             </section>
 
