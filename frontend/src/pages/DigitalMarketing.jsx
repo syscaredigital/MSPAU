@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import SysCarePrivateCloud from '../assets/website-images/SysCare-Private-Cloud.webp';
+import SysCarePrivateCloud from '../assets/website-images/MultiMedia-Digital-Marketing.png';
 import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight, FiImage, FiVideo, FiTrendingUp, FiLayers, FiPieChart } from 'react-icons/fi';
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';

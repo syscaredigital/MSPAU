@@ -3,23 +3,25 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#103d5d] text-white py-6">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* 5-Row Horizontal Layout */}
-        <div className="flex flex-col space-y-6">
-
-          {/* Row 1: Logo and Description */}
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 py-2">
-            <div className="flex items-center gap-4">
+    <footer className="bg-[#103d5d] text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+          
+          {/* Company Info */}
+          <div className="lg:col-span-2">
+            <div className="flex items-center gap-4 mb-6">
               <img 
                 src='/logos/White-Sys.svg' 
                 alt='SysCare Logo' 
-                className='h-16 md:h-20 w-auto object-contain'
+                className='h-16 w-auto object-contain'
               />
             </div>
-            <p className="text-sm text-center md:text-justify max-w-md">
+            <p className="text-white/90 mb-6 max-w-lg leading-relaxed">
               SysCare IT Solutions Pty Ltd is your trusted Managed IT Services (MSP) and Managed Security Services (MSSP) provider in Melbourne and Sydney. We deliver proactive IT support, advanced cybersecurity, and scalable solutions tailored to your business.
             </p>
+            
+            {/* Social Links */}
             <div className="flex gap-4">
               {[
                 { href: '#', label: 'Facebook', icon: 'M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z' },
@@ -30,7 +32,7 @@ const Footer = () => {
                 <a
                   key={index}
                   href={social.href}
-                  className="hover:text-[#a3d4ff] transition-transform duration-300 transform hover:scale-125"
+                  className="p-3 bg-[#245684] rounded-lg hover:bg-white/20 transition-all duration-300"
                   aria-label={social.label}
                 >
                   <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -41,57 +43,79 @@ const Footer = () => {
             </div>
           </div>
 
-         {/* Row 2: Company Links with Correct Routes */}
-          <div className="flex justify-center gap-8 py-4 border-y border-[#245684]">
-            <Link to="/about-us" className="text-sm hover:text-[#a3d4ff] transition-colors duration-300 whitespace-nowrap">
-              About Us
-            </Link>
-            <Link to="/syscare-services" className="text-sm hover:text-[#a3d4ff] transition-colors duration-300 whitespace-nowrap">
-              Services
-            </Link>
-            <Link to="/contact-Us" className="text-sm hover:text-[#a3d4ff] transition-colors duration-300 whitespace-nowrap">
-              Contact Us
-            </Link>
-            
-          </div>
-
-          {/* Row 3: Office Locations */}
-          <div className="flex flex-col md:flex-row justify-around gap-6 py-4">
-            
-            <div className="text-center md:text-left">
-             
-              <h5 className="font-medium text-lg">Melbourne</h5>
-              <p className="text-sm break-words mt-2">
-                Level 10, Suite 1012, 401 Docklands Dr,<br />
-                Docklands, VIC 3008
-              </p>
-            </div>
-            <div className="text-center md:text-left">
-              <h5 className="font-medium text-lg">Sydney</h5>
-              <p className="text-sm break-words mt-2">
-                Level 36, Gateway, 1 Macquarie Pl,<br />
-                Sydney, NSW 2000
-              </p>
+          {/* Quick Links */}
+          <div>
+            <h3 className="font-bold text-lg mb-6 text-white">Quick Links</h3>
+            <div className="space-y-4">
+              {[
+                { to: "/home", label: "Home" },
+                { to: "/about-us", label: "About Us" },
+                { to: "/syscare-services", label: "Services" },
+                { to: "/contact-Us", label: "Contact Us" },
+                { to: "#", label: "Blog" },
+              ].map((link, index) => (
+                <Link
+                  key={index}
+                  to={link.to}
+                  className="block text-white/80 hover:text-white transition-colors duration-200"
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
           </div>
 
-          {/* Row 4: Contact Information */}
-          <div className="flex flex-col md:flex-row justify-center items-center gap-8 py-4 border-y border-[#245684]">
-            <div className="text-center">
-              <h4 className="font-medium">Call Now</h4>
-              <p className="text-sm">1300 69 79 72</p>
-            </div>
-            <div className="text-center">
-              <h4 className="font-medium">Email</h4>
-              <p className="text-sm break-all">info@syscare.com.au</p>
+          {/* Contact Info */}
+          <div>
+            <h3 className="font-bold text-lg mb-6 text-white">Contact Info</h3>
+            <div className="space-y-4">
+              <div>
+                <p className="text-white/80 text-sm">Call Now</p>
+                <p className="font-semibold text-white">1300 69 79 72</p>
+              </div>
+              <div>
+                <p className="text-white/80 text-sm">Email</p>
+                <p className="font-semibold text-white text-sm">info@syscare.com.au</p>
+              </div>
+              
+              {/* Office Hours */}
+              <div className="mt-4 p-4 bg-[#245684] rounded-lg">
+                <p className="text-white font-semibold text-sm mb-2">Office Hours</p>
+                <p className="text-white/80 text-xs">Mon - Fri: 8:00 AM - 6:00 PM</p>
+                <p className="text-white/80 text-xs">Emergency Support: 24/7</p>
+              </div>
             </div>
           </div>
+        </div>
 
-          {/* Row 5: Copyright */}
-          <div className="text-center text-sm py-2">
-            <p>&copy; {new Date().getFullYear()} SysCare IT Solutions. All rights reserved.</p>
+        {/* Locations */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 py-6 border-t border-b border-[#245684]">
+          <div className="text-center md:text-left">
+            <h5 className="font-semibold text-lg text-white mb-3">Melbourne Office</h5>
+            <p className="text-white/80 text-sm">
+              Level 10, Suite 1012, 401 Docklands Dr,<br />
+              Docklands, VIC 3008
+            </p>
           </div>
+          <div className="text-center md:text-left">
+            <h5 className="font-semibold text-lg text-white mb-3">Sydney Office</h5>
+            <p className="text-white/80 text-sm">
+              Level 36, Gateway, 1 Macquarie Pl,<br />
+              Sydney, NSW 2000
+            </p>
+          </div>
+        </div>
 
+        {/* Bottom Bar */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-6 border-t border-[#245684]">
+          <p className="text-white/70 text-sm text-center md:text-left">
+            &copy; {new Date().getFullYear()} SysCare IT Solutions. All rights reserved.
+          </p>
+          <div className="flex gap-6 text-sm text-white/70">
+            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
+          </div>
         </div>
       </div>
     </footer>

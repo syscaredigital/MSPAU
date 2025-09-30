@@ -1,16 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
-import SysCarePrivateCloud from '../assets/website-images/SysCare-Private-Cloud.webp';
-import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight, FiChevronDown } from 'react-icons/fi';
+import SysCarePrivateCloud from '../assets/website-images/Security.png';
+import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight, FiChevronDown, FiX } from 'react-icons/fi';
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
 const SecurityPage = () => {
   const [activeTab, setActiveTab] = useState(0);
-  const [expandedCategory, setExpandedCategory] = useState(null);
+  
   const [isVisible, setIsVisible] = useState([false, false, false, false]);
   const [isMobile, setIsMobile] = useState(false);
+  const [showCoursesModal, setShowCoursesModal] = useState(false);
+  const [selectedServiceCourses, setSelectedServiceCourses] = useState([]);
+  const [selectedServiceTitle, setSelectedServiceTitle] = useState('');
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const headerRef = useRef(null);
+  const modalRef = useRef(null);
 
   const services = [
     {
@@ -79,10 +83,59 @@ const SecurityPage = () => {
     },
   ];
 
-  const toggleCategory = (index) => {
-    setExpandedCategory(expandedCategory === index ? null : index);
+  // Function to open courses modal
+  const openCoursesModal = (serviceIndex) => {
+    setSelectedServiceCourses(services[serviceIndex].courses);
+    setSelectedServiceTitle(services[serviceIndex].title);
+    setShowCoursesModal(true);
   };
 
+  // Function to close courses modal
+  const closeCoursesModal = () => {
+    setShowCoursesModal(false);
+    setSelectedServiceCourses([]);
+    setSelectedServiceTitle('');
+  };
+
+  // Close modal when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        closeCoursesModal();
+      }
+    };
+
+    if (showCoursesModal) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = 'unset';
+    };
+  }, [showCoursesModal]);
+
+  // Close modal with Escape key
+  useEffect(() => {
+    const handleEscapeKey = (event) => {
+      if (event.key === 'Escape') {
+        closeCoursesModal();
+      }
+    };
+
+    if (showCoursesModal) {
+      document.addEventListener('keydown', handleEscapeKey);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, [showCoursesModal]);
+
+  
   useEffect(() => {
     // Check if window is defined (to avoid SSR issues)
     if (typeof window !== 'undefined') {
@@ -344,32 +397,14 @@ const SecurityPage = () => {
                       {/* Courses Section for Mobile */}
                       <div className="mt-8">
                         <button
-                          onClick={() => toggleCategory(index)}
-                          className="flex items-center justify-between w-full text-left mb-4"
+                          onClick={() => openCoursesModal(index)}
+                          className="flex items-center justify-between w-full text-left mb-4 bg-[#103d5d] text-white hover:bg-[#0a2a42] transition-colors duration-300 px-6 py-3 rounded-lg font-medium shadow-md hover:shadow-lg"
                         >
-                          <h4 className="text-lg font-semibold text-[#103d5d]">
-                            Available Courses ({service.courses.length})
-                          </h4>
-                          <FiChevronDown 
-                            className={`transform transition-transform duration-300 ${
-                              expandedCategory === index ? 'rotate-180' : ''
-                            }`}
-                          />
+                          <span>
+                            View Available Courses ({service.courses.length})
+                          </span>
+                          <FiChevronRight className="ml-2" />
                         </button>
-                        
-                        {expandedCategory === index && (
-                          <div className="space-y-4 mt-4">
-                            {service.courses.map((course, courseIndex) => (
-                              <div 
-                                key={courseIndex}
-                                className="bg-white p-4 rounded-lg border border-[#e1e9f2] shadow-sm"
-                              >
-                                <h5 className="font-semibold text-[#245684] mb-2">{course.name}</h5>
-                                <p className="text-[#5c6f87] text-sm">{course.description}</p>
-                              </div>
-                            ))}
-                          </div>
-                        )}
                       </div>
                     </div>
                   )}
@@ -447,43 +482,82 @@ const SecurityPage = () => {
 
                 <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed">{services[activeTab].content}</p>
 
-                {/* Courses Toggle Button - UPDATED with #103d5d background */}
+                {/* Courses Button - UPDATED to open modal */}
                 <button
-                  onClick={() => toggleCategory(activeTab)}
+                  onClick={() => openCoursesModal(activeTab)}
                   className="flex items-center mb-8 text-white bg-[#103d5d] hover:bg-[#0a2a42] transition-colors duration-300 px-6 py-3 rounded-lg font-medium shadow-md hover:shadow-lg"
                 >
                   <span>
-                    {expandedCategory === activeTab ? 'Hide' : 'View'} Available Courses ({services[activeTab].courses.length})
+                    View Available Courses ({services[activeTab].courses.length})
                   </span>
-                  <FiChevronDown 
-                    className={`ml-2 transform transition-transform duration-300 ${
-                      expandedCategory === activeTab ? 'rotate-180' : ''
-                    }`}
-                  />
+                  <FiChevronRight className="ml-2" />
                 </button>
-
-                {/* Courses Section */}
-                {expandedCategory === activeTab && (
-                  <div className="mt-8">
-                    <h4 className="text-xl font-bold text-[#103d5d] mb-6">Available Courses</h4>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {services[activeTab].courses.map((course, courseIndex) => (
-                        <div 
-                          key={courseIndex}
-                          className="bg-white p-5 rounded-lg border border-[#e1e9f2] shadow-sm hover:shadow-md transition-shadow duration-300"
-                        >
-                          <h5 className="font-semibold text-[#245684] mb-3 text-lg">{course.name}</h5>
-                          <p className="text-[#5c6f87] text-sm leading-relaxed">{course.description}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           )}
         </div>
       </section>
+
+      {/* Courses Modal */}
+      {showCoursesModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm">
+          <div 
+            ref={modalRef}
+            className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden transform transition-all duration-300 scale-95 opacity-0 animate-modal-in"
+          >
+            {/* Modal Header */}
+            <div className="bg-[#103d5d] text-white p-6 flex justify-between items-center">
+              <h3 className="text-2xl font-bold">
+                {selectedServiceTitle} - Available Courses
+              </h3>
+              <button
+                onClick={closeCoursesModal}
+                className="text-white hover:text-[#a3d4ff] transition-colors duration-200 p-2 rounded-full hover:bg-white/10"
+              >
+                <FiX className="text-2xl" />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6 max-h-[calc(90vh-80px)] overflow-y-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {selectedServiceCourses.map((course, courseIndex) => (
+                  <div 
+                    key={courseIndex}
+                    className="bg-[#f9fbfe] border border-[#e1e9f2] rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:border-[#245684] group"
+                  >
+                    <div className="flex items-start mb-4">
+                      <div className="w-10 h-10 bg-[#103d5d] rounded-lg flex items-center justify-center mr-4 flex-shrink-0 group-hover:bg-[#245684] transition-colors duration-300">
+                        <span className="text-white font-bold text-sm">
+                          {courseIndex + 1}
+                        </span>
+                      </div>
+                      <h4 className="text-lg font-bold text-[#103d5d] group-hover:text-[#245684] transition-colors duration-300">
+                        {course.name}
+                      </h4>
+                    </div>
+                    <p className="text-[#5c6f87] text-sm leading-relaxed pl-14">
+                      {course.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="border-t border-[#e1e9f2] p-6 bg-[#f9fbfe]">
+              <div className="flex justify-end">
+                <button
+                  onClick={closeCoursesModal}
+                  className="bg-[#103d5d] hover:bg-[#0a2a42] text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 shadow-md hover:shadow-lg"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* CTA Section */}
       <section className="py-24 bg-[#000000] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
@@ -557,6 +631,16 @@ const SecurityPage = () => {
           0% { transform: translateY(0); opacity: 1; }
           100% { transform: translateY(26px); opacity: 0; }
         }
+        @keyframes modal-in {
+          0% { 
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          100% { 
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
         .animate-float {
           animation: float 6s ease-in-out infinite;
         }
@@ -586,6 +670,9 @@ const SecurityPage = () => {
         }
         .animate-scroll-indicator {
           animation: scroll-indicator 2s infinite;
+        }
+        .animate-modal-in {
+          animation: modal-in 0.3s ease-out forwards;
         }
         .bg-grid-white {
           background-image: linear-gradient(to right, white 1px, transparent 1px),

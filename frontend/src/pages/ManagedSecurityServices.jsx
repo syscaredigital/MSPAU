@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-
+import SysCarePrivateCloud from '../assets/website-images/Managed-Security.png';
 import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight, FiMonitor, FiSmartphone, FiBox, FiGlobe, FiRefreshCw, FiCheckSquare, FiLock, FiBarChart2, FiShoppingCart, FiMessageCircle, FiArchive, FiEye, FiKey } from 'react-icons/fi';
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
@@ -328,12 +328,13 @@ const ManagedITServicesPage = () => {
               }}
             >
               <div className="bg-white p-6 rounded-xl border border-[#e1e9f2] shadow-sm hover:shadow-md transition-shadow duration-500">
-                <img 
-                  
-                  className="w-full h-auto rounded-lg transition-transform duration-500 hover:scale-[1.02]"
-                  alt="SysCare Managed IT Services"
-                />
-              </div>
+                              <img 
+                                src={SysCarePrivateCloud}
+                                className="w-full h-auto rounded-lg transition-transform duration-500 hover:scale-[1.02]"
+                                alt="SysCare Private Cloud Infrastructure"
+                              />
+                            </div>
+              
             </div>
           </div>
         </div>
