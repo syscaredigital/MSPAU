@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FiMail, FiShield, FiCloud, FiDatabase, FiServer, FiArchive, FiHardDrive, FiUsers, FiChevronRight } from 'react-icons/fi';
-
+import SysCarePrivateCloud from '../assets/website-images/Hosted-Solutions.png';
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
@@ -277,10 +277,10 @@ const HostedServicesPage = () => {
             <div className="lg:w-1/2">
               <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">SysCare Hosted Services</h2>
               <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
-                Our comprehensive hosted services provide organizations with secure, reliable email and cloud solutions. From enterprise email hosting to advanced backup and archival, we deliver robust solutions tailored to your business needs.
+                In today’s business world, reliable communication, collaboration, and data protection are critical for success. At SysCare IT Solutions Pty Ltd, we provide Hosted Solutions that empower organizations with secure, scalable, and fully managed email, backup, and collaboration tools. Our solutions are designed to reduce IT overheads, minimize downtime, and protect critical business information, giving you the confidence to focus on growth.
               </p>
               <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
-                Experience enterprise-grade reliability with our hosted services, designed to keep your communications secure and your data protected. Trust SysCare for sophisticated, streamlined solutions that ensure business continuity and compliance.
+                Whether you need hosted mail services, advanced spam protection, or full Microsoft 365 backups, SysCare delivers enterprise-grade hosted services tailored to your business needs.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
                 Request Hosted Services Demo
@@ -298,12 +298,12 @@ const HostedServicesPage = () => {
               }}
             >
               <div className="bg-white p-6 rounded-xl border border-[#e1e9f2] shadow-sm hover:shadow-md transition-shadow duration-500">
-                <img 
-                  src="/images/Hosted-Services.png"
-                  className="w-full h-auto rounded-lg transition-transform duration-500 hover:scale-[1.02]"
-                  alt="SysCare Hosted Services"
-                />
-              </div>
+                              <img 
+                                src={SysCarePrivateCloud}
+                                className="w-full h-auto rounded-lg transition-transform duration-500 hover:scale-[1.02]"
+                                alt="SysCare Private Cloud Infrastructure"
+                              />
+                            </div>
             </div>
           </div>
         </div>

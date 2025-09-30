@@ -90,14 +90,14 @@ const Footer = () => {
 
         {/* Locations */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 py-6 border-t border-b border-[#245684]">
-          <div className="text-center md:text-left">
+          <div className="text-center">
             <h5 className="font-semibold text-lg text-white mb-3">Melbourne Office</h5>
             <p className="text-white/80 text-sm">
               Level 10, Suite 1012, 401 Docklands Dr,<br />
               Docklands, VIC 3008
             </p>
           </div>
-          <div className="text-center md:text-left">
+          <div className="text-center">
             <h5 className="font-semibold text-lg text-white mb-3">Sydney Office</h5>
             <p className="text-white/80 text-sm">
               Level 36, Gateway, 1 Macquarie Pl,<br />

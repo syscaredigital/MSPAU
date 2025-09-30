@@ -4,12 +4,58 @@ import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevr
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
+const FAQS = [
+  {
+    question: "1.	What makes SysCare IT Solutions a trusted digital marketing company in Melbourne and Sydney?",
+    answer: (
+      <>
+        SysCare IT Solutions combines creativity with data-driven strategies to deliver measurable results. From graphic design to SEO-driven campaigns, we provide complete digital marketing services in Sydney and Melbourne tailored to your brand’s goals.</>
+    ),
+  },
+  {
+    question: "2.	Do you provide end-to-end multimedia design services?",
+    answer: (
+      <>
+        Yes. Our multimedia services include logo design, social media graphics, video editing, presentations, and product mockups. We create engaging visual content that strengthens your digital brand identity.</>
+    ),
+  },
+  {
+    question: "3.	How do your graphic design services help small businesses?",
+    answer: (
+      <>
+          We design professional logos, flyers, brochures, and business cards that enhance brand recognition. For businesses searching “graphic designs near me,” SysCare offers affordable, high-quality designs to establish credibility.</>
+    ),
+  },
+  {
+    question: "4.	Can you create video content for YouTube and social media?",
+    answer: (
+      <>
+        Absolutely. We specialize in YouTube video editing, social media shorts, corporate videos, and product promos. Our editors craft engaging video content that captures attention and drives engagement across platforms.</>
+    ),
+  },
+  {
+    question: "5.	Do you offer digital branding services?",
+    answer: (
+      <>
+       Yes. We help businesses build a strong online presence through visual branding, digital assets, and consistent messaging. Our goal is to make your brand recognizable and trustworthy across all digital channels.</>
+    ),
+  },
+  {
+    question: "6.	What types of paid advertising campaigns do you manage?",
+    answer: (
+      <>
+        SysCare manages Meta Ads, Shopping Ads, Awareness Campaigns, Prospecting & Retargeting Ads, and more. Our campaigns are optimized to increase visibility, generate leads, and maximize ROI.</>
+    ),
+  },
+];
+
 const DigitalMarketingPage = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [isVisible, setIsVisible] = useState([false, false, false, false]);
   const [isMobile, setIsMobile] = useState(false);
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const headerRef = useRef(null);
+  const [activeFaq, setActiveFaq] = useState(null);
 
   const services = [
 
@@ -271,6 +317,10 @@ const DigitalMarketingPage = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+// Split FAQs for two columns
+  const faqsLeft = FAQS.slice(0, 3);
+  const faqsRight = FAQS.slice(3, 6);
 
   return (
     <div className="min-h-screen bg-white">
@@ -546,6 +596,114 @@ const DigitalMarketingPage = () => {
           </div>
         </div>
       </section>
+
+{/* FAQ Section */}
+            <section
+              className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
+              ref={sectionRefs[3]}
+            >
+              <div className="container mx-auto">
+                <h2
+                  className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-16 text-center"
+                  style={{
+                    opacity: isVisible[3] ? 1 : 0,
+                    transform: isVisible[3] ? 'translateY(0)' : 'translateY(20px)',
+                    transition: 'opacity 0.6s ease, transform 0.6s ease'
+                  }}
+                >
+                  Frequently Asked Questions
+                </h2>
+                <div className="max-w-5xl mx-auto">
+                  {/* Responsive: Stack on mobile, 2 cols on md+ */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {[faqsLeft, faqsRight].map((faqCol, colIdx) => (
+                      <div key={colIdx} className="space-y-6">
+                        {faqCol.map((faq, idx) => {
+                          const qIdx = colIdx * 3 + idx + 1;
+                          return (
+                            <div
+                              className={`rounded-xl border bg-white border-[#e1e9f2] shadow transition-all duration-500 group
+                                ${activeFaq === qIdx ? 'ring-2 ring-[#245684] ring-opacity-40 scale-[1.02] shadow-xl' : ''}
+                              `}
+                              key={qIdx}
+                              style={{
+                                opacity: isVisible[3] ? 1 : 0,
+                                transform: isVisible[3]
+                                  ? 'scale(1)'
+                                  : 'scale(0.95)',
+                                transition: `opacity 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1), transform 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1)`
+                              }}
+                            >
+                              <button
+                                onClick={() => setActiveFaq(activeFaq === qIdx ? null : qIdx)}
+                                className={`w-full flex justify-between items-center text-left p-6 rounded-xl transition-all duration-300
+                                  ${activeFaq === qIdx
+                                    ? 'bg-gradient-to-r from-[#103d5d] to-[#245684] text-white shadow'
+                                    : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
+                                  }
+                                `}
+                              >
+                                <h3 className="text-xl font-semibold flex items-center gap-2">
+                                  <span
+                                    className={`inline-block w-3 h-3 rounded-full mr-2 transition-all duration-300
+                                      ${activeFaq === qIdx ? 'bg-[#a3d4ff] scale-110 shadow-lg' : 'bg-[#245684] scale-90'}
+                                    `}
+                                  ></span>
+                                  {faq.question}
+                                </h3>
+                                <FiChevronRight
+                                  className={`text-2xl transition-transform duration-300
+                                    ${activeFaq === qIdx ? 'rotate-90 text-[#a3d4ff]' : ''}
+                                  `}
+                                />
+                              </button>
+                              <div
+                                className={`faq-answer transition-all duration-500 overflow-hidden
+                                  ${activeFaq === qIdx ? 'max-h-[500px] opacity-100 py-4 px-6' : 'max-h-0 opacity-0 py-0 px-6'}
+                                `}
+                                style={{
+                                  background: activeFaq === qIdx
+                                    ? 'linear-gradient(90deg, #f5f9fd 65%, #a3d4ff1a 100%)'
+                                    : undefined
+                                }}
+                              >
+                                {activeFaq === qIdx && (
+                                  <p className="text-[#5c6f87] text-lg leading-relaxed animate-fadein">
+                                    {faq.answer}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </div>
+                  {/* Additional Support CTA */}
+                  <div className="mt-16 text-center">
+                    <p className="text-xl text-[#4a5d72] mb-8">
+                      Still have questions? Our team is ready to help.
+                    </p>
+                    <a href="/contact-Us" className="inline-block">
+                      <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg">
+                        Contact Our Support Team
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {/* Animations for FAQ */}
+              <style jsx>{`
+                @keyframes fadein {
+                  from { opacity: 0; transform: translateY(16px);}
+                  to { opacity: 1; transform: translateY(0);}
+                }
+                .animate-fadein {
+                  animation: fadein 0.6s cubic-bezier(.4,0,.2,1);
+                }
+              `}</style>
+            </section>
+
       <Footer/>
 
       {/* Add CSS animations */}

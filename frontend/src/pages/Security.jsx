@@ -4,6 +4,51 @@ import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevr
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
+const FAQS = [
+  {
+    question: "1. What is a CRM and why is it important for small businesses?",
+    answer: (
+      <>
+        A CRM (Customer Relationship Management) system helps small businesses manage customer interactions, track sales pipelines, and improve customer service. It ensures you never miss a lead, builds stronger relationships, and drives revenue growth.</>
+    ),
+  },
+  {
+    question: "2. What is an ERP and how does it benefit small businesses?",
+    answer: (
+      <>
+        An ERP (Enterprise Resource Planning) system integrates finance, operations, inventory, HR, and supply chain into one platform. For small businesses, it reduces manual work, provides real-time insights, and ensures smoother day-to-day operations.</>
+    ),
+  },
+  {
+    question: "3. Is CRM and ERP software expensive for small businesses?",
+    answer: (
+      <>
+          Not necessarily. Many small business CRM and ERP solutions like ZOHO are very cost-effective, while advanced options like SAP or Microsoft are scalable investments. SysCare tailors solutions to match your budget.</>
+    ),
+  },
+  {
+    question: "4. Do I need IT staff to manage CRM or ERP systems?",
+    answer: (
+      <>
+        No. Most modern CRM and ERP solutions are cloud-based and user-friendly. SysCare provides training and ongoing support so your staff can easily use the system without needing a dedicated IT team.</>
+    ),
+  },
+  {
+    question: "5. How do I choose between SAP Business One, Microsoft Business Central, and ZOHO?",
+    answer: (
+      <>
+       Each has strengths: SAP Business One is ideal for scaling businesses, Microsoft Business Central integrates seamlessly with Microsoft 365, and ZOHO is perfect for affordability and simplicity. SysCare helps you select the right fit based on your goals.</>
+    ),
+  },
+  {
+    question: "6. Can CRM and ERP work together for small businesses?",
+    answer: (
+      <>
+        Yes. CRM and ERP can be integrated to give small businesses a 360-degree view of operations and customers. This ensures smooth data flow between sales, finance, inventory, and customer service.</>
+    ),
+  },
+];
+
 const SecurityPage = () => {
   const [activeTab, setActiveTab] = useState(0);
   
@@ -15,69 +60,70 @@ const SecurityPage = () => {
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const headerRef = useRef(null);
   const modalRef = useRef(null);
+  const [activeFaq, setActiveFaq] = useState(null);
 
   const services = [
     {
-      title: "Microsoft",
+      title: "Microsoft Security Courses",
       icon: <FiCloud className="text-[#245684] text-2xl" />,
-      content: "Elevate your business with SysCare Private Cloud, a flagship service by SysCare IT Solutions. Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.",
-      image: "/images/SysCare-Private-Cloud.png",
+      content: "Microsoft’s cloud and security tools dominate the enterprise landscape. SysCare offers specialized courses to help IT professionals advance their expertise in Microsoft environments.",
+      image: "/images/Microsoft.png",
       courses: [
         {
-          name: "Microsoft Azure Fundamentals",
-          description: "Learn cloud concepts, Azure services, Azure workloads, security and privacy in Azure, as well as Azure pricing and support."
+          name: "Microsoft Security Operations Analyst (SC-200)",
+          description: " Learn to mitigate threats using Microsoft 365 Defender, Azure Defender, and Sentinel. This course is ideal for professionals responsible for monitoring, responding, and remediating active threats in Microsoft environments."
         },
         {
-          name: "Microsoft Security, Compliance, and Identity Fundamentals",
-          description: "Understand security, compliance, and identity concepts and related cloud-based Microsoft solutions."
+          name: "Microsoft Information Protection Administrator (SC-400)",
+          description: "Master information governance by implementing compliance controls, securing sensitive data, and ensuring regulatory alignment across Microsoft 365."
         },
         {
-          name: "Microsoft Azure Administrator",
-          description: "Learn to implement, manage, and monitor identity, governance, storage, compute, and virtual networks in a cloud environment."
+          name: "Microsoft Identity and Access Administrator (SC-300)",
+          description: "Gain expertise in identity management, authentication, and access policies. This course focuses on Azure AD and hybrid identity solutions critical for secure digital transformation."
         },
         {
-          name: "Microsoft Azure Security Technologies",
-          description: "Master managing identity and access, implementing platform protection, managing security operations, and securing data and applications."
-        },
-        {
-          name: "Microsoft 365 Certified: Enterprise Administrator Expert",
-          description: "Learn to deploy and manage Microsoft 365 services including identities, security, compliance, and supporting technologies."
-        },
-        {
-          name: "Azure Solutions Architect Expert",
-          description: "Design and implement solutions that run on Azure, including aspects like compute, network, storage, and security."
+          name: "Microsoft Security, Compliance, and Identity Fundamentals (SC-900)",
+          description: " Designed for beginners, this entry-level certification provides foundational knowledge of security, compliance, and identity across Microsoft cloud services.."
         }
       ]
     },
     {
-      title: "EC-Council",
+      title: "EC-Council Security Certifications",
       icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers state-of-the-art Hosted Servers (Virtual Machines), providing clients with a robust and scalable solution tailored to their business needs. Our advanced hosting services guarantee optimal performance, security, and flexibility.",
-      image: "/images/Hosted-Servers.png",
+      content: "As a global leader in cybersecurity training, EC-Council offers certifications trusted by organizations worldwide. SysCare delivers the following EC-Council programs in Australia, preparing you for advanced roles in IT security.",
+      image: "/images/EC-Council.png",
       courses: [
         {
-          name: "Certified Ethical Hacker (CEH)",
-          description: "Learn to think and act like a hacker to identify vulnerabilities and strengthen systems against cyber attacks."
+          name: "Certified Secure Computer User (C|SCU v.3)",
+          description: " Empower end users with essential knowledge to secure their data, emails, and devices. Perfect for non-technical staff who want to minimize risks from phishing and malware."
         },
         {
-          name: "Computer Hacking Forensic Investigator (CHFI)",
-          description: "Master the skills to detect hacking attacks and properly extract evidence to report the crime and conduct audits."
+          name: "Certified Ethical Hacker (C|EH v.13)",
+          description: "One of the most in-demand cybersecurity certifications worldwide. Learn how to think like a hacker, identify vulnerabilities, and ethically test systems using the latest tools and techniques."
         },
         {
-          name: "Certified Network Defender (CND)",
-          description: "Learn to protect, detect, and respond to network security threats with hands-on labs and real-world scenarios."
+          name: "Certified Network Defender (C|ND v.2))",
+          description: "Focus on network security operations, monitoring, and defense strategies to prevent and respond to cyberattacks targeting enterprise networks."
         },
         {
-          name: "Certified Security Analyst (ECSA)",
-          description: "Advanced penetration testing course that teaches the methodologies and techniques used by professional security testers."
+          name: "Computer Hacking Forensic Investigator (C|HFI v.10)",
+          description: " Specialize in digital forensics and incident investigation. This course equips you with skills to gather, analyze, and report evidence of cybercrime"
         },
         {
-          name: "Certified Chief Information Security Officer (CCISO)",
-          description: "Executive-level program that trains information security professionals in managing and leading information security programs."
+          name: "EC-Council Certified Incident Handler (E|CIH)",
+          description: "Gain hands-on experience in incident response, from detection to containment and recovery, helping organizations minimize the impact of security breaches."
         },
         {
-          name: "Certified Application Security Engineer (CASE)",
-          description: "Learn secure software development practices and how to identify and mitigate security vulnerabilities in applications."
+          name: "Certified Cybersecurity Technician (C|CT)",
+          description: " A foundational course covering network defense, ethical hacking, and security operations. Ideal for those starting their cybersecurity careers."
+        },
+        {
+          name: "Certified Cloud Security Engineer (C|CSE)",
+          description: " Learn advanced cloud security architecture, threat mitigation, and compliance strategies to protect cloud-based infrastructure and applications."
+        },
+        {
+          name: "Web Application Hacking & Security",
+          description: "Develop specialized skills in detecting and mitigating vulnerabilities in web applications. This program teaches penetration testing methodologies, OWASP standards, and secure coding practices."
         }
       ]
     },
@@ -216,6 +262,10 @@ const SecurityPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+// Split FAQs for two columns
+  const faqsLeft = FAQS.slice(0, 3);
+  const faqsRight = FAQS.slice(3, 6);
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -298,12 +348,12 @@ const SecurityPage = () => {
             }}
           >
             <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">SysCare Private Cloud</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">IT Security Courses Australia – SysCare IT Solutions</h2>
               <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
-                Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.
+                In today’s fast-changing digital environment, cyber threats are more sophisticated than ever before. Businesses, government organizations, and even individuals must stay one step ahead by investing in IT security courses in Australia that provide both practical knowledge and industry-recognized certifications. At SysCare IT Solutions Pty Ltd, we deliver world-class security training designed for professionals at every stage of their career.
               </p>
               <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
-                Experience the pinnacle of reliability and performance as our dedicated team of experts customizes solutions to optimize your operations. Trust SysCare Private Cloud for a sophisticated, streamlined, and secure IT infrastructure, enabling you to focus on what truly matters – the growth and success of your business.
+                Our training programs combine expert instruction, real-world simulations, and hands-on labs to equip you with the skills needed to defend, detect, and respond to cyber threats effectively. Whether you’re looking to master Microsoft security tools or earn globally recognized EC-Council certifications, SysCare is your trusted partner in professional cybersecurity education.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
                 Request Private Cloud Demo
@@ -344,7 +394,7 @@ const SecurityPage = () => {
               transition: 'opacity 0.6s ease, transform 0.6s ease'
             }}
           >
-            Our Cloud & Infrastructure Services
+            Our IT Security Courses 
           </h2>
           
           {/* Mobile View - Accordion Style */}
@@ -475,7 +525,7 @@ const SecurityPage = () => {
                   <img 
                     src={services[activeTab].image}
                     alt={`${services[activeTab].title} infrastructure`}
-                    className="w-[250px] h-[250px] object-cover rounded-lg"
+                    className="w-[150px] h-[150px] object-cover rounded-lg"
                     style={{ maxWidth: '100%', height: 'auto' }}
                   />
                 </div>
@@ -562,9 +612,9 @@ const SecurityPage = () => {
       {/* CTA Section */}
       <section className="py-24 bg-[#000000] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Ready to Transform Your IT Infrastructure?</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Partner with SysCare IT Solutions today</h2>
           <p className="text-xl md:text-2xl text-[#c9d8eb] mb-10 max-w-3xl mx-auto">
-            Our experts are ready to design the perfect solution for your business needs.
+            streamline your IT, strengthen your security, and scale your business with expert-managed services.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
             <a href="/contact-Us" className="inline-block"> 
@@ -581,6 +631,113 @@ const SecurityPage = () => {
         </div>
       </section>
       
+{/* FAQ Section */}
+      <section
+        className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
+        ref={sectionRefs[3]}
+      >
+        <div className="container mx-auto">
+          <h2
+            className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-16 text-center"
+            style={{
+              opacity: isVisible[3] ? 1 : 0,
+              transform: isVisible[3] ? 'translateY(0)' : 'translateY(20px)',
+              transition: 'opacity 0.6s ease, transform 0.6s ease'
+            }}
+          >
+            Frequently Asked Questions
+          </h2>
+          <div className="max-w-5xl mx-auto">
+            {/* Responsive: Stack on mobile, 2 cols on md+ */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {[faqsLeft, faqsRight].map((faqCol, colIdx) => (
+                <div key={colIdx} className="space-y-6">
+                  {faqCol.map((faq, idx) => {
+                    const qIdx = colIdx * 3 + idx + 1;
+                    return (
+                      <div
+                        className={`rounded-xl border bg-white border-[#e1e9f2] shadow transition-all duration-500 group
+                          ${activeFaq === qIdx ? 'ring-2 ring-[#245684] ring-opacity-40 scale-[1.02] shadow-xl' : ''}
+                        `}
+                        key={qIdx}
+                        style={{
+                          opacity: isVisible[3] ? 1 : 0,
+                          transform: isVisible[3]
+                            ? 'scale(1)'
+                            : 'scale(0.95)',
+                          transition: `opacity 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1), transform 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1)`
+                        }}
+                      >
+                        <button
+                          onClick={() => setActiveFaq(activeFaq === qIdx ? null : qIdx)}
+                          className={`w-full flex justify-between items-center text-left p-6 rounded-xl transition-all duration-300
+                            ${activeFaq === qIdx
+                              ? 'bg-gradient-to-r from-[#103d5d] to-[#245684] text-white shadow'
+                              : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
+                            }
+                          `}
+                        >
+                          <h3 className="text-xl font-semibold flex items-center gap-2">
+                            <span
+                              className={`inline-block w-3 h-3 rounded-full mr-2 transition-all duration-300
+                                ${activeFaq === qIdx ? 'bg-[#a3d4ff] scale-110 shadow-lg' : 'bg-[#245684] scale-90'}
+                              `}
+                            ></span>
+                            {faq.question}
+                          </h3>
+                          <FiChevronRight
+                            className={`text-2xl transition-transform duration-300
+                              ${activeFaq === qIdx ? 'rotate-90 text-[#a3d4ff]' : ''}
+                            `}
+                          />
+                        </button>
+                        <div
+                          className={`faq-answer transition-all duration-500 overflow-hidden
+                            ${activeFaq === qIdx ? 'max-h-[500px] opacity-100 py-4 px-6' : 'max-h-0 opacity-0 py-0 px-6'}
+                          `}
+                          style={{
+                            background: activeFaq === qIdx
+                              ? 'linear-gradient(90deg, #f5f9fd 65%, #a3d4ff1a 100%)'
+                              : undefined
+                          }}
+                        >
+                          {activeFaq === qIdx && (
+                            <p className="text-[#5c6f87] text-lg leading-relaxed animate-fadein">
+                              {faq.answer}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
+            {/* Additional Support CTA */}
+            <div className="mt-16 text-center">
+              <p className="text-xl text-[#4a5d72] mb-8">
+                Still have questions? Our team is ready to help.
+              </p>
+              <a href="/contact-Us" className="inline-block">
+                <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg">
+                  Contact Our Support Team
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+        {/* Animations for FAQ */}
+        <style jsx>{`
+          @keyframes fadein {
+            from { opacity: 0; transform: translateY(16px);}
+            to { opacity: 1; transform: translateY(0);}
+          }
+          .animate-fadein {
+            animation: fadein 0.6s cubic-bezier(.4,0,.2,1);
+          }
+        `}</style>
+      </section>
+
       <Footer/>
 
       {/* Add CSS animations */}

@@ -424,7 +424,7 @@ const PrivateCloudPage = () => {
                   <img 
                     src={services[activeTab].image}
                     alt={`${services[activeTab].title} infrastructure`}
-                    className="w-[250px] h-[250px] object-cover rounded-lg"
+                    className="w-[150px] h-[150px] object-cover rounded-lg"
                     style={{ maxWidth: '100%', height: 'auto' }}
                   />
                 </div>

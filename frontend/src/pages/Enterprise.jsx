@@ -241,11 +241,9 @@ const EnterprisePage = () => {
             <div className="lg:w-1/2">
               <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Our Enterprise CRM & ERP Services</h2>
               <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
-                Future-focused enterprises rely on technology to deliver growth and resilience. With SysCare IT Solutions, your business can unlock the power of enterprise CRM and ERP solutions such as SAP S/4HANA and Microsoft Dynamics 365. Whether your goal is operational efficiency, better customer experiences, or digital transformation, SysCare is your trusted partner for success.
+                In today’s competitive business world, large enterprises require powerful tools to stay agile, connected, and efficient. At SysCare IT Solutions, we deliver enterprise CRM and ERP solutions that empower organizations across Melbourne, Sydney, and Australia. By implementing industry-leading platforms like SAP S/4HANA and Microsoft Dynamics 365, we help enterprises streamline complex processes, improve decision-making, and unlock sustainable growth.
               </p>
-              <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
-                Ready to modernize your enterprise operations? Contact SysCare IT Solutions today to discover how our tailored CRM and ERP solutions can help you lead with confidence.
-              </p>
+              
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
                 Request Private Cloud Demo
                 <FiChevronRight className="inline ml-3 transition-transform duration-300 group-hover:translateX-2" />
@@ -285,7 +283,7 @@ const EnterprisePage = () => {
               transition: 'opacity 0.6s ease, transform 0.6s ease'
             }}
           >
-            Our Cloud & Infrastructure Services
+            Our Enterprise CRM & ERP Services
           </h2>
           
           {/* Mobile View - Accordion Style */}

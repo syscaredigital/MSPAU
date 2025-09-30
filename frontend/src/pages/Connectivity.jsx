@@ -297,7 +297,7 @@ const ConnectivityPage = () => {
               transition: 'opacity 0.6s ease, transform 0.6s ease'
             }}
           >
-            Our Cloud & Infrastructure Services
+            Our Connectivity Services
           </h2>
           
           {/* Mobile View - Accordion Style */}

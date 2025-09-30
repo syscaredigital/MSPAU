@@ -265,10 +265,10 @@ const VoiceVideoPage = () => {
             <div className="lg:w-1/2">
               <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Internet and VoIP</h2>
               <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
-                Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.
+                In today’s fast-paced business environment, seamless communication is critical. SysCare IT Solutions Pty Ltd delivers cutting-edge VoIP services in Australia, offering businesses in Melbourne, Sydney, and nationwide the ability to connect smarter, reduce costs, and improve collaboration. Whether you’re looking for cloud-hosted PBX systems, VoIP calling, or advanced video conferencing, our tailored solutions ensure your team stays connected from anywhere, at any time.
               </p>
               <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
-                Experience the pinnacle of reliability and performance as our dedicated team of experts customizes solutions to optimize your operations. Trust SysCare Private Cloud for a sophisticated, streamlined, and secure IT infrastructure, enabling you to focus on what truly matters – the growth and success of your business.
+                As trusted VoIP providers in Australia, we combine enterprise-grade reliability with modern collaboration tools. Our services integrate seamlessly with Microsoft 365, Teams, and unified communications platforms, making business conversations smarter and more efficient.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
                 Request Private Cloud Demo

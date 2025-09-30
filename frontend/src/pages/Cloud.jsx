@@ -1,120 +1,171 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SysCarePrivateCloud from '../assets/website-images/Cloud.png';
-import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight, FiChevronDown } from 'react-icons/fi';
+import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight, FiChevronDown, FiX } from 'react-icons/fi';
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
+const FAQS = [
+  {
+    question: "1. What is a CRM and why is it important for small businesses?",
+    answer: (
+      <>
+        A CRM (Customer Relationship Management) system helps small businesses manage customer interactions, track sales pipelines, and improve customer service. It ensures you never miss a lead, builds stronger relationships, and drives revenue growth.</>
+    ),
+  },
+  {
+    question: "2. What is an ERP and how does it benefit small businesses?",
+    answer: (
+      <>
+        An ERP (Enterprise Resource Planning) system integrates finance, operations, inventory, HR, and supply chain into one platform. For small businesses, it reduces manual work, provides real-time insights, and ensures smoother day-to-day operations.</>
+    ),
+  },
+  {
+    question: "3. Is CRM and ERP software expensive for small businesses?",
+    answer: (
+      <>
+          Not necessarily. Many small business CRM and ERP solutions like ZOHO are very cost-effective, while advanced options like SAP or Microsoft are scalable investments. SysCare tailors solutions to match your budget.</>
+    ),
+  },
+  {
+    question: "4. Do I need IT staff to manage CRM or ERP systems?",
+    answer: (
+      <>
+        No. Most modern CRM and ERP solutions are cloud-based and user-friendly. SysCare provides training and ongoing support so your staff can easily use the system without needing a dedicated IT team.</>
+    ),
+  },
+  {
+    question: "5. How do I choose between SAP Business One, Microsoft Business Central, and ZOHO?",
+    answer: (
+      <>
+       Each has strengths: SAP Business One is ideal for scaling businesses, Microsoft Business Central integrates seamlessly with Microsoft 365, and ZOHO is perfect for affordability and simplicity. SysCare helps you select the right fit based on your goals.</>
+    ),
+  },
+  {
+    question: "6. Can CRM and ERP work together for small businesses?",
+    answer: (
+      <>
+        Yes. CRM and ERP can be integrated to give small businesses a 360-degree view of operations and customers. This ensures smooth data flow between sales, finance, inventory, and customer service.</>
+    ),
+  },
+];
+
 const CloudPage = () => {
   const [activeTab, setActiveTab] = useState(0);
-  const [expandedCategory, setExpandedCategory] = useState(null);
+  
   const [isVisible, setIsVisible] = useState([false, false, false, false]);
   const [isMobile, setIsMobile] = useState(false);
+  const [showCoursesModal, setShowCoursesModal] = useState(false);
+  const [selectedServiceCourses, setSelectedServiceCourses] = useState([]);
+  const [selectedServiceTitle, setSelectedServiceTitle] = useState('');
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const headerRef = useRef(null);
+  const modalRef = useRef(null);
+  const [activeFaq, setActiveFaq] = useState(null);
 
   const services = [
     {
-      title: "Microsoft",
+      title: "Microsoft Azure Training",
       icon: <FiCloud className="text-[#245684] text-2xl" />,
-      content: "Elevate your business with SysCare Private Cloud, a flagship service by SysCare IT Solutions. Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.",
-      image: "/images/SysCare-Private-Cloud.png",
+      content: "Microsoft Azure is one of the most widely adopted cloud platforms in the world. SysCare delivers structured learning pathways to help professionals validate their skills through globally recognized certifications.",
+      image: "/images/Microsoft-Azure.png",
       courses: [
         {
-          name: "Microsoft Azure Fundamentals",
-          description: "Learn cloud concepts, Azure services, Azure workloads, security and privacy in Azure, as well as Azure pricing and support."
+          name: "Microsoft Azure Fundamentals (AZ-900)",
+          description: " A beginner-friendly course designed for individuals new to cloud computing. Learn the basics of cloud concepts, Azure services, pricing, and support models. Perfect for business professionals and IT staff starting their cloud journey."
         },
         {
-          name: "Microsoft Azure Administrator",
-          description: "Learn to implement, manage, and monitor identity, governance, storage, compute, and virtual networks in a cloud environment."
+          name: "Microsoft Azure Administrator (AZ-104)",
+          description: " This intermediate-level certification focuses on managing Azure subscriptions, implementing storage solutions, securing identities, and monitoring cloud resources. Ideal for IT administrators responsible for day-to-day Azure operations."
         },
         {
-          name: "Azure Solutions Architect Expert",
-          description: "Design and implement solutions that run on Azure, including aspects like compute, network, storage, and security."
+          name: "Azure Solutions Architect Expert (AZ-305)",
+          description: "Designed for senior IT professionals, this course equips you to design cloud architecture that meets business, security, and scalability requirements. Learn to integrate compute, storage, networking, and governance strategies in enterprise-grade Azure solutions."
         },
         {
-          name: "Microsoft 365 Certified: Enterprise Administrator Expert",
-          description: "Learn to deploy and manage Microsoft 365 services including identities, security, compliance, and supporting technologies."
-        },
-        {
-          name: "Azure DevOps Engineer Expert",
-          description: "Design and implement DevOps practices for version control, compliance, infrastructure as code, and monitoring."
-        },
-        {
-          name: "Azure Security Engineer Associate",
-          description: "Implement security controls and threat protection, manage identity and access, and protect data, applications, and networks."
+          name: "Microsoft Azure Security Technologies (AZ-500)",
+          description: " Specialize in securing Azure cloud environments by implementing security controls, managing identities, and protecting workloads. A must-have certification for cloud security professionals."
         }
       ]
     },
     {
-      title: "AWS",
+      title: "AWS Training",
       icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers state-of-the-art Hosted Servers (Virtual Machines), providing clients with a robust and scalable solution tailored to their business needs. Our advanced hosting services guarantee optimal performance, security, and flexibility.",
-      image: "/images/Hosted-Servers.png",
+      content: "Amazon Web Services (AWS) remains the market leader in global cloud adoption. SysCare’s AWS training helps participants build strong foundations and progress toward advanced cloud expertise.",
+      image: "/images/AWS.png",
       courses: [
         {
-          name: "AWS Cloud Practitioner",
-          description: "Learn the fundamentals of AWS Cloud including basic architectural principles, key services, and the value proposition of AWS."
-        },
-        {
-          name: "AWS Solutions Architect Associate",
-          description: "Design and deploy scalable, highly available, and fault-tolerant systems on AWS."
-        },
-        {
-          name: "AWS Developer Associate",
-          description: "Learn to develop and maintain applications on the AWS platform and write code that optimizes performance."
-        },
-        {
-          name: "AWS SysOps Administrator Associate",
-          description: "Deploy, manage, and operate scalable, highly available, and fault-tolerant systems on AWS."
-        },
-        {
-          name: "AWS Solutions Architect Professional",
-          description: "Advanced course for designing distributed systems and applications on the AWS platform."
-        },
-        {
-          name: "AWS DevOps Engineer Professional",
-          description: "Master provisioning, operating, and managing distributed application systems on the AWS platform."
+          name: "AWS Certified Cloud Practitioner (CLF-C02)",
+          description: "An entry-level certification that introduces cloud concepts, AWS services, pricing, and shared responsibility models. Ideal for beginners or business leaders seeking foundational AWS knowledge without technical prerequisites."
         }
       ]
     },
     {
-      title: "Google Cloud",
+      title: "Google Cloud Training",
       icon: <FiCpu className="text-[#245684] text-2xl" />,
-      content: "Elevate your digital capabilities with SysCare IT Solutions' Dedicated Virtual Servers. Tailored for optimal performance and reliability, our state-of-the-art infrastructure ensures seamless operations for your business.",
-      image: "/images/Dedicated-Virtual-Servers.png",
+      content: "Google Cloud is rapidly gaining popularity among businesses for its AI-driven and scalable infrastructure. SysCare provides Google-aligned certification training to equip professionals for the future.",
+      image: "/images/Google.png",
       courses: [
         {
           name: "Google Cloud Digital Leader",
-          description: "Understand cloud concepts, Google Cloud products and services, and how businesses use Google Cloud."
-        },
-        {
-          name: "Google Cloud Associate Cloud Engineer",
-          description: "Learn to deploy applications, monitor operations, and manage enterprise solutions on Google Cloud."
-        },
-        {
-          name: "Google Cloud Professional Cloud Architect",
-          description: "Design, develop, and manage robust, secure, scalable, highly available, and dynamic solutions on Google Cloud."
-        },
-        {
-          name: "Google Cloud Professional Data Engineer",
-          description: "Design data processing systems and machine learning models using Google Cloud technologies."
-        },
-        {
-          name: "Google Cloud Professional Cloud DevOps Engineer",
-          description: "Balance service reliability and delivery speed while developing software delivery processes."
-        },
-        {
-          name: "Google Cloud Professional Cloud Security Engineer",
-          description: "Design and implement secure infrastructure and applications on Google Cloud Platform."
+          description: " A beginner-level certification designed to help professionals understand cloud concepts, digital transformation strategies, and Google Cloud’s core products. This course is suitable for business leaders and IT professionals looking to align technology with business goals."
         }
       ]
     },
   ];
 
-  const toggleCategory = (index) => {
-    setExpandedCategory(expandedCategory === index ? null : index);
+  // Function to open courses modal
+  const openCoursesModal = (serviceIndex) => {
+    setSelectedServiceCourses(services[serviceIndex].courses);
+    setSelectedServiceTitle(services[serviceIndex].title);
+    setShowCoursesModal(true);
   };
 
+  // Function to close courses modal
+  const closeCoursesModal = () => {
+    setShowCoursesModal(false);
+    setSelectedServiceCourses([]);
+    setSelectedServiceTitle('');
+  };
+
+  // Close modal when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        closeCoursesModal();
+      }
+    };
+
+    if (showCoursesModal) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = 'unset';
+    };
+  }, [showCoursesModal]);
+
+  // Close modal with Escape key
+  useEffect(() => {
+    const handleEscapeKey = (event) => {
+      if (event.key === 'Escape') {
+        closeCoursesModal();
+      }
+    };
+
+    if (showCoursesModal) {
+      document.addEventListener('keydown', handleEscapeKey);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, [showCoursesModal]);
+
+  
   useEffect(() => {
     // Check if window is defined (to avoid SSR issues)
     if (typeof window !== 'undefined') {
@@ -195,6 +246,10 @@ const CloudPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+// Split FAQs for two columns
+  const faqsLeft = FAQS.slice(0, 3);
+  const faqsRight = FAQS.slice(3, 6);
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -219,8 +274,6 @@ const CloudPage = () => {
             <div className="absolute top-1/3 right-1/4 w-80 h-80 rounded-full bg-[#a3d4ff] mix-blend-screen filter blur-3xl animate-rotate"></div>
             <div className="absolute bottom-1/4 right-1/3 w-72 h-72 rounded-full bg-[#a3d4ff] mix-blend-screen filter blur-3xl animate-float-slow"></div>
           </div>
-         
-          
         </div>
        
         {/* Content with parallax effect */}
@@ -277,12 +330,11 @@ const CloudPage = () => {
             }}
           >
             <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">SysCare Private Cloud</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">IT Cloud Courses Australia – SysCare IT Solutions</h2>
               <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
-                Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.
-              </p>
+                Cloud computing has become the foundation of modern IT, powering digital transformation for businesses worldwide. As demand for cloud expertise grows, professionals need the right training and certifications to stay ahead in the competitive job market. SysCare IT Solutions Pty Ltd offers industry-leading IT cloud training in Australia, helping individuals and businesses master Microsoft Azure, AWS, and Google Cloud platforms.              </p>
               <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
-                Experience the pinnacle of reliability and performance as our dedicated team of experts customizes solutions to optimize your operations. Trust SysCare Private Cloud for a sophisticated, streamlined, and secure IT infrastructure, enabling you to focus on what truly matters – the growth and success of your business.
+                Our programs combine expert instruction, hands-on labs, and real-world case studies to ensure you gain the practical skills needed to design, deploy, and manage cloud infrastructure with confidence. Whether you’re a beginner or an experienced IT professional, SysCare provides tailored IT cloud courses in Australia that align with your career goals.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
                 Request Private Cloud Demo
@@ -323,7 +375,7 @@ const CloudPage = () => {
               transition: 'opacity 0.6s ease, transform 0.6s ease'
             }}
           >
-            Our Cloud & Infrastructure Services
+            Our Cloud Services
           </h2>
           
           {/* Mobile View - Accordion Style */}
@@ -373,35 +425,17 @@ const CloudPage = () => {
                       </div>
                       <p className="text-[#5c6f87] text-lg mb-6 leading-relaxed">{service.content}</p>
                       
-                      {/* Courses Section for Mobile */}
+                      {/* Courses Section for Mobile - Updated to open modal */}
                       <div className="mt-8">
                         <button
-                          onClick={() => toggleCategory(index)}
-                          className="flex items-center justify-between w-full text-left mb-4"
+                          onClick={() => openCoursesModal(index)}
+                          className="flex items-center justify-between w-full text-left mb-4 bg-[#103d5d] text-white hover:bg-[#0a2a42] transition-colors duration-300 px-6 py-3 rounded-lg font-medium shadow-md hover:shadow-lg"
                         >
-                          <h4 className="text-lg font-semibold text-[#103d5d]">
-                            Available Courses ({service.courses.length})
-                          </h4>
-                          <FiChevronDown 
-                            className={`transform transition-transform duration-300 ${
-                              expandedCategory === index ? 'rotate-180' : ''
-                            }`}
-                          />
+                          <span>
+                            View Available Courses ({service.courses.length})
+                          </span>
+                          <FiChevronRight className="ml-2" />
                         </button>
-                        
-                        {expandedCategory === index && (
-                          <div className="space-y-4 mt-4">
-                            {service.courses.map((course, courseIndex) => (
-                              <div 
-                                key={courseIndex}
-                                className="bg-white p-4 rounded-lg border border-[#e1e9f2] shadow-sm"
-                              >
-                                <h5 className="font-semibold text-[#245684] mb-2">{course.name}</h5>
-                                <p className="text-[#5c6f87] text-sm">{course.description}</p>
-                              </div>
-                            ))}
-                          </div>
-                        )}
                       </div>
                     </div>
                   )}
@@ -472,57 +506,96 @@ const CloudPage = () => {
                   <img 
                     src={services[activeTab].image}
                     alt={`${services[activeTab].title} infrastructure`}
-                    className="w-[250px] h-[250px] object-cover rounded-lg"
+                    className="w-[150px] h-[150px] object-cover rounded-lg"
                     style={{ maxWidth: '100%', height: 'auto' }}
                   />
                 </div>
 
                 <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed">{services[activeTab].content}</p>
 
-                {/* Courses Toggle Button */}
+                {/* Courses Button - Updated to open modal */}
                 <button
-                  onClick={() => toggleCategory(activeTab)}
+                  onClick={() => openCoursesModal(activeTab)}
                   className="flex items-center mb-8 text-white bg-[#103d5d] hover:bg-[#0a2a42] transition-colors duration-300 px-6 py-3 rounded-lg font-medium shadow-md hover:shadow-lg"
                 >
                   <span>
-                    {expandedCategory === activeTab ? 'Hide' : 'View'} Available Courses ({services[activeTab].courses.length})
+                    View Available Courses ({services[activeTab].courses.length})
                   </span>
-                  <FiChevronDown 
-                    className={`ml-2 transform transition-transform duration-300 ${
-                      expandedCategory === activeTab ? 'rotate-180' : ''
-                    }`}
-                  />
+                  <FiChevronRight className="ml-2" />
                 </button>
-
-                {/* Courses Section */}
-                {expandedCategory === activeTab && (
-                  <div className="mt-8">
-                    <h4 className="text-xl font-bold text-[#103d5d] mb-6">Available Courses</h4>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {services[activeTab].courses.map((course, courseIndex) => (
-                        <div 
-                          key={courseIndex}
-                          className="bg-white p-5 rounded-lg border border-[#e1e9f2] shadow-sm hover:shadow-md transition-shadow duration-300"
-                        >
-                          <h5 className="font-semibold text-[#245684] mb-3 text-lg">{course.name}</h5>
-                          <p className="text-[#5c6f87] text-sm leading-relaxed">{course.description}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           )}
         </div>
       </section>
 
+      {/* Courses Modal */}
+      {showCoursesModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm">
+          <div 
+            ref={modalRef}
+            className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden transform transition-all duration-300 scale-95 opacity-0 animate-modal-in"
+          >
+            {/* Modal Header */}
+            <div className="bg-[#103d5d] text-white p-6 flex justify-between items-center">
+              <h3 className="text-2xl font-bold">
+                {selectedServiceTitle} - Available Courses
+              </h3>
+              <button
+                onClick={closeCoursesModal}
+                className="text-white hover:text-[#a3d4ff] transition-colors duration-200 p-2 rounded-full hover:bg-white/10"
+              >
+                <FiX className="text-2xl" />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6 max-h-[calc(90vh-80px)] overflow-y-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {selectedServiceCourses.map((course, courseIndex) => (
+                  <div 
+                    key={courseIndex}
+                    className="bg-[#f9fbfe] border border-[#e1e9f2] rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:border-[#245684] group"
+                  >
+                    <div className="flex items-start mb-4">
+                      <div className="w-10 h-10 bg-[#103d5d] rounded-lg flex items-center justify-center mr-4 flex-shrink-0 group-hover:bg-[#245684] transition-colors duration-300">
+                        <span className="text-white font-bold text-sm">
+                          {courseIndex + 1}
+                        </span>
+                      </div>
+                      <h4 className="text-lg font-bold text-[#103d5d] group-hover:text-[#245684] transition-colors duration-300">
+                        {course.name}
+                      </h4>
+                    </div>
+                    <p className="text-[#5c6f87] text-sm leading-relaxed pl-14">
+                      {course.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="border-t border-[#e1e9f2] p-6 bg-[#f9fbfe]">
+              <div className="flex justify-end">
+                <button
+                  onClick={closeCoursesModal}
+                  className="bg-[#103d5d] hover:bg-[#0a2a42] text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 shadow-md hover:shadow-lg"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* CTA Section */}
       <section className="py-24 bg-[#000000] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Ready to Transform Your Cloud Infrastructure?</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Partner with SysCare IT Solutions today </h2>
           <p className="text-xl md:text-2xl text-[#c9d8eb] mb-10 max-w-3xl mx-auto">
-            Our cloud experts are ready to design the perfect solution for your business needs.
+            streamline your IT, strengthen your security, and scale your business with expert-managed services
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
             <a href="/contact-Us" className="inline-block"> 
@@ -539,6 +612,113 @@ const CloudPage = () => {
         </div>
       </section>
       
+{/* FAQ Section */}
+      <section
+        className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
+        ref={sectionRefs[3]}
+      >
+        <div className="container mx-auto">
+          <h2
+            className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-16 text-center"
+            style={{
+              opacity: isVisible[3] ? 1 : 0,
+              transform: isVisible[3] ? 'translateY(0)' : 'translateY(20px)',
+              transition: 'opacity 0.6s ease, transform 0.6s ease'
+            }}
+          >
+            Frequently Asked Questions
+          </h2>
+          <div className="max-w-5xl mx-auto">
+            {/* Responsive: Stack on mobile, 2 cols on md+ */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {[faqsLeft, faqsRight].map((faqCol, colIdx) => (
+                <div key={colIdx} className="space-y-6">
+                  {faqCol.map((faq, idx) => {
+                    const qIdx = colIdx * 3 + idx + 1;
+                    return (
+                      <div
+                        className={`rounded-xl border bg-white border-[#e1e9f2] shadow transition-all duration-500 group
+                          ${activeFaq === qIdx ? 'ring-2 ring-[#245684] ring-opacity-40 scale-[1.02] shadow-xl' : ''}
+                        `}
+                        key={qIdx}
+                        style={{
+                          opacity: isVisible[3] ? 1 : 0,
+                          transform: isVisible[3]
+                            ? 'scale(1)'
+                            : 'scale(0.95)',
+                          transition: `opacity 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1), transform 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1)`
+                        }}
+                      >
+                        <button
+                          onClick={() => setActiveFaq(activeFaq === qIdx ? null : qIdx)}
+                          className={`w-full flex justify-between items-center text-left p-6 rounded-xl transition-all duration-300
+                            ${activeFaq === qIdx
+                              ? 'bg-gradient-to-r from-[#103d5d] to-[#245684] text-white shadow'
+                              : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
+                            }
+                          `}
+                        >
+                          <h3 className="text-xl font-semibold flex items-center gap-2">
+                            <span
+                              className={`inline-block w-3 h-3 rounded-full mr-2 transition-all duration-300
+                                ${activeFaq === qIdx ? 'bg-[#a3d4ff] scale-110 shadow-lg' : 'bg-[#245684] scale-90'}
+                              `}
+                            ></span>
+                            {faq.question}
+                          </h3>
+                          <FiChevronRight
+                            className={`text-2xl transition-transform duration-300
+                              ${activeFaq === qIdx ? 'rotate-90 text-[#a3d4ff]' : ''}
+                            `}
+                          />
+                        </button>
+                        <div
+                          className={`faq-answer transition-all duration-500 overflow-hidden
+                            ${activeFaq === qIdx ? 'max-h-[500px] opacity-100 py-4 px-6' : 'max-h-0 opacity-0 py-0 px-6'}
+                          `}
+                          style={{
+                            background: activeFaq === qIdx
+                              ? 'linear-gradient(90deg, #f5f9fd 65%, #a3d4ff1a 100%)'
+                              : undefined
+                          }}
+                        >
+                          {activeFaq === qIdx && (
+                            <p className="text-[#5c6f87] text-lg leading-relaxed animate-fadein">
+                              {faq.answer}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
+            {/* Additional Support CTA */}
+            <div className="mt-16 text-center">
+              <p className="text-xl text-[#4a5d72] mb-8">
+                Still have questions? Our team is ready to help.
+              </p>
+              <a href="/contact-Us" className="inline-block">
+                <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg">
+                  Contact Our Support Team
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+        {/* Animations for FAQ */}
+        <style jsx>{`
+          @keyframes fadein {
+            from { opacity: 0; transform: translateY(16px);}
+            to { opacity: 1; transform: translateY(0);}
+          }
+          .animate-fadein {
+            animation: fadein 0.6s cubic-bezier(.4,0,.2,1);
+          }
+        `}</style>
+      </section>
+
       <Footer/>
 
       {/* Add CSS animations */}
@@ -589,6 +769,16 @@ const CloudPage = () => {
           0% { transform: translateY(0); opacity: 1; }
           100% { transform: translateY(26px); opacity: 0; }
         }
+        @keyframes modal-in {
+          0% { 
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          100% { 
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
         .animate-float {
           animation: float 6s ease-in-out infinite;
         }
@@ -618,6 +808,9 @@ const CloudPage = () => {
         }
         .animate-scroll-indicator {
           animation: scroll-indicator 2s infinite;
+        }
+        .animate-modal-in {
+          animation: modal-in 0.3s ease-out forwards;
         }
         .bg-grid-white {
           background-image: linear-gradient(to right, white 1px, transparent 1px),

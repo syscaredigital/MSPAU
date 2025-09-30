@@ -85,10 +85,10 @@ const Navigation = () => {
     [
       {
         id: "private-cloud",
-        name: "Cloud Solutions",
+        name: "Cloud",
         subCategories: [
-          { name: "SysCare Private Cloud", url: "/SysCare-Private-Cloud", icon: <FiCloud className="inline-block text-xl mr-2" /> },
-          { name: "Hosted Services", url: "/Hosted-Services", icon: <FiServer className="inline-block text-xl mr-2" /> },
+          { name: "Cloud Solutions", url: "/SysCare-Private-Cloud", icon: <FiCloud className="inline-block text-xl mr-2" /> },
+          { name: "Hosted Solutions", url: "/Hosted-Services", icon: <FiServer className="inline-block text-xl mr-2" /> },
         ],
       },
       {
@@ -96,11 +96,11 @@ const Navigation = () => {
         name: " IT Security",
         subCategories: [
           {
-            name: "Cybersecurity Consultancy Services",
+            name: "CyberSecurity Consultancy",
             url: "/CyberSecurityConsultancyServices",
             icon: <FiShield className="inline-block text-xl mr-2" />
           },
-          { name: "Managed Security Services", url: "/ManagedSecurityServices",
+          { name: "Managed Security", url: "/ManagedSecurityServices",
             icon: <FiLock className="inline-block text-xl mr-2" />
            },
         ],
@@ -112,7 +112,7 @@ const Navigation = () => {
         name: "IT Support",
         subCategories: [
           { name: "Service Desk", url: "/Service-Desk", icon: <FiHeadphones className="inline-block text-xl mr-2" /> },
-          { name: "Managed IT Services", url: "/Managed-IT-Services", icon: <FiTool className="inline-block text-xl mr-2" /> },
+          { name: "Managed IT", url: "/Managed-IT-Services", icon: <FiTool className="inline-block text-xl mr-2" /> },
         ],
       },
       {
@@ -147,8 +147,8 @@ const Navigation = () => {
         id: "digital-services",
         name: "Digital Services",
         subCategories: [
-          { name: "Design & Dev", url: "/DesignDev", icon: <FiPenTool className="inline-block text-xl mr-2" /> },
-          { name: "Digital Marketing", url: "/DigitalMarketing", icon: <FiTrendingUp className="inline-block text-xl mr-2" /> },
+          { name: "Web Design & Dev", url: "/DesignDev", icon: <FiPenTool className="inline-block text-xl mr-2" /> },
+          { name: "MultiMedia & Digital Marketing", url: "/DigitalMarketing", icon: <FiTrendingUp className="inline-block text-xl mr-2" /> },
         ],
       },
       {

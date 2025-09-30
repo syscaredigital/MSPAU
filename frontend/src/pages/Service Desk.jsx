@@ -6,73 +6,50 @@ import Footer from '../components/footer';
 
 const FAQS = [
   {
-    question: "What is included in your Help Desk Support service?",
+    question: "1. What is the difference between an IT help desk and an IT service desk?",
     answer: (
       <>
-        Our Help Desk Support includes a comprehensive ticketing system, guaranteed SLA response times,
-        remote troubleshooting, user support for Level 1 to Level 3 issues, and regular reporting on
-        service metrics. We provide 24/7 monitoring and ensure prompt resolution of all IT-related queries.
+         An IT help desk focuses on resolving immediate technical problems, like software errors or login issues. An IT service desk offers broader support, including proactive monitoring, incident management, and long-term IT strategy. SysCare combines both for complete coverage.
       </>
     ),
   },
   {
-    question: "How quickly do you respond to support tickets?",
+    question: "2. Do you provide support outside business hours?",
     answer: (
       <>
-        Our response times are guaranteed based on the severity level of the issue:
-        <ul className="mt-4 space-y-2">
-          <li><span className="font-medium text-[#245684] mr-2">• Critical (P1):</span>Within 15 minutes</li>
-          <li><span className="font-medium text-[#245684] mr-2">• High (P2):</span>Within 1 hour</li>
-          <li><span className="font-medium text-[#245684] mr-2">• Medium (P3):</span>Within 4 hours</li>
-          <li><span className="font-medium text-[#245684] mr-2">• Low (P4):</span>Within 8 business hours</li>
-        </ul>
+         Yes. Our 24/7 IT help desk support ensures your business stays online and productive anytime, including weekends and holidays.
       </>
     ),
   },
   {
-    question: "What's the difference between Remote and On-Site IT Support?",
+    question: "3. What does Guaranteed SLA Response Time mean?",
     answer: (
       <>
-        <span className="font-medium text-[#245684]">Remote Support</span> is provided virtually
-        for issues that can be resolved without physical presence, such as software troubleshooting,
-        password resets, and configuration changes.<br /><br />
-        <span className="font-medium text-[#245684]">On-Site Support</span> involves our technicians
-        visiting your location to resolve hardware-related issues, network infrastructure problems,
-        or complex installations that require physical intervention.
+        A Service Level Agreement (SLA) Response Time means we commit to resolving issues within defined timeframes. This ensures your IT challenges are met with speed, precision, and accountability, minimizing downtime and disruptions.
       </>
     ),
   },
   {
-    question: "Do you offer after-hours or emergency support?",
+    question: "4. When should I choose On-Site Support instead of Remote Support?",
     answer: (
       <>
-        Yes, we offer 24/7 emergency support for critical issues that impact business operations.
-        Our after-hours support comes with different SLA terms and may involve additional charges
-        based on your service agreement. We recommend discussing your specific after-hours needs
-        with our team to create a tailored support plan.
+         You may need onsite support for hardware installations, network cabling, physical device repairs, or when remote troubleshooting isn’t sufficient. Our team ensures a seamless, hands-on resolution tailored to your business needs.
       </>
     ),
   },
   {
-    question: "How do you ensure the security of our systems during remote sessions?",
+    question: "5. Do you support small businesses as well as enterprises?",
     answer: (
       <>
-        We use enterprise-grade, encrypted remote access tools with multi-factor authentication.
-        All our technicians undergo rigorous security training and background checks. Sessions are
-        logged and monitored, and we never access systems without explicit permission. Additionally,
-        we comply with Australian data protection regulations to ensure your information remains secure.
+         Absolutely. SysCare offers IT support for small businesses in Melbourne and Sydney, as well as scalable solutions for medium and large enterprises.
       </>
     ),
   },
   {
-    question: "Can you support our industry-specific software applications?",
+    question: "6. How does Remote IT User Support help my business?",
     answer: (
       <>
-        In most cases, yes. Our team has experience with a wide range of industry-specific applications
-        across various sectors including healthcare, legal, finance, and retail. During our onboarding process,
-        we conduct a thorough assessment of your software environment and provide training to our technicians
-        on your specific applications. For highly specialized software, we may recommend establishing a relationship
-        with the vendor for deep technical issues while we handle the infrastructure and general support aspects.
+        Our remote IT support minimizes downtime by resolving issues quickly without waiting for an onsite visit. This saves time, reduces costs, and keeps your team productive, whether they’re in the office or working remotely.
       </>
     ),
   },
@@ -91,19 +68,19 @@ const ServiceDeskPage = () => {
       title: "Help Desk Support Ticketing System, Guaranteed SLA Response Time",
       icon: <FiCloud className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions delivers unparalleled Help Desk (Service Desk) Support through an advanced Ticketing System, ensuring seamless issue resolution. Our dedicated team commits to a Guaranteed SLA Response Time, prioritizing your business continuity. Experience efficient and reliable support, where every concern is addressed promptly and effectively. With SysCare, rest assured that your IT challenges are met with precision and adherence to service level agreements. Elevate your operational efficiency with our comprehensive Help Desk Support services.",
-      image: "/images/SysCare-Private-Cloud.png"
+      image: "/images/Help-Desk.png"
     },
     {
       title: "Remote IT User Support (Level 1 to Level 3 Covered)",
       icon: <FiServer className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions provides unparalleled Remote IT User Support, covering Levels 1 to 3, ensuring a seamless and responsive user experience. Our highly skilled support team is equipped to handle a broad spectrum of issues, from basic troubleshooting (Level 1) to advanced problem resolution (Level 3). With a commitment to efficiency and client satisfaction, SysCare ensures swift and expert assistance, minimizing downtime and maximizing productivity. Trust us to elevate your IT user support experience with our comprehensive and tailored solutions. Your success is our priority.",
-      image: "/images/Hosted-Servers.png"
+      image: "/images/Remote-IT-User-Support.png"
     },
     {
       title: "On-Site IT Support (Level 1 to Level 3 Covered) # [Per Hr, Min 2 Hrs/Visit, No Call Out/Travel Charges within 30km of CBD]",
       icon: <FiCpu className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions provides comprehensive On-Site IT Support, encompassing Level 1 to Level 3 assistance, ensuring a seamless resolution of issues. Our skilled professionals are at your service, with a minimum commitment of 2 hours per visit and absolutely no call-out or travel charges. Tailored to meet your specific needs, our On-Site Support guarantees prompt and efficient solutions, allowing your business to thrive without interruption. Trust SysCare for reliable, professional IT support that goes the extra mile.",
-      image: "/images/Dedicated-Virtual-Servers.png"
+      image: "/images/On-Site-IT-Support.png"
     }
   ];
 
@@ -296,7 +273,7 @@ const ServiceDeskPage = () => {
               transition: 'opacity 0.6s ease, transform 0.6s ease'
             }}
           >
-            Our Cloud & Infrastructure Services
+            Our IT Service Desk
           </h2>
           {/* Mobile View - Accordion Style */}
           {isMobile ? (
@@ -406,7 +383,7 @@ const ServiceDeskPage = () => {
                   <img
                     src={services[activeTab].image}
                     alt={`${services[activeTab].title} infrastructure`}
-                    className="w-[250px] h-[250px] object-cover rounded-lg"
+                    className="w-[150px] h-[150px] object-cover rounded-lg"
                     style={{ maxWidth: '100%', height: 'auto' }}
                   />
                 </div>

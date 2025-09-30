@@ -540,7 +540,7 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fade-in">Partner with SysCare IT Solutions </h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
-            Partner with SysCare IT Solutions – Your dedicated provider of managed IT services in Melbourne, IT support in Sydney, and trusted cybersecurity services nationwide. Discover how we can protect and empower your business with tailored IT solutions.
+            Your dedicated provider of managed IT services in Melbourne, IT support in Sydney, and trusted cybersecurity services nationwide. Discover how we can protect and empower your business with tailored IT solutions.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 stagger-animation">
             <Link 

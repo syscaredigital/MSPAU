@@ -1179,7 +1179,7 @@ const ServicesPage = () => {
             Let's discuss how we can help you achieve your digital goals.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link to="/contact" className="group relative bg-white text-[#103d5d] px-8 py-4 rounded-full font-bold overflow-hidden transition-all duration-300 hover:shadow-lg text-center animate-pulse-slow">
+            <Link to="/contact-Us" className="group relative bg-white text-[#103d5d] px-8 py-4 rounded-full font-bold overflow-hidden transition-all duration-300 hover:shadow-lg text-center animate-pulse-slow">
               <span className="relative z-10">Contact Us</span>
               <div className="absolute inset-0 bg-gradient-to-r from-[#103d5d] to-[#245684] opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
             </Link>
