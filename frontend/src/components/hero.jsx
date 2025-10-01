@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiGlobe, FiServer, FiCloud, FiShield, FiUserPlus, FiPackage, FiBook, FiSmartphone, FiMenu, FiX } from "react-icons/fi";
 
+
 const VideoHero = () => {
   const videoRef = useRef(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
@@ -24,7 +25,7 @@ const VideoHero = () => {
   };
 
   const services = [
-    { name: "Cloud Solutions", link: "/services/cloud", icon: <FiCloud className="service-icon" /> },
+      { name: "Cloud Solutions", link: "/services/cloud", icon: <FiCloud className="service-icon" /> },
     { name: "IT Security", link: "/services/it-security", icon: <FiShield className="service-icon" /> },
     { name: "IT Support", link: "/services/it-support", icon: <FiUserPlus className="service-icon" /> },
     { name: "Projects & Automation", link: "/services/projects-automation", icon: <FiPackage className="service-icon" /> },
@@ -32,6 +33,26 @@ const VideoHero = () => {
     { name: "IT Training", link: "/services/it-training", icon: <FiBook className="service-icon" /> },
     { name: "Digital Services", link: "/services/digital-services", icon: <FiSmartphone className="service-icon" /> },
     { name: "CRM & ERP Solutions", link: "/services/crm-erp", icon: <FiServer className="service-icon" /> }
+  ];
+
+
+   const sub_service = [
+  { name: "Service Desk", link: "/Service-Desk", icon: <FiCloud className="service-icon" /> },
+    { name: "Managed IT", link: "/Managed-IT-Services", icon: <FiShield className="service-icon" /> },
+    { name: "CyberSecurity Consultancy", link: "/CyberSecurityConsultancyServices", icon: <FiUserPlus className="service-icon" /> },
+    { name: "Managed Security", link: "/ManagedSecurityServices", icon: <FiPackage className="service-icon" /> },
+    { name: "Cloud Solutions", link: "/SysCare-Private-Cloud", icon: <FiGlobe className="service-icon" /> },
+    { name: "Hosted Solutions", link: "/Hosted-Services", icon: <FiBook className="service-icon" /> },
+    { name: "IT Infra Projects", link: "/ITInfraProjects", icon: <FiSmartphone className="service-icon" /> },
+    { name: "Office IT Automation", link: "/DevelopmentAutomation", icon: <FiServer className="service-icon" /> },
+    { name: "Connectivity", link: "/Connectivity", icon: <FiServer className="service-icon" /> },
+    { name: "VoIP and Video", link: "/VoiceVideo", icon: <FiServer className="service-icon" /> },
+    { name: "Web Design and Development", link: "/DesignDev", icon: <FiServer className="service-icon" /> },
+    { name: "MultiMedia and Digital Marketing", link: "/DigitalMarketing", icon: <FiServer className="service-icon" /> },
+    { name: "Small Business", link: "/SmallBusiness", icon: <FiServer className="service-icon" /> },
+    { name: "Enterprise", link: "/Enterprise", icon: <FiServer className="service-icon" /> },
+    { name: "Security Training", link: "/Security", icon: <FiServer className="service-icon" /> },
+    { name: "Cloud Training", link: "/Cloud", icon: <FiServer className="service-icon" /> },
   ];
 
   const typingTexts = [
@@ -195,29 +216,29 @@ const VideoHero = () => {
         onMouseLeave={() => setIsMarqueePaused(false)}
       >
         <div className={`flex whitespace-nowrap ${isMarqueePaused ? '' : 'animate-marquee'}`}>
-          {services.map((service, index) => (
+          {sub_service.map((services, index) => (
             <div
               key={index}
               className="inline-flex items-center mx-3 sm:mx-6 text-white cursor-pointer group"
-              onClick={() => handleServiceClick(service.link)}
+              onClick={() => handleServiceClick(services.link)}
             >
               <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full mr-2 group-hover:bg-[#245684] transition-colors"></span>
               <span className="font-medium text-xs sm:text-sm md:text-base group-hover:text-[#fff] transition-colors">
-                {service.name}
+                {services.name}
               </span>
             </div>
           ))}
 
           {/* Duplicate for seamless loop */}
-          {services.map((service, index) => (
+          {sub_service.map((services, index) => (
             <div
               key={`dup-${index}`}
               className="inline-flex items-center mx-3 sm:mx-6 text-white cursor-pointer group"
-              onClick={() => handleServiceClick(service.link)}
+              onClick={() => handleServiceClick(services.link)}
             >
               <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full mr-2 group-hover:bg-[#245684] transition-colors"></span>
               <span className="font-medium text-xs sm:text-sm md:text-base group-hover:text-[#245684] transition-colors">
-                {service.name}
+                {services.name}
               </span>
             </div>
           ))}
