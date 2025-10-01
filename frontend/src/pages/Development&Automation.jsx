@@ -1,6 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SysCarePrivateCloud from '../assets/website-images/SysCare-Private-Cloud.webp';
-import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight } from 'react-icons/fi';
+import { FiChevronRight } from 'react-icons/fi';
+import { 
+  MdCloud,
+  MdStorage,
+  MdComputer,
+  MdDesktopWindows,
+  MdBusiness,
+  MdDns,
+  MdSecurity,
+  MdSync,
+  MdSettings,
+  MdDashboard,
+  MdBackup,
+  MdCloudQueue
+} from 'react-icons/md';
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
@@ -14,56 +28,63 @@ const DevelopmentAutomationPage = () => {
   const services = [
     {
       title: "Private Cloud",
-      icon: <FiCloud className="text-[#245684] text-2xl" />,
+      icon: <MdCloud className="text-[#245684] text-2xl" />,
       content: "Elevate your business with SysCare Private Cloud, a flagship service by SysCare IT Solutions. Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.",
       image: "/images/SysCare-Private-Cloud.png"
     },
     {
       title: "Hosted Servers",
-      icon: <FiServer className="text-[#245684] text-2xl" />,
+      icon: <MdStorage className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions delivers state-of-the-art Hosted Servers (Virtual Machines), providing clients with a robust and scalable solution tailored to their business needs. Our advanced hosting services guarantee optimal performance, security, and flexibility.",
       image: "/images/Hosted-Servers.png"
     },
     {
       title: "Dedicated Virtual Servers",
-      icon: <FiCpu className="text-[#245684] text-2xl" />,
+      icon: <MdComputer className="text-[#245684] text-2xl" />,
       content: "Elevate your digital capabilities with SysCare IT Solutions' Dedicated Virtual Servers. Tailored for optimal performance and reliability, our state-of-the-art infrastructure ensures seamless operations for your business.",
       image: "/images/Dedicated-Virtual-Servers.png"
     },
     {
       title: "Virtual Desktops",
-      icon: <FiCode className="text-[#245684] text-2xl" />,
+      icon: <MdDesktopWindows className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions offers spectrum of services, including Virtual Desktops (VDI) and Remote Desktop Services (RDS). Elevate your business efficiency with our cutting-edge virtualization solutions.",
       image: "/images/Virtual-Desktops.png"
     },
     {
       title: "Rack Space Hire",
-      icon: <FiDatabase className="text-[#245684] text-2xl" />,
+      icon: <MdBusiness className="text-[#245684] text-2xl" />,
       content: "Elevate your business with SysCare IT Solutions' Rack Space Hire (Co-location) service. Our premium co-location offering provides a secure and efficient environment for your servers and equipment.",
       image: "/images/Rack-Space-Hire.png"
     },
     {
       title: "Leased Servers",
-      icon: <FiServer className="text-[#245684] text-2xl" />,
+      icon: <MdDns className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions delivers excellence in IT with its Leased Dedicated Physical Servers service. Elevate your business performance and security with our dedicated servers, exclusively assigned to meet your unique requirements.",
       image: "/images/Leased-Servers.png"
+    },
+    {
+      title: "Cloud Security",
+      icon: <MdSecurity className="text-[#245684] text-2xl" />,
+      content: "Protect your cloud infrastructure with enterprise-grade security solutions. Our comprehensive security services include threat detection, data encryption, and compliance management.",
+      image: "/images/Cloud-Security.png"
+    },
+    {
+      title: "Automated Backups",
+      icon: <MdBackup className="text-[#245684] text-2xl" />,
+      content: "Ensure business continuity with our automated backup solutions. Regular, secure backups with quick recovery options to protect your critical data and applications.",
+      image: "/images/Automated-Backups.png"
     }
   ];
 
   useEffect(() => {
-    // Check if window is defined (to avoid SSR issues)
     if (typeof window !== 'undefined') {
       const checkIsMobile = () => {
-        setIsMobile(window.innerWidth < 1024); // lg breakpoint
+        setIsMobile(window.innerWidth < 1024);
       };
       
-      // Initial check
       checkIsMobile();
-      
-      // Add event listener
       window.addEventListener('resize', checkIsMobile);
       
-      // Clean up
       return () => window.removeEventListener('resize', checkIsMobile);
     }
   }, []);
@@ -112,7 +133,6 @@ const DevelopmentAutomationPage = () => {
     }
   }, [activeTab]);
 
-  // Parallax effect for header
   const [parallaxStyle, setParallaxStyle] = useState({});
   
   useEffect(() => {
@@ -131,34 +151,59 @@ const DevelopmentAutomationPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="fixed inset-0 -z-10 overflow-hidden">
+        {/* Geometric Pattern */}
+        <div className="absolute inset-0 opacity-[0.03]">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#103d5d] to-[#245684]"></div>
+        </div>
+        
+        {/* Floating Shapes */}
+        <div className="absolute top-1/4 left-1/6 w-32 h-32 bg-[#a3d4ff] rounded-full opacity-10 animate-float-slow"></div>
+        <div className="absolute top-1/3 right-1/5 w-24 h-24 bg-[#245684] rounded-lg opacity-5 animate-float" style={{animationDelay: '2s'}}></div>
+        <div className="absolute bottom-1/4 left-1/3 w-40 h-40 bg-[#103d5d] rounded-full opacity-5 animate-pulse-slow"></div>
+        <div className="absolute top-2/3 right-1/4 w-28 h-28 bg-[#a3d4ff] rounded-lg opacity-10 animate-float" style={{animationDelay: '4s'}}></div>
+        
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 opacity-[0.02] bg-grid-blue-500" style={{
+          backgroundImage: `linear-gradient(#245684 1px, transparent 1px), linear-gradient(90deg, #245684 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }}></div>
+
+        {/* Connection Lines */}
+        <div className="absolute inset-0 opacity-10">
+          <svg width="100%" height="100%" className="animate-grid-move">
+            <defs>
+              <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+                <path d="M 80 0 L 0 0 0 80" fill="none" stroke="#245684" strokeWidth="1"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+          </svg>
+        </div>
+      </div>
+
       <Navigation />
       
-      {/* Enhanced Header Section */}
       <header
         ref={headerRef}
         className="relative overflow-hidden bg-gradient-to-r from-[#103d5d] to-[#245684] text-white pt-32 pb-24 px-4 sm:px-6 lg:px-8"
       >
-        {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
-          {/* Floating particles */}
           <div className="absolute top-1/4 left-1/4 w-16 h-16 rounded-full bg-white opacity-10 animate-float" style={{animationDelay: '0s'}}></div>
           <div className="absolute top-1/3 right-1/4 w-10 h-10 rounded-full bg-white opacity-10 animate-float" style={{animationDelay: '1s'}}></div>
           <div className="absolute bottom-1/4 left-1/3 w-12 h-12 rounded-full bg-white opacity-10 animate-float" style={{animationDelay: '2s'}}></div>
           <div className="absolute top-1/2 right-1/3 w-14 h-14 rounded-full bg-white opacity-10 animate-float" style={{animationDelay: '3s'}}></div>
           <div className="absolute bottom-1/3 left-1/2 w-8 h-8 rounded-full bg-white opacity-10 animate-float" style={{animationDelay: '4s'}}></div>
          
-          {/* Animated gradient circles */}
           <div className="absolute top-0 left-0 w-full h-full opacity-20">
             <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-[#a3d4ff] mix-blend-screen filter blur-3xl animate-pulse-slow"></div>
             <div className="absolute top-1/3 right-1/4 w-80 h-80 rounded-full bg-[#a3d4ff] mix-blend-screen filter blur-3xl animate-rotate"></div>
             <div className="absolute bottom-1/4 right-1/3 w-72 h-72 rounded-full bg-[#a3d4ff] mix-blend-screen filter blur-3xl animate-float-slow"></div>
           </div>
-         
-          
         </div>
        
-        {/* Content with parallax effect */}
         <div
           className="relative max-w-7xl mx-auto text-center"
           style={parallaxStyle}
@@ -171,23 +216,21 @@ const DevelopmentAutomationPage = () => {
          
           <div className="overflow-hidden">
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate-slide-in-up opacity-0">
-              Comprehensive IT solutions to drive your business forward
+              Streamline your business operations with intelligent cloud solutions and automation
             </p>
           </div>
          
-          {/* Animated CTA button */}
           <div className="mt-12 animate-bounce-slow">
-  <a href="/syscare-services" className="inline-block"> {/* Or external URL like "https://example.com/services" */}
-    <button className="bg-[#a3d4ff] text-[#103d5d] px-8 py-4 rounded-full font-bold hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto">
-      Explore Our Services
-      <svg className="w-5 h-5 ml-2 animate-bounce-horizontal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-      </svg>
-    </button>
-  </a>
-</div>
+            <a href="/syscare-services" className="inline-block">
+              <button className="bg-[#a3d4ff] text-[#103d5d] px-8 py-4 rounded-full font-bold hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto">
+                Explore Our Services
+                <svg className="w-5 h-5 ml-2 animate-bounce-horizontal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </button>
+            </a>
+          </div>
          
-          {/* Scroll indicator */}
           <div className="mt-16 animate-bounce">
             <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center mx-auto p-1">
               <div className="w-2 h-2 bg-white rounded-full animate-scroll-indicator"></div>
@@ -197,12 +240,18 @@ const DevelopmentAutomationPage = () => {
         </div>
       </header>
 
-      {/* Private Cloud Focus Section */}
       <section 
-        className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
+        className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32 relative"
         ref={sectionRefs[1]}
       >
-        <div className="container mx-auto">
+        {/* Section Background Elements */}
+        <div className="absolute inset-0 overflow-hidden opacity-10">
+          <div className="absolute top-10 right-10 w-20 h-20 bg-[#245684] rounded-full animate-pulse"></div>
+          <div className="absolute bottom-10 left-10 w-16 h-16 bg-[#a3d4ff] rounded-lg animate-float"></div>
+          <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-[#103d5d] rounded-full animate-bounce-slow"></div>
+        </div>
+
+        <div className="container mx-auto relative z-10">
           <div 
             className="flex flex-col lg:flex-row gap-16 items-center"
             style={{
@@ -232,10 +281,12 @@ const DevelopmentAutomationPage = () => {
                 transition: 'opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s'
               }}
             >
-              <div className="bg-white p-6 rounded-xl border border-[#e1e9f2] shadow-sm hover:shadow-md transition-shadow duration-500">
+              <div className="bg-white p-6 rounded-xl border border-[#e1e9f2] shadow-sm hover:shadow-md transition-shadow duration-500 relative">
+                <div className="absolute -top-4 -right-4 w-8 h-8 bg-[#a3d4ff] rounded-full animate-pulse"></div>
+                <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-[#245684] rounded-full animate-bounce-slow"></div>
                 <img 
                   src={SysCarePrivateCloud}
-                  className="w-full h-auto rounded-lg transition-transform duration-500 hover:scale-[1.02]"
+                  className="w-full h-auto rounded-lg transition-transform duration-500 hover:scale-[1.02] relative z-10"
                   alt="SysCare Private Cloud Infrastructure"
                 />
               </div>
@@ -244,12 +295,16 @@ const DevelopmentAutomationPage = () => {
         </div>
       </section>
 
-      {/* Services Overview - Vertical Tabs */}
       <section 
-        className="py-24 bg-white px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
+        className="py-24 bg-white px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32 relative"
         ref={sectionRefs[2]}
       >
-        <div className="container mx-auto">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-[0.03]">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#103d5d] via-[#245684] to-[#a3d4ff]"></div>
+        </div>
+
+        <div className="container mx-auto relative z-10">
           <h2 
             className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-16 text-center"
             style={{
@@ -261,17 +316,17 @@ const DevelopmentAutomationPage = () => {
             Our Cloud & Infrastructure Services
           </h2>
           
-          {/* Mobile View - Accordion Style */}
           {isMobile ? (
             <div className="space-y-6">
               {services.map((service, index) => (
                 <div 
                   key={index}
-                  className="bg-[#f9fbfe] rounded-xl border border-[#e1e9f2] shadow-sm overflow-hidden"
+                  className="bg-[#f9fbfe] rounded-xl border border-[#e1e9f2] shadow-sm overflow-hidden relative"
                 >
+                  <div className="absolute top-2 right-2 w-4 h-4 bg-[#a3d4ff] rounded-full opacity-50"></div>
                   <button
                     onClick={() => setActiveTab(activeTab === index ? -1 : index)}
-                    className={`w-full text-left p-6 transition-all duration-300 ${
+                    className={`w-full text-left p-6 transition-all duration-300 relative z-10 ${
                       activeTab === index
                         ? 'bg-[#103d5d] text-white'
                         : 'bg-[#f5f9fd] text-[#103d5d]'
@@ -313,7 +368,6 @@ const DevelopmentAutomationPage = () => {
               ))}
             </div>
           ) : (
-            /* Desktop View - Original Layout */
             <div 
               className="flex flex-col lg:flex-row gap-12"
               style={{
@@ -322,14 +376,13 @@ const DevelopmentAutomationPage = () => {
                 transition: 'opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s'
               }}
             >
-              {/* Vertical Tabs */}
               <div className="lg:w-1/3">
-                <div className="space-y-4">
+                <div className="space-y-4 max-h-[800px] overflow-y-auto pr-4">
                   {services.map((service, index) => (
                     <button
                       key={index}
                       onClick={() => setActiveTab(index)}
-                      className={`w-full text-left p-6 rounded-xl transition-all duration-300 ${
+                      className={`w-full text-left p-6 rounded-xl transition-all duration-300 relative ${
                         activeTab === index
                           ? 'bg-[#103d5d] text-white shadow-lg'
                           : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
@@ -353,15 +406,17 @@ const DevelopmentAutomationPage = () => {
                 </div>
               </div>
               
-              {/* Content Area */}
               <div 
                 id="service-content"
-                className="lg:w-2/3 bg-[#f9fbfe] rounded-xl p-10 border border-[#e1e9f2] shadow-sm"
+                className="lg:w-2/3 bg-[#f9fbfe] rounded-xl p-10 border border-[#e1e9f2] shadow-sm relative"
                 style={{
                   minHeight: '600px',
                   transition: 'opacity 0.3s ease, transform 0.3s ease'
                 }}
               >
+                <div className="absolute top-4 right-4 w-6 h-6 bg-[#a3d4ff] rounded-full opacity-30 animate-pulse"></div>
+                <div className="absolute bottom-4 left-4 w-8 h-8 bg-[#245684] rounded-full opacity-20 animate-bounce-slow"></div>
+                
                 <div className="flex items-start mb-6">
                   <div className="w-16 h-16 rounded-xl bg-[#f0f6ff] flex items-center justify-center mr-8">
                     {services[activeTab].icon}
@@ -369,8 +424,7 @@ const DevelopmentAutomationPage = () => {
                   <h3 className="text-2xl md:text-3xl font-bold text-[#103d5d] mt-2">{services[activeTab].title}</h3>
                 </div>
 
-                {/* Service Graphic - Now positioned under title but above description */}
-                <div className="mb-8  p-4   flex justify-center">
+                <div className="mb-8 p-4 flex justify-center">
                   <img 
                     src={services[activeTab].image}
                     alt={`${services[activeTab].title} infrastructure`}
@@ -379,19 +433,23 @@ const DevelopmentAutomationPage = () => {
                   />
                 </div>
 
-                <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed">{services[activeTab].content}</p>
+                <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed relative z-10">{services[activeTab].content}</p>
               </div>
             </div>
           )}
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-[#000000] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
-        <div className="container mx-auto text-center">
+      <section className="py-24 bg-[#000000] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32 relative">
+        {/* Background Animation */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-[#103d5d] to-[#245684] animate-pulse-slow"></div>
+        </div>
+
+        <div className="container mx-auto text-center relative z-10">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Partner with SysCare IT Solutions today</h2>
           <p className="text-xl md:text-2xl text-[#c9d8eb] mb-10 max-w-3xl mx-auto">
-            streamline your IT, strengthen your security, and scale your business with expert-managed services.
+            Streamline your IT, strengthen your security, and scale your business with expert-managed services.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
             <a href="/contact-Us" className="inline-block"> 
@@ -407,9 +465,9 @@ const DevelopmentAutomationPage = () => {
           </div>
         </div>
       </section>
+
       <Footer/>
 
-      {/* Add CSS animations */}
       <style jsx>{`
         @keyframes float {
           0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -486,10 +544,6 @@ const DevelopmentAutomationPage = () => {
         }
         .animate-scroll-indicator {
           animation: scroll-indicator 2s infinite;
-        }
-        .bg-grid-white {
-          background-image: linear-gradient(to right, white 1px, transparent 1px),
-                            linear-gradient(to bottom, white 1px, transparent 1px);
         }
       `}</style>
     </div>
