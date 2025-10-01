@@ -61,25 +61,25 @@ const ConnectivityPage = () => {
     {
       title: "Business Internet",
       icon: <FiCloud className="text-[#245684] text-2xl" />,
-      content: "Elevate your business with SysCare Private Cloud, a flagship service by SysCare IT Solutions. Our state-of-the-art private cloud solutions empower organizations with unparalleled flexibility, security, and scalability. Tailored to meet diverse business needs, SysCare Private Cloud ensures seamless data management, robust security protocols, and efficient resource utilization.",
+      content: "SysCare IT Solutions delivers unparalleled Business Internet solutions tailored to elevate your enterprise connectivity. With our robust infrastructure and cutting-edge technology, we ensure seamless, high-speed internet access for your business operations. Experience reliable connectivity, optimal performance, and dedicated support, designed to meet the unique demands of your enterprise. Trust SysCare for a secure and efficient Business Internet experience, enabling you to stay ahead in the digital landscape. Elevate your connectivity standards with SysCare IT Solutions – Your Partner in Business Excellence. ",
       image: "/images/Business-Internet.png"
     },
     {
       title: "Private WAN/MPLS",
       icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers state-of-the-art Hosted Servers (Virtual Machines), providing clients with a robust and scalable solution tailored to their business needs. Our advanced hosting services guarantee optimal performance, security, and flexibility.",
+      content: "SysCare IT Solutions provides cutting-edge Private WAN/MPLS services, ensuring secure and efficient connectivity for your business. Our tailored solutions guarantee seamless communication across multiple locations, maintaining privacy and reliability. With state-of-the-art technology and a commitment to excellence, SysCare optimizes your network infrastructure, enhancing performance and minimizing latency. Experience the power of a dedicated Private WAN/MPLS network tailored to meet your unique business requirements. Trust SysCare for robust, secure, and high-performance networking solutions that propel your business forward. ",
       image: "/images/Private-WANMPLS.png"
     },
     {
       title: "SDWAN",
       icon: <FiCpu className="text-[#245684] text-2xl" />,
-      content: "Elevate your digital capabilities with SysCare IT Solutions' Dedicated Virtual Servers. Tailored for optimal performance and reliability, our state-of-the-art infrastructure ensures seamless operations for your business.",
+      content: "SysCare IT Solutions excels in delivering cutting-edge services, including our premier SD-WAN solution. Our Software-Defined Wide Area Network (SD-WAN) service optimizes network performance, ensuring seamless connectivity and enhanced agility for your business. Experience a secure and efficient network environment, as SysCare leverages advanced technology to intelligently manage and prioritize data traffic. Benefit from reduced costs, improved scalability, and increased flexibility with our SD-WAN solution. Trust SysCare for a sophisticated and reliable approach to network management, empowering your business with the connectivity it needs to thrive in today's dynamic digital landscape. ",
       image: "/images/SDWAN.png"
     },
     {
       title: "VPN & Remote Access",
       icon: <FiCode className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions offers spectrum of services, including Virtual Desktops (VDI) and Remote Desktop Services (RDS). Elevate your business efficiency with our cutting-edge virtualization solutions.",
+      content: "SysCare IT Solutions provides secure and seamless VPN & Remote Access services, ensuring your team stays connected and productive from any location. Our robust solutions prioritize confidentiality and integrity, employing advanced encryption protocols for airtight data protection. With a user-friendly interface, accessing critical resources becomes effortless, fostering a flexible work environment. SysCare's VPN & Remote Access services are tailored to meet the demands of modern businesses, offering reliability and peace of mind in an increasingly mobile work landscape. Elevate your connectivity experience with SysCare – your trusted partner in cutting-edge IT solutions. ",
       image: "/images/VPN-Remote-Access.png"
     },
     
