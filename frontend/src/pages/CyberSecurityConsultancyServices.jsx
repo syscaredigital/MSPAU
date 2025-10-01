@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SysCarePrivateCloud from '../assets/website-images/CyberSecurity-Consultancy.png';
-import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight } from 'react-icons/fi';
+import { FiShield, FiSearch, FiBarChart2, FiFileText, FiCheckSquare, FiAlertTriangle, FiUsers, FiMessageCircle } from 'react-icons/fi';
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
@@ -38,12 +38,11 @@ const CyberSecurityConsultancyServicesPage = () => {
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const headerRef = useRef(null);
   const [activeFaq, setActiveFaq] = useState(null);
-  
 
   const services = [
     {
       title: "Cloud Security Posture Assessment",
-      icon: <FiCloud className="text-[#245684] text-2xl" />,
+      icon: <FiSearch className="text-[#245684] text-2xl" />,
       content: "Elevate your cloud security with SysCare IT Solutions' Cloud Security Posture Assessment (CSPA). Our comprehensive service meticulously evaluates your cloud environment, identifying vulnerabilities and ensuring compliance with industry standards. Our seasoned experts conduct a thorough analysis, providing insights to fortify your cloud security posture. With SysCare's CSPA, proactively safeguard your data, mitigate risks, and uphold regulatory requirements. Trust us to optimize your cloud security framework, empowering your business with resilient protection in the digital landscape. Enhance your peace of mind and fortify your cloud infrastructure with SysCare's expertise in Cloud Security Posture Assessment.",
       image: "/images/CloudSecurity-Posture-Assessment.png"
     },
@@ -55,56 +54,51 @@ const CyberSecurityConsultancyServicesPage = () => {
     },
     {
       title: "Security Analytics & Reporting (MS365, Azure)",
-      icon: <FiCpu className="text-[#245684] text-2xl" />,
+      icon: <FiBarChart2 className="text-[#245684] text-2xl" />,
       content: "Elevate your organization's security posture with SysCare IT Solutions' comprehensive Security Analytics & Reporting services tailored for MS365 and Azure environments. Our seasoned experts employ advanced analytics to proactively identify and mitigate potential threats, ensuring robust protection for your digital assets. With a focus on Microsoft's powerful platforms, we deliver insightful reporting that empowers informed decision-making. SysCare's Security Analytics & Reporting solutions guarantee a vigilant defense, providing peace of mind in an ever-evolving cybersecurity landscape. Choose SysCare for a proactive and sophisticated approach to safeguarding your MS365 and Azure environments.",
       image: "/images/Security-Analytics-&-Reporting-(MS365, Azure).png"
     },
     {
       title: "Security Policy & Procedure Development",
-      icon: <FiCode className="text-[#245684] text-2xl" />,
+      icon: <FiFileText className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions provides Security Policy & Procedure Development, delivering paramount expertise to fortify your digital landscape. Our seasoned professionals craft policies tailored to your unique business needs, ensuring robust defense against cyber threats. With a proactive approach, we establish comprehensive procedures that align with industry standards and regulatory requirements. Elevate your security posture with SysCare's meticulous attention to detail, fostering a resilient and compliant environment. Trust us to safeguard your assets through strategic policy development, empowering your organization against evolving security challenges.",
       image: "/images/Security-Policy-&-Procedure-Development.png"
     },
     {
       title: "Security Audit & Compliance",
-      icon: <FiDatabase className="text-[#245684] text-2xl" />,
+      icon: <FiCheckSquare className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions excels in ensuring robust cybersecurity through our Security Audit & Compliance services. Our expert team conducts thorough assessments, identifying vulnerabilities and ensuring compliance with industry standards and regulations. With a meticulous approach, we fortify your digital infrastructure, providing comprehensive security solutions tailored to your unique needs. Rely on SysCare for cutting-edge technology, proactive risk mitigation, and a commitment to maintaining the highest standards of security and compliance. Safeguard your business with our Security Audit & Compliance services, empowering you to navigate the digital landscape with confidence and resilience.",
       image: "/images/Security-Audit-&-Compliance.png"
     },
     {
       title: "Cyber Incident Response & Emergency Support",
-      icon: <FiServer className="text-[#245684] text-2xl" />,
+      icon: <FiAlertTriangle className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions excels in Cyber Incident Response & Emergency Support, providing swift and expert solutions to safeguard your digital assets. Our dedicated team, equipped with extensive experience, promptly responds to cyber threats, minimizing potential damage and ensuring business continuity. With a proactive and professional approach, we mitigate risks, conduct thorough investigations, and implement effective strategies to counteract incidents. SysCare is your trusted partner in navigating the complexities of cybersecurity emergencies, ensuring a resilient defense against evolving threats. Rely on us for robust incident response that prioritizes the security and stability of your business",
       image: "/images/Cyber-Incident-Response-&-Emergency-Support.png"
     },
     {
       title: "End User Security Assessment",
-      icon: <FiWifi className="text-[#245684] text-2xl" />,
+      icon: <FiUsers className="text-[#245684] text-2xl" />,
       content: "Explore peace of mind with SysCare IT Solutions' End User Security Assessment. Our comprehensive service is designed to fortify your organization's defenses by evaluating and enhancing end-user security protocols. With a focus on threat prevention, we conduct thorough assessments to identify vulnerabilities, educate users on best practices, and implement robust security measures. Trust our expert team to safeguard your business against evolving cyber threats. SysCare IT Solutions – where security meets seamless user experience. Elevate your defense strategy today.",
       image: "/images/End-User-Security-Assessment.png"
     },
     {
       title: "Consultancy Services",
-      icon: <FiChevronRight className="text-[#245684] text-2xl" />,
+      icon: <FiMessageCircle className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions delivers unparalleled Consultancy services, guiding clients with strategic insights to optimize their IT landscape. Our seasoned professionals collaborate closely, providing expert analysis and tailored recommendations to enhance efficiency and drive innovation. Whether you seek advice on system upgrades, cybersecurity, or IT strategy, SysCare's consultancy ensures informed decisions for your business's technological advancement. Rely on our meticulous guidance to navigate the complexities of the IT landscape, aligning your goals with robust solutions. Choose SysCare for proactive consultancy that empowers your business to thrive in the dynamic realm of technology.",
       image: "/images/Consultancy-Services.png"
     }
   ];
 
   useEffect(() => {
-    // Check if window is defined (to avoid SSR issues)
     if (typeof window !== 'undefined') {
       const checkIsMobile = () => {
-        setIsMobile(window.innerWidth < 1024); // lg breakpoint
+        setIsMobile(window.innerWidth < 1024);
       };
       
-      // Initial check
       checkIsMobile();
-      
-      // Add event listener
       window.addEventListener('resize', checkIsMobile);
       
-      // Clean up
       return () => window.removeEventListener('resize', checkIsMobile);
     }
   }, []);
@@ -170,42 +164,6 @@ const CyberSecurityConsultancyServicesPage = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Calculate equal heights for FAQ items
-  useEffect(() => {
-    if (FAQS.length > 0) {
-      const calculateHeights = () => {
-        const questionElements = document.querySelectorAll('.faq-question');
-        let maxHeight = 0;
-        
-        // Reset heights first to get natural heights
-        questionElements.forEach(el => {
-          el.style.height = 'auto';
-        });
-        
-        // Find the maximum height
-        questionElements.forEach(el => {
-          if (el.offsetHeight > maxHeight) {
-            maxHeight = el.offsetHeight;
-          }
-        });
-        
-        // Set all to the maximum height
-        questionElements.forEach(el => {
-          el.style.height = `${maxHeight}px`;
-        });
-        
-      };
-      
-      // Calculate after component mounts and on window resize
-      calculateHeights();
-      window.addEventListener('resize', calculateHeights);
-      
-      return () => {
-        window.removeEventListener('resize', calculateHeights);
-      };
-    }
-  }, [FAQS.length, isMobile]);
 
   // Split FAQs for two columns
   const faqsLeft = FAQS.slice(0, 3);
@@ -300,7 +258,7 @@ const CyberSecurityConsultancyServicesPage = () => {
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
                 Request Security Assessment
-                <FiChevronRight className="inline ml-3 transition-transform duration-300 group-hover:translateX-2" />
+                <FiMessageCircle className="inline ml-3 transition-transform duration-300 group-hover:translate-x-1" />
               </button>
             </div>
             <div 
@@ -367,7 +325,7 @@ const CyberSecurityConsultancyServicesPage = () => {
                         </div>
                         <h3 className="text-xl font-medium">{service.title}</h3>
                       </div>
-                      <FiChevronRight 
+                      <FiMessageCircle 
                         className={`text-xl transition-transform duration-300 ${
                           activeTab === index ? 'rotate-90' : ''
                         }`}
@@ -447,7 +405,7 @@ const CyberSecurityConsultancyServicesPage = () => {
                   <h3 className="text-2xl md:text-3xl font-bold text-[#103d5d] mt-2">{services[activeTab].title}</h3>
                 </div>
 
-                {/* Service Graphic - Now positioned under title but above description */}
+                {/* Service Graphic */}
                 <div className="mb-8 p-4 flex justify-center">
                   <img 
                     src={services[activeTab].image}
@@ -469,7 +427,7 @@ const CyberSecurityConsultancyServicesPage = () => {
         <div className="container mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Partner with SysCare IT Solutions today</h2>
           <p className="text-xl md:text-2xl text-[#c9d8eb] mb-10 max-w-3xl mx-auto">
-            streamline your IT, strengthen your security, and scale your business with expert-managed services.
+            Streamline your IT, strengthen your security, and scale your business with expert-managed services.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
             <a href="/contact-Us" className="inline-block"> 
@@ -503,7 +461,6 @@ const CyberSecurityConsultancyServicesPage = () => {
             Frequently Asked Questions
           </h2>
           <div className="max-w-5xl mx-auto">
-            {/* Responsive: Stack on mobile, 2 cols on md+ */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[faqsLeft, faqsRight].map((faqCol, colIdx) => (
                 <div key={colIdx} className="space-y-6">
@@ -540,7 +497,7 @@ const CyberSecurityConsultancyServicesPage = () => {
                             ></span>
                             {faq.question}
                           </h3>
-                          <FiChevronRight
+                          <FiMessageCircle
                             className={`text-2xl transition-transform duration-300
                               ${activeFaq === qIdx ? 'rotate-90 text-[#a3d4ff]' : ''}
                             `}
@@ -568,7 +525,6 @@ const CyberSecurityConsultancyServicesPage = () => {
                 </div>
               ))}
             </div>
-            {/* Additional Support CTA */}
             <div className="mt-16 text-center">
               <p className="text-xl text-[#4a5d72] mb-8">
                 Still have questions? Our team is ready to help.

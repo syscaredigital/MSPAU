@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SysCarePrivateCloud from '../assets/website-images/Connectivity.png';
-import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight } from 'react-icons/fi';
+import { FiWifi, FiGlobe, FiCpu, FiShield, FiChevronRight } from 'react-icons/fi';
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
@@ -9,42 +9,48 @@ const FAQS = [
     question: "1. What is business internet, and how is it different from home internet?",
     answer: (
       <>
-        Business internet provides enterprise-grade speed, reliability, and service-level agreements (SLAs), unlike home internet. SysCare delivers business internet designed for high performance, minimal downtime, and 24/7 support, ensuring your operations always run smoothly.      </>
+        Business internet provides enterprise-grade speed, reliability, and service-level agreements (SLAs), unlike home internet. SysCare delivers business internet designed for high performance, minimal downtime, and 24/7 support, ensuring your operations always run smoothly.
+      </>
     ),
   },
   {
     question: "2. Why is reliable internet connectivity important for businesses?",
     answer: (
       <>
-         Reliable internet connectivity is essential for communication, cloud applications, collaboration tools, and secure data transfer. With SysCare’s connectivity solutions, businesses gain uptime guarantees, faster speeds, and robust security.      </>
+        Reliable internet connectivity is essential for communication, cloud applications, collaboration tools, and secure data transfer. With SysCare's connectivity solutions, businesses gain uptime guarantees, faster speeds, and robust security.
+      </>
     ),
   },
   {
     question: "3. What is Private WAN/MPLS, and when should my business use it?",
     answer: (
       <>
-        Private WAN/MPLS is a secure, dedicated network that connects multiple business sites. It is ideal for organizations that handle sensitive data, require consistent performance, and need secure communication between offices or data centers.      </>
+        Private WAN/MPLS is a secure, dedicated network that connects multiple business sites. It is ideal for organizations that handle sensitive data, require consistent performance, and need secure communication between offices or data centers.
+      </>
     ),
   },
   {
     question: "4. How does SD-WAN improve business connectivity?",
     answer: (
       <>
-        SD-WAN intelligently manages multiple internet connections (MPLS, broadband, 4G/5G), automatically routing traffic for speed, reliability, and cost efficiency. SysCare’s SD-WAN boosts application performance, enhances security, and provides centralized management.      </>
+        SD-WAN intelligently manages multiple internet connections (MPLS, broadband, 4G/5G), automatically routing traffic for speed, reliability, and cost efficiency. SysCare's SD-WAN boosts application performance, enhances security, and provides centralized management.
+      </>
     ),
   },
   {
     question: "5. Is SD-WAN a replacement for MPLS?",
     answer: (
       <>
-          Not always. While SD-WAN is a cost-effective, flexible alternative to MPLS, many businesses use a hybrid model with both. SysCare helps you choose the right solution depending on your performance, cost, and security requirements.      </>
+        Not always. While SD-WAN is a cost-effective, flexible alternative to MPLS, many businesses use a hybrid model with both. SysCare helps you choose the right solution depending on your performance, cost, and security requirements.
+      </>
     ),
   },
   {
     question: "6. What is a VPN, and how does it support remote work?",
     answer: (
       <>
-        A VPN (Virtual Private Network) allows employees to securely access company systems from anywhere. SysCare’s VPN & Remote Access solutions use encryption and multi-factor authentication to protect data while enabling remote and hybrid teams to work productively.      </>
+        A VPN (Virtual Private Network) allows employees to securely access company systems from anywhere. SysCare's VPN & Remote Access solutions use encryption and multi-factor authentication to protect data while enabling remote and hybrid teams to work productively.
+      </>
     ),
   },
 ];
@@ -60,45 +66,39 @@ const ConnectivityPage = () => {
   const services = [
     {
       title: "Business Internet",
-      icon: <FiCloud className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions delivers unparalleled Business Internet solutions tailored to elevate your enterprise connectivity. With our robust infrastructure and cutting-edge technology, we ensure seamless, high-speed internet access for your business operations. Experience reliable connectivity, optimal performance, and dedicated support, designed to meet the unique demands of your enterprise. Trust SysCare for a secure and efficient Business Internet experience, enabling you to stay ahead in the digital landscape. Elevate your connectivity standards with SysCare IT Solutions – Your Partner in Business Excellence. ",
+      icon: <FiWifi className="text-[#245684] text-2xl" />,
+      content: "Elevate your business with high-speed, reliable internet connectivity designed for enterprise needs. Our business internet solutions provide guaranteed uptime, faster speeds, and dedicated support to keep your operations running smoothly. With service level agreements and 24/7 monitoring, we ensure your business stays connected and productive.",
       image: "/images/Business-Internet.png"
     },
     {
       title: "Private WAN/MPLS",
-      icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions provides cutting-edge Private WAN/MPLS services, ensuring secure and efficient connectivity for your business. Our tailored solutions guarantee seamless communication across multiple locations, maintaining privacy and reliability. With state-of-the-art technology and a commitment to excellence, SysCare optimizes your network infrastructure, enhancing performance and minimizing latency. Experience the power of a dedicated Private WAN/MPLS network tailored to meet your unique business requirements. Trust SysCare for robust, secure, and high-performance networking solutions that propel your business forward. ",
+      icon: <FiGlobe className="text-[#245684] text-2xl" />,
+      content: "Connect your business locations securely with our Private WAN/MPLS solutions. This dedicated network infrastructure ensures reliable, high-performance connectivity between multiple sites with enhanced security and quality of service. Ideal for organizations requiring consistent performance and secure data transfer across different locations.",
       image: "/images/Private-WANMPLS.png"
     },
     {
       title: "SDWAN",
       icon: <FiCpu className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions excels in delivering cutting-edge services, including our premier SD-WAN solution. Our Software-Defined Wide Area Network (SD-WAN) service optimizes network performance, ensuring seamless connectivity and enhanced agility for your business. Experience a secure and efficient network environment, as SysCare leverages advanced technology to intelligently manage and prioritize data traffic. Benefit from reduced costs, improved scalability, and increased flexibility with our SD-WAN solution. Trust SysCare for a sophisticated and reliable approach to network management, empowering your business with the connectivity it needs to thrive in today's dynamic digital landscape. ",
+      content: "Optimize your network performance with Software-Defined Wide Area Networking. Our SD-WAN solutions intelligently manage multiple internet connections, automatically routing traffic for maximum efficiency, reliability, and cost savings. Enhance application performance, improve security, and gain centralized control over your network infrastructure.",
       image: "/images/SDWAN.png"
     },
     {
       title: "VPN & Remote Access",
-      icon: <FiCode className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions provides secure and seamless VPN & Remote Access services, ensuring your team stays connected and productive from any location. Our robust solutions prioritize confidentiality and integrity, employing advanced encryption protocols for airtight data protection. With a user-friendly interface, accessing critical resources becomes effortless, fostering a flexible work environment. SysCare's VPN & Remote Access services are tailored to meet the demands of modern businesses, offering reliability and peace of mind in an increasingly mobile work landscape. Elevate your connectivity experience with SysCare – your trusted partner in cutting-edge IT solutions. ",
+      icon: <FiShield className="text-[#245684] text-2xl" />,
+      content: "Enable secure remote work with our comprehensive VPN and Remote Access solutions. Protect your business data with encrypted connections, multi-factor authentication, and secure access to company resources from anywhere. Support your hybrid and remote teams with reliable, secure connectivity that maintains productivity without compromising security.",
       image: "/images/VPN-Remote-Access.png"
     },
-    
   ];
 
   useEffect(() => {
-    // Check if window is defined (to avoid SSR issues)
     if (typeof window !== 'undefined') {
       const checkIsMobile = () => {
-        setIsMobile(window.innerWidth < 1024); // lg breakpoint
+        setIsMobile(window.innerWidth < 1024);
       };
       
-      // Initial check
       checkIsMobile();
-      
-      // Add event listener
       window.addEventListener('resize', checkIsMobile);
       
-      // Clean up
       return () => window.removeEventListener('resize', checkIsMobile);
     }
   }, []);
@@ -165,7 +165,7 @@ const ConnectivityPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-// Split FAQs for two columns
+  // Split FAQs for two columns
   const faqsLeft = FAQS.slice(0, 3);
   const faqsRight = FAQS.slice(3, 6);
 
@@ -193,8 +193,6 @@ const ConnectivityPage = () => {
             <div className="absolute top-1/3 right-1/4 w-80 h-80 rounded-full bg-[#a3d4ff] mix-blend-screen filter blur-3xl animate-rotate"></div>
             <div className="absolute bottom-1/4 right-1/3 w-72 h-72 rounded-full bg-[#a3d4ff] mix-blend-screen filter blur-3xl animate-float-slow"></div>
           </div>
-         
-          
         </div>
        
         {/* Content with parallax effect */}
@@ -210,21 +208,21 @@ const ConnectivityPage = () => {
          
           <div className="overflow-hidden">
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate-slide-in-up opacity-0">
-              Comprehensive IT solutions to drive your business forward
+              Comprehensive connectivity solutions to drive your business forward
             </p>
           </div>
          
           {/* Animated CTA button */}
           <div className="mt-12 animate-bounce-slow">
-  <a href="/syscare-services" className="inline-block"> {/* Or external URL like "https://example.com/services" */}
-    <button className="bg-[#a3d4ff] text-[#103d5d] px-8 py-4 rounded-full font-bold hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto">
-      Explore Our Services
-      <svg className="w-5 h-5 ml-2 animate-bounce-horizontal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-      </svg>
-    </button>
-  </a>
-</div>
+            <a href="/syscare-services" className="inline-block">
+              <button className="bg-[#a3d4ff] text-[#103d5d] px-8 py-4 rounded-full font-bold hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto">
+                Explore Our Services
+                <svg className="w-5 h-5 ml-2 animate-bounce-horizontal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </button>
+            </a>
+          </div>
          
           {/* Scroll indicator */}
           <div className="mt-16 animate-bounce">
@@ -236,7 +234,7 @@ const ConnectivityPage = () => {
         </div>
       </header>
 
-      {/* Private Cloud Focus Section */}
+      {/* Connectivity Focus Section */}
       <section 
         className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
         ref={sectionRefs[1]}
@@ -251,16 +249,16 @@ const ConnectivityPage = () => {
             }}
           >
             <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Connectivity Solutions </h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Connectivity Solutions</h2>
               <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
-                In today’s digital world, seamless connectivity is the backbone of every successful business. Whether you’re running a small office, a large enterprise, or managing multiple branches across Australia, reliable internet connectivity is critical for productivity, collaboration, and growth. At SysCare IT Solutions Pty Ltd, we deliver secure, scalable, and high-performance connectivity solutions tailored to your unique business needs.
+                In today's digital world, seamless connectivity is the backbone of every successful business. Whether you're running a small office, a large enterprise, or managing multiple branches across Australia, reliable internet connectivity is critical for productivity, collaboration, and growth. At SysCare IT Solutions Pty Ltd, we deliver secure, scalable, and high-performance connectivity solutions tailored to your unique business needs.
               </p>
               <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
                 From high-speed business internet to advanced networking options like Private WAN/MPLS, SD-WAN, and VPN & Remote Access, SysCare ensures your teams stay connected anytime, anywhere. With our expertise, you gain more than just internet – you gain resilient, future-proof connectivity designed to support your operations without interruption.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
-                Request Private Cloud Demo
-                <FiChevronRight className="inline ml-3 transition-transform duration-300 group-hover:translateX-2" />
+                Request Connectivity Demo
+                <FiChevronRight className="inline ml-3 transition-transform duration-300 group-hover:translate-x-1" />
               </button>
             </div>
             <div 
@@ -275,7 +273,7 @@ const ConnectivityPage = () => {
                 <img 
                   src={SysCarePrivateCloud}
                   className="w-full h-auto rounded-lg transition-transform duration-500 hover:scale-[1.02]"
-                  alt="SysCare Private Cloud Infrastructure"
+                  alt="SysCare Connectivity Infrastructure"
                 />
               </div>
             </div>
@@ -408,8 +406,8 @@ const ConnectivityPage = () => {
                   <h3 className="text-2xl md:text-3xl font-bold text-[#103d5d] mt-2">{services[activeTab].title}</h3>
                 </div>
 
-                {/* Service Graphic - Now positioned under title but above description */}
-                <div className="mb-8  p-4   flex justify-center">
+                {/* Service Graphic */}
+                <div className="mb-8 p-4 flex justify-center">
                   <img 
                     src={services[activeTab].image}
                     alt={`${services[activeTab].title} infrastructure`}
@@ -430,7 +428,7 @@ const ConnectivityPage = () => {
         <div className="container mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Partner with SysCare IT Solutions today</h2>
           <p className="text-xl md:text-2xl text-[#c9d8eb] mb-10 max-w-3xl mx-auto">
-            streamline your IT, strengthen your security, and scale your business with expert-managed services.
+            Streamline your IT, strengthen your security, and scale your business with expert-managed services.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
             <a href="/contact-Us" className="inline-block"> 
@@ -447,114 +445,102 @@ const ConnectivityPage = () => {
         </div>
       </section>
 
-{/* FAQ Section */}
-            <section
-              className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
-              ref={sectionRefs[3]}
-            >
-              <div className="container mx-auto">
-                <h2
-                  className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-16 text-center"
-                  style={{
-                    opacity: isVisible[3] ? 1 : 0,
-                    transform: isVisible[3] ? 'translateY(0)' : 'translateY(20px)',
-                    transition: 'opacity 0.6s ease, transform 0.6s ease'
-                  }}
-                >
-                  Frequently Asked Questions
-                </h2>
-                <div className="max-w-5xl mx-auto">
-                  {/* Responsive: Stack on mobile, 2 cols on md+ */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {[faqsLeft, faqsRight].map((faqCol, colIdx) => (
-                      <div key={colIdx} className="space-y-6">
-                        {faqCol.map((faq, idx) => {
-                          const qIdx = colIdx * 3 + idx + 1;
-                          return (
-                            <div
-                              className={`rounded-xl border bg-white border-[#e1e9f2] shadow transition-all duration-500 group
-                                ${activeFaq === qIdx ? 'ring-2 ring-[#245684] ring-opacity-40 scale-[1.02] shadow-xl' : ''}
+      {/* FAQ Section */}
+      <section
+        className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
+        ref={sectionRefs[3]}
+      >
+        <div className="container mx-auto">
+          <h2
+            className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-16 text-center"
+            style={{
+              opacity: isVisible[3] ? 1 : 0,
+              transform: isVisible[3] ? 'translateY(0)' : 'translateY(20px)',
+              transition: 'opacity 0.6s ease, transform 0.6s ease'
+            }}
+          >
+            Frequently Asked Questions
+          </h2>
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {[faqsLeft, faqsRight].map((faqCol, colIdx) => (
+                <div key={colIdx} className="space-y-6">
+                  {faqCol.map((faq, idx) => {
+                    const qIdx = colIdx * 3 + idx + 1;
+                    return (
+                      <div
+                        className={`rounded-xl border bg-white border-[#e1e9f2] shadow transition-all duration-500 group
+                          ${activeFaq === qIdx ? 'ring-2 ring-[#245684] ring-opacity-40 scale-[1.02] shadow-xl' : ''}
+                        `}
+                        key={qIdx}
+                        style={{
+                          opacity: isVisible[3] ? 1 : 0,
+                          transform: isVisible[3]
+                            ? 'scale(1)'
+                            : 'scale(0.95)',
+                          transition: `opacity 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1), transform 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1)`
+                        }}
+                      >
+                        <button
+                          onClick={() => setActiveFaq(activeFaq === qIdx ? null : qIdx)}
+                          className={`w-full flex justify-between items-center text-left p-6 rounded-xl transition-all duration-300
+                            ${activeFaq === qIdx
+                              ? 'bg-gradient-to-r from-[#103d5d] to-[#245684] text-white shadow'
+                              : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
+                            }
+                          `}
+                        >
+                          <h3 className="text-xl font-semibold flex items-center gap-2">
+                            <span
+                              className={`inline-block w-3 h-3 rounded-full mr-2 transition-all duration-300
+                                ${activeFaq === qIdx ? 'bg-[#a3d4ff] scale-110 shadow-lg' : 'bg-[#245684] scale-90'}
                               `}
-                              key={qIdx}
-                              style={{
-                                opacity: isVisible[3] ? 1 : 0,
-                                transform: isVisible[3]
-                                  ? 'scale(1)'
-                                  : 'scale(0.95)',
-                                transition: `opacity 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1), transform 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1)`
-                              }}
-                            >
-                              <button
-                                onClick={() => setActiveFaq(activeFaq === qIdx ? null : qIdx)}
-                                className={`w-full flex justify-between items-center text-left p-6 rounded-xl transition-all duration-300
-                                  ${activeFaq === qIdx
-                                    ? 'bg-gradient-to-r from-[#103d5d] to-[#245684] text-white shadow'
-                                    : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
-                                  }
-                                `}
-                              >
-                                <h3 className="text-xl font-semibold flex items-center gap-2">
-                                  <span
-                                    className={`inline-block w-3 h-3 rounded-full mr-2 transition-all duration-300
-                                      ${activeFaq === qIdx ? 'bg-[#a3d4ff] scale-110 shadow-lg' : 'bg-[#245684] scale-90'}
-                                    `}
-                                  ></span>
-                                  {faq.question}
-                                </h3>
-                                <FiChevronRight
-                                  className={`text-2xl transition-transform duration-300
-                                    ${activeFaq === qIdx ? 'rotate-90 text-[#a3d4ff]' : ''}
-                                  `}
-                                />
-                              </button>
-                              <div
-                                className={`faq-answer transition-all duration-500 overflow-hidden
-                                  ${activeFaq === qIdx ? 'max-h-[500px] opacity-100 py-4 px-6' : 'max-h-0 opacity-0 py-0 px-6'}
-                                `}
-                                style={{
-                                  background: activeFaq === qIdx
-                                    ? 'linear-gradient(90deg, #f5f9fd 65%, #a3d4ff1a 100%)'
-                                    : undefined
-                                }}
-                              >
-                                {activeFaq === qIdx && (
-                                  <p className="text-[#5c6f87] text-lg leading-relaxed animate-fadein">
-                                    {faq.answer}
-                                  </p>
-                                )}
-                              </div>
-                            </div>
-                          );
-                        })}
+                            ></span>
+                            {faq.question}
+                          </h3>
+                          <FiChevronRight
+                            className={`text-2xl transition-transform duration-300
+                              ${activeFaq === qIdx ? 'rotate-90 text-[#a3d4ff]' : ''}
+                            `}
+                          />
+                        </button>
+                        <div
+                          className={`faq-answer transition-all duration-500 overflow-hidden
+                            ${activeFaq === qIdx ? 'max-h-[500px] opacity-100 py-4 px-6' : 'max-h-0 opacity-0 py-0 px-6'}
+                          `}
+                          style={{
+                            background: activeFaq === qIdx
+                              ? 'linear-gradient(90deg, #f5f9fd 65%, #a3d4ff1a 100%)'
+                              : undefined
+                          }}
+                        >
+                          {activeFaq === qIdx && (
+                            <p className="text-[#5c6f87] text-lg leading-relaxed animate-fadein">
+                              {faq.answer}
+                            </p>
+                          )}
+                        </div>
                       </div>
-                    ))}
-                  </div>
-                  {/* Additional Support CTA */}
-                  <div className="mt-16 text-center">
-                    <p className="text-xl text-[#4a5d72] mb-8">
-                      Still have questions? Our team is ready to help.
-                    </p>
-                    <a href="/contact-Us" className="inline-block">
-                      <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg">
-                        Contact Our Support Team
-                      </button>
-                    </a>
-                  </div>
+                    );
+                  })}
                 </div>
-              </div>
-              {/* Animations for FAQ */}
-              <style jsx>{`
-                @keyframes fadein {
-                  from { opacity: 0; transform: translateY(16px);}
-                  to { opacity: 1; transform: translateY(0);}
-                }
-                .animate-fadein {
-                  animation: fadein 0.6s cubic-bezier(.4,0,.2,1);
-                }
-              `}</style>
-            </section>
+              ))}
+            </div>
+            <div className="mt-16 text-center">
+              <p className="text-xl text-[#4a5d72] mb-8">
+                Still have questions? Our team is ready to help.
+              </p>
+              <a href="/contact-Us" className="inline-block">
+                <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg">
+                  Contact Our Support Team
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<Footer/>
+      <Footer/>
 
       {/* Add CSS animations */}
       <style jsx>{`
@@ -573,10 +559,6 @@ const ConnectivityPage = () => {
         @keyframes rotate {
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
-        }
-        @keyframes grid-move {
-          0% { background-position: 0 0; }
-          100% { background-position: 50px 50px; }
         }
         @keyframes typewriter {
           from { width: 0; }
@@ -604,6 +586,10 @@ const ConnectivityPage = () => {
           0% { transform: translateY(0); opacity: 1; }
           100% { transform: translateY(26px); opacity: 0; }
         }
+        @keyframes fadein {
+          from { opacity: 0; transform: translateY(16px);}
+          to { opacity: 1; transform: translateY(0);}
+        }
         .animate-float {
           animation: float 6s ease-in-out infinite;
         }
@@ -615,9 +601,6 @@ const ConnectivityPage = () => {
         }
         .animate-rotate {
           animation: rotate 20s linear infinite;
-        }
-        .animate-grid-move {
-          animation: grid-move 20s linear infinite;
         }
         .animate-typewriter {
           animation: typewriter 2s steps(40) 1s both;
@@ -634,9 +617,8 @@ const ConnectivityPage = () => {
         .animate-scroll-indicator {
           animation: scroll-indicator 2s infinite;
         }
-        .bg-grid-white {
-          background-image: linear-gradient(to right, white 1px, transparent 1px),
-                            linear-gradient(to bottom, white 1px, transparent 1px);
+        .animate-fadein {
+          animation: fadein 0.6s cubic-bezier(.4,0,.2,1);
         }
       `}</style>
     </div>

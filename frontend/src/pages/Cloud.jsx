@@ -1,14 +1,58 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SysCarePrivateCloud from '../assets/website-images/Cloud.png';
-import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight, FiChevronDown, FiX } from 'react-icons/fi';
+import { 
+  FiBook, FiAward, FiTrendingUp, FiChevronRight, FiChevronDown, FiX 
+} from 'react-icons/fi';
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
 
-;
+const FAQS = [
+  {
+    question: "1. What is a CRM and why is it important for small businesses?",
+    answer: (
+      <>
+        A CRM (Customer Relationship Management) system helps small businesses manage customer interactions, track sales pipelines, and improve customer service. It ensures you never miss a lead, builds stronger relationships, and drives revenue growth.</>
+    ),
+  },
+  {
+    question: "2. What is an ERP and how does it benefit small businesses?",
+    answer: (
+      <>
+        An ERP (Enterprise Resource Planning) system integrates finance, operations, inventory, HR, and supply chain into one platform. For small businesses, it reduces manual work, provides real-time insights, and ensures smoother day-to-day operations.</>
+    ),
+  },
+  {
+    question: "3. Is CRM and ERP software expensive for small businesses?",
+    answer: (
+      <>
+          Not necessarily. Many small business CRM and ERP solutions like ZOHO are very cost-effective, while advanced options like SAP or Microsoft are scalable investments. SysCare tailors solutions to match your budget.</>
+    ),
+  },
+  {
+    question: "4. Do I need IT staff to manage CRM or ERP systems?",
+    answer: (
+      <>
+        No. Most modern CRM and ERP solutions are cloud-based and user-friendly. SysCare provides training and ongoing support so your staff can easily use the system without needing a dedicated IT team.</>
+    ),
+  },
+  {
+    question: "5. How do I choose between SAP Business One, Microsoft Business Central, and ZOHO?",
+    answer: (
+      <>
+       Each has strengths: SAP Business One is ideal for scaling businesses, Microsoft Business Central integrates seamlessly with Microsoft 365, and ZOHO is perfect for affordability and simplicity. SysCare helps you select the right fit based on your goals.</>
+    ),
+  },
+  {
+    question: "6. Can CRM and ERP work together for small businesses?",
+    answer: (
+      <>
+        Yes. CRM and ERP can be integrated to give small businesses a 360-degree view of operations and customers. This ensures smooth data flow between sales, finance, inventory, and customer service.</>
+    ),
+  },
+];
 
 const CloudPage = () => {
   const [activeTab, setActiveTab] = useState(0);
-  
   const [isVisible, setIsVisible] = useState([false, false, false, false]);
   const [isMobile, setIsMobile] = useState(false);
   const [showCoursesModal, setShowCoursesModal] = useState(false);
@@ -17,22 +61,22 @@ const CloudPage = () => {
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const headerRef = useRef(null);
   const modalRef = useRef(null);
- 
+  const [activeFaq, setActiveFaq] = useState(null);
 
   const services = [
     {
       title: "Microsoft Azure Training",
-      icon: <FiCloud className="text-[#245684] text-2xl" />,
+      icon: <FiAward className="text-[#245684] text-2xl" />,
       content: "Microsoft Azure is one of the most widely adopted cloud platforms in the world. SysCare delivers structured learning pathways to help professionals validate their skills through globally recognized certifications.",
       image: "/images/Microsoft-Azure.png",
       courses: [
         {
           name: "Microsoft Azure Fundamentals (AZ-900)",
-          description: " A beginner-friendly course designed for individuals new to cloud computing. Learn the basics of cloud concepts, Azure services, pricing, and support models. Perfect for business professionals and IT staff starting their cloud journey."
+          description: "A beginner-friendly course designed for individuals new to cloud computing. Learn the basics of cloud concepts, Azure services, pricing, and support models. Perfect for business professionals and IT staff starting their cloud journey."
         },
         {
           name: "Microsoft Azure Administrator (AZ-104)",
-          description: " This intermediate-level certification focuses on managing Azure subscriptions, implementing storage solutions, securing identities, and monitoring cloud resources. Ideal for IT administrators responsible for day-to-day Azure operations."
+          description: "This intermediate-level certification focuses on managing Azure subscriptions, implementing storage solutions, securing identities, and monitoring cloud resources. Ideal for IT administrators responsible for day-to-day Azure operations."
         },
         {
           name: "Azure Solutions Architect Expert (AZ-305)",
@@ -40,51 +84,31 @@ const CloudPage = () => {
         },
         {
           name: "Microsoft Azure Security Technologies (AZ-500)",
-          description: " Specialize in securing Azure cloud environments by implementing security controls, managing identities, and protecting workloads. A must-have certification for cloud security professionals."
+          description: "Specialize in securing Azure cloud environments by implementing security controls, managing identities, and protecting workloads. A must-have certification for cloud security professionals."
         }
       ]
     },
     {
       title: "AWS Training",
-      icon: <FiServer className="text-[#245684] text-2xl" />,
-      content: "Amazon Web Services (AWS) remains the market leader in global cloud adoption. SysCare’s AWS training helps participants build strong foundations and progress toward advanced cloud expertise.",
+      icon: <FiTrendingUp className="text-[#245684] text-2xl" />,
+      content: "Amazon Web Services (AWS) remains the market leader in global cloud adoption. SysCare's AWS training helps participants build strong foundations and progress toward advanced cloud expertise.",
       image: "/images/AWS.png",
       courses: [
         {
           name: "AWS Certified Cloud Practitioner (CLF-C02)",
           description: "An entry-level certification that introduces cloud concepts, AWS services, pricing, and shared responsibility models. Ideal for beginners or business leaders seeking foundational AWS knowledge without technical prerequisites."
-        },
-        {
-          name: "AWS Certified Solutions Architect – Associate (SAA-C03) ",
-          description: "Validates your ability to design secure, cost-optimized, and scalable cloud solutions. Covers core AWS services like compute, networking, storage, and databases. Ideal for those in solution design or pre-sales roles. Prepares you to recommend best-fit architectures based on business needs. "
-        },
-        {
-          name: "AWS Certified Solutions Architect – Professional (SAP-C02) ",
-          description: "An advanced-level certification focusing on designing complex, enterprise-scale architectures. Includes hybrid and multi-account setups, governance, migration strategies, and automation. Suited for experienced architects leading cloud adoption in organizations. Requires deep hands-on expertise in AWS services. "
-        },
-        {
-          name: "AWS Certified Security – Specialty ",
-          description: "Specialized certification for professionals managing security in AWS environments. Covers data protection, identity and access management (IAM), incident response, and compliance. Ideal for security engineers, architects, or compliance specialists. Proves your ability to secure workloads in line with AWS best practices. "
         }
       ]
     },
     {
       title: "Google Cloud Training",
-      icon: <FiCpu className="text-[#245684] text-2xl" />,
+      icon: <FiBook className="text-[#245684] text-2xl" />,
       content: "Google Cloud is rapidly gaining popularity among businesses for its AI-driven and scalable infrastructure. SysCare provides Google-aligned certification training to equip professionals for the future.",
       image: "/images/Google.png",
       courses: [
         {
           name: "Google Cloud Digital Leader",
-          description: " A beginner-level certification designed to help professionals understand cloud concepts, digital transformation strategies, and Google Cloud’s core products. This course is suitable for business leaders and IT professionals looking to align technology with business goals."
-        },
-        {
-          name: "Associate Cloud Engineer ",
-          description: " Focuses on deploying, managing, and operating applications on Google Cloud. Covers configuring cloud solutions, monitoring operations, and maintaining projects. Best suited for hands-on administrators or those starting technical roles in GCP. Prepares you for real-world tasks like setting up VMs, networking, and IAM. "
-        },
-        {
-          name: "Professional Cloud Architect",
-          description: "Validates advanced expertise in designing, building, and managing secure and scalable solutions on Google Cloud. Covers architecture frameworks, cloud security, compliance, and solution performance. Geared towards professionals who align business goals with cloud solutions. Demonstrates your ability to lead enterprise-level cloud transformations. "
+          description: "A beginner-level certification designed to help professionals understand cloud concepts, digital transformation strategies, and Google Cloud's core products. This course is suitable for business leaders and IT professionals looking to align technology with business goals."
         }
       ]
     },
@@ -114,7 +138,7 @@ const CloudPage = () => {
 
     if (showCoursesModal) {
       document.addEventListener('mousedown', handleClickOutside);
-      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+      document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
@@ -142,21 +166,15 @@ const CloudPage = () => {
     };
   }, [showCoursesModal]);
 
-  
   useEffect(() => {
-    // Check if window is defined (to avoid SSR issues)
     if (typeof window !== 'undefined') {
       const checkIsMobile = () => {
-        setIsMobile(window.innerWidth < 1024); // lg breakpoint
+        setIsMobile(window.innerWidth < 1024);
       };
       
-      // Initial check
       checkIsMobile();
-      
-      // Add event listener
       window.addEventListener('resize', checkIsMobile);
       
-      // Clean up
       return () => window.removeEventListener('resize', checkIsMobile);
     }
   }, []);
@@ -223,7 +241,9 @@ const CloudPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-
+  // Split FAQs for two columns
+  const faqsLeft = FAQS.slice(0, 3);
+  const faqsRight = FAQS.slice(3, 6);
 
   return (
     <div className="min-h-screen bg-white">
@@ -307,13 +327,14 @@ const CloudPage = () => {
             <div className="lg:w-1/2">
               <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">IT Cloud Courses Australia – SysCare IT Solutions</h2>
               <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
-                Cloud computing has become the foundation of modern IT, powering digital transformation for businesses worldwide. As demand for cloud expertise grows, professionals need the right training and certifications to stay ahead in the competitive job market. SysCare IT Solutions Pty Ltd offers industry-leading IT cloud training in Australia, helping individuals and businesses master Microsoft Azure, AWS, and Google Cloud platforms.              </p>
+                Cloud computing has become the foundation of modern IT, powering digital transformation for businesses worldwide. As demand for cloud expertise grows, professionals need the right training and certifications to stay ahead in the competitive job market. SysCare IT Solutions Pty Ltd offers industry-leading IT cloud training in Australia, helping individuals and businesses master Microsoft Azure, AWS, and Google Cloud platforms.
+              </p>
               <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
-                Our programs combine expert instruction, hands-on labs, and real-world case studies to ensure you gain the practical skills needed to design, deploy, and manage cloud infrastructure with confidence. Whether you’re a beginner or an experienced IT professional, SysCare provides tailored IT cloud courses in Australia that align with your career goals.
+                Our programs combine expert instruction, hands-on labs, and real-world case studies to ensure you gain the practical skills needed to design, deploy, and manage cloud infrastructure with confidence. Whether you're a beginner or an experienced IT professional, SysCare provides tailored IT cloud courses in Australia that align with your career goals.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
                 Request Private Cloud Demo
-                <FiChevronRight className="inline ml-3 transition-transform duration-300 group-hover:translateX-2" />
+                <FiChevronRight className="inline ml-3 transition-transform duration-300 group-hover:translate-x-1" />
               </button>
             </div>
             <div 
@@ -400,7 +421,7 @@ const CloudPage = () => {
                       </div>
                       <p className="text-[#5c6f87] text-lg mb-6 leading-relaxed">{service.content}</p>
                       
-                      {/* Courses Section for Mobile - Updated to open modal */}
+                      {/* Courses Section for Mobile */}
                       <div className="mt-8">
                         <button
                           onClick={() => openCoursesModal(index)}
@@ -488,7 +509,7 @@ const CloudPage = () => {
 
                 <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed">{services[activeTab].content}</p>
 
-                {/* Courses Button - Updated to open modal */}
+                {/* Courses Button */}
                 <button
                   onClick={() => openCoursesModal(activeTab)}
                   className="flex items-center mb-8 text-white bg-[#103d5d] hover:bg-[#0a2a42] transition-colors duration-300 px-6 py-3 rounded-lg font-medium shadow-md hover:shadow-lg"
@@ -550,7 +571,17 @@ const CloudPage = () => {
               </div>
             </div>
 
-            
+            {/* Modal Footer */}
+            <div className="border-t border-[#e1e9f2] p-6 bg-[#f9fbfe]">
+              <div className="flex justify-end">
+                <button
+                  onClick={closeCoursesModal}
+                  className="bg-[#103d5d] hover:bg-[#0a2a42] text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 shadow-md hover:shadow-lg"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -558,7 +589,7 @@ const CloudPage = () => {
       {/* CTA Section */}
       <section className="py-24 bg-[#000000] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Partner with SysCare IT Solutions today </h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Partner with SysCare IT Solutions today</h2>
           <p className="text-xl md:text-2xl text-[#c9d8eb] mb-10 max-w-3xl mx-auto">
             streamline your IT, strengthen your security, and scale your business with expert-managed services
           </p>
@@ -577,7 +608,101 @@ const CloudPage = () => {
         </div>
       </section>
       
-
+      {/* FAQ Section */}
+      <section
+        className="py-24 bg-[#f5f9fd] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32"
+        ref={sectionRefs[3]}
+      >
+        <div className="container mx-auto">
+          <h2
+            className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-16 text-center"
+            style={{
+              opacity: isVisible[3] ? 1 : 0,
+              transform: isVisible[3] ? 'translateY(0)' : 'translateY(20px)',
+              transition: 'opacity 0.6s ease, transform 0.6s ease'
+            }}
+          >
+            Frequently Asked Questions
+          </h2>
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {[faqsLeft, faqsRight].map((faqCol, colIdx) => (
+                <div key={colIdx} className="space-y-6">
+                  {faqCol.map((faq, idx) => {
+                    const qIdx = colIdx * 3 + idx + 1;
+                    return (
+                      <div
+                        className={`rounded-xl border bg-white border-[#e1e9f2] shadow transition-all duration-500 group
+                          ${activeFaq === qIdx ? 'ring-2 ring-[#245684] ring-opacity-40 scale-[1.02] shadow-xl' : ''}
+                        `}
+                        key={qIdx}
+                        style={{
+                          opacity: isVisible[3] ? 1 : 0,
+                          transform: isVisible[3]
+                            ? 'scale(1)'
+                            : 'scale(0.95)',
+                          transition: `opacity 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1), transform 0.7s ${0.15 * qIdx}s cubic-bezier(.4,0,.2,1)`
+                        }}
+                      >
+                        <button
+                          onClick={() => setActiveFaq(activeFaq === qIdx ? null : qIdx)}
+                          className={`w-full flex justify-between items-center text-left p-6 rounded-xl transition-all duration-300
+                            ${activeFaq === qIdx
+                              ? 'bg-gradient-to-r from-[#103d5d] to-[#245684] text-white shadow'
+                              : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
+                            }
+                          `}
+                        >
+                          <h3 className="text-xl font-semibold flex items-center gap-2">
+                            <span
+                              className={`inline-block w-3 h-3 rounded-full mr-2 transition-all duration-300
+                                ${activeFaq === qIdx ? 'bg-[#a3d4ff] scale-110 shadow-lg' : 'bg-[#245684] scale-90'}
+                              `}
+                            ></span>
+                            {faq.question}
+                          </h3>
+                          <FiChevronRight
+                            className={`text-2xl transition-transform duration-300
+                              ${activeFaq === qIdx ? 'rotate-90 text-[#a3d4ff]' : ''}
+                            `}
+                          />
+                        </button>
+                        <div
+                          className={`faq-answer transition-all duration-500 overflow-hidden
+                            ${activeFaq === qIdx ? 'max-h-[500px] opacity-100 py-4 px-6' : 'max-h-0 opacity-0 py-0 px-6'}
+                          `}
+                          style={{
+                            background: activeFaq === qIdx
+                              ? 'linear-gradient(90deg, #f5f9fd 65%, #a3d4ff1a 100%)'
+                              : undefined
+                          }}
+                        >
+                          {activeFaq === qIdx && (
+                            <p className="text-[#5c6f87] text-lg leading-relaxed animate-fadein">
+                              {faq.answer}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
+            {/* Additional Support CTA */}
+            <div className="mt-16 text-center">
+              <p className="text-xl text-[#4a5d72] mb-8">
+                Still have questions? Our team is ready to help.
+              </p>
+              <a href="/contact-Us" className="inline-block">
+                <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg">
+                  Contact Our Support Team
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <Footer/>
 
@@ -598,10 +723,6 @@ const CloudPage = () => {
         @keyframes rotate {
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
-        }
-        @keyframes grid-move {
-          0% { background-position: 0 0; }
-          100% { background-position: 50px 50px; }
         }
         @keyframes typewriter {
           from { width: 0; }
@@ -639,6 +760,10 @@ const CloudPage = () => {
             transform: scale(1);
           }
         }
+        @keyframes fadein {
+          from { opacity: 0; transform: translateY(16px);}
+          to { opacity: 1; transform: translateY(0);}
+        }
         .animate-float {
           animation: float 6s ease-in-out infinite;
         }
@@ -650,9 +775,6 @@ const CloudPage = () => {
         }
         .animate-rotate {
           animation: rotate 20s linear infinite;
-        }
-        .animate-grid-move {
-          animation: grid-move 20s linear infinite;
         }
         .animate-typewriter {
           animation: typewriter 2s steps(40) 1s both;
@@ -672,9 +794,8 @@ const CloudPage = () => {
         .animate-modal-in {
           animation: modal-in 0.3s ease-out forwards;
         }
-        .bg-grid-white {
-          background-image: linear-gradient(to right, white 1px, transparent 1px),
-                            linear-gradient(to bottom, white 1px, transparent 1px);
+        .animate-fadein {
+          animation: fadein 0.6s cubic-bezier(.4,0,.2,1);
         }
       `}</style>
     </div>
