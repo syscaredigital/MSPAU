@@ -211,7 +211,7 @@ const DevelopmentAutomationPage = () => {
         >
           <div className="mb-8 inline-block overflow-hidden">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-typewriter whitespace-nowrap overflow-hidden border-r-4 border-r-white">
-              IT <span className="text-[#a3d4ff]">Infra Project</span>
+              Office <span className="text-[#a3d4ff]">IT Automation</span>
             </h1>
           </div>
          
