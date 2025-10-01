@@ -48,7 +48,7 @@ const Footer = () => {
             <h3 className="font-bold text-lg mb-6 text-white">Quick Links</h3>
             <div className="space-y-4">
               {[
-                { to: "/home", label: "Home" },
+                { to: "/", label: "Home" },
                 { to: "/about-us", label: "About Us" },
                 { to: "/syscare-services", label: "Services" },
                 { to: "/contact-Us", label: "Contact Us" },

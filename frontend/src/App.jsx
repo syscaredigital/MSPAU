@@ -30,7 +30,6 @@ function App() {
           <BrowserRouter>
           <Routes>
             <Route index element = {<Home />} ></Route>
-            <Route path='/home'  element = {<Home />}></Route>
             <Route path='/about-us'  element = {<AboutUs />}></Route>
             <Route path='/syscare-services'  element = {<ServicesPage />}></Route>
             <Route path='/contact-Us'  element = {<ContactPage />}></Route>

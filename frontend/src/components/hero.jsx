@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FiGlobe, FiServer, FiCloud, FiShield, FiUserPlus, FiPackage, FiBook, FiSmartphone, FiMenu, FiX } from "react-icons/fi";
-
 
 const VideoHero = () => {
   const videoRef = useRef(null);
@@ -9,13 +8,14 @@ const VideoHero = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(150);
+  const [typingSpeed, setTypingSpeed] = useState(80); // Faster initial speed
   const [isMarqueePaused, setIsMarqueePaused] = useState(false);
   const [rotationAngle, setRotationAngle] = useState(0);
   const [circleSize, setCircleSize] = useState(calculateCircleSize());
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [videoSource, setVideoSource] = useState('');
+  const navigate = useNavigate();
 
   // Different video sources for different devices
   const videoSources = {
@@ -25,7 +25,7 @@ const VideoHero = () => {
   };
 
   const services = [
-      { name: "Cloud Solutions", link: "/services/cloud", icon: <FiCloud className="service-icon" /> },
+    { name: "Cloud Solutions", link: "/services/cloud", icon: <FiCloud className="service-icon" /> },
     { name: "IT Security", link: "/services/it-security", icon: <FiShield className="service-icon" /> },
     { name: "IT Support", link: "/services/it-support", icon: <FiUserPlus className="service-icon" /> },
     { name: "Projects & Automation", link: "/services/projects-automation", icon: <FiPackage className="service-icon" /> },
@@ -35,9 +35,8 @@ const VideoHero = () => {
     { name: "CRM & ERP Solutions", link: "/services/crm-erp", icon: <FiServer className="service-icon" /> }
   ];
 
-
-   const sub_service = [
-  { name: "Service Desk", link: "/Service-Desk", icon: <FiCloud className="service-icon" /> },
+  const sub_service = [
+    { name: "Service Desk", link: "/Service-Desk", icon: <FiCloud className="service-icon" /> },
     { name: "Managed IT", link: "/Managed-IT-Services", icon: <FiShield className="service-icon" /> },
     { name: "CyberSecurity Consultancy", link: "/CyberSecurityConsultancyServices", icon: <FiUserPlus className="service-icon" /> },
     { name: "Managed Security", link: "/ManagedSecurityServices", icon: <FiPackage className="service-icon" /> },
@@ -56,10 +55,10 @@ const VideoHero = () => {
   ];
 
   const typingTexts = [
-    "Transforming businesses with innovative technology",
-    "Driving growth through digital solutions",
-    "Securing your digital future",
-    "Optimizing operations with cutting-edge IT"
+    "Managed IT Services in Melbourne & Sydney",
+    "24/7 IT Support & Cybersecurity Solutions",
+    "Secure, Scalable & Reliable IT for Your Business",
+    "Trusted MSP & MSSP Partner in Australia"
   ];
 
   // Calculate circle size based on screen width
@@ -132,7 +131,7 @@ const VideoHero = () => {
     };
   }, [isMobile, videoSource]); // Added videoSource dependency
 
-  // Typing effect
+  // Typing effect - FASTER VERSION
   useEffect(() => {
     const handleTyping = () => {
       const currentText = typingTexts[currentTextIndex];
@@ -143,13 +142,15 @@ const VideoHero = () => {
       setCurrentWordIndex(updatedWord.length);
 
       if (!isDeleting && updatedWord === currentText) {
-        setTimeout(() => setIsDeleting(true), 1000);
+        // Shorter pause before starting to delete
+        setTimeout(() => setIsDeleting(true), 500); // Reduced from 1000ms to 500ms
       } else if (isDeleting && updatedWord === '') {
         setIsDeleting(false);
         setCurrentTextIndex((prev) => (prev + 1) % typingTexts.length);
-        setTypingSpeed(150);
+        setTypingSpeed(80); // Faster initial typing speed
       } else {
-        setTypingSpeed(isDeleting ? 50 : 150);
+        // Much faster typing and deleting speeds
+        setTypingSpeed(isDeleting ? 30 : 60); // Reduced from 50/150 to 30/60
       }
     };
 
@@ -159,7 +160,8 @@ const VideoHero = () => {
 
   const handleServiceClick = (serviceLink) => {
     console.log(`Navigating to: ${serviceLink}`);
-    // In a real app, you would use your routing mechanism here
+    // Use React Router's navigate function for proper routing
+    navigate(serviceLink);
   };
 
   const playVideoOnMobile = () => {
@@ -216,29 +218,29 @@ const VideoHero = () => {
         onMouseLeave={() => setIsMarqueePaused(false)}
       >
         <div className={`flex whitespace-nowrap ${isMarqueePaused ? '' : 'animate-marquee'}`}>
-          {sub_service.map((services, index) => (
+          {sub_service.map((service, index) => (
             <div
               key={index}
               className="inline-flex items-center mx-3 sm:mx-6 text-white cursor-pointer group"
-              onClick={() => handleServiceClick(services.link)}
+              onClick={() => handleServiceClick(service.link)}
             >
               <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full mr-2 group-hover:bg-[#245684] transition-colors"></span>
               <span className="font-medium text-xs sm:text-sm md:text-base group-hover:text-[#fff] transition-colors">
-                {services.name}
+                {service.name}
               </span>
             </div>
           ))}
 
           {/* Duplicate for seamless loop */}
-          {sub_service.map((services, index) => (
+          {sub_service.map((service, index) => (
             <div
               key={`dup-${index}`}
               className="inline-flex items-center mx-3 sm:mx-6 text-white cursor-pointer group"
-              onClick={() => handleServiceClick(services.link)}
+              onClick={() => handleServiceClick(service.link)}
             >
               <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full mr-2 group-hover:bg-[#245684] transition-colors"></span>
               <span className="font-medium text-xs sm:text-sm md:text-base group-hover:text-[#245684] transition-colors">
-                {services.name}
+                {service.name}
               </span>
             </div>
           ))}
