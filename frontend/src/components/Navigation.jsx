@@ -37,6 +37,7 @@ const Navigation = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [servicesHover, setServicesHover] = useState(false);
+  const [megaMenuHover, setMegaMenuHover] = useState(false);
 
   // Separate states for mobile dropdowns
   const [activeMobileMainCategory, setActiveMobileMainCategory] = useState(null);
@@ -164,7 +165,7 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`bg-[#103d5d] shadow-lg sticky top-0 z-50 transition-all duration-500 ${
+      className={`bg-gradient-to-r from-[#103d5d] to-[#1a4a6e] shadow-2xl sticky top-0 z-50 transition-all duration-500 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
       }`}
     >
@@ -177,7 +178,7 @@ const Navigation = () => {
               <img
                 src="/logos/White-Sys.svg"
                 alt="SysCare Logo"
-                className="hidden md:block h-20 w-auto object-contain"
+                className="hidden md:block h-20 w-auto object-contain transform hover:scale-105 transition-transform duration-300"
               />
               {/* Mobile Logo */}
               <img
@@ -192,26 +193,32 @@ const Navigation = () => {
           <div className="hidden md:flex items-center space-x-8">
             <Link
               to="/"
-              className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff]"
+              className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] hover:bg-white/10 rounded-lg"
             >
               Home
             </Link>
             <Link
               to="/about-us"
-              className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff]"
+              className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] hover:bg-white/10 rounded-lg"
             >
               About Us
             </Link>
 
-            {/* Services with Mega Menu */}
+            {/* Services with Enhanced Mega Menu */}
             <div
               className="relative h-full flex items-center"
-              onMouseEnter={() => setServicesHover(true)}
-              onMouseLeave={() => setServicesHover(false)}
+              onMouseEnter={() => {
+                setServicesHover(true);
+                setMegaMenuHover(true);
+              }}
+              onMouseLeave={() => {
+                setServicesHover(false);
+                setMegaMenuHover(false);
+              }}
             >
               <Link
                 to="/syscare-services"
-                className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] flex items-center h-full"
+                className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] flex items-center h-full hover:bg-white/10 rounded-lg"
               >
                 Services
                 <FiChevronDown
@@ -222,25 +229,43 @@ const Navigation = () => {
               </Link>
 
               {servicesHover && (
-                <div className="absolute left-1/2 transform -translate-x-1/2 top-full w-[900px] bg-white shadow-xl rounded-b-lg py-4 z-50">
-                  <div className="grid grid-cols-4 gap-6 px-6">
+                <div 
+                  className={`absolute left-1/2 transform -translate-x-1/2 top-full w-[900px] bg-gradient-to-br from-white to-gray-50 shadow-2xl rounded-2xl py-6 z-50 border border-gray-200 transition-all duration-300 ${
+                    megaMenuHover ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                  }`}
+                  onMouseEnter={() => setMegaMenuHover(true)}
+                  onMouseLeave={() => setMegaMenuHover(false)}
+                >
+                  {/* Mega Menu Header */}
+                  <div className="px-6 mb-4">
+                    <h3 className="text-lg font-bold text-[#103d5d]">Our Services</h3>
+                    <p className="text-sm text-gray-600 mt-1">Comprehensive IT solutions for your business</p>
+                  </div>
+                  
+                  <div className="grid grid-cols-4 gap-8 px-6">
                     {servicesColumns.map((column, colIdx) => (
                       <div key={colIdx} className="col-span-1">
                         {column.map((category, catIdx) => (
-                          <div key={catIdx} className="mb-6 last:mb-0">
-                            <h3 className="text-sm font-bold text-[#103d5d] mb-2">
-                              {category.name}
-                            </h3>
-                            <ul className="space-y-1">
+                          <div key={catIdx} className="mb-8 last:mb-0 group">
+                            <div className="flex items-center mb-3">
+                              <div className="w-1 h-6 bg-gradient-to-b from-[#a3d4ff] to-[#245684] rounded-full mr-3 group-hover:w-2 transition-all duration-300"></div>
+                              <h3 className="text-sm font-bold text-[#103d5d] group-hover:text-[#245684] transition-colors duration-300">
+                                {category.name}
+                              </h3>
+                            </div>
+                            <ul className="space-y-2">
                               {category.subCategories.map(
                                 (subCategory, subIdx) => (
                                   <li key={subIdx}>
                                     <Link
                                       to={subCategory.url}
-                                      className="text-sm text-gray-600 hover:text-[#245684] block py-1 transition-colors duration-200 flex items-center"
+                                      className="text-sm text-gray-600 hover:text-[#245684] block py-2 px-3 transition-all duration-300 flex items-center rounded-lg hover:bg-blue-50 group/item"
                                     >
-                                      {subCategory.icon}
-                                      {subCategory.name}
+                                      <span className="text-[#245684] group-hover/item:scale-110 transition-transform duration-300">
+                                        {subCategory.icon}
+                                      </span>
+                                      <span className="ml-2">{subCategory.name}</span>
+                                      <FiArrowRightCircle className="ml-auto opacity-0 group-hover/item:opacity-100 text-[#245684] transition-all duration-300 transform -translate-x-1 group-hover/item:translate-x-0" />
                                     </Link>
                                   </li>
                                 )
@@ -251,19 +276,30 @@ const Navigation = () => {
                       </div>
                     ))}
                   </div>
+                  
+                  {/* Mega Menu Footer */}
+                  <div className="mt-6 pt-4 border-t border-gray-200 px-6">
+                    <Link
+                      to="/syscare-services"
+                      className="inline-flex items-center text-[#103d5d] hover:text-[#245684] font-medium transition-all duration-300 group"
+                    >
+                      <span>View All Services</span>
+                      <FiArrowRightCircle className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                    </Link>
+                  </div>
                 </div>
               )}
             </div>
 
             <Link
               to="/contact-Us"
-              className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d5d]"
+              className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] hover:bg-white/10 rounded-lg"
             >
               Contact Us
             </Link>
             <Link
               to="/get-quote"
-              className="bg-[#FFFFFF] hover:bg-[#103d5d] border-[#FFFFFF] text-[#1a3d6b] hover:text-[#FFFFFF] px-6 py-2 rounded-lg font-medium transition-all duration-300 ml-4 transform hover:scale-105 border border-transparent hover:border-[#FFFFFF]"
+              className="bg-gradient-to-r from-white to-gray-100 hover:from-[#103d5d] hover:to-[#245684] border-white text-[#1a3d6b] hover:text-white px-6 py-2 rounded-xl font-medium transition-all duration-300 ml-4 transform hover:scale-105 border-2 shadow-lg hover:shadow-xl"
             >
               Get Quote
             </Link>
@@ -273,7 +309,7 @@ const Navigation = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={toggleMobileMenu}
-              className="text-white hover:text-[#a3d4ff] focus:outline-none transition-all duration-300"
+              className="text-white hover:text-[#a3d4ff] focus:outline-none transition-all duration-300 bg-white/10 p-2 rounded-lg"
             >
               {mobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
             </button>
@@ -281,40 +317,43 @@ const Navigation = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Enhanced Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#0d3452] transition-all duration-500 ease-in-out">
+        <div className="md:hidden bg-gradient-to-b from-[#0d3452] to-[#103d5d] transition-all duration-500 ease-in-out shadow-inner">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link
               to="/home"
-              className="text-white hover:text-[#a3d4ff] block px-3 py-2 font-medium transition-all duration-300 transform hover:translate-x-2"
+              className="text-white hover:text-[#a3d4ff] block px-3 py-3 font-medium transition-all duration-300 transform hover:translate-x-2 rounded-lg hover:bg-white/10"
               onClick={toggleMobileMenu}
             >
               Home
             </Link>
             <Link
               to="/about-us"
-              className="text-white hover:text-[#a3d4ff] block px-3 py-2 font-medium transition-all duration-300 transform hover:translate-x-2"
+              className="text-white hover:text-[#a3d4ff] block px-3 py-3 font-medium transition-all duration-300 transform hover:translate-x-2 rounded-lg hover:bg-white/10"
               onClick={toggleMobileMenu}
             >
               About Us
             </Link>
 
-            {/* Mobile Services Menu */}
+            {/* Enhanced Mobile Services Menu */}
             <div className="relative">
               <div className="flex flex-col">
                 <Link
                   to="/syscare-services"
-                  className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300"
+                  className="text-white hover:text-[#a3d4ff] px-3 py-3 font-medium transition-all duration-300 rounded-lg hover:bg-white/10"
                   onClick={toggleMobileMenu}
                 >
                   Services
                 </Link>
                 <button
                   onClick={() => toggleMobileMainCategory("services")}
-                  className="text-white hover:text-[#a3d4ff] w-full text-left px-3 py-2 font-medium transition-all duration-300 flex justify-between items-center"
+                  className="text-white hover:text-[#a3d4ff] w-full text-left px-3 py-3 font-medium transition-all duration-300 flex justify-between items-center rounded-lg hover:bg-white/10"
                 >
-                  Browse Services
+                  <span className="flex items-center">
+                    <FiChevronDown className="mr-2" />
+                    Browse Services
+                  </span>
                   <FiChevronDown
                     className={`transition-transform duration-200 ${
                       activeMobileMainCategory === "services"
@@ -326,14 +365,17 @@ const Navigation = () => {
               </div>
 
               {activeMobileMainCategory === "services" && (
-                <div className="pl-4 mt-2 space-y-4">
+                <div className="pl-4 mt-2 space-y-2 border-l-2 border-[#a3d4ff]/30 ml-3">
                   {servicesColumns.flat().map((category, catIdx) => (
-                    <div key={catIdx}>
+                    <div key={catIdx} className="rounded-lg overflow-hidden">
                       <button
                         onClick={() => toggleMobileSubCategory(category.id)}
-                        className="text-white hover:text-[#a3d4ff] w-full text-left px-3 py-2 font-medium transition-all duration-300 flex justify-between items-center"
+                        className="text-white hover:text-[#a3d4ff] w-full text-left px-3 py-3 font-medium transition-all duration-300 flex justify-between items-center rounded-lg hover:bg-white/10"
                       >
-                        {category.name}
+                        <span className="flex items-center">
+                          <div className="w-1 h-4 bg-[#a3d4ff] rounded-full mr-3"></div>
+                          {category.name}
+                        </span>
                         <FiChevronDown
                           className={`transition-transform duration-200 ${
                             activeMobileSubCategory === category.id
@@ -344,15 +386,17 @@ const Navigation = () => {
                       </button>
 
                       {activeMobileSubCategory === category.id && (
-                        <div className="pl-4 space-y-2">
+                        <div className="pl-4 space-y-1 ml-3 border-l-2 border-[#a3d4ff]/20">
                           {category.subCategories.map((subCategory, subIdx) => (
-                            <div key={subIdx}>
+                            <div key={subIdx} className="rounded-lg overflow-hidden">
                               <Link
                                 to={subCategory.url}
-                                className="text-white hover:text-[#a3d4ff] block px-3 py-1 font-medium transition-all duration-300 opacity-80 flex items-center"
+                                className="text-white hover:text-[#a3d4ff] block px-3 py-2 font-medium transition-all duration-300 opacity-80 flex items-center rounded-lg hover:bg-white/10 hover:opacity-100"
                                 onClick={toggleMobileMenu}
                               >
-                                {subCategory.icon}
+                                <span className="text-[#a3d4ff] mr-2">
+                                  {subCategory.icon}
+                                </span>
                                 {subCategory.name}
                               </Link>
                             </div>
@@ -367,14 +411,14 @@ const Navigation = () => {
 
             <Link
               to="/contact-Us"
-              className="text-white hover:text-[#a3d4ff] block px-3 py-2 font-medium transition-all duration-300 transform hover:translate-x-2"
+              className="text-white hover:text-[#a3d4ff] block px-3 py-3 font-medium transition-all duration-300 transform hover:translate-x-2 rounded-lg hover:bg-white/10"
               onClick={toggleMobileMenu}
             >
               Contact Us
             </Link>
             <Link
               to="/get-quote"
-              className="bg-[#245684] hover:bg-[#1a3d6b] text-white block px-6 py-2 rounded-lg font-medium transition-all duration-300 mx-3 my-2 text-center transform hover:scale-105"
+              className="bg-gradient-to-r from-[#245684] to-[#1a3d6b] hover:from-[#1a3d6b] hover:to-[#245684] text-white block px-6 py-3 rounded-xl font-medium transition-all duration-300 mx-3 my-2 text-center transform hover:scale-105 shadow-lg"
               onClick={toggleMobileMenu}
             >
               Get Quote
