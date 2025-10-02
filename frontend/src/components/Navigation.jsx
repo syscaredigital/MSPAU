@@ -4,15 +4,29 @@ import { Link } from "react-router-dom";
 import { 
   FiChevronDown, 
   FiX, 
-  FiMenu,
+  FiMenu, 
+  FiArrowRight,
   FiCloud,
   FiShield,
   FiHeadphones,
-  FiServer,
+  FiSettings,
   FiWifi,
+  FiBookOpen,
+  FiServer,
+  FiVideo,
   FiCpu,
+  FiLock,
+  FiTool,
+  FiAward,
+  FiPenTool,
   FiTrendingUp,
-  FiArrowRight
+  FiBriefcase,
+  FiMonitor,
+  FiHexagon,
+  FiZap,
+  FiGlobe,
+  FiMessageSquare,
+  FiDatabase
 } from "react-icons/fi";
 
 const Navigation = () => {
@@ -20,224 +34,345 @@ const Navigation = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [servicesHover, setServicesHover] = useState(false);
-
-  const megaMenuRef = useRef(null);
+  const [activeCategory, setActiveCategory] = useState(null);
+  
+  const menuRef = useRef(null);
   const timeoutRef = useRef(null);
+
+  // Separate states for mobile dropdowns
+  const [activeMobileMainCategory, setActiveMobileMainCategory] = useState(null);
+  const [activeMobileSubCategory, setActiveMobileSubCategory] = useState(null);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
+    if (mobileMenuOpen) {
+      setActiveMobileMainCategory(null);
+      setActiveMobileSubCategory(null);
+    }
   };
 
-  const handleServicesEnter = () => {
-    clearTimeout(timeoutRef.current);
+  const toggleMobileMainCategory = (categoryId) => {
+    setActiveMobileMainCategory(
+      activeMobileMainCategory === categoryId ? null : categoryId
+    );
+    setActiveMobileSubCategory(null);
+  };
+
+  const toggleMobileSubCategory = (categoryId) => {
+    setActiveMobileSubCategory(
+      activeMobileSubCategory === categoryId ? null : categoryId
+    );
+  };
+
+  // Handle mouse enter with delay
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
     setServicesHover(true);
   };
 
-  const handleServicesLeave = () => {
+  // Handle mouse leave with delay
+  const handleMouseLeave = () => {
     timeoutRef.current = setTimeout(() => {
       setServicesHover(false);
-    }, 200);
+      setActiveCategory(null);
+    }, 300);
   };
 
-  const handleMegaMenuEnter = () => {
-    clearTimeout(timeoutRef.current);
-    setServicesHover(true);
-  };
-
-  const handleMegaMenuLeave = () => {
-    timeoutRef.current = setTimeout(() => {
-      setServicesHover(false);
-    }, 200);
+  // Handle category hover
+  const handleCategoryHover = (categoryId) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    setActiveCategory(categoryId);
   };
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setIsVisible(false);
       } else {
         setIsVisible(true);
       }
+
       setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      clearTimeout(timeoutRef.current);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
     };
   }, [lastScrollY]);
 
-  const serviceCategories = [
-    {
-      id: "cloud",
-      name: "Cloud Solutions",
-      icon: <FiCloud />,
-      subCategories: [
-        { name: "Private Cloud", url: "/SysCare-Private-Cloud" },
-        { name: "Hosted Services", url: "/Hosted-Services" },
-        { name: "Cloud Migration", url: "/cloud-migration" },
-      ],
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setServicesHover(false);
+        setActiveCategory(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  // Modern services data structure
+  const servicesData = {
+    "cloud-infrastructure": {
+      title: "Cloud & Infrastructure",
+      icon: <FiCloud className="text-2xl" />,
+      color: "from-blue-500 to-cyan-500",
+      description: "Scalable cloud solutions and robust infrastructure",
+      services: [
+        { name: "Private Cloud", url: "/SysCare-Private-Cloud", icon: <FiServer />, featured: true },
+        { name: "Hosted Services", url: "/Hosted-Services", icon: <FiDatabase /> },
+        { name: "Cloud Migration", url: "/cloud-migration", icon: <FiArrowRight /> },
+        { name: "Disaster Recovery", url: "/disaster-recovery", icon: <FiShield /> }
+      ]
     },
-    {
-      id: "security",
-      name: "Security Services",
-      icon: <FiShield />,
-      subCategories: [
-        { name: "Cybersecurity Consultancy", url: "/CyberSecurityConsultancyServices" },
-        { name: "Managed Security", url: "/ManagedSecurityServices" },
-        { name: "Security Assessment", url: "/security-assessment" },
-      ],
+    "security-cyber": {
+      title: "Security & Cybersecurity",
+      icon: <FiShield className="text-2xl" />,
+      color: "from-green-500 to-emerald-500",
+      description: "Protect your business from digital threats",
+      services: [
+        { name: "Cybersecurity Consultancy", url: "/CyberSecurityConsultancyServices", icon: <FiLock />, featured: true },
+        { name: "Managed Security", url: "/ManagedSecurityServices", icon: <FiShield /> },
+        { name: "Security Audit", url: "/security-audit", icon: <FiTool /> },
+        { name: "Threat Monitoring", url: "/threat-monitoring", icon: <FiMonitor /> }
+      ]
     },
-    {
-      id: "support",
-      name: "IT Support",
-      icon: <FiHeadphones />,
-      subCategories: [
-        { name: "Service Desk", url: "/Service-Desk" },
-        { name: "Managed IT Services", url: "/Managed-IT-Services" },
-        { name: "IT Consulting", url: "/it-consulting" },
-      ],
+    "it-support": {
+      title: "IT Support & Managed Services",
+      icon: <FiHeadphones className="text-2xl" />,
+      color: "from-purple-500 to-pink-500",
+      description: "24/7 expert IT support and management",
+      services: [
+        { name: "Service Desk", url: "/Service-Desk", icon: <FiHeadphones />, featured: true },
+        { name: "Managed IT Services", url: "/Managed-IT-Services", icon: <FiSettings /> },
+        { name: "Remote Support", url: "/remote-support", icon: <FiMonitor /> },
+        { name: "On-site Support", url: "/onsite-support", icon: <FiTool /> }
+      ]
     },
-    {
-      id: "infrastructure",
-      name: "Infrastructure",
-      icon: <FiServer />,
-      subCategories: [
-        { name: "IT Infrastructure Projects", url: "/ITInfraProjects" },
-        { name: "Network Solutions", url: "/network-solutions" },
-        { name: "Data Center", url: "/data-center" },
-      ],
+    "projects-automation": {
+      title: "Projects & Automation",
+      icon: <FiCpu className="text-2xl" />,
+      color: "from-orange-500 to-red-500",
+      description: "Streamline operations with smart automation",
+      services: [
+        { name: "IT Infrastructure Projects", url: "/ITInfraProjects", icon: <FiSettings />, featured: true },
+        { name: "Office Automation", url: "/DevelopmentAutomation", icon: <FiZap /> },
+        { name: "Process Optimization", url: "/process-optimization", icon: <FiTrendingUp /> },
+        { name: "Custom Solutions", url: "/custom-solutions", icon: <FiHexagon /> }
+      ]
     },
-    {
-      id: "connectivity",
-      name: "Connectivity",
-      icon: <FiWifi />,
-      subCategories: [
-        { name: "Business Connectivity", url: "/Connectivity" },
-        { name: "VoIP & Video", url: "/VoiceVideo" },
-        { name: "SD-WAN Solutions", url: "/sd-wan" },
-      ],
+    "connectivity": {
+      title: "Connectivity & Communication",
+      icon: <FiWifi className="text-2xl" />,
+      color: "from-indigo-500 to-blue-500",
+      description: "Seamless connectivity and communication solutions",
+      services: [
+        { name: "Business Connectivity", url: "/Connectivity", icon: <FiWifi />, featured: true },
+        { name: "VoIP & Video", url: "/VoiceVideo", icon: <FiVideo /> },
+        { name: "Network Setup", url: "/network-setup", icon: <FiGlobe /> },
+        { name: "Unified Communications", url: "/unified-comms", icon: <FiMessageSquare /> }
+      ]
     },
-    {
-      id: "digital",
-      name: "Digital Services",
-      icon: <FiTrendingUp />,
-      subCategories: [
-        { name: "Web Design & Development", url: "/DesignDev" },
-        { name: "Digital Marketing", url: "/DigitalMarketing" },
-        { name: "CRM Solutions", url: "/crm-solutions" },
-      ],
-    },
-  ];
+    "digital-solutions": {
+      title: "Digital Solutions",
+      icon: <FiPenTool className="text-2xl" />,
+      color: "from-teal-500 to-blue-500",
+      description: "Transform your digital presence",
+      services: [
+        { name: "Web Design & Development", url: "/DesignDev", icon: <FiPenTool />, featured: true },
+        { name: "Digital Marketing", url: "/DigitalMarketing", icon: <FiTrendingUp /> },
+        { name: "CRM & ERP Solutions", url: "/crm-erp", icon: <FiBriefcase /> },
+        { name: "E-commerce Solutions", url: "/ecommerce", icon: <FiMonitor /> }
+      ]
+    }
+  };
+
+  const serviceCategories = Object.entries(servicesData);
 
   return (
     <nav
-      className={`bg-[#103d5d] shadow-md sticky top-0 z-50 transition-all duration-300 ${
+      className={`bg-[#103d5d] shadow-2xl sticky top-0 z-50 transition-all duration-500 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
+        <div className="flex justify-between h-20">
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center">
               <img
                 src="/logos/White-Sys.svg"
                 alt="SysCare Logo"
-                className="hidden md:block h-10 w-auto"
+                className="hidden md:block h-20 w-auto object-contain transform hover:scale-105 transition-transform duration-300"
               />
               <img
                 src="/logos/White-Sys.svg"
                 alt="SysCare Logo"
-                className="block md:hidden h-8 w-auto"
+                className="block md:hidden h-10 w-auto object-contain"
               />
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-6">
             <Link
               to="/"
-              className="text-white hover:text-[#a3d4ff] px-3 py-2 text-sm font-medium transition-colors duration-200"
+              className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] hover:transform hover:-translate-y-0.5"
             >
               Home
             </Link>
             <Link
               to="/about-us"
-              className="text-white hover:text-[#a3d4ff] px-3 py-2 text-sm font-medium transition-colors duration-200"
+              className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] hover:transform hover:-translate-y-0.5"
             >
               About Us
             </Link>
 
-            {/* Services Mega Menu */}
+            {/* Services with Modern Mega Menu */}
             <div
-              className="relative"
-              onMouseEnter={handleServicesEnter}
-              onMouseLeave={handleServicesLeave}
+              className="relative h-full flex items-center"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              ref={menuRef}
             >
               <button
-                className={`flex items-center space-x-1 px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-                  servicesHover ? "text-[#a3d4ff]" : "text-white hover:text-[#a3d4ff]"
-                }`}
+                className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] flex items-center h-full group"
               >
-                <span>Services</span>
-                <FiChevronDown className={`transition-transform duration-200 ${servicesHover ? "rotate-180" : ""}`} />
+                <span className="flex items-center">
+                  Services
+                  <FiChevronDown
+                    className={`ml-2 transition-transform duration-300 ${
+                      servicesHover ? "rotate-180" : ""
+                    }`}
+                  />
+                </span>
               </button>
 
               {servicesHover && (
-                <div
-                  ref={megaMenuRef}
-                  className="absolute left-0 top-full mt-1 w-[800px] bg-white shadow-xl border border-gray-200 rounded-lg z-50"
-                  onMouseEnter={handleMegaMenuEnter}
-                  onMouseLeave={handleMegaMenuLeave}
+                <div 
+                  className="absolute left-0 top-full w-[800px] bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl border border-white/20 overflow-hidden z-50"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                 >
                   <div className="p-6">
-                    <div className="grid grid-cols-3 gap-8">
-                      {serviceCategories.map((category) => (
-                        <div key={category.id} className="space-y-4">
-                          <div className="flex items-center space-x-3">
-                            <div className="text-[#245684]">
-                              {category.icon}
+                    <div className="grid grid-cols-3 gap-6">
+                      {/* Left Column - Categories */}
+                      <div className="col-span-1 space-y-2">
+                        {serviceCategories.map(([key, category]) => (
+                          <button
+                            key={key}
+                            onMouseEnter={() => handleCategoryHover(key)}
+                            className={`w-full text-left p-4 rounded-xl transition-all duration-300 ${
+                              activeCategory === key 
+                                ? `bg-gradient-to-r ${category.color} text-white shadow-xl scale-105`
+                                : "bg-gray-50/80 hover:bg-white text-gray-700 hover:shadow-lg"
+                            }`}
+                          >
+                            <div className="flex items-center space-x-3">
+                              <div className={`p-2 rounded-lg ${
+                                activeCategory === key ? "bg-white/20" : "bg-white shadow-sm"
+                              }`}>
+                                {category.icon}
+                              </div>
+                              <div>
+                                <h3 className="font-semibold text-sm">{category.title}</h3>
+                                <p className="text-xs opacity-70 mt-1">{category.description}</p>
+                              </div>
                             </div>
-                            <h3 className="text-sm font-semibold text-[#103d5d]">
-                              {category.name}
-                            </h3>
-                          </div>
-                          
-                          <ul className="space-y-2">
-                            {category.subCategories.map((subCategory, index) => (
-                              <li key={index}>
+                          </button>
+                        ))}
+                      </div>
+
+                      {/* Right Column - Services */}
+                      <div className="col-span-2">
+                        {activeCategory ? (
+                          <div className="animate-fadeIn">
+                            <div className="flex items-center space-x-3 mb-6">
+                              <div className={`p-3 rounded-xl bg-gradient-to-r ${servicesData[activeCategory].color} text-white`}>
+                                {servicesData[activeCategory].icon}
+                              </div>
+                              <div>
+                                <h2 className="text-xl font-bold text-gray-800">
+                                  {servicesData[activeCategory].title}
+                                </h2>
+                                <p className="text-gray-600 text-sm">
+                                  {servicesData[activeCategory].description}
+                                </p>
+                              </div>
+                            </div>
+                            
+                            <div className="grid grid-cols-2 gap-4">
+                              {servicesData[activeCategory].services.map((service, index) => (
                                 <Link
-                                  to={subCategory.url}
-                                  className="flex items-center justify-between group py-1 text-sm text-gray-700 hover:text-[#245684] transition-colors duration-200"
+                                  key={index}
+                                  to={service.url}
+                                  className="group block p-4 rounded-lg border border-gray-200 hover:border-transparent hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                                  onClick={() => setServicesHover(false)}
                                 >
-                                  <span>{subCategory.name}</span>
-                                  <FiArrowRight className="opacity-0 group-hover:opacity-100 transform group-hover:translate-x-1 transition-all duration-200 text-[#245684]" />
+                                  <div className="flex items-center space-x-3">
+                                    <div className={`p-2 rounded-lg ${
+                                      service.featured 
+                                        ? `bg-gradient-to-r ${servicesData[activeCategory].color} text-white`
+                                        : "bg-gray-100 text-gray-600"
+                                    } group-hover:scale-110 transition-transform duration-300`}>
+                                      {service.icon}
+                                    </div>
+                                    <span className={`font-medium ${
+                                      service.featured ? "text-gray-800" : "text-gray-600"
+                                    } group-hover:text-gray-900`}>
+                                      {service.name}
+                                    </span>
+                                  </div>
+                                  {service.featured && (
+                                    <div className="mt-2">
+                                      <span className="inline-block px-2 py-1 text-xs bg-gradient-to-r from-yellow-400 to-orange-400 text-white rounded-full">
+                                        Popular
+                                      </span>
+                                    </div>
+                                  )}
                                 </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
+                              ))}
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="h-full flex items-center justify-center text-gray-500 py-12">
+                            <div className="text-center">
+                              <FiHexagon className="text-4xl mx-auto mb-3 opacity-50" />
+                              <p className="text-sm">Hover over a category to view services</p>
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     </div>
 
                     {/* Bottom CTA */}
-                    <div className="mt-6 pt-6 border-t border-gray-200">
-                      <div className="flex items-center justify-between">
+                    <div className="mt-6 pt-6 border-t border-gray-200/50">
+                      <div className="flex justify-between items-center">
                         <div>
-                          <p className="text-sm font-medium text-[#103d5d]">
-                            Need a custom solution?
-                          </p>
-                          <p className="text-sm text-gray-600">
-                            We tailor our services to your specific needs
-                          </p>
+                          <h4 className="font-semibold text-gray-800">Need a custom solution?</h4>
+                          <p className="text-sm text-gray-600">We tailor our services to your unique needs</p>
                         </div>
                         <Link
                           to="/get-quote"
-                          className="bg-[#245684] hover:bg-[#103d5d] text-white px-4 py-2 rounded text-sm font-medium transition-colors duration-200"
+                          className="bg-gradient-to-r from-[#103d5d] to-[#245684] text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center space-x-2"
+                          onClick={() => setServicesHover(false)}
                         >
-                          Get Quote
+                          <span>Get Custom Quote</span>
+                          <FiArrowRight className="transition-transform" />
                         </Link>
                       </div>
                     </div>
@@ -247,32 +382,26 @@ const Navigation = () => {
             </div>
 
             <Link
-              to="/case-studies"
-              className="text-white hover:text-[#a3d4ff] px-3 py-2 text-sm font-medium transition-colors duration-200"
-            >
-              Case Studies
-            </Link>
-            <Link
               to="/contact-Us"
-              className="text-white hover:text-[#a3d4ff] px-3 py-2 text-sm font-medium transition-colors duration-200"
+              className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] hover:transform hover:-translate-y-0.5"
             >
-              Contact
+              Contact Us
             </Link>
             <Link
               to="/get-quote"
-              className="bg-white hover:bg-gray-100 text-[#103d5d] px-5 py-2 rounded text-sm font-medium transition-colors duration-200 shadow-sm"
+              className="bg-gradient-to-r from-white to-gray-100 hover:from-[#103d5d] hover:to-[#245684] text-[#1a3d6b] hover:text-white px-6 py-2.5 rounded-xl font-semibold transition-all duration-300 ml-4 transform hover:scale-105 hover:shadow-lg border border-transparent hover:border-white/20"
             >
               Get Quote
             </Link>
           </div>
 
           {/* Mobile menu button */}
-          <div className="lg:hidden flex items-center">
+          <div className="md:hidden flex items-center">
             <button
               onClick={toggleMobileMenu}
-              className="text-white hover:text-[#a3d4ff] focus:outline-none transition-colors duration-200 p-2"
+              className="text-white hover:text-[#a3d4ff] focus:outline-none transition-all duration-300 hover:scale-110"
             >
-              {mobileMenuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
+              {mobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
             </button>
           </div>
         </div>
@@ -280,73 +409,114 @@ const Navigation = () => {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#103d5d] border-t border-[#245684]">
-          <div className="px-4 py-4 space-y-4">
+        <div className="md:hidden bg-gradient-to-b from-[#0d3452] to-[#08243a] backdrop-blur-xl transition-all duration-500 ease-in-out">
+          <div className="px-4 pt-4 pb-6 space-y-2">
             <Link
               to="/"
-              className="block text-white hover:text-[#a3d4ff] py-3 text-base font-medium transition-colors duration-200 border-b border-[#245684]"
+              className="text-white hover:text-[#a3d4ff] block px-4 py-3 font-medium transition-all duration-300 hover:translate-x-2 rounded-lg hover:bg-white/5"
               onClick={toggleMobileMenu}
             >
               Home
             </Link>
             <Link
               to="/about-us"
-              className="block text-white hover:text-[#a3d4ff] py-3 text-base font-medium transition-colors duration-200 border-b border-[#245684]"
+              className="text-white hover:text-[#a3d4ff] block px-4 py-3 font-medium transition-all duration-300 hover:translate-x-2 rounded-lg hover:bg-white/5"
               onClick={toggleMobileMenu}
             >
               About Us
             </Link>
 
-            {/* Mobile Services */}
-            <div className="py-3 border-b border-[#245684]">
-              <div className="text-white font-medium text-base mb-4">
-                Services
+            {/* Mobile Services Menu */}
+            <div className="relative">
+              <div className="flex flex-col">
+                <Link
+                  to="/syscare-services"
+                  className="text-white hover:text-[#a3d4ff] px-4 py-3 font-medium transition-all duration-300 rounded-lg hover:bg-white/5"
+                  onClick={toggleMobileMenu}
+                >
+                  Services
+                </Link>
+                <button
+                  onClick={() => toggleMobileMainCategory("services")}
+                  className="text-white hover:text-[#a3d4ff] w-full text-left px-4 py-3 font-medium transition-all duration-300 flex justify-between items-center rounded-lg hover:bg-white/5"
+                >
+                  <span className="flex items-center">
+                    Browse Services
+                  </span>
+                  <FiChevronDown
+                    className={`transition-transform duration-300 ${
+                      activeMobileMainCategory === "services"
+                        ? "rotate-180"
+                        : ""
+                    }`}
+                  />
+                </button>
               </div>
-              <div className="grid grid-cols-1 gap-4 pl-4">
-                {serviceCategories.map((category) => (
-                  <div key={category.id} className="space-y-2">
-                    <div className="flex items-center space-x-3">
-                      <div className="text-[#a3d4ff]">
-                        {category.icon}
-                      </div>
-                      <span className="text-white font-medium text-sm">
-                        {category.name}
-                      </span>
+
+              {activeMobileMainCategory === "services" && (
+                <div className="pl-4 mt-2 space-y-3">
+                  {serviceCategories.map(([key, category]) => (
+                    <div key={key} className="border-l-2 border-white/10 pl-4">
+                      <button
+                        onClick={() => toggleMobileSubCategory(key)}
+                        className="text-white hover:text-[#a3d4ff] w-full text-left px-3 py-3 font-medium transition-all duration-300 flex justify-between items-center rounded-lg hover:bg-white/5"
+                      >
+                        <div className="flex items-center space-x-3">
+                          <div className={`p-2 rounded-lg bg-gradient-to-r ${category.color}`}>
+                            {category.icon}
+                          </div>
+                          <div className="text-left">
+                            <div className="font-semibold">{category.title}</div>
+                            <div className="text-xs opacity-70">{category.description}</div>
+                          </div>
+                        </div>
+                        <FiChevronDown
+                          className={`transition-transform duration-300 ${
+                            activeMobileSubCategory === key
+                              ? "rotate-180"
+                              : ""
+                          }`}
+                        />
+                      </button>
+
+                      {activeMobileSubCategory === key && (
+                        <div className="pl-2 space-y-2 mt-2">
+                          {category.services.map((service, index) => (
+                            <Link
+                              key={index}
+                              to={service.url}
+                              className="text-white hover:text-[#a3d4ff] block px-3 py-2 font-medium transition-all duration-300 opacity-80 flex items-center space-x-3 rounded-lg hover:bg-white/5"
+                              onClick={toggleMobileMenu}
+                            >
+                              <div className="p-1.5 rounded-md bg-white/10">
+                                {service.icon}
+                              </div>
+                              <span>{service.name}</span>
+                              {service.featured && (
+                                <span className="px-1.5 py-0.5 text-xs bg-yellow-500 text-white rounded-full ml-auto">
+                                  Popular
+                                </span>
+                              )}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
                     </div>
-                    <div className="space-y-1 pl-7">
-                      {category.subCategories.map((subCategory, index) => (
-                        <Link
-                          key={index}
-                          to={subCategory.url}
-                          className="block text-gray-300 hover:text-[#a3d4ff] py-1 text-sm transition-colors duration-200"
-                          onClick={toggleMobileMenu}
-                        >
-                          {subCategory.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             <Link
-              to="/case-studies"
-              className="block text-white hover:text-[#a3d4ff] py-3 text-base font-medium transition-colors duration-200 border-b border-[#245684]"
-              onClick={toggleMobileMenu}
-            >
-              Case Studies
-            </Link>
-            <Link
               to="/contact-Us"
-              className="block text-white hover:text-[#a3d4ff] py-3 text-base font-medium transition-colors duration-200 border-b border-[#245684]"
+              className="text-white hover:text-[#a3d4ff] block px-4 py-3 font-medium transition-all duration-300 hover:translate-x-2 rounded-lg hover:bg-white/5"
               onClick={toggleMobileMenu}
             >
-              Contact
+              Contact Us
             </Link>
             <Link
               to="/get-quote"
-              className="block bg-white hover:bg-gray-100 text-[#103d5d] text-center py-3 rounded text-base font-medium transition-colors duration-200 mt-4 shadow-sm"
+              className="bg-gradient-to-r from-[#245684] to-[#1a3d6b] hover:from-[#1a3d6b] hover:to-[#103d5d] text-white block px-6 py-3 rounded-xl font-semibold transition-all duration-300 mx-2 my-2 text-center hover:scale-105 hover:shadow-lg"
               onClick={toggleMobileMenu}
             >
               Get Quote
