@@ -333,10 +333,10 @@ const PrivateCloudPage = () => {
                           activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff]'
                         }`}>
                           {React.cloneElement(service.icon, {
-                            className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
+                            className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-lg`
                           })}
                         </div>
-                        <h3 className="text-xl font-medium">{service.title}</h3>
+                        <h3 className="text-md font-medium">{service.title}</h3>
                       </div>
                       <FiChevronRight 
                         className={`text-xl transition-transform duration-300 ${
@@ -352,11 +352,11 @@ const PrivateCloudPage = () => {
                         <img 
                           src={service.image}
                           alt={`${service.title} infrastructure`}
-                          className="w-[500px] h-[500px] object-cover rounded-lg"
+                          className="w-[100px] h-[100px] object-cover rounded-lg"
                           style={{ maxWidth: '100%', height: 'auto' }}
                         />
                       </div>
-                      <p className="text-[#5c6f87] text-lg mb-6 leading-relaxed">{service.content}</p>
+                      <p className="text-[#5c6f87] text-sm mb-6 leading-relaxed">{service.content}</p>
                     </div>
                   )}
                 </div>
@@ -396,7 +396,7 @@ const PrivateCloudPage = () => {
                             className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
                           })}
                         </div>
-                        <h3 className="text-xl font-medium">{service.title}</h3>
+                        <h3 className="text-md font-medium">{service.title}</h3>
                       </div>
                     </button>
                   ))}

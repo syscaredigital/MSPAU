@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, } from 'react';
 import { Link } from 'react-router-dom';
 import Navigation from '../components/Navigation.jsx';
 import VideoHero from '../components/hero.jsx';
 import Footer from '../components/footer.jsx';
 
-// Add CSS animations in a style tag
+// Add CSS animations and background styles
 const animationStyles = `
   @keyframes fadeInUp {
     from {
@@ -69,6 +69,59 @@ const animationStyles = `
       transform: translateY(-5px);
     }
   }
+
+  /* New background animation keyframes */
+  @keyframes nodePulse {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes connectionFlow {
+    0% {
+      stroke-dashoffset: 100;
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      stroke-dashoffset: 0;
+      opacity: 0.2;
+    }
+  }
+
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes particleFloat {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(5px, -5px) rotate(90deg);
+    }
+    50% {
+      transform: translate(0, -10px) rotate(180deg);
+    }
+    75% {
+      transform: translate(-5px, -5px) rotate(270deg);
+    }
+  }
   
   .animate-fade-in-up {
     animation: fadeInUp 0.6s ease-out forwards;
@@ -101,6 +154,23 @@ const animationStyles = `
   .animate-bounce-gentle {
     animation: bounceGentle 2s infinite ease-in-out;
   }
+
+  .animate-node-pulse {
+    animation: nodePulse 4s ease-in-out infinite;
+  }
+
+  .animate-connection-flow {
+    animation: connectionFlow 3s linear infinite;
+  }
+
+  .animate-gradient-shift {
+    animation: gradientShift 8s ease infinite;
+    background-size: 200% 200%;
+  }
+
+  .animate-particle-float {
+    animation: particleFloat 6s ease-in-out infinite;
+  }
   
   .service-card {
     transition: all 0.3s ease;
@@ -129,7 +199,7 @@ const animationStyles = `
     transition: transform 0.5s ease-in-out;
   }
 
-  /* Cyber video background styles */
+  /* Enhanced background styles */
   .cyber-video-container {
     position: relative;
     overflow: hidden;
@@ -159,6 +229,113 @@ const animationStyles = `
     object-fit: cover;
     z-index: 1;
   }
+
+  /* Particles background container */
+  .particles-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .particle {
+    position: absolute;
+    background: rgba(16, 61, 93, 0.1);
+    border-radius: 50%;
+    animation: particleFloat 6s ease-in-out infinite;
+  }
+
+  .particle-2 {
+    background: rgba(36, 86, 132, 0.08);
+    animation-duration: 8s;
+    animation-delay: 1s;
+  }
+
+  .particle-3 {
+    background: rgba(23, 15, 23, 0.06);
+    animation-duration: 10s;
+    animation-delay: 2s;
+  }
+
+  /* Gradient mesh background */
+  .gradient-mesh {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 15% 50%, rgba(16, 61, 93, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 85% 30%, rgba(36, 86, 132, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 50% 80%, rgba(23, 15, 23, 0.03) 0%, transparent 50%);
+    animation: gradientShift 15s ease infinite;
+  }
+
+  /* Connected nodes overlay */
+  .nodes-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .node {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: rgba(16, 61, 93, 0.3);
+    border-radius: 50%;
+    animation: nodePulse 4s ease-in-out infinite;
+  }
+
+  .connection {
+    stroke: rgba(36, 86, 132, 0.1);
+    stroke-width: 1;
+    stroke-dasharray: 5;
+  }
+
+  /* Section-specific backgrounds */
+  .services-background {
+    background: 
+      linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%),
+      radial-gradient(circle at 20% 80%, rgba(16, 61, 93, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(36, 86, 132, 0.03) 0%, transparent 50%);
+  }
+
+  .stats-background {
+    background: linear-gradient(135deg, #103d5d 0%, #245684 50%, #1a4a75 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stats-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+  }
+
+  .testimonials-background {
+    background: 
+      linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%),
+      radial-gradient(circle at 10% 20%, rgba(16, 61, 93, 0.02) 0%, transparent 50%);
+  }
+
+  /* Content wrapper to ensure readability */
+  .content-wrapper {
+    position: relative;
+    z-index: 1;
+  }
 `;
 
 const HomePage = () => {
@@ -170,6 +347,9 @@ const HomePage = () => {
     { id: 4, value: 0, target: 24, label: "Support Available", isHours: true }
   ]);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [nodes, setNodes] = useState([]);
+  const [connections, setConnections] = useState([]);
+  const [particles, setParticles] = useState([]);
 
   // All Services Data
   const allServices = [
@@ -257,6 +437,10 @@ const HomePage = () => {
   ];
 
   useEffect(() => {
+    // Initialize animated background nodes, connections, and particles
+    initializeBackground();
+    initializeParticles();
+
     // Start counter animation when stats section is in view
     const observer = new IntersectionObserver(
       (entries) => {
@@ -286,6 +470,67 @@ const HomePage = () => {
       clearInterval(interval);
     };
   }, []);
+
+  const initializeBackground = () => {
+    // Create nodes for the connected network background
+    const nodeCount = 15;
+    const newNodes = [];
+    
+    for (let i = 0; i < nodeCount; i++) {
+      newNodes.push({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        delay: Math.random() * 4
+      });
+    }
+    
+    setNodes(newNodes);
+
+    // Create connections between nearby nodes
+    const newConnections = [];
+    for (let i = 0; i < nodeCount; i++) {
+      for (let j = i + 1; j < nodeCount; j++) {
+        const distance = Math.sqrt(
+          Math.pow(newNodes[i].x - newNodes[j].x, 2) + 
+          Math.pow(newNodes[i].y - newNodes[j].y, 2)
+        );
+        
+        if (distance < 30) { // Only connect nearby nodes
+          newConnections.push({
+            id: `${i}-${j}`,
+            from: newNodes[i],
+            to: newNodes[j],
+            delay: Math.random() * 3
+          });
+        }
+      }
+    }
+    
+    setConnections(newConnections);
+  };
+
+  const initializeParticles = () => {
+    // Create floating particles for the background
+    const particleCount = 50;
+    const newParticles = [];
+    
+    for (let i = 0; i < particleCount; i++) {
+      const size = Math.random() * 8 + 2; // Random size between 2px and 10px
+      const type = i % 3; // Distribute between 3 particle types
+      
+      newParticles.push({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: size,
+        type: type,
+        delay: Math.random() * 6
+      });
+    }
+    
+    setParticles(newParticles);
+  };
 
   const animateStats = () => {
     const duration = 2000;
@@ -324,242 +569,294 @@ const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f7fa]">
+    <div className="min-h-screen bg-[#f5f7fa] relative">
       {/* Add animation styles */}
       <style>{animationStyles}</style>
       
-      <Navigation />
+      {/* Enhanced Particles Background */}
+      <div className="particles-background">
+        <div className="gradient-mesh"></div>
+        
+        {/* Floating Particles */}
+        {particles.map((particle) => (
+          <div
+            key={particle.id}
+            className={`particle particle-${particle.type} animate-particle-float`}
+            style={{
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              animationDelay: `${particle.delay}s`,
+              opacity: 0.1 + (particle.size / 20)
+            }}
+          />
+        ))}
+        
+        {/* Connected Nodes Network */}
+        <div className="nodes-overlay">
+          <svg width="100%" height="100%" style={{ position: 'absolute', top: 0, left: 0 }}>
+            {connections.map((conn) => (
+              <line
+                key={conn.id}
+                x1={`${conn.from.x}%`}
+                y1={`${conn.from.y}%`}
+                x2={`${conn.to.x}%`}
+                y2={`${conn.to.y}%`}
+                className="connection animate-connection-flow"
+                style={{ animationDelay: `${conn.delay}s` }}
+              />
+            ))}
+          </svg>
+          {nodes.map((node) => (
+            <div
+              key={node.id}
+              className="node animate-node-pulse"
+              style={{
+                left: `${node.x}%`,
+                top: `${node.y}%`,
+                animationDelay: `${node.delay}s`
+              }}
+            />
+          ))}
+        </div>
+      </div>
 
-      <VideoHero/>
+      {/* Content Wrapper */}
+      <div className="content-wrapper">
+        <Navigation />
 
-      {/* About Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="animate-fade-in-up">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-6">Managed IT Services in Australia | SysCare IT Solutions</h2>
-            <p className="text-md text-gray-600 mb-6 text-justify">
-               At SysCare IT Solutions, we deliver reliable managed IT services in Melbourne, advanced IT support in Sydney, and proactive managed security services across Australia. Whether you need a full-service MSP in Melbourne or a trusted MSSP in Australia, we’ve got your business covered.
-            </p>
-            <p className="text-md text-gray-600 mb-8">
-              Based in Melbourne and Sydney, SysCare IT Solutions supports businesses of all sizes across Australia. From small startups to growing enterprises, we deliver cost-effective and scalable IT solutions that reduce downtime, enhance security, and improve productivity.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <div className="bg-[#103d5d] text-white px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300 animate-pulse-slow">150+ Clients</div>
-              <div className="bg-[#245684] text-white px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300 animate-pulse-slow" style={{animationDelay: '0.5s'}}>24/7 Support</div>
-              <div className="bg-[#170f17] text-white px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300 animate-pulse-slow" style={{animationDelay: '1s'}}>Certified Experts</div>
+        <VideoHero/>
+
+        {/* About Section */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="animate-fade-in-up">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-6">Managed IT Services in Australia | SysCare IT Solutions</h2>
+              <p className="text-md text-gray-600 mb-6 text-justify">
+                 At SysCare IT Solutions, we deliver reliable managed IT services in Melbourne, advanced IT support in Sydney, and proactive managed security services across Australia. Whether you need a full-service MSP in Melbourne or a trusted MSSP in Australia, we've got your business covered.
+              </p>
+              <p className="text-md text-gray-600 mb-8">
+                Based in Melbourne and Sydney, SysCare IT Solutions supports businesses of all sizes across Australia. From small startups to growing enterprises, we deliver cost-effective and scalable IT solutions that reduce downtime, enhance security, and improve productivity.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <div className="bg-[#103d5d] text-white px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300 animate-pulse-slow">150+ Clients</div>
+                <div className="bg-[#245684] text-white px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300 animate-pulse-slow" style={{animationDelay: '0.5s'}}>24/7 Support</div>
+                <div className="bg-[#170f17] text-white px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300 animate-pulse-slow" style={{animationDelay: '1s'}}>Certified Experts</div>
+              </div>
             </div>
-          </div>
-          <div className="cyber-video-container rounded-xl overflow-hidden h-96 animate-fade-in-up" style={{animationDelay: '0.3s'}}>
-            {/* Cyber/Technology Background Video */}
-            <video 
-              autoPlay 
-              loop 
-              muted 
-              playsInline 
-              className="cyber-video"
-              poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-            >
-              <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-digital-waves-9885-large.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            <div className="cyber-video-overlay">
-              <div className="text-center p-6">
-                <h3 className="text-2xl font-bold mb-4">Cybersecurity & Technology</h3>
-                <p className="text-lg">Protecting your digital assets with cutting-edge solutions</p>
+            <div className="cyber-video-container rounded-xl overflow-hidden h-96 animate-fade-in-up" style={{animationDelay: '0.3s'}}>
+              {/* Cyber/Technology Background Video */}
+              <video 
+                autoPlay 
+                loop 
+                muted 
+                playsInline 
+                className="cyber-video"
+                poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+              >
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-digital-waves-9885-large.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="cyber-video-overlay">
+                <div className="text-center p-6">
+                  <h3 className="text-2xl font-bold mb-4">Cybersecurity & Technology</h3>
+                  <p className="text-lg">Protecting your digital assets with cutting-edge solutions</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Services Section - Updated with Border */}
-      <div className="bg-white py-16 md:py-24 relative overflow-hidden border border-gray rounded-lg mx-4 sm:mx-6 lg:mx-8">
-        {/* Animated background elements */}
-        <div className="absolute -top-24 -left-24 w-48 h-48 rounded-full bg-blue-100 opacity-30 animate-pulse-slower"></div>
-        <div className="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-blue-200 opacity-20 animate-pulse-slower" style={{animationDelay: '1s'}}></div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4 animate-fade-in">
-              Our Managed IT & Security Solutions
-            </h2>
-            <p className="text-md text-gray-600 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
-              As a leading MSP in Melbourne and MSSP in Australia, we offer a wide range of solutions to keep your business secure and efficient:
-            </p>
-          </div>
+        {/* Services Section - Enhanced with new background */}
+        <div className="services-background py-16 md:py-24 relative overflow-hidden border border-gray-200 rounded-lg mx-4 sm:mx-6 lg:mx-8">
+          {/* Animated background elements */}
+          <div className="absolute -top-24 -left-24 w-48 h-48 rounded-full bg-blue-100 opacity-30 animate-pulse-slower"></div>
+          <div className="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-blue-200 opacity-20 animate-pulse-slower" style={{animationDelay: '1s'}}></div>
+          
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4 animate-fade-in">
+                Our Managed IT & Security Solutions
+              </h2>
+              <p className="text-md text-gray-600 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
+                As a leading MSP in Melbourne and MSSP in Australia, we offer a wide range of solutions to keep your business secure and efficient:
+              </p>
+            </div>
 
-          {/* Services Grid - Show first 4 services */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 stagger-animation">
-            {initialServices.map((service, index) => (
-              <AnimatedServiceCard 
-                key={service.id} 
-                service={service} 
-                index={index}
-                animationDelay={index * 0.1}
-              />
-            ))}
-          </div>
-
-          {/* Additional Services - Show when expanded */}
-          {showAllServices && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6 stagger-animation">
-              {additionalServices.map((service, index) => (
+            {/* Services Grid - Show first 4 services */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 stagger-animation">
+              {initialServices.map((service, index) => (
                 <AnimatedServiceCard 
                   key={service.id} 
                   service={service} 
-                  index={index + initialServices.length}
+                  index={index}
                   animationDelay={index * 0.1}
                 />
               ))}
             </div>
-          )}
 
-          {/* Show More/Less Button with Animation */}
-          <div className="text-center mt-12 animate-bounce-gentle">
-            <button 
-              onClick={toggleServices}
-              className="px-8 py-3 bg-gradient-to-r from-[#103d5d] to-[#245684] text-white rounded-lg font-semibold hover:from-[#245684] hover:to-[#103d5d] transition-all duration-500 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center mx-auto relative overflow-hidden group"
-            >
-              <span className="relative z-10">
-                {showAllServices ? (
-                  <>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 inline" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clipRule="evenodd" />
-                    </svg>
-                    Show Less Services
-                  </>
-                ) : (
-                  <>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 inline" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                    </svg>
-                    Show More Services
-                  </>
-                )}
-              </span>
-              <span className="absolute inset-0 bg-gradient-to-r from-[#245684] to-[#103d5d] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Stats Section */}
-      <div id="stats-section" className="bg-gradient-to-r from-[#103d5d] to-[#245684] text-white py-16 relative overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute top-0 left-0 w-full h-full opacity-10">
-          <div className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-white animate-float"></div>
-          <div className="absolute top-1/2 right-1/4 w-24 h-24 rounded-full bg-white animate-float" style={{animationDelay: '1s'}}></div>
-          <div className="absolute bottom-1/4 left-1/3 w-20 h-20 rounded-full bg-white animate-float" style={{animationDelay: '2s'}}></div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center stagger-animation">
-            {stats.map((stat) => (
-              <div key={stat.id} className="animate-fade-in">
-                <div className="text-4xl md:text-5xl font-bold mb-2">
-                  {stat.isPercentage ? stat.value : stat.value}+
-                  {stat.isPercentage && <span>%</span>}
-                  {stat.isHours && <span>/7</span>}
-                </div>
-                <div className="text-lg">{stat.label}</div>
+            {/* Additional Services - Show when expanded */}
+            {showAllServices && (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6 stagger-animation">
+                {additionalServices.map((service, index) => (
+                  <AnimatedServiceCard 
+                    key={service.id} 
+                    service={service} 
+                    index={index + initialServices.length}
+                    animationDelay={index * 0.1}
+                  />
+                ))}
               </div>
-            ))}
+            )}
+
+            {/* Show More/Less Button with Animation */}
+            <div className="text-center mt-12 animate-bounce-gentle">
+              <button 
+                onClick={toggleServices}
+                className="px-8 py-3 bg-gradient-to-r from-[#103d5d] to-[#245684] text-white rounded-lg font-semibold hover:from-[#245684] hover:to-[#103d5d] transition-all duration-500 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center mx-auto relative overflow-hidden group"
+              >
+                <span className="relative z-10">
+                  {showAllServices ? (
+                    <>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 inline" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clipRule="evenodd" />
+                      </svg>
+                      Show Less Services
+                    </>
+                  ) : (
+                    <>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 inline" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                      </svg>
+                      Show More Services
+                    </>
+                  )}
+                </span>
+                <span className="absolute inset-0 bg-gradient-to-r from-[#245684] to-[#103d5d] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Testimonials Carousel Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4 animate-fade-in">What Our Clients Say</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
-            Trusted by businesses across various industries for our reliable IT solutions.
-          </p>
-        </div>
-
-        <div className="relative max-w-4xl mx-auto">
-          <div className="overflow-hidden">
-            <div className="flex testimonial-slide"
-              style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}>
-              {testimonials.map((testimonial) => (
-                <div key={testimonial.id} className="w-full flex-shrink-0 px-4">
-                  <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 animate-fade-in-up">
-                    <div className="flex flex-col md:flex-row items-center mb-6">
-                      <img 
-                        src={testimonial.image} 
-                        alt={testimonial.author} 
-                        className="w-20 h-20 rounded-full object-cover mb-4 md:mb-0 md:mr-6 hover:scale-105 transition-transform duration-300"
-                      />
-                      <div>
-                        <div className="flex mb-2">
-                          {[...Array(5)].map((_, i) => (
-                            <svg
-                              key={i}
-                              xmlns="http://www.w3.org/2000/svg"
-                              className={`h-5 w-5 ${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}`}
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                            >
-                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                          ))}
-                        </div>
-                        <p className="text-gray-600 italic mb-2">"{testimonial.quote}"</p>
-                        <div>
-                          <div className="font-semibold text-[#245684]">{testimonial.author}</div>
-                          <div className="text-gray-500 text-sm">{testimonial.company}</div>
-                        </div>
-                      </div>
-                    </div>
+        {/* Stats Section - Enhanced background */}
+        <div id="stats-section" className="stats-background text-white py-16 relative overflow-hidden">
+          {/* Animated background elements */}
+          <div className="absolute top-0 left-0 w-full h-full opacity-10">
+            <div className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-white animate-float"></div>
+            <div className="absolute top-1/2 right-1/4 w-24 h-24 rounded-full bg-white animate-float" style={{animationDelay: '1s'}}></div>
+            <div className="absolute bottom-1/4 left-1/3 w-20 h-20 rounded-full bg-white animate-float" style={{animationDelay: '2s'}}></div>
+          </div>
+          
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center stagger-animation">
+              {stats.map((stat) => (
+                <div key={stat.id} className="animate-fade-in">
+                  <div className="text-4xl md:text-5xl font-bold mb-2">
+                    {stat.isPercentage ? stat.value : stat.value}+
+                    {stat.isPercentage && <span>%</span>}
+                    {stat.isHours && <span>/7</span>}
                   </div>
+                  <div className="text-lg">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
-          <div className="flex justify-center mt-8 space-x-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToTestimonial(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${currentTestimonial === index ? 'bg-[#103d5d] scale-125' : 'bg-gray-300'}`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
-            ))}
+        </div>
+
+        {/* Testimonials Carousel Section - Enhanced background */}
+        <div className="testimonials-background max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4 animate-fade-in">What Our Clients Say</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
+              Trusted by businesses across various industries for our reliable IT solutions.
+            </p>
+          </div>
+
+          <div className="relative max-w-4xl mx-auto">
+            <div className="overflow-hidden">
+              <div className="flex testimonial-slide"
+                style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}>
+                {testimonials.map((testimonial) => (
+                  <div key={testimonial.id} className="w-full flex-shrink-0 px-4">
+                    <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 animate-fade-in-up">
+                      <div className="flex flex-col md:flex-row items-center mb-6">
+                        <img 
+                          src={testimonial.image} 
+                          alt={testimonial.author} 
+                          className="w-20 h-20 rounded-full object-cover mb-4 md:mb-0 md:mr-6 hover:scale-105 transition-transform duration-300"
+                        />
+                        <div>
+                          <div className="flex mb-2">
+                            {[...Array(5)].map((_, i) => (
+                              <svg
+                                key={i}
+                                xmlns="http://www.w3.org/2000/svg"
+                                className={`h-5 w-5 ${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}`}
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                              >
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                              </svg>
+                            ))}
+                          </div>
+                          <p className="text-gray-600 italic mb-2">"{testimonial.quote}"</p>
+                          <div>
+                            <div className="font-semibold text-[#245684]">{testimonial.author}</div>
+                            <div className="text-gray-500 text-sm">{testimonial.company}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="flex justify-center mt-8 space-x-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToTestimonial(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${currentTestimonial === index ? 'bg-[#103d5d] scale-125' : 'bg-gray-300'}`}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* CTA Section */}
-      <div className="bg-[#170f17] text-white py-16 md:py-24 relative overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute top-0 left-0 w-full h-full opacity-10">
-          <div className="absolute top-1/4 right-1/4 w-40 h-40 rounded-full bg-white animate-pulse-slower"></div>
-          <div className="absolute bottom-1/4 left-1/4 w-32 h-32 rounded-full bg-white animate-pulse-slower" style={{animationDelay: '1s'}}></div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fade-in">Partner with SysCare IT Solutions </h2>
-          <p className="text-md mb-8 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
-            Your dedicated provider of managed IT services in Melbourne, IT support in Sydney, and trusted cybersecurity services nationwide. Discover how we can protect and empower your business with tailored IT solutions.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4 stagger-animation">
-            <Link 
-              to="/contact-Us" 
-              className="px-8 py-3 bg-[#245684] text-white rounded-lg font-semibold hover:bg-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl animate-bounce-gentle"
-            >
-              Get a Free Consultation
-            </Link>
-            <Link 
-              to="/contact-Us" 
-              className="px-8 py-3 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-[#170f17] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              Contact Us Now
-            </Link>
+        {/* CTA Section */}
+        <div className="bg-[#170f17] text-white py-16 md:py-24 relative overflow-hidden">
+          {/* Animated background elements */}
+          <div className="absolute top-0 left-0 w-full h-full opacity-10">
+            <div className="absolute top-1/4 right-1/4 w-40 h-40 rounded-full bg-white animate-pulse-slower"></div>
+            <div className="absolute bottom-1/4 left-1/4 w-32 h-32 rounded-full bg-white animate-pulse-slower" style={{animationDelay: '1s'}}></div>
+          </div>
+          
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fade-in">Partner with SysCare IT Solutions </h2>
+            <p className="text-md mb-8 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
+              Your dedicated provider of managed IT services in Melbourne, IT support in Sydney, and trusted cybersecurity services nationwide. Discover how we can protect and empower your business with tailored IT solutions.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4 stagger-animation">
+              <Link 
+                to="/contact-Us" 
+                className="px-8 py-3 bg-[#245684] text-white rounded-lg font-semibold hover:bg-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl animate-bounce-gentle"
+              >
+                Get a Free Consultation
+              </Link>
+              <Link 
+                to="/contact-Us" 
+                className="px-8 py-3 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-[#170f17] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                Contact Us Now
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
 
-      <Footer/>
+        <Footer/>
+      </div>
     </div>
   );
 };
