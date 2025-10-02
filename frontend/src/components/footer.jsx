@@ -17,7 +17,7 @@ const Footer = () => {
                 className='h-16 w-auto object-contain'
               />
             </div>
-            <p className="text-white/90 mb-6 max-w-lg leading-relaxed">
+            <p className="text-white/90 mb-6 max-w-lg leading-relaxed text-justify text-sm">
               SysCare IT Solutions Pty Ltd is your trusted Managed IT Services (MSP) and Managed Security Services (MSSP) provider in Melbourne and Sydney. We deliver proactive IT support, advanced cybersecurity, and scalable solutions tailored to your business.
             </p>
             

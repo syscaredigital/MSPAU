@@ -92,7 +92,7 @@ const AboutUs = () => {
                 <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   About <span className="text-[#a3c1e0]">SysCare</span>
                 </h1>
-                <p className={`text-xl text-[#c9d8eb] mb-8 max-w-lg transition-all duration-700 delay-100 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                <p className={`text-md text-[#c9d8eb] mb-8 max-w-lg transition-all duration-700 delay-100 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   At SysCare IT Solutions Pty Ltd, we are more than just a technology provider—we are your trusted IT partner.
                 </p>
                 <div className={`flex flex-wrap gap-4 transition-all duration-700 delay-200 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
@@ -397,7 +397,7 @@ const AboutUs = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fadeIn">
                 Experience with <span className="bg-gradient-to-r from-[#a3d4ff] to-white bg-clip-text text-transparent">a professional IT services </span>provider
               </h2>
-              <p className="text-xl mb-8 opacity-90 animate-fadeIn">
+              <p className="text-md mb-8 opacity-90 animate-fadeIn">
                 With local expertise in Melbourne and Sydney, and national capabilities across Australia, we are here to help your business succeed securely. To learn more about how SysCare IT Solutions can be the IT partner your business can trust.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fadeIn">

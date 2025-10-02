@@ -910,7 +910,7 @@ const ServicesPage = () => {
               <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                 Our <span className="text-[#a3c1e0]">Services</span>
               </h1>
-              <p className={`text-xl text-[#c9d8eb] mb-8 max-w-lg transition-all duration-700 delay-100 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <p className={`text-md text-[#c9d8eb] mb-8 max-w-lg transition-all duration-700 delay-100 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                 Discover our comprehensive range of IT solutions designed to empower your business with cutting-edge technology and expert support.
               </p>
               <div className={`flex flex-wrap gap-4 transition-all duration-700 delay-200 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
@@ -950,7 +950,7 @@ const ServicesPage = () => {
           <div className="text-center mb-12 animate-fade-in">
             <h2 className="text-3xl md:text-4xl font-bold text-[#000000] mb-4">SysCare Services</h2>
             <div className="w-24 h-1 bg-[#245684] mx-auto mb-6"></div>
-            <p className="text-[#000000] max-w-3xl mx-auto text-lg">
+            <p className="text-[#000000] max-w-3xl mx-auto text-md">
               At SysCare, we are committed to delivering exceptional quality in every service we provide. We believe that your satisfaction is the true measure of our success.
             </p>
           </div>
@@ -1023,7 +1023,7 @@ const ServicesPage = () => {
     <div className="text-center mb-16 animate-fade-in">
       <h2 className="text-4xl md:text-5xl font-bold text-[#103d5d] mb-6">Our Service Process</h2>
       <div className="w-32 h-1.5 bg-gradient-to-r from-[#103d5d] to-[#245684] mx-auto mb-6 rounded-full"></div>
-      <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+      <p className="text-md text-gray-600 max-w-3xl mx-auto leading-relaxed">
         We follow a structured approach to ensure we deliver the best solutions for your business needs.
       </p>
     </div>
@@ -1048,7 +1048,7 @@ const ServicesPage = () => {
           <div className="lg:w-1/2 lg:text-right lg:pr-12 text-center lg:text-left">
             <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
               <h3 className="text-2xl font-bold text-[#103d5d] mb-3">Consultation & Assessment</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed text-sm">
                 We begin with a detailed consultation to understand your business goals, IT environment, and security needs.
               </p>
             </div>
@@ -1077,7 +1077,7 @@ const ServicesPage = () => {
           <div className="lg:w-1/2 lg:pl-12 text-center lg:text-left order-1 lg:order-2">
             <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
               <h3 className="text-2xl font-bold text-[#103d5d] mb-3">Tailored Strategy Design</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed text-sm">
                 Our experts create a customised managed IT and security plan that aligns with your business objectives.
               </p>
             </div>
@@ -1098,7 +1098,7 @@ const ServicesPage = () => {
           <div className="lg:w-1/2 lg:text-right lg:pr-12 text-center lg:text-left">
             <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
               <h3 className="text-2xl font-bold text-[#103d5d] mb-3">Seamless Implementation</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed text-sm">
                 We deploy, configure, and optimise solutions with minimal disruption to your daily operations.
               </p>
             </div>
@@ -1127,7 +1127,7 @@ const ServicesPage = () => {
           <div className="lg:w-1/2 lg:pl-12 text-center lg:text-left order-1 lg:order-2">
             <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
               <h3 className="text-2xl font-bold text-[#103d5d] mb-3">24/7 Monitoring & Support</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed text-sm">
                 Our Melbourne and Sydney support teams provide round-the-clock monitoring, IT helpdesk, and fast issue resolution.
               </p>
             </div>
@@ -1148,7 +1148,7 @@ const ServicesPage = () => {
           <div className="lg:w-1/2 lg:text-right lg:pr-12 text-center lg:text-left">
             <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
               <h3 className="text-2xl font-bold text-[#103d5d] mb-3">Continuous Improvement</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed text-sm">
                 We regularly review performance, update systems, and implement innovations to keep your business secure and efficient.
               </p>
             </div>
@@ -1175,7 +1175,7 @@ const ServicesPage = () => {
         
         <div className="max-w-4xl mx-auto text-center relative z-10 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Business?</h2>
-          <p className="text-xl mb-8">
+          <p className="text-xl mb-8 text-sm">
             Let's discuss how we can help you achieve your digital goals.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">

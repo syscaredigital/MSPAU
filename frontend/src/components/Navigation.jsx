@@ -249,7 +249,7 @@ const Navigation = () => {
                           <div key={catIdx} className="mb-8 last:mb-0 group">
                             <div className="flex items-center mb-3">
                               <div className="w-1 h-6 bg-gradient-to-b from-[#a3d4ff] to-[#245684] rounded-full mr-3 group-hover:w-2 transition-all duration-300"></div>
-                              <h3 className="text-sm font-bold text-[#103d5d] group-hover:text-[#245684] transition-colors duration-300">
+                              <h3 className="text-md font-bold text-[#103d5d] group-hover:text-[#245684] transition-colors duration-300">
                                 {category.name}
                               </h3>
                             </div>
