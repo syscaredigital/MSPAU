@@ -145,7 +145,7 @@ const Header = () => {
 };
 
 // SubServiceModal Component (keep the existing SubServiceModal component as is)
-const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
+const SubServiceModal = ({ isOpen, onClose, subService }) => {
   // ... (keep all the existing SubServiceModal code exactly as it was)
   if (!isOpen) return null;
 
@@ -171,13 +171,13 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
   const renderServiceDetails = () => {
     if (isPrivateCloud) {
       return (
-        <div className="mt-2">
-          <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Our Private Cloud Solutions:</h4>
+        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20  ">
+          <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Cloud Solutions:</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-[#103d5d]/10 p-4 rounded-lg border border-[#103d5d]/20 transition-transform duration-200 hover:scale-[1.02]">
               <div className="flex items-center mb-2">
                 <FaServer className="text-[#103d5d] mr-2" />
-                <h5 className="font-medium text-[#103d5d]">Private Cloud</h5>
+                <h5 className="font-medium text-[#103d5d]">Cloud Solutions</h5>
               </div>
               <p className="text-sm text-[#103d5d]">Dedicated cloud infrastructure for your organization</p>
             </div>
@@ -223,7 +223,7 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
 
     if (isServiceDesk) {
       return (
-        <div className="mt-2">
+        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Service Desk Features:</h4>
           <div className="grid grid-cols-1 gap-3">
             <div className="bg-[#103d5d]/10 p-3 rounded-lg border border-[#103d5d]/20">
@@ -244,7 +244,7 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
 
     if (isManagedIT) {
       return (
-        <div className="mt-2">
+        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Managed IT Services Include:</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {[
@@ -271,7 +271,7 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
 
     if (isCybersecurityConsultancy) {
       return (
-        <div className="mt-2">
+        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Cybersecurity Consultancy Services:</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {[
@@ -291,7 +291,7 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
 
     if (isManagedSecurity) {
       return (
-        <div className="mt-2">
+        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Managed Security Services Include:</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {[
@@ -314,7 +314,7 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
 
     if (isCloudSolutions) {
       return (
-        <div className="mt-2">
+        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Cloud Solutions Include:</h4>
           <div className="grid grid-cols-1 gap-3">
             {[
@@ -333,7 +333,7 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
 
     if (isHostedSolutions) {
       return (
-        <div className="mt-2">
+        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Hosted Solutions Include:</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {[
@@ -352,7 +352,7 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
 
     if (isITInfraProjects) {
       return (
-        <div className="mt-2">
+        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">IT Infrastructure Projects:</h4>
           <div className="grid grid-cols-1 gap-3">
             {[
@@ -372,7 +372,7 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
 
     if (isOfficeAutomation) {
       return (
-        <div className="mt-2">
+        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Office IT Automation Services:</h4>
           <div className="grid grid-cols-1 gap-3">
             {[
@@ -390,7 +390,7 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
 
     if (isConnectivity) {
       return (
-        <div className="mt-2">
+        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Connectivity Services:</h4>
           <div className="grid grid-cols-1 gap-3">
             {[
@@ -407,7 +407,7 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
 
     if (isVoIP) {
       return (
-        <div className="mt-2">
+        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">VoIP & Video Services:</h4>
           <div className="grid grid-cols-1 gap-3">
             {[
@@ -425,7 +425,7 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
 
     if (isDesignDevelopment) {
       return (
-        <div className="mt-2">
+        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <h4 className="font-semibold text-[#103d5d] mb-2">Design & Development Services:</h4>
@@ -461,7 +461,7 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
 
     if (isDigitalMarketing) {
       return (
-        <div className="mt-2">
+        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">MultiMedia Services:</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
@@ -522,7 +522,7 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
 
     if (isSmallBusinessCRM) {
       return (
-        <div className="mt-2">
+        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Small Business CRM/ERP Solutions:</h4>
           <div className="grid grid-cols-1 gap-3">
             {[
@@ -539,7 +539,7 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
 
     if (isEnterpriseCRM) {
       return (
-        <div className="mt-2">
+        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Enterprise CRM/ERP Solutions:</h4>
           <div className="grid grid-cols-1 gap-3">
             {[
@@ -556,7 +556,7 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
 
     if (isSecurityTraining) {
       return (
-        <div className="mt-2">
+        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Security Training Programs:</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
@@ -596,7 +596,7 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
 
     if (isCloudTraining) {
       return (
-        <div className="mt-2">
+        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Cloud Training Programs:</h4>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div>
@@ -638,22 +638,22 @@ const SubServiceModal = ({ isOpen, onClose, subService, mainService }) => {
     }
 
     // Default case for services without special formatting
-    return (
+  /*   return (
       <div className="bg-[#103d5d]/10 p-4 rounded-md">
         <h4 className="font-semibold text-[#103d5d] mb-2">Part of: {mainService}</h4>
         <p className="text-sm text-[#103d5d]">Contact us to learn more about how we can implement this solution for your business.</p>
       </div>
-    );
+    ); */
   };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 modal-animation">
       <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto modal-content-animation">
-        <div className="flex justify-between items-center p-6 border-b">
-          <h3 className="text-xl font-bold text-[#103d5d]">{subService.title}</h3>
+        <div className="flex justify-between items-center p-6 border-b bg-[#103d5d]">
+          <h3 className=" text-xl font-bold text-white">{subService.title}</h3>
           <button 
             onClick={onClose}
-            className="text-[#103d5d] hover:text-[#245684] transition-colors duration-200"
+            className="text-white hover:text-[#245684] transition-colors duration-200"
           >
             <FaTimes className="text-xl" />
           </button>

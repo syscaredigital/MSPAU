@@ -93,7 +93,7 @@ const AboutUs = () => {
                   About <span className="text-[#a3c1e0]">SysCare</span>
                 </h1>
                 <p className={`text-md text-[#c9d8eb] mb-8 max-w-lg transition-all duration-700 delay-100 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                  At SysCare IT Solutions Pty Ltd, we are more than just a technology provider—we are your trusted IT partner.
+                  At SysCare IT Solutions Pty Ltd, we are more than just a technology provider, we are your trusted IT partner.
                 </p>
                 <div className={`flex flex-wrap gap-4 transition-all duration-700 delay-200 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <a href="#stats-section" className="bg-white text-[#103d5d] px-6 py-3 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] flex items-center">
@@ -167,10 +167,10 @@ const AboutUs = () => {
               
               <div className="lg:w-1/2 grid grid-cols-2 gap-6 animate-slideInRight">
                 {[
-                  { value: "99.99%", label: "Uptime" },
-                  { value: "250+", label: "Tech Patents" },
-                  { value: "1200+", label: "Clients Worldwide" },
-                  { value: "15+", label: "Years Experience" }
+                  { value: "12+", label: "Years of Experience" },
+                  { value: "150+", label: "Satisfied Clients" },
+                  { value: "100+", label: "Successful Projects" },
+                  { value: "20+", label: "Employees" }
                 ].map((stat, i) => (
                   <div key={i} className="bg-gray-50 p-6 rounded-lg border-l-4 border-[#245684] hover:shadow-lg transition-shadow">
                     <div className={`text-3xl font-bold text-[#103d5d] mb-2 ${animatedStats ? 'animate-countUp' : ''}`}>

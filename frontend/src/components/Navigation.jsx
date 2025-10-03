@@ -218,7 +218,7 @@ const Navigation = () => {
             >
               <Link
                 to="/syscare-services"
-                className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] flex items-center h-full hover:bg-white/10 rounded-lg"
+                className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] flex items-center hover:bg-white/10 rounded-lg"
               >
                 Services
                 <FiChevronDown
@@ -230,15 +230,15 @@ const Navigation = () => {
 
               {servicesHover && (
                 <div 
-                  className={`absolute left-1/2 transform -translate-x-1/2 top-full w-[900px] bg-gradient-to-br from-white to-gray-50 shadow-2xl rounded-2xl py-6 z-50 border border-gray-200 transition-all duration-300 ${
+                  className={`absolute left-1/2 transform -translate-x-1/2 top-full w-[900px] bg-gradient-to-br from-white to-gray-50 shadow-2xl rounded-2xl py-6 z-50 border border-gray-200 transition-all duration-300  ${
                     megaMenuHover ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
                   }`}
                   onMouseEnter={() => setMegaMenuHover(true)}
                   onMouseLeave={() => setMegaMenuHover(false)}
                 >
                   {/* Mega Menu Header */}
-                  <div className="px-6 mb-4">
-                    <h3 className="text-lg font-bold text-[#103d5d]">Our Services</h3>
+                  <div className="px-6 mb-4 border-b border-[#103d5d]">
+                    <h3 className="text-lg font-bold text-[#103d5d]   ">Our Services</h3>
                     <p className="text-sm text-gray-600 mt-1">Comprehensive IT solutions for your business</p>
                   </div>
                   
@@ -278,10 +278,10 @@ const Navigation = () => {
                   </div>
                   
                   {/* Mega Menu Footer */}
-                  <div className="mt-6 pt-4 border-t border-gray-200 px-6">
+                  <div className="mt-6 pt-4 border-t border-[#103d5d] px-6">
                     <Link
                       to="/syscare-services"
-                      className="inline-flex items-center text-[#103d5d] hover:text-[#245684] font-medium transition-all duration-300 group"
+                      className="inline-flex items-center text-[#103d5d] hover:text-[#245684] font-medium transition-all duration-300 group bg-white hover:bg-gray-100 px-4 py-2 rounded-lg shadow hover:shadow-md border border-[#103d5d] hover:border-[#245684]"
                     >
                       <span>View All Services</span>
                       <FiArrowRightCircle className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />

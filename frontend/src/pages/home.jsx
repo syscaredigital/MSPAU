@@ -343,8 +343,8 @@ const HomePage = () => {
   const [stats, setStats] = useState([
     { id: 1, value: 0, target: 12, label: "Years Experience" },
     { id: 2, value: 0, target: 150, label: "Satisfied Clients" },
-    { id: 3, value: 0, target: 99.9, label: "Uptime Guarantee", isPercentage: true },
-    { id: 4, value: 0, target: 24, label: "Support Available", isHours: true }
+    { id: 3, value: 0, target: 100, label: "Successful Projects" },
+    { id: 4, value: 0, target: 20, label: "Employees" }
   ]);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [nodes, setNodes] = useState([]);

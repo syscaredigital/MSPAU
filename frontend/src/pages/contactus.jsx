@@ -104,7 +104,7 @@ const ContactPage = () => {
               <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                 Contact <span className="text-[#a3c1e0]">SysCare</span> <br></br>IT Solutions
               </h1>
-              <p className={`text-xl text-[#c9d8eb] mb-8 max-w-lg transition-all duration-700 delay-100 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <p className={`text-md text-[#c9d8eb] mb-8 max-w-lg transition-all duration-700 delay-100 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                 Whether you’re looking for 24/7 support contact, service inquiries, or expert advice, the team at SysCare IT Solutions is ready to assist.
               </p>
               <div className={`flex flex-wrap gap-4 transition-all duration-700 delay-200 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
@@ -166,7 +166,8 @@ const ContactPage = () => {
               </div>
               <h3 className="text-xl font-semibold text-[#103d5d] mb-3">Visit Us</h3>
               <p className="text-gray-600 mb-4">Come see us at our headquarters</p>
-              <p className="text-[#245684] font-medium">Unit 12, Level 10, 401 Docklands Drive, Docklands, VIC 3008</p>
+              <p className="text-[#245684] font-medium"><span className='font-bold'>Melbourne</span> - Level 10, Suite 1012, 401 Docklands Dr, Docklands, VIC 3008.</p>
+               <p className="text-[#245684] font-medium"><span className='font-bold'>Sydney</span> – Level 36, Gateway, 1 Macquarie Pl, Sydney, NSW 2000.</p>
             </div>
           </div>
         </div>
@@ -234,12 +235,15 @@ const ContactPage = () => {
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#245684] focus:border-transparent"
                 >
                   <option value="">Select a service</option>
-                  <option value="IT Consulting">IT Consulting</option>
-                  <option value="Managed IT Services">Managed IT Services</option>
+                  <option value="Internet & VoIP">Internet & VoIP</option>
+                  <option value="IT Support">IT Support</option>
                   <option value="Cloud Solutions">Cloud Solutions</option>
-                  <option value="Cybersecurity">Cybersecurity</option>
-                  <option value="Network Infrastructure">Network Infrastructure</option>
-                  <option value="Data Backup & Recovery">Data Backup & Recovery</option>
+                  <option value="Digital Services">Digital Services</option>
+                  <option value="IT Security">IT Security</option>
+                  <option value="IT Training">IT Training</option>
+                  <option value="CRM & ERP Solutions">CRM & ERP Solutions</option>
+                  <option value="Project Auotomations">Project Auotomations</option>
+
                 </select>
               </div>
 
@@ -267,41 +271,7 @@ const ContactPage = () => {
 
           {/* Contact Info */}
           <div>
-            <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
-              <h2 className="text-3xl font-bold text-[#170f17] mb-6">Contact Information</h2>
-              
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="bg-[#103d5d] text-white p-3 rounded-full mr-4">
-                    <FaMapMarkerAlt className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-[#245684] mb-1">Our Office</h3>
-                    <p className="text-gray-600">Melbourne Office : Unit 12, Level 10, 401 Docklands Drive, Docklands, VIC 3008</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="bg-[#103d5d] text-white p-3 rounded-full mr-4">
-                    <FaPhoneAlt className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-[#245684] mb-1">Phone</h3>
-                    <p className="text-gray-600">1300 69 79 72</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="bg-[#103d5d] text-white p-3 rounded-full mr-4">
-                    <FaEnvelope className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-[#245684] mb-1">Email</h3>
-                    <p className="text-gray-600">info@syscare.com.au</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
 
             <div className="bg-white rounded-xl shadow-lg p-8">
               <h2 className="text-3xl font-bold text-[#170f17] mb-6">Business Hours</h2>
