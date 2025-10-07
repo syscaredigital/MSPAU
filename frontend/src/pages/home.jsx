@@ -305,6 +305,27 @@ const animationStyles = `
       radial-gradient(circle at 80% 20%, rgba(36, 86, 132, 0.03) 0%, transparent 50%);
   }
 
+  .industries-background {
+    background: 
+      linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%),
+      radial-gradient(circle at 10% 20%, rgba(16, 61, 93, 0.02) 0%, transparent 50%),
+      radial-gradient(circle at 90% 80%, rgba(36, 86, 132, 0.02) 0%, transparent 50%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .industries-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(16, 61, 93, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(36, 86, 132, 0.03) 0%, transparent 50%);
+  }
+
   .stats-background {
     background: linear-gradient(135deg, #103d5d 0%, #245684 50%, #1a4a75 100%);
     position: relative;
@@ -323,10 +344,53 @@ const animationStyles = `
       radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
   }
 
+  /* Testimonials Section Background */
   .testimonials-background {
+    background: #103d5d;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .testimonials-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: 
-      linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%),
-      radial-gradient(circle at 10% 20%, rgba(16, 61, 93, 0.02) 0%, transparent 50%);
+      radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+  }
+
+  /* Testimonials Particles */
+  .testimonials-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .testimonial-particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: particleFloat 8s ease-in-out infinite;
+  }
+
+  .testimonial-particle-2 {
+    background: rgba(255, 255, 255, 0.08);
+    animation-duration: 10s;
+    animation-delay: 1s;
+  }
+
+  .testimonial-particle-3 {
+    background: rgba(255, 255, 255, 0.06);
+    animation-duration: 12s;
+    animation-delay: 2s;
   }
 
   .downloads-background {
@@ -486,6 +550,66 @@ const animationStyles = `
     margin-top: 0.5rem;
   }
 
+  /* Industries Section Styles - Clean 3-column list */
+  .industries-list-container {
+    background: white;
+    border-radius: 16px;
+    padding: 3rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+  }
+
+  .industries-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .industry-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .industry-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f1f5f9;
+    transition: all 0.3s ease;
+  }
+
+  .industry-item:last-child {
+    border-bottom: none;
+  }
+
+  .industry-item:hover {
+    transform: translateX(5px);
+    color: #103d5d;
+  }
+
+  .industry-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .industry-name {
+    font-weight: 500;
+    color: #374151;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+  }
+
+  .industry-item:hover .industry-name {
+    color: #103d5d;
+    font-weight: 600;
+  }
+
   /* Fade edges */
   .carousel-fade {
     position: absolute;
@@ -542,6 +666,25 @@ const animationStyles = `
       height: 60px;
       font-size: 1.5rem;
     }
+
+    .industries-list-container {
+      padding: 2rem;
+    }
+
+    .industries-columns {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .industry-item {
+      padding: 0.5rem 0;
+    }
+  }
+
+  @media (max-width: 1024px) and (min-width: 769px) {
+    .industries-columns {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 `;
 
@@ -557,6 +700,7 @@ const HomePage = () => {
   const [nodes, setNodes] = useState([]);
   const [connections, setConnections] = useState([]);
   const [particles, setParticles] = useState([]);
+  const [testimonialParticles, setTestimonialParticles] = useState([]);
 
   // All Services Data
   const allServices = [
@@ -608,6 +752,44 @@ const HomePage = () => {
       description: "Integrated CRM and ERP solutions to optimize your business processes and customer relationships.",
       icon: "📊"
     }
+  ];
+
+  // Industries We Support Data
+  const industries = [
+    { id: 1, name: "Accounting Services", icon: "📊" },
+    { id: 2, name: "Advertising and Marketing", icon: "📢" },
+    { id: 3, name: "Automobile Services", icon: "🚗" },
+    { id: 4, name: "Building Services", icon: "🏢" },
+    { id: 5, name: "Construction and Development", icon: "🏗️" },
+    { id: 6, name: "Design and Architecture", icon: "📐" },
+    { id: 7, name: "Educational Services", icon: "🎓" },
+    { id: 8, name: "Electrical Services", icon: "⚡" },
+    { id: 9, name: "Entertainment Services", icon: "🎭" },
+    { id: 10, name: "Farming and Agriculture", icon: "🚜" },
+    { id: 11, name: "Fast Food Industry", icon: "🍔" },
+    { id: 12, name: "Financial Services", icon: "💳" },
+    { id: 13, name: "Food Manufacturing Industry", icon: "🍪" },
+    { id: 14, name: "Health Care Services", icon: "🏥" },
+    { id: 15, name: "Home Care and Disability Services", icon: "❤️" },
+    { id: 16, name: "Hospitality Industry", icon: "🏨" },
+    { id: 17, name: "Human Resources", icon: "👥" },
+    { id: 18, name: "Management and Consulting", icon: "💼" },
+    { id: 19, name: "Mining and Support Industry", icon: "⛏️" },
+    { id: 20, name: "Pet Food Manufacturing", icon: "🐕" },
+    { id: 21, name: "Pharmaceutical Industry", icon: "💊" },
+    { id: 22, name: "Printing and Publishing Industry", icon: "📰" },
+    { id: 23, name: "Production Industry", icon: "🏭" },
+    { id: 24, name: "Real Estate", icon: "🏠" },
+    { id: 25, name: "Retail Industry", icon: "🛍️" },
+    { id: 26, name: "Small Business", icon: "💡" },
+    { id: 27, name: "Social and Community Services", icon: "🤝" },
+    { id: 28, name: "Spare Parts Industry", icon: "🔧" },
+    { id: 29, name: "Steel and Aluminium Manufacturing", icon: "⚒️" },
+    { id: 30, name: "Technology Services Industry", icon: "💻" },
+    { id: 31, name: "Telecommunication Services Industry", icon: "📞" },
+    { id: 32, name: "Tourism industry", icon: "✈️" },
+    { id: 33, name: "Transport and Logistics Services", icon: "🚚" },
+    { id: 34, name: "Wholesale and Warehousing", icon: "📦" }
   ];
 
   // Partner Logos Data - 42 logos split into two groups
@@ -687,10 +869,19 @@ const HomePage = () => {
     }
   ];
 
+  // Split industries into 3 columns
+  const industriesPerColumn = Math.ceil(industries.length / 3);
+  const industryColumns = [
+    industries.slice(0, industriesPerColumn),
+    industries.slice(industriesPerColumn, industriesPerColumn * 2),
+    industries.slice(industriesPerColumn * 2)
+  ];
+
   useEffect(() => {
     // Initialize animated background nodes, connections, and particles
     initializeBackground();
     initializeParticles();
+    initializeTestimonialParticles();
 
     // Start counter animation when stats section is in view
     const observer = new IntersectionObserver(
@@ -781,6 +972,28 @@ const HomePage = () => {
     }
     
     setParticles(newParticles);
+  };
+
+  const initializeTestimonialParticles = () => {
+    // Create floating particles specifically for testimonials section
+    const particleCount = 25;
+    const newParticles = [];
+    
+    for (let i = 0; i < particleCount; i++) {
+      const size = Math.random() * 6 + 2; // Random size between 2px and 8px
+      const type = i % 3; // Distribute between 3 particle types
+      
+      newParticles.push({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: size,
+        type: type,
+        delay: Math.random() * 8
+      });
+    }
+    
+    setTestimonialParticles(newParticles);
   };
 
   const animateStats = () => {
@@ -927,137 +1140,6 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* Dual Line Partners Section */}
-        <div className="partners-background py-16 md:py-20 relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4 animate-fade-in">
-                Trusted by Industry Leaders
-              </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
-                We partner with the world's leading technology companies to deliver exceptional solutions
-              </p>
-            </div>
-
-            {/* Dual Line Carousel */}
-            <div className="dual-carousel-container">
-              <div className="carousel-fade carousel-fade-left"></div>
-              <div className="carousel-fade carousel-fade-right"></div>
-              
-              {/* Top Line - Scrolls Left */}
-              <div className="logo-track logo-track-top">
-                {duplicatedLogosLine1.map((logo, index) => (
-                  <div key={`top-${logo.id}-${index}`} className="logo-item">
-                    <img 
-                      src={logo.fallback} 
-                      alt={logo.name}
-                      className="logo-img"
-                    />
-                  </div>
-                ))}
-              </div>
-
-              {/* Bottom Line - Scrolls Right */}
-              <div className="logo-track logo-track-bottom">
-                {duplicatedLogosLine2.map((logo, index) => (
-                  <div key={`bottom-${logo.id}-${index}`} className="logo-item">
-                    <img 
-                      src={logo.fallback} 
-                      alt={logo.name}
-                      className="logo-img"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Trust Stats */}
-            <div className="mt-16 text-center">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
-                <div className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-[#103d5d]">42+</div>
-                  <div className="text-gray-600 text-sm">Technology Partners</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-[#103d5d]">50+</div>
-                  <div className="text-gray-600 text-sm">Certified Solutions</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-[#103d5d]">100%</div>
-                  <div className="text-gray-600 text-sm">Vendor Certified</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-[#103d5d]">24/7</div>
-                  <div className="text-gray-600 text-sm">Partner Support</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Downloads - Products & Services Brochures Section */}
-        <div className="downloads-background py-16 md:py-24 relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4 animate-fade-in">
-                Downloads - Products & Services Brochures
-              </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
-                Download our comprehensive brochures to learn more about our IT solutions and services
-              </p>
-            </div>
-
-            {/* Brochures Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {brochures.map((brochure, index) => (
-                <div 
-                  key={brochure.id} 
-                  className="brochure-card animate-fade-in-up"
-                  style={{ animationDelay: `${index * 0.2}s` }}
-                >
-                  <div className="brochure-icon">
-                    {brochure.icon}
-                  </div>
-                  <h3 className="text-xl font-bold text-[#170f17] mb-3">
-                    {brochure.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    {brochure.description}
-                  </p>
-                  <div className="file-size">
-                    PDF • {brochure.fileSize}
-                  </div>
-                  <button 
-                    onClick={() => handleDownload(brochure)}
-                    className="download-btn"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-                    </svg>
-                    Download Brochure
-                  </button>
-                </div>
-              ))}
-            </div>
-
-            {/* Additional Info */}
-            <div className="text-center mt-12">
-              <p className="text-gray-600 mb-4">
-                Need more information? Contact our team for customized solutions.
-              </p>
-              <Link 
-                to="/contact-Us" 
-                className="inline-flex items-center px-6 py-3 border border-[#103d5d] text-[#103d5d] rounded-lg font-semibold hover:bg-[#103d5d] hover:text-white transition-all duration-300"
-              >
-                Contact Sales Team
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-              </Link>
-            </div>
-          </div>
-        </div>
-
         {/* Services Section - Enhanced with new background */}
         <div className="services-background py-16 md:py-24 relative overflow-hidden border border-gray-200 rounded-lg mx-4 sm:mx-6 lg:mx-8">
           {/* Animated background elements */}
@@ -1129,6 +1211,56 @@ const HomePage = () => {
           </div>
         </div>
 
+        {/* Industries We Support Section - Clean 3-column list */}
+        <div className="industries-background py-16 md:py-24">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4 animate-fade-in">
+                Industries We Support
+              </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
+                We provide tailored IT solutions for businesses across diverse sectors
+              </p>
+            </div>
+
+            {/* Industries List Container */}
+            <div className="industries-list-container animate-fade-in-up">
+              <div className="industries-columns">
+                {industryColumns.map((column, columnIndex) => (
+                  <div key={columnIndex} className="industry-column">
+                    {column.map((industry) => (
+                      <div key={industry.id} className="industry-item">
+                        <div className="industry-icon">
+                          {industry.icon}
+                        </div>
+                        <span className="industry-name">
+                          {industry.name}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Bottom CTA */}
+            <div className="text-center mt-12 animate-fade-in" style={{animationDelay: '0.5s'}}>
+              <p className="text-lg text-gray-600 mb-6">
+                Ready to transform your business with tailored IT solutions?
+              </p>
+              <Link 
+                to="/contact-Us" 
+                className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-[#103d5d] to-[#245684] text-white rounded-lg font-semibold hover:from-[#245684] hover:to-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                </svg>
+                Get Your Custom Solution
+              </Link>
+            </div>
+          </div>
+        </div>
+
         {/* Stats Section - Enhanced background */}
         <div id="stats-section" className="stats-background text-white py-16 relative overflow-hidden">
           {/* Animated background elements */}
@@ -1152,64 +1284,179 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* Testimonials Carousel Section - Enhanced background */}
-        <div className="testimonials-background max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4 animate-fade-in">What Our Clients Say</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
-              Trusted by businesses across various industries for our reliable IT solutions.
-            </p>
+        {/* Downloads - Products & Services Brochures Section */}
+        <div className="downloads-background py-16 md:py-24 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4 animate-fade-in">
+                Downloads - Products & Services Brochures
+              </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
+                Download our comprehensive brochures to learn more about our IT solutions and services
+              </p>
+            </div>
+
+            {/* Brochures Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {brochures.map((brochure, index) => (
+                <div 
+                  key={brochure.id} 
+                  className="brochure-card animate-fade-in-up"
+                  style={{ animationDelay: `${index * 0.2}s` }}
+                >
+                  <div className="brochure-icon">
+                    {brochure.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-[#170f17] mb-3">
+                    {brochure.title}
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    {brochure.description}
+                  </p>
+                  <div className="file-size">
+                    PDF • {brochure.fileSize}
+                  </div>
+                  <button 
+                    onClick={() => handleDownload(brochure)}
+                    className="download-btn"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                    Download Brochure
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Testimonials Carousel Section - Updated with #103d5d background and particles */}
+        <div className="testimonials-background py-16 md:py-24 relative overflow-hidden">
+          {/* Testimonials Particles Background */}
+          <div className="testimonials-particles">
+            {testimonialParticles.map((particle) => (
+              <div
+                key={particle.id}
+                className={`testimonial-particle testimonial-particle-${particle.type} animate-particle-float`}
+                style={{
+                  left: `${particle.x}%`,
+                  top: `${particle.y}%`,
+                  width: `${particle.size}px`,
+                  height: `${particle.size}px`,
+                  animationDelay: `${particle.delay}s`,
+                  opacity: 0.1 + (particle.size / 20)
+                }}
+              />
+            ))}
           </div>
 
-          <div className="relative max-w-4xl mx-auto">
-            <div className="overflow-hidden">
-              <div className="flex testimonial-slide"
-                style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}>
-                {testimonials.map((testimonial) => (
-                  <div key={testimonial.id} className="w-full flex-shrink-0 px-4">
-                    <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 animate-fade-in-up">
-                      <div className="flex flex-col md:flex-row items-center mb-6">
-                        <img 
-                          src={testimonial.image} 
-                          alt={testimonial.author} 
-                          className="w-20 h-20 rounded-full object-cover mb-4 md:mb-0 md:mr-6 hover:scale-105 transition-transform duration-300"
-                        />
-                        <div>
-                          <div className="flex mb-2">
-                            {[...Array(5)].map((_, i) => (
-                              <svg
-                                key={i}
-                                xmlns="http://www.w3.org/2000/svg"
-                                className={`h-5 w-5 ${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}`}
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                              >
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                              </svg>
-                            ))}
-                          </div>
-                          <p className="text-gray-600 italic mb-2">"{testimonial.quote}"</p>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 animate-fade-in">What Our Clients Say</h2>
+              <p className="text-xl text-blue-100 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
+                Trusted by businesses across various industries for our reliable IT solutions.
+              </p>
+            </div>
+
+            <div className="relative max-w-4xl mx-auto">
+              <div className="overflow-hidden">
+                <div className="flex testimonial-slide"
+                  style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}>
+                  {testimonials.map((testimonial) => (
+                    <div key={testimonial.id} className="w-full flex-shrink-0 px-4">
+                      <div className="bg-white p-8 rounded-xl shadow-2xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up border border-blue-100">
+                        <div className="flex flex-col md:flex-row items-center mb-6">
+                          <img 
+                            src={testimonial.image} 
+                            alt={testimonial.author} 
+                            className="w-20 h-20 rounded-full object-cover mb-4 md:mb-0 md:mr-6 hover:scale-105 transition-transform duration-300 border-2 border-[#103d5d]"
+                          />
                           <div>
-                            <div className="font-semibold text-[#245684]">{testimonial.author}</div>
-                            <div className="text-gray-500 text-sm">{testimonial.company}</div>
+                            <div className="flex mb-2">
+                              {[...Array(5)].map((_, i) => (
+                                <svg
+                                  key={i}
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  className={`h-5 w-5 ${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}`}
+                                  viewBox="0 0 20 20"
+                                  fill="currentColor"
+                                >
+                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                              ))}
+                            </div>
+                            <p className="text-gray-700 italic mb-2 text-lg leading-relaxed">"{testimonial.quote}"</p>
+                            <div>
+                              <div className="font-semibold text-[#245684] text-lg">{testimonial.author}</div>
+                              <div className="text-gray-600 text-sm">{testimonial.company}</div>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
+                  ))}
+                </div>
+              </div>
+              <div className="flex justify-center mt-8 space-x-3">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToTestimonial(index)}
+                    className={`w-4 h-4 rounded-full transition-all duration-300 ${currentTestimonial === index ? 'bg-white scale-125' : 'bg-blue-200'}`}
+                    aria-label={`Go to testimonial ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Dual Line Partners Section */}
+        <div className="partners-background py-16 md:py-20 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4 animate-fade-in">
+                Trusted by Industry Leaders
+              </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
+                We partner with the world's leading technology companies to deliver exceptional solutions
+              </p>
+            </div>
+
+            {/* Dual Line Carousel */}
+            <div className="dual-carousel-container">
+              <div className="carousel-fade carousel-fade-left"></div>
+              <div className="carousel-fade carousel-fade-right"></div>
+              
+              {/* Top Line - Scrolls Left */}
+              <div className="logo-track logo-track-top">
+                {duplicatedLogosLine1.map((logo, index) => (
+                  <div key={`top-${logo.id}-${index}`} className="logo-item">
+                    <img 
+                      src={logo.fallback} 
+                      alt={logo.name}
+                      className="logo-img"
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Bottom Line - Scrolls Right */}
+              <div className="logo-track logo-track-bottom">
+                {duplicatedLogosLine2.map((logo, index) => (
+                  <div key={`bottom-${logo.id}-${index}`} className="logo-item">
+                    <img 
+                      src={logo.fallback} 
+                      alt={logo.name}
+                      className="logo-img"
+                    />
                   </div>
                 ))}
               </div>
             </div>
-            <div className="flex justify-center mt-8 space-x-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${currentTestimonial === index ? 'bg-[#103d5d] scale-125' : 'bg-gray-300'}`}
-                  aria-label={`Go to testimonial ${index + 1}`}
-                />
-              ))}
-            </div>
+
+          
           </div>
         </div>
 
