@@ -336,6 +336,12 @@ const CyberSecurityConsultancyServicesPage = () => {
                   {activeTab === index && (
                     <div className="p-6 border-t border-[#e1e9f2]">
                       <div className="mb-6 bg-white p-4 rounded-lg border border-[#e1e9f2] shadow-sm flex justify-center">
+                        <img 
+                          src={service.image}
+                          alt={`${service.title} infrastructure`}
+                          className="w-[100px] h-[100px] object-cover rounded-lg"
+                          style={{ maxWidth: '100%', height: 'auto' }}
+                        />
                         <div className="w-32 h-32 bg-gradient-to-br from-[#103d5d] to-[#245684] rounded-lg flex items-center justify-center">
                           {service.icon}
                         </div>
