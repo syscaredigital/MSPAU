@@ -342,9 +342,8 @@ const CyberSecurityConsultancyServicesPage = () => {
                           className="w-[100px] h-[100px] object-cover rounded-lg"
                           style={{ maxWidth: '100%', height: 'auto' }}
                         />
-                        <div className="w-32 h-32 bg-gradient-to-br from-[#103d5d] to-[#245684] rounded-lg flex items-center justify-center">
-                          {service.icon}
-                        </div>
+                        
+                       
                       </div>
                       <p className="text-[#5c6f87] text-lg mb-6 leading-relaxed">{service.content}</p>
                     </div>
