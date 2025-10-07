@@ -1,4 +1,4 @@
-import React, { useState, useEffect, } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navigation from '../components/Navigation.jsx';
 import VideoHero from '../components/hero.jsx';
@@ -50,17 +50,6 @@ const animationStyles = `
     }
   }
   
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
   @keyframes bounceGentle {
     0%, 100% {
       transform: translateY(0);
@@ -70,7 +59,6 @@ const animationStyles = `
     }
   }
 
-  /* New background animation keyframes */
   @keyframes nodePulse {
     0%, 100% {
       opacity: 0.3;
@@ -122,6 +110,24 @@ const animationStyles = `
       transform: translate(-5px, -5px) rotate(270deg);
     }
   }
+
+  @keyframes scrollLeft {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-200px * 21));
+    }
+  }
+
+  @keyframes scrollRight {
+    0% {
+      transform: translateX(calc(-200px * 21));
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
   
   .animate-fade-in-up {
     animation: fadeInUp 0.6s ease-out forwards;
@@ -135,20 +141,12 @@ const animationStyles = `
     animation: float 3s ease-in-out infinite;
   }
   
-  .animate-float-delayed {
-    animation: float 3s ease-in-out 0.5s infinite;
-  }
-  
   .animate-pulse-slow {
     animation: pulse 2s ease-in-out infinite;
   }
   
   .animate-pulse-slower {
     animation: pulse 3s ease-in-out infinite;
-  }
-  
-  .animate-slide-in-right {
-    animation: slideInRight 0.5s ease-out forwards;
   }
   
   .animate-bounce-gentle {
@@ -331,10 +329,219 @@ const animationStyles = `
       radial-gradient(circle at 10% 20%, rgba(16, 61, 93, 0.02) 0%, transparent 50%);
   }
 
+  .downloads-background {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .downloads-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 10% 20%, rgba(16, 61, 93, 0.02) 0%, transparent 50%),
+      radial-gradient(circle at 90% 80%, rgba(36, 86, 132, 0.02) 0%, transparent 50%);
+  }
+
+  /* Dual Line Partner Carousel Styles */
+  .partners-background {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .partners-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(16, 61, 93, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(36, 86, 132, 0.03) 0%, transparent 50%);
+  }
+
+  .dual-carousel-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 2rem 0;
+  }
+
+  .logo-track {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  .logo-track-top {
+    animation: scrollLeft 60s linear infinite;
+  }
+
+  .logo-track-bottom {
+    animation: scrollRight 50s linear infinite;
+  }
+
+  .logo-track:hover {
+    animation-play-state: paused;
+  }
+
+  .logo-item {
+    flex: 0 0 160px;
+    height: 90px;
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+  }
+
+  .logo-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    border-color: #103d5d;
+  }
+
+  .logo-img {
+    max-width: 100%;
+    max-height: 45px;
+    width: auto;
+    height: auto;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+  }
+
+  .logo-item:hover .logo-img {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  /* Downloads Section Styles */
+  .brochure-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+    height: 100%;
+  }
+
+  .brochure-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border-color: #103d5d;
+  }
+
+  .brochure-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, #103d5d, #245684);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+  }
+
+  .download-btn {
+    background: linear-gradient(135deg, #103d5d, #245684);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(16, 61, 93, 0.3);
+    background: linear-gradient(135deg, #245684, #103d5d);
+  }
+
+  .file-size {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+  }
+
+  /* Fade edges */
+  .carousel-fade {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .carousel-fade-left {
+    left: 0;
+    background: linear-gradient(90deg, #f8fafc 0%, transparent 100%);
+  }
+
+  .carousel-fade-right {
+    right: 0;
+    background: linear-gradient(270deg, #f8fafc 0%, transparent 100%);
+  }
+
   /* Content wrapper to ensure readability */
   .content-wrapper {
     position: relative;
     z-index: 1;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .logo-track {
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .logo-item {
+      flex: 0 0 120px;
+      height: 70px;
+      padding: 1rem;
+    }
+    
+    .logo-img {
+      max-height: 35px;
+    }
+    
+    .carousel-fade {
+      width: 50px;
+    }
+
+    .brochure-card {
+      padding: 1.5rem;
+    }
+
+    .brochure-icon {
+      width: 60px;
+      height: 60px;
+      font-size: 1.5rem;
+    }
   }
 `;
 
@@ -403,9 +610,53 @@ const HomePage = () => {
     }
   ];
 
+  // Partner Logos Data - 42 logos split into two groups
+  const partnerLogosLine1 = Array.from({ length: 21 }, (_, i) => ({
+    id: i + 1,
+    name: `Partner ${i + 1}`,
+    fallback: `https://via.placeholder.com/120x40/103d5d/ffffff?text=Partner+${i + 1}`
+  }));
+
+  const partnerLogosLine2 = Array.from({ length: 21 }, (_, i) => ({
+    id: i + 22,
+    name: `Partner ${i + 22}`,
+    fallback: `https://via.placeholder.com/120x40/245684/ffffff?text=Partner+${i + 22}`
+  }));
+
+  // Brochures Data
+  const brochures = [
+    {
+      id: 1,
+      title: "IT Services Overview",
+      description: "Complete overview of our managed IT services, support solutions, and technology offerings.",
+      fileSize: "2.4 MB",
+      downloadUrl: "/brochures/syscare-it-services-overview.pdf",
+      icon: "📄"
+    },
+    {
+      id: 2,
+      title: "Cybersecurity Solutions",
+      description: "Detailed guide to our security services including threat protection and compliance solutions.",
+      fileSize: "3.1 MB",
+      downloadUrl: "/brochures/syscare-cybersecurity-solutions.pdf",
+      icon: "🔐"
+    },
+    {
+      id: 3,
+      title: "Cloud & Infrastructure",
+      description: "Comprehensive information about our cloud migration and infrastructure management services.",
+      fileSize: "2.8 MB",
+      downloadUrl: "/brochures/syscare-cloud-infrastructure.pdf",
+      icon: "☁️"
+    }
+  ];
+
+  // Duplicate logos for infinite scroll effect
+  const duplicatedLogosLine1 = [...partnerLogosLine1, ...partnerLogosLine1, ...partnerLogosLine1];
+  const duplicatedLogosLine2 = [...partnerLogosLine2, ...partnerLogosLine2, ...partnerLogosLine2];
+
   // Get first 4 services for initial display
   const initialServices = allServices.slice(0, 4);
-  // Get remaining services
   const additionalServices = allServices.slice(4);
 
   // Testimonials Data
@@ -541,15 +792,10 @@ const HomePage = () => {
       const progress = Math.min(elapsed / duration, 1);
 
       setStats(prevStats => 
-        prevStats.map(stat => {
-          let newValue;
-          if (stat.isPercentage) {
-            newValue = (progress * stat.target).toFixed(1);
-          } else {
-            newValue = Math.floor(progress * stat.target);
-          }
-          return { ...stat, value: newValue };
-        })
+        prevStats.map(stat => ({
+          ...stat,
+          value: Math.floor(progress * stat.target)
+        }))
       );
 
       if (progress < 1) {
@@ -566,6 +812,19 @@ const HomePage = () => {
 
   const goToTestimonial = (index) => {
     setCurrentTestimonial(index);
+  };
+
+  const handleDownload = (brochure) => {
+    // Create a temporary anchor element to trigger download
+    const link = document.createElement('a');
+    link.href = brochure.downloadUrl;
+    link.download = brochure.title.toLowerCase().replace(/\s+/g, '-') + '.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // You can also track downloads here if needed
+    console.log(`Downloaded: ${brochure.title}`);
   };
 
   return (
@@ -668,6 +927,137 @@ const HomePage = () => {
           </div>
         </div>
 
+        {/* Dual Line Partners Section */}
+        <div className="partners-background py-16 md:py-20 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4 animate-fade-in">
+                Trusted by Industry Leaders
+              </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
+                We partner with the world's leading technology companies to deliver exceptional solutions
+              </p>
+            </div>
+
+            {/* Dual Line Carousel */}
+            <div className="dual-carousel-container">
+              <div className="carousel-fade carousel-fade-left"></div>
+              <div className="carousel-fade carousel-fade-right"></div>
+              
+              {/* Top Line - Scrolls Left */}
+              <div className="logo-track logo-track-top">
+                {duplicatedLogosLine1.map((logo, index) => (
+                  <div key={`top-${logo.id}-${index}`} className="logo-item">
+                    <img 
+                      src={logo.fallback} 
+                      alt={logo.name}
+                      className="logo-img"
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Bottom Line - Scrolls Right */}
+              <div className="logo-track logo-track-bottom">
+                {duplicatedLogosLine2.map((logo, index) => (
+                  <div key={`bottom-${logo.id}-${index}`} className="logo-item">
+                    <img 
+                      src={logo.fallback} 
+                      alt={logo.name}
+                      className="logo-img"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Trust Stats */}
+            <div className="mt-16 text-center">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-[#103d5d]">42+</div>
+                  <div className="text-gray-600 text-sm">Technology Partners</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-[#103d5d]">50+</div>
+                  <div className="text-gray-600 text-sm">Certified Solutions</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-[#103d5d]">100%</div>
+                  <div className="text-gray-600 text-sm">Vendor Certified</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-[#103d5d]">24/7</div>
+                  <div className="text-gray-600 text-sm">Partner Support</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Downloads - Products & Services Brochures Section */}
+        <div className="downloads-background py-16 md:py-24 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4 animate-fade-in">
+                Downloads - Products & Services Brochures
+              </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
+                Download our comprehensive brochures to learn more about our IT solutions and services
+              </p>
+            </div>
+
+            {/* Brochures Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {brochures.map((brochure, index) => (
+                <div 
+                  key={brochure.id} 
+                  className="brochure-card animate-fade-in-up"
+                  style={{ animationDelay: `${index * 0.2}s` }}
+                >
+                  <div className="brochure-icon">
+                    {brochure.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-[#170f17] mb-3">
+                    {brochure.title}
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    {brochure.description}
+                  </p>
+                  <div className="file-size">
+                    PDF • {brochure.fileSize}
+                  </div>
+                  <button 
+                    onClick={() => handleDownload(brochure)}
+                    className="download-btn"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                    Download Brochure
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            {/* Additional Info */}
+            <div className="text-center mt-12">
+              <p className="text-gray-600 mb-4">
+                Need more information? Contact our team for customized solutions.
+              </p>
+              <Link 
+                to="/contact-Us" 
+                className="inline-flex items-center px-6 py-3 border border-[#103d5d] text-[#103d5d] rounded-lg font-semibold hover:bg-[#103d5d] hover:text-white transition-all duration-300"
+              >
+                Contact Sales Team
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </Link>
+            </div>
+          </div>
+        </div>
+
         {/* Services Section - Enhanced with new background */}
         <div className="services-background py-16 md:py-24 relative overflow-hidden border border-gray-200 rounded-lg mx-4 sm:mx-6 lg:mx-8">
           {/* Animated background elements */}
@@ -753,9 +1143,7 @@ const HomePage = () => {
               {stats.map((stat) => (
                 <div key={stat.id} className="animate-fade-in">
                   <div className="text-4xl md:text-5xl font-bold mb-2">
-                    {stat.isPercentage ? stat.value : stat.value}+
-                    {stat.isPercentage && <span>%</span>}
-                    {stat.isHours && <span>/7</span>}
+                    {stat.value}+
                   </div>
                   <div className="text-lg">{stat.label}</div>
                 </div>

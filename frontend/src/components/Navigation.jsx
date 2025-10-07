@@ -230,19 +230,21 @@ const Navigation = () => {
 
               {servicesHover && (
                 <div 
-                  className={`absolute left-1/2 transform -translate-x-1/2 top-full w-[900px] bg-gradient-to-br from-white to-gray-50 shadow-2xl rounded-2xl py-6 z-50 border border-gray-200 transition-all duration-300  ${
+                  className={`absolute left-1/2 transform -translate-x-1/2 top-full w-[900px] bg-gradient-to-br from-white to-gray-50 shadow-2xl rounded-2xl z-50 border border-gray-200 transition-all duration-300  ${
                     megaMenuHover ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
                   }`}
                   onMouseEnter={() => setMegaMenuHover(true)}
                   onMouseLeave={() => setMegaMenuHover(false)}
                 >
-                  {/* Mega Menu Header */}
-                  <div className="px-6 mb-4 border-b border-[#103d5d]">
-                    <h3 className="text-lg font-bold text-[#103d5d]   ">Our Services</h3>
-                    <p className="text-sm text-gray-600 mt-1">Comprehensive IT solutions for your business</p>
+                  {/* Mega Menu Header with exact width */}
+                  <div className="bg-[#245684] rounded-t-2xl px-6 py-4">
+                    <h3 className="text-lg font-bold text-white">Our Services</h3>
                   </div>
                   
-                  <div className="grid grid-cols-4 gap-8 px-6">
+                  {/* Divider after header */}
+                  <div className="border-b border-white-200 mx-6"></div>
+                  
+                  <div className="grid grid-cols-4 gap-8 px-6 py-6">
                     {servicesColumns.map((column, colIdx) => (
                       <div key={colIdx} className="col-span-1">
                         {column.map((category, catIdx) => (
@@ -277,8 +279,8 @@ const Navigation = () => {
                     ))}
                   </div>
                   
-                  {/* Mega Menu Footer */}
-                  <div className="mt-6 pt-4 border-t border-[#103d5d] px-6">
+                  {/* Mega Menu Footer with exact width */}
+                  <div className="bg-[#245684] rounded-b-2xl px-6 py-4">
                     <Link
                       to="/syscare-services"
                       className="inline-flex items-center text-[#103d5d] hover:text-[#245684] font-medium transition-all duration-300 group bg-white hover:bg-gray-100 px-4 py-2 rounded-lg shadow hover:shadow-md border border-[#103d5d] hover:border-[#245684]"

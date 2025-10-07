@@ -48,7 +48,7 @@ const Footer = () => {
             <h3 className="font-bold text-lg mb-6 text-white">Quick Links</h3>
             <div className="space-y-4">
               {[
-                { to: "/", label: "Home" },
+                { to: "/home", label: "Home" },
                 { to: "/about-us", label: "About Us" },
                 { to: "/syscare-services", label: "Services" },
                 { to: "/contact-Us", label: "Contact Us" },
@@ -89,7 +89,7 @@ const Footer = () => {
         </div>
 
         {/* Locations */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 py-6 border-t border-b border-[#245684]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 py-6 border-t border-b border-white">
           <div className="text-center">
             <h5 className="font-semibold text-lg text-white mb-3">Melbourne Office</h5>
             <p className="text-white/80 text-sm">
@@ -107,7 +107,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-6 border-t border-[#245684]">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-6 border-t border-white">
           <p className="text-white/70 text-sm text-center md:text-left">
             &copy; {new Date().getFullYear()} SysCare IT Solutions. All rights reserved.
           </p>
