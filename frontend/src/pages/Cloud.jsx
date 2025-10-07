@@ -326,10 +326,10 @@ const CloudPage = () => {
           >
             <div className="lg:w-1/2">
               <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">IT Cloud Courses Australia – SysCare IT Solutions</h2>
-              <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
+              <p className="text-[#4a5d72] text-md mb-8 leading-relaxed">
                 Cloud computing has become the foundation of modern IT, powering digital transformation for businesses worldwide. As demand for cloud expertise grows, professionals need the right training and certifications to stay ahead in the competitive job market. SysCare IT Solutions Pty Ltd offers industry-leading IT cloud training in Australia, helping individuals and businesses master Microsoft Azure, AWS, and Google Cloud platforms.
               </p>
-              <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
+              <p className="text-[#4a5d72] text-md mb-10 leading-relaxed">
                 Our programs combine expert instruction, hands-on labs, and real-world case studies to ensure you gain the practical skills needed to design, deploy, and manage cloud infrastructure with confidence. Whether you're a beginner or an experienced IT professional, SysCare provides tailored IT cloud courses in Australia that align with your career goals.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
@@ -384,7 +384,7 @@ const CloudPage = () => {
                 >
                   <button
                     onClick={() => setActiveTab(activeTab === index ? -1 : index)}
-                    className={`w-full text-left p-6 transition-all duration-300 ${
+                    className={`w-full text-left p-3 transition-all duration-300 ${
                       activeTab === index
                         ? 'bg-[#103d5d] text-white'
                         : 'bg-[#f5f9fd] text-[#103d5d]'
@@ -399,10 +399,10 @@ const CloudPage = () => {
                             className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
                           })}
                         </div>
-                        <h3 className="text-xl font-medium">{service.title}</h3>
+                        <h3 className="text-md font-medium">{service.title}</h3>
                       </div>
                       <FiChevronRight 
-                        className={`text-xl transition-transform duration-300 ${
+                        className={`text-md transition-transform duration-300 ${
                           activeTab === index ? 'rotate-90' : ''
                         }`}
                       />
@@ -415,11 +415,11 @@ const CloudPage = () => {
                         <img 
                           src={service.image}
                           alt={`${service.title} infrastructure`}
-                          className="w-[500px] h-[500px] object-cover rounded-lg"
+                          className="w-[100px] h-[100px] object-cover rounded-lg"
                           style={{ maxWidth: '100%', height: 'auto' }}
                         />
                       </div>
-                      <p className="text-[#5c6f87] text-lg mb-6 leading-relaxed">{service.content}</p>
+                      <p className="text-[#5c6f87] text-md mb-6 leading-relaxed">{service.content}</p>
                       
                       {/* Courses Section for Mobile */}
                       <div className="mt-8">
@@ -455,7 +455,7 @@ const CloudPage = () => {
                     <button
                       key={index}
                       onClick={() => setActiveTab(index)}
-                      className={`w-full text-left p-6 rounded-xl transition-all duration-300 ${
+                      className={`w-full text-left p-3 rounded-xl transition-all duration-300 ${
                         activeTab === index
                           ? 'bg-[#103d5d] text-white shadow-lg'
                           : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
@@ -472,7 +472,7 @@ const CloudPage = () => {
                             className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
                           })}
                         </div>
-                        <h3 className="text-xl font-medium">{service.title}</h3>
+                        <h3 className="text-md font-medium">{service.title}</h3>
                       </div>
                     </button>
                   ))}
@@ -507,7 +507,7 @@ const CloudPage = () => {
                   />
                 </div>
 
-                <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed">{services[activeTab].content}</p>
+                <p className="text-[#5c6f87] text-md mb-8 leading-relaxed">{services[activeTab].content}</p>
 
                 {/* Courses Button */}
                 <button

@@ -550,66 +550,6 @@ const animationStyles = `
     margin-top: 0.5rem;
   }
 
-  /* Industries Section Styles - Clean 3-column list */
-  .industries-list-container {
-    background: white;
-    border-radius: 16px;
-    padding: 3rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e2e8f0;
-  }
-
-  .industries-columns {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-
-  .industry-column {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .industry-item {
-    display: flex;
-    align-items: center;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid #f1f5f9;
-    transition: all 0.3s ease;
-  }
-
-  .industry-item:last-child {
-    border-bottom: none;
-  }
-
-  .industry-item:hover {
-    transform: translateX(5px);
-    color: #103d5d;
-  }
-
-  .industry-icon {
-    width: 24px;
-    height: 24px;
-    margin-right: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    flex-shrink: 0;
-  }
-
-  .industry-name {
-    font-weight: 500;
-    color: #374151;
-    font-size: 0.95rem;
-    transition: color 0.3s ease;
-  }
-
-  .industry-item:hover .industry-name {
-    color: #103d5d;
-    font-weight: 600;
-  }
-
   /* Fade edges */
   .carousel-fade {
     position: absolute;
@@ -665,25 +605,6 @@ const animationStyles = `
       width: 60px;
       height: 60px;
       font-size: 1.5rem;
-    }
-
-    .industries-list-container {
-      padding: 2rem;
-    }
-
-    .industries-columns {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-
-    .industry-item {
-      padding: 0.5rem 0;
-    }
-  }
-
-  @media (max-width: 1024px) and (min-width: 769px) {
-    .industries-columns {
-      grid-template-columns: repeat(2, 1fr);
     }
   }
 `;
@@ -752,44 +673,6 @@ const HomePage = () => {
       description: "Integrated CRM and ERP solutions to optimize your business processes and customer relationships.",
       icon: "📊"
     }
-  ];
-
-  // Industries We Support Data
-  const industries = [
-    { id: 1, name: "Accounting Services", icon: "📊" },
-    { id: 2, name: "Advertising and Marketing", icon: "📢" },
-    { id: 3, name: "Automobile Services", icon: "🚗" },
-    { id: 4, name: "Building Services", icon: "🏢" },
-    { id: 5, name: "Construction and Development", icon: "🏗️" },
-    { id: 6, name: "Design and Architecture", icon: "📐" },
-    { id: 7, name: "Educational Services", icon: "🎓" },
-    { id: 8, name: "Electrical Services", icon: "⚡" },
-    { id: 9, name: "Entertainment Services", icon: "🎭" },
-    { id: 10, name: "Farming and Agriculture", icon: "🚜" },
-    { id: 11, name: "Fast Food Industry", icon: "🍔" },
-    { id: 12, name: "Financial Services", icon: "💳" },
-    { id: 13, name: "Food Manufacturing Industry", icon: "🍪" },
-    { id: 14, name: "Health Care Services", icon: "🏥" },
-    { id: 15, name: "Home Care and Disability Services", icon: "❤️" },
-    { id: 16, name: "Hospitality Industry", icon: "🏨" },
-    { id: 17, name: "Human Resources", icon: "👥" },
-    { id: 18, name: "Management and Consulting", icon: "💼" },
-    { id: 19, name: "Mining and Support Industry", icon: "⛏️" },
-    { id: 20, name: "Pet Food Manufacturing", icon: "🐕" },
-    { id: 21, name: "Pharmaceutical Industry", icon: "💊" },
-    { id: 22, name: "Printing and Publishing Industry", icon: "📰" },
-    { id: 23, name: "Production Industry", icon: "🏭" },
-    { id: 24, name: "Real Estate", icon: "🏠" },
-    { id: 25, name: "Retail Industry", icon: "🛍️" },
-    { id: 26, name: "Small Business", icon: "💡" },
-    { id: 27, name: "Social and Community Services", icon: "🤝" },
-    { id: 28, name: "Spare Parts Industry", icon: "🔧" },
-    { id: 29, name: "Steel and Aluminium Manufacturing", icon: "⚒️" },
-    { id: 30, name: "Technology Services Industry", icon: "💻" },
-    { id: 31, name: "Telecommunication Services Industry", icon: "📞" },
-    { id: 32, name: "Tourism industry", icon: "✈️" },
-    { id: 33, name: "Transport and Logistics Services", icon: "🚚" },
-    { id: 34, name: "Wholesale and Warehousing", icon: "📦" }
   ];
 
   // Partner Logos Data - 42 logos split into two groups
@@ -867,14 +750,6 @@ const HomePage = () => {
       rating: 4,
       image: "https://randomuser.me/api/portraits/women/44.jpg"
     }
-  ];
-
-  // Split industries into 3 columns
-  const industriesPerColumn = Math.ceil(industries.length / 3);
-  const industryColumns = [
-    industries.slice(0, industriesPerColumn),
-    industries.slice(industriesPerColumn, industriesPerColumn * 2),
-    industries.slice(industriesPerColumn * 2)
   ];
 
   useEffect(() => {
@@ -1219,43 +1094,176 @@ const HomePage = () => {
                 Industries We Support
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
-                We provide tailored IT solutions for businesses across diverse sectors
+                We provide tailored IT solutions for businesses across diverse sectors throughout Australia
               </p>
             </div>
 
             {/* Industries List Container */}
-            <div className="industries-list-container animate-fade-in-up">
-              <div className="industries-columns">
-                {industryColumns.map((column, columnIndex) => (
-                  <div key={columnIndex} className="industry-column">
-                    {column.map((industry) => (
-                      <div key={industry.id} className="industry-item">
-                        <div className="industry-icon">
-                          {industry.icon}
-                        </div>
-                        <span className="industry-name">
-                          {industry.name}
-                        </span>
-                      </div>
-                    ))}
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 md:p-12 animate-fade-in-up">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* Column 1 */}
+                <div className="space-y-4">
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Accounting Services</span>
                   </div>
-                ))}
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Advertising and Marketing</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Automobile Services</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Building Services</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Construction and Development</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Design and Architecture</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Educational Services</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Electrical Services</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Entertainment Services</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Farming and Agriculture</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Fast Food Industry</span>
+                  </div>
+                </div>
+
+                {/* Column 2 */}
+                <div className="space-y-4">
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Financial Services</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Food Manufacturing Industry</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Health Care Services</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Home Care and Disability Services</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Hospitality Industry</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Human Resources</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Management and Consulting</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Mining and Support Industry</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Pet Food Manufacturing</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Pharmaceutical Industry</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Printing and Publishing Industry</span>
+                  </div>
+                </div>
+
+                {/* Column 3 */}
+                <div className="space-y-4">
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Production Industry</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Real Estate</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Retail Industry</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Small Business</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Social and Community Services</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Spare Parts Industry</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Steel and Aluminium Manufacturing</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Technology Services Industry</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Telecommunication Services Industry</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Tourism Industry</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Transport and Logistics Services</span>
+                  </div>
+                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
+                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                    <span className="font-medium">Wholesale and Warehousing</span>
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Bottom CTA */}
             <div className="text-center mt-12 animate-fade-in" style={{animationDelay: '0.5s'}}>
               <p className="text-lg text-gray-600 mb-6">
-                Ready to transform your business with tailored IT solutions?
+                Don't see your industry? We have experience across countless sectors!
               </p>
               <Link 
                 to="/contact-Us" 
-                className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-[#103d5d] to-[#245684] text-white rounded-lg font-semibold hover:from-[#245684] hover:to-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#103d5d] to-[#245684] text-white rounded-xl font-semibold hover:from-[#245684] hover:to-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-lg"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-3" viewBox="0 0 20 20" fill="currentColor">
                   <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                 </svg>
-                Get Your Custom Solution
+                Get Your Custom IT Solution
               </Link>
             </div>
           </div>

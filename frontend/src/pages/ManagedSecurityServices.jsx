@@ -311,7 +311,7 @@ const ManagedITServicesPage = () => {
           >
             <div className="lg:w-1/2">
               <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Managed Security with SysCare IT Solutions</h2>
-              <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
+              <p className="text-[#4a5d72] text-md mb-8 leading-relaxed">
                 In today’s digital-first world, businesses face an ever-growing number of cyber threats. From ransomware and phishing to insider risks and cloud vulnerabilities, the challenges are complex and constantly evolving. SysCare IT Solutions, a trusted Managed Security Services Provider in Melbourne and Sydney, delivers proactive, round-the-clock protection to safeguard your business-critical data, infrastructure, and users. Our Managed Security Services (MSS) are tailored to meet the needs of organizations of all sizes, ensuring compliance, resilience, and business continuity.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
@@ -367,7 +367,7 @@ const ManagedITServicesPage = () => {
                 >
                   <button
                     onClick={() => setActiveTab(activeTab === index ? -1 : index)}
-                    className={`w-full text-left p-6 transition-all duration-300 ${
+                    className={`w-full text-left p-3 transition-all duration-300 ${
                       activeTab === index
                         ? 'bg-[#103d5d] text-white'
                         : 'bg-[#f5f9fd] text-[#103d5d]'
@@ -385,7 +385,7 @@ const ManagedITServicesPage = () => {
                         <h3 className="text-xl font-medium">{service.title}</h3>
                       </div>
                       <FiChevronRight 
-                        className={`text-xl transition-transform duration-300 ${
+                        className={`text-md transition-transform duration-300 ${
                           activeTab === index ? 'rotate-90' : ''
                         }`}
                       />
@@ -398,7 +398,7 @@ const ManagedITServicesPage = () => {
                         <img 
                           src={service.image}
                           alt={`${service.title} infrastructure`}
-                          className="w-[500px] h-[500px] object-cover rounded-lg"
+                          className="w-[100px] h-[100px] object-cover rounded-lg"
                           style={{ maxWidth: '100%', height: 'auto' }}
                         />
                       </div>
@@ -425,7 +425,7 @@ const ManagedITServicesPage = () => {
                     <button
                       key={index}
                       onClick={() => setActiveTab(index)}
-                      className={`w-full text-left p-6 rounded-xl transition-all duration-300 ${
+                      className={`w-full text-left p-3 rounded-xl transition-all duration-300 ${
                         activeTab === index
                           ? 'bg-[#103d5d] text-white shadow-lg'
                           : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
@@ -442,7 +442,7 @@ const ManagedITServicesPage = () => {
                             className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
                           })}
                         </div>
-                        <h3 className="text-xl font-medium">{service.title}</h3>
+                        <h3 className="text-md font-medium">{service.title}</h3>
                       </div>
                     </button>
                   ))}
@@ -475,7 +475,7 @@ const ManagedITServicesPage = () => {
                   />
                 </div>
 
-                <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed">{services[activeTab].content}</p>
+                <p className="text-[#5c6f87] text-,md mb-8 leading-relaxed">{services[activeTab].content}</p>
               </div>
             </div>
           )}

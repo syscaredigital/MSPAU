@@ -304,10 +304,10 @@ const SecurityPage = () => {
           >
             <div className="lg:w-1/2">
               <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">IT Security Courses Australia – SysCare IT Solutions</h2>
-              <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
+              <p className="text-[#4a5d72] text-md mb-8 leading-relaxed">
                 In today’s fast-changing digital environment, cyber threats are more sophisticated than ever before. Businesses, government organizations, and even individuals must stay one step ahead by investing in IT security courses in Australia that provide both practical knowledge and industry-recognized certifications. At SysCare IT Solutions Pty Ltd, we deliver world-class security training designed for professionals at every stage of their career.
               </p>
-              <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
+              <p className="text-[#4a5d72] text-md mb-10 leading-relaxed">
                 Our training programs combine expert instruction, real-world simulations, and hands-on labs to equip you with the skills needed to defend, detect, and respond to cyber threats effectively. Whether you’re looking to master Microsoft security tools or earn globally recognized EC-Council certifications, SysCare is your trusted partner in professional cybersecurity education.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
@@ -362,7 +362,7 @@ const SecurityPage = () => {
                 >
                   <button
                     onClick={() => setActiveTab(activeTab === index ? -1 : index)}
-                    className={`w-full text-left p-6 transition-all duration-300 ${
+                    className={`w-full text-left p-3 transition-all duration-300 ${
                       activeTab === index
                         ? 'bg-[#103d5d] text-white'
                         : 'bg-[#f5f9fd] text-[#103d5d]'
@@ -377,10 +377,10 @@ const SecurityPage = () => {
                             className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
                           })}
                         </div>
-                        <h3 className="text-xl font-medium">{service.title}</h3>
+                        <h3 className="text-md font-medium">{service.title}</h3>
                       </div>
                       <FiChevronRight 
-                        className={`text-xl transition-transform duration-300 ${
+                        className={`text-md transition-transform duration-300 ${
                           activeTab === index ? 'rotate-90' : ''
                         }`}
                       />
@@ -393,7 +393,7 @@ const SecurityPage = () => {
                         <img 
                           src={service.image}
                           alt={`${service.title} infrastructure`}
-                          className="w-[500px] h-[500px] object-cover rounded-lg"
+                          className="w-[100px] h-[100px] object-cover rounded-lg"
                           style={{ maxWidth: '100%', height: 'auto' }}
                         />
                       </div>
@@ -433,7 +433,7 @@ const SecurityPage = () => {
                     <button
                       key={index}
                       onClick={() => setActiveTab(index)}
-                      className={`w-full text-left p-6 rounded-xl transition-all duration-300 ${
+                      className={`w-full text-left p-3 rounded-xl transition-all duration-300 ${
                         activeTab === index
                           ? 'bg-[#103d5d] text-white shadow-lg'
                           : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
@@ -450,7 +450,7 @@ const SecurityPage = () => {
                             className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
                           })}
                         </div>
-                        <h3 className="text-xl font-medium">{service.title}</h3>
+                        <h3 className="text-md font-medium">{service.title}</h3>
                       </div>
                     </button>
                   ))}
@@ -485,7 +485,7 @@ const SecurityPage = () => {
                   />
                 </div>
 
-                <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed">{services[activeTab].content}</p>
+                <p className="text-[#5c6f87] text-md mb-8 leading-relaxed">{services[activeTab].content}</p>
 
                 {/* Courses Button - UPDATED to open modal */}
                 <button

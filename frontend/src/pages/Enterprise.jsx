@@ -303,7 +303,7 @@ const EnterprisePage = () => {
           >
             <div className="lg:w-1/2">
               <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Our Enterprise CRM & ERP Services</h2>
-              <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
+              <p className="text-[#4a5d72] text-md mb-8 leading-relaxed">
                 In today's competitive business world, large enterprises require powerful tools to stay agile, connected, and efficient. At SysCare IT Solutions, we deliver enterprise CRM and ERP solutions that empower organizations across Melbourne, Sydney, and Australia. By implementing industry-leading platforms like SAP S/4HANA and Microsoft Dynamics 365, we help enterprises streamline complex processes, improve decision-making, and unlock sustainable growth.
               </p>
               
@@ -365,7 +365,7 @@ const EnterprisePage = () => {
                   <div className="absolute top-3 right-3 w-3 h-3 bg-[#a3d4ff] rounded-full opacity-50"></div>
                   <button
                     onClick={() => setActiveTab(activeTab === index ? -1 : index)}
-                    className={`w-full text-left p-6 transition-all duration-300 relative z-10 ${
+                    className={`w-full text-left p-3 transition-all duration-300 relative z-10 ${
                       activeTab === index
                         ? 'bg-[#103d5d] text-white'
                         : 'bg-[#f5f9fd] text-[#103d5d]'
@@ -380,10 +380,10 @@ const EnterprisePage = () => {
                             className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
                           })}
                         </div>
-                        <h3 className="text-xl font-medium">{service.title}</h3>
+                        <h3 className="text-md font-medium">{service.title}</h3>
                       </div>
                       <FiChevronRight 
-                        className={`text-xl transition-transform duration-300 ${
+                        className={`text-md transition-transform duration-300 ${
                           activeTab === index ? 'rotate-90' : ''
                         }`}
                       />
@@ -391,12 +391,12 @@ const EnterprisePage = () => {
                   </button>
                   
                   {activeTab === index && (
-                    <div className="p-6 border-t border-[#e1e9f2]">
+                    <div className="p-3 border-t border-[#e1e9f2]">
                       <div className="mb-6 bg-white p-4 rounded-lg border border-[#e1e9f2] shadow-sm flex justify-center">
                         <img 
                           src={service.image}
                           alt={`${service.title} infrastructure`}
-                          className="w-[500px] h-[500px] object-cover rounded-lg"
+                          className="w-[100px] h-[100px] object-cover rounded-lg"
                           style={{ maxWidth: '100%', height: 'auto' }}
                         />
                       </div>
@@ -421,7 +421,7 @@ const EnterprisePage = () => {
                     <button
                       key={index}
                       onClick={() => setActiveTab(index)}
-                      className={`w-full text-left p-6 rounded-xl transition-all duration-300 relative ${
+                      className={`w-full text-left p-3 rounded-xl transition-all duration-300 relative ${
                         activeTab === index
                           ? 'bg-[#103d5d] text-white shadow-lg'
                           : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
@@ -438,7 +438,7 @@ const EnterprisePage = () => {
                             className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
                           })}
                         </div>
-                        <h3 className="text-xl font-medium">{service.title}</h3>
+                        <h3 className="text-md font-medium">{service.title}</h3>
                       </div>
                     </button>
                   ))}
@@ -472,7 +472,7 @@ const EnterprisePage = () => {
                   />
                 </div>
 
-                <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed relative z-10">{services[activeTab].content}</p>
+                <p className="text-[#5c6f87] text-md mb-8 leading-relaxed relative z-10">{services[activeTab].content}</p>
               </div>
             </div>
           )}
