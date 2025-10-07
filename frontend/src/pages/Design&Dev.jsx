@@ -384,10 +384,10 @@ const DesignDevPage = () => {
           >
             <div className="lg:w-1/2">
               <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Web Design & Development Services – SysCare IT Solutions</h2>
-              <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
+              <p className="text-[#4a5d72] text-md mb-8 leading-relaxed">
                 In today's digital-first world, your website is often the first impression potential customers have of your business. At SysCare IT Solutions, we deliver professional web design services in Melbourne and Sydney that combine creativity, technology, and strategy. Whether you're a small business owner, a growing startup, or an established enterprise, our expert team builds websites that are visually engaging, highly functional, and optimized for search engines.
               </p>
-              <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
+              <p className="text-[#4a5d72] text-md mb-10 leading-relaxed">
                 As a leading web design company in Australia, we specialize in custom website development, ecommerce solutions, WordPress websites, and SEO-driven strategies. Our focus is on designing websites that don't just look great, but also perform—helping you attract, engage, and convert visitors into customers.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
@@ -452,10 +452,10 @@ const DesignDevPage = () => {
                           activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff]'
                         }`}>
                           {React.cloneElement(service.icon, {
-                            className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
+                            className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-md`
                           })}
                         </div>
-                        <h3 className="text-xl font-medium">{service.title}</h3>
+                        <h3 className="text-md font-medium">{service.title}</h3>
                       </div>
                       <FiChevronRight 
                         className={`text-xl transition-transform duration-300 ${
@@ -466,16 +466,16 @@ const DesignDevPage = () => {
                   </button>
                   
                   {activeTab === index && (
-                    <div className="p-6 border-t border-[#e1e9f2]">
-                      <div className="mb-6 bg-white p-4 rounded-lg border border-[#e1e9f2] shadow-sm flex justify-center">
+                    <div className="p-6 border-t border-[#103d65d]">
+                      <div className="mb-6 bg-white p-4 rounded-lg border border-[#103d5d] shadow-sm flex justify-center">
                         <img 
                           src={service.image}
                           alt={`${service.title} infrastructure`}
-                          className="w-[500px] h-[500px] object-cover rounded-lg"
+                          className="w-[100px] h-[100px] object-cover rounded-lg"
                           style={{ maxWidth: '100%', height: 'auto' }}
                         />
                       </div>
-                      <p className="text-[#5c6f87] text-lg mb-6 leading-relaxed">{service.content}</p>
+                      <p className="text-[#5c6f87] text-sm mb-6 leading-relaxed">{service.content}</p>
                     </div>
                   )}
                 </div>
@@ -496,7 +496,7 @@ const DesignDevPage = () => {
                     <button
                       key={index}
                       onClick={() => setActiveTab(index)}
-                      className={`w-full text-left p-6 rounded-xl transition-all duration-300 ${
+                      className={`w-full text-left p-3 rounded-xl transition-all duration-300 ${
                         activeTab === index
                           ? 'bg-[#103d5d] text-white shadow-lg'
                           : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
@@ -510,10 +510,10 @@ const DesignDevPage = () => {
                           activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff]'
                         }`}>
                           {React.cloneElement(service.icon, {
-                            className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
+                            className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-xl`
                           })}
                         </div>
-                        <h3 className="text-xl font-medium">{service.title}</h3>
+                        <h3 className="text-md font-medium">{service.title}</h3>
                       </div>
                     </button>
                   ))}
@@ -522,17 +522,17 @@ const DesignDevPage = () => {
               
               <div 
                 id="service-content"
-                className="lg:w-2/3 bg-[#f9fbfe] rounded-xl p-10 border border-[#e1e9f2] shadow-sm"
+                className="lg:w-2/3 bg-[#103d5d]/10 rounded-xl p-10 border border-[#103d5d] shadow-sm"
                 style={{
                   minHeight: '600px',
                   transition: 'opacity 0.3s ease, transform 0.3s ease'
                 }}
               >
                 <div className="flex items-start mb-6">
-                  <div className="w-16 h-16 rounded-xl bg-[#f0f6ff] flex items-center justify-center mr-8">
+                  <div className="w-14 h-14 rounded-xl bg-[#f0f6ff] flex items-center justify-center mr-8">
                     {services[activeTab].icon}
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-[#103d5d] mt-2">{services[activeTab].title}</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-[#103d5d] mt-2">{services[activeTab].title}</h3>
                 </div>
 
                 <div className="mb-8  p-4   flex justify-center">
@@ -544,7 +544,7 @@ const DesignDevPage = () => {
                   />
                 </div>
 
-                <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed">{services[activeTab].content}</p>
+                <p className="text-[#5c6f87] text-md mb-8 leading-relaxed">{services[activeTab].content}</p>
               </div>
             </div>
           )}
@@ -616,7 +616,7 @@ const DesignDevPage = () => {
                             }
                           `}
                         >
-                          <h3 className="text-xl font-semibold flex items-center gap-2">
+                          <h3 className="text-lg font-semibold flex items-center gap-2">
                             <span
                               className={`inline-block w-3 h-3 rounded-full mr-2 transition-all duration-300
                                 ${activeFaq === qIdx ? 'bg-[#a3d4ff] scale-110 shadow-lg' : 'bg-[#245684] scale-90'}
@@ -625,7 +625,7 @@ const DesignDevPage = () => {
                             {faq.question}
                           </h3>
                           <FiChevronRight
-                            className={`text-2xl transition-transform duration-300
+                            className={`text-xl transition-transform duration-300
                               ${activeFaq === qIdx ? 'rotate-90 text-[#a3d4ff]' : ''}
                             `}
                           />
@@ -641,7 +641,7 @@ const DesignDevPage = () => {
                           }}
                         >
                           {activeFaq === qIdx && (
-                            <p className="text-[#5c6f87] text-lg leading-relaxed animate-fadein">
+                            <p className="text-[#5c6f87] text-md leading-relaxed animate-fadein">
                               {faq.answer}
                             </p>
                           )}

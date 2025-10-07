@@ -250,10 +250,10 @@ const ConnectivityPage = () => {
           >
             <div className="lg:w-1/2">
               <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Connectivity Solutions</h2>
-              <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
+              <p className="text-[#4a5d72] text-md mb-8 leading-relaxed">
                 In today's digital world, seamless connectivity is the backbone of every successful business. Whether you're running a small office, a large enterprise, or managing multiple branches across Australia, reliable internet connectivity is critical for productivity, collaboration, and growth. At SysCare IT Solutions Pty Ltd, we deliver secure, scalable, and high-performance connectivity solutions tailored to your unique business needs.
               </p>
-              <p className="text-[#4a5d72] text-lg mb-10 leading-relaxed">
+              <p className="text-[#4a5d72] text-md mb-10 leading-relaxed">
                 From high-speed business internet to advanced networking options like Private WAN/MPLS, SD-WAN, and VPN & Remote Access, SysCare ensures your teams stay connected anytime, anywhere. With our expertise, you gain more than just internet – you gain resilient, future-proof connectivity designed to support your operations without interruption.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
@@ -308,7 +308,7 @@ const ConnectivityPage = () => {
                 >
                   <button
                     onClick={() => setActiveTab(activeTab === index ? -1 : index)}
-                    className={`w-full text-left p-6 transition-all duration-300 ${
+                    className={`w-full text-left p-3 transition-all duration-300 ${
                       activeTab === index
                         ? 'bg-[#103d5d] text-white'
                         : 'bg-[#f5f9fd] text-[#103d5d]'
@@ -320,10 +320,10 @@ const ConnectivityPage = () => {
                           activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff]'
                         }`}>
                           {React.cloneElement(service.icon, {
-                            className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
+                            className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-md`
                           })}
                         </div>
-                        <h3 className="text-xl font-medium">{service.title}</h3>
+                        <h3 className="text-md font-medium">{service.title}</h3>
                       </div>
                       <FiChevronRight 
                         className={`text-xl transition-transform duration-300 ${
@@ -334,16 +334,16 @@ const ConnectivityPage = () => {
                   </button>
                   
                   {activeTab === index && (
-                    <div className="p-6 border-t border-[#e1e9f2]">
-                      <div className="mb-6 bg-white p-4 rounded-lg border border-[#e1e9f2] shadow-sm flex justify-center">
+                    <div className="p-6 border-t border-[#103d65d]">
+                      <div className="mb-6 bg-white p-4 rounded-lg border border-[#103d5d] shadow-sm flex justify-center">
                         <img 
                           src={service.image}
                           alt={`${service.title} infrastructure`}
-                          className="w-[500px] h-[500px] object-cover rounded-lg"
+                          className="w-[100px] h-[100px] object-cover rounded-lg"
                           style={{ maxWidth: '100%', height: 'auto' }}
                         />
                       </div>
-                      <p className="text-[#5c6f87] text-lg mb-6 leading-relaxed">{service.content}</p>
+                      <p className="text-[#5c6f87] text-sm mb-6 leading-relaxed">{service.content}</p>
                     </div>
                   )}
                 </div>
@@ -366,7 +366,7 @@ const ConnectivityPage = () => {
                     <button
                       key={index}
                       onClick={() => setActiveTab(index)}
-                      className={`w-full text-left p-6 rounded-xl transition-all duration-300 ${
+                      className={`w-full text-left p-3 rounded-xl transition-all duration-300 ${
                         activeTab === index
                           ? 'bg-[#103d5d] text-white shadow-lg'
                           : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
@@ -380,10 +380,10 @@ const ConnectivityPage = () => {
                           activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff]'
                         }`}>
                           {React.cloneElement(service.icon, {
-                            className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
+                            className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-xl`
                           })}
                         </div>
-                        <h3 className="text-xl font-medium">{service.title}</h3>
+                        <h3 className="text-md font-medium">{service.title}</h3>
                       </div>
                     </button>
                   ))}
@@ -395,15 +395,15 @@ const ConnectivityPage = () => {
                 id="service-content"
                 className="lg:w-2/3 bg-[#f9fbfe] rounded-xl p-10 border border-[#e1e9f2] shadow-sm"
                 style={{
-                  minHeight: '600px',
+                  minHeight: '300px',
                   transition: 'opacity 0.3s ease, transform 0.3s ease'
                 }}
               >
                 <div className="flex items-start mb-6">
-                  <div className="w-16 h-16 rounded-xl bg-[#f0f6ff] flex items-center justify-center mr-8">
+                  <div className="w-14 h-12 rounded-xl bg-[#f0f6ff] flex items-center justify-center mr-8">
                     {services[activeTab].icon}
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-[#103d5d] mt-2">{services[activeTab].title}</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-[#103d5d] mt-2">{services[activeTab].title}</h3>
                 </div>
 
                 {/* Service Graphic */}
@@ -416,7 +416,7 @@ const ConnectivityPage = () => {
                   />
                 </div>
 
-                <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed">{services[activeTab].content}</p>
+                <p className="text-[#5c6f87] text-md mb-8 leading-relaxed">{services[activeTab].content}</p>
               </div>
             </div>
           )}
@@ -427,7 +427,7 @@ const ConnectivityPage = () => {
       <section className="py-24 bg-[#000000] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Partner with SysCare IT Solutions today</h2>
-          <p className="text-xl md:text-2xl text-[#c9d8eb] mb-10 max-w-3xl mx-auto">
+          <p className="text-md md:text-xl text-[#c9d8eb] mb-10 max-w-3xl mx-auto">
             Streamline your IT, strengthen your security, and scale your business with expert-managed services.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
@@ -490,7 +490,7 @@ const ConnectivityPage = () => {
                             }
                           `}
                         >
-                          <h3 className="text-xl font-semibold flex items-center gap-2">
+                          <h3 className="text-lg font-semibold flex items-center gap-2">
                             <span
                               className={`inline-block w-3 h-3 rounded-full mr-2 transition-all duration-300
                                 ${activeFaq === qIdx ? 'bg-[#a3d4ff] scale-110 shadow-lg' : 'bg-[#245684] scale-90'}
@@ -499,7 +499,7 @@ const ConnectivityPage = () => {
                             {faq.question}
                           </h3>
                           <FiChevronRight
-                            className={`text-2xl transition-transform duration-300
+                            className={`text-xl transition-transform duration-300
                               ${activeFaq === qIdx ? 'rotate-90 text-[#a3d4ff]' : ''}
                             `}
                           />
@@ -515,7 +515,7 @@ const ConnectivityPage = () => {
                           }}
                         >
                           {activeFaq === qIdx && (
-                            <p className="text-[#5c6f87] text-lg leading-relaxed animate-fadein">
+                            <p className="text-[#5c6f87] text-md leading-relaxed animate-fadein">
                               {faq.answer}
                             </p>
                           )}
