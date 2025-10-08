@@ -392,8 +392,8 @@ const CloudPage = () => {
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-6 ${
-                          activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff]'
+                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-6 border ${
+                          activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff] border border-[#103d5d]'
                         }`}>
                           {React.cloneElement(service.icon, {
                             className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
@@ -465,8 +465,8 @@ const CloudPage = () => {
                       }}
                     >
                       <div className="flex items-center">
-                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-6 ${
-                          activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff]'
+                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-6 border ${
+                          activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff] border border-[#103d5d]'
                         }`}>
                           {React.cloneElement(service.icon, {
                             className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
@@ -489,7 +489,7 @@ const CloudPage = () => {
                 }}
               >
                 <div className="flex items-start mb-6">
-                  <div className="w-16 h-16 rounded-xl bg-[#f0f6ff] flex items-center justify-center mr-8">
+                  <div className="w-16 h-16 rounded-xl bg-[#f0f6ff] flex items-center justify-center mr-8 border border-[#103d5d]">
                     {services[activeTab].icon}
                   </div>
                   <div className="flex-1">
@@ -507,7 +507,7 @@ const CloudPage = () => {
                   />
                 </div>
 
-                <p className="text-[#5c6f87] text-md mb-8 leading-relaxed">{services[activeTab].content}</p>
+                <p className="text-[#000000] text-md mb-8 leading-relaxed">{services[activeTab].content}</p>
 
                 {/* Courses Button */}
                 <button

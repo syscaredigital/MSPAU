@@ -330,8 +330,8 @@ const VoiceVideoPage = () => {
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-6 ${
-                          activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff]'
+                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-6 border ${
+                          activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff] border border-[#103d5d]'
                         }`}>
                           {React.cloneElement(service.icon, {
                             className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-md`
@@ -390,8 +390,8 @@ const VoiceVideoPage = () => {
                       }}
                     >
                       <div className="flex items-center">
-                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-6 ${
-                          activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff]'
+                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-6 border ${
+                          activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff] border border-[#103d5d]'
                         }`}>
                           {React.cloneElement(service.icon, {
                             className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-xl`
@@ -414,7 +414,7 @@ const VoiceVideoPage = () => {
                 }}
               >
                 <div className="flex items-start mb-6">
-                  <div className="w-14 h-14 rounded-xl bg-[#f0f6ff] flex items-center justify-center mr-8">
+                  <div className="w-14 h-14 rounded-xl bg-[#f0f6ff] flex items-center justify-center mr-8 border border-[#103d5d]">
                     {services[activeTab].icon}
                   </div>
                   <h3 className="text-xl md:text-2xl font-bold text-[#103d5d] mt-2">{services[activeTab].title}</h3>

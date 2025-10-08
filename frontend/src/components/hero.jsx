@@ -307,14 +307,14 @@ const VideoHero = () => {
       </video>
 
       {/* Animated grid pattern overlay */}
-      <div className="absolute inset-0 z-0 opacity-20 bg-grid-pattern"></div>
+      <div className="absolute inset-0 z-0 opacity-5 bg-grid-pattern "></div>
 
       {/* Floating particles - Responsive count */}
       <div className="absolute inset-0 z-0">
         {[...Array(isMobile ? 6 : isTablet ? 10 : 15)].map((_, i) => (
           <div
             key={i}
-            className="absolute rounded-full bg-[#245684] opacity-10 animate-float"
+            className="absolute rounded-full bg-[#103d5d] opacity-10 animate-float"
             style={{
               width: Math.random() * (isMobile ? 12 : isTablet ? 15 : 20) + 5 + 'px',
               height: Math.random() * (isMobile ? 12 : isTablet ? 15 : 20) + 5 + 'px',
@@ -328,9 +328,9 @@ const VideoHero = () => {
       </div>
 
       {/* Fallback image */}
-      {!isVideoLoaded && (
+    {/*   {!isVideoLoaded && (
         <div className="absolute inset-0 bg-[url('/images/hero-fallback.jpg')] bg-cover bg-center"></div>
-      )}
+      )} */}
 
       {/* Main Content */}
       <div className="relative z-20 h-full flex items-center pt-16 md:pt-20 lg:pt-24 xl:pr-40">
@@ -340,7 +340,7 @@ const VideoHero = () => {
             <div className={`z-10 text-white ${
               isMobile ? 'w-full text-center mb-6 sm:mb-8' : 
               isTablet ? 'w-full text-center mb-8 lg:w-1/2 lg:text-left lg:pr-6' : 
-              'lg:w-1/2 lg:pr-8 text-center lg:text-left'
+              'lg:w-1/2 lg:pr-8 text-center lg:text-left lg:pt-12 xl:pt-16'
             }`}>
               <div className="mb-3 xs:mb-4 sm:mb-6">
                 <span className="inline-flex items-center px-2 xs:px-3 sm:px-4 py-1 xs:py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-[10px] xs:text-xs sm:text-sm font-medium text-white border border-white/30">
@@ -374,7 +374,7 @@ const VideoHero = () => {
                 We deliver cutting-edge technology solutions that drive business growth and optimize operations through innovative IT strategies.
               </p>
 
-              <div className="flex flex-row xs:flex-row gap-2 xs:gap-3 sm:gap-4 w-full xs:w-auto justify-center lg:justify-start">
+              <div className="flex flex xs:flex-row gap-2 xs:gap-3 sm:gap-4 w-full xs:w-auto justify-center lg:justify-start">
                 <Link
                   to="/syscare-services"
                   className="w-1/2 xs:w-auto px-4 xs:px-6 sm:px-8 py-2 xs:py-3 sm:py-4 bg-gradient-to-r from-[#103d5d] to-[#245684] text-white rounded-lg font-semibold hover:from-[#245684] hover:to-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/30 flex items-center justify-center"
