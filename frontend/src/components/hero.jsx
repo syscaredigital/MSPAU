@@ -1,3 +1,5 @@
+// common breakpoints (in pixels)
+
 import React, { useRef, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FiGlobe, FiServer, FiCloud, FiShield, FiUserPlus, FiPackage, FiBook, FiSmartphone, FiMenu, FiX } from "react-icons/fi";
@@ -8,12 +10,14 @@ const VideoHero = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(80); // Faster initial speed
+  const [typingSpeed, setTypingSpeed] = useState(80);
   const [isMarqueePaused, setIsMarqueePaused] = useState(false);
   const [rotationAngle, setRotationAngle] = useState(0);
   const [circleSize, setCircleSize] = useState(calculateCircleSize());
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
+  const [isLaptop, setIsLaptop] = useState(false);
+  const [, setIsDesktop] = useState(false);
   const [videoSource, setVideoSource] = useState('');
   const navigate = useNavigate();
 
@@ -54,6 +58,7 @@ const VideoHero = () => {
     { name: "Cloud Training", link: "/Cloud", icon: <FiServer className="service-icon" /> },
   ];
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const typingTexts = [
     "Managed IT Services in Melbourne & Sydney",
     "24/7 IT Support & Cybersecurity Solutions",
@@ -61,14 +66,16 @@ const VideoHero = () => {
     "Trusted MSP & MSSP Partner in Australia"
   ];
 
-  // Calculate circle size based on screen width
+  // Calculate circle size based on screen width with all breakpoints
   function calculateCircleSize() {
     const width = window.innerWidth;
-    if (width < 640) return 280;  // Mobile
-    if (width < 768) return 320;  // Small tablet
-    if (width < 1024) return 400; // Tablet
-    if (width < 1280) return 500; // Small desktop
-    return 600; // Large desktop
+    if (width < 375) return 200;    // mobileS & mobileM
+    if (width < 425) return 240;    // mobileL
+    if (width < 768) return 280;    // tablet breakpoint
+    if (width < 1024) return 320;   // tablet
+    if (width < 1440) return 400;   // laptop
+    if (width < 1920) return 500;   // laptopL
+    return 600; // desktop & monitor
   }
 
   useEffect(() => {
@@ -76,9 +83,13 @@ const VideoHero = () => {
       const width = window.innerWidth;
       const isMobileDevice = width < 768;
       const isTabletDevice = width >= 768 && width < 1024;
+      const isLaptopDevice = width >= 1024 && width < 1440;
+      const isDesktopDevice = width >= 1440;
       
       setIsMobile(isMobileDevice);
       setIsTablet(isTabletDevice);
+      setIsLaptop(isLaptopDevice);
+      setIsDesktop(isDesktopDevice);
       setCircleSize(calculateCircleSize());
       
       // Set appropriate video source based on device
@@ -96,7 +107,7 @@ const VideoHero = () => {
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [videoSources.desktop, videoSources.mobile, videoSources.tablet]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -129,9 +140,9 @@ const VideoHero = () => {
       video.removeEventListener('error', handleError);
       clearInterval(rotationInterval);
     };
-  }, [isMobile, videoSource]); // Added videoSource dependency
+  }, [isMobile, videoSource]);
 
-  // Typing effect - FASTER VERSION
+  // Typing effect
   useEffect(() => {
     const handleTyping = () => {
       const currentText = typingTexts[currentTextIndex];
@@ -142,25 +153,22 @@ const VideoHero = () => {
       setCurrentWordIndex(updatedWord.length);
 
       if (!isDeleting && updatedWord === currentText) {
-        // Shorter pause before starting to delete
-        setTimeout(() => setIsDeleting(true), 500); // Reduced from 1000ms to 500ms
+        setTimeout(() => setIsDeleting(true), 500);
       } else if (isDeleting && updatedWord === '') {
         setIsDeleting(false);
         setCurrentTextIndex((prev) => (prev + 1) % typingTexts.length);
-        setTypingSpeed(100); // Faster initial typing speed
+        setTypingSpeed(100);
       } else {
-        // Much faster typing and deleting speeds
-        setTypingSpeed(isDeleting ? 30 : 60); // Reduced from 50/150 to 30/60
+        setTypingSpeed(isDeleting ? 30 : 60);
       }
     };
 
     const typingTimer = setTimeout(handleTyping, typingSpeed);
     return () => clearTimeout(typingTimer);
-  }, [currentWordIndex, isDeleting, currentTextIndex, typingTexts]);
+  }, [currentWordIndex, isDeleting, currentTextIndex, typingTexts, typingSpeed]);
 
   const handleServiceClick = (serviceLink) => {
     console.log(`Navigating to: ${serviceLink}`);
-    // Use React Router's navigate function for proper routing
     navigate(serviceLink);
   };
 
@@ -172,29 +180,62 @@ const VideoHero = () => {
     }
   };
 
-  // Calculate responsive values for the rotating circle
+  // Calculate responsive values for the rotating circle with all breakpoints
   const getCircleDimensions = () => {
     if (isMobile) {
-      return {
-        containerSize: circleSize,
-        centerSize: circleSize * 0.5,
-        radius: circleSize * 0.40,
-        serviceWidth: circleSize * 0.3,
-        serviceHeight: circleSize * 0.1,
-        iconSize: 'text-xl',
-        textSize: 'text-xs'
-      };
+      const width = window.innerWidth;
+      if (width < 375) { // mobileS & mobileM
+        return {
+          containerSize: 200,
+          centerSize: 100,
+          radius: 80,
+          serviceWidth: 60,
+          serviceHeight: 24,
+          iconSize: 'text-sm',
+          textSize: 'text-[10px]'
+        };
+      } else if (width < 425) { // mobileL
+        return {
+          containerSize: 240,
+          centerSize: 120,
+          radius: 96,
+          serviceWidth: 72,
+          serviceHeight: 28,
+          iconSize: 'text-base',
+          textSize: 'text-xs'
+        };
+      } else { // mobileL to tablet
+        return {
+          containerSize: 280,
+          centerSize: 140,
+          radius: 112,
+          serviceWidth: 84,
+          serviceHeight: 32,
+          iconSize: 'text-lg',
+          textSize: 'text-xs'
+        };
+      }
     } else if (isTablet) {
       return {
-        containerSize: circleSize,
-        centerSize: circleSize * 0.5,
-        radius: circleSize * 0.4,
-        serviceWidth: circleSize * 0.35,
-        serviceHeight: circleSize * 0.12,
-        iconSize: 'text-2xl',
+        containerSize: 320,
+        centerSize: 160,
+        radius: 128,
+        serviceWidth: 112,
+        serviceHeight: 38,
+        iconSize: 'text-xl',
         textSize: 'text-sm'
       };
-    } else {
+    } else if (isLaptop) {
+      return {
+        containerSize: 400,
+        centerSize: 200,
+        radius: 160,
+        serviceWidth: 140,
+        serviceHeight: 48,
+        iconSize: 'text-2xl',
+        textSize: 'text-base'
+      };
+    } else { // desktop & monitor
       return {
         containerSize: circleSize,
         centerSize: circleSize * 0.5,
@@ -202,7 +243,7 @@ const VideoHero = () => {
         serviceWidth: circleSize * 0.4,
         serviceHeight: circleSize * 0.15,
         iconSize: 'text-3xl',
-        textSize: 'text-base'
+        textSize: 'text-lg'
       };
     }
   };
@@ -210,10 +251,10 @@ const VideoHero = () => {
   const circleDimensions = getCircleDimensions();
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-black ">
-      {/* Services Marquee - Shown on all devices */}
+    <section className="relative min-h-screen w-full overflow-hidden bg-black">
+      {/* Services Marquee - Responsive for all devices */}
       <div
-        className="block absolute bottom-0 left-0 w-full z-30 bg-gradient-to-r from-[#103d5d] to-[#245684] py-2 sm:py-3 overflow-hidden"
+        className="block absolute bottom-0 left-0 w-full z-30 bg-gradient-to-r from-[#103d5d] to-[#245684] py-2 xs:py-3 overflow-hidden"
         onMouseEnter={() => setIsMarqueePaused(true)}
         onMouseLeave={() => setIsMarqueePaused(false)}
       >
@@ -221,11 +262,11 @@ const VideoHero = () => {
           {sub_service.map((service, index) => (
             <div
               key={index}
-              className="inline-flex items-center mx-3 sm:mx-6 text-white cursor-pointer group"
+              className="inline-flex items-center mx-2 xs:mx-3 sm:mx-4 md:mx-6 text-white cursor-pointer group"
               onClick={() => handleServiceClick(service.link)}
             >
-              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full mr-2 group-hover:bg-[#245684] transition-colors"></span>
-              <span className="font-medium text-xs sm:text-sm md:text-base group-hover:text-[#fff] transition-colors">
+              <span className="w-1.5 h-1.5 xs:w-2 xs:h-2 bg-white rounded-full mr-1 xs:mr-2 group-hover:bg-[#245684] transition-colors"></span>
+              <span className="font-medium text-[10px] xs:text-xs sm:text-sm md:text-base group-hover:text-[#fff] transition-colors">
                 {service.name}
               </span>
             </div>
@@ -235,11 +276,11 @@ const VideoHero = () => {
           {sub_service.map((service, index) => (
             <div
               key={`dup-${index}`}
-              className="inline-flex items-center mx-3 sm:mx-6 text-white cursor-pointer group"
+              className="inline-flex items-center mx-2 xs:mx-3 sm:mx-4 md:mx-6 text-white cursor-pointer group"
               onClick={() => handleServiceClick(service.link)}
             >
-              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full mr-2 group-hover:bg-[#245684] transition-colors"></span>
-              <span className="font-medium text-xs sm:text-sm md:text-base group-hover:text-[#245684] transition-colors">
+              <span className="w-1.5 h-1.5 xs:w-2 xs:h-2 bg-white rounded-full mr-1 xs:mr-2 group-hover:bg-[#245684] transition-colors"></span>
+              <span className="font-medium text-[10px] xs:text-xs sm:text-sm md:text-base group-hover:text-[#245684] transition-colors">
                 {service.name}
               </span>
             </div>
@@ -259,7 +300,7 @@ const VideoHero = () => {
           isVideoLoaded ? 'opacity-50' : 'opacity-0'
         }`}
         onClick={playVideoOnMobile}
-        key={videoSource} // Force re-render when video source changes
+        key={videoSource}
       >
         <source src={videoSource} type="video/mp4" />
         Your browser does not support HTML5 video.
@@ -268,15 +309,15 @@ const VideoHero = () => {
       {/* Animated grid pattern overlay */}
       <div className="absolute inset-0 z-0 opacity-20 bg-grid-pattern"></div>
 
-      {/* Floating particles - Reduced count on mobile */}
+      {/* Floating particles - Responsive count */}
       <div className="absolute inset-0 z-0">
-        {[...Array(isMobile ? 8 : 15)].map((_, i) => (
+        {[...Array(isMobile ? 6 : isTablet ? 10 : 15)].map((_, i) => (
           <div
             key={i}
             className="absolute rounded-full bg-[#245684] opacity-10 animate-float"
             style={{
-              width: Math.random() * (isMobile ? 15 : 20) + 5 + 'px',
-              height: Math.random() * (isMobile ? 15 : 20) + 5 + 'px',
+              width: Math.random() * (isMobile ? 12 : isTablet ? 15 : 20) + 5 + 'px',
+              height: Math.random() * (isMobile ? 12 : isTablet ? 15 : 20) + 5 + 'px',
               top: Math.random() * 100 + '%',
               left: Math.random() * 100 + '%',
               animationDelay: Math.random() * 5 + 's',
@@ -292,22 +333,26 @@ const VideoHero = () => {
       )}
 
       {/* Main Content */}
-      <div className="relative z-20 h-full flex items-center pt-16 md:pr-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div className="relative z-20 h-full flex items-center pt-16 md:pt-20 lg:pt-24 xl:pr-40">
+        <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 w-full">
           <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between">
             {/* Left Content with Typing Text */}
-            <div className={`z-10 text-white ${isMobile ? 'w-full text-center mb-8' : 'lg:w-1/2 lg:pr-8 text-center lg:text-left'}`}>
-              <div className="mb-4 md:mb-6">
-                <span className="inline-flex items-center px-3 py-1 md:px-4 md:py-2 bg-white/10 backdrop-blur-sm rounded-full text-xs md:text-sm font-medium text-white border border-white/30">
-                  <span className="relative flex h-2 w-2 mr-2">
+            <div className={`z-10 text-white ${
+              isMobile ? 'w-full text-center mb-6 sm:mb-8' : 
+              isTablet ? 'w-full text-center mb-8 lg:w-1/2 lg:text-left lg:pr-6' : 
+              'lg:w-1/2 lg:pr-8 text-center lg:text-left'
+            }`}>
+              <div className="mb-3 xs:mb-4 sm:mb-6">
+                <span className="inline-flex items-center px-2 xs:px-3 sm:px-4 py-1 xs:py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-[10px] xs:text-xs sm:text-sm font-medium text-white border border-white/30">
+                  <span className="relative flex h-1.5 w-1.5 xs:h-2 xs:w-2 mr-1 xs:mr-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 xs:h-2 xs:w-2 bg-white"></span>
                   </span>
                   INNOVATIVE IT SOLUTIONS
                 </span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 md:mb-6">
+              <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-3 xs:mb-4 sm:mb-6">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-[#245684]">
                   SysCare                               
                 </span>
@@ -318,24 +363,24 @@ const VideoHero = () => {
               </h1>
 
               {/* Typing text effect */}
-              <div className="min-h-[2.5rem] md:min-h-[3rem] lg:min-h-[3.5rem] mb-4 md:mb-6">
-                <p className="text-lg md:text-xl lg:text-2xl text-white font-medium">
+              <div className="min-h-[2rem] xs:min-h-[2.5rem] sm:min-h-[3rem] lg:min-h-[3.5rem] mb-3 xs:mb-4 sm:mb-6">
+                <p className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl text-white font-medium">
                   {typingTexts[currentTextIndex].substring(0, currentWordIndex)}
-                  <span className="animate-pulse inline-block w-1 h-4 md:h-6 bg-white align-middle ml-1"></span>
+                  <span className="animate-pulse inline-block w-0.5 xs:w-1 h-3 xs:h-4 sm:h-6 bg-white align-middle ml-0.5 xs:ml-1"></span>
                 </p>
               </div>
 
-              <p className="text-sm md:text-base lg:text-lg text-white/90 mb-6 md:mb-8 max-w-2xl mx-auto lg:mx-0">
+              <p className="text-xs xs:text-sm sm:text-base lg:text-lg text-white/90 mb-4 xs:mb-6 sm:mb-8 max-w-2xl mx-auto lg:mx-0">
                 We deliver cutting-edge technology solutions that drive business growth and optimize operations through innovative IT strategies.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-3 md:gap-4 w-full sm:w-auto justify-center lg:justify-start">
+              <div className="flex flex-row xs:flex-row gap-2 xs:gap-3 sm:gap-4 w-full xs:w-auto justify-center lg:justify-start">
                 <Link
                   to="/syscare-services"
-                  className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-[#103d5d] to-[#245684] text-white rounded-lg font-semibold hover:from-[#245684] hover:to-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/30 flex items-center justify-center"
+                  className="w-1/2 xs:w-auto px-4 xs:px-6 sm:px-8 py-2 xs:py-3 sm:py-4 bg-gradient-to-r from-[#103d5d] to-[#245684] text-white rounded-lg font-semibold hover:from-[#245684] hover:to-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/30 flex items-center justify-center"
                 >
-                  <span className="text-sm md:text-base">Explore Services</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <span className="text-xs xs:text-sm sm:text-base">Explore Services</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 xs:h-4 xs:w-4 sm:h-5 sm:w-5 ml-1 xs:ml-2" viewBox="0 0 20 20" fill="currentColor">
                     <path
                       fillRule="evenodd"
                       d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
@@ -345,46 +390,50 @@ const VideoHero = () => {
                 </Link>
                 <Link
                   to="/contact-Us"
-                  className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-white/20 flex items-center justify-center"
+                  className="w-1/2 xs:w-auto px-4 xs:px-6 sm:px-8 py-2 xs:py-3 sm:py-4 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-white/20 flex items-center justify-center"
                 >
-                  <span className="text-sm md:text-base">Free Consultation</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <span className="text-xs xs:text-sm sm:text-base">Free Consultation</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 xs:h-4 xs:w-4 sm:h-5 sm:w-5 ml-1 xs:ml-2" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                   </svg>
                 </Link>
               </div>
 
-              {/* ISO Certifications Only */}
-              <div className="mt-8 md:mt-12 flex items-center justify-center lg:justify-start space-x-4 md:space-x-6">
-                <div className="flex items-center space-x-2">
-                  <div className="p-1 md:p-2 bg-white/10 backdrop-blur-sm rounded-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              {/* ISO Certifications */}
+              <div className="mt-6 xs:mt-8 sm:mt-12 flex items-center justify-center lg:justify-start space-x-3 xs:space-x-4 sm:space-x-6">
+                <div className="flex items-center space-x-1 xs:space-x-2">
+                  <div className="p-1 xs:p-1.5 sm:p-2 bg-white/10 backdrop-blur-sm rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 xs:h-4 xs:w-4 sm:h-5 sm:w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                     </svg>
                   </div>
                   <div>
-                    <p className="font-medium text-xs md:text-sm">ISO 27001</p>
-                    <p className="text-xs text-white/80">Certified</p>
+                    <p className="font-medium text-[10px] xs:text-xs sm:text-sm">ISO 27001</p>
+                    <p className="text-[8px] xs:text-xs text-white/80">Certified</p>
                   </div>
                 </div>
                
-                <div className="flex items-center space-x-2">
-                  <div className="p-1 md:p-2 bg-white/10 backdrop-blur-sm rounded-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="flex items-center space-x-1 xs:space-x-2">
+                  <div className="p-1 xs:p-1.5 sm:p-2 bg-white/10 backdrop-blur-sm rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 xs:h-4 xs:w-4 sm:h-5 sm:w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                     </svg>
                   </div>
                   <div>
-                    <p className="font-medium text-xs md:text-sm">ISO 9001</p>
-                    <p className="text-xs text-white/80">Certified</p>
+                    <p className="font-medium text-[10px] xs:text-xs sm:text-sm">ISO 9001</p>
+                    <p className="text-[8px] xs:text-xs text-white/80">Certified</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Right Content - Dynamic Horizontal Services Rotation - Now visible on all devices */}
-            <div className={`flex justify-center items-center ${isMobile ? 'w-full' : 'lg:w-1/2 lg:justify-center lg:pl-80 '}`}>
+            {/* Right Content - Dynamic Horizontal Services Rotation */}
+            <div className={`flex justify-center items-center ${
+              isMobile ? 'w-full mt-4 xs:mt-6' : 
+              isTablet ? 'w-full mt-8 lg:w-1/2 lg:justify-center lg:pl-8' : 
+              'lg:w-1/2 lg:justify-center lg:pl-12 xl:pl-80'
+            }`}>
               <div 
                 className="relative flex items-center justify-center"
                 style={{
@@ -395,7 +444,7 @@ const VideoHero = () => {
                 {/* Central element - stays fixed */}
                 <div className="absolute inset-0 flex items-center justify-center z-10">
                   <div 
-                    className=" flex items-center justify-center text-white text-center shadow-2xl shadow-[#245684]/30"
+                    className="flex items-center justify-center text-white text-center shadow-2xl shadow-[#245684]/30"
                     style={{
                       width: `${circleDimensions.centerSize}px`,
                       height: `${circleDimensions.centerSize}px`,
@@ -406,13 +455,12 @@ const VideoHero = () => {
                       <img 
                         src="/images/Slogo.png" 
                         alt="360° IT Solutions" 
-                        className="mx-auto mb-2"
+                        className="mx-auto mb-1 xs:mb-2"
                         style={{
                           width: `${circleDimensions.centerSize * 0.2}px`,
                           height: `${circleDimensions.centerSize * 0.2}px`
                         }} 
                       />
-                      
                     </div>
                   </div>
                 </div>
@@ -435,7 +483,7 @@ const VideoHero = () => {
                       }}
                       onClick={() => handleServiceClick(service.link)}
                     >
-                      <div className="p-2">
+                      <div className="p-1 xs:p-2">
                         <div className={circleDimensions.iconSize}>{service.icon}</div>
                         <span className={`leading-tight ${circleDimensions.textSize}`}>{service.name}</span>
                       </div>
@@ -450,10 +498,10 @@ const VideoHero = () => {
 
       {/* Scroll Indicator - Hidden on mobile */}
       {!isMobile && (
-        <div className="absolute bottom-20 md:bottom-12 left-1/2 transform -translate-x-1/2 z-20">
+        <div className="absolute bottom-16 sm:bottom-20 md:bottom-12 left-1/2 transform -translate-x-1/2 z-20">
           <div className="flex flex-col items-center text-white">
-            <span className="text-sm mb-2">Scroll to explore</span>
-            <div className="w-6 h-10 border-2 border-white/60 rounded-full flex justify-center">
+            <span className="text-xs sm:text-sm mb-2">Scroll to explore</span>
+            <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white/60 rounded-full flex justify-center">
               <div className="w-1 h-2 bg-white mt-2 rounded-full animate-scroll"></div>
             </div>
           </div>
@@ -497,36 +545,72 @@ const VideoHero = () => {
           background-size: 40px 40px;
         }
         
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
+        /* Responsive adjustments for all breakpoints */
+        @media (max-width: 320px) {
+          .bg-grid-pattern {
+            background-size: 15px 15px;
+          }
+        }
+        @media (min-width: 321px) and (max-width: 375px) {
+          .bg-grid-pattern {
+            background-size: 18px 18px;
+          }
+        }
+        @media (min-width: 376px) and (max-width: 425px) {
           .bg-grid-pattern {
             background-size: 20px 20px;
           }
         }
+        @media (min-width: 426px) and (max-width: 768px) {
+          .bg-grid-pattern {
+            background-size: 25px 25px;
+          }
+        }
+        @media (min-width: 769px) and (max-width: 1024px) {
+          .bg-grid-pattern {
+            background-size: 30px 30px;
+          }
+        }
       `}</style>
 
-      {/* Service icon styling */}
+      {/* Service icon styling with all breakpoints */}
       <style jsx>{`
         .service-icon {
           display: inline-block;
-          margin-right: 0.5rem;
+          margin-right: 0.25rem;
         }
-        @media (max-width: 640px) {
+        @media (max-width: 320px) {
+          .service-icon {
+            font-size: 0.875rem;
+            margin-right: 0.125rem;
+          }
+        }
+        @media (min-width: 321px) and (max-width: 375px) {
+          .service-icon {
+            font-size: 1rem;
+          }
+        }
+        @media (min-width: 376px) and (max-width: 425px) {
+          .service-icon {
+            font-size: 1.125rem;
+          }
+        }
+        @media (min-width: 426px) and (max-width: 768px) {
           .service-icon {
             font-size: 1.25rem;
           }
         }
-        @media (min-width: 641px) and (max-width: 767px) {
+        @media (min-width: 769px) and (max-width: 1024px) {
           .service-icon {
             font-size: 1.5rem;
           }
         }
-        @media (min-width: 768px) and (max-width: 1023px) {
+        @media (min-width: 1025px) and (max-width: 1440px) {
           .service-icon {
             font-size: 1.75rem;
           }
         }
-        @media (min-width: 1024px) {
+        @media (min-width: 1441px) {
           .service-icon {
             font-size: 2rem;
           }
