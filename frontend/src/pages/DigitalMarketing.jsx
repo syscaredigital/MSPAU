@@ -404,7 +404,7 @@ const DigitalMarketingPage = () => {
           >
             <div className="lg:w-1/2">
               <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Multimedia and Digital Marketing Services – SysCare IT Solutions</h2>
-              <p className="text-[#4a5d72] text-lg mb-8 leading-relaxed">
+              <p className="text-[#4a5d72] text-md mb-8 leading-relaxed">
                 At SysCare IT Solutions Pty Ltd, we help businesses in Sydney, Melbourne, and across Australia elevate their digital presence with creative multimedia designs and results-driven digital marketing services. Whether you're searching for a reliable multimedia agency or the best digital marketing company in Melbourne, our tailored solutions empower your brand to stand out in competitive markets.
               </p>
               <button className="bg-[#245684] hover:bg-[#1a4066] text-white px-10 py-4 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] text-lg group">
@@ -467,17 +467,17 @@ const DigitalMarketingPage = () => {
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-6 ${
-                          activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff]'
+                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-6  border${
+                          activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff] border border-[#103d5d]'
                         }`}>
                           {React.cloneElement(service.icon, {
-                            className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
+                            className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-md`
                           })}
                         </div>
-                        <h3 className="text-xl font-medium">{service.title}</h3>
+                        <h3 className="text-md font-medium">{service.title}</h3>
                       </div>
                       <FiChevronRight 
-                        className={`text-xl transition-transform duration-300 ${
+                        className={`text-md transition-transform duration-300 ${
                           activeTab === index ? 'rotate-90' : ''
                         }`}
                       />
@@ -490,7 +490,7 @@ const DigitalMarketingPage = () => {
                         <img 
                           src={service.image}
                           alt={`${service.title} service`}
-                          className="w-[500px] h-[500px] object-cover rounded-lg"
+                          className="w-[100px] h-[100px] object-cover rounded-lg"
                           style={{ maxWidth: '100%', height: 'auto' }}
                         />
                       </div>
@@ -512,29 +512,29 @@ const DigitalMarketingPage = () => {
             >
               {/* Vertical Tabs */}
               <div className="lg:w-1/3">
-                <div className="space-y-4 max-h-[600px] overflow-y-auto pr-4">
+                <div className="space-y-4 max-h-[600px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-[#c9d8eb] scrollbar-track-transparent">
                   {services.map((service, index) => (
                     <button
                       key={index}
                       onClick={() => setActiveTab(index)}
-                      className={`w-full text-left p-6 rounded-xl transition-all duration-300 ${
+                      className={`w-full text-left p-3 rounded-xl transition-all duration-300  ${
                         activeTab === index
-                          ? 'bg-[#103d5d] text-white shadow-lg'
-                          : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2]'
+                          ? 'bg-[#103d5d] text-white shadow-lg hover:bg-[#0d2a40]'
+                          : 'bg-[#f5f9fd] text-[#103d5d] hover:bg-[#e1e9f2] shadow-sm'
                       }`}
                       style={{
                         transform: activeTab === index ? 'translateX(12px)' : 'none'
                       }}
                     >
                       <div className="flex items-center">
-                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-6 ${
-                          activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff]'
+                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-6 border ${
+                          activeTab === index ? 'bg-white/20' : 'bg-[#f0f6ff] border border-[#103d5d]'
                         }`}>
                           {React.cloneElement(service.icon, {
-                            className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-2xl`
+                            className: `${activeTab === index ? 'text-white' : 'text-[#245684]'} text-xl`
                           })}
                         </div>
-                        <h3 className="text-xl font-medium">{service.title}</h3>
+                        <h3 className="text-md font-medium">{service.title}</h3>
                       </div>
                     </button>
                   ))}
@@ -544,17 +544,17 @@ const DigitalMarketingPage = () => {
               {/* Content Area */}
               <div 
                 id="service-content"
-                className="lg:w-2/3 bg-[#f9fbfe] rounded-xl p-10 border border-[#e1e9f2] shadow-sm"
+                className="lg:w-2/3 bg-[#103d5d]/10 rounded-xl p-10 border border-[#103d5d] shadow-lg transition-all duration-500"
                 style={{
-                  minHeight: '600px',
+                  minHeight: '400px',
                   transition: 'opacity 0.3s ease, transform 0.3s ease'
                 }}
               >
                 <div className="flex items-start mb-6">
-                  <div className="w-16 h-16 rounded-xl bg-[#f0f6ff] flex items-center justify-center mr-8">
+                  <div className="w-16 h-16 rounded-xl bg-[#f0f6ff] flex items-center justify-center mr-8 border border-[#103d5d]">
                     {services[activeTab].icon}
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-[#103d5d] mt-2">{services[activeTab].title}</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-[#103d5d] mt-2">{services[activeTab].title}</h3>
                 </div>
 
                 {/* Service Graphic */}
@@ -567,7 +567,7 @@ const DigitalMarketingPage = () => {
                   />
                 </div>
 
-                <p className="text-[#5c6f87] text-lg mb-8 leading-relaxed">{services[activeTab].content}</p>
+                <p className="text-[#000000] text-md mb-8 leading-relaxed">{services[activeTab].content}</p>
               </div>
             </div>
           )}
@@ -578,7 +578,7 @@ const DigitalMarketingPage = () => {
       <section className="py-24 bg-[#000000] px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">Partner with SysCare IT Solutions today</h2>
-          <p className="text-xl md:text-2xl text-[#c9d8eb] mb-10 max-w-3xl mx-auto">
+          <p className="text-md md:text-2xl text-[#c9d8eb] mb-10 max-w-3xl mx-auto ">
             streamline your IT, strengthen your security, and scale your business with expert-managed services.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
@@ -641,7 +641,7 @@ const DigitalMarketingPage = () => {
                             }
                           `}
                         >
-                          <h3 className="text-xl font-semibold flex items-center gap-2">
+                          <h3 className="text-md font-semibold flex items-center gap-2">
                             <span
                               className={`inline-block w-3 h-3 rounded-full mr-2 transition-all duration-300
                                 ${activeFaq === qIdx ? 'bg-[#a3d4ff] scale-110 shadow-lg' : 'bg-[#245684] scale-90'}
@@ -650,7 +650,7 @@ const DigitalMarketingPage = () => {
                             {faq.question}
                           </h3>
                           <FiChevronRight
-                            className={`text-2xl transition-transform duration-300
+                            className={`text-xl transition-transform duration-300
                               ${activeFaq === qIdx ? 'rotate-90 text-[#a3d4ff]' : ''}
                             `}
                           />
@@ -666,7 +666,7 @@ const DigitalMarketingPage = () => {
                           }}
                         >
                           {activeFaq === qIdx && (
-                            <p className="text-[#5c6f87] text-lg leading-relaxed animate-fadein">
+                            <p className="text-[#5c6f87] text-md leading-relaxed animate-fadein">
                               {faq.answer}
                             </p>
                           )}

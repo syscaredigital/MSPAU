@@ -256,7 +256,7 @@ const SecurityPage = () => {
         >
           <div className="mb-8 inline-block overflow-hidden">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-typewriter whitespace-nowrap overflow-hidden border-r-4 border-r-white">
-              Security<span className="text-[#a3d4ff]"> Service</span>
+              Security<span className="text-[#a3d4ff]"> Training</span>
             </h1>
           </div>
          

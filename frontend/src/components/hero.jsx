@@ -147,7 +147,7 @@ const VideoHero = () => {
       } else if (isDeleting && updatedWord === '') {
         setIsDeleting(false);
         setCurrentTextIndex((prev) => (prev + 1) % typingTexts.length);
-        setTypingSpeed(80); // Faster initial typing speed
+        setTypingSpeed(100); // Faster initial typing speed
       } else {
         // Much faster typing and deleting speeds
         setTypingSpeed(isDeleting ? 30 : 60); // Reduced from 50/150 to 30/60
@@ -384,7 +384,7 @@ const VideoHero = () => {
             </div>
 
             {/* Right Content - Dynamic Horizontal Services Rotation - Now visible on all devices */}
-            <div className={`flex justify-center items-center ${isMobile ? 'w-full' : 'lg:w-1/2 lg:justify-center lg:pl-60 '}`}>
+            <div className={`flex justify-center items-center ${isMobile ? 'w-full' : 'lg:w-1/2 lg:justify-center lg:pl-80 '}`}>
               <div 
                 className="relative flex items-center justify-center"
                 style={{
