@@ -115,6 +115,29 @@ const animationStyles = `
   .modal-content-animation {
     animation: slideInRight 0.4s ease-out 0.1s both;
   }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .mobile-stack {
+      flex-direction: column !important;
+    }
+    
+    .mobile-full-width {
+      width: 100% !important;
+    }
+    
+    .mobile-text-center {
+      text-align: center !important;
+    }
+    
+    .mobile-padding {
+      padding: 1rem !important;
+    }
+    
+    .mobile-margin-bottom {
+      margin-bottom: 1.5rem !important;
+    }
+  }
 `;
 
 // Header Component
@@ -144,10 +167,9 @@ const Header = () => {
   );
 };
 
-// SubServiceModal Component (keep the existing SubServiceModal component as is)
-const SubServiceModal = ({ isOpen, onClose, subService }) => {
-  // ... (keep all the existing SubServiceModal code exactly as it was)
-  if (!isOpen) return null;
+// SubServiceModal Component
+const SubServiceModal = ({ isOpen, onClose, subService, }) => {
+  if (!isOpen || !subService) return null;
 
   // Special handling for services with detailed lists
   const isPrivateCloud = subService.title === "SysCare Private Cloud";
@@ -171,7 +193,7 @@ const SubServiceModal = ({ isOpen, onClose, subService }) => {
   const renderServiceDetails = () => {
     if (isPrivateCloud) {
       return (
-        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20  ">
+        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Cloud Solutions:</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-[#103d5d]/10 p-4 rounded-lg border border-[#103d5d]/20 transition-transform duration-200 hover:scale-[1.02]">
@@ -223,11 +245,11 @@ const SubServiceModal = ({ isOpen, onClose, subService }) => {
 
     if (isServiceDesk) {
       return (
-        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
+        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Service Desk Features:</h4>
           <div className="grid grid-cols-1 gap-3">
             <div className="bg-[#103d5d]/10 p-3 rounded-lg border border-[#103d5d]/20">
-              <h5 className="font-medium text-[#103d5d]">Help Desk Support Ticketing System &  Guaranteed SLA Response Time</h5>
+              <h5 className="font-medium text-[#103d5d]">Help Desk Support Ticketing System & Guaranteed SLA Response Time</h5>
             </div>
             <div className="bg-[#103d5d]/10 p-3 rounded-lg border border-[#103d5d]/20">
               <h5 className="font-medium text-[#103d5d]">Remote IT User Support</h5>
@@ -244,7 +266,7 @@ const SubServiceModal = ({ isOpen, onClose, subService }) => {
 
     if (isManagedIT) {
       return (
-        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
+        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Managed IT Services Include:</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {[
@@ -271,7 +293,7 @@ const SubServiceModal = ({ isOpen, onClose, subService }) => {
 
     if (isCybersecurityConsultancy) {
       return (
-        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
+        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Cybersecurity Consultancy Services:</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {[
@@ -291,7 +313,7 @@ const SubServiceModal = ({ isOpen, onClose, subService }) => {
 
     if (isManagedSecurity) {
       return (
-        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
+        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Managed Security Services Include:</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {[
@@ -314,7 +336,7 @@ const SubServiceModal = ({ isOpen, onClose, subService }) => {
 
     if (isCloudSolutions) {
       return (
-        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
+        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Cloud Solutions Include:</h4>
           <div className="grid grid-cols-1 gap-3">
             {[
@@ -333,7 +355,7 @@ const SubServiceModal = ({ isOpen, onClose, subService }) => {
 
     if (isHostedSolutions) {
       return (
-        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
+        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Hosted Solutions Include:</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {[
@@ -352,7 +374,7 @@ const SubServiceModal = ({ isOpen, onClose, subService }) => {
 
     if (isITInfraProjects) {
       return (
-        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
+        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">IT Infrastructure Projects:</h4>
           <div className="grid grid-cols-1 gap-3">
             {[
@@ -372,7 +394,7 @@ const SubServiceModal = ({ isOpen, onClose, subService }) => {
 
     if (isOfficeAutomation) {
       return (
-        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
+        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Office IT Automation Services:</h4>
           <div className="grid grid-cols-1 gap-3">
             {[
@@ -390,7 +412,7 @@ const SubServiceModal = ({ isOpen, onClose, subService }) => {
 
     if (isConnectivity) {
       return (
-        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
+        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Connectivity Services:</h4>
           <div className="grid grid-cols-1 gap-3">
             {[
@@ -407,7 +429,7 @@ const SubServiceModal = ({ isOpen, onClose, subService }) => {
 
     if (isVoIP) {
       return (
-        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
+        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">VoIP & Video Services:</h4>
           <div className="grid grid-cols-1 gap-3">
             {[
@@ -425,7 +447,7 @@ const SubServiceModal = ({ isOpen, onClose, subService }) => {
 
     if (isDesignDevelopment) {
       return (
-        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
+        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <h4 className="font-semibold text-[#103d5d] mb-2">Design & Development Services:</h4>
@@ -461,7 +483,7 @@ const SubServiceModal = ({ isOpen, onClose, subService }) => {
 
     if (isDigitalMarketing) {
       return (
-        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
+        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">MultiMedia Services:</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
@@ -522,7 +544,7 @@ const SubServiceModal = ({ isOpen, onClose, subService }) => {
 
     if (isSmallBusinessCRM) {
       return (
-        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
+        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Small Business CRM/ERP Solutions:</h4>
           <div className="grid grid-cols-1 gap-3">
             {[
@@ -539,7 +561,7 @@ const SubServiceModal = ({ isOpen, onClose, subService }) => {
 
     if (isEnterpriseCRM) {
       return (
-        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
+        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Enterprise CRM/ERP Solutions:</h4>
           <div className="grid grid-cols-1 gap-3">
             {[
@@ -556,7 +578,7 @@ const SubServiceModal = ({ isOpen, onClose, subService }) => {
 
     if (isSecurityTraining) {
       return (
-        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
+        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Security Training Programs:</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
@@ -596,7 +618,7 @@ const SubServiceModal = ({ isOpen, onClose, subService }) => {
 
     if (isCloudTraining) {
       return (
-        <div className="mt-2 bg [#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
+        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
           <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Cloud Training Programs:</h4>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div>
@@ -637,20 +659,14 @@ const SubServiceModal = ({ isOpen, onClose, subService }) => {
       );
     }
 
-    // Default case for services without special formatting
-  /*   return (
-      <div className="bg-[#103d5d]/10 p-4 rounded-md">
-        <h4 className="font-semibold text-[#103d5d] mb-2">Part of: {mainService}</h4>
-        <p className="text-sm text-[#103d5d]">Contact us to learn more about how we can implement this solution for your business.</p>
-      </div>
-    ); */
+    return null;
   };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 modal-animation">
       <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto modal-content-animation">
         <div className="flex justify-between items-center p-6 border-b bg-[#103d5d]">
-          <h3 className=" text-xl font-bold text-white">{subService.title}</h3>
+          <h3 className="text-xl font-bold text-white">{subService.title}</h3>
           <button 
             onClick={onClose}
             className="text-white hover:text-[#245684] transition-colors duration-200"
@@ -711,7 +727,6 @@ const ServicesPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    // Trigger animations after component mounts
     const timer = setTimeout(() => {
       setHeaderVisible(true);
     }, 100);
@@ -748,7 +763,7 @@ const ServicesPage = () => {
     },
     {
       main: "IT Security",
-      icon: <FaShieldAlt className="text-3xl" />,
+      icon: <FaShieldAlt className="text-3xl text-[#103d5d]" />,
       category: "security",
       subs: [
         {
@@ -763,7 +778,7 @@ const ServicesPage = () => {
     },
     {
       main: "Cloud Solutions",
-      icon: <FaCloud className="text-3xl" />,
+      icon: <FaCloud className="text-3xl text-[#103d5d]" />,
       category: "infrastructure",
       subs: [
         {
@@ -778,7 +793,7 @@ const ServicesPage = () => {
     },
     {
       main: "Projects & Automation",
-      icon: <FaRobot className="text-3xl" />,
+      icon: <FaRobot className="text-3xl text-[#103d5d]" />,
       category: "solutions",
       subs: [
         {
@@ -793,7 +808,7 @@ const ServicesPage = () => {
     },
     {
       main: "Internet & VOIP",
-      icon: <FaGlobe className="text-3xl" />,
+      icon: <FaGlobe className="text-3xl text-[#103d5d]" />,
       category: "infrastructure",
       subs: [
         {
@@ -808,7 +823,7 @@ const ServicesPage = () => {
     },
     {
       main: "Digital Services",
-      icon: <FaLightbulb className="text-3xl" />,
+      icon: <FaLightbulb className="text-3xl text-[#103d5d]" />,
       category: "solutions",
       subs: [
         {
@@ -823,7 +838,7 @@ const ServicesPage = () => {
     },
     {
       main: "CRM & ERP Solutions",
-      icon: <FaChartLine className="text-3xl" />,
+      icon: <FaChartLine className="text-3xl text-[#103d5d]" />,
       category: "solutions",
       subs: [
         {
@@ -838,7 +853,7 @@ const ServicesPage = () => {
     },
     {
       main: "IT Training",
-      icon: <FaGraduationCap className="text-3xl" />,
+      icon: <FaGraduationCap className="text-3xl text-[#103d5d]" />,
       category: "training",
       subs: [
         {
@@ -865,12 +880,11 @@ const ServicesPage = () => {
   const filteredServices = activeCategory === 'all' 
     ? services 
     : services.filter(service => service.category === activeCategory);
-     console.log("🚀 ~ ServicesPage ~ <style>{animationStyles}</style>:", <style>{animationStyles}</style>)
 
   return (
     <div className="min-h-screen bg-[#f5f7fa]">
       {/* Add animation styles */}
-      {/*<style>{animationStyles}</style>*/}
+      <style>{animationStyles}</style>
       
       {/* Use the Header component instead of Navigation */}
       <Header />
@@ -882,316 +896,349 @@ const ServicesPage = () => {
         subService={selectedSubService} 
         mainService={selectedMainService}
       />
+      
       <div className="pt-20">
-
-      {/* NEW HEADER SECTION - Matching Contact Page */}
-      <div className="relative bg-gradient-to-br from-[#103d5d] to-[#245684] text-white pb-32 pt-24 md:pt-32 px-4 md:px-8 lg:px-16 overflow-hidden" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0 100%)' }}>
-        {/* Background decorative elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 w-64 h-64 rounded-full border-2 border-white"></div>
-          <div className="absolute bottom-20 right-16 w-48 h-48 rounded-full border-2 border-white"></div>
-          <div className="absolute top-1/3 right-1/4 w-32 h-32 rounded-full border-2 border-white"></div>
-        </div>
-        
-        {/* Floating elements */}
-        <div className="absolute top-20 left-20 animate-float">
-          <div className="w-12 h-12 rounded-lg bg-white/10 backdrop-blur-sm"></div>
-        </div>
-        <div className="absolute bottom-40 right-32 animate-float-delayed">
-          <div className="w-10 h-10 rounded-lg bg-white/10 backdrop-blur-sm"></div>
-        </div>
-        <div className="absolute top-1/2 left-1/3 animate-float">
-          <div className="w-8 h-8 rounded-lg bg-white/10 backdrop-blur-sm"></div>
-        </div>
-        
-        <div className="container mx-auto max-w-6xl relative z-10">
-          <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2 mb-10 md:mb-0">
-              <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                Our <span className="text-[#a3c1e0]">Services</span>
-              </h1>
-              <p className={`text-md text-[#c9d8eb] mb-8 max-w-lg transition-all duration-700 delay-100 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                Discover our comprehensive range of IT solutions designed to empower your business with cutting-edge technology and expert support.
-              </p>
-              <div className={`flex flex-wrap gap-4 transition-all duration-700 delay-200 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                <a href="#services" className="bg-white text-[#103d5d] px-6 py-3 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] flex items-center">
-                  Explore Services <FaChevronRight className="ml-2" />
-                </a>
-                <a href="#contact" className="border-2 border-white text-white px-6 py-3 rounded-md font-medium transition-all duration-300 hover:bg-white hover:text-[#103d5d]">
-                  Get In Touch
-                </a>
+        {/* NEW HEADER SECTION - Mobile Responsive */}
+        <div className="relative bg-gradient-to-br from-[#103d5d] to-[#245684] text-white pb-24 md:pb-32 pt-16 md:pt-24 lg:pt-32 px-4 sm:px-6 lg:px-8 overflow-hidden" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0 100%)' }}>
+          {/* Background decorative elements */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-10 left-10 w-32 h-32 md:w-64 md:h-64 rounded-full border-2 border-white"></div>
+            <div className="absolute bottom-20 right-8 md:right-16 w-24 h-24 md:w-48 md:h-48 rounded-full border-2 border-white"></div>
+            <div className="absolute top-1/3 right-1/4 w-16 h-16 md:w-32 md:h-32 rounded-full border-2 border-white"></div>
+          </div>
+          
+          {/* Floating elements */}
+          <div className="absolute top-10 left-8 md:top-20 md:left-20 animate-float">
+            <div className="w-8 h-8 md:w-12 md:h-12 rounded-lg bg-white/10 backdrop-blur-sm"></div>
+          </div>
+          <div className="absolute bottom-20 right-8 md:bottom-40 md:right-32 animate-float-delayed">
+            <div className="w-6 h-6 md:w-10 md:h-10 rounded-lg bg-white/10 backdrop-blur-sm"></div>
+          </div>
+          
+          <div className="container mx-auto max-w-6xl relative z-10">
+            <div className="flex flex-col lg:flex-row items-center mobile-stack">
+              <div className="lg:w-1/2 mb-8 lg:mb-0 mobile-full-width mobile-text-center mobile-padding">
+                <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                  Our <span className="text-[#a3c1e0]">Services</span>
+                </h1>
+                <p className={`text-sm md:text-md text-[#c9d8eb] mb-6 md:mb-8 max-w-lg mx-auto lg:mx-0 transition-all duration-700 delay-100 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                  Discover our comprehensive range of IT solutions designed to empower your business with cutting-edge technology and expert support.
+                </p>
+                <div className={`flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start transition-all duration-700 delay-200 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                  <a href="#services" className="bg-white text-[#103d5d] px-5 py-3 md:px-6 md:py-3 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] flex items-center justify-center">
+                    Explore Services <FaChevronRight className="ml-2" />
+                  </a>
+                  <a href="#contact" className="border-2 border-white text-white px-5 py-3 md:px-6 md:py-3 rounded-md font-medium transition-all duration-300 hover:bg-white hover:text-[#103d5d] text-center">
+                    Get In Touch
+                  </a>
+                </div>
               </div>
+              
+              <div className="lg:w-1/2 flex justify-center mobile-full-width">
+                <div className={`relative transition-all duration-700 delay-300 ${headerVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+                  <div className="absolute -inset-4 md:-inset-6 bg-[#a3c1e0] rounded-2xl rotate-3 opacity-30"></div>
+                  <div className="relative bg-white/10 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/20 shadow-2xl max-w-sm md:max-w-md mx-auto">
+                    <div className="text-center p-4 md:p-6">
+                      <div className="w-16 h-16 md:w-24 md:h-24 mx-auto mb-4 md:mb-6 rounded-full bg-[#103d5d] flex items-center justify-center">
+                        <FaCloud className="text-2xl md:text-4xl text-[#a3c1e0]" />
+                      </div>
+                      <h3 className="text-xl md:text-2xl font-semibold mb-2">Comprehensive Solutions</h3>
+                      <p className="text-[#c9d8eb] text-sm md:text-base">From IT support to cloud solutions, we've got your business covered.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Services Section - Mobile Responsive */}
+        <section id="services" className="py-12 md:py-16 bg-white px-4 sm:px-6 lg:px-8 -mt-12 md:-mt-20">
+          {/* Particle Background */}
+          <ParticleBackground />
+          
+          <div className="max-w-7xl mx-auto relative z-10">
+            <div className="text-center mb-8 md:mb-12 animate-fade-in">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#000000] mb-4">SysCare Services</h2>
+              <div className="w-20 md:w-24 h-1 bg-[#245684] mx-auto mb-4 md:mb-6"></div>
+              <p className="text-[#000000] max-w-3xl mx-auto text-sm md:text-md px-4">
+                At SysCare, we are committed to delivering exceptional quality in every service we provide. We believe that your satisfaction is the true measure of our success.
+              </p>
+            </div>
+
+            {/* Category Filter - Mobile Responsive */}
+            <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12 stagger-animation px-2">
+              {categories.map(category => (
+                <button
+                  key={category.id}
+                  onClick={() => setActiveCategory(category.id)}
+                  className={`px-3 py-2 md:px-5 md:py-2 rounded-full transition-all duration-300 text-sm md:text-base ${
+                    activeCategory === category.id
+                      ? 'bg-[#245684] text-white shadow-md'
+                      : 'bg-white text-[#245684] border border-[#245684] hover:bg-[#245684] hover:text-white'
+                  }`}
+                >
+                  {category.name}
+                </button>
+              ))}
+            </div>
+
+            {/* Services Grid - Mobile Responsive */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 stagger-animation">
+              {filteredServices.map((service, index) => (
+                <div 
+                  key={index}
+                  className="service-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 h-full flex flex-col border border-[#103d5d]"
+                >
+                  <div className="p-4 md:p-5 flex-grow">
+                    <div className="flex items-center mb-3 md:mb-4">
+                      <div className="p-2 md:p-3 rounded-lg bg-white mr-3 border border-[#103d5d]">
+                        {service.icon}
+                      </div>
+                      <h3 className="text-base md:text-lg font-bold text-[#103d5d] leading-tight">{service.main}</h3>
+                    </div>
+                    
+                    <div className="border-t border-[#103d5d] pt-3 md:pt-4 mt-2">
+                      {service.subs.map((sub, subIndex) => (
+                        <div 
+                          key={subIndex} 
+                          className="mb-3 md:mb-4 last:mb-0 cursor-pointer hover:bg-[#103d5d] hover:bg-opacity-10 p-2 rounded-md transition-colors duration-200"
+                          onClick={() => openSubServiceModal(service.main, sub)}
+                        >
+                          <h4 className="font-semibold text-[#103d5d] text-sm md:text-base">{sub.title}</h4>
+                          <p className="text-[#000000] text-xs md:text-sm mt-1 leading-relaxed line-clamp-2">
+                            {sub.description}
+                          </p>
+                          <span className="text-[#245684] text-xs font-medium mt-1 inline-block">
+                            Click to learn more
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Process Section - Fixed Mobile Responsive */}
+        <section className="py-12 md:py-20 bg-gradient-to-br from-[#f8fafc] to-[#e2e8f0] relative overflow-hidden">
+          {/* Background Elements */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-10 left-4 md:left-10 w-48 h-48 md:w-72 md:h-72 bg-[#103d5d] rounded-full blur-3xl"></div>
+            <div className="absolute bottom-10 right-4 md:right-10 w-56 h-56 md:w-96 md:h-96 bg-[#245684] rounded-full blur-3xl"></div>
+          </div>
+          
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center mb-12 md:mb-16 animate-fade-in">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#103d5d] mb-4 md:mb-6">Our Service Process</h2>
+              <div className="w-24 md:w-32 h-1 md:h-1.5 bg-gradient-to-r from-[#103d5d] to-[#245684] mx-auto mb-4 md:mb-6 rounded-full"></div>
+              <p className="text-sm md:text-md text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
+                We follow a structured approach to ensure we deliver the best solutions for your business needs.
+              </p>
             </div>
             
-            <div className="md:w-1/2 flex justify-center">
-              <div className={`relative transition-all duration-700 delay-300 ${headerVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-                <div className="absolute -inset-6 bg-[#a3c1e0] rounded-2xl rotate-3 opacity-30"></div>
-                <div className="relative bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-2xl">
-                  <div className="text-center p-6">
-                    <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-[#103d5d] flex items-center justify-center">
-                      <FaCloud className="text-4xl text-[#a3c1e0]" />
+            {/* Mobile Timeline Process */}
+            <div className="lg:hidden">
+              <div className="space-y-8">
+                {[
+                  {
+                    step: 1,
+                    title: "Consultation & Assessment",
+                    description: "We begin with a detailed consultation to understand your business goals, IT environment, and security needs."
+                  },
+                  {
+                    step: 2,
+                    title: "Tailored Strategy Design",
+                    description: "Our experts create a customised managed IT and security plan that aligns with your business objectives."
+                  },
+                  {
+                    step: 3,
+                    title: "Seamless Implementation",
+                    description: "We deploy, configure, and optimise solutions with minimal disruption to your daily operations."
+                  },
+                  {
+                    step: 4,
+                    title: "24/7 Monitoring & Support",
+                    description: "Our Melbourne and Sydney support teams provide round-the-clock monitoring, IT helpdesk, and fast issue resolution."
+                  },
+                  {
+                    step: 5,
+                    title: "Continuous Improvement",
+                    description: "We regularly review performance, update systems, and implement innovations to keep your business secure and efficient."
+                  }
+                ].map((item, index) => (
+                  <div key={index} className="relative flex items-start gap-4 group">
+                    <div className="flex-shrink-0 relative">
+                      <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-xl shadow-lg border border-[#103d5d]/20 flex items-center justify-center group-hover:scale-110 transition-all duration-300">
+                        <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-[#103d5d] to-[#245684] rounded-lg flex items-center justify-center text-white font-bold text-sm md:text-base">
+                          {item.step}
+                        </div>
+                      </div>
                     </div>
-                    <h3 className="text-2xl font-semibold mb-2">Comprehensive Solutions</h3>
-                    <p className="text-[#c9d8eb]">From IT support to cloud solutions, we've got your business covered.</p>
+                    
+                    <div className="flex-1">
+                      <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+                        <h3 className="text-lg md:text-xl font-bold text-[#103d5d] mb-2">{item.title}</h3>
+                        <p className="text-gray-600 leading-relaxed text-xs md:text-sm">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                ))}
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-</div>
-      {/* Rest of the ServicesPage content remains the same */}
-      <section id="services" className="py-16 bg-white px-4 sm:px-6 lg:px-8 -mt-20">
-        {/* Particle Background */}
-        <ParticleBackground />
-        
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-12 animate-fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#000000] mb-4">SysCare Services</h2>
-            <div className="w-24 h-1 bg-[#245684] mx-auto mb-6"></div>
-            <p className="text-[#000000] max-w-3xl mx-auto text-md">
-              At SysCare, we are committed to delivering exceptional quality in every service we provide. We believe that your satisfaction is the true measure of our success.
-            </p>
-          </div>
 
-          {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12 stagger-animation">
-            {categories.map(category => (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`px-5 py-2 rounded-full transition-all duration-300 ${
-                  activeCategory === category.id
-                    ? 'bg-[#245684] text-white shadow-md'
-                    : 'bg-white text-[#245684] border border-[#245684] hover:bg-[#245684] hover:text-white'
-                }`}
-              >
-                {category.name}
-              </button>
-            ))}
-          </div>
-
-          {/* Services Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 stagger-animation">
-            {filteredServices.map((service, index) => (
-              <div 
-                key={index}
-                className="service-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 h-full flex flex-col border border-[#103d5d]"
-              >
-                <div className="p-5 flex-grow">
-                  <div className="flex items-center mb-4">
-                    <div className="p-3 rounded-lg bg-white mr-3 border border-[#103d5d]">
-                      {service.icon}
+            {/* Desktop Timeline Process */}
+            <div className="hidden lg:block relative">
+              {/* Connecting Line */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-[#103d5d] to-[#245684]"></div>
+              
+              <div className="space-y-12">
+                {/* Step 1 */}
+                <div className="relative flex flex-row items-start gap-8 group">
+                  <div className="flex-shrink-0 relative">
+                    <div className="w-20 h-20 bg-white rounded-2xl shadow-xl border border-[#103d5d]/20 flex items-center justify-center group-hover:scale-110 transition-all duration-300">
+                      <div className="w-14 h-14 bg-gradient-to-br from-[#103d5d] to-[#245684] rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                        1
+                      </div>
                     </div>
-                    <h3 className="text-lg font-bold text-[#103d5d] leading-tight">{service.main}</h3>
                   </div>
                   
-                  <div className="border-t border-[#103d5d] pt-4 mt-2">
-                    {service.subs.map((sub, subIndex) => (
-                      <div 
-                        key={subIndex} 
-                        className="mb-4 last:mb-0 cursor-pointer hover:bg-[#103d5d] hover:bg-opacity-10 p-2 rounded-md transition-colors duration-200"
-                        onClick={() => openSubServiceModal(service.main, sub)}
-                      >
-                        <h4 className="font-semibold text-[#103d5d] text-base">{sub.title}</h4>
-                        <p className="text-[#000000] text-sm mt-1 leading-relaxed line-clamp-2">
-                          {sub.description}
-                        </p>
-                        <span className="text-[#245684] text-xs font-medium mt-1 inline-block">
-                          Click to learn more
-                        </span>
+                  <div className="w-1/2 text-right pr-12">
+                    <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+                      <h3 className="text-2xl font-bold text-[#103d5d] mb-3">Consultation & Assessment</h3>
+                      <p className="text-gray-600 leading-relaxed text-sm">
+                        We begin with a detailed consultation to understand your business goals, IT environment, and security needs.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="w-1/2"></div>
+                </div>
+
+                {/* Step 2 */}
+                <div className="relative flex flex-row items-start gap-8 group">
+                  <div className="w-1/2"></div>
+                  
+                  <div className="flex-shrink-0 relative">
+                    <div className="w-20 h-20 bg-white rounded-2xl shadow-xl border border-[#103d5d]/20 flex items-center justify-center group-hover:scale-110 transition-all duration-300">
+                      <div className="w-14 h-14 bg-gradient-to-br from-[#103d5d] to-[#245684] rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                        2
                       </div>
-                    ))}
+                    </div>
+                  </div>
+                  
+                  <div className="w-1/2 pl-12">
+                    <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+                      <h3 className="text-2xl font-bold text-[#103d5d] mb-3">Tailored Strategy Design</h3>
+                      <p className="text-gray-600 leading-relaxed text-sm">
+                        Our experts create a customised managed IT and security plan that aligns with your business objectives.
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Process Section - Modern Design */}
-<section className="py-20 bg-gradient-to-br from-[#f8fafc] to-[#e2e8f0] relative overflow-hidden">
-  {/* Background Elements */}
-  <div className="absolute inset-0 opacity-10">
-    <div className="absolute top-10 left-10 w-72 h-72 bg-[#103d5d] rounded-full blur-3xl"></div>
-    <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#245684] rounded-full blur-3xl"></div>
-  </div>
-  
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div className="text-center mb-16 animate-fade-in">
-      <h2 className="text-4xl md:text-5xl font-bold text-[#103d5d] mb-6">Our Service Process</h2>
-      <div className="w-32 h-1.5 bg-gradient-to-r from-[#103d5d] to-[#245684] mx-auto mb-6 rounded-full"></div>
-      <p className="text-md text-gray-600 max-w-3xl mx-auto leading-relaxed">
-        We follow a structured approach to ensure we deliver the best solutions for your business needs.
-      </p>
-    </div>
-    
-    {/* Timeline Process */}
-    <div className="relative">
-      {/* Connecting Line */}
-      <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-[#103d5d] to-[#245684] hidden lg:block"></div>
-      
-      <div className="space-y-12 lg:space-y-0">
-        {/* Step 1 */}
-        <div className="relative flex flex-col lg:flex-row items-center lg:items-start gap-8 group">
-          <div className="flex-shrink-0 relative">
-            <div className="w-20 h-20 bg-white rounded-2xl shadow-xl border border-[#103d5d]/20 flex items-center justify-center group-hover:scale-110 transition-all duration-300">
-              <div className="w-14 h-14 bg-gradient-to-br from-[#103d5d] to-[#245684] rounded-xl flex items-center justify-center text-white font-bold text-lg">
-                1
-              </div>
-            </div>
-            <div className="absolute -inset-4 bg-[#103d5d]/10 rounded-3xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </div>
-          
-          <div className="lg:w-1/2 lg:text-right lg:pr-12 text-center lg:text-left">
-            <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-              <h3 className="text-2xl font-bold text-[#103d5d] mb-3">Consultation & Assessment</h3>
-              <p className="text-gray-600 leading-relaxed text-sm">
-                We begin with a detailed consultation to understand your business goals, IT environment, and security needs.
-              </p>
-            </div>
-          </div>
-          
-          <div className="lg:w-1/2 lg:pl-12 hidden lg:block">
-            {/* Empty space for alignment */}
-          </div>
-        </div>
+                {/* Step 3 */}
+                <div className="relative flex flex-row items-start gap-8 group">
+                  <div className="flex-shrink-0 relative">
+                    <div className="w-20 h-20 bg-white rounded-2xl shadow-xl border border-[#103d5d]/20 flex items-center justify-center group-hover:scale-110 transition-all duration-300">
+                      <div className="w-14 h-14 bg-gradient-to-br from-[#103d5d] to-[#245684] rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                        3
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="w-1/2 text-right pr-12">
+                    <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+                      <h3 className="text-2xl font-bold text-[#103d5d] mb-3">Seamless Implementation</h3>
+                      <p className="text-gray-600 leading-relaxed text-sm">
+                        We deploy, configure, and optimise solutions with minimal disruption to your daily operations.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="w-1/2"></div>
+                </div>
 
-        {/* Step 2 */}
-        <div className="relative flex flex-col lg:flex-row items-center lg:items-start gap-8 group">
-          <div className="lg:w-1/2 lg:pr-12 hidden lg:block">
-            {/* Empty space for alignment */}
-          </div>
-          
-          <div className="flex-shrink-0 relative order-2 lg:order-1">
-            <div className="w-20 h-20 bg-white rounded-2xl shadow-xl border border-[#103d5d]/20 flex items-center justify-center group-hover:scale-110 transition-all duration-300">
-              <div className="w-14 h-14 bg-gradient-to-br from-[#103d5d] to-[#245684] rounded-xl flex items-center justify-center text-white font-bold text-lg">
-                2
-              </div>
-            </div>
-            <div className="absolute -inset-4 bg-[#103d5d]/10 rounded-3xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </div>
-          
-          <div className="lg:w-1/2 lg:pl-12 text-center lg:text-left order-1 lg:order-2">
-            <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-              <h3 className="text-2xl font-bold text-[#103d5d] mb-3">Tailored Strategy Design</h3>
-              <p className="text-gray-600 leading-relaxed text-sm">
-                Our experts create a customised managed IT and security plan that aligns with your business objectives.
-              </p>
-            </div>
-          </div>
-        </div>
+                {/* Step 4 */}
+                <div className="relative flex flex-row items-start gap-8 group">
+                  <div className="w-1/2"></div>
+                  
+                  <div className="flex-shrink-0 relative">
+                    <div className="w-20 h-20 bg-white rounded-2xl shadow-xl border border-[#103d5d]/20 flex items-center justify-center group-hover:scale-110 transition-all duration-300">
+                      <div className="w-14 h-14 bg-gradient-to-br from-[#103d5d] to-[#245684] rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                        4
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="w-1/2 pl-12">
+                    <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+                      <h3 className="text-2xl font-bold text-[#103d5d] mb-3">24/7 Monitoring & Support</h3>
+                      <p className="text-gray-600 leading-relaxed text-sm">
+                        Our Melbourne and Sydney support teams provide round-the-clock monitoring, IT helpdesk, and fast issue resolution.
+                      </p>
+                    </div>
+                  </div>
+                </div>
 
-        {/* Step 3 */}
-        <div className="relative flex flex-col lg:flex-row items-center lg:items-start gap-8 group">
-          <div className="flex-shrink-0 relative">
-            <div className="w-20 h-20 bg-white rounded-2xl shadow-xl border border-[#103d5d]/20 flex items-center justify-center group-hover:scale-110 transition-all duration-300">
-              <div className="w-14 h-14 bg-gradient-to-br from-[#103d5d] to-[#245684] rounded-xl flex items-center justify-center text-white font-bold text-lg">
-                3
+                {/* Step 5 */}
+                <div className="relative flex flex-row items-start gap-8 group">
+                  <div className="flex-shrink-0 relative">
+                    <div className="w-20 h-20 bg-white rounded-2xl shadow-xl border border-[#103d5d]/20 flex items-center justify-center group-hover:scale-110 transition-all duration-300">
+                      <div className="w-14 h-14 bg-gradient-to-br from-[#103d5d] to-[#245684] rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                        5
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="w-1/2 text-right pr-12">
+                    <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+                      <h3 className="text-2xl font-bold text-[#103d5d] mb-3">Continuous Improvement</h3>
+                      <p className="text-gray-600 leading-relaxed text-sm">
+                        We regularly review performance, update systems, and implement innovations to keep your business secure and efficient.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="w-1/2"></div>
+                </div>
               </div>
             </div>
-            <div className="absolute -inset-4 bg-[#103d5d]/10 rounded-3xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
-          
-          <div className="lg:w-1/2 lg:text-right lg:pr-12 text-center lg:text-left">
-            <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-              <h3 className="text-2xl font-bold text-[#103d5d] mb-3">Seamless Implementation</h3>
-              <p className="text-gray-600 leading-relaxed text-sm">
-                We deploy, configure, and optimise solutions with minimal disruption to your daily operations.
-              </p>
-            </div>
-          </div>
-          
-          <div className="lg:w-1/2 lg:pl-12 hidden lg:block">
-            {/* Empty space for alignment */}
-          </div>
-        </div>
+        </section>
 
-        {/* Step 4 */}
-        <div className="relative flex flex-col lg:flex-row items-center lg:items-start gap-8 group">
-          <div className="lg:w-1/2 lg:pr-12 hidden lg:block">
-            {/* Empty space for alignment */}
+        {/* CTA Section - Mobile Responsive */}
+        <section id="contact" className="py-12 md:py-16 bg-[#000000] text-white px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+          {/* Background pattern */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute top-0 left-0 w-20 h-20 md:w-32 md:h-32 border-2 border-white rounded-full"></div>
+            <div className="absolute bottom-0 right-0 w-28 h-28 md:w-48 md:h-48 border-2 border-white rounded-full"></div>
           </div>
           
-          <div className="flex-shrink-0 relative order-2 lg:order-1">
-            <div className="w-20 h-20 bg-white rounded-2xl shadow-xl border border-[#103d5d]/20 flex items-center justify-center group-hover:scale-110 transition-all duration-300">
-              <div className="w-14 h-14 bg-gradient-to-br from-[#103d5d] to-[#245684] rounded-xl flex items-center justify-center text-white font-bold text-lg">
-                4
-              </div>
+          <div className="max-w-4xl mx-auto text-center relative z-10 animate-fade-in">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">Ready to Transform Your Business?</h2>
+            <p className="text-lg md:text-xl mb-6 md:mb-8 text-sm md:text-base px-4">
+              Let's discuss how we can help you achieve your digital goals.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 px-4">
+              <Link to="/contact-Us" className="group relative bg-white text-[#103d5d] px-6 py-3 md:px-8 md:py-4 rounded-full font-bold overflow-hidden transition-all duration-300 hover:shadow-lg text-center animate-pulse-slow text-sm md:text-base">
+                <span className="relative z-10">Contact Us</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#103d5d] to-[#245684] opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
+              </Link>
+              <a href="tel:1300697972" className="group relative bg-transparent border-2 border-white text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-bold overflow-hidden transition-all duration-300 hover:bg-white hover:text-[#103d5d] text-center text-sm md:text-base">
+                <span className="relative z-10">Call Now</span>
+                <div className="absolute inset-0 bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
+              </a>
             </div>
-            <div className="absolute -inset-4 bg-[#103d5d]/10 rounded-3xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
-          
-          <div className="lg:w-1/2 lg:pl-12 text-center lg:text-left order-1 lg:order-2">
-            <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-              <h3 className="text-2xl font-bold text-[#103d5d] mb-3">24/7 Monitoring & Support</h3>
-              <p className="text-gray-600 leading-relaxed text-sm">
-                Our Melbourne and Sydney support teams provide round-the-clock monitoring, IT helpdesk, and fast issue resolution.
-              </p>
-            </div>
-          </div>
-        </div>
+        </section>
 
-        {/* Step 5 */}
-        <div className="relative flex flex-col lg:flex-row items-center lg:items-start gap-8 group">
-          <div className="flex-shrink-0 relative">
-            <div className="w-20 h-20 bg-white rounded-2xl shadow-xl border border-[#103d5d]/20 flex items-center justify-center group-hover:scale-110 transition-all duration-300">
-              <div className="w-14 h-14 bg-gradient-to-br from-[#103d5d] to-[#245684] rounded-xl flex items-center justify-center text-white font-bold text-lg">
-                5
-              </div>
-            </div>
-            <div className="absolute -inset-4 bg-[#103d5d]/10 rounded-3xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </div>
-          
-          <div className="lg:w-1/2 lg:text-right lg:pr-12 text-center lg:text-left">
-            <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-              <h3 className="text-2xl font-bold text-[#103d5d] mb-3">Continuous Improvement</h3>
-              <p className="text-gray-600 leading-relaxed text-sm">
-                We regularly review performance, update systems, and implement innovations to keep your business secure and efficient.
-              </p>
-            </div>
-          </div>
-          
-          <div className="lg:w-1/2 lg:pl-12 hidden lg:block">
-            {/* Empty space for alignment */}
-          </div>
-        </div>
+        <Footer/>
       </div>
-    </div>
-
-  
-  </div>
-</section>
-
-      {/* CTA Section */}
-      <section id="contact" className="py-16 bg-[#000000] text-white px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 left-0 w-32 h-32 border-2 border-white rounded-full"></div>
-          <div className="absolute bottom-0 right-0 w-48 h-48 border-2 border-white rounded-full"></div>
-        </div>
-        
-        <div className="max-w-4xl mx-auto text-center relative z-10 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Business?</h2>
-          <p className="text-xl mb-8 text-sm">
-            Let's discuss how we can help you achieve your digital goals.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link to="/contact-Us" className="group relative bg-white text-[#103d5d] px-8 py-4 rounded-full font-bold overflow-hidden transition-all duration-300 hover:shadow-lg text-center animate-pulse-slow">
-              <span className="relative z-10">Contact Us</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#103d5d] to-[#245684] opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
-            </Link>
-            <a href="tel:1300697972" className="group relative bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold overflow-hidden transition-all duration-300 hover:bg-white hover:text-[#103d5d] text-center">
-              <span className="relative z-10">Call Now</span>
-              <div className="absolute inset-0 bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <Footer/>
     </div>
   );
 };

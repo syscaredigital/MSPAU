@@ -4,25 +4,25 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <footer className="bg-[#103d5d] text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           
           {/* Company Info */}
-          <div className="lg:col-span-2">
-            <div className="flex items-center gap-4 mb-6">
+          <div className="lg:col-span-2 text-center md:text-left">
+            <div className="flex justify-center md:justify-start items-center gap-4 mb-6">
               <img 
                 src='/logos/White-Sys.svg' 
                 alt='SysCare Logo' 
-                className='h-16 w-auto object-contain'
+                className='h-12 lg:h-16 w-auto object-contain'
               />
             </div>
-            <p className="text-white/90 mb-6 max-w-lg leading-relaxed text-justify text-sm">
+            <p className="text-white/90 mb-6 max-w-lg mx-auto md:mx-0 leading-relaxed text-justify md:text-left text-sm">
               SysCare IT Solutions Pty Ltd is your trusted Managed IT Services (MSP) and Managed Security Services (MSSP) provider in Melbourne and Sydney. We deliver proactive IT support, advanced cybersecurity, and scalable solutions tailored to your business.
             </p>
             
             {/* Social Links */}
-            <div className="flex gap-4">
+            <div className="flex justify-center md:justify-start gap-4">
               {[
                 { href: '#', label: 'Facebook', icon: 'M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z' },
                 { href: '#', label: 'Twitter', icon: 'M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84' },
@@ -32,10 +32,10 @@ const Footer = () => {
                 <a
                   key={index}
                   href={social.href}
-                  className="p-3 bg-[#245684] rounded-lg hover:bg-white/20 transition-all duration-300"
+                  className="p-2 lg:p-3 bg-[#245684] rounded-lg hover:bg-white/20 transition-all duration-300"
                   aria-label={social.label}
                 >
-                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="h-4 w-4 lg:h-5 lg:w-5" fill="currentColor" viewBox="0 0 24 24">
                     <path d={social.icon} />
                   </svg>
                 </a>
@@ -44,7 +44,7 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="font-bold text-lg mb-6 text-white">Quick Links</h3>
             <div className="space-y-4">
               {[
@@ -66,20 +66,20 @@ const Footer = () => {
           </div>
 
           {/* Contact Info */}
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="font-bold text-lg mb-6 text-white">Contact Info</h3>
             <div className="space-y-4">
               <div>
                 <p className="text-white/80 text-sm">Call Now</p>
-                <p className="font-semibold text-white">1300 69 79 72</p>
+                <p className="font-semibold text-white text-base lg:text-lg">1300 69 79 72</p>
               </div>
               <div>
                 <p className="text-white/80 text-sm">Email</p>
-                <p className="font-semibold text-white text-sm">info@syscare.com.au</p>
+                <p className="font-semibold text-white text-sm lg:text-base">info@syscare.com.au</p>
               </div>
               
               {/* Office Hours */}
-              <div className="mt-4 p-4 bg-[#245684] rounded-lg">
+              <div className="mt-4 p-3 lg:p-4 bg-[#245684] rounded-lg">
                 <p className="text-white font-semibold text-sm mb-2">Office Hours</p>
                 <p className="text-white/80 text-xs">Mon - Fri: 8:00 AM - 6:00 PM</p>
                 <p className="text-white/80 text-xs">Emergency Support: 24/7</p>
@@ -89,16 +89,16 @@ const Footer = () => {
         </div>
 
         {/* Locations */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 py-6 border-t border-b border-white">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 lg:mb-8 py-6 border-t border-b border-white/30">
           <div className="text-center">
-            <h5 className="font-semibold text-lg text-white mb-3">Melbourne Office</h5>
+            <h5 className="font-semibold text-base lg:text-lg text-white mb-3">Melbourne Office</h5>
             <p className="text-white/80 text-sm">
               Level 10, Suite 1012, 401 Docklands Dr,<br />
               Docklands, VIC 3008
             </p>
           </div>
           <div className="text-center">
-            <h5 className="font-semibold text-lg text-white mb-3">Sydney Office</h5>
+            <h5 className="font-semibold text-base lg:text-lg text-white mb-3">Sydney Office</h5>
             <p className="text-white/80 text-sm">
               Level 36, Gateway, 1 Macquarie Pl,<br />
               Sydney, NSW 2000
@@ -107,11 +107,11 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-6 border-t border-white">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-6 border-t border-white/30">
           <p className="text-white/70 text-sm text-center md:text-left">
             &copy; {new Date().getFullYear()} SysCare IT Solutions. All rights reserved.
           </p>
-          <div className="flex gap-6 text-sm text-white/70">
+          <div className="flex flex-wrap justify-center gap-4 lg:gap-6 text-sm text-white/70">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
             <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
