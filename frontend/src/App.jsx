@@ -20,6 +20,7 @@ import ITInfraProjectsPage from './pages/ITInfraProjects.jsx';
 import DevelopmentAutomationPage from './pages/ITAutomation.jsx';
 import SmallBusinessPage from './pages/SmallBusiness.jsx';
 import EnterprisePage from './pages/Enterprise.jsx';
+import PrivacyPolicy from './pages/Privacy_Policy.jsx';
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
             <Route path='/DevelopmentAutomation'  element = {<DevelopmentAutomationPage />}></Route>
             <Route path='/SmallBusiness'  element = {<SmallBusinessPage />}></Route>
             <Route path='/Enterprise'  element = {<EnterprisePage />}></Route>
+            <Route path='/SysCare-Privacy-Policy'  element = {<PrivacyPolicy />}></Route>
             
 
           </Routes>

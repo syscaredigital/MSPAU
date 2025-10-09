@@ -112,7 +112,7 @@ const Footer = () => {
             &copy; {new Date().getFullYear()} SysCare IT Solutions. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-4 lg:gap-6 text-sm text-white/70">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="/SysCare-Privacy-Policy" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
             <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
           </div>
