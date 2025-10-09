@@ -32,9 +32,9 @@ const VideoHero = () => {
 
   // Different video sources for different devices
   const videoSources = {
-    mobileS: '/video/hero-video-mobile-small.mp4',
+    mobileS: '/video/hero-videom.mp4',
     mobileM: '/video/hero-videom.mp4',
-    mobileL: '/video/hero-video-mobile-large.mp4',
+    mobileL: '/video/hero-videom.mp4',
     tablet: '/video/hero-video-tablet.mp4',
     laptop: '/video/hero-videoL.mp4',
     laptopL: '/video/hero-video.mp4',
@@ -60,14 +60,14 @@ const VideoHero = () => {
   };
 
   const services = [
-    { name: "Cloud Solutions", link: "/services/cloud", icon: <FiCloud className="service-icon" /> },
-    { name: "IT Security", link: "/services/it-security", icon: <FiShield className="service-icon" /> },
-    { name: "IT Support", link: "/services/it-support", icon: <FiUserPlus className="service-icon" /> },
-    { name: "Projects & Automation", link: "/services/projects-automation", icon: <FiPackage className="service-icon" /> },
-    { name: "Internet & VOIP", link: "/services/internet-voip", icon: <FiGlobe className="service-icon" /> },
-    { name: "IT Training", link: "/services/it-training", icon: <FiBook className="service-icon" /> },
-    { name: "Digital Services", link: "/services/digital-services", icon: <FiSmartphone className="service-icon" /> },
-    { name: "CRM & ERP Solutions", link: "/services/crm-erp", icon: <FiServer className="service-icon" /> }
+    { name: "Cloud Solutions", link: "/syscare-services#infrastructure", icon: <FiCloud className="service-icon" /> },
+    { name: "IT Security", link: "/syscare-services#security", icon: <FiShield className="service-icon" /> },
+    { name: "IT Support", link: "/syscare-services#support", icon: <FiUserPlus className="service-icon" /> },
+    { name: "Projects & Automation", link: "/syscare-services#solutions", icon: <FiPackage className="service-icon" /> },
+    { name: "Internet & VOIP", link: "/syscare-services#infrastructure", icon: <FiGlobe className="service-icon" /> },
+    { name: "IT Training", link: "/syscare-services#training", icon: <FiBook className="service-icon" /> },
+    { name: "Digital Services", link: "/syscare-services#solutions", icon: <FiSmartphone className="service-icon" /> },
+    { name: "CRM & ERP Solutions", link: "/syscare-services#solutions", icon: <FiServer className="service-icon" /> }
   ];
 
   const sub_service = [
@@ -289,7 +289,7 @@ const VideoHero = () => {
           serviceWidth: 160,
           serviceHeight: 56,
           iconSize: 'text-3xl',
-          textSize: 'text-lg'
+          textSize: 'text-md'
         };
       case 'monitor':
       default:

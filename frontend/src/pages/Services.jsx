@@ -733,6 +733,46 @@ const ServicesPage = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // NEW: Handle hash URLs on component mount and hash changes
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.substring(1); // Remove the # symbol
+      if (hash) {
+        // Map URL hash to category IDs
+        const hashToCategoryMap = {
+          'infrastructure': 'infrastructure',
+          'security': 'security',
+          'support': 'support',
+          'solutions': 'solutions',
+          'training': 'training'
+        };
+        
+        const category = hashToCategoryMap[hash];
+        if (category && categories.find(cat => cat.id === category)) {
+          setActiveCategory(category);
+          
+          // Smooth scroll to services section after a brief delay
+          setTimeout(() => {
+            const servicesSection = document.getElementById('services');
+            if (servicesSection) {
+              servicesSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }, 100);
+        }
+      }
+    };
+
+    // Handle initial hash
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+    
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
   const openSubServiceModal = (mainService, subService) => {
     setSelectedMainService(mainService);
     setSelectedSubService(subService);
