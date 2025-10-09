@@ -675,18 +675,54 @@ const HomePage = () => {
     }
   ];
 
-  // Partner Logos Data - 42 logos split into two groups
-  const partnerLogosLine1 = Array.from({ length: 21 }, (_, i) => ({
-    id: i + 1,
-    name: `Partner ${i + 1}`,
-    fallback: `https://via.placeholder.com/120x40/103d5d/ffffff?text=Partner+${i + 1}`
-  }));
+  // Partner Logos Data - 42 logos split into two groups using assets folder
+  const partnerLogosLine1 = [
+    { id: 1, name: "Microsoft", image: "./images/VPN-Remote-Access.png" },
+    { id: 2, name: "Cisco", image: "/assets/partners/cisco.png" },
+    { id: 3, name: "Dell", image: "/assets/partners/dell.png" },
+    { id: 4, name: "HP", image: "/assets/partners/hp.png" },
+    { id: 5, name: "Lenovo", image: "/assets/partners/lenovo.png" },
+    { id: 6, name: "IBM", image: "/assets/partners/ibm.png" },
+    { id: 7, name: "Oracle", image: "/assets/partners/oracle.png" },
+    { id: 8, name: "VMware", image: "/assets/partners/vmware.png" },
+    { id: 9, name: "Amazon Web Services", image: "/assets/partners/aws.png" },
+    { id: 10, name: "Google Cloud", image: "/assets/partners/google-cloud.png" },
+    { id: 11, name: "Azure", image: "/assets/partners/azure.png" },
+    { id: 12, name: "Fortinet", image: "/assets/partners/fortinet.png" },
+    { id: 13, name: "Palo Alto", image: "/assets/partners/palo-alto.png" },
+    { id: 14, name: "Sophos", image: "/assets/partners/sophos.png" },
+    { id: 15, name: "McAfee", image: "/assets/partners/mcafee.png" },
+    { id: 16, name: "Symantec", image: "/assets/partners/symantec.png" },
+    { id: 17, name: "Check Point", image: "/assets/partners/check-point.png" },
+    { id: 18, name: "SonicWall", image: "/assets/partners/sonicwall.png" },
+    { id: 19, name: "Ubiquiti", image: "/assets/partners/ubiquiti.png" },
+    { id: 20, name: "Aruba", image: "/assets/partners/aruba.png" },
+    { id: 21, name: "Meraki", image: "/assets/partners/meraki.png" }
+  ];
 
-  const partnerLogosLine2 = Array.from({ length: 21 }, (_, i) => ({
-    id: i + 22,
-    name: `Partner ${i + 22}`,
-    fallback: `https://via.placeholder.com/120x40/245684/ffffff?text=Partner+${i + 22}`
-  }));
+  const partnerLogosLine2 = [
+    { id: 22, name: "SAP", image: "/assets/partners/sap.png" },
+    { id: 23, name: "Salesforce", image: "/assets/partners/salesforce.png" },
+    { id: 24, name: "Adobe", image: "/assets/partners/adobe.png" },
+    { id: 25, name: "Autodesk", image: "/assets/partners/autodesk.png" },
+    { id: 26, name: "Intel", image: "/assets/partners/intel.png" },
+    { id: 27, name: "AMD", image: "/assets/partners/amd.png" },
+    { id: 28, name: "NVIDIA", image: "/assets/partners/nvidia.png" },
+    { id: 29, name: "Western Digital", image: "/assets/partners/western-digital.png" },
+    { id: 30, name: "Seagate", image: "/assets/partners/seagate.png" },
+    { id: 31, name: "Toshiba", image: "/assets/partners/toshiba.png" },
+    { id: 32, name: "Samsung", image: "/assets/partners/samsung.png" },
+    { id: 33, name: "Apple", image: "/assets/partners/apple.png" },
+    { id: 34, name: "Canon", image: "/assets/partners/canon.png" },
+    { id: 35, name: "Epson", image: "/assets/partners/epson.png" },
+    { id: 36, name: "Brother", image: "/assets/partners/brother.png" },
+    { id: 37, name: "Logitech", image: "/assets/partners/logitech.png" },
+    { id: 38, name: "Poly", image: "/assets/partners/poly.png" },
+    { id: 39, name: "Jabra", image: "/assets/partners/jabra.png" },
+    { id: 40, name: "APC", image: "/assets/partners/apc.png" },
+    { id: 41, name: "CyberPower", image: "/assets/partners/cyberpower.png" },
+    { id: 42, name: "Eaton", image: "/assets/partners/eaton.png" }
+  ];
 
   // Brochures Data
   const brochures = [
@@ -1420,7 +1456,7 @@ const HomePage = () => {
           </div>
         </div>
         
-        {/* Dual Line Partners Section */}
+        {/* Dual Line Partners Section - Updated with assets folder images */}
         <div className="partners-background py-16 md:py-20 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center mb-12">
@@ -1442,9 +1478,18 @@ const HomePage = () => {
                 {duplicatedLogosLine1.map((logo, index) => (
                   <div key={`top-${logo.id}-${index}`} className="logo-item">
                     <img 
-                      src={logo.fallback} 
+                      src={logo.image} 
                       alt={logo.name}
                       className="logo-img"
+                      onError={(e) => {
+                        // Fallback if image doesn't exist
+                        e.target.style.display = 'none';
+                        const fallback = document.createElement('div');
+                        fallback.className = 'fallback-text';
+                        fallback.textContent = logo.name;
+                        fallback.style.cssText = 'font-size: 14px; font-weight: bold; color: #103d5d; text-align: center;';
+                        e.target.parentNode.appendChild(fallback);
+                      }}
                     />
                   </div>
                 ))}
@@ -1455,16 +1500,23 @@ const HomePage = () => {
                 {duplicatedLogosLine2.map((logo, index) => (
                   <div key={`bottom-${logo.id}-${index}`} className="logo-item">
                     <img 
-                      src={logo.fallback} 
+                      src={logo.image} 
                       alt={logo.name}
                       className="logo-img"
+                      onError={(e) => {
+                        // Fallback if image doesn't exist
+                        e.target.style.display = 'none';
+                        const fallback = document.createElement('div');
+                        fallback.className = 'fallback-text';
+                        fallback.textContent = logo.name;
+                        fallback.style.cssText = 'font-size: 14px; font-weight: bold; color: #103d5d; text-align: center;';
+                        e.target.parentNode.appendChild(fallback);
+                      }}
                     />
                   </div>
                 ))}
               </div>
             </div>
-
-          
           </div>
         </div>
 
