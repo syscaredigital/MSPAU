@@ -694,34 +694,33 @@ const HomePage = () => {
     { id: 15, name: "McAfee", image: "/Partner_logos/Exetel.png" },
     { id: 16, name: "Symantec", image: "/Partner_logos/gemalto.png" },
     { id: 17, name: "Check Point", image: "/Partner_logos/GFI.png" },
-    { id: 18, name: "SonicWall", image: "/Partner_logos/MailStore.png" },
-    { id: 19, name: "Ubiquiti", image: "/Partner_logos/MailStore.png" },
-    { id: 20, name: "Aruba", image: "/Partner_logos/MailStore.png" },
-    { id: 21, name: "Meraki", image: "/Partner_logos/MailStore.png" }
+    { id: 18, name: "SonicWall", image: "/Partner_logos/Godaddy.jpg" },
+    { id: 19, name: "Ubiquiti", image: "/Partner_logos/Hills.png" },
+    { id: 20, name: "Aruba", image: "/Partner_logos/HP.png" },
+    { id: 21, name: "Meraki", image: "/Partner_logos/HPE.png" }
   ];
 
   const partnerLogosLine2 = [
-    { id: 22, name: "SAP", image: "/Partner_logos/MailStore.png" },
-    { id: 23, name: "Salesforce", image: "/assets/partners/salesforce.png" },
-    { id: 24, name: "Adobe", image: "/assets/partners/adobe.png" },
-    { id: 25, name: "Autodesk", image: "/assets/partners/autodesk.png" },
-    { id: 26, name: "Intel", image: "/assets/partners/intel.png" },
-    { id: 27, name: "AMD", image: "/assets/partners/amd.png" },
-    { id: 28, name: "NVIDIA", image: "/assets/partners/nvidia.png" },
-    { id: 29, name: "Western Digital", image: "/assets/partners/western-digital.png" },
-    { id: 30, name: "Seagate", image: "/assets/partners/seagate.png" },
-    { id: 31, name: "Toshiba", image: "/assets/partners/toshiba.png" },
-    { id: 32, name: "Samsung", image: "/assets/partners/samsung.png" },
-    { id: 33, name: "Apple", image: "/assets/partners/apple.png" },
-    { id: 34, name: "Canon", image: "/assets/partners/canon.png" },
-    { id: 35, name: "Epson", image: "/assets/partners/epson.png" },
-    { id: 36, name: "Brother", image: "/assets/partners/brother.png" },
-    { id: 37, name: "Logitech", image: "/assets/partners/logitech.png" },
-    { id: 38, name: "Poly", image: "/assets/partners/poly.png" },
-    { id: 39, name: "Jabra", image: "/assets/partners/jabra.png" },
-    { id: 40, name: "APC", image: "/assets/partners/apc.png" },
-    { id: 41, name: "CyberPower", image: "/assets/partners/cyberpower.png" },
-    { id: 42, name: "Eaton", image: "/assets/partners/eaton.png" }
+    { id: 22, name: "SAP", image: "/Partner_logos/hyper_v.png" },
+    { id: 23, name: "Salesforce", image: "/Partner_logos/IBM.png" },
+    { id: 24, name: "Adobe", image: "/Partner_logos/Ingram.png" },
+    { id: 25, name: "Autodesk", image: "/Partner_logos/Leader_Computers.png" },
+    { id: 26, name: "Intel", image: "/Partner_logos/Lenovo.png" },
+    { id: 27, name: "AMD", image: "/Partner_logos/MailStore.png" },
+    { id: 28, name: "NVIDIA", image: "/Partner_logos/McAfee.png" },
+    { id: 29, name: "Western Digital", image: "/Partner_logos/Microsoft1.png" },
+    { id: 30, name: "Seagate", image: "/Partner_logos/NextDC.png" },
+    { id: 31, name: "Toshiba", image: "/Partner_logos/Pristine.png" },
+    { id: 32, name: "Samsung", image: "/Partner_logos/QNAP.png" },
+    { id: 33, name: "Apple", image: "/Partner_logos/Solar_Winds.jpg" },
+    { id: 34, name: "Canon", image: "/Partner_logos/Sonicwall.png" },
+    { id: 35, name: "Epson", image: "/Partner_logos/storagecraft.jpg" },
+    { id: 36, name: "Brother", image: "/Partner_logos/syantec.png" },
+    { id: 37, name: "Logitech", image: "/Partner_logos/Synnex.png" },
+    { id: 38, name: "Poly", image: "/Partner_logos/TechData.png" },
+    { id: 39, name: "Jabra", image: "/Partner_logos/trentmicro.png" },
+    { id: 40, name: "APC", image: "/Partner_logos/veeam.png" },
+    { id: 41, name: "CyberPower", image: "/Partner_logos/vmware.jpg" }
   ];
 
   // Brochures Data
