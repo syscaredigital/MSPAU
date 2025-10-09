@@ -697,11 +697,11 @@ const HomePage = () => {
     { id: 18, name: "SonicWall", image: "/assets/partners/sonicwall.png" },
     { id: 19, name: "Ubiquiti", image: "/assets/partners/ubiquiti.png" },
     { id: 20, name: "Aruba", image: "/assets/partners/aruba.png" },
-    { id: 21, name: "Meraki", image: "/assets/partners/meraki.png" }
+    { id: 21, name: "Meraki", image: "/Partner_logos/MailStore.png" }
   ];
 
   const partnerLogosLine2 = [
-    { id: 22, name: "SAP", image: "/assets/partners/sap.png" },
+    { id: 22, name: "SAP", image: "/Partner_logos/MailStore.png" },
     { id: 23, name: "Salesforce", image: "/assets/partners/salesforce.png" },
     { id: 24, name: "Adobe", image: "/assets/partners/adobe.png" },
     { id: 25, name: "Autodesk", image: "/assets/partners/autodesk.png" },
