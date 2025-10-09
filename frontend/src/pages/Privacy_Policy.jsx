@@ -1,9 +1,12 @@
 import React from 'react';
+import Footer from '../components/footer.jsx';
+import Navigation from '../components/Navigation';
 
 const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen bg-[#ffffff]">
       {/* Header */}
+      <Navigation/>
       <header className="bg-[#103d5d] text-white py-8">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl font-bold text-center">Privacy Policy</h1>
@@ -152,12 +155,7 @@ const PrivacyPolicy = () => {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-[#245684] text-white py-6 mt-8">
-        <div className="container mx-auto px-4 text-center">
-          <p>&copy; {new Date().getFullYear()} [Your MSP Company Name]. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   );
 };
