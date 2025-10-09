@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer.jsx';
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaHeadset, FaChevronRight } from 'react-icons/fa';
 
 const Header = () => {
-  
-  const [ setIsVisible] = useState(true);
+  const [setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-
-  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,9 +22,7 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  return (
-    <Navigation />
-  );
+  return <Navigation />;
 };
 
 const ContactPage = () => {
@@ -42,9 +36,11 @@ const ContactPage = () => {
 
   const [submitted, setSubmitted] = useState(false);
   const [headerVisible, setHeaderVisible] = useState(false);
+  const [activeLocation, setActiveLocation] = useState('melbourne');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    // Trigger animations after component mounts
     const timer = setTimeout(() => {
       setHeaderVisible(true);
     }, 100);
@@ -57,22 +53,62 @@ const ContactPage = () => {
       ...prev,
       [name]: value
     }));
+    // Clear error when user starts typing
+    if (error) setError('');
   };
+//submit config
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  setError('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Here you would typically send the data to your backend
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      service: '',
-      message: ''
+  try {
+    const response = await fetch('http://localhost:5000/api/contact/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
     });
-    setTimeout(() => setSubmitted(false), 5000);
-  };
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      // Handle validation errors or server errors
+      if (result.errors) {
+        const errorMessages = result.errors.map(error => error.msg).join(', ');
+        setError(`Validation error: ${errorMessages}`);
+      } else {
+        setError(result.message || 'Failed to submit form. Please try again.');
+      }
+      return;
+    }
+
+    if (result.success) {
+      setSubmitted(true);
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        service: '',
+        message: ''
+      });
+      setTimeout(() => setSubmitted(false), 5000);
+    } else {
+      setError(result.message || 'Failed to submit form. Please try again.');
+    }
+  } catch (error) {
+    console.error('Form submission error:', error);
+    setError('Network error. Please check your connection and try again.');
+  } finally {
+    setLoading(false);
+  }
+};
+
+  // Google Maps embed URLs
+  const melbourneMapUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.9397713153186!3d-37.8172139797516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d43c5b4a7a7%3A0xf8c7d7c8f0b8c8c8!2s401%20Docklands%20Dr%2C%20Docklands%20VIC%203008!5e0!3m2!1sen!2sau!4v1620000000000!5m2!1sen!2sau";
+  
+  const sydneyMapUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.837237887457!2d151.208888315326!3d-33.863467980653!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12ae3c3d7b7b7b%3A0x3b3b3b3b3b3b3b3b!2s1%20Macquarie%20Pl%2C%20Sydney%20NSW%202000!5e0!3m2!1sen!2sau!4v1620000000000!5m2!1sen!2sau";
 
   return (
     <div className="min-h-screen bg-[#f5f7fa]">
@@ -105,7 +141,7 @@ const ContactPage = () => {
                 Contact <span className="text-[#a3c1e0]">SysCare</span> <br></br>IT Solutions
               </h1>
               <p className={`text-md text-[#c9d8eb] mb-8 max-w-lg transition-all duration-700 delay-100 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                Whether you’re looking for 24/7 support contact, service inquiries, or expert advice, the team at SysCare IT Solutions is ready to assist.
+                Whether you're looking for 24/7 support contact, service inquiries, or expert advice, the team at SysCare IT Solutions is ready to assist.
               </p>
               <div className={`flex flex-wrap gap-4 transition-all duration-700 delay-200 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                 <a href="#contact-form" className="bg-white text-[#103d5d] px-6 py-3 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] flex items-center">
@@ -156,7 +192,7 @@ const ContactPage = () => {
               </div>
               <h3 className="text-xl font-semibold text-[#103d5d] mb-3">Email Us</h3>
               <p className="text-gray-600 mb-4">Send us a message anytime</p>
-              <a href="mailto:info@syscare.com.au" className="text-[#245684] font-medium hover:underline">info@syscare.com.au</a>
+              <a href="mailto:digital@syscare.com.au" className="text-[#245684] font-medium hover:underline">digital@syscare.com.au</a>
             </div>
             
             {/* Office */}
@@ -167,7 +203,7 @@ const ContactPage = () => {
               <h3 className="text-xl font-semibold text-[#103d5d] mb-3">Visit Us</h3>
               <p className="text-gray-600 mb-4">Come see us at our headquarters</p>
               <p className="text-[#245684] font-medium"><span className='font-bold'>Melbourne</span> - Level 10, Suite 1012, 401 Docklands Dr, Docklands, VIC 3008.</p>
-               <p className="text-[#245684] font-medium"><span className='font-bold'>Sydney</span> – Level 36, Gateway, 1 Macquarie Pl, Sydney, NSW 2000.</p>
+              <p className="text-[#245684] font-medium"><span className='font-bold'>Sydney</span> – Level 36, Gateway, 1 Macquarie Pl, Sydney, NSW 2000.</p>
             </div>
           </div>
         </div>
@@ -182,13 +218,19 @@ const ContactPage = () => {
             
             {submitted && (
               <div className="mb-6 p-4 bg-green-100 text-green-700 rounded-lg">
-                Thank you for contacting us! We'll get back to you soon.
+                Thank you for contacting us! We will get back to you soon.
+              </div>
+            )}
+
+            {error && (
+              <div className="mb-6 p-4 bg-red-100 text-red-700 rounded-lg">
+                {error}
               </div>
             )}
 
             <form onSubmit={handleSubmit}>
               <div className="mb-6">
-                <label htmlFor="name" className="block text-gray-700 font-medium mb-2">Full Name</label>
+                <label htmlFor="name" className="block text-gray-700 font-medium mb-2">Full Name *</label>
                 <input
                   type="text"
                   id="name"
@@ -197,11 +239,12 @@ const ContactPage = () => {
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#245684] focus:border-transparent"
                   required
+                  minLength="2"
                 />
               </div>
 
               <div className="mb-6">
-                <label htmlFor="email" className="block text-gray-700 font-medium mb-2">Email Address</label>
+                <label htmlFor="email" className="block text-gray-700 font-medium mb-2">Email Address *</label>
                 <input
                   type="email"
                   id="email"
@@ -242,13 +285,12 @@ const ContactPage = () => {
                   <option value="IT Security">IT Security</option>
                   <option value="IT Training">IT Training</option>
                   <option value="CRM & ERP Solutions">CRM & ERP Solutions</option>
-                  <option value="Project Auotomations">Project Auotomations</option>
-
+                  <option value="Project Automations">Project Automations</option>
                 </select>
               </div>
 
               <div className="mb-6">
-                <label htmlFor="message" className="block text-gray-700 font-medium mb-2">Your Message</label>
+                <label htmlFor="message" className="block text-gray-700 font-medium mb-2">Your Message *</label>
                 <textarea
                   id="message"
                   name="message"
@@ -257,22 +299,26 @@ const ContactPage = () => {
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#245684] focus:border-transparent"
                   required
+                  minLength="10"
                 ></textarea>
               </div>
 
               <button
                 type="submit"
-                className="w-full py-3 px-6 bg-[#103d5d] text-white font-semibold rounded-lg hover:bg-[#245684] transition-colors duration-300"
+                disabled={loading}
+                className={`w-full py-3 px-6 bg-[#103d5d] text-white font-semibold rounded-lg transition-colors duration-300 ${
+                  loading 
+                    ? 'opacity-50 cursor-not-allowed' 
+                    : 'hover:bg-[#245684]'
+                }`}
               >
-                Send Message
+                {loading ? 'Sending...' : 'Send Message'}
               </button>
             </form>
           </div>
 
           {/* Contact Info */}
           <div>
-            
-
             <div className="bg-white rounded-xl shadow-lg p-8">
               <h2 className="text-3xl font-bold text-[#170f17] mb-6">Business Hours</h2>
               
@@ -293,7 +339,7 @@ const ContactPage = () => {
 
               <div className="mt-8">
                 <h3 className="text-xl font-semibold text-[#245684] mb-4">Emergency Support</h3>
-                <p className="text-gray-600 mb-4">Technology issues don’t keep office hours and neither do we. With our 24/7 support contact, SysCare IT Solutions ensures your business stays online, secure, and productive at all times.</p>
+                <p className="text-gray-600 mb-4">Technology issues don't keep office hours and neither do we. With our 24/7 support contact, SysCare IT Solutions ensures your business stays online, secure, and productive at all times.</p>
                 <p className="text-[#103d5d] font-medium">Emergency Hotline: 1300 69 79 72</p>
               </div>
             </div>
@@ -305,11 +351,71 @@ const ContactPage = () => {
       <div className="bg-[#170f17] text-white py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold mb-8 text-center">Find Us on the Map</h2>
-          <div className="bg-gray-300 h-96 rounded-xl overflow-hidden">
-            {/* This would be replaced with an actual map component like Google Maps */}
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-r from-[#103d5d] to-[#245684]">
-              <p className="text-white text-xl">Map Integration Would Go Here</p>
+          
+          {/* Location Selector */}
+          <div className="flex justify-center mb-8">
+            <div className="bg-white rounded-lg p-1 flex">
+              <button
+                onClick={() => setActiveLocation('melbourne')}
+                className={`px-6 py-3 rounded-md font-medium transition-all duration-300 ${
+                  activeLocation === 'melbourne' 
+                    ? 'bg-[#103d5d] text-white' 
+                    : 'text-gray-700 hover:bg-gray-100'
+                }`}
+              >
+                Melbourne Office
+              </button>
+              <button
+                onClick={() => setActiveLocation('sydney')}
+                className={`px-6 py-3 rounded-md font-medium transition-all duration-300 ${
+                  activeLocation === 'sydney' 
+                    ? 'bg-[#103d5d] text-white' 
+                    : 'text-gray-700 hover:bg-gray-100'
+                }`}
+              >
+                Sydney Office
+              </button>
             </div>
+          </div>
+
+          {/* Map Container */}
+          <div className="bg-gray-300 h-96 rounded-xl overflow-hidden shadow-2xl">
+            {activeLocation === 'melbourne' ? (
+              <iframe
+                src={melbourneMapUrl}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="SysCare Melbourne Office"
+              ></iframe>
+            ) : (
+              <iframe
+                src={sydneyMapUrl}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="SysCare Sydney Office"
+              ></iframe>
+            )}
+          </div>
+
+          {/* Address Info */}
+          <div className="mt-8 text-center">
+            <p className="text-xl font-semibold mb-2">
+              {activeLocation === 'melbourne' ? 'Melbourne Office' : 'Sydney Office'}
+            </p>
+            <p className="text-gray-300">
+              {activeLocation === 'melbourne' 
+                ? 'Level 10, Suite 1012, 401 Docklands Dr, Docklands, VIC 3008'
+                : 'Level 36, Gateway, 1 Macquarie Pl, Sydney, NSW 2000'
+              }
+            </p>
           </div>
         </div>
       </div>
