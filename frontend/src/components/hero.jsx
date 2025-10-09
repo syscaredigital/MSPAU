@@ -13,19 +13,50 @@ const VideoHero = () => {
   const [typingSpeed, setTypingSpeed] = useState(80);
   const [isMarqueePaused, setIsMarqueePaused] = useState(false);
   const [rotationAngle, setRotationAngle] = useState(0);
-  const [circleSize, setCircleSize] = useState(calculateCircleSize());
-  const [isMobile, setIsMobile] = useState(false);
-  const [isTablet, setIsTablet] = useState(false);
-  const [isLaptop, setIsLaptop] = useState(false);
-  const [, setIsDesktop] = useState(false);
+  const [, setCircleSize] = useState(400); // Default initial size
+  const [deviceSize, setDeviceSize] = useState('desktop');
   const [videoSource, setVideoSource] = useState('');
   const navigate = useNavigate();
 
+  // Device breakpoints
+  const breakpoints = {
+    mobileS: 320,   // small phones
+    mobileM: 375,   // medium phones
+    mobileL: 425,   // large phones
+    tablet: 768,    // tablets
+    laptop: 1024,   // small laptops
+    laptopL: 1440,  // standard desktops
+    desktop: 1920,  // full HD desktop
+    monitor: 2560   // 27” WQHD / large screen
+  };
+
   // Different video sources for different devices
   const videoSources = {
-    mobile: '/video/hero-videom.mp4',
-    tablet: '/video/hero-video.mp4',
-    desktop: '/video/hero-video.mp4'
+    mobileS: '/video/hero-video-mobile-small.mp4',
+    mobileM: '/video/hero-videom.mp4',
+    mobileL: '/video/hero-video-mobile-large.mp4',
+    tablet: '/video/hero-video-tablet.mp4',
+    laptop: '/video/hero-videoL.mp4',
+    laptopL: '/video/hero-video.mp4',
+    desktop: '/video/hero-videoLL.mp4',
+    monitor: '/video/hero-videoLD.mp4'
+  };
+
+  // Fallback video sources if some sizes are not available
+  const getVideoSource = (device) => {
+    // If you don't have videos for all sizes, you can use fallbacks
+    const fallbackSources = {
+      mobileS: videoSources.mobileS || videoSources.mobileM || videoSources.mobileL || videoSources.tablet,
+      mobileM: videoSources.mobileM || videoSources.mobileL || videoSources.tablet,
+      mobileL: videoSources.mobileL || videoSources.tablet,
+      tablet: videoSources.tablet || videoSources.laptop,
+      laptop: videoSources.laptop || videoSources.laptopL || videoSources.desktop,
+      laptopL: videoSources.laptopL || videoSources.desktop,
+      desktop: videoSources.desktop || videoSources.monitor,
+      monitor: videoSources.monitor || videoSources.desktop
+    };
+    
+    return fallbackSources[device] || videoSources.desktop;
   };
 
   const services = [
@@ -66,40 +97,43 @@ const VideoHero = () => {
     "Trusted MSP & MSSP Partner in Australia"
   ];
 
-  // Calculate circle size based on screen width with all breakpoints
-  function calculateCircleSize() {
+  // Calculate circle size based on screen width with all breakpoints - FIXED
+  const calculateCircleSize = () => {
     const width = window.innerWidth;
-    if (width < 375) return 200;    // mobileS & mobileM
-    if (width < 425) return 240;    // mobileL
-    if (width < 768) return 280;    // tablet breakpoint
-    if (width < 1024) return 320;   // tablet
-    if (width < 1440) return 400;   // laptop
-    if (width < 1920) return 500;   // laptopL
-    return 600; // desktop & monitor
-  }
+    if (width < breakpoints.mobileS) return 180;    // extra small
+    if (width < breakpoints.mobileM) return 200;    // mobileS
+    if (width < breakpoints.mobileL) return 240;    // mobileM
+    if (width < breakpoints.tablet) return 280;     // mobileL
+    if (width < breakpoints.laptop) return 320;     // tablet
+    if (width < breakpoints.laptopL) return 400;    // laptop
+    if (width < breakpoints.desktop) return 500;    // laptopL
+    if (width < breakpoints.monitor) return 600;    // desktop
+    return 700; // monitor and above
+  };
+
+  // Determine device size based on breakpoints
+  const getDeviceSize = (width) => {
+    if (width < breakpoints.mobileS) return 'mobileS';
+    if (width < breakpoints.mobileM) return 'mobileM';
+    if (width < breakpoints.mobileL) return 'mobileL';
+    if (width < breakpoints.tablet) return 'tablet';
+    if (width < breakpoints.laptop) return 'laptop';
+    if (width < breakpoints.laptopL) return 'laptopL';
+    if (width < breakpoints.desktop) return 'desktop';
+    return 'monitor';
+  };
 
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      const isMobileDevice = width < 768;
-      const isTabletDevice = width >= 768 && width < 1024;
-      const isLaptopDevice = width >= 1024 && width < 1440;
-      const isDesktopDevice = width >= 1440;
+      const currentDeviceSize = getDeviceSize(width);
       
-      setIsMobile(isMobileDevice);
-      setIsTablet(isTabletDevice);
-      setIsLaptop(isLaptopDevice);
-      setIsDesktop(isDesktopDevice);
+      setDeviceSize(currentDeviceSize);
       setCircleSize(calculateCircleSize());
       
-      // Set appropriate video source based on device
-      if (isMobileDevice) {
-        setVideoSource(videoSources.mobile);
-      } else if (isTabletDevice) {
-        setVideoSource(videoSources.tablet);
-      } else {
-        setVideoSource(videoSources.desktop);
-      }
+      // Set appropriate video source based on device size
+      const newVideoSource = getVideoSource(currentDeviceSize);
+      setVideoSource(newVideoSource);
     };
 
     // Initial setup
@@ -107,7 +141,7 @@ const VideoHero = () => {
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [videoSources.desktop, videoSources.mobile, videoSources.tablet]);
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -115,7 +149,7 @@ const VideoHero = () => {
 
     const handleLoadedData = () => {
       setIsVideoLoaded(true);
-      if (!isMobile) {
+      if (deviceSize !== 'mobileS' && deviceSize !== 'mobileM' && deviceSize !== 'mobileL') {
         video.play().catch(error => {
           console.log("Autoplay prevented:", error);
         });
@@ -140,7 +174,7 @@ const VideoHero = () => {
       video.removeEventListener('error', handleError);
       clearInterval(rotationInterval);
     };
-  }, [isMobile, videoSource]);
+  }, [deviceSize, videoSource]);
 
   // Typing effect
   useEffect(() => {
@@ -173,18 +207,31 @@ const VideoHero = () => {
   };
 
   const playVideoOnMobile = () => {
-    if (isMobile && videoRef.current) {
+    if ((deviceSize === 'mobileS' || deviceSize === 'mobileM' || deviceSize === 'mobileL') && videoRef.current) {
       videoRef.current.play().catch(error => {
         console.log("Mobile video play failed:", error);
       });
     }
   };
 
+  // Helper function to check if device is mobile - FIXED
+  const isMobile = deviceSize === 'mobileS' || deviceSize === 'mobileM' || deviceSize === 'mobileL';
+  const isTablet = deviceSize === 'tablet';
+
   // Calculate responsive values for the rotating circle with all breakpoints
   const getCircleDimensions = () => {
-    if (isMobile) {
-      const width = window.innerWidth;
-      if (width < 375) { // mobileS & mobileM
+    switch(deviceSize) {
+      case 'mobileS':
+        return {
+          containerSize: 180,
+          centerSize: 90,
+          radius: 70,
+          serviceWidth: 50,
+          serviceHeight: 20,
+          iconSize: 'text-xs',
+          textSize: 'text-[8px]'
+        };
+      case 'mobileM':
         return {
           containerSize: 200,
           centerSize: 100,
@@ -194,7 +241,7 @@ const VideoHero = () => {
           iconSize: 'text-sm',
           textSize: 'text-[10px]'
         };
-      } else if (width < 425) { // mobileL
+      case 'mobileL':
         return {
           containerSize: 240,
           centerSize: 120,
@@ -204,7 +251,7 @@ const VideoHero = () => {
           iconSize: 'text-base',
           textSize: 'text-xs'
         };
-      } else { // mobileL to tablet
+      case 'tablet':
         return {
           containerSize: 280,
           centerSize: 140,
@@ -214,37 +261,47 @@ const VideoHero = () => {
           iconSize: 'text-lg',
           textSize: 'text-xs'
         };
-      }
-    } else if (isTablet) {
-      return {
-        containerSize: 320,
-        centerSize: 160,
-        radius: 128,
-        serviceWidth: 112,
-        serviceHeight: 38,
-        iconSize: 'text-xl',
-        textSize: 'text-sm'
-      };
-    } else if (isLaptop) {
-      return {
-        containerSize: 400,
-        centerSize: 200,
-        radius: 160,
-        serviceWidth: 140,
-        serviceHeight: 48,
-        iconSize: 'text-2xl',
-        textSize: 'text-base'
-      };
-    } else { // desktop & monitor
-      return {
-        containerSize: circleSize,
-        centerSize: circleSize * 0.5,
-        radius: circleSize * 0.4,
-        serviceWidth: circleSize * 0.4,
-        serviceHeight: circleSize * 0.15,
-        iconSize: 'text-3xl',
-        textSize: 'text-lg'
-      };
+      case 'laptop':
+        return {
+          containerSize: 320,
+          centerSize: 160,
+          radius: 128,
+          serviceWidth: 112,
+          serviceHeight: 38,
+          iconSize: 'text-xl',
+          textSize: 'text-sm'
+        };
+      case 'laptopL':
+        return {
+          containerSize: 400,
+          centerSize: 200,
+          radius: 160,
+          serviceWidth: 140,
+          serviceHeight: 48,
+          iconSize: 'text-2xl',
+          textSize: 'text-base'
+        };
+      case 'desktop':
+        return {
+          containerSize: 500,
+          centerSize: 250,
+          radius: 200,
+          serviceWidth: 160,
+          serviceHeight: 56,
+          iconSize: 'text-3xl',
+          textSize: 'text-lg'
+        };
+      case 'monitor':
+      default:
+        return {
+          containerSize: 600,
+          centerSize: 300,
+          radius: 240,
+          serviceWidth: 180,
+          serviceHeight: 64,
+          iconSize: 'text-4xl',
+          textSize: 'text-xl'
+        };
     }
   };
 
@@ -328,7 +385,7 @@ const VideoHero = () => {
       </div>
 
       {/* Fallback image */}
-    {/*   {!isVideoLoaded && (
+      {/* {!isVideoLoaded && (
         <div className="absolute inset-0 bg-[url('/images/hero-fallback.jpg')] bg-cover bg-center"></div>
       )} */}
 
