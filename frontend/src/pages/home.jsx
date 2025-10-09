@@ -481,13 +481,15 @@ const animationStyles = `
     max-height: 45px;
     width: auto;
     height: auto;
-    filter: grayscale(100%);
-    opacity: 0.7;
+    /* Colorful logos - removed grayscale */
+    filter: none;
+    opacity: 0.9;
     transition: all 0.3s ease;
   }
 
   .logo-item:hover .logo-img {
-    filter: grayscale(0%);
+    /* Keep colors on hover */
+    filter: none;
     opacity: 1;
     transform: scale(1.1);
   }
@@ -1455,7 +1457,7 @@ const HomePage = () => {
           </div>
         </div>
         
-        {/* Dual Line Partners Section - Updated with assets folder images */}
+        {/* Dual Line Partners Section - Updated with colorful logos */}
         <div className="partners-background py-16 md:py-20 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center mb-12">
@@ -1480,6 +1482,7 @@ const HomePage = () => {
                       src={logo.image} 
                       alt={logo.name}
                       className="logo-img"
+                      style={{ filter: 'none', opacity: 0.9 }}
                       onError={(e) => {
                         // Fallback if image doesn't exist
                         e.target.style.display = 'none';
@@ -1502,6 +1505,7 @@ const HomePage = () => {
                       src={logo.image} 
                       alt={logo.name}
                       className="logo-img"
+                      style={{ filter: 'none', opacity: 0.9 }}
                       onError={(e) => {
                         // Fallback if image doesn't exist
                         e.target.style.display = 'none';

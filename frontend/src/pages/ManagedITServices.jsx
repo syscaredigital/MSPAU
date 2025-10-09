@@ -125,6 +125,12 @@ const ManagedITServicesPage = () => {
       image: "/images/AD-Azure-Entra-AD Management.png"
     },
     {
+      title: "Public Cloud Infastructure Management( Azure & AWS)",
+      icon: <FiLock className="text-[#245684] text-2xl" />,
+      content: "SysCare IT Solutions is providing comprehensive AD/Azure/Entra ID Management services, encompassing User Management and File & Folder Security Management. Our skilled professionals ensure seamless operation of your Active Directory, optimizing user access and enhancing security protocols. With a focus on precision and efficiency, SysCare delivers tailored solutions to safeguard your digital assets. Rely on us for expert administration, robust user management, and file and folder security measures. Elevate your IT infrastructure with SysCare's adept AD/Azure/ Entra ID Management services, offering a secure and streamlined experience for your organization.",
+      image: "/images/Public_Cloud_Infastructure_Management.png"
+    },
+    {
       title: "M365 Security & Compliance",
       icon: <FiShield className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions delivers unparalleled MS 365 Security & Compliance Management services, ensuring robust protection and regulatory adherence for your business. Our expert team meticulously configures and monitors security protocols, shielding your data from threats. With a focus on compliance, we implement measures that align with industry standards, safeguarding your organization's integrity. Rely on SysCare for a seamless integration of Microsoft 365 security features, providing peace of mind and empowering your business with a resilient shield against cyber threats. Elevate your security posture with our proactive and comprehensive MS 365 Security & Compliance Management solutions.",
@@ -182,7 +188,7 @@ const ManagedITServicesPage = () => {
       title: "Managed Email Archival",
       icon: <FiArchive className="text-[#245684] text-2xl" />,
       content: "At SysCare IT Solutions, we provide Managed Email Archival is to secure, store, and manage business emails in compliance with legal and regulatory requirements. Our solution ensures every inbound and outbound email is captured, indexed, and stored securely for easy retrieval when needed. This protects your business against data loss, legal disputes, and compliance violations. With advanced search and retrieval capabilities, employees can quickly access historical emails without burdening IT teams. SysCare’s archival system prevents mailbox overload, enhances storage efficiency, and supports business continuity. We safeguard sensitive communication while keeping your email environment organized, compliant, and secure.",
-      image: "/images/Managed-E-Mail-Archival.png"
+      image: "/images/Managed E-Mail Archival.png"
     },
     {
       title: "Endpoint Monitoring & Management",

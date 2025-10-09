@@ -83,7 +83,7 @@ const HostedServicesPage = () => {
       title: "E-Mail Archival (M365 Archival)",
       icon: <FiArchive className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions delivers an unparalleled E-Mail Backup service, ensuring the safeguarding of critical communication data for our valued clients. Our carefully designed solution offers seamless and automated backup processes, providing peace of mind in the face of unforeseen events. With state-of-the-art technology and a commitment to data integrity, SysCare ensures the protection of your vital email communications. Experience the reliability and security of our E-Mail Backup service – an essential component in fortifying your business against potential data loss, empowering you to focus on your core operations with confidence. Choose SysCare for comprehensive and trustworthy email data protection.",
-      image: "/images/E-Mail-Archival.png"
+      image: "/images/E-Mail-Archival .png"
     },
     {
       title: "SharePoint Backup (M365 Backup)",

@@ -74,7 +74,7 @@ const ServiceDeskPage = () => {
       title: "Remote IT User Support (Level 1 to Level 3 Covered)",
       icon: <FiServer className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions provides unparalleled Remote IT User Support, covering Levels 1 to 3, ensuring a seamless and responsive user experience. Our highly skilled support team is equipped to handle a broad spectrum of issues, from basic troubleshooting (Level 1) to advanced problem resolution (Level 3). With a commitment to efficiency and client satisfaction, SysCare ensures swift and expert assistance, minimizing downtime and maximizing productivity. Trust us to elevate your IT user support experience with our comprehensive and tailored solutions. Your success is our priority.",
-      image: "/images/Remote-IT-User-Support.png"
+      image: "/images/Remote-IT-User-Support .png"
     },
     {
       title: "On-Site IT Support (Level 1 to Level 3 Covered) # [Per Hr, Min 2 Hrs/Visit, No Call Out/Travel Charges within 30km of CBD]",
