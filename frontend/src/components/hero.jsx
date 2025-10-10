@@ -10,7 +10,7 @@ const VideoHero = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(80);
+  const [typingSpeed, setTypingSpeed] = useState(50); // Faster initial speed
   const [isMarqueePaused, setIsMarqueePaused] = useState(false);
   const [rotationAngle, setRotationAngle] = useState(0);
   const [, setCircleSize] = useState(400); // Default initial size
@@ -176,7 +176,7 @@ const VideoHero = () => {
     };
   }, [deviceSize, videoSource]);
 
-  // Typing effect
+  // Typing effect - FASTER VERSION
   useEffect(() => {
     const handleTyping = () => {
       const currentText = typingTexts[currentTextIndex];
@@ -187,13 +187,13 @@ const VideoHero = () => {
       setCurrentWordIndex(updatedWord.length);
 
       if (!isDeleting && updatedWord === currentText) {
-        setTimeout(() => setIsDeleting(true), 500);
+        setTimeout(() => setIsDeleting(true), 300); // Shorter pause before deleting
       } else if (isDeleting && updatedWord === '') {
         setIsDeleting(false);
         setCurrentTextIndex((prev) => (prev + 1) % typingTexts.length);
-        setTypingSpeed(100);
+        setTypingSpeed(40); // Faster start for next text
       } else {
-        setTypingSpeed(isDeleting ? 30 : 60);
+        setTypingSpeed(isDeleting ? 20 : 30); // Much faster typing and deleting
       }
     };
 
