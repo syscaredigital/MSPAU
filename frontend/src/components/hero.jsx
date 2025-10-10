@@ -452,7 +452,7 @@ const VideoHero = () => {
                 </Link>
               </div>
 {/* ISO Certifications */}
-<div className="mt-4 xs:mt-6 sm:mt-8 flex items-center justify-center lg:justify-start space-x-4 xs:space-x-5 sm:space-x-6 ">
+<div className="mt-4 xs:mt-6 sm:mt-6 flex items-center justify-center lg:justify-start space-x-4 xs:space-x-5 sm:space-x-6 ">
   <img 
     src="/logos/ISO_9001_Certified_col.png" 
     alt="ISO 9001 Certified"
