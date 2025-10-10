@@ -392,7 +392,7 @@ const VideoHero = () => {
             <div className={`z-10 text-white ${
               isMobile ? 'w-full text-center mb-6 sm:mb-8' : 
               isTablet ? 'w-full text-center mb-8 lg:w-1/2 lg:text-left lg:pr-6' : 
-              'lg:w-1/2 lg:pr-8 text-center lg:text-left lg:pt-12 xl:pt-16'
+              'lg:w-1/2 lg:pr-8 text-center lg:text-left lg:pt-8 xl:pt-8'
             }`}>
               <div className="mb-3 xs:mb-4 sm:mb-6">
                 <span className="inline-flex items-center px-2 xs:px-3 sm:px-4 py-1 xs:py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-[10px] xs:text-xs sm:text-sm font-medium text-white border border-white/30">
@@ -400,7 +400,7 @@ const VideoHero = () => {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-1.5 w-1.5 xs:h-2 xs:w-2 bg-white"></span>
                   </span>
-                  INNOVATIVE IT SOLUTIONS
+                  MANAGED IT SERVICES
                 </span>
               </div>
 
@@ -451,37 +451,21 @@ const VideoHero = () => {
                   </svg>
                 </Link>
               </div>
-
-              {/* ISO Certifications with Logos */}
-              <div className="mt-6 xs:mt-8 sm:mt-12 flex items-center justify-center lg:justify-start space-x-3 xs:space-x-4 sm:space-x-6">
-                <div className="flex items-center space-x-1 xs:space-x-2">
-                  <div className="p-1 xs:p-1.5 sm:p-2 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
-                    <img 
-                      src="/logos/ISO_9001_Certified_col.png" 
-                      alt="ISO 27001 Certified"
-                      className="h-4 w-4 xs:h-5 xs:w-5 sm:h-6 sm:w-6 object-contain"
-                    />
-                  </div>
-                  <div>
-                    <p className="font-medium text-[10px] xs:text-xs sm:text-sm">ISO 27001</p>
-                    <p className="text-[8px] xs:text-xs text-white/80">Certified</p>
-                  </div>
-                </div>
-               
-                <div className="flex items-center space-x-1 xs:space-x-2">
-                  <div className="p-1 xs:p-1.5 sm:p-2 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
-                    <img 
-                      src="/logos/ISOIEC_27001_Certified_col.png" 
-                      alt="ISO 9001 Certified"
-                      className="h-4 w-4 xs:h-5 xs:w-5 sm:h-6 sm:w-6 object-contain"
-                    />
-                  </div>
-                  <div>
-                    <p className="font-medium text-[10px] xs:text-xs sm:text-sm">ISO 9001</p>
-                    <p className="text-[8px] xs:text-xs text-white/80">Certified</p>
-                  </div>
-                </div>
-              </div>
+{/* ISO Certifications */}
+<div className="mt-4 xs:mt-6 sm:mt-8 flex items-center justify-center lg:justify-start space-x-4 xs:space-x-5 sm:space-x-6 ">
+  <img 
+    src="/logos/ISO_9001_Certified_col.png" 
+    alt="ISO 9001 Certified"
+    className="h-14 w-14 xs:h-20 xs:w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 object-contain"
+  />
+  
+  <img 
+    src="/logos/ISOIEC_27001_Certified_col.png" 
+    alt="ISO 27001 Certified"
+    className="h-14 w-14 xs:h-20 xs:w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 object-contain"
+  />
+</div>
+            
             </div>
 
             {/* Right Content - Dynamic Horizontal Services Rotation */}
