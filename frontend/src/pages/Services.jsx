@@ -116,34 +116,6 @@ const animationStyles = `
     animation: slideInRight 0.4s ease-out 0.1s both;
   }
 
-  /* Center alignment for services */
-  .services-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    width: 100%;
-    max-width: 1200px;
-    justify-content: center;
-    margin: 0 auto;
-  }
-
-  .category-tabs {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 2rem;
-    width: 100%;
-  }
-
   /* Mobile optimizations */
   @media (max-width: 768px) {
     .mobile-stack {
@@ -164,31 +136,6 @@ const animationStyles = `
     
     .mobile-margin-bottom {
       margin-bottom: 1.5rem !important;
-    }
-
-    .services-grid {
-      grid-template-columns: 1fr;
-      max-width: 400px;
-      margin: 0 auto;
-    }
-
-    .category-tabs {
-      justify-content: center;
-      padding: 0 1rem;
-    }
-  }
-
-  @media (min-width: 769px) and (max-width: 1024px) {
-    .services-grid {
-      grid-template-columns: repeat(2, 1fr);
-      max-width: 800px;
-    }
-  }
-
-  @media (min-width: 1025px) {
-    .services-grid {
-      grid-template-columns: repeat(4, 1fr);
-      max-width: 1200px;
     }
   }
 `;
@@ -220,536 +167,6 @@ const Header = () => {
   );
 };
 
-// SubServiceModal Component
-const SubServiceModal = ({ isOpen, onClose, subService, }) => {
-  if (!isOpen || !subService) return null;
-
-  // Special handling for services with detailed lists
-  const isPrivateCloud = subService.title === "SysCare Private Cloud";
-  const isServiceDesk = subService.title === "Service Desk";
-  const isManagedIT = subService.title === "Managed IT Services";
-  const isCybersecurityConsultancy = subService.title === "Cybersecurity Consultancy Services";
-  const isManagedSecurity = subService.title === "Managed Security Services";
-  const isCloudSolutions = subService.title === "Cloud Solutions";
-  const isHostedSolutions = subService.title === "Hosted Solutions";
-  const isITInfraProjects = subService.title === "IT Infra Projects";
-  const isOfficeAutomation = subService.title === "Office IT Automation";
-  const isConnectivity = subService.title === "Connectivity";
-  const isVoIP = subService.title === "VoIP & Video";
-  const isDesignDevelopment = subService.title === "Design & Development";
-  const isDigitalMarketing = subService.title === "Multimedia & Digital Marketing";
-  const isSmallBusinessCRM = subService.title === "Small Business Solutions";
-  const isEnterpriseCRM = subService.title === "Enterprise Solutions";
-  const isSecurityTraining = subService.title === "Security Training";
-  const isCloudTraining = subService.title === "Cloud Training";
-  
-  const renderServiceDetails = () => {
-    if (isPrivateCloud) {
-      return (
-        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
-          <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Cloud Solutions:</h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-[#103d5d]/10 p-4 rounded-lg border border-[#103d5d]/20 transition-transform duration-200 hover:scale-[1.02]">
-              <div className="flex items-center mb-2">
-                <FaServer className="text-[#103d5d] mr-2" />
-                <h5 className="font-medium text-[#103d5d]">Cloud Solutions</h5>
-              </div>
-              <p className="text-sm text-[#103d5d]">Dedicated cloud infrastructure for your organization</p>
-            </div>
-            <div className="bg-[#103d5d]/10 p-4 rounded-lg border border-[#103d5d]/20 transition-transform duration-200 hover:scale-[1.02]">
-              <div className="flex items-center mb-2">
-                <FaServer className="text-[#103d5d] mr-2" />
-                <h5 className="font-medium text-[#103d5d]">Hosted Servers</h5>
-              </div>
-              <p className="text-sm text-[#103d5d]">Fully managed server hosting solutions</p>
-            </div>
-            <div className="bg-[#103d5d]/10 p-4 rounded-lg border border-[#103d5d]/20 transition-transform duration-200 hover:scale-[1.02]">
-              <div className="flex items-center mb-2">
-                <FaServer className="text-[#103d5d] mr-2" />
-                <h5 className="font-medium text-[#103d5d]">Dedicated Virtual Servers</h5>
-              </div>
-              <p className="text-sm text-[#103d5d]">Isolated virtual servers with guaranteed resources</p>
-            </div>
-            <div className="bg-[#103d5d]/10 p-4 rounded-lg border border-[#103d5d]/20 transition-transform duration-200 hover:scale-[1.02]">
-              <div className="flex items-center mb-2">
-                <FaDesktop className="text-[#103d5d] mr-2" />
-                <h5 className="font-medium text-[#103d5d]">Virtual Desktops</h5>
-              </div>
-              <p className="text-sm text-[#103d5d]">Secure remote desktop solutions for your team</p>
-            </div>
-            <div className="bg-[#103d5d]/10 p-4 rounded-lg border border-[#103d5d]/20 transition-transform duration-200 hover:scale-[1.02]">
-              <div className="flex items-center mb-2">
-                <FaDatabase className="text-[#103d5d] mr-2" />
-                <h5 className="font-medium text-[#103d5d]">Rack Space Hire</h5>
-              </div>
-              <p className="text-sm text-[#103d5d]">Colocation services for your hardware</p>
-            </div>
-            <div className="bg-[#103d5d]/10 p-4 rounded-lg border border-[#103d5d]/20 transition-transform duration-200 hover:scale-[1.02]">
-              <div className="flex items-center mb-2">
-                <FaServer className="text-[#103d5d] mr-2" />
-                <h5 className="font-medium text-[#103d5d]">Leased Servers</h5>
-              </div>
-              <p className="text-sm text-[#103d5d]">Flexible server leasing options</p>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    if (isServiceDesk) {
-      return (
-        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
-          <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Service Desk Features:</h4>
-          <div className="grid grid-cols-1 gap-3">
-            <div className="bg-[#103d5d]/10 p-3 rounded-lg border border-[#103d5d]/20">
-              <h5 className="font-medium text-[#103d5d]">Help Desk Support Ticketing System & Guaranteed SLA Response Time</h5>
-            </div>
-            <div className="bg-[#103d5d]/10 p-3 rounded-lg border border-[#103d5d]/20">
-              <h5 className="font-medium text-[#103d5d]">Remote IT User Support</h5>
-              <p className="text-sm text-[#103d5d]">Level 1 to Level 3 Covered</p>
-            </div>
-            <div className="bg-[#103d5d]/10 p-3 rounded-lg border border-[#103d5d]/20">
-              <h5 className="font-medium text-[#103d5d]">On-Site IT Support</h5>
-              <p className="text-sm text-[#103d5d]">Level 1 to Level 3 Covered (Per Hr, Min 2 Hrs/Visit, No Call Out/Travel Charges within 30km of CBD)</p>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    if (isManagedIT) {
-      return (
-        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
-          <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Managed IT Services Include:</h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {[
-              "Managed Servers", "Managed Endpoints (AV/Malware/DNS/EDR/XDR)", 
-              "Mobile Device Management (MDM)", "IT Asset Management", 
-              "Domain & DNS Management", "Windows OS Patch Management",
-              "Application Patch Management", "Vulnerability Management",
-              "MS 365 Portal Management", "AD/Azure/Entra ID Management",
-              "M365 Security & Compliance Management", "Managed WIFI",
-              "Managed Firewall", "Managed VPN Access", "Managed DR & BCP",
-              "SW Licence Management", "HW Procurement", "IT Consultancy Services",
-              "Centralised E-Mail Signature Management", "Managed E-Mail Archival",
-              "Endpoint Monitoring & Management", "Device encryption management",
-              "Managed Spam protection"
-            ].map((service, index) => (
-              <div key={index} className="bg-[#103d5d]/10 p-3 rounded-lg border border-[#103d5d]/20">
-                <p className="text-sm text-[#103d5d] font-medium">{service}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-    }
-
-    if (isCybersecurityConsultancy) {
-      return (
-        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
-          <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Cybersecurity Consultancy Services:</h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {[
-              "Cloud Security Posture Assessment", "Vulnerability Scanning & Penetration Testing (VAPT)",
-              "Security Analytics & Reporting (MS365, Azure)", "Security Policy & Procedure Development",
-              "Security Audit & Compliance", "Cyber Incident Response & Emergency Support",
-              "End User Security Assessment", "Consultancy Services"
-            ].map((service, index) => (
-              <div key={index} className="bg-[#103d5d]/10 p-3 rounded-lg border border-[#103d5d]/20">
-                <p className="text-sm text-[#103d5d] font-medium">{service}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-    }
-
-    if (isManagedSecurity) {
-      return (
-        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
-          <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Managed Security Services Include:</h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {[
-              "Centralized Event Log Management, Monitoring & Response", "Email Security & Protection",
-              "Endpoint Security & Protection", "Firewall Management & Monitoring (IDS/IPS)",
-              "Managed Cloud Security", "Identity & Access Management (IAM)",
-              "Network Security Monitoring", "Vulnerability Management (Includes Scanning & Remediation)",
-              "Security Awareness Training & Assessment", "Threat Simulation",
-              "Security Monitoring and Incident Management (SIEM)", "Managed 24/7 SOC",
-              "Managed 24/7 NOC"
-            ].map((service, index) => (
-              <div key={index} className="bg-[#103d5d]/10 p-3 rounded-lg border border-[#103d5d]/20">
-                <p className="text-sm text-[#103d5d] font-medium">{service}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-    }
-
-    if (isCloudSolutions) {
-      return (
-        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
-          <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Cloud Solutions Include:</h4>
-          <div className="grid grid-cols-1 gap-3">
-            {[
-              "Hosted Servers (Virtual Machines)", "Virtual Desktops (VDI) & RDS",
-              "Dedicated Virtual Servers", "Rack Space Hire (Co-location)",
-              "Leased Dedicated Physical Servers"
-            ].map((service, index) => (
-              <div key={index} className="bg-[#103d5d]/10 p-3 rounded-lg border border-[#103d5d]/20">
-                <p className="text-sm text-[#103d5d] font-medium">{service}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-    }
-
-    if (isHostedSolutions) {
-      return (
-        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
-          <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Hosted Solutions Include:</h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {[
-              "Hosted Exchange/E-Mail", "Adv Spam Filtering", "E-Mail Backup (M365 Backup)",
-              "E-Mail Archival (M365 Backup)", "SharePoint Backup (M365 Backup)",
-              "One Drive Backup (M365 Backup)", "MS Teams Backup (M365 Backup)", "Cloud Backup"
-            ].map((service, index) => (
-              <div key={index} className="bg-[#103d5d]/10 p-3 rounded-lg border border-[#103d5d]/20">
-                <p className="text-sm text-[#103d5d] font-medium">{service}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-    }
-
-    if (isITInfraProjects) {
-      return (
-        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
-          <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">IT Infrastructure Projects:</h4>
-          <div className="grid grid-cols-1 gap-3">
-            {[
-              "IT Network Infrastructure Design & Implementation", 
-              "Office 365 (Exchange, OneDrive, SharePoint) Migration",
-              "Microsoft Azure Setup/Migration", 
-              "AWS Cloud Setup/Migration"
-            ].map((service, index) => (
-              <div key={index} className="bg-[#103d5d]/10 p-3 rounded-lg border border-[#103d5d]/20">
-                <p className="text-sm text-[#103d5d] font-medium">{service}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-    }
-
-    if (isOfficeAutomation) {
-      return (
-        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
-          <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Office IT Automation Services:</h4>
-          <div className="grid grid-cols-1 gap-3">
-            {[
-              "SharePoint Workflows", "PowerApps & PowerBI", "Power Automation",
-              "AI Transformation", "Copilot / Copilot Studio"
-            ].map((service, index) => (
-              <div key={index} className="bg-[#103d5d]/10 p-3 rounded-lg border border-[#103d5d]/20">
-                <p className="text-sm text-[#103d5d] font-medium">{service}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-    }
-
-    if (isConnectivity) {
-      return (
-        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
-          <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Connectivity Services:</h4>
-          <div className="grid grid-cols-1 gap-3">
-            {[
-              "Business Internet", "Private WAN/MPLS", "SDWAN", "VPN & Remote Access"
-            ].map((service, index) => (
-              <div key={index} className="bg-[#103d5d]/10 p-3 rounded-lg border border-[#103d5d]/20">
-                <p className="text-sm text-[#103d5d] font-medium">{service}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-    }
-
-    if (isVoIP) {
-      return (
-        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
-          <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">VoIP & Video Services:</h4>
-          <div className="grid grid-cols-1 gap-3">
-            {[
-              "Cloud Hosted PABX (VOIP)", "MS Teams Calling (VOIP)", "Video Conferencing",
-              "VoIP (Hosted PBX) & Teams Calling", "UC XPRESS", "UC UCXEL"
-            ].map((service, index) => (
-              <div key={index} className="bg-[#103d5d]/10 p-3 rounded-lg border border-[#103d5d]/20">
-                <p className="text-sm text-[#103d5d] font-medium">{service}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-    }
-
-    if (isDesignDevelopment) {
-      return (
-        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div>
-              <h4 className="font-semibold text-[#103d5d] mb-2">Design & Development Services:</h4>
-              {[
-                "Website Design", "UI/UX Design", "Website Development", "Website Security",
-                "E-commerce Development", "SEO-Friendly Website Development", "Website Redesign",
-                "Analytics Integration", "Mobile App Development", "Domain and Hosting Services",
-                "Custom Web Solutions"
-              ].map((service, index) => (
-                <div key={index} className="bg-[#103d5d]/10 p-2 rounded-lg border border-[#103d5d]/20 mb-2">
-                  <p className="text-xs text-[#103d5d]">{service}</p>
-                </div>
-              ))}
-            </div>
-            <div>
-              <h4 className="font-semibold text-[#103d5d] mb-2">SEO Services:</h4>
-              {[
-                "Keyword Research and Strategy", "Local SEO", "Content Creation and Optimization",
-                "SEO Reporting and Analytics", "On-Page Optimization", "E-commerce SEO",
-                "Technical SEO", "SEO for Mobile", "SEO for Video Content", "SEO Audit and Analysis",
-                "Link Building & Outreach", "Conversion Rate Optimization (CRO)",
-                "Schema Markup & Structured Data Implementation"
-              ].map((service, index) => (
-                <div key={index} className="bg-[#103d5d]/10 p-2 rounded-lg border border-[#103d5d]/20 mb-2">
-                  <p className="text-xs text-[#103d5d]">{service}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    if (isDigitalMarketing) {
-      return (
-        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
-          <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">MultiMedia Services:</h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div>
-              <h5 className="font-semibold text-[#103d5d] mb-2">Graphic Design:</h5>
-              {[
-                "Logo Design", "Business Cards & Stationery", "Social Media Graphics",
-                "Flyers, Posters & Brochures", "Presentations & Infographics", "Web Graphics",
-                "Digital Branding", "Product Mockups"
-              ].map((service, index) => (
-                <div key={index} className="bg-[#103d5d]/10 p-2 rounded-lg border border-[#103d5d]/20 mb-2">
-                  <p className="text-xs text-[#103d5d]">{service}</p>
-                </div>
-              ))}
-            </div>
-            <div>
-              <h5 className="font-semibold text-[#103d5d] mb-2">Video Editing:</h5>
-              {[
-                "Video Editing", "YouTube Video Editing",
-                "Social Media Shorts", "Intro & Outro Creation", "Corporate Videos", "Documentary Edits",
-                "Product Promo Videos", "Subtitles & Captions", "Interview Editing",
-              ].map((service, index) => (
-                <div key={index} className="bg-[#103d5d]/10 p-2 rounded-lg border border-[#103d5d]/20 mb-2">
-                  <p className="text-xs text-[#103d5d]">{service}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Digital Marketing Services:</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div>
-                <h5 className="font-semibold text-[#103d5d] mb-2">Digital Marketing:</h5>
-                {[
-                  "Paid Social Media Campaigns ","Meta Ads","Prospecting & Retargeting Ads","Shopping Ads","Awareness Campaigns","Keyword Research for Social Media",
-                ].map((service, index) => (
-                  <div key={index} className="bg-[#103d5d]/10 p-2 rounded-lg border border-[#103d5d]/20 mb-2">
-                    <p className="text-xs text-[#103d5d]">{service}</p>
-                  </div>
-                ))}
-              </div>
-              <div>
-                <h5 className="font-semibold text-[#103d5d] mb-2">Social Media Management:</h5>
-                {[
-                  "Account Setup & Profile Optimization", "Content Creation & Optimization for Social Media",
-                  "Content Scheduling", "Research & Trend Analysis", "Analytics & Reporting", "Paid Campaigns",
-                  "Visual Branding"
-                ].map((service, index) => (
-                  <div key={index} className="bg-[#103d5d]/10 p-2 rounded-lg border border-[#103d5d]/20 mb-2">
-                    <p className="text-xs text-[#103d5d]">{service}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    if (isSmallBusinessCRM) {
-      return (
-        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
-          <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Small Business CRM/ERP Solutions:</h4>
-          <div className="grid grid-cols-1 gap-3">
-            {[
-              "SAP Business One", "Microsoft Business Central", "ZOHO CRM/ERP"
-            ].map((service, index) => (
-              <div key={index} className="bg-[#103d5d]/10 p-3 rounded-lg border border-[#103d5d]/20">
-                <p className="text-sm text-[#103d5d] font-medium">{service}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-    }
-
-    if (isEnterpriseCRM) {
-      return (
-        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
-          <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Enterprise CRM/ERP Solutions:</h4>
-          <div className="grid grid-cols-1 gap-3">
-            {[
-              "SAP S/4HANA", "Microsoft Dynamics 365"
-            ].map((service, index) => (
-              <div key={index} className="bg-[#103d5d]/10 p-3 rounded-lg border border-[#103d5d]/20">
-                <p className="text-sm text-[#103d5d] font-medium">{service}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-    }
-
-    if (isSecurityTraining) {
-      return (
-        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
-          <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Security Training Programs:</h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div>
-              <h5 className="font-semibold text-[#103d5d] mb-2">Microsoft Security Training:</h5>
-              {[
-                "Microsoft Security Operations Analyst (SC-200)",
-                "Microsoft Information Protection Administrator (SC-400)",
-                "Microsoft Identity and Access Administrator (SC-300)",
-                "Microsoft Security, Compliance, and Identity Fundamentals (SC-900)"
-              ].map((service, index) => (
-                <div key={index} className="bg-[#103d5d]/10 p-2 rounded-lg border border-[#103d5d]/20 mb-2">
-                  <p className="text-xs text-[#103d5d]">{service}</p>
-                </div>
-              ))}
-            </div>
-            <div>
-              <h5 className="font-semibold text-[#103d5d] mb-2">EC-Council Security Training:</h5>
-              {[
-                "Certified Secure Computer User (C|SCU v.3)",
-                "Certified Ethical Hacker (C|EH v.13)",
-                "Certified Network Defender (C|ND v.2)",
-                "Computer Hacking Forensic Investigator (C|HFI v.10)",
-                "EC-Council Certified Incident Handler (E|CIH)",
-                "Certified Cybersecurity Technician (C|CT)",
-                "Certified Cloud Security Engineer (C|CSE)",
-                "Web Application Hacking & Security"
-              ].map((service, index) => (
-                <div key={index} className="bg-[#103d5d]/10 p-2 rounded-lg border border-[#103d5d]/20 mb-2">
-                  <p className="text-xs text-[#103d5d]">{service}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    if (isCloudTraining) {
-      return (
-        <div className="mt-2 bg-[#103d5d]/5 p-4 rounded-lg border border-[#103d5d]/20">
-          <h4 className="font-semibold text-[#103d5d] mb-4 text-lg">Cloud Training Programs:</h4>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div>
-              <h5 className="font-semibold text-[#103d5d] mb-2">Microsoft Azure:</h5>
-              {[
-                "Microsoft Azure Fundamentals (AZ-900)",
-                "Microsoft Azure Administrator (AZ-104)",
-                "Azure Solutions Architect Expert (AZ-305)",
-                "Microsoft Azure Security Technologies (AZ-500)"
-              ].map((service, index) => (
-                <div key={index} className="bg-[#103d5d]/10 p-2 rounded-lg border border-[#103d5d]/20 mb-2">
-                  <p className="text-xs text-[#103d5d]">{service}</p>
-                </div>
-              ))}
-            </div>
-            <div>
-              <h5 className="font-semibold text-[#103d5d] mb-2">AWS:</h5>
-              {[
-                "AWS Certified Cloud Practitioner (CLF-C02)"
-              ].map((service, index) => (
-                <div key={index} className="bg-[#103d5d]/10 p-2 rounded-lg border border-[#103d5d]/20 mb-2">
-                  <p className="text-xs text-[#103d5d]">{service}</p>
-                </div>
-              ))}
-            </div>
-            <div>
-              <h5 className="font-semibold text-[#103d5d] mb-2">Google Cloud:</h5>
-              {[
-                "Cloud Digital Leader"
-              ].map((service, index) => (
-                <div key={index} className="bg-[#103d5d]/10 p-2 rounded-lg border border-[#103d5d]/20 mb-2">
-                  <p className="text-xs text-[#103d5d]">{service}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    return null;
-  };
-
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 modal-animation">
-      <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto modal-content-animation">
-        <div className="flex justify-between items-center p-6 border-b bg-[#103d5d]">
-          <h3 className="text-xl font-bold text-white">{subService.title}</h3>
-          <button 
-            onClick={onClose}
-            className="text-white hover:text-[#245684] transition-colors duration-200"
-          >
-            <FaTimes className="text-xl" />
-          </button>
-        </div>
-        <div className="p-6">
-          <p className="text-[#103d5d] mb-4">{subService.description}</p>
-          {renderServiceDetails()}
-        </div>
-        <div className="p-6 border-t flex justify-end">
-          <button
-            onClick={onClose}
-            className="bg-[#103d5d]/10 text-[#103d5d] px-4 py-2 rounded mr-3 hover:bg-[#103d5d]/20 transition-colors duration-200"
-          >
-            Close
-          </button>
-          <Link
-            to="/contact"
-            className="bg-[#245684] text-white px-4 py-2 rounded hover:bg-[#103d5d] transition-colors duration-200"
-          >
-            Contact Us
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 // Particle Background Component
 const ParticleBackground = () => {
   return (
@@ -775,10 +192,6 @@ const ParticleBackground = () => {
 const ServicesPage = () => {
   const [headerVisible, setHeaderVisible] = useState(false);
   const [activeCategory, setActiveCategory] = useState('all');
-  const [selectedSubService, setSelectedSubService] = useState(null);
-  const [selectedMainService, setSelectedMainService] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const servicesSectionRef = React.useRef(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -787,7 +200,7 @@ const ServicesPage = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Handle hash URLs on component mount and hash changes
+  // NEW: Handle hash URLs on component mount and hash changes
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.substring(1); // Remove the # symbol
@@ -803,7 +216,15 @@ const ServicesPage = () => {
         
         const category = hashToCategoryMap[hash];
         if (category && categories.find(cat => cat.id === category)) {
-          handleCategoryChange(category);
+          setActiveCategory(category);
+          
+          // Smooth scroll to services section after a brief delay
+          setTimeout(() => {
+            const servicesSection = document.getElementById('services');
+            if (servicesSection) {
+              servicesSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }, 100);
         }
       }
     };
@@ -819,36 +240,16 @@ const ServicesPage = () => {
     };
   }, []);
 
-  // Function to handle category change with scroll to center
-  const handleCategoryChange = (categoryId) => {
-    setActiveCategory(categoryId);
+  // Function to generate service page URL based on service title
+  const getServicePageUrl = (serviceTitle) => {
+    // Convert service title to URL-friendly format
+    const slug = serviceTitle
+      .toLowerCase()
+      .replace(/&/g, 'and')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
     
-    // Scroll to center the services section after a short delay to allow re-render
-    setTimeout(() => {
-      if (servicesSectionRef.current) {
-        const element = servicesSectionRef.current;
-        const elementRect = element.getBoundingClientRect();
-        const absoluteElementTop = elementRect.top + window.pageYOffset;
-        const middle = absoluteElementTop - (window.innerHeight / 2) + (elementRect.height / 2);
-        
-        window.scrollTo({
-          top: middle,
-          behavior: 'smooth'
-        });
-      }
-    }, 100);
-  };
-
-  const openSubServiceModal = (mainService, subService) => {
-    setSelectedMainService(mainService);
-    setSelectedSubService(subService);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedSubService(null);
-    setSelectedMainService(null);
+    return `/services/${slug}`;
   };
 
   const services = [
@@ -995,16 +396,8 @@ const ServicesPage = () => {
       {/* Use the Header component instead of Navigation */}
       <Header />
       
-      {/* SubService Modal */}
-      <SubServiceModal 
-        isOpen={isModalOpen} 
-        onClose={closeModal} 
-        subService={selectedSubService} 
-        mainService={selectedMainService}
-      />
-      
       <div className="pt-20">
-        {/* HEADER SECTION */}
+        {/* NEW HEADER SECTION - Mobile Responsive */}
         <div className="relative bg-gradient-to-br from-[#103d5d] to-[#245684] text-white pb-24 md:pb-32 pt-16 md:pt-24 lg:pt-32 px-4 sm:px-6 lg:px-8 overflow-hidden" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0 100%)' }}>
           {/* Background decorative elements */}
           <div className="absolute inset-0 opacity-10">
@@ -1058,13 +451,13 @@ const ServicesPage = () => {
           </div>
         </div>
 
-        {/* SERVICES SECTION - Centered Layout */}
-        <section id="services" ref={servicesSectionRef} className="py-12 md:py-16 bg-white px-4 sm:px-6 lg:px-8 -mt-12 md:-mt-20">
+        {/* Services Section - Mobile Responsive */}
+        <section id="services" className="py-12 md:py-16 bg-white px-4 sm:px-6 lg:px-8 -mt-12 md:-mt-20">
           {/* Particle Background */}
           <ParticleBackground />
           
-          <div className="max-w-7xl mx-auto relative z-10 services-container">
-            <div className="text-center mb-8 md:mb-12 animate-fade-in w-full">
+          <div className="max-w-7xl mx-auto relative z-10">
+            <div className="text-center mb-8 md:mb-12 animate-fade-in">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#000000] mb-4">SysCare Services</h2>
               <div className="w-20 md:w-24 h-1 bg-[#245684] mx-auto mb-4 md:mb-6"></div>
               <p className="text-[#000000] max-w-3xl mx-auto text-sm md:text-md px-4">
@@ -1072,15 +465,15 @@ const ServicesPage = () => {
               </p>
             </div>
 
-            {/* Category Filter - Centered */}
-            <div className="category-tabs stagger-animation">
+            {/* Category Filter - Mobile Responsive */}
+            <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12 stagger-animation px-2">
               {categories.map(category => (
                 <button
                   key={category.id}
-                  onClick={() => handleCategoryChange(category.id)}
-                  className={`px-4 py-2 md:px-5 md:py-2 rounded-full transition-all duration-300 text-sm md:text-base ${
+                  onClick={() => setActiveCategory(category.id)}
+                  className={`px-3 py-2 md:px-5 md:py-2 rounded-full transition-all duration-300 text-sm md:text-base ${
                     activeCategory === category.id
-                      ? 'bg-[#245684] text-white shadow-md transform scale-105'
+                      ? 'bg-[#245684] text-white shadow-md'
                       : 'bg-white text-[#245684] border border-[#245684] hover:bg-[#245684] hover:text-white'
                   }`}
                 >
@@ -1089,12 +482,12 @@ const ServicesPage = () => {
               ))}
             </div>
 
-            {/* Services Grid - Centered */}
-            <div className="services-grid stagger-animation">
+            {/* Services Grid - Mobile Responsive */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 stagger-animation">
               {filteredServices.map((service, index) => (
                 <div 
                   key={index}
-                  className="service-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 h-full flex flex-col border border-[#103d5d] hover:shadow-lg"
+                  className="service-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 h-full flex flex-col border border-[#103d5d]"
                 >
                   <div className="p-4 md:p-5 flex-grow">
                     <div className="flex items-center mb-3 md:mb-4">
@@ -1108,16 +501,18 @@ const ServicesPage = () => {
                       {service.subs.map((sub, subIndex) => (
                         <div 
                           key={subIndex} 
-                          className="mb-3 md:mb-4 last:mb-0 cursor-pointer hover:bg-[#103d5d] hover:bg-opacity-10 p-2 rounded-md transition-colors duration-200"
-                          onClick={() => openSubServiceModal(service.main, sub)}
+                          className="mb-3 md:mb-4 last:mb-0 p-2 rounded-md transition-colors duration-200"
                         >
                           <h4 className="font-semibold text-[#103d5d] text-sm md:text-base">{sub.title}</h4>
                           <p className="text-[#000000] text-xs md:text-sm mt-1 leading-relaxed line-clamp-2">
                             {sub.description}
                           </p>
-                          <span className="text-[#245684] text-xs font-medium mt-1 inline-block">
-                            Click to learn more
-                          </span>
+                          <Link
+                            to={getServicePageUrl(sub.title)}
+                            className="text-[#245684] text-xs font-medium mt-1 inline-block hover:text-[#103d5d] transition-colors duration-200"
+                          >
+                            Click to learn more →
+                          </Link>
                         </div>
                       ))}
                     </div>
@@ -1125,23 +520,222 @@ const ServicesPage = () => {
                 </div>
               ))}
             </div>
-
-            {/* No services message */}
-            {filteredServices.length === 0 && (
-              <div className="text-center py-12">
-                <p className="text-[#103d5d] text-lg">No services found in this category.</p>
-              </div>
-            )}
           </div>
         </section>
 
-        {/* Rest of the components remain the same */}
+        {/* Process Section - Fixed Mobile Responsive */}
         <section className="py-12 md:py-20 bg-gradient-to-br from-[#f8fafc] to-[#e2e8f0] relative overflow-hidden">
-          {/* ... existing process section code ... */}
+          {/* Background Elements */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-10 left-4 md:left-10 w-48 h-48 md:w-72 md:h-72 bg-[#103d5d] rounded-full blur-3xl"></div>
+            <div className="absolute bottom-10 right-4 md:right-10 w-56 h-56 md:w-96 md:h-96 bg-[#245684] rounded-full blur-3xl"></div>
+          </div>
+          
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center mb-12 md:mb-16 animate-fade-in">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#103d5d] mb-4 md:mb-6">Our Service Process</h2>
+              <div className="w-24 md:w-32 h-1 md:h-1.5 bg-gradient-to-r from-[#103d5d] to-[#245684] mx-auto mb-4 md:mb-6 rounded-full"></div>
+              <p className="text-sm md:text-md text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
+                We follow a structured approach to ensure we deliver the best solutions for your business needs.
+              </p>
+            </div>
+            
+            {/* Mobile Timeline Process */}
+            <div className="lg:hidden">
+              <div className="space-y-8">
+                {[
+                  {
+                    step: 1,
+                    title: "Consultation & Assessment",
+                    description: "We begin with a detailed consultation to understand your business goals, IT environment, and security needs."
+                  },
+                  {
+                    step: 2,
+                    title: "Tailored Strategy Design",
+                    description: "Our experts create a customised managed IT and security plan that aligns with your business objectives."
+                  },
+                  {
+                    step: 3,
+                    title: "Seamless Implementation",
+                    description: "We deploy, configure, and optimise solutions with minimal disruption to your daily operations."
+                  },
+                  {
+                    step: 4,
+                    title: "24/7 Monitoring & Support",
+                    description: "Our Melbourne and Sydney support teams provide round-the-clock monitoring, IT helpdesk, and fast issue resolution."
+                  },
+                  {
+                    step: 5,
+                    title: "Continuous Improvement",
+                    description: "We regularly review performance, update systems, and implement innovations to keep your business secure and efficient."
+                  }
+                ].map((item, index) => (
+                  <div key={index} className="relative flex items-start gap-4 group">
+                    <div className="flex-shrink-0 relative">
+                      <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-xl shadow-lg border border-[#103d5d]/20 flex items-center justify-center group-hover:scale-110 transition-all duration-300">
+                        <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-[#103d5d] to-[#245684] rounded-lg flex items-center justify-center text-white font-bold text-sm md:text-base">
+                          {item.step}
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="flex-1">
+                      <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+                        <h3 className="text-lg md:text-xl font-bold text-[#103d5d] mb-2">{item.title}</h3>
+                        <p className="text-gray-600 leading-relaxed text-xs md:text-sm">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Desktop Timeline Process */}
+            <div className="hidden lg:block relative">
+              {/* Connecting Line */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-[#103d5d] to-[#245684]"></div>
+              
+              <div className="space-y-12">
+                {/* Step 1 */}
+                <div className="relative flex flex-row items-start gap-8 group">
+                  <div className="flex-shrink-0 relative">
+                    <div className="w-20 h-20 bg-white rounded-2xl shadow-xl border border-[#103d5d]/20 flex items-center justify-center group-hover:scale-110 transition-all duration-300">
+                      <div className="w-14 h-14 bg-gradient-to-br from-[#103d5d] to-[#245684] rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                        1
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="w-1/2 text-right pr-12">
+                    <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+                      <h3 className="text-2xl font-bold text-[#103d5d] mb-3">Consultation & Assessment</h3>
+                      <p className="text-gray-600 leading-relaxed text-sm">
+                        We begin with a detailed consultation to understand your business goals, IT environment, and security needs.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="w-1/2"></div>
+                </div>
+
+                {/* Step 2 */}
+                <div className="relative flex flex-row items-start gap-8 group">
+                  <div className="w-1/2"></div>
+                  
+                  <div className="flex-shrink-0 relative">
+                    <div className="w-20 h-20 bg-white rounded-2xl shadow-xl border border-[#103d5d]/20 flex items-center justify-center group-hover:scale-110 transition-all duration-300">
+                      <div className="w-14 h-14 bg-gradient-to-br from-[#103d5d] to-[#245684] rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                        2
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="w-1/2 pl-12">
+                    <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+                      <h3 className="text-2xl font-bold text-[#103d5d] mb-3">Tailored Strategy Design</h3>
+                      <p className="text-gray-600 leading-relaxed text-sm">
+                        Our experts create a customised managed IT and security plan that aligns with your business objectives.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Step 3 */}
+                <div className="relative flex flex-row items-start gap-8 group">
+                  <div className="flex-shrink-0 relative">
+                    <div className="w-20 h-20 bg-white rounded-2xl shadow-xl border border-[#103d5d]/20 flex items-center justify-center group-hover:scale-110 transition-all duration-300">
+                      <div className="w-14 h-14 bg-gradient-to-br from-[#103d5d] to-[#245684] rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                        3
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="w-1/2 text-right pr-12">
+                    <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+                      <h3 className="text-2xl font-bold text-[#103d5d] mb-3">Seamless Implementation</h3>
+                      <p className="text-gray-600 leading-relaxed text-sm">
+                        We deploy, configure, and optimise solutions with minimal disruption to your daily operations.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="w-1/2"></div>
+                </div>
+
+                {/* Step 4 */}
+                <div className="relative flex flex-row items-start gap-8 group">
+                  <div className="w-1/2"></div>
+                  
+                  <div className="flex-shrink-0 relative">
+                    <div className="w-20 h-20 bg-white rounded-2xl shadow-xl border border-[#103d5d]/20 flex items-center justify-center group-hover:scale-110 transition-all duration-300">
+                      <div className="w-14 h-14 bg-gradient-to-br from-[#103d5d] to-[#245684] rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                        4
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="w-1/2 pl-12">
+                    <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+                      <h3 className="text-2xl font-bold text-[#103d5d] mb-3">24/7 Monitoring & Support</h3>
+                      <p className="text-gray-600 leading-relaxed text-sm">
+                        Our Melbourne and Sydney support teams provide round-the-clock monitoring, IT helpdesk, and fast issue resolution.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Step 5 */}
+                <div className="relative flex flex-row items-start gap-8 group">
+                  <div className="flex-shrink-0 relative">
+                    <div className="w-20 h-20 bg-white rounded-2xl shadow-xl border border-[#103d5d]/20 flex items-center justify-center group-hover:scale-110 transition-all duration-300">
+                      <div className="w-14 h-14 bg-gradient-to-br from-[#103d5d] to-[#245684] rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                        5
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="w-1/2 text-right pr-12">
+                    <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+                      <h3 className="text-2xl font-bold text-[#103d5d] mb-3">Continuous Improvement</h3>
+                      <p className="text-gray-600 leading-relaxed text-sm">
+                        We regularly review performance, update systems, and implement innovations to keep your business secure and efficient.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="w-1/2"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
+        {/* CTA Section - Mobile Responsive */}
         <section id="contact" className="py-12 md:py-16 bg-[#000000] text-white px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-          {/* ... existing CTA section code ... */}
+          {/* Background pattern */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute top-0 left-0 w-20 h-20 md:w-32 md:h-32 border-2 border-white rounded-full"></div>
+            <div className="absolute bottom-0 right-0 w-28 h-28 md:w-48 md:h-48 border-2 border-white rounded-full"></div>
+          </div>
+          
+          <div className="max-w-4xl mx-auto text-center relative z-10 animate-fade-in">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">Ready to Transform Your Business?</h2>
+            <p className="text-lg md:text-xl mb-6 md:mb-8 text-sm md:text-base px-4">
+              Let's discuss how we can help you achieve your digital goals.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 px-4">
+              <Link to="/contact-Us" className="group relative bg-white text-[#103d5d] px-6 py-3 md:px-8 md:py-4 rounded-full font-bold overflow-hidden transition-all duration-300 hover:shadow-lg text-center animate-pulse-slow text-sm md:text-base">
+                <span className="relative z-10">Contact Us</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#103d5d] to-[#245684] opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
+              </Link>
+              <a href="tel:1300697972" className="group relative bg-transparent border-2 border-white text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-bold overflow-hidden transition-all duration-300 hover:bg-white hover:text-[#103d5d] text-center text-sm md:text-base">
+                <span className="relative z-10">Call Now</span>
+                <div className="absolute inset-0 bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
+              </a>
+            </div>
+          </div>
         </section>
 
         <Footer/>

@@ -14,7 +14,7 @@ const Footer = () => {
               <img 
                 src='/logos/White-Sys.svg' 
                 alt='SysCare Logo' 
-                className='h-12 lg:h-16 w-auto object-contain'
+                className='h-20 lg:h-20 w-auto object-contain'
               />
             </div>
             <p className="text-white/90 mb-6 max-w-lg mx-auto md:mx-0 leading-relaxed text-justify md:text-left text-sm">
