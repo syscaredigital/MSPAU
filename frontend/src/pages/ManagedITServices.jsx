@@ -127,7 +127,7 @@ const ManagedITServicesPage = () => {
     {
       title: "Public Cloud Infastructure Management( Azure & AWS)",
       icon: <FiLock className="text-[#245684] text-2xl" />,
-      content: "SysCare IT Solutions is providing comprehensive AD/Azure/Entra ID Management services, encompassing User Management and File & Folder Security Management. Our skilled professionals ensure seamless operation of your Active Directory, optimizing user access and enhancing security protocols. With a focus on precision and efficiency, SysCare delivers tailored solutions to safeguard your digital assets. Rely on us for expert administration, robust user management, and file and folder security measures. Elevate your IT infrastructure with SysCare's adept AD/Azure/ Entra ID Management services, offering a secure and streamlined experience for your organization.",
+      content: "At SysCare IT Solutions, we specialize in managing and optimizing public cloud environments across Microsoft Azure and Amazon Web Services (AWS). Our certified cloud experts ensure your cloud infrastructure is secure, scalable, and cost-efficient, tailored to your business needs. From deployment and resource monitoring to automation and security compliance, we handle every aspect of cloud management. SysCare’s proactive approach ensures maximum uptime, optimal performance, and seamless integration with your IT ecosystem. Whether you’re migrating to the cloud or optimizing existing workloads, our Public Cloud Infrastructure Management service guarantees reliability, agility, and long-term cost savings for your organization",
       image: "/images/Public_Cloud_Infastructure_Management.png"
     },
     {
