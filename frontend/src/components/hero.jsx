@@ -10,10 +10,8 @@ const VideoHero = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(80);
+  const [typingSpeed, setTypingSpeed] = useState(50); // Faster initial speed
   const [isMarqueePaused, setIsMarqueePaused] = useState(false);
-  const [rotationAngle, setRotationAngle] = useState(0);
-  const [, setCircleSize] = useState(400); // Default initial size
   const [deviceSize, setDeviceSize] = useState('desktop');
   const [videoSource, setVideoSource] = useState('');
   const navigate = useNavigate();
@@ -97,20 +95,6 @@ const VideoHero = () => {
     "Trusted MSP & MSSP Partner in Australia"
   ];
 
-  // Calculate circle size based on screen width with all breakpoints - FIXED
-  const calculateCircleSize = () => {
-    const width = window.innerWidth;
-    if (width < breakpoints.mobileS) return 180;    // extra small
-    if (width < breakpoints.mobileM) return 200;    // mobileS
-    if (width < breakpoints.mobileL) return 240;    // mobileM
-    if (width < breakpoints.tablet) return 280;     // mobileL
-    if (width < breakpoints.laptop) return 320;     // tablet
-    if (width < breakpoints.laptopL) return 400;    // laptop
-    if (width < breakpoints.desktop) return 500;    // laptopL
-    if (width < breakpoints.monitor) return 600;    // desktop
-    return 700; // monitor and above
-  };
-
   // Determine device size based on breakpoints
   const getDeviceSize = (width) => {
     if (width < breakpoints.mobileS) return 'mobileS';
@@ -129,7 +113,6 @@ const VideoHero = () => {
       const currentDeviceSize = getDeviceSize(width);
       
       setDeviceSize(currentDeviceSize);
-      setCircleSize(calculateCircleSize());
       
       // Set appropriate video source based on device size
       const newVideoSource = getVideoSource(currentDeviceSize);
@@ -164,19 +147,13 @@ const VideoHero = () => {
     video.addEventListener('loadeddata', handleLoadedData);
     video.addEventListener('error', handleError);
 
-    // Setup rotation animation
-    const rotationInterval = setInterval(() => {
-      setRotationAngle(prev => (prev + 0.5) % 360);
-    }, 50);
-
     return () => {
       video.removeEventListener('loadeddata', handleLoadedData);
       video.removeEventListener('error', handleError);
-      clearInterval(rotationInterval);
     };
   }, [deviceSize, videoSource]);
 
-  // Typing effect
+  // Typing effect - FASTER VERSION
   useEffect(() => {
     const handleTyping = () => {
       const currentText = typingTexts[currentTextIndex];
@@ -187,13 +164,13 @@ const VideoHero = () => {
       setCurrentWordIndex(updatedWord.length);
 
       if (!isDeleting && updatedWord === currentText) {
-        setTimeout(() => setIsDeleting(true), 500);
+        setTimeout(() => setIsDeleting(true), 300); // Shorter pause before deleting
       } else if (isDeleting && updatedWord === '') {
         setIsDeleting(false);
         setCurrentTextIndex((prev) => (prev + 1) % typingTexts.length);
-        setTypingSpeed(100);
+        setTypingSpeed(40); // Faster start for next text
       } else {
-        setTypingSpeed(isDeleting ? 30 : 60);
+        setTypingSpeed(isDeleting ? 20 : 30); // Much faster typing and deleting
       }
     };
 
@@ -217,95 +194,6 @@ const VideoHero = () => {
   // Helper function to check if device is mobile - FIXED
   const isMobile = deviceSize === 'mobileS' || deviceSize === 'mobileM' || deviceSize === 'mobileL';
   const isTablet = deviceSize === 'tablet';
-
-  // Calculate responsive values for the rotating circle with all breakpoints
-  const getCircleDimensions = () => {
-    switch(deviceSize) {
-      case 'mobileS':
-        return {
-          containerSize: 180,
-          centerSize: 90,
-          radius: 70,
-          serviceWidth: 50,
-          serviceHeight: 20,
-          iconSize: 'text-xs',
-          textSize: 'text-[8px]'
-        };
-      case 'mobileM':
-        return {
-          containerSize: 200,
-          centerSize: 100,
-          radius: 80,
-          serviceWidth: 60,
-          serviceHeight: 24,
-          iconSize: 'text-sm',
-          textSize: 'text-[10px]'
-        };
-      case 'mobileL':
-        return {
-          containerSize: 240,
-          centerSize: 120,
-          radius: 96,
-          serviceWidth: 72,
-          serviceHeight: 28,
-          iconSize: 'text-base',
-          textSize: 'text-xs'
-        };
-      case 'tablet':
-        return {
-          containerSize: 280,
-          centerSize: 140,
-          radius: 112,
-          serviceWidth: 84,
-          serviceHeight: 32,
-          iconSize: 'text-lg',
-          textSize: 'text-xs'
-        };
-      case 'laptop':
-        return {
-          containerSize: 320,
-          centerSize: 160,
-          radius: 128,
-          serviceWidth: 112,
-          serviceHeight: 38,
-          iconSize: 'text-xl',
-          textSize: 'text-sm'
-        };
-      case 'laptopL':
-        return {
-          containerSize: 400,
-          centerSize: 200,
-          radius: 160,
-          serviceWidth: 140,
-          serviceHeight: 48,
-          iconSize: 'text-2xl',
-          textSize: 'text-base'
-        };
-      case 'desktop':
-        return {
-          containerSize: 500,
-          centerSize: 250,
-          radius: 200,
-          serviceWidth: 160,
-          serviceHeight: 56,
-          iconSize: 'text-3xl',
-          textSize: 'text-md'
-        };
-      case 'monitor':
-      default:
-        return {
-          containerSize: 600,
-          centerSize: 300,
-          radius: 240,
-          serviceWidth: 180,
-          serviceHeight: 64,
-          iconSize: 'text-4xl',
-          textSize: 'text-xl'
-        };
-    }
-  };
-
-  const circleDimensions = getCircleDimensions();
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-black">
@@ -385,24 +273,15 @@ const VideoHero = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-20 h-full flex items-center pt-16 md:pt-20 lg:pt-24 xl:pr-40">
+      <div className="relative z-20 h-full flex items-center pt-16 md:pt-20 lg:pt-24">
         <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 w-full">
           <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between">
             {/* Left Content with Typing Text */}
             <div className={`z-10 text-white ${
               isMobile ? 'w-full text-center mb-6 sm:mb-8' : 
               isTablet ? 'w-full text-center mb-8 lg:w-1/2 lg:text-left lg:pr-6' : 
-              'lg:w-1/2 lg:pr-8 text-center lg:text-left lg:pt-12 xl:pt-16'
+              'lg:w-1/2 lg:pr-8 text-center lg:text-left lg:pt-8 xl:pt-8'
             }`}>
-              <div className="mb-3 xs:mb-4 sm:mb-6">
-                <span className="inline-flex items-center px-2 xs:px-3 sm:px-4 py-1 xs:py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-[10px] xs:text-xs sm:text-sm font-medium text-white border border-white/30">
-                  <span className="relative flex h-1.5 w-1.5 xs:h-2 xs:w-2 mr-1 xs:mr-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 xs:h-2 xs:w-2 bg-white"></span>
-                  </span>
-                  INNOVATIVE IT SOLUTIONS
-                </span>
-              </div>
 
               <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-3 xs:mb-4 sm:mb-6">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-[#245684]">
@@ -451,101 +330,101 @@ const VideoHero = () => {
                   </svg>
                 </Link>
               </div>
-
-              {/* ISO Certifications with Logos */}
-              <div className="mt-6 xs:mt-8 sm:mt-12 flex items-center justify-center lg:justify-start space-x-3 xs:space-x-4 sm:space-x-6">
-                <div className="flex items-center space-x-1 xs:space-x-2">
-                  <div className="p-1 xs:p-1.5 sm:p-2 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
-                    <img 
-                      src="/logos/ISO_9001_Certified_col.png" 
-                      alt="ISO 27001 Certified"
-                      className="h-4 w-4 xs:h-5 xs:w-5 sm:h-6 sm:w-6 object-contain"
-                    />
-                  </div>
-                  <div>
-                    <p className="font-medium text-[10px] xs:text-xs sm:text-sm">ISO 27001</p>
-                    <p className="text-[8px] xs:text-xs text-white/80">Certified</p>
-                  </div>
-                </div>
-               
-                <div className="flex items-center space-x-1 xs:space-x-2">
-                  <div className="p-1 xs:p-1.5 sm:p-2 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
-                    <img 
-                      src="/logos/ISOIEC_27001_Certified_col.png" 
-                      alt="ISO 9001 Certified"
-                      className="h-4 w-4 xs:h-5 xs:w-5 sm:h-6 sm:w-6 object-contain"
-                    />
-                  </div>
-                  <div>
-                    <p className="font-medium text-[10px] xs:text-xs sm:text-sm">ISO 9001</p>
-                    <p className="text-[8px] xs:text-xs text-white/80">Certified</p>
-                  </div>
-                </div>
+              
+              {/* ISO Certifications */}
+              <div className="flex items-center justify-center lg:justify-start space-x-4 xs:space-x-5 sm:space-x-6 mt-4 xs:mt-6">
+                <img 
+                  src="/logos/ISO_9001_Certified_col.png" 
+                  alt="ISO 9001 Certified"
+                  className="h-14 w-14 xs:h-20 xs:w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 object-contain"
+                />
+                
+                <img 
+                  src="/logos/ISOIEC_27001_Certified_col.png" 
+                  alt="ISO 27001 Certified"
+                  className="h-14 w-14 xs:h-20 xs:w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 object-contain"
+                />
               </div>
+            
             </div>
 
-            {/* Right Content - Dynamic Horizontal Services Rotation */}
+            {/* Right Content - Vertical Scrolling Services List */}
             <div className={`flex justify-center items-center ${
               isMobile ? 'w-full mt-4 xs:mt-6' : 
               isTablet ? 'w-full mt-8 lg:w-1/2 lg:justify-center lg:pl-8' : 
-              'lg:w-1/2 lg:justify-center lg:pl-12 xl:pl-80'
+              'lg:w-1/2 lg:justify-center lg:pl-12'
             }`}>
-              <div 
-                className="relative flex items-center justify-center"
-                style={{
-                  width: `${circleDimensions.containerSize}px`,
-                  height: `${circleDimensions.containerSize}px`
-                }}
-              >
-                {/* Central element - stays fixed */}
-                <div className="absolute inset-0 flex items-center justify-center z-10">
-                  <div 
-                    className="flex items-center justify-center text-white text-center shadow-2xl shadow-[#245684]/30"
-                    style={{
-                      width: `${circleDimensions.centerSize}px`,
-                      height: `${circleDimensions.centerSize}px`,
-                      padding: `${circleDimensions.centerSize * 0.15}px`
-                    }}
-                  >
-                    <div>
-                      <img 
-                        src="/images/Slogo.png" 
-                        alt="360° IT Solutions" 
-                        className="mx-auto mb-1 xs:mb-2"
-                        style={{
-                          width: `${circleDimensions.centerSize * 0.2}px`,
-                          height: `${circleDimensions.centerSize * 0.2}px`
-                        }} 
-                      />
-                    </div>
+              <div className="relative h-64 xs:h-72 sm:h-80 md:h-96 lg:h-[500px] overflow-hidden">
+                {/* Scrolling services container */}
+                <div 
+                  className="absolute w-full h-[200%] animate-vertical-scroll"
+                  onMouseEnter={() => setIsMarqueePaused(true)}
+                  onMouseLeave={() => setIsMarqueePaused(false)}
+                >
+                  {/* First set of services */}
+                  <div className="space-y-2 xs:space-y-3 sm:space-y-4">
+                    {services.map((service, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center p-2 xs:p-3 sm:p-4 bg-white/10 backdrop-blur-sm rounded-lg cursor-pointer group hover:bg-white/20 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20"
+                        onClick={() => handleServiceClick(service.link)}
+                      >
+                        <div className="text-white mr-3 xs:mr-4 group-hover:text-[#245684] transition-colors">
+                          {service.icon}
+                        </div>
+                        <span className="text-white font-medium text-xs xs:text-sm sm:text-base md:text-lg group-hover:text-white transition-colors">
+                          {service.name}
+                        </span>
+                        <svg 
+                          xmlns="http://www.w3.org/2000/svg" 
+                          className="h-3 w-3 xs:h-4 xs:w-4 sm:h-5 sm:w-5 ml-auto text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all" 
+                          viewBox="0 0 20 20" 
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {/* Duplicate for seamless scrolling */}
+                  <div className="space-y-2 xs:space-y-3 sm:space-y-4 mt-4 xs:mt-6">
+                    {services.map((service, index) => (
+                      <div
+                        key={`dup-${index}`}
+                        className="flex items-center p-2 xs:p-3 sm:p-4 bg-white/10 backdrop-blur-sm rounded-lg cursor-pointer group hover:bg-white/20 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20"
+                        onClick={() => handleServiceClick(service.link)}
+                      >
+                        <div className="text-white mr-3 xs:mr-4 group-hover:text-[#245684] transition-colors">
+                          {service.icon}
+                        </div>
+                        <span className="text-white font-medium text-xs xs:text-sm sm:text-base md:text-lg group-hover:text-white transition-colors">
+                          {service.name}
+                        </span>
+                        <svg 
+                          xmlns="http://www.w3.org/2000/svg" 
+                          className="h-3 w-3 xs:h-4 xs:w-4 sm:h-5 sm:w-5 ml-auto text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all" 
+                          viewBox="0 0 20 20" 
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                    ))}
                   </div>
                 </div>
-                
-                {/* Services positioned around circle with dynamic rotation */}
-                {services.map((service, index) => {
-                  const angle = (index / services.length) * 360 + rotationAngle;
-                  
-                  return (
-                    <div
-                      key={index}
-                      className="absolute flex items-center justify-center text-center text-white font-medium cursor-pointer group transition-all z-20"
-                      style={{
-                        width: `${circleDimensions.serviceWidth}px`,
-                        height: `${circleDimensions.serviceHeight}px`,
-                        left: `calc(50% + ${circleDimensions.radius * Math.cos((angle * Math.PI) / 180)}px)`,
-                        top: `calc(50% + ${circleDimensions.radius * Math.sin((angle * Math.PI) / 180)}px)`,
-                        transform: 'translate(-50%, -50%)',
-                        transition: 'left 0.1s linear, top 0.1s linear'
-                      }}
-                      onClick={() => handleServiceClick(service.link)}
-                    >
-                      <div className="p-1 xs:p-2">
-                        <div className={circleDimensions.iconSize}>{service.icon}</div>
-                        <span className={`leading-tight ${circleDimensions.textSize}`}>{service.name}</span>
-                      </div>
-                    </div>
-                  );
-                })}
+
+                {/* Gradient overlays for smooth scrolling effect */}
+                <div className="absolute top-0 left-0 w-full h-8 bg-gradient-to-b from-black to-transparent pointer-events-none"></div>
+                <div className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
               </div>
             </div>
           </div>
@@ -573,6 +452,15 @@ const VideoHero = () => {
         .animate-marquee {
           animation: marquee 20s linear infinite;
         }
+        
+        @keyframes vertical-scroll {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(-50%); }
+        }
+        .animate-vertical-scroll {
+          animation: vertical-scroll 20s linear infinite;
+        }
+        
         @keyframes float {
           0% { transform: translateY(0px); }
           50% { transform: translateY(-10px); }
@@ -581,6 +469,7 @@ const VideoHero = () => {
         .animate-float {
           animation: float 5s infinite ease-in-out;
         }
+        
         @keyframes pulse-slow {
           0%, 100% { opacity: 1; }
           50% { opacity: 0.5; }
@@ -588,6 +477,7 @@ const VideoHero = () => {
         .animate-pulse-slow {
           animation: pulse-slow 3s infinite;
         }
+        
         @keyframes scroll {
           0% { transform: translateY(0); opacity: 1; }
           100% { transform: translateY(10px); opacity: 0; }
@@ -595,6 +485,7 @@ const VideoHero = () => {
         .animate-scroll {
           animation: scroll 2s infinite;
         }
+        
         .bg-grid-pattern {
           background-image: linear-gradient(to right, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
                             linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
@@ -633,12 +524,10 @@ const VideoHero = () => {
       <style jsx>{`
         .service-icon {
           display: inline-block;
-          margin-right: 0.25rem;
         }
         @media (max-width: 320px) {
           .service-icon {
             font-size: 0.875rem;
-            margin-right: 0.125rem;
           }
         }
         @media (min-width: 321px) and (max-width: 375px) {
