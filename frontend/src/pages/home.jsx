@@ -741,7 +741,7 @@ const HomePage = () => {
       title: "SysCare Service Portfolio 2017v2",
       description: "An overview of our managed IT and cybersecurity services for modern businesses.",
       fileSize: "1.1 MB",
-      downloadUrl: "/brochures/SysCare_Service_Portfolio-2017v2.pdf",
+      downloadUrl: "/brochures/SysCare_Service_Portfolio_2017v2.pdf",
       icon: "🔐"
     },
     {
@@ -749,7 +749,7 @@ const HomePage = () => {
       title: "SysCare MailStore Archival Brochure 2018v2",
       description: "Insight into our efficient and compliant email archiving solutions.",
       fileSize: "1.8 MB",
-      downloadUrl: "/brochures/SysCare_MailStore_Archival_Brochure-2018v2.pdf",
+      downloadUrl: "/brochures/SysCare_MailStore_Archival_Brochure_2018v2.pdf",
       icon: "📄"
     }
   ];
