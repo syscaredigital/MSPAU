@@ -4,6 +4,7 @@ import Navigation from '../components/Navigation.jsx';
 import VideoHero from '../components/hero.jsx';
 import Footer from '../components/footer.jsx';
 
+
 // Add CSS animations and background styles
 const animationStyles = `
   @keyframes fadeInUp {
@@ -729,26 +730,26 @@ const HomePage = () => {
   const brochures = [
     {
       id: 1,
-      title: "IT Services Overview",
+      title: "SysCare Cloud Brochure 2017v3",
       description: "Complete overview of our managed IT services, support solutions, and technology offerings.",
       fileSize: "2.4 MB",
-      downloadUrl: "/brochures/syscare-it-services-overview.pdf",
+      downloadUrl: "/brochures/SysCare_Cloud_Brochure-2017v3.pdf",
       icon: "📄"
     },
     {
       id: 2,
-      title: "Cybersecurity Solutions",
+      title: "SysCare Service Portfolio 2017v2",
       description: "Detailed guide to our security services including threat protection and compliance solutions.",
       fileSize: "3.1 MB",
-      downloadUrl: "/brochures/syscare-cybersecurity-solutions.pdf",
+      downloadUrl: "/brochures/SysCare_Service_Portfolio-2017v2.pdf",
       icon: "🔐"
     },
     {
       id: 3,
-      title: "Cloud & Infrastructure",
+      title: "SysCare MailStore Archival Brochure 2018v2",
       description: "Comprehensive information about our cloud migration and infrastructure management services.",
       fileSize: "2.8 MB",
-      downloadUrl: "/brochures/syscare-cloud-infrastructure.pdf",
+      downloadUrl: "/brochures/SysCare_MailStore_Archival_Brochure-2018v2.pdf",
       icon: "☁️"
     }
   ];
