@@ -397,7 +397,7 @@ const VideoHero = () => {
             <div className={`z-10 text-white ${
               isMobile ? 'w-full text-center mb-6 sm:mb-8' : 
               isTablet ? 'w-full text-center mb-8 lg:w-1/2 lg:text-left lg:pr-6' : 
-              'lg:w-1/2 lg:pr-8 text-center lg:text-left lg:pt-12 xl:pt-16'
+              'lg:w-1/2 lg:pr-8 text-center lg:text-left lg:pt-10 xl:pt-5'
             }`}>
               <div className="mb-3 xs:mb-4 sm:mb-6">
                 <span className="inline-flex items-center px-2 xs:px-3 sm:px-4 py-1 xs:py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-[10px] xs:text-xs sm:text-sm font-medium text-white border border-white/30">
@@ -489,7 +489,7 @@ const VideoHero = () => {
             <div className={`flex justify-center items-center ${
               isMobile ? 'w-full mt-4 xs:mt-6' : 
               isTablet ? 'w-full mt-8 lg:w-1/2 lg:justify-center lg:pl-8' : 
-              'lg:w-1/2 lg:justify-center lg:pl-12 xl:pl-80'
+              'lg:w-1/2 lg:justify-center lg:pl-12 xl:pl-80 '
             }`}>
               <div 
                 className="relative flex items-center justify-center"

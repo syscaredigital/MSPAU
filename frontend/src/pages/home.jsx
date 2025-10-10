@@ -731,26 +731,26 @@ const HomePage = () => {
     {
       id: 1,
       title: "SysCare Cloud Brochure 2017v3",
-      description: "Complete overview of our managed IT services, support solutions, and technology offerings.",
-      fileSize: "2.4 MB",
+      description: "A complete guide to our secure, scalable, and reliable cloud solutions.",
+      fileSize: "1.4 MB",
       downloadUrl: "/brochures/SysCare_Cloud_Brochure-2017v3.pdf",
-      icon: "📄"
+      icon: "☁️"
     },
     {
       id: 2,
       title: "SysCare Service Portfolio 2017v2",
-      description: "Detailed guide to our security services including threat protection and compliance solutions.",
-      fileSize: "3.1 MB",
+      description: "An overview of our managed IT and cybersecurity services for modern businesses.",
+      fileSize: "1.1 MB",
       downloadUrl: "/brochures/SysCare_Service_Portfolio-2017v2.pdf",
       icon: "🔐"
     },
     {
       id: 3,
       title: "SysCare MailStore Archival Brochure 2018v2",
-      description: "Comprehensive information about our cloud migration and infrastructure management services.",
-      fileSize: "2.8 MB",
+      description: "Insight into our efficient and compliant email archiving solutions.",
+      fileSize: "1.8 MB",
       downloadUrl: "/brochures/SysCare_MailStore_Archival_Brochure-2018v2.pdf",
-      icon: "☁️"
+      icon: "📄"
     }
   ];
 
