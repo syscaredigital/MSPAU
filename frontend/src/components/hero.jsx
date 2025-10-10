@@ -27,7 +27,7 @@ const VideoHero = () => {
     laptop: 1024,   // small laptops
     laptopL: 1440,  // standard desktops
     desktop: 1920,  // full HD desktop
-    monitor: 2560   // 27” WQHD / large screen
+    monitor: 2560   // 27" WQHD / large screen
   };
 
   // Different video sources for different devices
@@ -384,11 +384,6 @@ const VideoHero = () => {
         ))}
       </div>
 
-      {/* Fallback image */}
-      {/* {!isVideoLoaded && (
-        <div className="absolute inset-0 bg-[url('/images/hero-fallback.jpg')] bg-cover bg-center"></div>
-      )} */}
-
       {/* Main Content */}
       <div className="relative z-20 h-full flex items-center pt-16 md:pt-20 lg:pt-24 xl:pr-40">
         <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 w-full">
@@ -397,7 +392,7 @@ const VideoHero = () => {
             <div className={`z-10 text-white ${
               isMobile ? 'w-full text-center mb-6 sm:mb-8' : 
               isTablet ? 'w-full text-center mb-8 lg:w-1/2 lg:text-left lg:pr-6' : 
-              'lg:w-1/2 lg:pr-8 text-center lg:text-left lg:pt-10 xl:pt-5'
+              'lg:w-1/2 lg:pr-8 text-center lg:text-left lg:pt-12 xl:pt-16'
             }`}>
               <div className="mb-3 xs:mb-4 sm:mb-6">
                 <span className="inline-flex items-center px-2 xs:px-3 sm:px-4 py-1 xs:py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-[10px] xs:text-xs sm:text-sm font-medium text-white border border-white/30">
@@ -457,13 +452,15 @@ const VideoHero = () => {
                 </Link>
               </div>
 
-              {/* ISO Certifications */}
+              {/* ISO Certifications with Logos */}
               <div className="mt-6 xs:mt-8 sm:mt-12 flex items-center justify-center lg:justify-start space-x-3 xs:space-x-4 sm:space-x-6">
                 <div className="flex items-center space-x-1 xs:space-x-2">
-                  <div className="p-1 xs:p-1.5 sm:p-2 bg-white/10 backdrop-blur-sm rounded-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 xs:h-4 xs:w-4 sm:h-5 sm:w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
+                  <div className="p-1 xs:p-1.5 sm:p-2 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                    <img 
+                      src="/logos/ISO_9001_Certified_col.png" 
+                      alt="ISO 27001 Certified"
+                      className="h-4 w-4 xs:h-5 xs:w-5 sm:h-6 sm:w-6 object-contain"
+                    />
                   </div>
                   <div>
                     <p className="font-medium text-[10px] xs:text-xs sm:text-sm">ISO 27001</p>
@@ -472,10 +469,12 @@ const VideoHero = () => {
                 </div>
                
                 <div className="flex items-center space-x-1 xs:space-x-2">
-                  <div className="p-1 xs:p-1.5 sm:p-2 bg-white/10 backdrop-blur-sm rounded-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 xs:h-4 xs:w-4 sm:h-5 sm:w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
+                  <div className="p-1 xs:p-1.5 sm:p-2 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                    <img 
+                      src="/logos/ISOIEC_27001_Certified_col.png" 
+                      alt="ISO 9001 Certified"
+                      className="h-4 w-4 xs:h-5 xs:w-5 sm:h-6 sm:w-6 object-contain"
+                    />
                   </div>
                   <div>
                     <p className="font-medium text-[10px] xs:text-xs sm:text-sm">ISO 9001</p>
@@ -489,7 +488,7 @@ const VideoHero = () => {
             <div className={`flex justify-center items-center ${
               isMobile ? 'w-full mt-4 xs:mt-6' : 
               isTablet ? 'w-full mt-8 lg:w-1/2 lg:justify-center lg:pl-8' : 
-              'lg:w-1/2 lg:justify-center lg:pl-12 xl:pl-80 '
+              'lg:w-1/2 lg:justify-center lg:pl-12 xl:pl-80'
             }`}>
               <div 
                 className="relative flex items-center justify-center"
