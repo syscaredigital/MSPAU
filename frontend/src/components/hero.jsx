@@ -5,15 +5,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FiGlobe, FiServer, FiCloud, FiShield, FiUserPlus, FiPackage, FiBook, FiSmartphone, FiMenu, FiX } from "react-icons/fi";
 
 const VideoHero = () => {
-  const videoRef = useRef(null);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const imageRef = useRef(null);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(50); // Faster initial speed
   const [isMarqueePaused, setIsMarqueePaused] = useState(false);
   const [deviceSize, setDeviceSize] = useState('desktop');
-  const [videoSource, setVideoSource] = useState('');
+  const [imageSource, setImageSource] = useState('');
   const navigate = useNavigate();
 
   // Device breakpoints
@@ -28,33 +28,33 @@ const VideoHero = () => {
     monitor: 2560   // 27" WQHD / large screen
   };
 
-  // Different video sources for different devices
-  const videoSources = {
-    mobileS: '/video/hero-videoLD.mp4',
-    mobileM: '/video/hero-videoLD.mp4',
-    mobileL: '/video/hero-videoLD.mp4',
-    tablet: '/video/hero-videoLD.mp4',
-    laptop: '/video/hero-videoLD.mp4',
-    laptopL: '/video/hero-videoLD.mp4',
-    desktop: '/video/hero-videoLD.mp4',
-    monitor: '/video/hero-videoLD.mp4'
+  // Different image sources for different devices
+  const imageSources = {
+    mobileS: '/video/hero-image.jpg',
+    mobileM: '/video/hero-image.jpg',
+    mobileL: '/video/hero-image.jpg',
+    tablet: '/video/hero-image.jpg',
+    laptop: '/video/hero-image.jpg',
+    laptopL: '/video/hero-image.jpg',
+    desktop: '/video/hero-image.jpg',
+    monitor: '/video/hero-image.jpg'
   };
 
-  // Fallback video sources if some sizes are not available
-  const getVideoSource = (device) => {
-    // If you don't have videos for all sizes, you can use fallbacks
+  // Fallback image sources if some sizes are not available
+  const getImageSource = (device) => {
+    // If you don't have images for all sizes, you can use fallbacks
     const fallbackSources = {
-      mobileS: videoSources.mobileS || videoSources.mobileM || videoSources.mobileL || videoSources.tablet,
-      mobileM: videoSources.mobileM || videoSources.mobileL || videoSources.tablet,
-      mobileL: videoSources.mobileL || videoSources.tablet,
-      tablet: videoSources.tablet || videoSources.laptop,
-      laptop: videoSources.laptop || videoSources.laptopL || videoSources.desktop,
-      laptopL: videoSources.laptopL || videoSources.desktop,
-      desktop: videoSources.desktop || videoSources.monitor,
-      monitor: videoSources.monitor || videoSources.desktop
+      mobileS: imageSources.mobileS || imageSources.mobileM || imageSources.mobileL || imageSources.tablet,
+      mobileM: imageSources.mobileM || imageSources.mobileL || imageSources.tablet,
+      mobileL: imageSources.mobileL || imageSources.tablet,
+      tablet: imageSources.tablet || imageSources.laptop,
+      laptop: imageSources.laptop || imageSources.laptopL || imageSources.desktop,
+      laptopL: imageSources.laptopL || imageSources.desktop,
+      desktop: imageSources.desktop || imageSources.monitor,
+      monitor: imageSources.monitor || imageSources.desktop
     };
     
-    return fallbackSources[device] || videoSources.desktop;
+    return fallbackSources[device] || imageSources.desktop;
   };
 
   const services = [
@@ -114,9 +114,9 @@ const VideoHero = () => {
       
       setDeviceSize(currentDeviceSize);
       
-      // Set appropriate video source based on device size
-      const newVideoSource = getVideoSource(currentDeviceSize);
-      setVideoSource(newVideoSource);
+      // Set appropriate image source based on device size
+      const newImageSource = getImageSource(currentDeviceSize);
+      setImageSource(newImageSource);
     };
 
     // Initial setup
@@ -127,31 +127,26 @@ const VideoHero = () => {
   }, []);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+    const image = imageRef.current;
+    if (!image) return;
 
-    const handleLoadedData = () => {
-      setIsVideoLoaded(true);
-      if (deviceSize !== 'mobileS' && deviceSize !== 'mobileM' && deviceSize !== 'mobileL') {
-        video.play().catch(error => {
-          console.log("Autoplay prevented:", error);
-        });
-      }
+    const handleLoad = () => {
+      setIsImageLoaded(true);
     };
 
     const handleError = () => {
-      console.error("Video failed to load");
-      setIsVideoLoaded(false);
+      console.error("Image failed to load");
+      setIsImageLoaded(false);
     };
 
-    video.addEventListener('loadeddata', handleLoadedData);
-    video.addEventListener('error', handleError);
+    image.addEventListener('load', handleLoad);
+    image.addEventListener('error', handleError);
 
     return () => {
-      video.removeEventListener('loadeddata', handleLoadedData);
-      video.removeEventListener('error', handleError);
+      image.removeEventListener('load', handleLoad);
+      image.removeEventListener('error', handleError);
     };
-  }, [deviceSize, videoSource]);
+  }, [imageSource]);
 
   // Typing effect - FASTER VERSION
   useEffect(() => {
@@ -181,14 +176,6 @@ const VideoHero = () => {
   const handleServiceClick = (serviceLink) => {
     console.log(`Navigating to: ${serviceLink}`);
     navigate(serviceLink);
-  };
-
-  const playVideoOnMobile = () => {
-    if ((deviceSize === 'mobileS' || deviceSize === 'mobileM' || deviceSize === 'mobileL') && videoRef.current) {
-      videoRef.current.play().catch(error => {
-        console.log("Mobile video play failed:", error);
-      });
-    }
   };
 
   // Helper function to check if device is mobile - FIXED
@@ -233,23 +220,16 @@ const VideoHero = () => {
         </div>
       </div>
 
-      {/* Video Background */}
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
+      {/* Image Background */}
+      <img
+        ref={imageRef}
+        src={imageSource}
+        alt="SysCare IT Solutions Background"
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-          isVideoLoaded ? 'opacity-50' : 'opacity-0'
+          isImageLoaded ? 'opacity-50' : 'opacity-0'
         }`}
-        onClick={playVideoOnMobile}
-        key={videoSource}
-      >
-        <source src={videoSource} type="video/mp4" />
-        Your browser does not support HTML5 video.
-      </video>
+        key={imageSource}
+      />
 
       {/* Animated grid pattern overlay */}
       <div className="absolute inset-0 z-0 opacity-5 bg-grid-pattern "></div>
@@ -288,10 +268,6 @@ const VideoHero = () => {
                   SysCare IT Solutions                               
                 </span>
                 <br />
-                
-               {/*  <span className="text-white text-md">
-                                 Pty Ltd                                                                        
-                </span> */}
               </h1>
 
               {/* Typing text effect */}

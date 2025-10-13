@@ -388,19 +388,19 @@ const Navigation = () => {
             {/* Left side - Contact Info */}
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-2">
-                <FiPhone className="text-[#a3d4ff] text-xs" />
+                <FiPhone className="text-[#103d5d] text-xs" />
                 <a 
                   href="tel:+1234567890" 
-                  className="hover:text-[#a3d4ff] transition-colors duration-300 text-md"
+                  className="hover:text-[#103d5d] transition-colors duration-300 text-md"
                 >
                   1300 69 79 72
                 </a>
               </div>
               <div className="flex items-center space-x-2">
-                <FiMail className="text-[#a3d4ff] text-md" />
+                <FiMail className="text-[#103d5d] text-md" />
                 <a 
                   href="mailto:info@syscare.com" 
-                  className="hover:text-[#a3d4ff] transition-colors duration-300 text-md"
+                  className="hover:text-[#103d5d] transition-colors duration-300 text-md"
                 >
                  info@syscare.com.au
                 </a>
@@ -409,8 +409,8 @@ const Navigation = () => {
 
             {/* Right side - Working Hours */}
             <div className="hidden md:flex items-center space-x-2">
-              <FiClock className="text-[#a3d4ff] text-md" />
-              <span className="text-xs">Mon - Fri: 8:00 AM - 5:00 PM</span>
+              <FiClock className="text-[#103d5d] text-md" />
+              <span className="text-md">Mon - Fri: 8:00 AM - 5:00 PM</span>
             </div>
 
             {/* Mobile - Only show phone */}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Navigation from '../components/Navigation.jsx';
 import VideoHero from '../components/hero.jsx';
@@ -227,6 +227,160 @@ const animationStyles = `
     height: 100%;
     object-fit: cover;
     z-index: 1;
+  }
+
+  /* Video Player Controls */
+  .video-player-container {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    height: 400px;
+  }
+
+  .video-player {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(16, 61, 93, 0.85), rgba(36, 86, 132, 0.85));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    z-index: 2;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .video-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .play-button {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  .play-button:hover {
+    transform: scale(1.1);
+    background: white;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+  }
+
+  .play-icon {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 0 15px 26px;
+    border-color: transparent transparent transparent #103d5d;
+    margin-left: 5px;
+  }
+
+  .video-content {
+    max-width: 500px;
+  }
+
+  .video-content h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .video-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+  }
+
+  .watch-text {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    font-weight: 500;
+  }
+
+  .video-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    z-index: 3;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .video-player-container:hover .video-controls {
+    opacity: 1;
+  }
+
+  .control-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .control-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .volume-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .volume-slider {
+    width: 80px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    outline: none;
+    -webkit-appearance: none;
+  }
+
+  .volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
   }
 
   /* Particles background container */
@@ -635,6 +789,37 @@ const animationStyles = `
     .services-background {
       background-attachment: scroll;
     }
+
+    .video-player-container {
+      height: 300px;
+    }
+
+    .play-button {
+      width: 60px;
+      height: 60px;
+    }
+
+    .play-icon {
+      border-width: 12px 0 12px 20px;
+      margin-left: 4px;
+    }
+
+    .video-content h3 {
+      font-size: 1.25rem;
+    }
+
+    .video-content p {
+      font-size: 0.9rem;
+    }
+
+    .video-controls {
+      bottom: 10px;
+      padding: 0.4rem 0.8rem;
+    }
+
+    .volume-slider {
+      width: 60px;
+    }
   }
 `;
 
@@ -651,6 +836,11 @@ const HomePage = () => {
   const [connections, setConnections] = useState([]);
   const [particles, setParticles] = useState([]);
   const [testimonialParticles, setTestimonialParticles] = useState([]);
+  
+  // Video states
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [volume, setVolume] = useState(0.7);
+  const videoRef = useRef(null);
 
   // All Services Data
   const allServices = [
@@ -780,6 +970,13 @@ const HomePage = () => {
     }
   ];
 
+  // Video content data
+  const videoContent = {
+    title: "Discover SysCare IT Solutions",
+    description: "Watch our services and learn how we've been helping businesses across Australia with cutting-edge IT solutions and managed services for over 12 years.",
+    watchText: "Click to watch our story"
+  };
+
   // Duplicate logos for infinite scroll effect
   const duplicatedLogosLine1 = [...partnerLogosLine1, ...partnerLogosLine1, ...partnerLogosLine1];
   const duplicatedLogosLine2 = [...partnerLogosLine2, ...partnerLogosLine2, ...partnerLogosLine2];
@@ -816,6 +1013,44 @@ const HomePage = () => {
     }
   ];
 
+  // Video control functions
+  const toggleVideoPlay = () => {
+    if (videoRef.current) {
+      if (isVideoPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play().catch(error => {
+          console.error("Error playing video:", error);
+        });
+      }
+      setIsVideoPlaying(!isVideoPlaying);
+    }
+  };
+
+  const handleVolumeChange = (e) => {
+    const newVolume = parseFloat(e.target.value);
+    setVolume(newVolume);
+    if (videoRef.current) {
+      videoRef.current.volume = newVolume;
+    }
+  };
+
+  const handleVideoClick = () => {
+    toggleVideoPlay();
+  };
+
+  const handleVideoEnd = () => {
+    setIsVideoPlaying(false);
+  };
+
+  const handleVideoPlay = () => {
+    setIsVideoPlaying(true);
+  };
+
+  const handleVideoPause = () => {
+    setIsVideoPlaying(false);
+  };
+
   useEffect(() => {
     // Initialize animated background nodes, connections, and particles
     initializeBackground();
@@ -843,6 +1078,11 @@ const HomePage = () => {
     const interval = setInterval(() => {
       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
     }, 5000);
+
+    // Set initial volume
+    if (videoRef.current) {
+      videoRef.current.volume = volume;
+    }
 
     return () => {
       if (statsSection) {
@@ -1039,7 +1279,7 @@ const HomePage = () => {
 
         <VideoHero/>
 
-        {/* About Section */}
+        {/* About Section with Enhanced Video Player */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in-up">
@@ -1056,20 +1296,68 @@ const HomePage = () => {
                 <div className="bg-[#170f17] text-white px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300 animate-pulse-slow" style={{animationDelay: '1s'}}>Certified Experts</div>
               </div>
             </div>
-            <div className="cyber-video-container rounded-xl overflow-hidden h-96 animate-fade-in-up" style={{animationDelay: '0.3s'}}>
-              {/* Cyber/Technology Background Video */}
+            
+            {/* Enhanced Video Player */}
+            <div className="video-player-container rounded-xl animate-fade-in-up" style={{animationDelay: '0.3s'}}>
               <video 
-                autoPlay 
-                loop 
-                muted 
-                playsInline 
-                className="cyber-video"
-               
+                ref={videoRef}
+                className="video-player"
+                onClick={handleVideoClick}
+                onEnded={handleVideoEnd}
+                onPlay={handleVideoPlay}
+                onPause={handleVideoPause}
               >
                 <source src={aboutus_video} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
               
+              {/* Video Overlay with Content */}
+              <div 
+                className={`video-overlay ${isVideoPlaying ? 'hidden' : ''}`}
+                onClick={handleVideoClick}
+              >
+                <div className="play-button">
+                  <div className="play-icon"></div>
+                </div>
+                <div className="video-content">
+                  <h3>{videoContent.title}</h3>
+                  <p>{videoContent.description}</p>
+                  <div className="watch-text">{videoContent.watchText}</div>
+                </div>
+              </div>
+
+              {/* Video Controls */}
+              <div className="video-controls">
+                <button 
+                  className="control-btn"
+                  onClick={toggleVideoPlay}
+                >
+                  {isVideoPlaying ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+                    </svg>
+                  ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                    </svg>
+                  )}
+                </button>
+                
+                <div className="volume-control">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clipRule="evenodd" />
+                  </svg>
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.1"
+                    value={volume}
+                    onChange={handleVolumeChange}
+                    className="volume-slider"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
