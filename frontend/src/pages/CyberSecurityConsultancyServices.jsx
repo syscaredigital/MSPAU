@@ -202,7 +202,7 @@ const CyberSecurityConsultancyServicesPage = () => {
         >
           <div className="mb-8 inline-block overflow-hidden">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-typewriter whitespace-nowrap overflow-hidden border-r-4 border-r-white">
-              Cyber Security <span className="text-[#a3d4ff]">Consultancy Services</span>
+              Cybersecurity <span className="text-[#a3d4ff]">Consultancy Services</span>
             </h1>
           </div>
          

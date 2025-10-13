@@ -388,6 +388,21 @@ const ServicesPage = () => {
     ? services 
     : services.filter(service => service.category === activeCategory);
 
+  // Calculate grid column classes based on number of items for better centering
+  const getGridClasses = () => {
+    const count = filteredServices.length;
+    
+    if (count === 1) {
+      return "grid grid-cols-1 max-w-md mx-auto";
+    } else if (count === 2) {
+      return "grid grid-cols-1 sm:grid-cols-2 max-w-2xl mx-auto";
+    } else if (count === 3) {
+      return "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto";
+    } else {
+      return "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-7xl mx-auto";
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#f5f7fa]">
       {/* Add animation styles */}
@@ -424,12 +439,12 @@ const ServicesPage = () => {
                   Discover our comprehensive range of IT solutions designed to empower your business with cutting-edge technology and expert support.
                 </p>
                 <div className={`flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start transition-all duration-700 delay-200 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                  <a href="#services" className="bg-white text-[#103d5d] px-5 py-3 md:px-6 md:py-3 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] flex items-center justify-center">
+                 {/*   <a href="syscare-services/#services" className="bg-white text-[#103d5d] px-5 py-3 md:px-6 md:py-3 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] flex items-center justify-center">
                     Explore Services <FaChevronRight className="ml-2" />
                   </a>
-                  <a href="#contact" className="border-2 border-white text-white px-5 py-3 md:px-6 md:py-3 rounded-md font-medium transition-all duration-300 hover:bg-white hover:text-[#103d5d] text-center">
+                  <a href="contact-Us/#contact" className="border-2 border-white text-white px-5 py-3 md:px-6 md:py-3 rounded-md font-medium transition-all duration-300 hover:bg-white hover:text-[#103d5d] text-center">
                     Get In Touch
-                  </a>
+                  </a>  */}
                 </div>
               </div>
               
@@ -482,8 +497,8 @@ const ServicesPage = () => {
               ))}
             </div>
 
-            {/* Services Grid - Mobile Responsive */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 stagger-animation">
+            {/* Services Grid - Centered for all categories */}
+            <div className={`${getGridClasses()} gap-4 md:gap-6 stagger-animation`}>
               {filteredServices.map((service, index) => (
                 <div 
                   key={index}

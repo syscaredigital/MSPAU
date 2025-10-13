@@ -12,8 +12,6 @@ const VideoHero = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(50); // Faster initial speed
   const [isMarqueePaused, setIsMarqueePaused] = useState(false);
-  const [rotationAngle, setRotationAngle] = useState(0);
-  const [, setCircleSize] = useState(400); // Default initial size
   const [deviceSize, setDeviceSize] = useState('desktop');
   const [videoSource, setVideoSource] = useState('');
   const navigate = useNavigate();
@@ -32,13 +30,13 @@ const VideoHero = () => {
 
   // Different video sources for different devices
   const videoSources = {
-    mobileS: '/video/hero-videom.mp4',
-    mobileM: '/video/hero-videom.mp4',
-    mobileL: '/video/hero-videom.mp4',
-    tablet: '/video/hero-video-tablet.mp4',
-    laptop: '/video/hero-videoL.mp4',
-    laptopL: '/video/hero-video.mp4',
-    desktop: '/video/hero-videoLL.mp4',
+    mobileS: '/video/hero-videoLD.mp4',
+    mobileM: '/video/hero-videoLD.mp4',
+    mobileL: '/video/hero-videoLD.mp4',
+    tablet: '/video/hero-videoLD.mp4',
+    laptop: '/video/hero-videoLD.mp4',
+    laptopL: '/video/hero-videoLD.mp4',
+    desktop: '/video/hero-videoLD.mp4',
     monitor: '/video/hero-videoLD.mp4'
   };
 
@@ -60,7 +58,7 @@ const VideoHero = () => {
   };
 
   const services = [
-    { name: "Cloud Solutions", link: "/syscare-services#infrastructure", icon: <FiCloud className="service-icon" /> },
+    { name: "Cloud", link: "/syscare-services#infrastructure", icon: <FiCloud className="service-icon" /> },
     { name: "IT Security", link: "/syscare-services#security", icon: <FiShield className="service-icon" /> },
     { name: "IT Support", link: "/syscare-services#support", icon: <FiUserPlus className="service-icon" /> },
     { name: "Projects & Automation", link: "/syscare-services#solutions", icon: <FiPackage className="service-icon" /> },
@@ -97,20 +95,6 @@ const VideoHero = () => {
     "Trusted MSP & MSSP Partner in Australia"
   ];
 
-  // Calculate circle size based on screen width with all breakpoints - FIXED
-  const calculateCircleSize = () => {
-    const width = window.innerWidth;
-    if (width < breakpoints.mobileS) return 180;    // extra small
-    if (width < breakpoints.mobileM) return 200;    // mobileS
-    if (width < breakpoints.mobileL) return 240;    // mobileM
-    if (width < breakpoints.tablet) return 280;     // mobileL
-    if (width < breakpoints.laptop) return 320;     // tablet
-    if (width < breakpoints.laptopL) return 400;    // laptop
-    if (width < breakpoints.desktop) return 500;    // laptopL
-    if (width < breakpoints.monitor) return 600;    // desktop
-    return 700; // monitor and above
-  };
-
   // Determine device size based on breakpoints
   const getDeviceSize = (width) => {
     if (width < breakpoints.mobileS) return 'mobileS';
@@ -129,7 +113,6 @@ const VideoHero = () => {
       const currentDeviceSize = getDeviceSize(width);
       
       setDeviceSize(currentDeviceSize);
-      setCircleSize(calculateCircleSize());
       
       // Set appropriate video source based on device size
       const newVideoSource = getVideoSource(currentDeviceSize);
@@ -164,15 +147,9 @@ const VideoHero = () => {
     video.addEventListener('loadeddata', handleLoadedData);
     video.addEventListener('error', handleError);
 
-    // Setup rotation animation
-    const rotationInterval = setInterval(() => {
-      setRotationAngle(prev => (prev + 0.5) % 360);
-    }, 50);
-
     return () => {
       video.removeEventListener('loadeddata', handleLoadedData);
       video.removeEventListener('error', handleError);
-      clearInterval(rotationInterval);
     };
   }, [deviceSize, videoSource]);
 
@@ -187,7 +164,7 @@ const VideoHero = () => {
       setCurrentWordIndex(updatedWord.length);
 
       if (!isDeleting && updatedWord === currentText) {
-        setTimeout(() => setIsDeleting(true), 300); // Shorter pause before deleting
+        setTimeout(() => setIsDeleting(true), 500); // Shorter pause before deleting
       } else if (isDeleting && updatedWord === '') {
         setIsDeleting(false);
         setCurrentTextIndex((prev) => (prev + 1) % typingTexts.length);
@@ -218,97 +195,8 @@ const VideoHero = () => {
   const isMobile = deviceSize === 'mobileS' || deviceSize === 'mobileM' || deviceSize === 'mobileL';
   const isTablet = deviceSize === 'tablet';
 
-  // Calculate responsive values for the rotating circle with all breakpoints
-  const getCircleDimensions = () => {
-    switch(deviceSize) {
-      case 'mobileS':
-        return {
-          containerSize: 180,
-          centerSize: 90,
-          radius: 70,
-          serviceWidth: 50,
-          serviceHeight: 20,
-          iconSize: 'text-xs',
-          textSize: 'text-[8px]'
-        };
-      case 'mobileM':
-        return {
-          containerSize: 200,
-          centerSize: 100,
-          radius: 80,
-          serviceWidth: 60,
-          serviceHeight: 24,
-          iconSize: 'text-sm',
-          textSize: 'text-[10px]'
-        };
-      case 'mobileL':
-        return {
-          containerSize: 240,
-          centerSize: 120,
-          radius: 96,
-          serviceWidth: 72,
-          serviceHeight: 28,
-          iconSize: 'text-base',
-          textSize: 'text-xs'
-        };
-      case 'tablet':
-        return {
-          containerSize: 280,
-          centerSize: 140,
-          radius: 112,
-          serviceWidth: 84,
-          serviceHeight: 32,
-          iconSize: 'text-lg',
-          textSize: 'text-xs'
-        };
-      case 'laptop':
-        return {
-          containerSize: 320,
-          centerSize: 160,
-          radius: 128,
-          serviceWidth: 112,
-          serviceHeight: 38,
-          iconSize: 'text-xl',
-          textSize: 'text-sm'
-        };
-      case 'laptopL':
-        return {
-          containerSize: 400,
-          centerSize: 200,
-          radius: 160,
-          serviceWidth: 140,
-          serviceHeight: 48,
-          iconSize: 'text-2xl',
-          textSize: 'text-base'
-        };
-      case 'desktop':
-        return {
-          containerSize: 500,
-          centerSize: 250,
-          radius: 200,
-          serviceWidth: 160,
-          serviceHeight: 56,
-          iconSize: 'text-3xl',
-          textSize: 'text-md'
-        };
-      case 'monitor':
-      default:
-        return {
-          containerSize: 600,
-          centerSize: 300,
-          radius: 240,
-          serviceWidth: 180,
-          serviceHeight: 64,
-          iconSize: 'text-4xl',
-          textSize: 'text-xl'
-        };
-    }
-  };
-
-  const circleDimensions = getCircleDimensions();
-
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-black">
+    <section className="relative min-h-dvh w-full overflow-hidden bg-black pt-10 md:pt-14 lg:pt-18">
       {/* Services Marquee - Responsive for all devices */}
       <div
         className="block absolute bottom-0 left-0 w-full z-30 bg-gradient-to-r from-[#103d5d] to-[#245684] py-2 xs:py-3 overflow-hidden"
@@ -385,7 +273,7 @@ const VideoHero = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-20 h-full flex items-center pt-16 md:pt-20 lg:pt-24 xl:pr-40">
+      <div className="relative z-20 h-full flex items-center pt-16 md:pt-20 lg:pt-24">
         <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 w-full">
           <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between">
             {/* Left Content with Typing Text */}
@@ -395,16 +283,15 @@ const VideoHero = () => {
               'lg:w-1/2 lg:pr-8 text-center lg:text-left lg:pt-8 xl:pt-8'
             }`}>
 
-
-
-              <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-3 xs:mb-4 sm:mb-6">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-[#245684]">
-                  SysCare                               
+              <h1 className="text-xl xs:text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold leading-tight mb-3 xs:mb-4 sm:mb-6">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-white">
+                  SysCare IT Solutions                               
                 </span>
                 <br />
-                <span className="text-white">
-                  IT Solutions                                                                                        
-                </span>
+                
+               {/*  <span className="text-white text-md">
+                                 Pty Ltd                                                                        
+                </span> */}
               </h1>
 
               {/* Typing text effect */}
@@ -444,85 +331,100 @@ const VideoHero = () => {
                   </svg>
                 </Link>
               </div>
+              
               {/* ISO Certifications */}
-<div className="flex items-center justify-center lg:justify-start space-x-4 xs:space-x-5 sm:space-x-6 ">
-  <img 
-    src="/logos/ISO_9001_Certified_col.png" 
-    alt="ISO 9001 Certified"
-    className="h-14 w-14 xs:h-20 xs:w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 object-contain"
-  />
-  
-  <img 
-    src="/logos/ISOIEC_27001_Certified_col.png" 
-    alt="ISO 27001 Certified"
-    className="h-14 w-14 xs:h-20 xs:w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 object-contain"
-  />
-</div>
-            
+              <div className="flex items-center justify-center lg:justify-start space-x-4 xs:space-x-5 sm:space-x-6 mt-4 xs:mt-6">
+                <img 
+                  src="/logos/ISO_9001_Certified_col.png" 
+                  alt="ISO 9001 Certified"
+                  className="h-16 w-16 xs:h-20 xs:w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 object-contain"
+                />
+                
+                <img 
+                  src="/logos/ISOIEC_27001_Certified_col.png" 
+                  alt="ISO 27001 Certified"
+                  className="h-16 w-16 xs:h-20 xs:w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 object-contain"
+                />
+              </div>
             </div>
 
-            {/* Right Content - Dynamic Horizontal Services Rotation */}
+            {/* Right Content - Vertical Marquee */}
             <div className={`flex justify-center items-center ${
-              isMobile ? 'w-full mt-4 xs:mt-6' : 
-              isTablet ? 'w-full mt-8 lg:w-1/2 lg:justify-center lg:pl-8' : 
-              'lg:w-1/2 lg:justify-center lg:pl-12 xl:pl-80'
+              isMobile ? 'w-full mt-8' : 
+              isTablet ? 'w-full mt-8 lg:w-1/2 lg:justify-center' : 
+              'lg:w-1/2 lg:justify-center'
             }`}>
               <div 
-                className="relative flex items-center justify-center"
+                className="relative overflow-hidden bg-black/30 backdrop-blur-sm rounded-2xl border border-white/20 shadow-2xl"
                 style={{
-                  width: `${circleDimensions.containerSize}px`,
-                  height: `${circleDimensions.containerSize}px`
+                  height: isMobile ? '300px' : isTablet ? '400px' : '500px',
+                  width: isMobile ? '280px' : isTablet ? '320px' : '380px'
                 }}
+                onMouseEnter={() => setIsMarqueePaused(true)}
+                onMouseLeave={() => setIsMarqueePaused(false)}
               >
-                {/* Central element - stays fixed */}
-                <div className="absolute inset-0 flex items-center justify-center z-10">
-                  <div 
-                    className="flex items-center justify-center text-white text-center shadow-2xl shadow-[#245684]/30"
-                    style={{
-                      width: `${circleDimensions.centerSize}px`,
-                      height: `${circleDimensions.centerSize}px`,
-                      padding: `${circleDimensions.centerSize * 0.15}px`
-                    }}
-                  >
-                    <div>
-                      <img 
-                        src="/images/Slogo.png" 
-                        alt="360° IT Solutions" 
-                        className="mx-auto mb-1 xs:mb-2"
-                        style={{
-                          width: `${circleDimensions.centerSize * 0.2}px`,
-                          height: `${circleDimensions.centerSize * 0.2}px`
-                        }} 
-                      />
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Services positioned around circle with dynamic rotation */}
-                {services.map((service, index) => {
-                  const angle = (index / services.length) * 360 + rotationAngle;
-                  
-                  return (
+                {/* Vertical Marquee Container */}
+                <div className={`flex flex-col ${isMarqueePaused ? '' : 'animate-vertical-marquee'}`}>
+                  {/* First set of services */}
+                  {services.map((service, index) => (
                     <div
                       key={index}
-                      className="absolute flex items-center justify-center text-center text-white font-medium cursor-pointer group transition-all z-20"
-                      style={{
-                        width: `${circleDimensions.serviceWidth}px`,
-                        height: `${circleDimensions.serviceHeight}px`,
-                        left: `calc(50% + ${circleDimensions.radius * Math.cos((angle * Math.PI) / 180)}px)`,
-                        top: `calc(50% + ${circleDimensions.radius * Math.sin((angle * Math.PI) / 180)}px)`,
-                        transform: 'translate(-50%, -50%)',
-                        transition: 'left 0.1s linear, top 0.1s linear'
-                      }}
+                      className="flex items-center justify-start p-4 xs:p-5 sm:p-6 text-white cursor-pointer group hover:bg-white/10 transition-all duration-300 border-b border-white/10"
                       onClick={() => handleServiceClick(service.link)}
                     >
-                      <div className="p-1 xs:p-2">
-                        <div className={circleDimensions.iconSize}>{service.icon}</div>
-                        <span className={`leading-tight ${circleDimensions.textSize}`}>{service.name}</span>
+                      <div className="mr-3 xs:mr-4 text-white group-hover:text-[#245684] transition-colors duration-300">
+                        {service.icon}
                       </div>
+                      <span className="font-medium text-sm xs:text-base sm:text-lg group-hover:text-[#245684] transition-colors duration-300">
+                        {service.name}
+                      </span>
+                      <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        className="h-4 w-4 xs:h-5 xs:w-5 ml-auto opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" 
+                        viewBox="0 0 20 20" 
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
                     </div>
-                  );
-                })}
+                  ))}
+                  
+                  {/* Duplicate for seamless loop */}
+                  {services.map((service, index) => (
+                    <div
+                      key={`dup-${index}`}
+                      className="flex items-center justify-start p-4 xs:p-5 sm:p-6 text-white cursor-pointer group hover:bg-white/10 transition-all duration-300 border-b border-white/10"
+                      onClick={() => handleServiceClick(service.link)}
+                    >
+                      <div className="mr-3 xs:mr-4 text-white group-hover:text-[#245684] transition-colors duration-300">
+                        {service.icon}
+                      </div>
+                      <span className="font-medium text-sm xs:text-base sm:text-lg group-hover:text-[#245684] transition-colors duration-300">
+                        {service.name}
+                      </span>
+                      <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        className="h-4 w-4 xs:h-5 xs:w-5 ml-auto opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" 
+                        viewBox="0 0 20 20" 
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Gradient overlays for smooth edges */}
+                <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-black/80 to-transparent pointer-events-none"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-black/80 to-transparent pointer-events-none"></div>
               </div>
             </div>
           </div>
@@ -550,6 +452,15 @@ const VideoHero = () => {
         .animate-marquee {
           animation: marquee 20s linear infinite;
         }
+        
+        @keyframes vertical-marquee {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(-50%); }
+        }
+        .animate-vertical-marquee {
+          animation: vertical-marquee 20s linear infinite;
+        }
+        
         @keyframes float {
           0% { transform: translateY(0px); }
           50% { transform: translateY(-10px); }
@@ -558,6 +469,7 @@ const VideoHero = () => {
         .animate-float {
           animation: float 5s infinite ease-in-out;
         }
+        
         @keyframes pulse-slow {
           0%, 100% { opacity: 1; }
           50% { opacity: 0.5; }
@@ -565,6 +477,7 @@ const VideoHero = () => {
         .animate-pulse-slow {
           animation: pulse-slow 3s infinite;
         }
+        
         @keyframes scroll {
           0% { transform: translateY(0); opacity: 1; }
           100% { transform: translateY(10px); opacity: 0; }
@@ -572,6 +485,7 @@ const VideoHero = () => {
         .animate-scroll {
           animation: scroll 2s infinite;
         }
+        
         .bg-grid-pattern {
           background-image: linear-gradient(to right, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
                             linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
@@ -610,12 +524,10 @@ const VideoHero = () => {
       <style jsx>{`
         .service-icon {
           display: inline-block;
-          margin-right: 0.25rem;
         }
         @media (max-width: 320px) {
           .service-icon {
             font-size: 0.875rem;
-            margin-right: 0.125rem;
           }
         }
         @media (min-width: 321px) and (max-width: 375px) {

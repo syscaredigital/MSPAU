@@ -22,7 +22,10 @@ import {
   FiTrendingUp,
   FiBriefcase,
   FiMonitor,
-  FiArrowLeft
+  FiArrowLeft,
+  FiPhone,
+  FiMail,
+  FiClock
 } from "react-icons/fi";
 
 const Navigation = () => {
@@ -92,10 +95,12 @@ const Navigation = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Enhanced scroll handling for fixed navigation
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
+      // Show/hide based on scroll direction
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setIsVisible(false);
         setServicesHover(false);
@@ -107,6 +112,7 @@ const Navigation = () => {
       setLastScrollY(currentScrollY);
     };
 
+    // Use passive listener for better performance
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
@@ -122,7 +128,7 @@ const Navigation = () => {
   const servicesData = [
     {
       id: "cloud",
-      name: "Cloud Services",
+      name: "Cloud",
       icon: <FiCloud className="text-xl" />,
       subCategories: [
         { name: "Cloud Solutions", url: "/SysCare-Private-Cloud", icon: <FiCloud className="text-lg" /> },
@@ -199,7 +205,7 @@ const Navigation = () => {
     <div 
       ref={megaMenuRef}
       className={`absolute left-1/2 transform -translate-x-1/2 top-full w-[900px] bg-gradient-to-br from-white to-gray-50 shadow-2xl rounded-2xl z-50 border border-gray-200 transition-all duration-300 ${
-        megaMenuHover ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
+        megaMenuHover ? 'opacity-100 scale-100 visible' : 'opacity-0 scale-95 invisible'
       }`}
       onMouseEnter={() => setMegaMenuHover(true)}
       onMouseLeave={() => setMegaMenuHover(false)}
@@ -368,157 +374,207 @@ const Navigation = () => {
   );
 
   return (
-    <nav
-      className={`bg-gradient-to-r from-[#103d5d] to-[#1a4a6e] shadow-2xl sticky top-0 z-50 transition-all duration-500 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 md:h-20">
-          {/* Logo */}
-          <div className="flex items-center">
-            <Link 
-              to="/" 
-              className="flex-shrink-0 flex items-center"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                setServicesHover(false);
-                setMobileMegaMenuOpen(false);
-              }}
-            >
-              <img
-                src="/logos/White-Sys.svg"
-                alt="SysCare Logo"
-                className="hidden md:block h-20 w-auto object-contain transform hover:scale-105 transition-transform duration-300"
-              />
-              <img
-                src="/logos/White-Sys.svg"
-                alt="SysCare Logo"
-                className="block md:hidden h-8 w-auto object-contain"
-              />
-            </Link>
-          </div>
+    <>
+      {/* Top Contact Bar */}
+      <div className="fixed top-0 left-0 right-0 bg-gradient-to-r from-white to-white text-[#103d5d] text-sm z-50 border-b border-[#245684]/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-2">
+            {/* Left side - Contact Info */}
+            <div className="flex items-center space-x-6">
+              <div className="flex items-center space-x-2">
+                <FiPhone className="text-[#a3d4ff] text-xs" />
+                <a 
+                  href="tel:+1234567890" 
+                  className="hover:text-[#a3d4ff] transition-colors duration-300 text-xs"
+                >
+                  1300 69 79 72
+                </a>
+              </div>
+              <div className="flex items-center space-x-2">
+                <FiMail className="text-[#a3d4ff] text-xs" />
+                <a 
+                  href="mailto:info@syscare.com" 
+                  className="hover:text-[#a3d4ff] transition-colors duration-300 text-xs"
+                >
+                 info@syscare.com.au
+                </a>
+              </div>
+            </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-4 lg:space-x-8">
+            {/* Right side - Working Hours */}
+            <div className="hidden md:flex items-center space-x-2">
+              <FiClock className="text-[#a3d4ff] text-xs" />
+              <span className="text-xs">Mon - Fri: 8:00 AM - 5:00 PM</span>
+            </div>
+
+            {/* Mobile - Only show phone */}
+            <div className="md:hidden flex items-center space-x-2">
+              <FiPhone className="text-[#a3d4ff] text-xs" />
+              <a 
+                href="tel:+1234567890" 
+                className="hover:text-[#a3d4ff] transition-colors duration-300 text-xs"
+              >
+                Call Us
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Navigation */}
+      <nav
+        className={`fixed top-8 left-0 right-0 bg-gradient-to-r from-[#103d5d] to-[#1a4a6e] shadow-2xl z-40 transition-transform duration-300 ${
+          isVisible ? "translate-y-0" : "-translate-y-full"
+        }`}
+        style={{ top: '32px' }} // Adjust based on top bar height
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16 md:h-20">
+            {/* Logo */}
+            <div className="flex items-center">
+              <Link 
+                to="/" 
+                className="flex-shrink-0 flex items-center"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setServicesHover(false);
+                  setMobileMegaMenuOpen(false);
+                }}
+              >
+                <img
+                  src="/logos/White-Sys.svg"
+                  alt="SysCare Logo"
+                  className="hidden md:block h-24 w-auto object-contain transform hover:scale-105 transition-transform duration-300"
+                />
+                <img
+                  src="/logos/White-Sys.svg"
+                  alt="SysCare Logo"
+                  className="block md:hidden h-8 w-auto object-contain"
+                />
+              </Link>
+            </div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-4 lg:space-x-8">
+              <Link
+                to="/"
+                className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] hover:bg-white/10 rounded-lg"
+                onClick={() => setServicesHover(false)}
+              >
+                Home
+              </Link>
+              <Link
+                to="/about-us"
+                className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] hover:bg-white/10 rounded-lg"
+                onClick={() => setServicesHover(false)}
+              >
+                About Us
+              </Link>
+
+              {/* Services with Desktop Mega Menu */}
+              <div
+                className="relative h-full flex items-center"
+                ref={servicesButtonRef}
+              >
+                <button
+                  onMouseEnter={() => {
+                    setServicesHover(true);
+                    setMegaMenuHover(true);
+                  }}
+                  className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] flex items-center hover:bg-white/10 rounded-lg"
+                >
+                  Services
+                  <FiChevronDown
+                    className={`ml-1 transition-transform duration-200 ${
+                      servicesHover ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                <DesktopMegaMenu />
+              </div>
+
+              <Link
+                to="/contact-Us"
+                className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] hover:bg-white/10 rounded-lg"
+                onClick={() => setServicesHover(false)}
+              >
+                Contact Us
+              </Link>
+              <Link
+                to="/get-quote"
+                className="bg-gradient-to-r from-white to-gray-100 hover:from-[#103d5d] hover:to-[#245684] border-white text-[#1a3d6b] hover:text-white px-4 lg:px-6 py-2 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 border-2 shadow-lg hover:shadow-xl"
+                onClick={() => setServicesHover(false)}
+              >
+                Get Quote
+              </Link>
+            </div>
+
+            {/* Mobile menu button */}
+            <div className="md:hidden flex items-center">
+              <button
+                onClick={toggleMobileMenu}
+                className="text-white hover:text-[#a3d4ff] focus:outline-none transition-all duration-300 bg-white/10 p-2 rounded-lg border border-white/20 hover:border-white/40"
+              >
+                {mobileMenuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Navigation Menu */}
+        <div className={`md:hidden bg-gradient-to-b from-[#0d3452] to-[#103d5d] transition-all duration-500 ease-in-out shadow-inner overflow-hidden border-t border-[#a3d4ff]/20 ${
+          mobileMenuOpen ? 'max-h-[80vh] opacity-100' : 'max-h-0 opacity-0'
+        }`}>
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link
               to="/"
-              className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] hover:bg-white/10 rounded-lg"
-              onClick={() => setServicesHover(false)}
+              className="text-white hover:text-[#a3d4ff] block px-3 py-3 font-medium transition-all duration-300 transform hover:translate-x-2 rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20"
+              onClick={toggleMobileMenu}
             >
               Home
             </Link>
             <Link
               to="/about-us"
-              className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] hover:bg-white/10 rounded-lg"
-              onClick={() => setServicesHover(false)}
+              className="text-white hover:text-[#a3d4ff] block px-3 py-3 font-medium transition-all duration-300 transform hover:translate-x-2 rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20"
+              onClick={toggleMobileMenu}
             >
               About Us
             </Link>
 
-            {/* Services with Desktop Mega Menu */}
-            <div
-              className="relative h-full flex items-center"
-              ref={servicesButtonRef}
+            {/* Mobile Services Button */}
+            <button
+              data-mobile-services-button
+              onClick={openMobileMegaMenu}
+              className="text-white hover:text-[#a3d4ff] w-full text-left px-3 py-3 font-medium transition-all duration-300 flex justify-between items-center rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20"
             >
-              <button
-                onMouseEnter={() => {
-                  setServicesHover(true);
-                  setMegaMenuHover(true);
-                }}
-                className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] flex items-center hover:bg-white/10 rounded-lg"
-              >
+              <span className="flex items-center">
                 Services
-                <FiChevronDown
-                  className={`ml-1 transition-transform duration-200 ${
-                    servicesHover ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-
-              <DesktopMegaMenu />
-            </div>
+              </span>
+              <FiChevronDown className="transition-transform duration-200" />
+            </button>
 
             <Link
               to="/contact-Us"
-              className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] hover:bg-white/10 rounded-lg"
-              onClick={() => setServicesHover(false)}
+              className="text-white hover:text-[#a3d4ff] block px-3 py-3 font-medium transition-all duration-300 transform hover:translate-x-2 rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20"
+              onClick={toggleMobileMenu}
             >
               Contact Us
             </Link>
             <Link
               to="/get-quote"
-              className="bg-gradient-to-r from-white to-gray-100 hover:from-[#103d5d] hover:to-[#245684] border-white text-[#1a3d6b] hover:text-white px-4 lg:px-6 py-2 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 border-2 shadow-lg hover:shadow-xl"
-              onClick={() => setServicesHover(false)}
+              className="bg-gradient-to-r from-[#245684] to-[#1a3d6b] hover:from-[#1a3d6b] hover:to-[#245684] text-white block px-6 py-3 rounded-xl font-medium transition-all duration-300 mx-3 my-2 text-center transform hover:scale-105 shadow-lg border-2 border-[#1a3d6b] hover:border-[#103d5d]"
+              onClick={toggleMobileMenu}
             >
               Get Quote
             </Link>
           </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
-            <button
-              onClick={toggleMobileMenu}
-              className="text-white hover:text-[#a3d4ff] focus:outline-none transition-all duration-300 bg-white/10 p-2 rounded-lg border border-white/20 hover:border-white/40"
-            >
-              {mobileMenuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
-            </button>
-          </div>
         </div>
-      </div>
 
-      {/* Mobile Navigation Menu */}
-      <div className={`md:hidden bg-gradient-to-b from-[#0d3452] to-[#103d5d] transition-all duration-500 ease-in-out shadow-inner overflow-hidden border-t border-[#a3d4ff]/20 ${
-        mobileMenuOpen ? 'max-h-[80vh] opacity-100' : 'max-h-0 opacity-0'
-      }`}>
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <Link
-            to="/"
-            className="text-white hover:text-[#a3d4ff] block px-3 py-3 font-medium transition-all duration-300 transform hover:translate-x-2 rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20"
-            onClick={toggleMobileMenu}
-          >
-            Home
-          </Link>
-          <Link
-            to="/about-us"
-            className="text-white hover:text-[#a3d4ff] block px-3 py-3 font-medium transition-all duration-300 transform hover:translate-x-2 rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20"
-            onClick={toggleMobileMenu}
-          >
-            About Us
-          </Link>
-
-          {/* Mobile Services Button */}
-          <button
-            data-mobile-services-button
-            onClick={openMobileMegaMenu}
-            className="text-white hover:text-[#a3d4ff] w-full text-left px-3 py-3 font-medium transition-all duration-300 flex justify-between items-center rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20"
-          >
-            <span className="flex items-center">
-              Services
-            </span>
-            <FiChevronDown className="transition-transform duration-200" />
-          </button>
-
-          <Link
-            to="/contact-Us"
-            className="text-white hover:text-[#a3d4ff] block px-3 py-3 font-medium transition-all duration-300 transform hover:translate-x-2 rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20"
-            onClick={toggleMobileMenu}
-          >
-            Contact Us
-          </Link>
-          <Link
-            to="/get-quote"
-            className="bg-gradient-to-r from-[#245684] to-[#1a3d6b] hover:from-[#1a3d6b] hover:to-[#245684] text-white block px-6 py-3 rounded-xl font-medium transition-all duration-300 mx-3 my-2 text-center transform hover:scale-105 shadow-lg border-2 border-[#1a3d6b] hover:border-[#103d5d]"
-            onClick={toggleMobileMenu}
-          >
-            Get Quote
-          </Link>
-        </div>
-      </div>
-
-      {/* Mobile Mega Menu Overlay */}
-      <MobileMegaMenu />
-    </nav>
+        {/* Mobile Mega Menu Overlay */}
+        <MobileMegaMenu />
+      </nav>
+    </>
   );
 };
 

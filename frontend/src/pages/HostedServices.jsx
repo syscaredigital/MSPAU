@@ -275,7 +275,7 @@ const HostedServicesPage = () => {
             }}
           >
             <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">SysCare Hosted Services</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#103d5d] mb-8">Hosted Services - SysCare IT Solutions</h2>
               <p className="text-[#4a5d72] text-md mb-8 leading-relaxed">
                 In today’s business world, reliable communication, collaboration, and data protection are critical for success. At SysCare IT Solutions Pty Ltd, we provide Hosted Solutions that empower organizations with secure, scalable, and fully managed email, backup, and collaboration tools. Our solutions are designed to reduce IT overheads, minimize downtime, and protect critical business information, giving you the confidence to focus on growth.
               </p>

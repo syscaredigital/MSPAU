@@ -14,7 +14,7 @@ const Footer = () => {
               <img 
                 src='/logos/White-Sys.svg' 
                 alt='SysCare Logo' 
-                className='h-20 lg:h-20 w-auto object-contain'
+                className='h-24 lg:h-24 w-auto object-contain'
               />
             </div>
             <p className="text-white/90 mb-6 max-w-lg mx-auto md:mx-0 leading-relaxed text-justify md:text-left text-sm">
@@ -81,7 +81,7 @@ const Footer = () => {
               {/* Office Hours */}
               <div className="mt-4 p-3 lg:p-4 bg-[#245684] rounded-lg">
                 <p className="text-white font-semibold text-sm mb-2">Office Hours</p>
-                <p className="text-white/80 text-xs">Mon - Fri: 8:00 AM - 6:00 PM</p>
+                <p className="text-white/80 text-xs">Mon - Fri: 8:00 AM - 5:00 PM</p>
                 <p className="text-white/80 text-xs">Emergency Support: 24/7</p>
               </div>
             </div>

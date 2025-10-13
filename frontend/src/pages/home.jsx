@@ -4,7 +4,6 @@ import Navigation from '../components/Navigation.jsx';
 import VideoHero from '../components/hero.jsx';
 import Footer from '../components/footer.jsx';
 
-
 // Add CSS animations and background styles
 const animationStyles = `
   @keyframes fadeInUp {
@@ -300,10 +299,32 @@ const animationStyles = `
 
   /* Section-specific backgrounds */
   .services-background {
+    position: relative;
     background: 
       linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%),
+      url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80') center/cover fixed,
       radial-gradient(circle at 20% 80%, rgba(16, 61, 93, 0.03) 0%, transparent 50%),
       radial-gradient(circle at 80% 20%, rgba(36, 86, 132, 0.03) 0%, transparent 50%);
+    background-blend-mode: overlay, normal;
+  }
+
+  .services-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(248, 250, 252, 0.92) 100%),
+      radial-gradient(circle at 20% 30%, rgba(16, 61, 93, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(36, 86, 132, 0.05) 0%, transparent 50%);
+    z-index: 1;
+  }
+
+  .services-content {
+    position: relative;
+    z-index: 2;
   }
 
   .industries-background {
@@ -608,6 +629,10 @@ const animationStyles = `
       width: 60px;
       height: 60px;
       font-size: 1.5rem;
+    }
+
+    .services-background {
+      background-attachment: scroll;
     }
   }
 `;
@@ -1053,13 +1078,13 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* Services Section - Enhanced with new background */}
+        {/* Services Section - Enhanced with background image */}
         <div className="services-background py-16 md:py-24 relative overflow-hidden border border-gray-200 rounded-lg mx-4 sm:mx-6 lg:mx-8">
           {/* Animated background elements */}
           <div className="absolute -top-24 -left-24 w-48 h-48 rounded-full bg-blue-100 opacity-30 animate-pulse-slower"></div>
           <div className="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-blue-200 opacity-20 animate-pulse-slower" style={{animationDelay: '1s'}}></div>
           
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 services-content">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4 animate-fade-in">
                 Our Managed IT & Security Solutions
