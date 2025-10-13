@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FiGlobe, FiServer, FiCloud, FiShield, FiUserPlus, FiPackage, FiBook, FiSmartphone, FiMenu, FiX } from "react-icons/fi";
+import { FiGlobe, FiServer, FiCloud, FiShield, FiUserPlus, FiPackage, FiBook, FiSmartphone, FiMenu, FiX, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 const VideoHero = () => {
   const imageRef = useRef(null);
@@ -14,6 +14,8 @@ const VideoHero = () => {
   const [isMarqueePaused, setIsMarqueePaused] = useState(false);
   const [deviceSize, setDeviceSize] = useState('desktop');
   const [imageSource, setImageSource] = useState('');
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const navigate = useNavigate();
 
   // Device breakpoints
@@ -28,33 +30,80 @@ const VideoHero = () => {
     monitor: 2560   // 27" WQHD / large screen
   };
 
-  // Different image sources for different devices
-  const imageSources = {
-    mobileS: '/video/hero-image.jpg',
-    mobileM: '/video/hero-image.jpg',
-    mobileL: '/video/hero-image.jpg',
-    tablet: '/video/hero-image.jpg',
-    laptop: '/video/hero-image.jpg',
-    laptopL: '/video/hero-image.jpg',
-    desktop: '/video/hero-image.jpg',
-    monitor: '/video/hero-image.jpg'
+  // Different image sources for different devices - UPDATED FOR SLIDER
+  const sliderImages = {
+    mobileS: [
+      '/video/hero-image.jpg',
+      '/video/hero-image2.jpg',
+      '/video/hero-image3.jpg',
+      '/video/hero-image4.jpg',
+      '/video/hero-image5.jpg'
+    ],
+    mobileM: [
+      '/video/hero-image.jpg',
+      '/video/hero-image2.jpg',
+      '/video/hero-image3.jpg',
+      '/video/hero-image4.jpg',
+      '/video/hero-image5.jpg'
+    ],
+    mobileL: [
+      '/video/hero-image.jpg',
+      '/video/hero-image2.jpg',
+      '/video/hero-image3.jpg',
+      '/video/hero-image4.jpg',
+      '/video/hero-image5.jpg'
+    ],
+    tablet: [
+      '/video/hero-image.jpg',
+      '/video/hero-image2.jpg',
+      '/video/hero-image3.jpg',
+      '/video/hero-image4.jpg',
+      '/video/hero-image5.jpg'
+    ],
+    laptop: [
+      '/video/hero-image.jpg',
+      '/video/hero-image2.jpg',
+      '/video/hero-image3.jpg',
+      '/video/hero-image4.jpg',
+      '/video/hero-image5.jpg'
+    ],
+    laptopL: [
+      '/video/hero-image.jpg',
+      '/video/hero-image2.jpg',
+      '/video/hero-image3.jpg',
+      '/video/hero-image4.jpg',
+      '/video/hero-image5.jpg'
+    ],
+    desktop: [
+      '/video/hero-image.jpg',
+      '/video/hero-image2.jpg',
+      '/video/hero-image3.jpg',
+      '/video/hero-image4.jpg',
+      '/video/hero-image5.jpg'
+    ],
+    monitor: [
+      '/video/hero-image.jpg',
+      '/video/hero-image2.jpg',
+      '/video/hero-image3.jpg',
+      '/video/hero-image4.jpg',
+      '/video/hero-image5.jpg'
+    ]
   };
 
   // Fallback image sources if some sizes are not available
-  const getImageSource = (device) => {
-    // If you don't have images for all sizes, you can use fallbacks
+  const getImageSource = (device, slideIndex) => {
     const fallbackSources = {
-      mobileS: imageSources.mobileS || imageSources.mobileM || imageSources.mobileL || imageSources.tablet,
-      mobileM: imageSources.mobileM || imageSources.mobileL || imageSources.tablet,
-      mobileL: imageSources.mobileL || imageSources.tablet,
-      tablet: imageSources.tablet || imageSources.laptop,
-      laptop: imageSources.laptop || imageSources.laptopL || imageSources.desktop,
-      laptopL: imageSources.laptopL || imageSources.desktop,
-      desktop: imageSources.desktop || imageSources.monitor,
-      monitor: imageSources.monitor || imageSources.desktop
+      mobileS: sliderImages.mobileS?.[slideIndex] || sliderImages.mobileM?.[slideIndex] || sliderImages.mobileL?.[slideIndex] || sliderImages.tablet?.[slideIndex],
+      mobileM: sliderImages.mobileM?.[slideIndex] || sliderImages.mobileL?.[slideIndex] || sliderImages.tablet?.[slideIndex],
+      mobileL: sliderImages.mobileL?.[slideIndex] || sliderImages.tablet?.[slideIndex],
+      tablet: sliderImages.tablet?.[slideIndex] || sliderImages.laptop?.[slideIndex],
+      laptop: sliderImages.laptop?.[slideIndex] || sliderImages.laptopL?.[slideIndex] || sliderImages.desktop?.[slideIndex],
+      laptopL: sliderImages.laptopL?.[slideIndex] || sliderImages.desktop?.[slideIndex],
+      desktop: sliderImages.desktop?.[slideIndex] || sliderImages.monitor?.[slideIndex],
+      monitor: sliderImages.monitor?.[slideIndex] || sliderImages.desktop?.[slideIndex]
     };
     
-    return fallbackSources[device] || imageSources.desktop;
+    return fallbackSources[device] || sliderImages.desktop?.[slideIndex] || '/video/hero-image1.jpg';
   };
 
   const services = [
@@ -115,7 +164,7 @@ const VideoHero = () => {
       setDeviceSize(currentDeviceSize);
       
       // Set appropriate image source based on device size
-      const newImageSource = getImageSource(currentDeviceSize);
+      const newImageSource = getImageSource(currentDeviceSize, currentSlide);
       setImageSource(newImageSource);
     };
 
@@ -124,7 +173,25 @@ const VideoHero = () => {
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [currentSlide]);
+
+  // Image slider auto-play effect
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+
+    const slideInterval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % 5);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(slideInterval);
+  }, [isAutoPlaying]);
+
+  // Update image source when slide changes
+  useEffect(() => {
+    const newImageSource = getImageSource(deviceSize, currentSlide);
+    setImageSource(newImageSource);
+    setIsImageLoaded(false);
+  }, [currentSlide, deviceSize]);
 
   useEffect(() => {
     const image = imageRef.current;
@@ -178,6 +245,25 @@ const VideoHero = () => {
     navigate(serviceLink);
   };
 
+  // Slider navigation functions
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % 5);
+    setIsAutoPlaying(false);
+    setTimeout(() => setIsAutoPlaying(true), 10000); // Resume auto-play after 10 seconds
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + 5) % 5);
+    setIsAutoPlaying(false);
+    setTimeout(() => setIsAutoPlaying(true), 10000); // Resume auto-play after 10 seconds
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+    setIsAutoPlaying(false);
+    setTimeout(() => setIsAutoPlaying(true), 10000); // Resume auto-play after 10 seconds
+  };
+
   // Helper function to check if device is mobile - FIXED
   const isMobile = deviceSize === 'mobileS' || deviceSize === 'mobileM' || deviceSize === 'mobileL';
   const isTablet = deviceSize === 'tablet';
@@ -220,19 +306,73 @@ const VideoHero = () => {
         </div>
       </div>
 
-      {/* Image Background */}
-      <img
-        ref={imageRef}
-        src={imageSource}
-        alt="SysCare IT Solutions Background"
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-          isImageLoaded ? 'opacity-50' : 'opacity-0'
-        }`}
-        key={imageSource}
-      />
+      {/* Image Background Slider */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
+        {/* Current Slide */}
+        <img
+          ref={imageRef}
+          src={imageSource}
+          alt={`SysCare IT Solutions Background ${currentSlide + 1}`}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+            isImageLoaded ? 'opacity-50' : 'opacity-0'
+          }`}
+          key={imageSource}
+        />
+
+        {/* Previous Slide for smooth transition */}
+        <img
+          src={getImageSource(deviceSize, (currentSlide - 1 + 5) % 5)}
+          alt="Previous slide"
+          className="absolute inset-0 w-full h-full object-cover opacity-0"
+        />
+
+        {/* Next Slide for smooth transition */}
+        <img
+          src={getImageSource(deviceSize, (currentSlide + 1) % 5)}
+          alt="Next slide"
+          className="absolute inset-0 w-full h-full object-cover opacity-0"
+        />
+      </div>
+
+      {/* Slider Controls */}
+      <div className="absolute inset-0 z-10 flex items-center justify-between px-3 xs:px-4 sm:px-6 lg:px-8">
+        {/* Previous Button */}
+        <button
+          onClick={prevSlide}
+          className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black/30 hover:bg-black/50 text-white rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border border-white/20"
+          aria-label="Previous image"
+        >
+          <FiChevronLeft className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
+        </button>
+
+        {/* Next Button */}
+        <button
+          onClick={nextSlide}
+          className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black/30 hover:bg-black/50 text-white rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border border-white/20"
+          aria-label="Next image"
+        >
+          <FiChevronRight className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
+        </button>
+      </div>
+
+      {/* Slider Indicators */}
+      <div className="absolute bottom-20 xs:bottom-24 sm:bottom-28 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2 xs:space-x-3">
+        {[0, 1, 2, 3, 4].map((index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`w-2 h-2 xs:w-3 xs:h-3 rounded-full transition-all duration-300 ${
+              currentSlide === index 
+                ? 'bg-white scale-125' 
+                : 'bg-white/50 hover:bg-white/70'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
 
       {/* Animated grid pattern overlay */}
-      <div className="absolute inset-0 z-0 opacity-5 bg-grid-pattern "></div>
+      <div className="absolute inset-0 z-0 opacity-5 bg-grid-pattern"></div>
 
       {/* Floating particles - Responsive count */}
       <div className="absolute inset-0 z-0">
