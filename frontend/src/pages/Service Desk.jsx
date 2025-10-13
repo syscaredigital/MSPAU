@@ -65,19 +65,19 @@ const ServiceDeskPage = () => {
 
   const services = [
     {
-      title: "Help Desk Support Ticketing System, Guaranteed SLA Response Time",
+      title: "Help Desk Support Ticketing System",
       icon: <FiCloud className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions delivers unparalleled Help Desk (Service Desk) Support through an advanced Ticketing System, ensuring seamless issue resolution. Our dedicated team commits to a Guaranteed SLA Response Time, prioritizing your business continuity. Experience efficient and reliable support, where every concern is addressed promptly and effectively. With SysCare, rest assured that your IT challenges are met with precision and adherence to service level agreements. Elevate your operational efficiency with our comprehensive Help Desk Support services.",
       image: "/images/Help-Desk.png"
     },
     {
-      title: "Remote IT User Support (Level 1 to Level 3 Covered)",
+      title: "Remote IT User Support ",
       icon: <FiServer className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions provides unparalleled Remote IT User Support, covering Levels 1 to 3, ensuring a seamless and responsive user experience. Our highly skilled support team is equipped to handle a broad spectrum of issues, from basic troubleshooting (Level 1) to advanced problem resolution (Level 3). With a commitment to efficiency and client satisfaction, SysCare ensures swift and expert assistance, minimizing downtime and maximizing productivity. Trust us to elevate your IT user support experience with our comprehensive and tailored solutions. Your success is our priority.",
       image: "/images/Remote-IT-User-Support .png"
     },
     {
-      title: "On-Site IT Support (Level 1 to Level 3 Covered) # [Per Hr, Min 2 Hrs/Visit, No Call Out/Travel Charges within 30km of CBD]",
+      title: "On-Site Support ",
       icon: <FiCpu className="text-[#245684] text-2xl" />,
       content: "SysCare IT Solutions provides comprehensive On-Site IT Support, encompassing Level 1 to Level 3 assistance, ensuring a seamless resolution of issues. Our skilled professionals are at your service, with a minimum commitment of 2 hours per visit and absolutely no call-out or travel charges. Tailored to meet your specific needs, our On-Site Support guarantees prompt and efficient solutions, allowing your business to thrive without interruption. Trust SysCare for reliable, professional IT support that goes the extra mile.",
       image: "/images/On-Site-IT-Support.png"
