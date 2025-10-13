@@ -115,7 +115,7 @@ const handleSubmit = async (e) => {
       <Header />
       
       {/* Contact Header Section */}
-      <div className="relative bg-gradient-to-br from-[#103d5d] to-[#245684] text-white pb-32 pt-24 md:pt-32 px-4 md:px-8 lg:px-16 overflow-hidden" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0 100%)' }}>
+      <div className="relative bg-gradient-to-br from-[#103d5d] to-[#245684] text-white pb-32 pt-32 md:pt-40 lg:pt-48 px-4 md:px-8 lg:px-16 overflow-hidden" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0 100%)' }}>
         {/* Background decorative elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-64 h-64 rounded-full border-2 border-white"></div>

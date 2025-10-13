@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Navigation from '../components/Navigation.jsx';
 import VideoHero from '../components/hero.jsx';
 import Footer from '../components/footer.jsx';
+import aboutus_video from '../assets/website_video/aboutus_video.mp4';
 
 // Add CSS animations and background styles
 const animationStyles = `
@@ -1063,17 +1064,12 @@ const HomePage = () => {
                 muted 
                 playsInline 
                 className="cyber-video"
-                poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+               
               >
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-digital-waves-9885-large.mp4" type="video/mp4" />
+                <source src={aboutus_video} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
-              <div className="cyber-video-overlay">
-                <div className="text-center p-6">
-                  <h3 className="text-2xl font-bold mb-4">Cybersecurity & Technology</h3>
-                  <p className="text-lg">Protecting your digital assets with cutting-edge solutions</p>
-                </div>
-              </div>
+              
             </div>
           </div>
         </div>

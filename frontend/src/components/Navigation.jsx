@@ -119,10 +119,16 @@ const Navigation = () => {
 
   // Close mobile menu when route changes
   useEffect(() => {
-    setMobileMenuOpen(false);
-    setMobileMegaMenuOpen(false);
-    setActiveMobileCategory(null);
-  }, [window.location.pathname]);
+    const handleRouteChange = () => {
+      setMobileMenuOpen(false);
+      setMobileMegaMenuOpen(false);
+      setActiveMobileCategory(null);
+    };
+
+    // You might want to use a router event listener here
+    // For now, we'll use a simple implementation
+    handleRouteChange();
+  }, []);
 
   // Services menu data
   const servicesData = [
@@ -375,10 +381,10 @@ const Navigation = () => {
 
   return (
     <>
-      {/* Top Contact Bar */}
-      <div className="fixed top-0 left-0 right-0 bg-gradient-to-r from-white to-white text-[#103d5d] text-sm z-50 border-b border-[#245684]/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-2">
+      {/* Fixed Top Contact Bar */}
+      <div className="fixed top-0 left-0 right-0 bg-gradient-to-r from-white to-white text-[#103d5d] text-sm z-50 border-b border-[#245684]/30 h-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+          <div className="flex justify-between items-center h-full">
             {/* Left side - Contact Info */}
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-2">
@@ -421,12 +427,11 @@ const Navigation = () => {
         </div>
       </div>
 
-      {/* Main Navigation */}
+      {/* Fixed Main Navigation */}
       <nav
         className={`fixed top-8 left-0 right-0 bg-gradient-to-r from-[#103d5d] to-[#1a4a6e] shadow-2xl z-40 transition-transform duration-300 ${
           isVisible ? "translate-y-0" : "-translate-y-full"
         }`}
-        style={{ top: '32px' }} // Adjust based on top bar height
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 md:h-20">
@@ -574,6 +579,9 @@ const Navigation = () => {
         {/* Mobile Mega Menu Overlay */}
         <MobileMegaMenu />
       </nav>
+
+      {/* Spacer to prevent content from being hidden behind fixed nav */}
+      <div className="h-24"></div>
     </>
   );
 };

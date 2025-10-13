@@ -165,3 +165,6 @@ body {
 .animate-rotate-stats {
   animation: rotate-stats 9s ease-in-out infinite;
 }
+html {
+  scroll-padding-top: 8rem; /* Adjust based on your navigation height */
+}
