@@ -10,27 +10,28 @@ const VideoHero = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(50); // Faster initial speed
+  const [typingSpeed, setTypingSpeed] = useState(50);
   const [isMarqueePaused, setIsMarqueePaused] = useState(false);
   const [deviceSize, setDeviceSize] = useState('desktop');
   const [imageSource, setImageSource] = useState('');
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [slideTransition, setSlideTransition] = useState(true);
   const navigate = useNavigate();
 
   // Device breakpoints
   const breakpoints = {
-    mobileS: 320,   // small phones
-    mobileM: 375,   // medium phones
-    mobileL: 425,   // large phones
-    tablet: 768,    // tablets
-    laptop: 1024,   // small laptops
-    laptopL: 1440,  // standard desktops
-    desktop: 1920,  // full HD desktop
-    monitor: 2560   // 27" WQHD / large screen
+    mobileS: 320,
+    mobileM: 375,
+    mobileL: 425,
+    tablet: 768,
+    laptop: 1024,
+    laptopL: 1440,
+    desktop: 1920,
+    monitor: 2560
   };
 
-  // Different image sources for different devices - UPDATED FOR SLIDER
+  // Different image sources for different devices - UPDATED WITH ACTUAL IMAGES
   const sliderImages = {
     mobileS: [
       '/video/hero-image1.jpg',
@@ -136,7 +137,6 @@ const VideoHero = () => {
     { name: "Cloud Training", link: "/Cloud", icon: <FiServer className="service-icon" /> },
   ];
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const typingTexts = [
     "Managed IT Services in Melbourne & Sydney",
     "24/7 IT Support & Cybersecurity Solutions",
@@ -175,11 +175,12 @@ const VideoHero = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [currentSlide]);
 
-  // Image slider auto-play effect
+  // Image slider auto-play effect - FIXED
   useEffect(() => {
     if (!isAutoPlaying) return;
 
     const slideInterval = setInterval(() => {
+      setSlideTransition(true);
       setCurrentSlide((prev) => (prev + 1) % 5);
     }, 5000); // Change slide every 5 seconds
 
@@ -193,6 +194,7 @@ const VideoHero = () => {
     setIsImageLoaded(false);
   }, [currentSlide, deviceSize]);
 
+  // Image load handler
   useEffect(() => {
     const image = imageRef.current;
     if (!image) return;
@@ -202,20 +204,31 @@ const VideoHero = () => {
     };
 
     const handleError = () => {
-      console.error("Image failed to load");
+      console.error("Image failed to load:", imageSource);
       setIsImageLoaded(false);
+      // Fallback to first image if current fails
+      if (currentSlide !== 0) {
+        setTimeout(() => {
+          setCurrentSlide(0);
+        }, 1000);
+      }
     };
 
-    image.addEventListener('load', handleLoad);
-    image.addEventListener('error', handleError);
+    // If image source changes and it's already loaded, trigger load
+    if (image.complete && image.src === imageSource) {
+      setIsImageLoaded(true);
+    } else {
+      image.addEventListener('load', handleLoad);
+      image.addEventListener('error', handleError);
+    }
 
     return () => {
       image.removeEventListener('load', handleLoad);
       image.removeEventListener('error', handleError);
     };
-  }, [imageSource]);
+  }, [imageSource, currentSlide]);
 
-  // Typing effect - FASTER VERSION
+  // Typing effect
   useEffect(() => {
     const handleTyping = () => {
       const currentText = typingTexts[currentTextIndex];
@@ -226,13 +239,13 @@ const VideoHero = () => {
       setCurrentWordIndex(updatedWord.length);
 
       if (!isDeleting && updatedWord === currentText) {
-        setTimeout(() => setIsDeleting(true), 500); // Shorter pause before deleting
+        setTimeout(() => setIsDeleting(true), 500);
       } else if (isDeleting && updatedWord === '') {
         setIsDeleting(false);
         setCurrentTextIndex((prev) => (prev + 1) % typingTexts.length);
-        setTypingSpeed(40); // Faster start for next text
+        setTypingSpeed(40);
       } else {
-        setTypingSpeed(isDeleting ? 20 : 30); // Much faster typing and deleting
+        setTypingSpeed(isDeleting ? 20 : 30);
       }
     };
 
@@ -245,67 +258,66 @@ const VideoHero = () => {
     navigate(serviceLink);
   };
 
-  // Slider navigation functions
+  // Slider navigation functions - IMPROVED
   const nextSlide = () => {
+    setSlideTransition(true);
     setCurrentSlide((prev) => (prev + 1) % 5);
     setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000); // Resume auto-play after 10 seconds
+    setTimeout(() => setIsAutoPlaying(true), 10000);
   };
 
   const prevSlide = () => {
+    setSlideTransition(true);
     setCurrentSlide((prev) => (prev - 1 + 5) % 5);
     setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000); // Resume auto-play after 10 seconds
+    setTimeout(() => setIsAutoPlaying(true), 10000);
   };
 
-  // Helper function to check if device is mobile - FIXED
+  // Go to specific slide
+  const goToSlide = (index) => {
+    setSlideTransition(true);
+    setCurrentSlide(index);
+    setIsAutoPlaying(false);
+    setTimeout(() => setIsAutoPlaying(true), 10000);
+  };
+
+  // Helper function to check if device is mobile
   const isMobile = deviceSize === 'mobileS' || deviceSize === 'mobileM' || deviceSize === 'mobileL';
   const isTablet = deviceSize === 'tablet';
 
   return (
     <section className="relative min-h-dvh w-full overflow-hidden bg-black pt-10 md:pt-14 lg:pt-18">
-      {/* Services Marquee - 3D Highlighted Design */}
+      {/* Services Marquee */}
       <div
         className="block absolute bottom-0 left-0 w-full z-30 overflow-hidden py-3 xs:py-4"
         onMouseEnter={() => setIsMarqueePaused(true)}
         onMouseLeave={() => setIsMarqueePaused(false)}
       >
-        {/* 3D Container with Gradient Background */}
         <div className="relative bg-gradient-to-r from-[#0a2a3e] via-[#103d5d] to-[#245684] py-3 xs:py-4 shadow-2xl">
-          {/* 3D Top Edge */}
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#15f4ee] to-[#008080] opacity-80"></div>
-          
-          {/* 3D Bottom Shadow */}
           <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-black/40 to-black/20"></div>
           
-          {/* Main Marquee Content */}
           <div className={`flex whitespace-nowrap ${isMarqueePaused ? '' : 'animate-marquee'}`}>
-            {sub_service.map((service, index) => (
+            {[...sub_service, ...sub_service].map((service, index) => (
               <div
                 key={index}
                 className="inline-flex items-center mx-3 xs:mx-4 sm:mx-6 md:mx-8 text-white cursor-pointer group relative"
                 onClick={() => handleServiceClick(service.link)}
               >
-                {/* 3D Bullet with Glow Effect */}
                 <div className="relative mr-2 xs:mr-3">
                   <div className="w-3 h-3 xs:w-4 xs:h-4 bg-gradient-to-br from-[#15f4ee] to-[#008080] rounded-full shadow-lg shadow-cyan-500/50 group-hover:shadow-cyan-400/70 transition-all duration-300 transform group-hover:scale-125"></div>
-                  {/* Inner Glow */}
                   <div className="absolute inset-0 w-3 h-3 xs:w-4 xs:h-4 bg-[#15f4ee] rounded-full opacity-20 group-hover:opacity-40 animate-pulse"></div>
                 </div>
                 
-                {/* 3D Text with Highlight */}
                 <span className="font-bold text-xs xs:text-sm sm:text-base md:text-lg relative">
-                  {/* Text Shadow for 3D Effect */}
                   <span className="relative z-10 bg-gradient-to-r from-white to-cyan-100 bg-clip-text text-transparent group-hover:from-[#15f4ee] group-hover:to-cyan-300 transition-all duration-300">
                     {service.name}
                   </span>
-                  {/* Text Glow */}
                   <span className="absolute inset-0 bg-gradient-to-r from-white to-cyan-100 bg-clip-text text-transparent opacity-50 blur-sm group-hover:opacity-70 group-hover:from-[#15f4ee] group-hover:to-cyan-300 transition-all duration-300">
                     {service.name}
                   </span>
                 </span>
 
-                {/* Hover Arrow Indicator */}
                 <div className="ml-2 xs:ml-3 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
@@ -321,99 +333,54 @@ const VideoHero = () => {
                   </svg>
                 </div>
 
-                {/* Connecting Line */}
-                <div className="absolute -right-2 top-1/2 w-4 xs:w-6 h-0.5 bg-gradient-to-r from-cyan-500/30 to-transparent transform -translate-y-1/2"></div>
-              </div>
-            ))}
-
-            {/* Duplicate for seamless loop */}
-            {sub_service.map((service, index) => (
-              <div
-                key={`dup-${index}`}
-                className="inline-flex items-center mx-3 xs:mx-4 sm:mx-6 md:mx-8 text-white cursor-pointer group relative"
-                onClick={() => handleServiceClick(service.link)}
-              >
-                {/* 3D Bullet with Glow Effect */}
-                <div className="relative mr-2 xs:mr-3">
-                  <div className="w-3 h-3 xs:w-4 xs:h-4 bg-gradient-to-br from-[#15f4ee] to-[#008080] rounded-full shadow-lg shadow-cyan-500/50 group-hover:shadow-cyan-400/70 transition-all duration-300 transform group-hover:scale-125"></div>
-                  {/* Inner Glow */}
-                  <div className="absolute inset-0 w-3 h-3 xs:w-4 xs:h-4 bg-[#15f4ee] rounded-full opacity-20 group-hover:opacity-40 animate-pulse"></div>
-                </div>
-                
-                {/* 3D Text with Highlight */}
-                <span className="font-bold text-xs xs:text-sm sm:text-base md:text-lg relative">
-                  {/* Text Shadow for 3D Effect */}
-                  <span className="relative z-10 bg-gradient-to-r from-white to-cyan-100 bg-clip-text text-transparent group-hover:from-[#15f4ee] group-hover:to-cyan-300 transition-all duration-300">
-                    {service.name}
-                  </span>
-                  {/* Text Glow */}
-                  <span className="absolute inset-0 bg-gradient-to-r from-white to-cyan-100 bg-clip-text text-transparent opacity-50 blur-sm group-hover:opacity-70 group-hover:from-[#15f4ee] group-hover:to-cyan-300 transition-all duration-300">
-                    {service.name}
-                  </span>
-                </span>
-
-                {/* Hover Arrow Indicator */}
-                <div className="ml-2 xs:ml-3 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
-                  <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    className="h-3 w-3 xs:h-4 xs:w-4 text-[#15f4ee] transform group-hover:scale-110 transition-transform duration-300" 
-                    viewBox="0 0 20 20" 
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
-
-                {/* Connecting Line */}
                 <div className="absolute -right-2 top-1/2 w-4 xs:w-6 h-0.5 bg-gradient-to-r from-cyan-500/30 to-transparent transform -translate-y-1/2"></div>
               </div>
             ))}
           </div>
 
-          {/* Side Gradient Fades */}
           <div className="absolute top-0 left-0 h-full w-20 bg-gradient-to-r from-[#0a2a3e] to-transparent pointer-events-none"></div>
           <div className="absolute top-0 right-0 h-full w-20 bg-gradient-to-l from-[#245684] to-transparent pointer-events-none"></div>
         </div>
 
-        {/* Bottom Reflection Effect */}
         <div className="absolute -bottom-2 left-0 w-full h-3 bg-gradient-to-t from-cyan-500/10 to-transparent blur-sm"></div>
       </div>
 
-      {/* Image Background Slider */}
+      {/* Image Background Slider - FIXED */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
-        {/* Current Slide */}
-        <img
-          ref={imageRef}
-          src={imageSource}
-          alt={`SysCare IT Solutions Background ${currentSlide + 1}`}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-            isImageLoaded ? 'opacity-50' : 'opacity-0'
-          }`}
-          key={imageSource}
-        />
+        {/* Current Slide with proper sizing */}
+        <div className="relative w-full h-full">
+          <img
+            ref={imageRef}
+            src={imageSource}
+            alt={`SysCare IT Solutions Background ${currentSlide + 1}`}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+              isImageLoaded ? 'opacity-50' : 'opacity-0'
+            } ${slideTransition ? 'transition-all duration-1000 ease-in-out' : ''}`}
+            style={{
+              objectFit: 'cover',
+              objectPosition: 'center'
+            }}
+            onLoad={() => setIsImageLoaded(true)}
+            onError={() => {
+              console.error(`Failed to load image: ${imageSource}`);
+              setIsImageLoaded(false);
+            }}
+          />
+        </div>
 
-        {/* Previous Slide for smooth transition */}
-        <img
-          src={getImageSource(deviceSize, (currentSlide - 1 + 5) % 5)}
-          alt="Previous slide"
-          className="absolute inset-0 w-full h-full object-cover opacity-0"
-        />
-
-        {/* Next Slide for smooth transition */}
-        <img
-          src={getImageSource(deviceSize, (currentSlide + 1) % 5)}
-          alt="Next slide"
-          className="absolute inset-0 w-full h-full object-cover opacity-0"
-        />
+        {/* Loading fallback */}
+        {!isImageLoaded && (
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-700 flex items-center justify-center">
+            <div className="text-white text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#15f4ee] mx-auto mb-4"></div>
+              <p className="text-sm">Loading...</p>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Slider Controls */}
       <div className="absolute inset-0 z-10 flex items-center justify-between px-3 xs:px-4 sm:px-6 lg:px-8">
-        {/* Previous Button */}
         <button
           onClick={prevSlide}
           className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black/30 hover:bg-black/50 text-white rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border border-white/20"
@@ -422,7 +389,6 @@ const VideoHero = () => {
           <FiChevronLeft className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
         </button>
 
-        {/* Next Button */}
         <button
           onClick={nextSlide}
           className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black/30 hover:bg-black/50 text-white rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border border-white/20"
@@ -432,10 +398,26 @@ const VideoHero = () => {
         </button>
       </div>
 
+      {/* Slider Indicators */}
+      <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2">
+        {[0, 1, 2, 3, 4].map((index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              currentSlide === index 
+                ? 'bg-[#15f4ee] scale-125' 
+                : 'bg-white/50 hover:bg-white/70'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+
       {/* Animated grid pattern overlay */}
       <div className="absolute inset-0 z-0 opacity-5 bg-grid-pattern"></div>
 
-      {/* Floating particles - Responsive count */}
+      {/* Floating particles */}
       <div className="absolute inset-0 z-0">
         {[...Array(isMobile ? 6 : isTablet ? 10 : 15)].map((_, i) => (
           <div
@@ -527,7 +509,7 @@ const VideoHero = () => {
               </div>
             </div>
 
-            {/* Right Content - Vertical Marquee with 2D Background */}
+            {/* Right Content - Vertical Marquee */}
             <div className={`flex justify-center items-center ${
               isMobile ? 'w-full mt-8' : 
               isTablet ? 'w-full mt-8 lg:w-1/2 lg:justify-center' : 
@@ -572,40 +554,10 @@ const VideoHero = () => {
 
                 {/* Vertical Marquee Container */}
                 <div className={`relative z-10 flex flex-col ${isMarqueePaused ? '' : 'animate-vertical-marquee'}`}>
-                  {/* First set of services */}
-                  {services.map((service, index) => (
+                  {/* Duplicate services for seamless loop */}
+                  {[...services, ...services].map((service, index) => (
                     <div
                       key={index}
-                      className="flex items-center justify-start p-2 xs:p-3 sm:p-4 text-white cursor-pointer group hover:bg-white/10 transition-all duration-300 border-b border-white/10 backdrop-blur-sm"
-                      onClick={() => handleServiceClick(service.link)}
-                    >
-                      <div className="mr-3 xs:mr-4 text-cyan-400 group-hover:text-white transition-colors duration-300">
-                        {React.cloneElement(service.icon, {
-                          className: "service-icon-2d w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6"
-                        })}
-                      </div>
-                      <span className="font-medium text-sm xs:text-base sm:text-md group-hover:text-cyan-300 transition-colors duration-300">
-                        {service.name}
-                      </span>
-                      <svg 
-                        xmlns="http://www.w3.org/2000/svg" 
-                        className="h-4 w-4 xs:h-5 xs:w-5 ml-auto opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300 text-cyan-400" 
-                        viewBox="0 0 20 20" 
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                  ))}
-                  
-                  {/* Duplicate for seamless loop */}
-                  {services.map((service, index) => (
-                    <div
-                      key={`dup-${index}`}
                       className="flex items-center justify-start p-2 xs:p-3 sm:p-4 text-white cursor-pointer group hover:bg-white/10 transition-all duration-300 border-b border-white/10 backdrop-blur-sm"
                       onClick={() => handleServiceClick(service.link)}
                     >
@@ -645,18 +597,6 @@ const VideoHero = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator - Hidden on mobile */}
-      {/* {!isMobile && (
-        <div className="absolute bottom-16 sm:bottom-20 md:bottom-12 left-1/2 transform -translate-x-1/2 z-20">
-          <div className="flex flex-col items-center text-white">
-            <span className="text-xs sm:text-sm mb-2">Scroll to explore</span>
-            <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white/60 rounded-full flex justify-center">
-              <div className="w-1 h-2 bg-white mt-2 rounded-full animate-scroll"></div>
-            </div>
-          </div>
-        </div>
-      )} */}
-
       {/* Custom animations */}
       <style jsx>{`
         @keyframes marquee {
@@ -684,14 +624,6 @@ const VideoHero = () => {
           animation: float 5s infinite ease-in-out;
         }
         
-        @keyframes pulse-slow {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.5; }
-        }
-        .animate-pulse-slow {
-          animation: pulse-slow 3s infinite;
-        }
-        
         @keyframes scroll {
           0% { transform: translateY(0); opacity: 1; }
           100% { transform: translateY(10px); opacity: 0; }
@@ -706,7 +638,6 @@ const VideoHero = () => {
           background-size: 40px 40px;
         }
 
-        /* New styles for 2D modern design */
         .bg-grid-pattern-2d {
           background-image: 
             radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 2px, transparent 0),
@@ -734,7 +665,6 @@ const VideoHero = () => {
           filter: drop-shadow(0 0 2px rgba(0, 255, 255, 0.5));
         }
 
-        /* Enhanced 3D Marquee Animations */
         @keyframes text-glow {
           0%, 100% { 
             filter: drop-shadow(0 0 2px rgba(21, 244, 238, 0.3));
@@ -749,7 +679,6 @@ const VideoHero = () => {
           animation: text-glow 1s ease-in-out;
         }
 
-        /* Bullet Pulse Animation */
         @keyframes bullet-pulse {
           0%, 100% { 
             transform: scale(1);
@@ -765,7 +694,6 @@ const VideoHero = () => {
           animation: bullet-pulse 0.6s ease-in-out;
         }
 
-        /* Enhanced 3D Container Shadows */
         .shadow-3d {
           box-shadow: 
             0 10px 25px rgba(0, 0, 0, 0.3),
@@ -773,7 +701,7 @@ const VideoHero = () => {
             inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
         
-        /* Responsive adjustments for all breakpoints */
+        /* Responsive adjustments */
         @media (max-width: 320px) {
           .bg-grid-pattern {
             background-size: 15px 15px;
@@ -815,7 +743,6 @@ const VideoHero = () => {
           }
         }
 
-        /* Enhanced hover effects */
         .group:hover .bg-grid-pattern-2d {
           background-image: 
             radial-gradient(circle at 25% 25%, rgba(0, 255, 255, 0.3) 2px, transparent 0),
@@ -833,7 +760,7 @@ const VideoHero = () => {
         }
       `}</style>
 
-      {/* Service icon styling with all breakpoints */}
+      {/* Service icon styling */}
       <style jsx>{`
         .service-icon {
           display: inline-block;
