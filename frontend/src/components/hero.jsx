@@ -33,57 +33,57 @@ const VideoHero = () => {
   // Different image sources for different devices - UPDATED FOR SLIDER
   const sliderImages = {
     mobileS: [
-      '/video/hero-image.jpg',
-      '/video/hero-image2.png',
+      '/video/hero-image1.jpg',
+      '/video/hero-image2.jpg',
       '/video/hero-image3.jpg',
       '/video/hero-image4.jpg',
       '/video/hero-image5.jpg'
     ],
     mobileM: [
-      '/video/hero-image.jpg',
-      '/video/hero-image2.png',
+      '/video/hero-image1.jpg',
+      '/video/hero-image2.jpg',
       '/video/hero-image3.jpg',
       '/video/hero-image4.jpg',
       '/video/hero-image5.jpg'
     ],
     mobileL: [
-      '/video/hero-image.jpg',
-      '/video/hero-image2.png',
+      '/video/hero-image1.jpg',
+      '/video/hero-image2.jpg',
       '/video/hero-image3.jpg',
       '/video/hero-image4.jpg',
       '/video/hero-image5.jpg'
     ],
     tablet: [
-      '/video/hero-image.jpg',
-      '/video/hero-image2.png',
+      '/video/hero-image1.jpg',
+      '/video/hero-image2.jpg',
       '/video/hero-image3.jpg',
       '/video/hero-image4.jpg',
       '/video/hero-image5.jpg'
     ],
     laptop: [
-      '/video/hero-image.jpg',
-      '/video/hero-image2.png',
+      '/video/hero-image1.jpg',
+      '/video/hero-image2.jpg',
       '/video/hero-image3.jpg',
       '/video/hero-image4.jpg',
       '/video/hero-image5.jpg'
     ],
     laptopL: [
-      '/video/hero-image.jpg',
-      '/video/hero-image2.png',
+      '/video/hero-image1.jpg',
+      '/video/hero-image2.jpg',
       '/video/hero-image3.jpg',
       '/video/hero-image4.jpg',
       '/video/hero-image5.jpg'
     ],
     desktop: [
-      '/video/hero-image.jpg',
-      '/video/hero-image2.png',
+      '/video/hero-image1.jpg',
+      '/video/hero-image2.jpg',
       '/video/hero-image3.jpg',
       '/video/hero-image4.jpg',
       '/video/hero-image5.jpg'
     ],
     monitor: [
-      '/video/hero-image.jpg',
-      '/video/hero-image2.png',
+      '/video/hero-image1.jpg',
+      '/video/hero-image2.jpg',
       '/video/hero-image3.jpg',
       '/video/hero-image4.jpg',
       '/video/hero-image5.jpg'
