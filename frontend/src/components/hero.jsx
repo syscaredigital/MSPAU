@@ -15,7 +15,7 @@ const VideoHero = () => {
   const [deviceSize, setDeviceSize] = useState('desktop');
   const [imageSource, setImageSource] = useState('');
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAutoPlaying] = useState(true);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const navigate = useNavigate();
 
   // Device breakpoints
@@ -34,56 +34,56 @@ const VideoHero = () => {
   const sliderImages = {
     mobileS: [
       '/video/hero-image.jpg',
-      '/video/hero-image2.jpg',
+      '/video/hero-image2.png',
       '/video/hero-image3.jpg',
       '/video/hero-image4.jpg',
       '/video/hero-image5.jpg'
     ],
     mobileM: [
       '/video/hero-image.jpg',
-      '/video/hero-image2.jpg',
+      '/video/hero-image2.png',
       '/video/hero-image3.jpg',
       '/video/hero-image4.jpg',
       '/video/hero-image5.jpg'
     ],
     mobileL: [
       '/video/hero-image.jpg',
-      '/video/hero-image2.jpg',
+      '/video/hero-image2.png',
       '/video/hero-image3.jpg',
       '/video/hero-image4.jpg',
       '/video/hero-image5.jpg'
     ],
     tablet: [
       '/video/hero-image.jpg',
-      '/video/hero-image2.jpg',
+      '/video/hero-image2.png',
       '/video/hero-image3.jpg',
       '/video/hero-image4.jpg',
       '/video/hero-image5.jpg'
     ],
     laptop: [
       '/video/hero-image.jpg',
-      '/video/hero-image2.jpg',
+      '/video/hero-image2.png',
       '/video/hero-image3.jpg',
       '/video/hero-image4.jpg',
       '/video/hero-image5.jpg'
     ],
     laptopL: [
       '/video/hero-image.jpg',
-      '/video/hero-image2.jpg',
+      '/video/hero-image2.png',
       '/video/hero-image3.jpg',
       '/video/hero-image4.jpg',
       '/video/hero-image5.jpg'
     ],
     desktop: [
       '/video/hero-image.jpg',
-      '/video/hero-image2.jpg',
+      '/video/hero-image2.png',
       '/video/hero-image3.jpg',
       '/video/hero-image4.jpg',
       '/video/hero-image5.jpg'
     ],
     monitor: [
       '/video/hero-image.jpg',
-      '/video/hero-image2.jpg',
+      '/video/hero-image2.png',
       '/video/hero-image3.jpg',
       '/video/hero-image4.jpg',
       '/video/hero-image5.jpg'
@@ -245,46 +245,142 @@ const VideoHero = () => {
     navigate(serviceLink);
   };
 
+  // Slider navigation functions
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % 5);
+    setIsAutoPlaying(false);
+    setTimeout(() => setIsAutoPlaying(true), 10000); // Resume auto-play after 10 seconds
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + 5) % 5);
+    setIsAutoPlaying(false);
+    setTimeout(() => setIsAutoPlaying(true), 10000); // Resume auto-play after 10 seconds
+  };
+
   // Helper function to check if device is mobile - FIXED
   const isMobile = deviceSize === 'mobileS' || deviceSize === 'mobileM' || deviceSize === 'mobileL';
   const isTablet = deviceSize === 'tablet';
 
   return (
     <section className="relative min-h-dvh w-full overflow-hidden bg-black pt-10 md:pt-14 lg:pt-18">
-      {/* Services Marquee - Responsive for all devices */}
+      {/* Services Marquee - 3D Highlighted Design */}
       <div
-        className="block absolute bottom-0 left-0 w-full z-30 bg-gradient-to-r from-[#103d5d] to-[#245684] py-2 xs:py-3 overflow-hidden"
+        className="block absolute bottom-0 left-0 w-full z-30 overflow-hidden py-3 xs:py-4"
         onMouseEnter={() => setIsMarqueePaused(true)}
         onMouseLeave={() => setIsMarqueePaused(false)}
       >
-        <div className={`flex whitespace-nowrap ${isMarqueePaused ? '' : 'animate-marquee'}`}>
-          {sub_service.map((service, index) => (
-            <div
-              key={index}
-              className="inline-flex items-center mx-2 xs:mx-3 sm:mx-4 md:mx-6 text-white cursor-pointer group"
-              onClick={() => handleServiceClick(service.link)}
-            >
-              <span className="w-1.5 h-1.5 xs:w-2 xs:h-2 bg-white rounded-full mr-1 xs:mr-2 group-hover:bg-[#245684] transition-colors"></span>
-              <span className="font-medium text-[10px] xs:text-xs sm:text-sm md:text-base group-hover:text-[#fff] transition-colors">
-                {service.name}
-              </span>
-            </div>
-          ))}
+        {/* 3D Container with Gradient Background */}
+        <div className="relative bg-gradient-to-r from-[#0a2a3e] via-[#103d5d] to-[#245684] py-3 xs:py-4 shadow-2xl">
+          {/* 3D Top Edge */}
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#15f4ee] to-[#008080] opacity-80"></div>
+          
+          {/* 3D Bottom Shadow */}
+          <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-black/40 to-black/20"></div>
+          
+          {/* Main Marquee Content */}
+          <div className={`flex whitespace-nowrap ${isMarqueePaused ? '' : 'animate-marquee'}`}>
+            {sub_service.map((service, index) => (
+              <div
+                key={index}
+                className="inline-flex items-center mx-3 xs:mx-4 sm:mx-6 md:mx-8 text-white cursor-pointer group relative"
+                onClick={() => handleServiceClick(service.link)}
+              >
+                {/* 3D Bullet with Glow Effect */}
+                <div className="relative mr-2 xs:mr-3">
+                  <div className="w-3 h-3 xs:w-4 xs:h-4 bg-gradient-to-br from-[#15f4ee] to-[#008080] rounded-full shadow-lg shadow-cyan-500/50 group-hover:shadow-cyan-400/70 transition-all duration-300 transform group-hover:scale-125"></div>
+                  {/* Inner Glow */}
+                  <div className="absolute inset-0 w-3 h-3 xs:w-4 xs:h-4 bg-[#15f4ee] rounded-full opacity-20 group-hover:opacity-40 animate-pulse"></div>
+                </div>
+                
+                {/* 3D Text with Highlight */}
+                <span className="font-bold text-xs xs:text-sm sm:text-base md:text-lg relative">
+                  {/* Text Shadow for 3D Effect */}
+                  <span className="relative z-10 bg-gradient-to-r from-white to-cyan-100 bg-clip-text text-transparent group-hover:from-[#15f4ee] group-hover:to-cyan-300 transition-all duration-300">
+                    {service.name}
+                  </span>
+                  {/* Text Glow */}
+                  <span className="absolute inset-0 bg-gradient-to-r from-white to-cyan-100 bg-clip-text text-transparent opacity-50 blur-sm group-hover:opacity-70 group-hover:from-[#15f4ee] group-hover:to-cyan-300 transition-all duration-300">
+                    {service.name}
+                  </span>
+                </span>
 
-          {/* Duplicate for seamless loop */}
-          {sub_service.map((service, index) => (
-            <div
-              key={`dup-${index}`}
-              className="inline-flex items-center mx-2 xs:mx-3 sm:mx-4 md:mx-6 text-white cursor-pointer group"
-              onClick={() => handleServiceClick(service.link)}
-            >
-              <span className="w-1.5 h-1.5 xs:w-2 xs:h-2 bg-white rounded-full mr-1 xs:mr-2 group-hover:bg-[#245684] transition-colors"></span>
-              <span className="font-medium text-[10px] xs:text-xs sm:text-sm md:text-base group-hover:text-[#245684] transition-colors">
-                {service.name}
-              </span>
-            </div>
-          ))}
+                {/* Hover Arrow Indicator */}
+                <div className="ml-2 xs:ml-3 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    className="h-3 w-3 xs:h-4 xs:w-4 text-[#15f4ee] transform group-hover:scale-110 transition-transform duration-300" 
+                    viewBox="0 0 20 20" 
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+
+                {/* Connecting Line */}
+                <div className="absolute -right-2 top-1/2 w-4 xs:w-6 h-0.5 bg-gradient-to-r from-cyan-500/30 to-transparent transform -translate-y-1/2"></div>
+              </div>
+            ))}
+
+            {/* Duplicate for seamless loop */}
+            {sub_service.map((service, index) => (
+              <div
+                key={`dup-${index}`}
+                className="inline-flex items-center mx-3 xs:mx-4 sm:mx-6 md:mx-8 text-white cursor-pointer group relative"
+                onClick={() => handleServiceClick(service.link)}
+              >
+                {/* 3D Bullet with Glow Effect */}
+                <div className="relative mr-2 xs:mr-3">
+                  <div className="w-3 h-3 xs:w-4 xs:h-4 bg-gradient-to-br from-[#15f4ee] to-[#008080] rounded-full shadow-lg shadow-cyan-500/50 group-hover:shadow-cyan-400/70 transition-all duration-300 transform group-hover:scale-125"></div>
+                  {/* Inner Glow */}
+                  <div className="absolute inset-0 w-3 h-3 xs:w-4 xs:h-4 bg-[#15f4ee] rounded-full opacity-20 group-hover:opacity-40 animate-pulse"></div>
+                </div>
+                
+                {/* 3D Text with Highlight */}
+                <span className="font-bold text-xs xs:text-sm sm:text-base md:text-lg relative">
+                  {/* Text Shadow for 3D Effect */}
+                  <span className="relative z-10 bg-gradient-to-r from-white to-cyan-100 bg-clip-text text-transparent group-hover:from-[#15f4ee] group-hover:to-cyan-300 transition-all duration-300">
+                    {service.name}
+                  </span>
+                  {/* Text Glow */}
+                  <span className="absolute inset-0 bg-gradient-to-r from-white to-cyan-100 bg-clip-text text-transparent opacity-50 blur-sm group-hover:opacity-70 group-hover:from-[#15f4ee] group-hover:to-cyan-300 transition-all duration-300">
+                    {service.name}
+                  </span>
+                </span>
+
+                {/* Hover Arrow Indicator */}
+                <div className="ml-2 xs:ml-3 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    className="h-3 w-3 xs:h-4 xs:w-4 text-[#15f4ee] transform group-hover:scale-110 transition-transform duration-300" 
+                    viewBox="0 0 20 20" 
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+
+                {/* Connecting Line */}
+                <div className="absolute -right-2 top-1/2 w-4 xs:w-6 h-0.5 bg-gradient-to-r from-cyan-500/30 to-transparent transform -translate-y-1/2"></div>
+              </div>
+            ))}
+          </div>
+
+          {/* Side Gradient Fades */}
+          <div className="absolute top-0 left-0 h-full w-20 bg-gradient-to-r from-[#0a2a3e] to-transparent pointer-events-none"></div>
+          <div className="absolute top-0 right-0 h-full w-20 bg-gradient-to-l from-[#245684] to-transparent pointer-events-none"></div>
         </div>
+
+        {/* Bottom Reflection Effect */}
+        <div className="absolute -bottom-2 left-0 w-full h-3 bg-gradient-to-t from-cyan-500/10 to-transparent blur-sm"></div>
       </div>
 
       {/* Image Background Slider */}
@@ -313,6 +409,27 @@ const VideoHero = () => {
           alt="Next slide"
           className="absolute inset-0 w-full h-full object-cover opacity-0"
         />
+      </div>
+
+      {/* Slider Controls */}
+      <div className="absolute inset-0 z-10 flex items-center justify-between px-3 xs:px-4 sm:px-6 lg:px-8">
+        {/* Previous Button */}
+        <button
+          onClick={prevSlide}
+          className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black/30 hover:bg-black/50 text-white rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border border-white/20"
+          aria-label="Previous image"
+        >
+          <FiChevronLeft className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
+        </button>
+
+        {/* Next Button */}
+        <button
+          onClick={nextSlide}
+          className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black/30 hover:bg-black/50 text-white rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border border-white/20"
+          aria-label="Next image"
+        >
+          <FiChevronRight className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
+        </button>
       </div>
 
       {/* Animated grid pattern overlay */}
@@ -355,14 +472,14 @@ const VideoHero = () => {
               </h1>
 
               {/* Typing text effect */}
-<div className="min-h-[2rem] xs:min-h-[2.5rem] sm:min-h-[3rem] lg:min-h-[3.5rem] mb-3 xs:mb-4 sm:mb-6">
-  <p className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-medium">
-    <span className="bg-[#15f4ee] text-black px-2 xs:px-3 sm:px-4 py-1 xs:py-2 rounded-lg shadow-lg shadow-[#008080]/50 font-semibold">
-      {typingTexts[currentTextIndex].substring(0, currentWordIndex)}
-    </span>
-    <span className="animate-pulse inline-block w-0.5 xs:w-1 h-3 xs:h-4 sm:h-6 bg-[#15f4ee] align-middle ml-0.5 xs:ml-1"></span>
-  </p>
-</div>
+              <div className="min-h-[2rem] xs:min-h-[2.5rem] sm:min-h-[3rem] lg:min-h-[3.5rem] mb-3 xs:mb-4 sm:mb-6">
+                <p className="text-sm xs:text-base sm:text-sm md:text-md lg:text-xl font-medium">
+                  <span className="bg-[#15f4ee] text-black px-2 xs:px-3 sm:px-4 py-1 xs:py-2 rounded-lg shadow-lg shadow-[#008080]/50 font-semibold">
+                    {typingTexts[currentTextIndex].substring(0, currentWordIndex)}
+                  </span>
+                  <span className="animate-pulse inline-block w-0.5 xs:w-1 h-3 xs:h-4 sm:h-6 bg-[#15f4ee] align-middle ml-0.5 xs:ml-1"></span>
+                </p>
+              </div>
 
               <p className="text-xs xs:text-sm sm:text-base lg:text-lg text-white/90 mb-4 xs:mb-6 sm:mb-8 max-w-2xl mx-auto lg:mx-0">
                 We deliver cutting-edge technology solutions that drive business growth and optimize operations through innovative IT strategies.
@@ -397,23 +514,27 @@ const VideoHero = () => {
               {/* ISO Certifications */}
               <div className="flex items-center justify-center lg:justify-start space-x-4 xs:space-x-5 sm:space-x-6 mt-4 xs:mt-6">
                 <img 
-                  src="/logos/ISO_Logos.png" 
+                  src="/logos/ISO_9001_Certified_col.png" 
                   alt="ISO 9001 Certified"
-                  className="h-24 w-24 xs:h-24 xs:w-24 sm:h-24 sm:w-24 md:h-28 md:w-28 object-contain"
+                  className="h-16 w-16 xs:h-20 xs:w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 object-contain"
                 />
                 
-              
+                <img 
+                  src="/logos/ISOIEC_27001_Certified_col.png" 
+                  alt="ISO 27001 Certified"
+                  className="h-16 w-16 xs:h-20 xs:w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 object-contain"
+                />
               </div>
             </div>
 
-            {/* Right Content - Vertical Marquee */}
+            {/* Right Content - Vertical Marquee with 2D Background */}
             <div className={`flex justify-center items-center ${
               isMobile ? 'w-full mt-8' : 
               isTablet ? 'w-full mt-8 lg:w-1/2 lg:justify-center' : 
               'lg:w-1/2 lg:justify-center'
             }`}>
               <div 
-                className="relative overflow-hidden bg-black/30 backdrop-blur-sm rounded-2xl border border-[#7FFFD4] shadow-2xl hover:shadow-cyan-500/50 transition-all duration-500 "
+                className="relative overflow-hidden bg-black/20 backdrop-blur-lg rounded-3xl border border-white/20 shadow-2xl hover:shadow-cyan-500/30 transition-all duration-500 group"
                 style={{
                   height: isMobile ? '300px' : isTablet ? '400px' : '500px',
                   width: isMobile ? '280px' : isTablet ? '320px' : '380px'
@@ -421,24 +542,54 @@ const VideoHero = () => {
                 onMouseEnter={() => setIsMarqueePaused(true)}
                 onMouseLeave={() => setIsMarqueePaused(false)}
               >
+                {/* 2D Background Pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-blue-500/20"></div>
+                  <div className="absolute inset-0 bg-grid-pattern-2d"></div>
+                </div>
+
+                {/* Floating Service Icons Background */}
+                <div className="absolute inset-0">
+                  {services.map((service, index) => (
+                    <div
+                      key={`bg-${index}`}
+                      className="absolute text-white/10 group-hover:text-white/15 transition-all duration-1000"
+                      style={{
+                        top: `${(index * 15) % 100}%`,
+                        left: `${(index * 20) % 100}%`,
+                        fontSize: isMobile ? '1.5rem' : isTablet ? '2rem' : '2.5rem',
+                        transform: `rotate(${index * 15}deg)`,
+                        transition: 'all 0.5s ease'
+                      }}
+                    >
+                      {service.icon}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Glass Morphism Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent rounded-3xl"></div>
+
                 {/* Vertical Marquee Container */}
-                <div className={`flex flex-col ${isMarqueePaused ? '' : 'animate-vertical-marquee'}`}>
+                <div className={`relative z-10 flex flex-col ${isMarqueePaused ? '' : 'animate-vertical-marquee'}`}>
                   {/* First set of services */}
                   {services.map((service, index) => (
                     <div
                       key={index}
-                      className="flex items-center justify-start p-2 xs:p-3 sm:p-4 text-white cursor-pointer group hover:bg-white/10 transition-all duration-300 border-b border-white/10 "
+                      className="flex items-center justify-start p-2 xs:p-3 sm:p-4 text-white cursor-pointer group hover:bg-white/10 transition-all duration-300 border-b border-white/10 backdrop-blur-sm"
                       onClick={() => handleServiceClick(service.link)}
                     >
-                      <div className="mr-3 xs:mr-4 text-white group-hover:text-[#245684] transition-colors duration-300 ">
-                        {service.icon}
+                      <div className="mr-3 xs:mr-4 text-cyan-400 group-hover:text-white transition-colors duration-300">
+                        {React.cloneElement(service.icon, {
+                          className: "service-icon-2d w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6"
+                        })}
                       </div>
-                      <span className="font-medium text-sm xs:text-base sm:text-md group-hover:text-[#245684] transition-colors duration-300 ">
+                      <span className="font-medium text-sm xs:text-base sm:text-md group-hover:text-cyan-300 transition-colors duration-300">
                         {service.name}
                       </span>
                       <svg 
                         xmlns="http://www.w3.org/2000/svg" 
-                        className="h-4 w-4 xs:h-5 xs:w-5 ml-auto opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" 
+                        className="h-4 w-4 xs:h-5 xs:w-5 ml-auto opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300 text-cyan-400" 
                         viewBox="0 0 20 20" 
                         fill="currentColor"
                       >
@@ -455,18 +606,20 @@ const VideoHero = () => {
                   {services.map((service, index) => (
                     <div
                       key={`dup-${index}`}
-                      className="flex items-center justify-start p-2 xs:p-3 sm:p-4 text-white cursor-pointer group hover:bg-white/10 transition-all duration-300 border-b border-white/10"
+                      className="flex items-center justify-start p-2 xs:p-3 sm:p-4 text-white cursor-pointer group hover:bg-white/10 transition-all duration-300 border-b border-white/10 backdrop-blur-sm"
                       onClick={() => handleServiceClick(service.link)}
                     >
-                      <div className="mr-3 xs:mr-4 text-white group-hover:text-[#245684] transition-colors duration-300">
-                        {service.icon}
+                      <div className="mr-3 xs:mr-4 text-cyan-400 group-hover:text-white transition-colors duration-300">
+                        {React.cloneElement(service.icon, {
+                          className: "service-icon-2d w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6"
+                        })}
                       </div>
-                      <span className="font-medium text-sm xs:text-base sm:text-md group-hover:text-[#245684] transition-colors duration-300">
+                      <span className="font-medium text-sm xs:text-base sm:text-md group-hover:text-cyan-300 transition-colors duration-300">
                         {service.name}
                       </span>
                       <svg 
                         xmlns="http://www.w3.org/2000/svg" 
-                        className="h-4 w-4 xs:h-5 xs:w-5 ml-auto opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" 
+                        className="h-4 w-4 xs:h-5 xs:w-5 ml-auto opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300 text-cyan-400" 
                         viewBox="0 0 20 20" 
                         fill="currentColor"
                       >
@@ -481,8 +634,11 @@ const VideoHero = () => {
                 </div>
 
                 {/* Gradient overlays for smooth edges */}
-                <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-black/80 to-transparent pointer-events-none"></div>
-                <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-black/80 to-transparent pointer-events-none"></div>
+                <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-black/80 to-transparent pointer-events-none z-20"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-black/80 to-transparent pointer-events-none z-20"></div>
+
+                {/* Animated Border Effect */}
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-cyan-500/0 via-cyan-500/50 to-cyan-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 animate-gradient-border"></div>
               </div>
             </div>
           </div>
@@ -490,7 +646,7 @@ const VideoHero = () => {
       </div>
 
       {/* Scroll Indicator - Hidden on mobile */}
-      {!isMobile && (
+      {/* {!isMobile && (
         <div className="absolute bottom-16 sm:bottom-20 md:bottom-12 left-1/2 transform -translate-x-1/2 z-20">
           <div className="flex flex-col items-center text-white">
             <span className="text-xs sm:text-sm mb-2">Scroll to explore</span>
@@ -499,7 +655,7 @@ const VideoHero = () => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
 
       {/* Custom animations */}
       <style jsx>{`
@@ -508,7 +664,7 @@ const VideoHero = () => {
           100% { transform: translateX(-50%); }
         }
         .animate-marquee {
-          animation: marquee 20s linear infinite;
+          animation: marquee 25s linear infinite;
         }
         
         @keyframes vertical-marquee {
@@ -549,32 +705,131 @@ const VideoHero = () => {
                             linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
           background-size: 40px 40px;
         }
+
+        /* New styles for 2D modern design */
+        .bg-grid-pattern-2d {
+          background-image: 
+            radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 2px, transparent 0),
+            radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.1) 2px, transparent 0);
+          background-size: 30px 30px;
+        }
+
+        @keyframes gradient-border {
+          0% { background-position: -100% 0; }
+          100% { background-position: 200% 0; }
+        }
+
+        .animate-gradient-border {
+          background-size: 200% 100%;
+          animation: gradient-border 3s linear infinite;
+          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          mask-composite: xor;
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          padding: 2px;
+          border-radius: inherit;
+        }
+
+        .service-icon-2d {
+          filter: drop-shadow(0 0 2px rgba(0, 255, 255, 0.5));
+        }
+
+        /* Enhanced 3D Marquee Animations */
+        @keyframes text-glow {
+          0%, 100% { 
+            filter: drop-shadow(0 0 2px rgba(21, 244, 238, 0.3));
+          }
+          50% { 
+            filter: drop-shadow(0 0 4px rgba(21, 244, 238, 0.6)) 
+                    drop-shadow(0 0 8px rgba(21, 244, 238, 0.4));
+          }
+        }
+
+        .group:hover .bg-clip-text {
+          animation: text-glow 1s ease-in-out;
+        }
+
+        /* Bullet Pulse Animation */
+        @keyframes bullet-pulse {
+          0%, 100% { 
+            transform: scale(1);
+            box-shadow: 0 0 10px rgba(21, 244, 238, 0.5);
+          }
+          50% { 
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(21, 244, 238, 0.8);
+          }
+        }
+
+        .group:hover .relative .bg-gradient-to-br {
+          animation: bullet-pulse 0.6s ease-in-out;
+        }
+
+        /* Enhanced 3D Container Shadows */
+        .shadow-3d {
+          box-shadow: 
+            0 10px 25px rgba(0, 0, 0, 0.3),
+            0 5px 10px rgba(0, 0, 0, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
         
         /* Responsive adjustments for all breakpoints */
         @media (max-width: 320px) {
           .bg-grid-pattern {
             background-size: 15px 15px;
           }
+          .bg-grid-pattern-2d {
+            background-size: 20px 20px;
+          }
         }
         @media (min-width: 321px) and (max-width: 375px) {
           .bg-grid-pattern {
             background-size: 18px 18px;
+          }
+          .bg-grid-pattern-2d {
+            background-size: 25px 25px;
           }
         }
         @media (min-width: 376px) and (max-width: 425px) {
           .bg-grid-pattern {
             background-size: 20px 20px;
           }
+          .bg-grid-pattern-2d {
+            background-size: 25px 25px;
+          }
         }
         @media (min-width: 426px) and (max-width: 768px) {
           .bg-grid-pattern {
             background-size: 25px 25px;
+          }
+          .bg-grid-pattern-2d {
+            background-size: 30px 30px;
           }
         }
         @media (min-width: 769px) and (max-width: 1024px) {
           .bg-grid-pattern {
             background-size: 30px 30px;
           }
+          .bg-grid-pattern-2d {
+            background-size: 35px 35px;
+          }
+        }
+
+        /* Enhanced hover effects */
+        .group:hover .bg-grid-pattern-2d {
+          background-image: 
+            radial-gradient(circle at 25% 25%, rgba(0, 255, 255, 0.3) 2px, transparent 0),
+            radial-gradient(circle at 75% 75%, rgba(0, 255, 255, 0.3) 2px, transparent 0);
+        }
+
+        @keyframes gradient {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        .animate-gradient {
+          background-size: 200% 200%;
+          animation: gradient 3s ease infinite;
         }
       `}</style>
 
@@ -618,15 +873,6 @@ const VideoHero = () => {
             font-size: 2rem;
           }
         }
-           @keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  .animate-gradient {
-    background-size: 200% 200%;
-    animation: gradient 3s ease infinite;
-  }
       `}</style>
     </section>
   );
