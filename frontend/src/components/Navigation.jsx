@@ -391,7 +391,7 @@ const Navigation = () => {
                 <FiPhone className="text-[#103d5d] text-xs" />
                 <a 
                   href="tel:+1234567890" 
-                  className="hover:text-[#103d5d] transition-colors duration-300 text-md"
+                  className="hover:text-[#103d5d] transition-colors duration-300 text-md font-bold"
                 >
                   1300 69 79 72
                 </a>
@@ -400,7 +400,7 @@ const Navigation = () => {
                 <FiMail className="text-[#103d5d] text-md" />
                 <a 
                   href="mailto:info@syscare.com" 
-                  className="hover:text-[#103d5d] transition-colors duration-300 text-md"
+                  className="hover:text-[#103d5d] transition-colors duration-300 text-md font-bold"
                 >
                  info@syscare.com.au
                 </a>
@@ -409,8 +409,8 @@ const Navigation = () => {
 
             {/* Right side - Working Hours */}
             <div className="hidden md:flex items-center space-x-2">
-              <FiClock className="text-[#103d5d] text-md" />
-              <span className="text-md">Mon - Fri: 8:00 AM - 5:00 PM</span>
+              <FiClock className="text-[#103d5d] text-md font-bold" />
+              <span className="text-md font-bold">Mon - Fri: 8:00 AM - 5:00 PM</span>
             </div>
 
             {/* Mobile - Only show phone */}

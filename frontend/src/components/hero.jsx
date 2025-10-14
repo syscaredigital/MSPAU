@@ -493,20 +493,14 @@ const VideoHero = () => {
                 </Link>
               </div>
               
-              {/* ISO Certifications */}
-              <div className="flex items-center justify-center lg:justify-start space-x-4 xs:space-x-5 sm:space-x-6 mt-4 xs:mt-6">
-                <img 
-                  src="/logos/ISO_9001_Certified_col.png" 
-                  alt="ISO 9001 Certified"
-                  className="h-16 w-16 xs:h-20 xs:w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 object-contain"
-                />
-                
-                <img 
-                  src="/logos/ISOIEC_27001_Certified_col.png" 
-                  alt="ISO 27001 Certified"
-                  className="h-16 w-16 xs:h-20 xs:w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 object-contain"
-                />
-              </div>
+              {/* ISO Certification */}
+<div className="flex justify-center lg:justify-start mt-4 xs:mt-6">
+  <img 
+    src="/logos/ISO_Logos.png" 
+    alt="ISO 9001 Certified"
+    className="w-32 xs:w-36 sm:w-40 md:w-48 h-auto object-contain"
+  />
+</div>
             </div>
 
             {/* Right Content - Vertical Marquee */}
