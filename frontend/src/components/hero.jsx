@@ -15,7 +15,7 @@ const VideoHero = () => {
   const [deviceSize, setDeviceSize] = useState('desktop');
   const [imageSource, setImageSource] = useState('');
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isAutoPlaying] = useState(true);
   const navigate = useNavigate();
 
   // Device breakpoints
@@ -245,25 +245,6 @@ const VideoHero = () => {
     navigate(serviceLink);
   };
 
-  // Slider navigation functions
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % 5);
-    setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000); // Resume auto-play after 10 seconds
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + 5) % 5);
-    setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000); // Resume auto-play after 10 seconds
-  };
-
-  const goToSlide = (index) => {
-    setCurrentSlide(index);
-    setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000); // Resume auto-play after 10 seconds
-  };
-
   // Helper function to check if device is mobile - FIXED
   const isMobile = deviceSize === 'mobileS' || deviceSize === 'mobileM' || deviceSize === 'mobileL';
   const isTablet = deviceSize === 'tablet';
@@ -334,43 +315,6 @@ const VideoHero = () => {
         />
       </div>
 
-      {/* Slider Controls */}
-      <div className="absolute inset-0 z-10 flex items-center justify-between px-3 xs:px-4 sm:px-6 lg:px-8">
-        {/* Previous Button */}
-        <button
-          onClick={prevSlide}
-          className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black/30 hover:bg-black/50 text-white rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border border-white/20"
-          aria-label="Previous image"
-        >
-          <FiChevronLeft className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
-        </button>
-
-        {/* Next Button */}
-        <button
-          onClick={nextSlide}
-          className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black/30 hover:bg-black/50 text-white rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border border-white/20"
-          aria-label="Next image"
-        >
-          <FiChevronRight className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
-        </button>
-      </div>
-
-      {/* Slider Indicators */}
-      <div className="absolute bottom-20 xs:bottom-24 sm:bottom-28 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2 xs:space-x-3">
-        {[0, 1, 2, 3, 4].map((index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`w-2 h-2 xs:w-3 xs:h-3 rounded-full transition-all duration-300 ${
-              currentSlide === index 
-                ? 'bg-white scale-125' 
-                : 'bg-white/50 hover:bg-white/70'
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
-
       {/* Animated grid pattern overlay */}
       <div className="absolute inset-0 z-0 opacity-5 bg-grid-pattern"></div>
 
@@ -411,12 +355,14 @@ const VideoHero = () => {
               </h1>
 
               {/* Typing text effect */}
-              <div className="min-h-[2rem] xs:min-h-[2.5rem] sm:min-h-[3rem] lg:min-h-[3.5rem] mb-3 xs:mb-4 sm:mb-6">
-                <p className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl text-white font-medium">
-                  {typingTexts[currentTextIndex].substring(0, currentWordIndex)}
-                  <span className="animate-pulse inline-block w-0.5 xs:w-1 h-3 xs:h-4 sm:h-6 bg-white align-middle ml-0.5 xs:ml-1"></span>
-                </p>
-              </div>
+<div className="min-h-[2rem] xs:min-h-[2.5rem] sm:min-h-[3rem] lg:min-h-[3.5rem] mb-3 xs:mb-4 sm:mb-6">
+  <p className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-medium">
+    <span className="bg-[#15f4ee] text-black px-2 xs:px-3 sm:px-4 py-1 xs:py-2 rounded-lg shadow-lg shadow-[#008080]/50 font-semibold">
+      {typingTexts[currentTextIndex].substring(0, currentWordIndex)}
+    </span>
+    <span className="animate-pulse inline-block w-0.5 xs:w-1 h-3 xs:h-4 sm:h-6 bg-[#15f4ee] align-middle ml-0.5 xs:ml-1"></span>
+  </p>
+</div>
 
               <p className="text-xs xs:text-sm sm:text-base lg:text-lg text-white/90 mb-4 xs:mb-6 sm:mb-8 max-w-2xl mx-auto lg:mx-0">
                 We deliver cutting-edge technology solutions that drive business growth and optimize operations through innovative IT strategies.
@@ -451,16 +397,12 @@ const VideoHero = () => {
               {/* ISO Certifications */}
               <div className="flex items-center justify-center lg:justify-start space-x-4 xs:space-x-5 sm:space-x-6 mt-4 xs:mt-6">
                 <img 
-                  src="/logos/ISO_9001_Certified_col.png" 
+                  src="/logos/ISO_Logos.png" 
                   alt="ISO 9001 Certified"
-                  className="h-16 w-16 xs:h-20 xs:w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 object-contain"
+                  className="h-24 w-24 xs:h-24 xs:w-24 sm:h-24 sm:w-24 md:h-28 md:w-28 object-contain"
                 />
                 
-                <img 
-                  src="/logos/ISOIEC_27001_Certified_col.png" 
-                  alt="ISO 27001 Certified"
-                  className="h-16 w-16 xs:h-20 xs:w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 object-contain"
-                />
+              
               </div>
             </div>
 
@@ -471,7 +413,7 @@ const VideoHero = () => {
               'lg:w-1/2 lg:justify-center'
             }`}>
               <div 
-                className="relative overflow-hidden bg-black/30 backdrop-blur-sm rounded-2xl border border-white/20 shadow-2xl"
+                className="relative overflow-hidden bg-black/30 backdrop-blur-sm rounded-2xl border border-[#7FFFD4] shadow-2xl hover:shadow-cyan-500/50 transition-all duration-500 "
                 style={{
                   height: isMobile ? '300px' : isTablet ? '400px' : '500px',
                   width: isMobile ? '280px' : isTablet ? '320px' : '380px'
@@ -485,13 +427,13 @@ const VideoHero = () => {
                   {services.map((service, index) => (
                     <div
                       key={index}
-                      className="flex items-center justify-start p-4 xs:p-5 sm:p-6 text-white cursor-pointer group hover:bg-white/10 transition-all duration-300 border-b border-white/10"
+                      className="flex items-center justify-start p-2 xs:p-3 sm:p-4 text-white cursor-pointer group hover:bg-white/10 transition-all duration-300 border-b border-white/10 "
                       onClick={() => handleServiceClick(service.link)}
                     >
-                      <div className="mr-3 xs:mr-4 text-white group-hover:text-[#245684] transition-colors duration-300">
+                      <div className="mr-3 xs:mr-4 text-white group-hover:text-[#245684] transition-colors duration-300 ">
                         {service.icon}
                       </div>
-                      <span className="font-medium text-sm xs:text-base sm:text-lg group-hover:text-[#245684] transition-colors duration-300">
+                      <span className="font-medium text-sm xs:text-base sm:text-md group-hover:text-[#245684] transition-colors duration-300 ">
                         {service.name}
                       </span>
                       <svg 
@@ -513,13 +455,13 @@ const VideoHero = () => {
                   {services.map((service, index) => (
                     <div
                       key={`dup-${index}`}
-                      className="flex items-center justify-start p-4 xs:p-5 sm:p-6 text-white cursor-pointer group hover:bg-white/10 transition-all duration-300 border-b border-white/10"
+                      className="flex items-center justify-start p-2 xs:p-3 sm:p-4 text-white cursor-pointer group hover:bg-white/10 transition-all duration-300 border-b border-white/10"
                       onClick={() => handleServiceClick(service.link)}
                     >
                       <div className="mr-3 xs:mr-4 text-white group-hover:text-[#245684] transition-colors duration-300">
                         {service.icon}
                       </div>
-                      <span className="font-medium text-sm xs:text-base sm:text-lg group-hover:text-[#245684] transition-colors duration-300">
+                      <span className="font-medium text-sm xs:text-base sm:text-md group-hover:text-[#245684] transition-colors duration-300">
                         {service.name}
                       </span>
                       <svg 
@@ -676,6 +618,15 @@ const VideoHero = () => {
             font-size: 2rem;
           }
         }
+           @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+  }
       `}</style>
     </section>
   );
