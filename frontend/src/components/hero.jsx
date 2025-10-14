@@ -286,7 +286,7 @@ const VideoHero = () => {
   const isTablet = deviceSize === 'tablet';
 
   return (
-    <section className="relative min-h-dvh w-full overflow-hidden bg-black pt-10 md:pt-14 lg:pt-18">
+    <section className="relative min-h-screen w-full overflow-hidden bg-black pt-10 md:pt-12 lg:pt-14">
       {/* Services Marquee */}
       <div
         className="block absolute bottom-0 left-0 w-full z-30 overflow-hidden py-3 xs:py-4"
