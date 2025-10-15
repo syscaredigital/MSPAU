@@ -116,9 +116,7 @@ const ImageGallery = () => {
             <span className="text-[#245684] font-semibold uppercase tracking-wider">
               GALLERY
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mt-2 mb-4">
-               SysCare IT Solutions
-            </h2>
+            
             <div className="w-24 h-1 bg-[#245684] mx-auto mb-4"></div>
             
           </div>
@@ -207,10 +205,7 @@ const ImageGallery = () => {
                 className="max-w-full max-h-[80vh] object-contain rounded-lg"
               />
               
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6 text-white">
-                <h3 className="text-2xl font-bold mb-2">{galleryImages[currentIndex].title}</h3>
-                <p className="text-gray-200">{galleryImages[currentIndex].description}</p>
-              </div>
+              
             </div>
 
             <button 
