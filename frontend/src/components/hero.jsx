@@ -258,27 +258,41 @@ const VideoHero = () => {
     navigate(serviceLink);
   };
 
-  // Slider navigation functions - IMPROVED
+  // FIXED: Slider navigation functions
   const nextSlide = () => {
     setSlideTransition(true);
-    setCurrentSlide((prev) => (prev + 1) % 5);
     setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000);
+    setCurrentSlide((prev) => (prev + 1) % 5);
+    
+    // Restart auto-play after 10 seconds
+    setTimeout(() => {
+      setIsAutoPlaying(true);
+    }, 10000);
   };
 
   const prevSlide = () => {
     setSlideTransition(true);
-    setCurrentSlide((prev) => (prev - 1 + 5) % 5);
     setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000);
+    setCurrentSlide((prev) => (prev - 1 + 5) % 5);
+    
+    // Restart auto-play after 10 seconds
+    setTimeout(() => {
+      setIsAutoPlaying(true);
+    }, 10000);
   };
 
-  // Go to specific slide
+  // FIXED: Go to specific slide
   const goToSlide = (index) => {
+    if (index === currentSlide) return; // Don't do anything if clicking current slide
+    
     setSlideTransition(true);
-    setCurrentSlide(index);
     setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000);
+    setCurrentSlide(index);
+    
+    // Restart auto-play after 10 seconds
+    setTimeout(() => {
+      setIsAutoPlaying(true);
+    }, 10000);
   };
 
   // Helper function to check if device is mobile
@@ -379,11 +393,11 @@ const VideoHero = () => {
         )}
       </div>
 
-      {/* Slider Controls */}
+      {/* FIXED: Slider Controls */}
       <div className="absolute inset-0 z-10 flex items-center justify-between px-3 xs:px-4 sm:px-6 lg:px-8">
         <button
           onClick={prevSlide}
-          className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black/30 hover:bg-black/50 text-white rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border border-white/20"
+          className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black/30 hover:bg-black/50 text-white rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border border-white/20 hover:border-[#15f4ee]/50"
           aria-label="Previous image"
         >
           <FiChevronLeft className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
@@ -391,25 +405,26 @@ const VideoHero = () => {
 
         <button
           onClick={nextSlide}
-          className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black/30 hover:bg-black/50 text-white rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border border-white/20"
+          className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black/30 hover:bg-black/50 text-white rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border border-white/20 hover:border-[#15f4ee]/50"
           aria-label="Next image"
         >
           <FiChevronRight className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
         </button>
       </div>
 
-      {/* Slider Indicators */}
-      <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2">
+      {/* FIXED: Slider Indicators */}
+      <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2 xs:space-x-3">
         {[0, 1, 2, 3, 4].map((index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            className={`w-3 h-3 xs:w-4 xs:h-4 rounded-full transition-all duration-300 cursor-pointer ${
               currentSlide === index 
-                ? 'bg-[#15f4ee] scale-125' 
-                : 'bg-white/50 hover:bg-white/70'
+                ? 'bg-[#15f4ee] scale-125 shadow-lg shadow-cyan-500/50' 
+                : 'bg-white/50 hover:bg-white/70 hover:scale-110'
             }`}
             aria-label={`Go to slide ${index + 1}`}
+            aria-current={currentSlide === index ? 'true' : 'false'}
           />
         ))}
       </div>
@@ -494,13 +509,13 @@ const VideoHero = () => {
               </div>
               
               {/* ISO Certification */}
-<div className="flex justify-center lg:justify-start mt-4 xs:mt-6">
-  <img 
-    src="/logos/ISO_Logos.png" 
-    alt="ISO 9001 Certified"
-    className="w-32 xs:w-36 sm:w-40 md:w-48 h-auto object-contain"
-  />
-</div>
+              <div className="flex justify-center lg:justify-start mt-4 xs:mt-6">
+                <img 
+                  src="/logos/ISO_Logos.png" 
+                  alt="ISO 9001 Certified"
+                  className="w-32 xs:w-36 sm:w-40 md:w-48 h-auto object-contain"
+                />
+              </div>
             </div>
 
             {/* Right Content - Vertical Marquee */}
