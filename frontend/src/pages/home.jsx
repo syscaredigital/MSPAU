@@ -29,13 +29,16 @@ const animationStyles = `
   
   @keyframes float {
     0% {
-      transform: translateY(0px);
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(10px, -10px) rotate(90deg);
     }
     50% {
-      transform: translateY(-10px);
+      transform: translate(0, -20px) rotate(180deg);
     }
-    100% {
-      transform: translateY(0px);
+    75% {
+      transform: translate(-10px, -10px) rotate(270deg);
     }
   }
   
@@ -62,12 +65,14 @@ const animationStyles = `
 
   @keyframes nodePulse {
     0%, 100% {
-      opacity: 0.3;
       transform: scale(1);
+      opacity: 0.6;
+      box-shadow: 0 0 20px currentColor;
     }
     50% {
-      opacity: 0.6;
-      transform: scale(1.1);
+      transform: scale(1.3);
+      opacity: 1;
+      box-shadow: 0 0 30px currentColor;
     }
   }
 
@@ -77,7 +82,7 @@ const animationStyles = `
       opacity: 0.2;
     }
     50% {
-      opacity: 0.5;
+      opacity: 0.6;
     }
     100% {
       stroke-dashoffset: 0;
@@ -99,16 +104,29 @@ const animationStyles = `
 
   @keyframes particleFloat {
     0%, 100% {
-      transform: translate(0, 0) rotate(0deg);
+      transform: translate(0, 0) scale(1);
+      opacity: 0.3;
     }
     25% {
-      transform: translate(5px, -5px) rotate(90deg);
+      transform: translate(15px, -15px) scale(1.1);
+      opacity: 0.5;
     }
     50% {
-      transform: translate(0, -10px) rotate(180deg);
+      transform: translate(0, -25px) scale(1.2);
+      opacity: 0.7;
     }
     75% {
-      transform: translate(-5px, -5px) rotate(270deg);
+      transform: translate(-15px, -15px) scale(1.1);
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes gridMove {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(50px, 50px);
     }
   }
 
@@ -127,6 +145,63 @@ const animationStyles = `
     }
     100% {
       transform: translateX(0);
+    }
+  }
+
+  @keyframes circuitMove {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 100px 100px;
+    }
+  }
+
+  @keyframes techFloat {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg);
+      opacity: 0.1;
+    }
+    25% {
+      transform: translate(20px, -20px) rotate(90deg);
+      opacity: 0.15;
+    }
+    50% {
+      transform: translate(0, -40px) rotate(180deg);
+      opacity: 0.2;
+    }
+    75% {
+      transform: translate(-20px, -20px) rotate(270deg);
+      opacity: 0.15;
+    }
+  }
+
+  @keyframes dataPulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.2;
+    }
+    50% {
+      transform: scale(1.5);
+      opacity: 0.4;
+    }
+  }
+
+  @keyframes dataFlow {
+    0% {
+      background-position: -100px 0;
+    }
+    100% {
+      background-position: 100px 0;
+    }
+  }
+
+  @keyframes gridShift {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(50px, 50px);
     }
   }
   
@@ -229,161 +304,7 @@ const animationStyles = `
     z-index: 1;
   }
 
-  /* Video Player Controls */
-  .video-player-container {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    height: 400px;
-  }
-
-  .video-player {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .video-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, rgba(16, 61, 93, 0.85), rgba(36, 86, 132, 0.85));
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    z-index: 2;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    padding: 2rem;
-    text-align: center;
-  }
-
-  .video-overlay.hidden {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  .play-button {
-    width: 80px;
-    height: 80px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  }
-
-  .play-button:hover {
-    transform: scale(1.1);
-    background: white;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
-  }
-
-  .play-icon {
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 15px 0 15px 26px;
-    border-color: transparent transparent transparent #103d5d;
-    margin-left: 5px;
-  }
-
-  .video-content {
-    max-width: 500px;
-  }
-
-  .video-content h3 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  }
-
-  .video-content p {
-    font-size: 1rem;
-    line-height: 1.6;
-    opacity: 0.9;
-    margin-bottom: 1.5rem;
-  }
-
-  .watch-text {
-    font-size: 0.9rem;
-    opacity: 0.8;
-    font-weight: 500;
-  }
-
-  .video-controls {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
-    z-index: 3;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .video-player-container:hover .video-controls {
-    opacity: 1;
-  }
-
-  .control-btn {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    padding: 0.5rem;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .control-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-  }
-
-  .volume-control {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .volume-slider {
-    width: 80px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
-    outline: none;
-    -webkit-appearance: none;
-  }
-
-  .volume-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: white;
-    cursor: pointer;
-  }
-
-  /* Particles background container */
+  /* Enhanced Particles Background Container */
   .particles-background {
     position: fixed;
     top: 0;
@@ -393,28 +314,10 @@ const animationStyles = `
     z-index: -1;
     pointer-events: none;
     overflow: hidden;
+    background: linear-gradient(135deg, #103d5d 0%, #1a4a72 25%, #245684 50%, #A91101 100%);
   }
 
-  .particle {
-    position: absolute;
-    background: rgba(16, 61, 93, 0.1);
-    border-radius: 50%;
-    animation: particleFloat 6s ease-in-out infinite;
-  }
-
-  .particle-2 {
-    background: rgba(36, 86, 132, 0.08);
-    animation-duration: 8s;
-    animation-delay: 1s;
-  }
-
-  .particle-3 {
-    background: rgba(23, 15, 23, 0.06);
-    animation-duration: 10s;
-    animation-delay: 2s;
-  }
-
-  /* Gradient mesh background */
+  /* Animated Gradient Mesh Overlay */
   .gradient-mesh {
     position: absolute;
     top: 0;
@@ -422,14 +325,17 @@ const animationStyles = `
     width: 100%;
     height: 100%;
     background: 
-      radial-gradient(circle at 15% 50%, rgba(16, 61, 93, 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 85% 30%, rgba(36, 86, 132, 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 50% 80%, rgba(23, 15, 23, 0.03) 0%, transparent 50%);
+      radial-gradient(circle at 15% 20%, rgba(16, 61, 93, 0.4) 0%, transparent 50%),
+      radial-gradient(circle at 85% 30%, rgba(26, 74, 114, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 50% 80%, rgba(36, 86, 132, 0.5) 0%, transparent 50%),
+      radial-gradient(circle at 70% 70%, rgba(169, 17, 1, 0.2) 0%, transparent 50%),
+      radial-gradient(circle at 25% 40%, rgba(16, 61, 93, 0.3) 0%, transparent 50%);
     animation: gradientShift 15s ease infinite;
+    background-size: 200% 200%;
   }
 
-  /* Connected nodes overlay */
-  .nodes-overlay {
+  /* Floating Geometric Shapes */
+  .floating-shapes {
     position: absolute;
     top: 0;
     left: 0;
@@ -437,19 +343,148 @@ const animationStyles = `
     height: 100%;
   }
 
+  .shape {
+    position: absolute;
+    opacity: 0.1;
+    animation: float 20s infinite linear;
+  }
+
+  .shape-1 {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(45deg, #103d5d, #1a4a72);
+    top: 10%;
+    left: 5%;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    animation-delay: 0s;
+  }
+
+  .shape-2 {
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(45deg, #245684, #A91101);
+    top: 60%;
+    right: 10%;
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    animation-delay: 5s;
+    animation-duration: 25s;
+  }
+
+  .shape-3 {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(45deg, #A91101, #103d5d);
+    bottom: 20%;
+    left: 20%;
+    border-radius: 50% 50% 50% 70% / 50% 50% 70% 60%;
+    animation-delay: 10s;
+    animation-duration: 30s;
+  }
+
+  .shape-4 {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(45deg, #1a4a72, #245684);
+    top: 30%;
+    right: 20%;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    animation-delay: 15s;
+    animation-duration: 35s;
+  }
+
+  /* Animated Grid Lines */
+  .grid-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 20s linear infinite;
+  }
+
+  /* Enhanced Particles */
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    animation: particleFloat 8s ease-in-out infinite;
+  }
+
+  .particle-0 {
+    background: rgba(16, 61, 93, 0.3);
+    animation-duration: 6s;
+  }
+
+  .particle-1 {
+    background: rgba(26, 74, 114, 0.25);
+    animation-duration: 8s;
+    animation-delay: 1s;
+  }
+
+  .particle-2 {
+    background: rgba(36, 86, 132, 0.35);
+    animation-duration: 10s;
+    animation-delay: 2s;
+  }
+
+  .particle-3 {
+    background: rgba(169, 17, 1, 0.2);
+    animation-duration: 7s;
+    animation-delay: 3s;
+  }
+
+  /* Enhanced Connection Nodes */
   .node {
     position: absolute;
-    width: 6px;
-    height: 6px;
-    background: rgba(16, 61, 93, 0.3);
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     animation: nodePulse 4s ease-in-out infinite;
   }
 
+  .node-0 {
+    background: rgba(16, 61, 93, 0.6);
+    box-shadow: 0 0 20px rgba(16, 61, 93, 0.4);
+  }
+
+  .node-1 {
+    background: rgba(26, 74, 114, 0.5);
+    box-shadow: 0 0 20px rgba(26, 74, 114, 0.3);
+  }
+
+  .node-2 {
+    background: rgba(36, 86, 132, 0.7);
+    box-shadow: 0 0 20px rgba(36, 86, 132, 0.5);
+  }
+
+  .node-3 {
+    background: rgba(169, 17, 1, 0.4);
+    box-shadow: 0 0 20px rgba(169, 17, 1, 0.3);
+  }
+
   .connection {
-    stroke: rgba(36, 86, 132, 0.1);
     stroke-width: 1;
     stroke-dasharray: 5;
+    animation: connectionFlow 4s linear infinite;
+  }
+
+  .connection-0 {
+    stroke: rgba(16, 61, 93, 0.3);
+  }
+
+  .connection-1 {
+    stroke: rgba(26, 74, 114, 0.25);
+  }
+
+  .connection-2 {
+    stroke: rgba(36, 86, 132, 0.4);
+  }
+
+  .connection-3 {
+    stroke: rgba(169, 17, 1, 0.2);
   }
 
   /* Section-specific backgrounds */
@@ -457,9 +492,8 @@ const animationStyles = `
     position: relative;
     background: 
       linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%),
-      url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80') center/cover fixed,
-      radial-gradient(circle at 20% 80%, rgba(16, 61, 93, 0.03) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(36, 86, 132, 0.03) 0%, transparent 50%);
+      radial-gradient(circle at 20% 80%, rgba(16, 61, 93, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(169, 17, 1, 0.03) 0%, transparent 50%);
     background-blend-mode: overlay, normal;
   }
 
@@ -482,11 +516,12 @@ const animationStyles = `
     z-index: 2;
   }
 
+  /* Enhanced Industries Background */
   .industries-background {
     background: 
       linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%),
-      radial-gradient(circle at 10% 20%, rgba(16, 61, 93, 0.02) 0%, transparent 50%),
-      radial-gradient(circle at 90% 80%, rgba(36, 86, 132, 0.02) 0%, transparent 50%);
+      radial-gradient(circle at 10% 20%, rgba(16, 61, 93, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 90% 80%, rgba(36, 86, 132, 0.03) 0%, transparent 50%);
     position: relative;
     overflow: hidden;
   }
@@ -503,8 +538,140 @@ const animationStyles = `
       radial-gradient(circle at 80% 70%, rgba(36, 86, 132, 0.03) 0%, transparent 50%);
   }
 
+  /* Animated Circuit Board Background */
+  .circuit-board {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    background-image: 
+      linear-gradient(90deg, transparent 79px, #103d5d 79px, #103d5d 81px, transparent 81px),
+      linear-gradient(#103d5d 1px, transparent 1px);
+    background-size: 100px 100px;
+    background-position: 0 0;
+    animation: circuitMove 20s linear infinite;
+  }
+
+  /* Floating Tech Icons */
+  .tech-icons-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .tech-icon {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0.1;
+    animation: techFloat 15s ease-in-out infinite;
+    color: #103d5d;
+  }
+
+  /* Geometric Pattern Overlay */
+  .geometric-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(16, 61, 93, 0.02) 10px,
+        rgba(16, 61, 93, 0.02) 20px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 10px,
+        rgba(36, 86, 132, 0.02) 10px,
+        rgba(36, 86, 132, 0.02) 20px
+      );
+  }
+
+  /* Data Flow Animation */
+  .data-flow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .data-node {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #103d5d;
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: dataPulse 4s ease-in-out infinite;
+  }
+
+  .data-connection {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #103d5d, transparent);
+    opacity: 0.2;
+    animation: dataFlow 3s linear infinite;
+  }
+
+  /* Industry Grid Background */
+  .industry-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      linear-gradient(90deg, rgba(16, 61, 93, 0.03) 1px, transparent 1px),
+      linear-gradient(rgba(16, 61, 93, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridShift 30s linear infinite;
+  }
+
+  /* Enhanced Industries List Container */
+  .industries-list-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+      0 8px 32px rgba(16, 61, 93, 0.1),
+      0 2px 8px rgba(16, 61, 93, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+
+  /* Industry Item Hover Effects */
+  .industry-item {
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+  }
+
+  .industry-item:hover {
+    border-left-color: #103d5d;
+    background: rgba(16, 61, 93, 0.05);
+    transform: translateX(5px);
+  }
+
+  .industry-dot {
+    transition: all 0.3s ease;
+  }
+
+  .industry-item:hover .industry-dot {
+    transform: scale(1.5);
+    background: #103d5d;
+    box-shadow: 0 0 10px rgba(16, 61, 93, 0.5);
+  }
+
   .stats-background {
-    background: linear-gradient(135deg, #103d5d 0%, #245684 50%, #1a4a75 100%);
+    background: linear-gradient(135deg, #103d5d 0%, #1a4a72 50%, #245684 100%);
     position: relative;
     overflow: hidden;
   }
@@ -523,7 +690,7 @@ const animationStyles = `
 
   /* Testimonials Section Background */
   .testimonials-background {
-    background: #103d5d;
+    background: linear-gradient(135deg, #245684 0%, #1a4a72 50%, #103d5d 100%);
     position: relative;
     overflow: hidden;
   }
@@ -571,7 +738,10 @@ const animationStyles = `
   }
 
   .downloads-background {
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    background: 
+      linear-gradient(135deg, #ffffff 0%, #f8fafc 100%),
+      radial-gradient(circle at 10% 20%, rgba(16, 61, 93, 0.02) 0%, transparent 50%),
+      radial-gradient(circle at 90% 80%, rgba(169, 17, 1, 0.02) 0%, transparent 50%);
     position: relative;
     overflow: hidden;
   }
@@ -585,12 +755,15 @@ const animationStyles = `
     bottom: 0;
     background: 
       radial-gradient(circle at 10% 20%, rgba(16, 61, 93, 0.02) 0%, transparent 50%),
-      radial-gradient(circle at 90% 80%, rgba(36, 86, 132, 0.02) 0%, transparent 50%);
+      radial-gradient(circle at 90% 80%, rgba(169, 17, 1, 0.02) 0%, transparent 50%);
   }
 
   /* Dual Line Partner Carousel Styles */
   .partners-background {
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    background: 
+      linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%),
+      radial-gradient(circle at 20% 30%, rgba(26, 74, 114, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(36, 86, 132, 0.03) 0%, transparent 50%);
     position: relative;
     overflow: hidden;
   }
@@ -603,7 +776,7 @@ const animationStyles = `
     right: 0;
     bottom: 0;
     background: 
-      radial-gradient(circle at 20% 30%, rgba(16, 61, 93, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 20% 30%, rgba(26, 74, 114, 0.03) 0%, transparent 50%),
       radial-gradient(circle at 80% 70%, rgba(36, 86, 132, 0.03) 0%, transparent 50%);
   }
 
@@ -658,14 +831,12 @@ const animationStyles = `
     max-height: 45px;
     width: auto;
     height: auto;
-    /* Colorful logos - removed grayscale */
     filter: none;
     opacity: 0.9;
     transition: all 0.3s ease;
   }
 
   .logo-item:hover .logo-img {
-    /* Keep colors on hover */
     filter: none;
     opacity: 1;
     transform: scale(1.1);
@@ -755,6 +926,69 @@ const animationStyles = `
     z-index: 1;
   }
 
+  /* Ensure text remains readable */
+  .text-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* About Section Styles */
+  .about-section {
+    position: relative;
+  }
+
+  .video-player-container {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+  }
+
+  .video-player {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 14px;
+  }
+
+  .play-button {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  .play-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    background: white;
+  }
+
+  .play-icon {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 0 15px 26px;
+    border-color: transparent transparent transparent #245684;
+    margin-left: 5px;
+  }
+
+  /* Enhanced text shadows for better readability */
+  .text-content h2 {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .text-content p {
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  }
+
   /* Responsive */
   @media (max-width: 768px) {
     .logo-track {
@@ -790,35 +1024,38 @@ const animationStyles = `
       background-attachment: scroll;
     }
 
-    .video-player-container {
-      height: 300px;
+    .shape-1,
+    .shape-2,
+    .shape-3,
+    .shape-4 {
+      display: none;
     }
 
+    .tech-icon {
+      font-size: 1rem;
+    }
+    
+    .industries-list-container {
+      backdrop-filter: none;
+      background: rgba(255, 255, 255, 0.98);
+    }
+
+    .about-section {
+      padding: 3rem 1rem;
+    }
+    
+    .video-player-container {
+      margin-top: 2rem;
+    }
+    
     .play-button {
       width: 60px;
       height: 60px;
     }
-
+    
     .play-icon {
       border-width: 12px 0 12px 20px;
       margin-left: 4px;
-    }
-
-    .video-content h3 {
-      font-size: 1.25rem;
-    }
-
-    .video-content p {
-      font-size: 0.9rem;
-    }
-
-    .video-controls {
-      bottom: 10px;
-      padding: 0.4rem 0.8rem;
-    }
-
-    .volume-slider {
-      width: 60px;
     }
   }
 `;
@@ -839,8 +1076,14 @@ const HomePage = () => {
   
   // Video states
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const [volume, setVolume] = useState(0.7);
+  const [volume] = useState(0.7);
   const videoRef = useRef(null);
+
+  // Industries background states
+  const [techIconPositions, setTechIconPositions] = useState([]);
+  const [dataNodes, setDataNodes] = useState([]);
+  const [dataConnections, setDataConnections] = useState([]);
+  const techIcons = ['💻', '🔒', '☁️', '📱', '🌐', '⚡', '🔧', '📊', '🚀', '🛡️', '🔗', '💾'];
 
   // All Services Data
   const allServices = [
@@ -905,8 +1148,8 @@ const HomePage = () => {
     { id: 7, name: "Oracle", image: "/Partner_logos/citrix.png" },
     { id: 8, name: "VMware", image: "/Partner_logos/comvergence.png" },
     { id: 9, name: "Amazon Web Services", image: "/Partner_logos/Datastor.png" },
-    { id: 10, name: "Google Cloud", image: "/Partner_logos/DellEMC.png" },
-    { id: 11, name: "Azure", image: "/Partner_logos/DickerData.jpg" },
+    { id: 10, name: "Google Cloud", image: "/Partner_logos/DickerData.jpg" },
+    { id: 11, name: "Azure", image: "/Partner_logos/DellEMC.png" },
     { id: 12, name: "Fortinet", image: "/Partner_logos/Dropbox_For_Business.png" },
     { id: 13, name: "Palo Alto", image: "/Partner_logos/Duo.png" },
     { id: 14, name: "Sophos", image: "/Partner_logos/exclaimer.png" },
@@ -921,24 +1164,24 @@ const HomePage = () => {
 
   const partnerLogosLine2 = [
     { id: 22, name: "SAP", image: "/Partner_logos/hyper_v.png" },
-    { id: 23, name: "Salesforce", image: "/Partner_logos/IBM.png" },
-    { id: 24, name: "Adobe", image: "/Partner_logos/Ingram.png" },
-    { id: 25, name: "Autodesk", image: "/Partner_logos/Leader_Computers.png" },
-    { id: 26, name: "Intel", image: "/Partner_logos/Lenovo.png" },
-    { id: 27, name: "AMD", image: "/Partner_logos/MailStore.png" },
-    { id: 28, name: "NVIDIA", image: "/Partner_logos/McAfee.png" },
-    { id: 29, name: "Western Digital", image: "/Partner_logos/Microsoft1.png" },
-    { id: 30, name: "Seagate", image: "/Partner_logos/NextDC.png" },
-    { id: 31, name: "Toshiba", image: "/Partner_logos/Pristine.png" },
-    { id: 32, name: "Samsung", image: "/Partner_logos/QNAP.png" },
-    { id: 33, name: "Apple", image: "/Partner_logos/Solar_Winds.jpg" },
-    { id: 34, name: "Canon", image: "/Partner_logos/Sonicwall.png" },
-    { id: 35, name: "Epson", image: "/Partner_logos/storagecraft.jpg" },
-    { id: 36, name: "Brother", image: "/Partner_logos/syantec.png" },
-    { id: 37, name: "Logitech", image: "/Partner_logos/Synnex.png" },
-    { id: 38, name: "Poly", image: "/Partner_logos/TechData.png" },
-    { id: 39, name: "Jabra", image: "/Partner_logos/trentmicro.png" },
-    { id: 40, name: "APC", image: "/Partner_logos/veeam.png" },
+    { id: 23, name: "Salesforce", image: "/Partner_logos/Ingram.png" },
+    { id: 24, name: "Adobe", image: "/Partner_logos/Leader_Computers.png" },
+    { id: 25, name: "Autodesk", image: "/Partner_logos/Lenovo.png" },
+    { id: 26, name: "Intel", image: "/Partner_logos/MailStore.png" },
+    { id: 27, name: "AMD", image: "/Partner_logos/McAfee.png" },
+    { id: 28, name: "NVIDIA", image: "/Partner_logos/Microsoft1.png" },
+    { id: 29, name: "Western Digital", image: "/Partner_logos/NextDC.png" },
+    { id: 30, name: "Seagate", image: "/Partner_logos/Pristine.png" },
+    { id: 31, name: "Toshiba", image: "/Partner_logos/QNAP.png" },
+    { id: 32, name: "Samsung", image: "/Partner_logos/Solar_Winds.jpg" },
+    { id: 33, name: "Apple", image: "/Partner_logos/Sonicwall.png" },
+    { id: 34, name: "Canon", image: "/Partner_logos/storagecraft.jpg" },
+    { id: 35, name: "Epson", image: "/Partner_logos/syantec.png" },
+    { id: 36, name: "Brother", image: "/Partner_logos/Synnex.png" },
+    { id: 37, name: "Logitech", image: "/Partner_logos/TechData.png" },
+    { id: 38, name: "Poly", image: "/Partner_logos/trentmicro.png" },
+    { id: 39, name: "Jabra", image: "/Partner_logos/veeam.png" },
+    { id: 40, name: "APC", image: "/Partner_logos/vmware.jpg" },
     { id: 41, name: "CyberPower", image: "/Partner_logos/vmware.jpg" }
   ];
 
@@ -1027,18 +1270,6 @@ const HomePage = () => {
     }
   };
 
-  const handleVolumeChange = (e) => {
-    const newVolume = parseFloat(e.target.value);
-    setVolume(newVolume);
-    if (videoRef.current) {
-      videoRef.current.volume = newVolume;
-    }
-  };
-
-  const handleVideoClick = () => {
-    toggleVideoPlay();
-  };
-
   const handleVideoEnd = () => {
     setIsVideoPlaying(false);
   };
@@ -1050,47 +1281,6 @@ const HomePage = () => {
   const handleVideoPause = () => {
     setIsVideoPlaying(false);
   };
-
-  useEffect(() => {
-    // Initialize animated background nodes, connections, and particles
-    initializeBackground();
-    initializeParticles();
-    initializeTestimonialParticles();
-
-    // Start counter animation when stats section is in view
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            animateStats();
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    const statsSection = document.getElementById('stats-section');
-    if (statsSection) {
-      observer.observe(statsSection);
-    }
-
-    // Auto-rotate testimonials
-    const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-
-    // Set initial volume
-    if (videoRef.current) {
-      videoRef.current.volume = volume;
-    }
-
-    return () => {
-      if (statsSection) {
-        observer.unobserve(statsSection);
-      }
-      clearInterval(interval);
-    };
-  }, []);
 
   const initializeBackground = () => {
     // Create nodes for the connected network background
@@ -1133,12 +1323,12 @@ const HomePage = () => {
 
   const initializeParticles = () => {
     // Create floating particles for the background
-    const particleCount = 50;
+    const particleCount = 60; // Increased for more density
     const newParticles = [];
     
     for (let i = 0; i < particleCount; i++) {
-      const size = Math.random() * 8 + 2; // Random size between 2px and 10px
-      const type = i % 3; // Distribute between 3 particle types
+      const size = Math.random() * 10 + 3; // Random size between 3px and 13px
+      const type = i % 4; // Distribute between 4 particle types for different colors
       
       newParticles.push({
         id: i,
@@ -1146,7 +1336,7 @@ const HomePage = () => {
         y: Math.random() * 100,
         size: size,
         type: type,
-        delay: Math.random() * 6
+        delay: Math.random() * 8
       });
     }
     
@@ -1174,6 +1364,92 @@ const HomePage = () => {
     
     setTestimonialParticles(newParticles);
   };
+
+  const initializeIndustriesBackground = () => {
+    // Initialize tech icons
+    const icons = [];
+    for (let i = 0; i < 20; i++) {
+      icons.push({
+        id: i,
+        icon: techIcons[Math.floor(Math.random() * techIcons.length)],
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        delay: Math.random() * 15,
+        duration: 10 + Math.random() * 10
+      });
+    }
+    setTechIconPositions(icons);
+
+    // Initialize data nodes
+    const nodes = [];
+    for (let i = 0; i < 25; i++) {
+      nodes.push({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        delay: Math.random() * 4
+      });
+    }
+    setDataNodes(nodes);
+
+    // Initialize data connections
+    const connections = [];
+    for (let i = 0; i < 15; i++) {
+      const fromNode = nodes[Math.floor(Math.random() * nodes.length)];
+      const toNode = nodes[Math.floor(Math.random() * nodes.length)];
+      if (fromNode && toNode && fromNode.id !== toNode.id) {
+        connections.push({
+          id: i,
+          from: fromNode,
+          to: toNode,
+          delay: Math.random() * 3
+        });
+      }
+    }
+    setDataConnections(connections);
+  };
+
+  useEffect(() => {
+    // Initialize animated background nodes, connections, and particles
+    initializeBackground();
+    initializeParticles();
+    initializeTestimonialParticles();
+    initializeIndustriesBackground();
+
+    // Start counter animation when stats section is in view
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateStats();
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    const statsSection = document.getElementById('stats-section');
+    if (statsSection) {
+      observer.observe(statsSection);
+    }
+
+    // Auto-rotate testimonials
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+
+    // Set initial volume
+    if (videoRef.current) {
+      videoRef.current.volume = volume;
+    }
+
+    return () => {
+      if (statsSection) {
+        observer.unobserve(statsSection);
+      }
+      clearInterval(interval);
+    };
+  }, []);
 
   const animateStats = () => {
     const duration = 2000;
@@ -1226,20 +1502,31 @@ const HomePage = () => {
       
       {/* Enhanced Particles Background */}
       <div className="particles-background">
+        {/* Animated Gradient Mesh */}
         <div className="gradient-mesh"></div>
+        
+        {/* Floating Geometric Shapes */}
+        <div className="floating-shapes">
+          <div className="shape shape-1"></div>
+          <div className="shape shape-2"></div>
+          <div className="shape shape-3"></div>
+          <div className="shape shape-4"></div>
+        </div>
+        
+        {/* Animated Grid Lines */}
+        <div className="grid-lines"></div>
         
         {/* Floating Particles */}
         {particles.map((particle) => (
           <div
             key={particle.id}
-            className={`particle particle-${particle.type} animate-particle-float`}
+            className={`particle particle-${particle.type}`}
             style={{
               left: `${particle.x}%`,
               top: `${particle.y}%`,
               width: `${particle.size}px`,
               height: `${particle.size}px`,
               animationDelay: `${particle.delay}s`,
-              opacity: 0.1 + (particle.size / 20)
             }}
           />
         ))}
@@ -1247,22 +1534,22 @@ const HomePage = () => {
         {/* Connected Nodes Network */}
         <div className="nodes-overlay">
           <svg width="100%" height="100%" style={{ position: 'absolute', top: 0, left: 0 }}>
-            {connections.map((conn) => (
+            {connections.map((conn, index) => (
               <line
                 key={conn.id}
                 x1={`${conn.from.x}%`}
                 y1={`${conn.from.y}%`}
                 x2={`${conn.to.x}%`}
                 y2={`${conn.to.y}%`}
-                className="connection animate-connection-flow"
+                className={`connection connection-${index % 4}`}
                 style={{ animationDelay: `${conn.delay}s` }}
               />
             ))}
           </svg>
-          {nodes.map((node) => (
+          {nodes.map((node, index) => (
             <div
               key={node.id}
-              className="node animate-node-pulse"
+              className={`node node-${index % 4}`}
               style={{
                 left: `${node.x}%`,
                 top: `${node.y}%`,
@@ -1279,83 +1566,128 @@ const HomePage = () => {
 
         <VideoHero/>
 
-        {/* About Section with Enhanced Video Player */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="animate-fade-in-up">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-6">Managed IT Services in Australia | SysCare IT Solutions</h2>
-              <p className="text-md text-gray-600 mb-6 text-justify">
-                 At SysCare IT Solutions, we deliver reliable managed IT services in Melbourne, advanced IT support in Sydney, and proactive managed security services across Australia. Whether you need a full-service MSP in Melbourne or a trusted MSSP in Australia, we've got your business covered.
-              </p>
-              <p className="text-md text-gray-600 mb-8">
-                Based in Melbourne and Sydney, SysCare IT Solutions supports businesses of all sizes across Australia. From small startups to growing enterprises, we deliver cost-effective and scalable IT solutions that reduce downtime, enhance security, and improve productivity.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <div className="bg-[#103d5d] text-white px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300 animate-pulse-slow">150+ Clients</div>
-                <div className="bg-[#245684] text-white px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300 animate-pulse-slow" style={{animationDelay: '0.5s'}}>24/7 Support</div>
-                <div className="bg-[#170f17] text-white px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300 animate-pulse-slow" style={{animationDelay: '1s'}}>Certified Experts</div>
-              </div>
+        {/* About Section with Enhanced Background Design */}
+        <div className="about-section relative py-16 md:py-24 overflow-hidden">
+          {/* Enhanced Background Design */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#103d5d] via-[#1a4a72] to-[#245684]">
+            {/* Animated Geometric Pattern */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_25%,rgba(255,255,255,0.1)_50%,transparent_50%,transparent_75%,rgba(255,255,255,0.1)_75%)] bg-[length:50px_50px] animate-gridMove"></div>
             </div>
             
-            {/* Enhanced Video Player */}
-            <div className="video-player-container rounded-xl animate-fade-in-up" style={{animationDelay: '0.3s'}}>
-              <video 
-                ref={videoRef}
-                className="video-player"
-                onClick={handleVideoClick}
-                onEnded={handleVideoEnd}
-                onPlay={handleVideoPlay}
-                onPause={handleVideoPause}
-              >
-                <source src={aboutus_video} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              
-              {/* Video Overlay with Content */}
-              <div 
-                className={`video-overlay ${isVideoPlaying ? 'hidden' : ''}`}
-                onClick={handleVideoClick}
-              >
-                <div className="play-button">
-                  <div className="play-icon"></div>
+            {/* Floating Nodes Network */}
+            <div className="absolute inset-0">
+              <svg width="100%" height="100%" className="opacity-20">
+                {Array.from({ length: 20 }).map((_, i) => (
+                  <circle
+                    key={i}
+                    cx={`${Math.random() * 100}%`}
+                    cy={`${Math.random() * 100}%`}
+                    r="2"
+                    fill="#103d5d"
+                    className="animate-pulse"
+                    style={{ animationDelay: `${i * 0.5}s` }}
+                  />
+                ))}
+                {Array.from({ length: 15 }).map((_, i) => {
+                  const x1 = Math.random() * 100;
+                  const y1 = Math.random() * 100;
+                  const x2 = Math.random() * 100;
+                  const y2 = Math.random() * 100;
+                  return (
+                    <line
+                      key={i}
+                      x1={`${x1}%`}
+                      y1={`${y1}%`}
+                      x2={`${x2}%`}
+                      y2={`${y2}%`}
+                      stroke="#1a4a72"
+                      strokeWidth="0.5"
+                      strokeDasharray="5,5"
+                      className="animate-connectionFlow"
+                      style={{ animationDelay: `${i * 0.3}s` }}
+                    />
+                  );
+                })}
+              </svg>
+            </div>
+
+            {/* Gradient Orbs */}
+            <div className="absolute -top-20 -left-20 w-60 h-60 bg-[#103d5d] rounded-full opacity-20 blur-3xl animate-float"></div>
+            <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-[#1a4a72] rounded-full opacity-20 blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-[#245684] rounded-full opacity-15 blur-2xl animate-pulse-slower"></div>
+
+            {/* Subtle Grid */}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+          </div>
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Text Content */}
+              <div className="text-content animate-fade-in-up">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 drop-shadow-lg">
+                  Managed IT Services in Australia | SysCare IT Solutions
+                </h2>
+                <div className="space-y-4">
+                  <p className="text-blue-100 text-lg leading-relaxed text-justify drop-shadow-sm">
+                    At SysCare IT Solutions, we deliver reliable managed IT services in Melbourne, advanced IT support in Sydney, and proactive managed security services across Australia. Whether you need a full-service MSP in Melbourne or a trusted MSSP in Australia, we've got your business covered.
+                  </p>
+                  <p className="text-blue-100 text-lg leading-relaxed drop-shadow-sm">
+                    Based in Melbourne and Sydney, SysCare IT Solutions supports businesses of all sizes across Australia. From small startups to growing enterprises, we deliver cost-effective and scalable IT solutions that reduce downtime, enhance security, and improve productivity.
+                  </p>
                 </div>
-                <div className="video-content">
-                  <h3>{videoContent.title}</h3>
-                  <p>{videoContent.description}</p>
-                  <div className="watch-text">{videoContent.watchText}</div>
+                
+                {/* Stats Cards */}
+                <div className="flex flex-wrap gap-4 mt-8">
+                  <div className="bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-xl hover:scale-105 transition-all duration-300 animate-pulse-slow border border-white/30">
+                    <div className="font-bold text-xl">150+</div>
+                    <div className="text-sm text-blue-100">Clients</div>
+                  </div>
+                  <div className="bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-xl hover:scale-105 transition-all duration-300 animate-pulse-slow border border-white/30" style={{animationDelay: '0.5s'}}>
+                    <div className="font-bold text-xl">24/7</div>
+                    <div className="text-sm text-blue-100">Support</div>
+                  </div>
+                  <div className="bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-xl hover:scale-105 transition-all duration-300 animate-pulse-slow border border-white/30" style={{animationDelay: '1s'}}>
+                    <div className="font-bold text-xl">12+</div>
+                    <div className="text-sm text-blue-100">Years Experience</div>
+                  </div>
                 </div>
               </div>
-
-              {/* Video Controls */}
-              <div className="video-controls">
-                <button 
-                  className="control-btn"
-                  onClick={toggleVideoPlay}
-                >
-                  {isVideoPlaying ? (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
-                    </svg>
-                  ) : (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                    </svg>
+              
+              {/* Video Player - No Overlay */}
+              <div className="animate-fade-in-up" style={{animationDelay: '0.3s'}}>
+                <div className="video-player-container rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20 backdrop-blur-sm">
+                  <video 
+                    ref={videoRef}
+                    className="video-player w-full h-auto"
+                    onClick={toggleVideoPlay}
+                    onEnded={handleVideoEnd}
+                    onPlay={handleVideoPlay}
+                    onPause={handleVideoPause}
+                    controls={isVideoPlaying}
+                  >
+                    <source src={aboutus_video} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                  
+                  {/* Simple Play Button when paused */}
+                  {!isVideoPlaying && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/10 transition-all duration-300 cursor-pointer">
+                      <div 
+                        className="play-button bg-white/90 hover:bg-white transition-all duration-300 shadow-2xl"
+                        onClick={toggleVideoPlay}
+                      >
+                        <div className="play-icon"></div>
+                      </div>
+                    </div>
                   )}
-                </button>
+                </div>
                 
-                <div className="volume-control">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clipRule="evenodd" />
-                  </svg>
-                  <input
-                    type="range"
-                    min="0"
-                    max="1"
-                    step="0.1"
-                    value={volume}
-                    onChange={handleVolumeChange}
-                    className="volume-slider"
-                  />
+                {/* Video Info */}
+                <div className="mt-4 text-center">
+                  <p className="text-white/80 text-sm font-medium">
+                    {videoContent.watchText}
+                  </p>
                 </div>
               </div>
             </div>
@@ -1365,11 +1697,11 @@ const HomePage = () => {
         {/* Services Section - Enhanced with background image */}
         <div className="services-background py-16 md:py-24 relative overflow-hidden border border-gray-200 rounded-lg mx-4 sm:mx-6 lg:mx-8">
           {/* Animated background elements */}
-          <div className="absolute -top-24 -left-24 w-48 h-48 rounded-full bg-blue-100 opacity-30 animate-pulse-slower"></div>
-          <div className="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-blue-200 opacity-20 animate-pulse-slower" style={{animationDelay: '1s'}}></div>
+          <div className="absolute -top-24 -left-24 w-48 h-48 rounded-full bg-[#103d5d] opacity-10 animate-pulse-slower"></div>
+          <div className="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-[#1a4a72] opacity-10 animate-pulse-slower" style={{animationDelay: '1s'}}></div>
           
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 services-content">
-            <div className="text-center mb-16">
+            <div className="text-center mb-16 text-content">
               <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4 animate-fade-in">
                 Our Managed IT & Security Solutions
               </h2>
@@ -1433,10 +1765,65 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* Industries We Support Section - Clean 3-column list */}
-        <div className="industries-background py-16 md:py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
+        {/* Industries We Support Section - Enhanced Background */}
+        <div className="industries-background py-16 md:py-24 relative overflow-hidden">
+          {/* Animated Circuit Board */}
+          <div className="circuit-board"></div>
+          
+          {/* Geometric Pattern */}
+          <div className="geometric-pattern"></div>
+          
+          {/* Industry Grid */}
+          <div className="industry-grid"></div>
+          
+          {/* Data Flow Animation */}
+          <div className="data-flow">
+            {dataNodes.map((node) => (
+              <div
+                key={node.id}
+                className="data-node"
+                style={{
+                  left: `${node.x}%`,
+                  top: `${node.y}%`,
+                  animationDelay: `${node.delay}s`
+                }}
+              />
+            ))}
+            {dataConnections.map((conn) => (
+              <div
+                key={conn.id}
+                className="data-connection"
+                style={{
+                  left: `${Math.min(conn.from.x, conn.to.x)}%`,
+                  top: `${Math.min(conn.from.y, conn.to.y)}%`,
+                  width: `${Math.abs(conn.from.x - conn.to.x)}%`,
+                  transform: `rotate(${Math.atan2(conn.to.y - conn.from.y, conn.to.x - conn.from.x)}rad)`,
+                  animationDelay: `${conn.delay}s`
+                }}
+              />
+            ))}
+          </div>
+          
+          {/* Floating Tech Icons */}
+          <div className="tech-icons-container">
+            {techIconPositions.map((icon) => (
+              <div
+                key={icon.id}
+                className="tech-icon"
+                style={{
+                  left: `${icon.x}%`,
+                  top: `${icon.y}%`,
+                  animationDelay: `${icon.delay}s`,
+                  animationDuration: `${icon.duration}s`
+                }}
+              >
+                {icon.icon}
+              </div>
+            ))}
+          </div>
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center mb-12 text-content">
               <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4 animate-fade-in">
                 Industries We Support
               </h2>
@@ -1445,161 +1832,80 @@ const HomePage = () => {
               </p>
             </div>
 
-            {/* Industries List Container */}
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 md:p-12 animate-fade-in-up">
+            {/* Industries List Container - Enhanced */}
+            <div className="industries-list-container rounded-2xl p-8 md:p-12 animate-fade-in-up backdrop-blur-lg">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {/* Column 1 */}
                 <div className="space-y-4">
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Accounting Services</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Advertising and Marketing</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Automobile Services</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Building Services</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Construction and Development</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Design and Architecture</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Educational Services</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Electrical Services</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Entertainment Services</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Farming and Agriculture</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Fast Food Industry</span>
-                  </div>
+                  {[
+                    "Accounting Services",
+                    "Advertising and Marketing",
+                    "Automobile Services",
+                    "Building Services",
+                    "Construction and Development",
+                    "Design and Architecture",
+                    "Educational Services",
+                    "Electrical Services",
+                    "Entertainment Services",
+                    "Farming and Agriculture",
+                    "Fast Food Industry"
+                  ].map((industry, index) => (
+                    <div key={index} className="industry-item flex items-center text-gray-700 hover:text-[#103d5d] transition-all duration-300 p-2 rounded-lg">
+                      <span className="industry-dot w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                      <span className="font-medium">{industry}</span>
+                    </div>
+                  ))}
                 </div>
 
                 {/* Column 2 */}
                 <div className="space-y-4">
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Financial Services</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Food Manufacturing Industry</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Health Care Services</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Home Care and Disability Services</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Hospitality Industry</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Human Resources</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Management and Consulting</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Mining and Support Industry</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Pet Food Manufacturing</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Pharmaceutical Industry</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Printing and Publishing Industry</span>
-                  </div>
+                  {[
+                    "Financial Services",
+                    "Food Manufacturing Industry",
+                    "Health Care Services",
+                    "Home Care and Disability Services",
+                    "Hospitality Industry",
+                    "Human Resources",
+                    "Management and Consulting",
+                    "Mining and Support Industry",
+                    "Pet Food Manufacturing",
+                    "Pharmaceutical Industry",
+                    "Printing and Publishing Industry"
+                  ].map((industry, index) => (
+                    <div key={index} className="industry-item flex items-center text-gray-700 hover:text-[#103d5d] transition-all duration-300 p-2 rounded-lg">
+                      <span className="industry-dot w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                      <span className="font-medium">{industry}</span>
+                    </div>
+                  ))}
                 </div>
 
                 {/* Column 3 */}
                 <div className="space-y-4">
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Production Industry</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Real Estate</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Retail Industry</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Small Business</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Social and Community Services</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Spare Parts Industry</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Steel and Aluminium Manufacturing</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Technology Services Industry</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Telecommunication Services Industry</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Tourism Industry</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Transport and Logistics Services</span>
-                  </div>
-                  <div className="flex items-center text-gray-700 hover:text-[#103d5d] transition-colors duration-300">
-                    <span className="w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
-                    <span className="font-medium">Wholesale and Warehousing</span>
-                  </div>
+                  {[
+                    "Production Industry",
+                    "Real Estate",
+                    "Retail Industry",
+                    "Small Business",
+                    "Social and Community Services",
+                    "Spare Parts Industry",
+                    "Steel and Aluminium Manufacturing",
+                    "Technology Services Industry",
+                    "Telecommunication Services Industry",
+                    "Tourism Industry",
+                    "Transport and Logistics Services",
+                    "Wholesale and Warehousing"
+                  ].map((industry, index) => (
+                    <div key={index} className="industry-item flex items-center text-gray-700 hover:text-[#103d5d] transition-all duration-300 p-2 rounded-lg">
+                      <span className="industry-dot w-2 h-2 bg-[#103d5d] rounded-full mr-3"></span>
+                      <span className="font-medium">{industry}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
 
             {/* Bottom CTA */}
-            <div className="text-center mt-12 animate-fade-in" style={{animationDelay: '0.5s'}}>
+            <div className="text-center mt-12 animate-fade-in text-content" style={{animationDelay: '0.5s'}}>
               <p className="text-lg text-gray-600 mb-6">
                 Don't see your industry? We have experience across countless sectors!
               </p>
@@ -1625,7 +1931,7 @@ const HomePage = () => {
             <div className="absolute bottom-1/4 left-1/3 w-20 h-20 rounded-full bg-white animate-float" style={{animationDelay: '2s'}}></div>
           </div>
           
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-content">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center stagger-animation">
               {stats.map((stat) => (
                 <div key={stat.id} className="animate-fade-in">
@@ -1642,7 +1948,7 @@ const HomePage = () => {
         {/* Downloads - Products & Services Brochures Section */}
         <div className="downloads-background py-16 md:py-24 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center mb-16">
+            <div className="text-center mb-16 text-content">
               <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4 animate-fade-in">
                 Downloads - Products & Services Brochures
               </h2>
@@ -1686,7 +1992,7 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* Testimonials Carousel Section - Updated with #103d5d background and particles */}
+        {/* Testimonials Carousel Section - Updated with new color background and particles */}
         <div className="testimonials-background py-16 md:py-24 relative overflow-hidden">
           {/* Testimonials Particles Background */}
           <div className="testimonials-particles">
@@ -1706,7 +2012,7 @@ const HomePage = () => {
             ))}
           </div>
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-content">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 animate-fade-in">What Our Clients Say</h2>
               <p className="text-xl text-blue-100 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
@@ -1743,7 +2049,7 @@ const HomePage = () => {
                             </div>
                             <p className="text-gray-700 italic mb-2 text-lg leading-relaxed">"{testimonial.quote}"</p>
                             <div>
-                              <div className="font-semibold text-[#245684] text-lg">{testimonial.author}</div>
+                              <div className="font-semibold text-[#1a4a72] text-lg">{testimonial.author}</div>
                               <div className="text-gray-600 text-sm">{testimonial.company}</div>
                             </div>
                           </div>
@@ -1770,7 +2076,7 @@ const HomePage = () => {
         {/* Dual Line Partners Section - Updated with colorful logos */}
         <div className="partners-background py-16 md:py-20 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center mb-12">
+            <div className="text-center mb-12 text-content">
               <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mb-4 animate-fade-in">
                 Trusted by Industry Leaders
               </h2>
@@ -1834,14 +2140,14 @@ const HomePage = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="bg-[#170f17] text-white py-16 md:py-24 relative overflow-hidden">
+        <div className="bg-gradient-to-r from-[#103d5d] via-[#1a4a72] to-[#245684] text-white py-16 md:py-24 relative overflow-hidden">
           {/* Animated background elements */}
           <div className="absolute top-0 left-0 w-full h-full opacity-10">
             <div className="absolute top-1/4 right-1/4 w-40 h-40 rounded-full bg-white animate-pulse-slower"></div>
             <div className="absolute bottom-1/4 left-1/4 w-32 h-32 rounded-full bg-white animate-pulse-slower" style={{animationDelay: '1s'}}></div>
           </div>
           
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 text-content">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fade-in">Partner with SysCare IT Solutions </h2>
             <p className="text-md mb-8 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
               Your dedicated provider of managed IT services in Melbourne, IT support in Sydney, and trusted cybersecurity services nationwide. Discover how we can protect and empower your business with tailored IT solutions.
@@ -1849,7 +2155,7 @@ const HomePage = () => {
             <div className="flex flex-col sm:flex-row justify-center gap-4 stagger-animation">
               <Link 
                 to="/contact-Us" 
-                className="px-8 py-3 bg-[#245684] text-white rounded-lg font-semibold hover:bg-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl animate-bounce-gentle"
+                className="px-8 py-3 bg-[#A91101] text-white rounded-lg font-semibold hover:bg-[#8a0e01] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl animate-bounce-gentle"
               >
                 Get a Free Consultation
               </Link>
@@ -1878,7 +2184,7 @@ const AnimatedServiceCard = ({ service, animationDelay = 0 }) => {
     >
       <div className="p-6 h-full flex flex-col relative">
         {/* Hover effect background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-blue-100 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-cyan-100 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
         
         <div className="relative z-10">
           {/* Icon with animation */}
@@ -1887,7 +2193,7 @@ const AnimatedServiceCard = ({ service, animationDelay = 0 }) => {
           </div>
           
           {/* Title */}
-          <h3 className="text-xl font-bold text-[#245684] mb-3 group-hover:text-[#103d5d] transition-colors duration-300">
+          <h3 className="text-xl font-bold text-[#1a4a72] mb-3 group-hover:text-[#103d5d] transition-colors duration-300">
             {service.title}
           </h3>
           
