@@ -138,7 +138,7 @@ const handleSubmit = async (e) => {
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-10 md:mb-0">
               <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                Contact <span className="text-[#a3c1e0]">SysCare</span> <br></br>IT Solutions
+                Contact <span className="text-[#a3c1e0]">SysCare</span>
               </h1>
               <p className={`text-md text-[#c9d8eb] mb-8 max-w-lg transition-all duration-700 delay-100 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                 Whether you're looking for 24/7 support contact, service inquiries, or expert advice, the team at SysCare IT Solutions is ready to assist.
