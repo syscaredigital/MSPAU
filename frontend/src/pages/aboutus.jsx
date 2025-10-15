@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
-import { FaHeadset, FaChevronRight } from 'react-icons/fa';
+import { FaHeadset, FaChevronRight, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+
+
+// Import your local images
+import aboutUs1 from '../assets/website-images/about-us/about-us1.jpg';
+import aboutUs2 from '../assets/website-images/about-us/about-us2.jpg';
+import aboutUs3 from '../assets/website-images/about-us/about-us3.jpg';
+import aboutUs4 from '../assets/website-images/about-us/about-us4.jpg';
+import aboutUs5 from '../assets/website-images/about-us/about-us5.jpg';
+
 
 // Header Component
 const Header = () => {
@@ -27,6 +36,199 @@ const Header = () => {
     <header className={`fixed w-full bg-white shadow-md transition-transform duration-300 z-50 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
       <Navigation />
     </header>
+  );
+};
+
+// Image Gallery Component
+const ImageGallery = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const galleryImages = [
+    {
+      id: 1,
+      src: aboutUs1,
+      alt: "Our Modern Office Space",
+      title: "Modern Workspace",
+      description: "Our state-of-the-art office designed for collaboration and innovation"
+    },
+    {
+      id: 2,
+      src: aboutUs2,
+      alt: "Team Collaboration",
+      title: "Team Collaboration",
+      description: "Our experts working together to deliver exceptional IT solutions"
+    },
+    {
+      id: 3,
+      src: aboutUs3,
+      alt: "Advanced Server Room",
+      title: "Infrastructure",
+      description: "Secure and reliable infrastructure powering our services"
+    },
+    {
+      id: 4,
+      src: aboutUs4,
+      alt: "Client Meeting",
+      title: "Client Partnership",
+      description: "Building lasting relationships with our valued clients"
+    },
+    {
+      id: 5,
+      src: aboutUs5,
+      alt: "Award Ceremony",
+      title: "Industry Recognition",
+      description: "Celebrating excellence and innovation in IT services"
+    }
+  ];
+
+  const nextImage = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === galleryImages.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === 0 ? galleryImages.length - 1 : prevIndex - 1
+    );
+  };
+
+  const goToImage = (index) => {
+    setCurrentIndex(index);
+  };
+
+  const openModal = (index) => {
+    setCurrentIndex(index);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  return (
+    <>
+      {/* Image Gallery Section */}
+      <section className="py-20 bg-gray-50 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="text-[#245684] font-semibold uppercase tracking-wider">
+              GALLERY
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#170f17] mt-2 mb-4">
+               SysCare IT Solutions
+            </h2>
+            <div className="w-24 h-1 bg-[#245684] mx-auto mb-4"></div>
+            
+          </div>
+
+          {/* Main Gallery Image */}
+          <div className="mb-8 relative group">
+            <div 
+              className="relative h-96 rounded-2xl overflow-hidden cursor-pointer shadow-2xl"
+              onClick={() => openModal(currentIndex)}
+            >
+              <img 
+                src={galleryImages[currentIndex].src}
+                alt={galleryImages[currentIndex].alt}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-end">
+                <div className="p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                  
+                </div>
+              </div>
+            </div>
+
+            {/* Navigation Arrows */}
+            <button 
+              onClick={prevImage}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+            >
+              <FaArrowLeft className="text-[#245684]" />
+            </button>
+            <button 
+              onClick={nextImage}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+            >
+              <FaArrowRight className="text-[#245684]" />
+            </button>
+          </div>
+
+          {/* Thumbnail Gallery */}
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            {galleryImages.map((image, index) => (
+              <div 
+                key={image.id}
+                className={`relative h-24 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
+                  index === currentIndex 
+                    ? 'ring-4 ring-[#245684] scale-105' 
+                    : 'opacity-70 hover:opacity-100 hover:scale-105'
+                }`}
+                onClick={() => goToImage(index)}
+              >
+                <img 
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover"
+                />
+                <div className={`absolute inset-0 ${
+                  index === currentIndex ? 'bg-[#245684] bg-opacity-20' : 'bg-black bg-opacity-0'
+                } transition-all duration-300`}></div>
+              </div>
+            ))}
+          </div>
+
+          {/* Image Counter */}
+          <div className="text-center mt-6">
+            <span className="text-gray-600 font-medium">
+              {currentIndex + 1} / {galleryImages.length}
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* Modal for Full-size Image View */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
+          <div className="relative max-w-6xl max-h-full">
+            <button 
+              onClick={closeModal}
+              className="absolute -top-12 right-0 text-white text-2xl hover:text-[#a3d4ff] transition-colors duration-300"
+            >
+              ✕
+            </button>
+            
+            <div className="relative">
+              <img 
+                src={galleryImages[currentIndex].src}
+                alt={galleryImages[currentIndex].alt}
+                className="max-w-full max-h-[80vh] object-contain rounded-lg"
+              />
+              
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6 text-white">
+                <h3 className="text-2xl font-bold mb-2">{galleryImages[currentIndex].title}</h3>
+                <p className="text-gray-200">{galleryImages[currentIndex].description}</p>
+              </div>
+            </div>
+
+            <button 
+              onClick={prevImage}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 w-12 h-12 rounded-full flex items-center justify-center text-white transition-all duration-300"
+            >
+              <FaArrowLeft />
+            </button>
+            <button 
+              onClick={nextImage}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 w-12 h-12 rounded-full flex items-center justify-center text-white transition-all duration-300"
+            >
+              <FaArrowRight />
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
@@ -99,8 +301,8 @@ const AboutUs = () => {
                   <a href="#stats-section" className="bg-white text-[#103d5d] px-6 py-3 rounded-md font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] flex items-center">
                     Our Story <FaChevronRight className="ml-2" />
                   </a>
-                  <a href="#team" className="border-2 border-white text-white px-6 py-3 rounded-md font-medium transition-all duration-300 hover:bg-white hover:text-[#103d5d]">
-                    Meet Our Team
+                  <a href="#gallery" className="border-2 border-white text-white px-6 py-3 rounded-md font-medium transition-all duration-300 hover:bg-white hover:text-[#103d5d]">
+                    View Gallery
                   </a>
                 </div>
               </div>
@@ -145,7 +347,7 @@ const AboutUs = () => {
                 </div>
                 <h3 className="text-2xl font-bold text-[#170f17] mb-4">Our Background </h3>
                 <p className="text-gray-700 mb-6">
-                  Technology without security is a risk no business can afford. That’s why SysCare is not only a trusted Managed Services Provider in Australia but also a highly skilled Managed Security Service Provider (MSSP). Our security-first approach ensures your data, systems, and networks remain safe from ever-changing cyber threats.
+                  Technology without security is a risk no business can afford. That's why SysCare is not only a trusted Managed Services Provider in Australia but also a highly skilled Managed Security Service Provider (MSSP). Our security-first approach ensures your data, systems, and networks remain safe from ever-changing cyber threats.
                 </p>
                 
                 <div className="space-y-4">
@@ -281,7 +483,7 @@ const AboutUs = () => {
                   { 
                     icon: "🏆", 
                     title: "Client-Centric Partnership", 
-                    desc: " We don’t just provide IT services we build lasting partnerships by understanding your goals and aligning our solutions with your success.",
+                    desc: " We don't just provide IT services we build lasting partnerships by understanding your goals and aligning our solutions with your success.",
                     bg: "bg-[#cde0ff]",
                     text: "text-[#245684]",
                     border: "border-[#245684]"
@@ -310,6 +512,12 @@ const AboutUs = () => {
             </div>
           </div>
         </section>
+
+        {/* Image Gallery Section */}
+        <div id='gallery'>
+          <ImageGallery />
+        </div>
+        
 
         {/* Team Section */}
         <section id="team" className="py-16 bg-white px-4 sm:px-6 lg:px-8">
@@ -401,13 +609,13 @@ const AboutUs = () => {
                 With local expertise in Melbourne and Sydney, and national capabilities across Australia, we are here to help your business succeed securely. To learn more about how SysCare IT Solutions can be the IT partner your business can trust.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fadeIn">
-                <a href="/contact" className="bg-white text-[#103d5d] px-8 py-3 rounded-lg font-bold hover:bg-opacity-90 transition flex items-center justify-center hover:scale-105">
+                <a href="/contact-us" className="bg-white text-[#103d5d] px-8 py-3 rounded-lg font-bold hover:bg-opacity-90 transition flex items-center justify-center hover:scale-105">
                   <span>Request Free Tech Audit</span>
                   <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                   </svg>
                 </a>
-                <a href="/services" className="border-2 border-white text-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-[#103d5d] transition flex items-center justify-center hover:scale-105">
+                <a href="/syscare-services" className="border-2 border-white text-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-[#103d5d] transition flex items-center justify-center hover:scale-105">
                   <span>Explore Our Services</span>
                   <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>

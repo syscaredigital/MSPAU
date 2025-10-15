@@ -486,6 +486,59 @@ const animationStyles = `
   .connection-3 {
     stroke: rgba(169, 17, 1, 0.2);
   }
+    /*about us Add these to your existing animationStyles */
+@keyframes iconFloat {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translate(15px, -20px) rotate(5deg) scale(1.1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(-10px, -30px) rotate(-5deg) scale(1.2);
+    opacity: 0.35;
+  }
+  75% {
+    transform: translate(-20px, -20px) rotate(5deg) scale(1.1);
+    opacity: 0.4;
+  }
+}
+
+.animate-icon-float {
+  animation: iconFloat 12s ease-in-out infinite;
+}
+
+@keyframes circuitGlow {
+  0%, 100% {
+    stroke-dashoffset: 100;
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.animate-circuit-glow {
+  animation: circuitGlow 6s linear infinite;
+}
+
+/* Smooth fade-in for stats */
+@keyframes smoothFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-smooth-fade-in {
+  animation: smoothFadeIn 0.8s ease-out forwards;
+}
 
   /* Section-specific backgrounds */
   .services-background {
@@ -1089,7 +1142,7 @@ const HomePage = () => {
   const allServices = [
     {
       id: 1,
-      title: "Cloud Solutions",
+      title: "Cloud",
       description: "Comprehensive cloud services including migration, management, and optimization for your business.",
       icon: "☁️"
     },
@@ -1213,12 +1266,7 @@ const HomePage = () => {
     }
   ];
 
-  // Video content data
-  const videoContent = {
-    title: "Discover SysCare IT Solutions",
-    description: "Watch our services and learn how we've been helping businesses across Australia with cutting-edge IT solutions and managed services for over 12 years.",
-    watchText: "Click to watch our story"
-  };
+  
 
   // Duplicate logos for infinite scroll effect
   const duplicatedLogosLine1 = [...partnerLogosLine1, ...partnerLogosLine1, ...partnerLogosLine1];
@@ -1566,133 +1614,186 @@ const HomePage = () => {
 
         <VideoHero/>
 
-        {/* About Section with Enhanced Background Design */}
-        <div className="about-section relative py-16 md:py-24 overflow-hidden">
-          {/* Enhanced Background Design */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#103d5d] via-[#1a4a72] to-[#245684]">
-            {/* Animated Geometric Pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_25%,rgba(255,255,255,0.1)_50%,transparent_50%,transparent_75%,rgba(255,255,255,0.1)_75%)] bg-[length:50px_50px] animate-gridMove"></div>
-            </div>
-            
-            {/* Floating Nodes Network */}
-            <div className="absolute inset-0">
-              <svg width="100%" height="100%" className="opacity-20">
-                {Array.from({ length: 20 }).map((_, i) => (
-                  <circle
-                    key={i}
-                    cx={`${Math.random() * 100}%`}
-                    cy={`${Math.random() * 100}%`}
-                    r="2"
-                    fill="#103d5d"
-                    className="animate-pulse"
-                    style={{ animationDelay: `${i * 0.5}s` }}
-                  />
-                ))}
-                {Array.from({ length: 15 }).map((_, i) => {
-                  const x1 = Math.random() * 100;
-                  const y1 = Math.random() * 100;
-                  const x2 = Math.random() * 100;
-                  const y2 = Math.random() * 100;
-                  return (
-                    <line
-                      key={i}
-                      x1={`${x1}%`}
-                      y1={`${y1}%`}
-                      x2={`${x2}%`}
-                      y2={`${y2}%`}
-                      stroke="#1a4a72"
-                      strokeWidth="0.5"
-                      strokeDasharray="5,5"
-                      className="animate-connectionFlow"
-                      style={{ animationDelay: `${i * 0.3}s` }}
-                    />
-                  );
-                })}
-              </svg>
-            </div>
+       {/* About Section with Beautiful Background */}
+<div className="about-section relative py-16 md:py-24 overflow-hidden">
+  {/* Main Background Gradient */}
+  <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-cyan-50"></div>
+  
+  {/* Animated Gradient Orbs */}
+  <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-r from-blue-100 to-cyan-100 rounded-full blur-3xl opacity-60 animate-pulse-slow"></div>
+  <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-r from-cyan-100 to-blue-100 rounded-full blur-3xl opacity-50 animate-pulse-slow" style={{animationDelay: '2s'}}></div>
+  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-full blur-3xl opacity-40 animate-pulse-slower"></div>
 
-            {/* Gradient Orbs */}
-            <div className="absolute -top-20 -left-20 w-60 h-60 bg-[#103d5d] rounded-full opacity-20 blur-3xl animate-float"></div>
-            <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-[#1a4a72] rounded-full opacity-20 blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-[#245684] rounded-full opacity-15 blur-2xl animate-pulse-slower"></div>
+  {/* Floating Geometric Shapes */}
+  <div className="absolute inset-0 overflow-hidden">
+    {/* Large shapes */}
+    <div className="absolute top-20 left-10 w-32 h-32 bg-blue-100/30 rounded-3xl rotate-45 animate-float"></div>
+    <div className="absolute bottom-20 right-16 w-40 h-40 bg-cyan-100/40 rounded-full animate-float" style={{animationDelay: '3s', animationDuration: '8s'}}></div>
+    <div className="absolute top-40 right-20 w-24 h-24 bg-blue-200/20 rounded-2xl rotate-12 animate-float" style={{animationDelay: '1s', animationDuration: '7s'}}></div>
+    <div className="absolute bottom-40 left-20 w-28 h-28 bg-cyan-200/30 rounded-full animate-float" style={{animationDelay: '2s', animationDuration: '9s'}}></div>
+    
+    {/* Small shapes */}
+    <div className="absolute top-60 right-40 w-16 h-16 bg-blue-100/20 rounded-lg rotate-45 animate-float" style={{animationDelay: '4s', animationDuration: '6s'}}></div>
+    <div className="absolute bottom-60 left-40 w-20 h-20 bg-cyan-100/25 rounded-2xl animate-float" style={{animationDelay: '5s', animationDuration: '10s'}}></div>
+  </div>
 
-            {/* Subtle Grid */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
-          </div>
+  {/* Floating IT Icons */}
+  <div className="absolute inset-0 overflow-hidden">
+    <div className="absolute top-32 left-5 text-3xl text-blue-300/40 animate-icon-float">💻</div>
+    <div className="absolute top-20 right-16 text-4xl text-cyan-300/30 animate-icon-float" style={{animationDelay: '1s'}}>🔒</div>
+    <div className="absolute bottom-28 left-20 text-3xl text-blue-400/35 animate-icon-float" style={{animationDelay: '2s'}}>☁️</div>
+    <div className="absolute bottom-16 right-8 text-4xl text-cyan-400/25 animate-icon-float" style={{animationDelay: '3s'}}>🌐</div>
+    <div className="absolute top-44 left-1/4 text-3xl text-blue-300/30 animate-icon-float" style={{animationDelay: '1.5s'}}>⚡</div>
+    <div className="absolute bottom-44 right-1/4 text-3xl text-cyan-300/35 animate-icon-float" style={{animationDelay: '2.5s'}}>📱</div>
+    <div className="absolute top-1/2 left-1/5 text-4xl text-blue-400/25 animate-icon-float" style={{animationDelay: '0.5s'}}>🔧</div>
+    <div className="absolute bottom-1/3 right-1/5 text-3xl text-cyan-400/30 animate-icon-float" style={{animationDelay: '3.5s'}}>📊</div>
+  </div>
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              {/* Text Content */}
-              <div className="text-content animate-fade-in-up">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 drop-shadow-lg">
-                  Managed IT Services in Australia | SysCare IT Solutions
-                </h2>
-                <div className="space-y-4">
-                  <p className="text-blue-100 text-lg leading-relaxed text-justify drop-shadow-sm">
-                    At SysCare IT Solutions, we deliver reliable managed IT services in Melbourne, advanced IT support in Sydney, and proactive managed security services across Australia. Whether you need a full-service MSP in Melbourne or a trusted MSSP in Australia, we've got your business covered.
-                  </p>
-                  <p className="text-blue-100 text-lg leading-relaxed drop-shadow-sm">
-                    Based in Melbourne and Sydney, SysCare IT Solutions supports businesses of all sizes across Australia. From small startups to growing enterprises, we deliver cost-effective and scalable IT solutions that reduce downtime, enhance security, and improve productivity.
-                  </p>
-                </div>
-                
-                {/* Stats Cards */}
-                <div className="flex flex-wrap gap-4 mt-8">
-                  <div className="bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-xl hover:scale-105 transition-all duration-300 animate-pulse-slow border border-white/30">
-                    <div className="font-bold text-xl">150+</div>
-                    <div className="text-sm text-blue-100">Clients</div>
-                  </div>
-                  <div className="bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-xl hover:scale-105 transition-all duration-300 animate-pulse-slow border border-white/30" style={{animationDelay: '0.5s'}}>
-                    <div className="font-bold text-xl">24/7</div>
-                    <div className="text-sm text-blue-100">Support</div>
-                  </div>
-                  <div className="bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-xl hover:scale-105 transition-all duration-300 animate-pulse-slow border border-white/30" style={{animationDelay: '1s'}}>
-                    <div className="font-bold text-xl">12+</div>
-                    <div className="text-sm text-blue-100">Years Experience</div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Video Player - No Overlay */}
-              <div className="animate-fade-in-up" style={{animationDelay: '0.3s'}}>
-                <div className="video-player-container rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20 backdrop-blur-sm">
-                  <video 
-                    ref={videoRef}
-                    className="video-player w-full h-auto"
-                    onClick={toggleVideoPlay}
-                    onEnded={handleVideoEnd}
-                    onPlay={handleVideoPlay}
-                    onPause={handleVideoPause}
-                    controls={isVideoPlaying}
-                  >
-                    <source src={aboutus_video} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                  
-                  {/* Simple Play Button when paused */}
-                  {!isVideoPlaying && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/10 transition-all duration-300 cursor-pointer">
-                      <div 
-                        className="play-button bg-white/90 hover:bg-white transition-all duration-300 shadow-2xl"
-                        onClick={toggleVideoPlay}
-                      >
-                        <div className="play-icon"></div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-                
-                {/* Video Info */}
-                <div className="mt-4 text-center">
-                  <p className="text-white/80 text-sm font-medium">
-                    {videoContent.watchText}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+  {/* Subtle Grid Pattern */}
+  <div className="absolute inset-0 opacity-15">
+    <div className="w-full h-full bg-[linear-gradient(rgba(59,130,246,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.05)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+  </div>
+
+  {/* Animated Connection Lines */}
+  <div className="absolute inset-0 opacity-20">
+    <svg width="100%" height="100%" className="text-blue-200">
+      {[...Array(8)].map((_, i) => (
+        <line
+          key={i}
+          x1={`${Math.random() * 100}%`}
+          y1={`${Math.random() * 100}%`}
+          x2={`${Math.random() * 100}%`}
+          y2={`${Math.random() * 100}%`}
+          stroke="currentColor"
+          strokeWidth="1"
+          strokeDasharray="5,5"
+          className="animate-circuit-glow"
+          style={{animationDelay: `${i * 0.5}s`}}
+        />
+      ))}
+    </svg>
+  </div>
+
+  {/* Floating Dots */}
+  <div className="absolute inset-0">
+    {[...Array(15)].map((_, i) => (
+      <div
+        key={i}
+        className="absolute w-2 h-2 bg-blue-300/20 rounded-full animate-pulse"
+        style={{
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`,
+          animationDelay: `${i * 0.3}s`
+        }}
+      />
+    ))}
+  </div>
+
+  {/* Text Background Overlay for Better Readability */}
+  <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px]"></div>
+
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      {/* Text Content - IMPROVED CONTRAST */}
+      <div className="text-content animate-fade-in-up">
+        <div className="inline-flex items-center px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full border border-blue-200 shadow-sm mb-6 animate-fade-in">
+          <div className="w-2 h-2 bg-blue-600 rounded-full mr-2 animate-pulse"></div>
+          <span className="text-sm font-semibold text-gray-800">Trusted IT Solutions Since 2012</span>
         </div>
+
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+          Managed IT Services in{' '}
+          <span className="bg-gradient-to-r from-blue-700 to-cyan-700 bg-clip-text text-transparent">
+            Australia
+          </span>
+        </h2>
+        
+        <div className="space-y-4 mb-8">
+          <p className="text-gray-800 text-lg leading-relaxed font-medium">
+            At <strong className="text-blue-800">SysCare IT Solutions</strong>, we deliver reliable managed IT services in Melbourne, advanced IT support in Sydney, and proactive managed security services across Australia. Whether you need a full-service MSP in Melbourne or a trusted MSSP in Australia, we've got your business covered.
+          </p>
+          <p className="text-gray-800 text-lg leading-relaxed font-medium">
+            Based in Melbourne and Sydney, SysCare IT Solutions supports businesses of all sizes across Australia. From small startups to growing enterprises, we deliver cost-effective and scalable IT solutions that reduce downtime, enhance security, and improve productivity.
+          </p>
+        </div>
+        
+        
+        
+        {/* Stats Cards */}
+       {/*  <div className="flex flex-wrap gap-4">
+          {[
+            { value: '150+', label: 'Clients', color: 'from-blue-600 to-cyan-600' },
+            { value: '24/7', label: 'Support', color: 'from-cyan-600 to-blue-600' },
+            { value: '12+', label: 'Years Experience', color: 'from-blue-700 to-cyan-700' },
+            { value: '100+', label: 'Projects', color: 'from-cyan-700 to-blue-700' }
+          ].map((stat, index) => (
+            <div 
+              key={index}
+              className="flex-1 min-w-[120px] bg-gradient-to-r p-4 rounded-xl text-[#103d5d] shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in-up border border-white/20"
+              style={{ 
+                backgroundImage: `linear-gradient(135deg, var(--tw-gradient-stops))`,
+                animationDelay: `${index * 0.2}s`
+              }}
+            >
+              <div className="font-bold text-xl mb-1 text-[#103d5d]">{stat.value}</div>
+              <div className="text-sm opacity-95 text-[#103d5d]">{stat.label}</div>
+            </div>
+          ))}
+        </div> */}
+      </div>
+      
+      {/* Video Player */}
+      <div className="animate-fade-in-up" style={{animationDelay: '0.3s'}}>
+        <div className="video-player-container rounded-2xl overflow-hidden shadow-2xl border border-gray-300 bg-white/80 backdrop-blur-sm">
+          <video 
+            ref={videoRef}
+            className="video-player w-full h-auto"
+            onClick={toggleVideoPlay}
+            onEnded={handleVideoEnd}
+            onPlay={handleVideoPlay}
+            onPause={handleVideoPause}
+            controls={isVideoPlaying}
+          >
+            <source src={aboutus_video} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          
+          {/* Play Button Overlay */}
+          {!isVideoPlaying && (
+            <div className="absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/10 transition-all duration-300 cursor-pointer">
+              <div 
+                className="play-button bg-white/95 hover:bg-white transition-all duration-300 shadow-2xl border border-gray-300"
+                onClick={toggleVideoPlay}
+              >
+                <div className="play-icon" style={{borderColor: "transparent transparent transparent #1e40af"}}></div>
+              </div>
+            </div>
+          )}
+        </div>
+        
+        
+
+        {/* Quick Action Buttons */}
+        <div className="flex justify-center space-x-4 mt-6">
+          <Link 
+            to="/syscare-services"
+            className="px-6 py-3 bg-white text-gray-800 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300 border border-gray-300 shadow-sm hover:shadow-md flex items-center hover:scale-105 hover:text-blue-700"
+          >
+            <span className="mr-2">🔍</span>
+            Our Services
+          </Link>
+          <Link 
+            to="/contact-Us"
+            className="px-6 py-3 bg-gradient-to-r from-blue-700 to-cyan-700 text-white rounded-xl font-semibold hover:from-blue-800 hover:to-cyan-800 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center hover:scale-105"
+          >
+            <span className="mr-2">📞</span>
+            Contact Us
+          </Link>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
         {/* Services Section - Enhanced with background image */}
         <div className="services-background py-16 md:py-24 relative overflow-hidden border border-gray-200 rounded-lg mx-4 sm:mx-6 lg:mx-8">
@@ -1945,6 +2046,9 @@ const HomePage = () => {
           </div>
         </div>
 
+
+
+
         {/* Downloads - Products & Services Brochures Section */}
         <div className="downloads-background py-16 md:py-24 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -2140,14 +2244,14 @@ const HomePage = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="bg-gradient-to-r from-[#103d5d] via-[#1a4a72] to-[#245684] text-white py-16 md:py-24 relative overflow-hidden">
+        <div className="bg-[#170f17] text-white py-16 md:py-24 relative overflow-hidden">
           {/* Animated background elements */}
           <div className="absolute top-0 left-0 w-full h-full opacity-10">
             <div className="absolute top-1/4 right-1/4 w-40 h-40 rounded-full bg-white animate-pulse-slower"></div>
             <div className="absolute bottom-1/4 left-1/4 w-32 h-32 rounded-full bg-white animate-pulse-slower" style={{animationDelay: '1s'}}></div>
           </div>
           
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 text-content">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fade-in">Partner with SysCare IT Solutions </h2>
             <p className="text-md mb-8 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
               Your dedicated provider of managed IT services in Melbourne, IT support in Sydney, and trusted cybersecurity services nationwide. Discover how we can protect and empower your business with tailored IT solutions.
@@ -2155,7 +2259,7 @@ const HomePage = () => {
             <div className="flex flex-col sm:flex-row justify-center gap-4 stagger-animation">
               <Link 
                 to="/contact-Us" 
-                className="px-8 py-3 bg-[#A91101] text-white rounded-lg font-semibold hover:bg-[#8a0e01] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl animate-bounce-gentle"
+                className="px-8 py-3 bg-[#245684] text-white rounded-lg font-semibold hover:bg-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl animate-bounce-gentle"
               >
                 Get a Free Consultation
               </Link>

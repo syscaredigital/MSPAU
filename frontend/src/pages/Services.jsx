@@ -311,7 +311,7 @@ const ServicesPage = () => {
       ]
     },
     {
-      main: "Cloud Solutions",
+      main: "Cloud",
       icon: <FaCloud className="text-3xl text-[#103d5d]" />,
       category: "infrastructure",
       subs: [
