@@ -1614,7 +1614,7 @@ const HomePage = () => {
 
         <VideoHero/>
 
-       {/* About Section with Beautiful Background */}
+{/* About Section with IT-Themed Background */}
 <div className="about-section relative py-16 md:py-24 overflow-hidden">
   {/* Main Background Gradient */}
   <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-cyan-50"></div>
@@ -1624,66 +1624,87 @@ const HomePage = () => {
   <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-r from-cyan-100 to-blue-100 rounded-full blur-3xl opacity-50 animate-pulse-slow" style={{animationDelay: '2s'}}></div>
   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-full blur-3xl opacity-40 animate-pulse-slower"></div>
 
-  {/* Floating Geometric Shapes */}
+  {/* Floating IT Icons as Particles */}
   <div className="absolute inset-0 overflow-hidden">
-    {/* Large shapes */}
-    <div className="absolute top-20 left-10 w-32 h-32 bg-blue-100/30 rounded-3xl rotate-45 animate-float"></div>
-    <div className="absolute bottom-20 right-16 w-40 h-40 bg-cyan-100/40 rounded-full animate-float" style={{animationDelay: '3s', animationDuration: '8s'}}></div>
-    <div className="absolute top-40 right-20 w-24 h-24 bg-blue-200/20 rounded-2xl rotate-12 animate-float" style={{animationDelay: '1s', animationDuration: '7s'}}></div>
-    <div className="absolute bottom-40 left-20 w-28 h-28 bg-cyan-200/30 rounded-full animate-float" style={{animationDelay: '2s', animationDuration: '9s'}}></div>
+    {/* Large IT Icons */}
+    <div className="absolute top-20 left-10 text-6xl text-blue-200/40 animate-float">🔒</div>
+    <div className="absolute bottom-20 right-16 text-7xl text-cyan-200/30 animate-float" style={{animationDelay: '3s', animationDuration: '8s'}}>☁️</div>
+    <div className="absolute top-40 right-20 text-5xl text-blue-300/25 animate-float" style={{animationDelay: '1s', animationDuration: '7s'}}>💻</div>
+    <div className="absolute bottom-40 left-20 text-6xl text-cyan-300/35 animate-float" style={{animationDelay: '2s', animationDuration: '9s'}}>🌐</div>
     
-    {/* Small shapes */}
-    <div className="absolute top-60 right-40 w-16 h-16 bg-blue-100/20 rounded-lg rotate-45 animate-float" style={{animationDelay: '4s', animationDuration: '6s'}}></div>
-    <div className="absolute bottom-60 left-40 w-20 h-20 bg-cyan-100/25 rounded-2xl animate-float" style={{animationDelay: '5s', animationDuration: '10s'}}></div>
+    {/* Medium IT Icons */}
+    <div className="absolute top-60 right-40 text-4xl text-blue-400/20 animate-float" style={{animationDelay: '4s', animationDuration: '6s'}}>⚡</div>
+    <div className="absolute bottom-60 left-40 text-5xl text-cyan-400/25 animate-float" style={{animationDelay: '5s', animationDuration: '10s'}}>📱</div>
+    <div className="absolute top-32 right-1/4 text-4xl text-blue-300/30 animate-float" style={{animationDelay: '1.5s', animationDuration: '8s'}}>🔧</div>
+    <div className="absolute bottom-32 left-1/4 text-5xl text-cyan-300/25 animate-float" style={{animationDelay: '2.5s', animationDuration: '7s'}}>📊</div>
+    
+    {/* Small IT Icons */}
+    <div className="absolute top-1/4 right-1/3 text-3xl text-blue-400/15 animate-float" style={{animationDelay: '0.5s', animationDuration: '5s'}}>🛡️</div>
+    <div className="absolute bottom-1/3 left-1/3 text-3xl text-cyan-400/20 animate-float" style={{animationDelay: '3.5s', animationDuration: '6s'}}>🔗</div>
+    <div className="absolute top-3/4 right-1/5 text-3xl text-blue-300/20 animate-float" style={{animationDelay: '2s', animationDuration: '7s'}}>💾</div>
+    <div className="absolute bottom-1/4 left-1/5 text-4xl text-cyan-300/15 animate-float" style={{animationDelay: '4.5s', animationDuration: '8s'}}>🚀</div>
   </div>
 
-  {/* Floating IT Icons */}
-  <div className="absolute inset-0 overflow-hidden">
-    <div className="absolute top-32 left-5 text-3xl text-blue-300/40 animate-icon-float">💻</div>
-    <div className="absolute top-20 right-16 text-4xl text-cyan-300/30 animate-icon-float" style={{animationDelay: '1s'}}>🔒</div>
-    <div className="absolute bottom-28 left-20 text-3xl text-blue-400/35 animate-icon-float" style={{animationDelay: '2s'}}>☁️</div>
-    <div className="absolute bottom-16 right-8 text-4xl text-cyan-400/25 animate-icon-float" style={{animationDelay: '3s'}}>🌐</div>
-    <div className="absolute top-44 left-1/4 text-3xl text-blue-300/30 animate-icon-float" style={{animationDelay: '1.5s'}}>⚡</div>
-    <div className="absolute bottom-44 right-1/4 text-3xl text-cyan-300/35 animate-icon-float" style={{animationDelay: '2.5s'}}>📱</div>
-    <div className="absolute top-1/2 left-1/5 text-4xl text-blue-400/25 animate-icon-float" style={{animationDelay: '0.5s'}}>🔧</div>
-    <div className="absolute bottom-1/3 right-1/5 text-3xl text-cyan-400/30 animate-icon-float" style={{animationDelay: '3.5s'}}>📊</div>
+  {/* Binary Code Animation */}
+  <div className="absolute inset-0 opacity-10">
+    <div className="w-full h-full flex flex-wrap justify-center items-center font-mono text-blue-400 text-xs md:text-sm">
+      {[...Array(50)].map((_, i) => (
+        <span 
+          key={i}
+          className="mx-2 animate-pulse"
+          style={{ 
+            animationDelay: `${i * 0.1}s`,
+            opacity: 0.3 + (Math.random() * 0.7)
+          }}
+        >
+          {Math.random() > 0.5 ? '1' : '0'}
+        </span>
+      ))}
+    </div>
   </div>
 
-  {/* Subtle Grid Pattern */}
-  <div className="absolute inset-0 opacity-15">
-    <div className="w-full h-full bg-[linear-gradient(rgba(59,130,246,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.05)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
-  </div>
-
-  {/* Animated Connection Lines */}
-  <div className="absolute inset-0 opacity-20">
-    <svg width="100%" height="100%" className="text-blue-200">
+  {/* Circuit Board Pattern */}
+  <div className="absolute inset-0 opacity-5">
+    <svg width="100%" height="100%" className="text-blue-300">
+      {/* Horizontal Lines */}
       {[...Array(8)].map((_, i) => (
         <line
-          key={i}
-          x1={`${Math.random() * 100}%`}
-          y1={`${Math.random() * 100}%`}
-          x2={`${Math.random() * 100}%`}
-          y2={`${Math.random() * 100}%`}
+          key={`h-${i}`}
+          x1="0"
+          y1={`${(i + 1) * 12.5}%`}
+          x2="100%"
+          y2={`${(i + 1) * 12.5}%`}
           stroke="currentColor"
           strokeWidth="1"
           strokeDasharray="5,5"
-          className="animate-circuit-glow"
-          style={{animationDelay: `${i * 0.5}s`}}
+        />
+      ))}
+      {/* Vertical Lines */}
+      {[...Array(12)].map((_, i) => (
+        <line
+          key={`v-${i}`}
+          x1={`${(i + 1) * 8.33}%`}
+          y1="0"
+          x2={`${(i + 1) * 8.33}%`}
+          y2="100%"
+          stroke="currentColor"
+          strokeWidth="1"
+          strokeDasharray="5,5"
         />
       ))}
     </svg>
   </div>
 
-  {/* Floating Dots */}
+  {/* Connection Nodes */}
   <div className="absolute inset-0">
-    {[...Array(15)].map((_, i) => (
+    {[...Array(20)].map((_, i) => (
       <div
         key={i}
-        className="absolute w-2 h-2 bg-blue-300/20 rounded-full animate-pulse"
+        className="absolute w-3 h-3 bg-blue-400/20 rounded-full animate-pulse"
         style={{
-          left: `${Math.random() * 100}%`,
-          top: `${Math.random() * 100}%`,
-          animationDelay: `${i * 0.3}s`
+          left: `${10 + (i * 4.5)}%`,
+          top: `${15 + (Math.sin(i) * 30)}%`,
+          animationDelay: `${i * 0.2}s`
         }}
       />
     ))}
@@ -1716,30 +1737,6 @@ const HomePage = () => {
             Based in Melbourne and Sydney, SysCare IT Solutions supports businesses of all sizes across Australia. From small startups to growing enterprises, we deliver cost-effective and scalable IT solutions that reduce downtime, enhance security, and improve productivity.
           </p>
         </div>
-        
-        
-        
-        {/* Stats Cards */}
-       {/*  <div className="flex flex-wrap gap-4">
-          {[
-            { value: '150+', label: 'Clients', color: 'from-blue-600 to-cyan-600' },
-            { value: '24/7', label: 'Support', color: 'from-cyan-600 to-blue-600' },
-            { value: '12+', label: 'Years Experience', color: 'from-blue-700 to-cyan-700' },
-            { value: '100+', label: 'Projects', color: 'from-cyan-700 to-blue-700' }
-          ].map((stat, index) => (
-            <div 
-              key={index}
-              className="flex-1 min-w-[120px] bg-gradient-to-r p-4 rounded-xl text-[#103d5d] shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in-up border border-white/20"
-              style={{ 
-                backgroundImage: `linear-gradient(135deg, var(--tw-gradient-stops))`,
-                animationDelay: `${index * 0.2}s`
-              }}
-            >
-              <div className="font-bold text-xl mb-1 text-[#103d5d]">{stat.value}</div>
-              <div className="text-sm opacity-95 text-[#103d5d]">{stat.label}</div>
-            </div>
-          ))}
-        </div> */}
       </div>
       
       {/* Video Player */}
@@ -1771,8 +1768,6 @@ const HomePage = () => {
           )}
         </div>
         
-        
-
         {/* Quick Action Buttons */}
         <div className="flex justify-center space-x-4 mt-6">
           <Link 
