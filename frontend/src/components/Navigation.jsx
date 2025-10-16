@@ -53,6 +53,7 @@ const Navigation = () => {
 
   const openMobileMegaMenu = () => {
     setMobileMegaMenuOpen(true);
+    setMobileMenuOpen(false); // Close main mobile menu when opening mega menu
   };
 
   const closeMobileMegaMenu = () => {
@@ -92,7 +93,12 @@ const Navigation = () => {
     };
 
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
   }, []);
 
   // Enhanced scroll handling for fixed navigation
@@ -129,6 +135,19 @@ const Navigation = () => {
     // For now, we'll use a simple implementation
     handleRouteChange();
   }, []);
+
+  // Prevent body scroll when mobile menus are open
+  useEffect(() => {
+    if (mobileMenuOpen || mobileMegaMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileMenuOpen, mobileMegaMenuOpen]);
 
   // Services menu data
   const servicesData = [
@@ -206,51 +225,51 @@ const Navigation = () => {
     },
   ];
 
-  // Desktop Mega Menu Component
+  // Responsive Desktop Mega Menu Component
   const DesktopMegaMenu = () => (
     <div 
       ref={megaMenuRef}
-      className={`absolute left-1/2 transform -translate-x-1/2 top-full w-[900px] bg-gradient-to-br from-white to-gray-50 shadow-2xl rounded-2xl z-50 border border-gray-200 transition-all duration-300 ${
+      className={`absolute left-1/2 transform -translate-x-1/2 top-full w-[95vw] max-w-[900px] bg-gradient-to-br from-white to-gray-50 shadow-2xl rounded-2xl z-50 border border-gray-200 transition-all duration-300 ${
         megaMenuHover ? 'opacity-100 scale-100 visible' : 'opacity-0 scale-95 invisible'
       }`}
       onMouseEnter={() => setMegaMenuHover(true)}
       onMouseLeave={() => setMegaMenuHover(false)}
     >
       {/* Mega Menu Header */}
-      <div className="bg-[#245684] rounded-t-2xl px-6 py-4">
+      <div className="bg-[#245684] rounded-t-2xl px-4 sm:px-6 py-4">
         <h3 className="text-lg font-bold text-white">Our Services</h3>
       </div>
       
-      <div className="border-b border-gray-200 mx-6"></div>
+      <div className="border-b border-gray-200 mx-4 sm:mx-6"></div>
       
-      {/* 4-column Grid */}
-      <div className="grid grid-cols-4 gap-8 px-6 py-6">
+      {/* Responsive Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-6 py-4 sm:py-6">
         {[0, 1, 2, 3].map((colIndex) => (
           <div key={colIndex} className="col-span-1">
             {servicesData.slice(colIndex * 2, colIndex * 2 + 2).map((category) => (
-              <div key={category.id} className="mb-8 last:mb-0 group">
+              <div key={category.id} className="mb-6 sm:mb-8 last:mb-0 group">
                 <div className="flex items-center mb-3">
                   <div className="w-1 h-6 bg-gradient-to-b from-[#a3d4ff] to-[#245684] rounded-full mr-3 group-hover:w-2 transition-all duration-300"></div>
-                  <h3 className="text-md font-bold text-[#103d5d] group-hover:text-[#245684] transition-colors duration-300">
+                  <h3 className="text-sm sm:text-md font-bold text-[#103d5d] group-hover:text-[#245684] transition-colors duration-300">
                     {category.name}
                   </h3>
                 </div>
-                <ul className="space-y-2">
+                <ul className="space-y-1 sm:space-y-2">
                   {category.subCategories.map((subCategory) => (
                     <li key={subCategory.name}>
                       <Link
                         to={subCategory.url}
-                        className="text-sm text-gray-600 hover:text-[#245684] block py-2 px-3 transition-all duration-300 flex items-center rounded-lg hover:bg-blue-50 group/item"
+                        className="text-xs sm:text-sm text-gray-600 hover:text-[#245684] block py-1 sm:py-2 px-2 sm:px-3 transition-all duration-300 flex items-center rounded-lg hover:bg-blue-50 group/item"
                         onClick={() => {
                           setServicesHover(false);
                           setMegaMenuHover(false);
                         }}
                       >
-                        <span className="text-[#245684] group-hover/item:scale-110 transition-transform duration-300">
+                        <span className="text-[#245684] group-hover/item:scale-110 transition-transform duration-300 flex-shrink-0">
                           {subCategory.icon}
                         </span>
-                        <span className="ml-2">{subCategory.name}</span>
-                        <FiArrowRightCircle className="ml-auto opacity-0 group-hover/item:opacity-100 text-[#245684] transition-all duration-300 transform -translate-x-1 group-hover/item:translate-x-0" />
+                        <span className="ml-2 truncate">{subCategory.name}</span>
+                        <FiArrowRightCircle className="ml-auto opacity-0 group-hover/item:opacity-100 text-[#245684] transition-all duration-300 transform -translate-x-1 group-hover/item:translate-x-0 flex-shrink-0" />
                       </Link>
                     </li>
                   ))}
@@ -262,10 +281,10 @@ const Navigation = () => {
       </div>
       
       {/* Mega Menu Footer */}
-      <div className="bg-[#245684] rounded-b-2xl px-6 py-4">
+      <div className="bg-[#245684] rounded-b-2xl px-4 sm:px-6 py-4">
         <Link
           to="/syscare-services"
-          className="inline-flex items-center text-[#103d5d] hover:text-[#245684] font-medium transition-all duration-300 group bg-white hover:bg-gray-100 px-4 py-2 rounded-lg shadow hover:shadow-md border border-[#103d5d] hover:border-[#245684]"
+          className="inline-flex items-center text-[#103d5d] hover:text-[#245684] font-medium transition-all duration-300 group bg-white hover:bg-gray-100 px-3 sm:px-4 py-2 rounded-lg shadow hover:shadow-md border border-[#103d5d] hover:border-[#245684] text-sm sm:text-base"
           onClick={() => {
             setServicesHover(false);
             setMegaMenuHover(false);
@@ -282,42 +301,43 @@ const Navigation = () => {
   const MobileMegaMenu = () => (
     <div 
       ref={mobileMegaMenuRef}
-      className={`fixed inset-0 bg-white z-50 transform transition-transform duration-300 ease-in-out border-4 border-[#245684] rounded-xl m-2 ${
+      className={`fixed inset-0 bg-white z-50 transform transition-transform duration-300 ease-in-out ${
         mobileMegaMenuOpen ? 'translate-x-0' : 'translate-x-full'
       }`}
     >
-      {/* Header with border */}
-      <div className="bg-[#245684] text-white p-4 shadow-lg border-b-4 border-[#1a3d6b]">
+      {/* Header */}
+      <div className="bg-[#245684] text-white p-4 shadow-lg border-b border-[#1a3d6b] sticky top-0">
         <div className="flex items-center justify-between">
           <button
             onClick={closeMobileMegaMenu}
-            className="flex items-center text-white hover:text-[#a3d4ff] transition-colors duration-300 border-2 border-white/30 hover:border-white/50 rounded-lg px-3 py-1"
+            className="flex items-center text-white hover:text-[#a3d4ff] transition-colors duration-300 bg-white/10 rounded-lg px-3 py-2 border border-white/20"
+            aria-label="Close services menu"
           >
             <FiArrowLeft className="mr-2" size={20} />
-            Back
+            <span className="text-sm font-medium">Back</span>
           </button>
           <h2 className="text-lg font-bold">Our Services</h2>
-          <div className="w-6"></div> {/* Spacer for balance */}
+          <div className="w-6"></div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="h-[calc(100vh-80px)] overflow-y-auto p-2">
+      <div className="h-[calc(100vh-80px)] overflow-y-auto p-4">
         {/* Categories Grid */}
         {!activeMobileCategory ? (
-          <div className="p-2">
-            <div className="grid grid-cols-2 gap-3">
+          <div>
+            <div className="grid grid-cols-1 xs:grid-cols-2 gap-3">
               {servicesData.map((category) => (
                 <button
                   key={category.id}
                   onClick={() => toggleMobileCategory(category.id)}
-                  className="bg-gradient-to-br from-gray-50 to-white border-2 border-gray-300 rounded-xl p-4 text-left transition-all duration-300 hover:shadow-lg hover:border-[#245684] hover:scale-105 active:scale-95 group"
+                  className="bg-gradient-to-br from-gray-50 to-white border border-gray-300 rounded-xl p-4 text-left transition-all duration-300 hover:shadow-lg hover:border-[#245684] active:scale-95 group touch-manipulation"
                 >
                   <div className="flex flex-col items-center text-center">
                     <div className="text-[#245684] mb-2 p-2 bg-blue-50 rounded-lg border border-blue-100 group-hover:border-[#245684] group-hover:bg-blue-100 transition-colors duration-300">
                       {category.icon}
                     </div>
-                    <span className="text-sm font-semibold text-gray-800 group-hover:text-[#245684] transition-colors duration-300">
+                    <span className="text-sm font-semibold text-gray-800 group-hover:text-[#245684] transition-colors duration-300 line-clamp-2">
                       {category.name}
                     </span>
                     <div className="flex items-center justify-center mt-2 text-xs text-gray-500 group-hover:text-[#245684] transition-colors duration-300">
@@ -330,10 +350,10 @@ const Navigation = () => {
             </div>
 
             {/* View All Button */}
-            <div className="mt-6 px-2">
+            <div className="mt-6">
               <Link
                 to="/syscare-services"
-                className="block w-full bg-[#245684] text-white text-center py-3 rounded-xl font-semibold transition-all duration-300 hover:bg-[#1a3d6b] hover:shadow-lg active:scale-95 border-2 border-[#1a3d6b] hover:border-[#103d5d]"
+                className="block w-full bg-[#245684] text-white text-center py-3 rounded-xl font-semibold transition-all duration-300 hover:bg-[#1a3d6b] active:scale-95 border border-[#1a3d6b] text-sm"
                 onClick={() => {
                   setMobileMegaMenuOpen(false);
                   setMobileMenuOpen(false);
@@ -345,10 +365,10 @@ const Navigation = () => {
           </div>
         ) : (
           /* Subcategories List */
-          <div className="p-2">
+          <div>
             <button
               onClick={() => setActiveMobileCategory(null)}
-              className="flex items-center text-[#245684] hover:text-[#1a3d6b] mb-4 transition-colors duration-300 font-semibold border-2 border-gray-300 hover:border-[#245684] rounded-lg px-4 py-2 w-full text-left"
+              className="flex items-center text-[#245684] hover:text-[#1a3d6b] mb-4 transition-colors duration-300 font-semibold border border-gray-300 hover:border-[#245684] rounded-lg px-4 py-3 w-full text-left bg-gray-50"
             >
               <FiArrowLeft className="mr-2" />
               Back to Categories
@@ -361,15 +381,19 @@ const Navigation = () => {
                   <Link
                     key={subCategory.name}
                     to={subCategory.url}
-                    className="flex items-center p-4 bg-gray-50 rounded-xl transition-all duration-300 hover:bg-blue-50 hover:shadow-md hover:scale-105 active:scale-95 border-2 border-gray-300 hover:border-[#245684] group"
+                    className="flex items-center p-4 bg-gray-50 rounded-xl transition-all duration-300 hover:bg-blue-50 active:scale-95 border border-gray-300 hover:border-[#245684] group touch-manipulation"
+                    onClick={() => {
+                      setMobileMegaMenuOpen(false);
+                      setMobileMenuOpen(false);
+                    }}
                   >
-                    <div className="text-[#245684] mr-3 p-2 bg-white rounded-lg shadow-sm border border-gray-200 group-hover:border-[#245684] group-hover:bg-blue-100 transition-colors duration-300">
+                    <div className="text-[#245684] mr-3 p-2 bg-white rounded-lg shadow-sm border border-gray-200 group-hover:border-[#245684] group-hover:bg-blue-100 transition-colors duration-300 flex-shrink-0">
                       {subCategory.icon}
                     </div>
-                    <span className="font-medium text-gray-800 flex-1 group-hover:text-[#245684] transition-colors duration-300">
+                    <span className="font-medium text-gray-800 flex-1 group-hover:text-[#245684] transition-colors duration-300 text-sm">
                       {subCategory.name}
                     </span>
-                    <FiArrowRightCircle className="text-[#245684] ml-2 group-hover:scale-110 transition-transform duration-300" />
+                    <FiArrowRightCircle className="text-[#245684] ml-2 group-hover:scale-110 transition-transform duration-300 flex-shrink-0" />
                   </Link>
                 ))}
             </div>
@@ -383,45 +407,40 @@ const Navigation = () => {
     <>
       {/* Fixed Top Contact Bar */}
       <div className="fixed top-0 left-0 right-0 bg-gradient-to-r from-white to-white text-[#103d5d] text-sm z-50 border-b border-[#245684]/30 h-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 h-full">
           <div className="flex justify-between items-center h-full">
             {/* Left side - Contact Info */}
-            <div className="flex items-center space-x-6">
-              <div className="flex items-center space-x-2">
-                <FiPhone className="text-[#103d5d] text-xs" />
+            <div className="flex items-center space-x-2 sm:space-x-4 lg:space-x-6">
+              <div className="flex items-center space-x-1 sm:space-x-2">
+                <FiPhone className="text-[#103d5d] text-xs flex-shrink-0" />
                 <a 
-                  href="tel:+1234567890" 
-                  className="hover:text-[#103d5d] transition-colors duration-300 text-md font-bold"
+                  href="tel:1300697972" 
+                  className="hover:text-[#103d5d] transition-colors duration-300 text-xs sm:text-sm font-medium whitespace-nowrap"
                 >
                   1300 69 79 72
                 </a>
               </div>
-              <div className="flex items-center space-x-2">
-                <FiMail className="text-[#103d5d] text-md" />
+              <div className="hidden sm:flex items-center space-x-1 sm:space-x-2">
+                <FiMail className="text-[#103d5d] text-xs flex-shrink-0" />
                 <a 
-                  href="mailto:info@syscare.com" 
-                  className="hover:text-[#103d5d] transition-colors duration-300 text-md font-bold"
+                  href="mailto:info@syscare.com.au" 
+                  className="hover:text-[#103d5d] transition-colors duration-300 text-xs sm:text-sm font-medium whitespace-nowrap"
                 >
-                 info@syscare.com.au
+                  info@syscare.com.au
                 </a>
               </div>
             </div>
 
             {/* Right side - Working Hours */}
-            <div className="hidden md:flex items-center space-x-2">
-              <FiClock className="text-[#103d5d] text-md font-bold" />
-              <span className="text-md font-bold">Mon - Fri: 8:00 AM - 5:00 PM</span>
+            <div className="hidden lg:flex items-center space-x-2">
+              <FiClock className="text-[#103d5d] text-xs flex-shrink-0" />
+              <span className="text-xs sm:text-sm font-medium">Mon - Fri: 8:00 AM - 5:00 PM</span>
             </div>
 
             {/* Mobile - Only show phone */}
-            <div className="md:hidden flex items-center space-x-2">
-              <FiPhone className="text-[#a3d4ff] text-xs" />
-              <a 
-                href="tel:+1234567890" 
-                className="hover:text-[#a3d4ff] transition-colors duration-300 text-xs"
-              >
-                Call Us
-              </a>
+            <div className="lg:hidden flex items-center space-x-2">
+              <FiClock className="text-[#103d5d] text-xs flex-shrink-0" />
+              <span className="text-xs font-medium hidden xs:inline">8AM-5PM</span>
             </div>
           </div>
         </div>
@@ -433,10 +452,11 @@ const Navigation = () => {
           isVisible ? "translate-y-0" : "-translate-y-full"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16 md:h-20">
-            {/* Logo */}
-            <div className="flex items-center">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
+          <div className="flex justify-between h-14 sm:h-16 md:h-20">
+            {/* Logo Section - Both logos side by side */}
+            <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
+              {/* Main Logo */}
               <Link 
                 to="/" 
                 className="flex-shrink-0 flex items-center"
@@ -449,28 +469,37 @@ const Navigation = () => {
                 <img
                   src="/logos/White-Sys.svg"
                   alt="SysCare Logo"
-                  className="hidden md:block h-24 w-auto object-contain transform hover:scale-105 transition-transform duration-300"
+                  className="hidden md:block h-20 lg:h-24 w-auto object-contain transform hover:scale-105 transition-transform duration-300"
                 />
                 <img
                   src="/logos/White-Sys.svg"
                   alt="SysCare Logo"
-                  className="block md:hidden h-8 w-auto object-contain"
+                  className="block md:hidden h-14 sm:h-16 w-auto object-contain"
                 />
               </Link>
+
+              {/* Second Logo - Now visible on all devices */}
+              <div className="flex items-center border-l border-white/30 pl-2 sm:pl-3 md:pl-4">
+                <img
+                  src="/logos/ISO_Logos.png"
+                  alt="Partner Logo"
+                  className="h-12 sm:h-14 md:h-16 lg:h-18 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
+                />
+              </div>
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-4 lg:space-x-8">
+            <div className="hidden lg:flex items-center space-x-4 xl:space-x-6">
               <Link
                 to="/"
-                className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] hover:bg-white/10 rounded-lg"
+                className="text-white hover:text-[#a3d4ff] px-2 xl:px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] hover:bg-white/10 rounded-lg text-sm xl:text-base"
                 onClick={() => setServicesHover(false)}
               >
                 Home
               </Link>
               <Link
                 to="/about-us"
-                className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] hover:bg-white/10 rounded-lg"
+                className="text-white hover:text-[#a3d4ff] px-2 xl:px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] hover:bg-white/10 rounded-lg text-sm xl:text-base"
                 onClick={() => setServicesHover(false)}
               >
                 About Us
@@ -486,7 +515,9 @@ const Navigation = () => {
                     setServicesHover(true);
                     setMegaMenuHover(true);
                   }}
-                  className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] flex items-center hover:bg-white/10 rounded-lg"
+                  className="text-white hover:text-[#a3d4ff] px-2 xl:px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] flex items-center hover:bg-white/10 rounded-lg text-sm xl:text-base"
+                  aria-expanded={servicesHover}
+                  aria-haspopup="true"
                 >
                   Services
                   <FiChevronDown
@@ -501,15 +532,50 @@ const Navigation = () => {
 
               <Link
                 to="/contact-Us"
-                className="text-white hover:text-[#a3d4ff] px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] hover:bg-white/10 rounded-lg"
+                className="text-white hover:text-[#a3d4ff] px-2 xl:px-3 py-2 font-medium transition-all duration-300 border-b-2 border-transparent hover:border-[#a3d4ff] hover:bg-white/10 rounded-lg text-sm xl:text-base"
                 onClick={() => setServicesHover(false)}
               >
                 Contact Us
               </Link>
               <Link
                 to="/get-quote"
-                className="bg-gradient-to-r from-white to-gray-100 hover:from-[#103d5d] hover:to-[#245684] border-white text-[#1a3d6b] hover:text-white px-4 lg:px-6 py-2 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 border-2 shadow-lg hover:shadow-xl"
+                className="bg-gradient-to-r from-white to-gray-100 hover:from-[#103d5d] hover:to-[#245684] border-white text-[#1a3d6b] hover:text-white px-3 xl:px-4 py-2 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 border-2 shadow-lg hover:shadow-xl text-sm xl:text-base whitespace-nowrap"
                 onClick={() => setServicesHover(false)}
+              >
+                Get Quote
+              </Link>
+            </div>
+
+            {/* Tablet Navigation (simplified) */}
+            <div className="hidden md:flex lg:hidden items-center space-x-3">
+              <Link
+                to="/"
+                className="text-white hover:text-[#a3d4ff] px-2 py-2 font-medium transition-all duration-300 text-sm"
+              >
+                Home
+              </Link>
+              <Link
+                to="/about-us"
+                className="text-white hover:text-[#a3d4ff] px-2 py-2 font-medium transition-all duration-300 text-sm"
+              >
+                About
+              </Link>
+              <button
+                onClick={openMobileMegaMenu}
+                className="text-white hover:text-[#a3d4ff] px-2 py-2 font-medium transition-all duration-300 text-sm flex items-center"
+              >
+                Services
+                <FiChevronDown className="ml-1" />
+              </button>
+              <Link
+                to="/contact-Us"
+                className="text-white hover:text-[#a3d4ff] px-2 py-2 font-medium transition-all duration-300 text-sm"
+              >
+                Contact
+              </Link>
+              <Link
+                to="/get-quote"
+                className="bg-white text-[#1a3d6b] hover:bg-gray-100 px-3 py-2 rounded-lg font-medium transition-all duration-300 text-sm whitespace-nowrap"
               >
                 Get Quote
               </Link>
@@ -520,8 +586,10 @@ const Navigation = () => {
               <button
                 onClick={toggleMobileMenu}
                 className="text-white hover:text-[#a3d4ff] focus:outline-none transition-all duration-300 bg-white/10 p-2 rounded-lg border border-white/20 hover:border-white/40"
+                aria-label="Toggle menu"
+                aria-expanded={mobileMenuOpen}
               >
-                {mobileMenuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
+                {mobileMenuOpen ? <FiX size={18} /> : <FiMenu size={18} />}
               </button>
             </div>
           </div>
@@ -534,14 +602,14 @@ const Navigation = () => {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link
               to="/"
-              className="text-white hover:text-[#a3d4ff] block px-3 py-3 font-medium transition-all duration-300 transform hover:translate-x-2 rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20"
+              className="text-white hover:text-[#a3d4ff] block px-3 py-3 font-medium transition-all duration-300 transform hover:translate-x-2 rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20 text-sm"
               onClick={toggleMobileMenu}
             >
               Home
             </Link>
             <Link
               to="/about-us"
-              className="text-white hover:text-[#a3d4ff] block px-3 py-3 font-medium transition-all duration-300 transform hover:translate-x-2 rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20"
+              className="text-white hover:text-[#a3d4ff] block px-3 py-3 font-medium transition-all duration-300 transform hover:translate-x-2 rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20 text-sm"
               onClick={toggleMobileMenu}
             >
               About Us
@@ -551,7 +619,7 @@ const Navigation = () => {
             <button
               data-mobile-services-button
               onClick={openMobileMegaMenu}
-              className="text-white hover:text-[#a3d4ff] w-full text-left px-3 py-3 font-medium transition-all duration-300 flex justify-between items-center rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20"
+              className="text-white hover:text-[#a3d4ff] w-full text-left px-3 py-3 font-medium transition-all duration-300 flex justify-between items-center rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20 text-sm"
             >
               <span className="flex items-center">
                 Services
@@ -561,14 +629,14 @@ const Navigation = () => {
 
             <Link
               to="/contact-Us"
-              className="text-white hover:text-[#a3d4ff] block px-3 py-3 font-medium transition-all duration-300 transform hover:translate-x-2 rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20"
+              className="text-white hover:text-[#a3d4ff] block px-3 py-3 font-medium transition-all duration-300 transform hover:translate-x-2 rounded-lg hover:bg-white/10 border border-transparent hover:border-white/20 text-sm"
               onClick={toggleMobileMenu}
             >
               Contact Us
             </Link>
             <Link
               to="/get-quote"
-              className="bg-gradient-to-r from-[#245684] to-[#1a3d6b] hover:from-[#1a3d6b] hover:to-[#245684] text-white block px-6 py-3 rounded-xl font-medium transition-all duration-300 mx-3 my-2 text-center transform hover:scale-105 shadow-lg border-2 border-[#1a3d6b] hover:border-[#103d5d]"
+              className="bg-gradient-to-r from-[#245684] to-[#1a3d6b] hover:from-[#1a3d6b] hover:to-[#245684] text-white block px-6 py-3 rounded-xl font-medium transition-all duration-300 mx-3 my-2 text-center transform hover:scale-105 shadow-lg border-2 border-[#1a3d6b] hover:border-[#103d5d] text-sm"
               onClick={toggleMobileMenu}
             >
               Get Quote
@@ -581,7 +649,18 @@ const Navigation = () => {
       </nav>
 
       {/* Spacer to prevent content from being hidden behind fixed nav */}
-      <div className="h-24"></div>
+      <div className="h-14 sm:h-16 md:h-20 lg:h-24"></div>
+
+      {/* Backdrop for mobile menus */}
+      {(mobileMenuOpen || mobileMegaMenuOpen) && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+          onClick={() => {
+            setMobileMenuOpen(false);
+            setMobileMegaMenuOpen(false);
+          }}
+        />
+      )}
     </>
   );
 };

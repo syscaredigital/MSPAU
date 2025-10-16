@@ -508,14 +508,7 @@ const VideoHero = () => {
                 </Link>
               </div>
               
-              {/* ISO Certification */}
-              <div className="flex justify-center lg:justify-start mt-4 xs:mt-6">
-                <img 
-                  src="/logos/ISO_Logos.png" 
-                  alt="ISO 9001 Certified"
-                  className="w-32 xs:w-36 sm:w-40 md:w-48 h-auto object-contain"
-                />
-              </div>
+              
             </div>
 
             {/* Right Content - Vertical Marquee */}
