@@ -47,7 +47,7 @@ const ImageGallery = () => {
   const galleryImages = [
     {
       id: 1,
-      src: aboutUs1,
+      src: aboutUs5,
       alt: "Our Modern Office Space",
       title: "Modern Workspace",
       description: "Our state-of-the-art office designed for collaboration and innovation"
@@ -75,7 +75,7 @@ const ImageGallery = () => {
     },
     {
       id: 5,
-      src: aboutUs5,
+      src: aboutUs1,
       alt: "Award Ceremony",
       title: "Industry Recognition",
       description: "Celebrating excellence and innovation in IT services"
