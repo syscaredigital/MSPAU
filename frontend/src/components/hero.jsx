@@ -31,65 +31,27 @@ const VideoHero = () => {
     monitor: 2560
   };
 
-  // Different image sources for different devices - UPDATED WITH ACTUAL IMAGES
+  // Cover image slides for the hero section
+  const coverSlides = [
+    '/video/Cover1.png',
+    '/video/Cover_2.png',
+    '/video/Cover%20_03.png',
+    '/video/Cover%20_04.png',
+    '/video/Cover%20_05.png'
+  ];
+
   const sliderImages = {
-    mobileS: [
-      '/video/hero-image1.jpg',
-      '/video/hero-image2.jpg',
-      '/video/hero-image3.jpg',
-      '/video/hero-image4.jpg',
-      '/video/hero-image5.jpg'
-    ],
-    mobileM: [
-      '/video/hero-image1.jpg',
-      '/video/hero-image2.jpg',
-      '/video/hero-image3.jpg',
-      '/video/hero-image4.jpg',
-      '/video/hero-image5.jpg'
-    ],
-    mobileL: [
-      '/video/hero-image1.jpg',
-      '/video/hero-image2.jpg',
-      '/video/hero-image3.jpg',
-      '/video/hero-image4.jpg',
-      '/video/hero-image5.jpg'
-    ],
-    tablet: [
-      '/video/hero-image1.jpg',
-      '/video/hero-image2.jpg',
-      '/video/hero-image3.jpg',
-      '/video/hero-image4.jpg',
-      '/video/hero-image5.jpg'
-    ],
-    laptop: [
-      '/video/hero-image1.jpg',
-      '/video/hero-image2.jpg',
-      '/video/hero-image3.jpg',
-      '/video/hero-image4.jpg',
-      '/video/hero-image5.jpg'
-    ],
-    laptopL: [
-      '/video/hero-image1.jpg',
-      '/video/hero-image2.jpg',
-      '/video/hero-image3.jpg',
-      '/video/hero-image4.jpg',
-      '/video/hero-image5.jpg'
-    ],
-    desktop: [
-      '/video/hero-image1.jpg',
-      '/video/hero-image2.jpg',
-      '/video/hero-image3.jpg',
-      '/video/hero-image4.jpg',
-      '/video/hero-image5.jpg'
-    ],
-    monitor: [
-      '/video/hero-image1.jpg',
-      '/video/hero-image2.jpg',
-      '/video/hero-image3.jpg',
-      '/video/hero-image4.jpg',
-      '/video/hero-image5.jpg'
-    ]
+    mobileS: coverSlides,
+    mobileM: coverSlides,
+    mobileL: coverSlides,
+    tablet: coverSlides,
+    laptop: coverSlides,
+    laptopL: coverSlides,
+    desktop: coverSlides,
+    monitor: coverSlides
   };
+
+  const slideCount = sliderImages[deviceSize]?.length || sliderImages.desktop.length;
 
   // Fallback image sources if some sizes are not available
   const getImageSource = (device, slideIndex) => {
@@ -175,17 +137,17 @@ const VideoHero = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [currentSlide]);
 
-  // Image slider auto-play effect - FIXED
+  // Image slider auto-play effect
   useEffect(() => {
     if (!isAutoPlaying) return;
 
     const slideInterval = setInterval(() => {
       setSlideTransition(true);
-      setCurrentSlide((prev) => (prev + 1) % 5);
+      setCurrentSlide((prev) => (prev + 1) % slideCount);
     }, 5000); // Change slide every 5 seconds
 
     return () => clearInterval(slideInterval);
-  }, [isAutoPlaying]);
+  }, [isAutoPlaying, slideCount]);
 
   // Update image source when slide changes
   useEffect(() => {
@@ -262,7 +224,7 @@ const VideoHero = () => {
   const nextSlide = () => {
     setSlideTransition(true);
     setIsAutoPlaying(false);
-    setCurrentSlide((prev) => (prev + 1) % 5);
+    setCurrentSlide((prev) => (prev + 1) % slideCount);
     
     // Restart auto-play after 10 seconds
     setTimeout(() => {
@@ -273,7 +235,7 @@ const VideoHero = () => {
   const prevSlide = () => {
     setSlideTransition(true);
     setIsAutoPlaying(false);
-    setCurrentSlide((prev) => (prev - 1 + 5) % 5);
+    setCurrentSlide((prev) => (prev - 1 + slideCount) % slideCount);
     
     // Restart auto-play after 10 seconds
     setTimeout(() => {
@@ -414,7 +376,7 @@ const VideoHero = () => {
 
       {/* FIXED: Slider Indicators */}
       <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2 xs:space-x-3">
-        {[0, 1, 2, 3, 4].map((index) => (
+        {Array.from({ length: slideCount }, (_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
