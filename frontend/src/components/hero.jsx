@@ -1,16 +1,12 @@
 // common breakpoints (in pixels)
 
-import React, { useRef, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useRef, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FiGlobe, FiServer, FiCloud, FiShield, FiUserPlus, FiPackage, FiBook, FiSmartphone, FiMenu, FiX, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 const VideoHero = () => {
   const imageRef = useRef(null);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(50);
   const [isMarqueePaused, setIsMarqueePaused] = useState(false);
   const [deviceSize, setDeviceSize] = useState('desktop');
   const [imageSource, setImageSource] = useState('');
@@ -99,13 +95,6 @@ const VideoHero = () => {
     { name: "Cloud Training", link: "/Cloud", icon: <FiServer className="service-icon" /> },
   ];
 
-  const typingTexts = [
-    "Managed IT Services in Melbourne & Sydney",
-    "24/7 IT Support & Cybersecurity Solutions",
-    "Secure, Scalable & Reliable IT for Your Business",
-    "Trusted MSP & MSSP Partner in Australia"
-  ];
-
   // Determine device size based on breakpoints
   const getDeviceSize = (width) => {
     if (width < breakpoints.mobileS) return 'mobileS';
@@ -189,31 +178,6 @@ const VideoHero = () => {
       image.removeEventListener('error', handleError);
     };
   }, [imageSource, currentSlide]);
-
-  // Typing effect
-  useEffect(() => {
-    const handleTyping = () => {
-      const currentText = typingTexts[currentTextIndex];
-      const updatedWord = isDeleting
-        ? currentText.substring(0, currentWordIndex - 1)
-        : currentText.substring(0, currentWordIndex + 1);
-
-      setCurrentWordIndex(updatedWord.length);
-
-      if (!isDeleting && updatedWord === currentText) {
-        setTimeout(() => setIsDeleting(true), 500);
-      } else if (isDeleting && updatedWord === '') {
-        setIsDeleting(false);
-        setCurrentTextIndex((prev) => (prev + 1) % typingTexts.length);
-        setTypingSpeed(40);
-      } else {
-        setTypingSpeed(isDeleting ? 20 : 30);
-      }
-    };
-
-    const typingTimer = setTimeout(handleTyping, typingSpeed);
-    return () => clearTimeout(typingTimer);
-  }, [currentWordIndex, isDeleting, currentTextIndex, typingTexts, typingSpeed]);
 
   const handleServiceClick = (serviceLink) => {
     console.log(`Navigating to: ${serviceLink}`);
@@ -330,7 +294,7 @@ const VideoHero = () => {
             src={imageSource}
             alt={`SysCare IT Solutions Background ${currentSlide + 1}`}
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-              isImageLoaded ? 'opacity-50' : 'opacity-0'
+              isImageLoaded ? 'opacity-100' : 'opacity-0'
             } ${slideTransition ? 'transition-all duration-1000 ease-in-out' : ''}`}
             style={{
               objectFit: 'cover',
@@ -412,156 +376,6 @@ const VideoHero = () => {
         ))}
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-20 h-full flex items-center pt-16 md:pt-20 lg:pt-24">
-        <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 w-full">
-          <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between">
-            {/* Left Content with Typing Text */}
-            <div className={`z-10 text-white ${
-              isMobile ? 'w-full text-center mb-6 sm:mb-8' : 
-              isTablet ? 'w-full text-center mb-8 lg:w-1/2 lg:text-left lg:pr-6' : 
-              'lg:w-1/2 lg:pr-8 text-center lg:text-left lg:pt-8 xl:pt-8'
-            }`}>
-
-              <h1 className="text-xl xs:text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold leading-tight mb-3 xs:mb-4 sm:mb-6">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-white">
-                  SysCare IT Solutions                               
-                </span>
-                <br />
-              </h1>
-
-              {/* Typing text effect */}
-              <div className="min-h-[2rem] xs:min-h-[2.5rem] sm:min-h-[3rem] lg:min-h-[3.5rem] mb-3 xs:mb-4 sm:mb-6">
-                <p className="text-sm xs:text-base sm:text-sm md:text-md lg:text-xl font-medium">
-                  <span className="bg-[#15f4ee] text-black px-2 xs:px-3 sm:px-4 py-1 xs:py-2 rounded-lg shadow-lg shadow-[#008080]/50 font-semibold">
-                    {typingTexts[currentTextIndex].substring(0, currentWordIndex)}
-                  </span>
-                  <span className="animate-pulse inline-block w-0.5 xs:w-1 h-3 xs:h-4 sm:h-6 bg-[#15f4ee] align-middle ml-0.5 xs:ml-1"></span>
-                </p>
-              </div>
-
-              <p className="text-xs xs:text-sm sm:text-base lg:text-lg text-white/90 mb-4 xs:mb-6 sm:mb-8 max-w-2xl mx-auto lg:mx-0">
-                We deliver cutting-edge technology solutions that drive business growth and optimize operations through innovative IT strategies.
-              </p>
-
-              <div className="flex flex xs:flex-row gap-2 xs:gap-3 sm:gap-4 w-full xs:w-auto justify-center lg:justify-start">
-                <Link
-                  to="/syscare-services"
-                  className="w-1/2 xs:w-auto px-4 xs:px-6 sm:px-8 py-2 xs:py-3 sm:py-4 bg-gradient-to-r from-[#103d5d] to-[#245684] text-white rounded-lg font-semibold hover:from-[#245684] hover:to-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/30 flex items-center justify-center"
-                >
-                  <span className="text-xs xs:text-sm sm:text-base">Explore Services</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 xs:h-4 xs:w-4 sm:h-5 sm:w-5 ml-1 xs:ml-2" viewBox="0 0 20 20" fill="currentColor">
-                    <path
-                      fillRule="evenodd"
-                      d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </Link>
-                <Link
-                  to="/contact-Us"
-                  className="w-1/2 xs:w-auto px-4 xs:px-6 sm:px-8 py-2 xs:py-3 sm:py-4 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-[#103d5d] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-white/20 flex items-center justify-center"
-                >
-                  <span className="text-xs xs:text-sm sm:text-base">Free Consultation</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 xs:h-4 xs:w-4 sm:h-5 sm:w-5 ml-1 xs:ml-2" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                  </svg>
-                </Link>
-              </div>
-              
-              
-            </div>
-
-            {/* Right Content - Vertical Marquee */}
-            <div className={`flex justify-center items-center ${
-              isMobile ? 'w-full mt-8' : 
-              isTablet ? 'w-full mt-8 lg:w-1/2 lg:justify-center' : 
-              'lg:w-1/2 lg:justify-center'
-            }`}>
-              <div 
-                className="relative overflow-hidden bg-black/20 backdrop-blur-lg rounded-3xl border border-white/20 shadow-2xl hover:shadow-cyan-500/30 transition-all duration-500 group"
-                style={{
-                  height: isMobile ? '300px' : isTablet ? '400px' : '500px',
-                  width: isMobile ? '280px' : isTablet ? '320px' : '380px'
-                }}
-                onMouseEnter={() => setIsMarqueePaused(true)}
-                onMouseLeave={() => setIsMarqueePaused(false)}
-              >
-                {/* 2D Background Pattern */}
-                <div className="absolute inset-0 opacity-10">
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-blue-500/20"></div>
-                  <div className="absolute inset-0 bg-grid-pattern-2d"></div>
-                </div>
-
-                {/* Floating Service Icons Background */}
-                <div className="absolute inset-0">
-                  {services.map((service, index) => (
-                    <div
-                      key={`bg-${index}`}
-                      className="absolute text-white/10 group-hover:text-white/15 transition-all duration-1000"
-                      style={{
-                        top: `${(index * 15) % 100}%`,
-                        left: `${(index * 20) % 100}%`,
-                        fontSize: isMobile ? '1.5rem' : isTablet ? '2rem' : '2.5rem',
-                        transform: `rotate(${index * 15}deg)`,
-                        transition: 'all 0.5s ease'
-                      }}
-                    >
-                      {service.icon}
-                    </div>
-                  ))}
-                </div>
-
-                {/* Glass Morphism Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent rounded-3xl"></div>
-
-                {/* Vertical Marquee Container */}
-                <div className={`relative z-10 flex flex-col ${isMarqueePaused ? '' : 'animate-vertical-marquee'}`}>
-                  {/* Duplicate services for seamless loop */}
-                  {[...services, ...services].map((service, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center justify-start p-2 xs:p-3 sm:p-4 text-white cursor-pointer group hover:bg-white/10 transition-all duration-300 border-b border-white/10 backdrop-blur-sm"
-                      onClick={() => handleServiceClick(service.link)}
-                    >
-                      <div className="mr-3 xs:mr-4 text-cyan-400 group-hover:text-white transition-colors duration-300">
-                        {React.cloneElement(service.icon, {
-                          className: "service-icon-2d w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6"
-                        })}
-                      </div>
-                      <span className="font-medium text-sm xs:text-base sm:text-md group-hover:text-cyan-300 transition-colors duration-300">
-                        {service.name}
-                      </span>
-                      <svg 
-                        xmlns="http://www.w3.org/2000/svg" 
-                        className="h-4 w-4 xs:h-5 xs:w-5 ml-auto opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300 text-cyan-400" 
-                        viewBox="0 0 20 20" 
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Gradient overlays for smooth edges */}
-                <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-black/80 to-transparent pointer-events-none z-20"></div>
-                <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-black/80 to-transparent pointer-events-none z-20"></div>
-
-                {/* Animated Border Effect */}
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-cyan-500/0 via-cyan-500/50 to-cyan-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 animate-gradient-border"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Custom animations */}
       <style jsx>{`
         @keyframes marquee {
           0% { transform: translateX(0); }
@@ -569,14 +383,6 @@ const VideoHero = () => {
         }
         .animate-marquee {
           animation: marquee 25s linear infinite;
-        }
-        
-        @keyframes vertical-marquee {
-          0% { transform: translateY(0); }
-          100% { transform: translateY(-50%); }
-        }
-        .animate-vertical-marquee {
-          animation: vertical-marquee 20s linear infinite;
         }
         
         @keyframes float {
