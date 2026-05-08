@@ -29,11 +29,11 @@ const VideoHero = () => {
 
   // Cover image slides for the hero section
   const coverSlides = [
-    '/video/Cover1.png',
-    '/video/Cover_2.png',
-    '/video/Cover%20_03.png',
-    '/video/Cover%20_04.png',
-    '/video/Cover%20_05.png'
+    '/video/CoverWhiteT (1).png',
+    '/video/CoverWhiteT (2).png',
+    '/video/CoverWhiteT (3).png',
+    '/video/CoverWhiteT(4).png',
+    '/video/CoverWhiteT(5).png'
   ];
 
   const sliderImages = {
