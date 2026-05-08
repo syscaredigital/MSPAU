@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import SysCarePrivateCloud from '../assets/website-images/VoIP-Video.png';
+import VoIPVideo from '../assets/website-images/VoIPVideo.png';
 import { FiServer, FiShield, FiCloud, FiCpu, FiWifi, FiCode, FiDatabase, FiChevronRight, FiPhone, FiVideo } from 'react-icons/fi';
 import Navigation from '../components/Navigation';
 import Footer from '../components/footer';
@@ -285,7 +285,7 @@ const VoiceVideoPage = () => {
             >
               <div className="bg-white p-6 rounded-xl border border-[#e1e9f2] shadow-sm hover:shadow-md transition-shadow duration-500">
                 <img 
-                  src={SysCarePrivateCloud}
+                  src={VoIPVideo}
                   className="w-full h-auto rounded-lg transition-transform duration-500 hover:scale-[1.02]"
                   alt="SysCare Private Cloud Infrastructure"
                 />

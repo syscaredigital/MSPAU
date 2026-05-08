@@ -175,7 +175,7 @@ const DigitalMarketingPage = () => {
       title: "Prospecting & Retargeting Ads",
       icon: <FiUsers className="text-[#245684] text-2xl" />,
       content: "We help businesses grow by reaching new audiences (prospecting) while re-engaging existing visitors (retargeting). SysCare creates ads that nurture leads through the funnel, boosting conversion rates and strengthening customer relationships",
-      image: "/images/Prospecting-Retargeting-Ads.png"
+      image: "/images/Prospecting -Retargeting-Ads.png"
     },
     {
       title: "Shopping Ads",

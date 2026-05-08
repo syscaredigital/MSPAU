@@ -96,7 +96,7 @@ const EnterprisePage = () => {
       title: "Enterprise Security",
       icon: <MdSecurity className="text-[#245684] text-2xl" />,
       content: "Protect your critical business data with enterprise-grade security solutions. Our comprehensive security services include access control, data encryption, compliance management, and threat detection to safeguard your organization against evolving cyber threats.",
-      image: "/images/Enterprise-Security.png"
+      image: "/images/Enterprise-Analytics.png"
     },
     {
       title: "Cloud Migration",
