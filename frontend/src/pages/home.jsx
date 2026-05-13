@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import Navigation from '../components/Navigation.jsx';
 import VideoHero from '../components/hero.jsx';
@@ -1113,6 +1113,8 @@ const animationStyles = `
   }
 `;
 
+const TECH_ICONS = ['ðŸ’»', 'ðŸ”’', 'â˜ï¸', 'ðŸ“±', 'ðŸŒ', 'âš¡', 'ðŸ”§', 'ðŸ“Š', 'ðŸš€', 'ðŸ›¡ï¸', 'ðŸ”—', 'ðŸ’¾'];
+
 const HomePage = () => {
   const [showAllServices, setShowAllServices] = useState(false);
   const [stats, setStats] = useState([
@@ -1129,7 +1131,7 @@ const HomePage = () => {
   
   // Video states
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const [volume] = useState(0.7);
+  const volume = 0.7;
   const videoRef = useRef(null);
 
   // Industries background states
@@ -1139,6 +1141,7 @@ const HomePage = () => {
   const techIcons = ['💻', '🔒', '☁️', '📱', '🌐', '⚡', '🔧', '📊', '🚀', '🛡️', '🔗', '💾'];
 
   // All Services Data
+  void techIcons;
   const allServices = [
     {
       id: 1,
@@ -1413,13 +1416,13 @@ const HomePage = () => {
     setTestimonialParticles(newParticles);
   };
 
-  const initializeIndustriesBackground = () => {
+  const initializeIndustriesBackground = useCallback(() => {
     // Initialize tech icons
     const icons = [];
     for (let i = 0; i < 20; i++) {
       icons.push({
         id: i,
-        icon: techIcons[Math.floor(Math.random() * techIcons.length)],
+        icon: TECH_ICONS[Math.floor(Math.random() * TECH_ICONS.length)],
         x: Math.random() * 100,
         y: Math.random() * 100,
         delay: Math.random() * 15,
@@ -1455,7 +1458,7 @@ const HomePage = () => {
       }
     }
     setDataConnections(connections);
-  };
+  }, []);
 
   useEffect(() => {
     // Initialize animated background nodes, connections, and particles
@@ -1497,7 +1500,7 @@ const HomePage = () => {
       }
       clearInterval(interval);
     };
-  }, []);
+  }, [initializeIndustriesBackground, testimonials.length, volume]);
 
   const animateStats = () => {
     const duration = 2000;

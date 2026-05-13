@@ -1,576 +1,331 @@
-// common breakpoints (in pixels)
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { useRef, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FiGlobe, FiServer, FiCloud, FiShield, FiUserPlus, FiPackage, FiBook, FiSmartphone, FiMenu, FiX, FiChevronLeft, FiChevronRight } from "react-icons/fi";
+const heroHighlights = [
+  {
+    title: '24/7 Support',
+    description: 'Always On',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
+        <path d="M12 5a7 7 0 0 0-7 7v3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        <path d="M19 15v-3a7 7 0 0 0-7-7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        <rect x="3" y="14" width="4" height="6" rx="2" stroke="currentColor" strokeWidth="1.8" />
+        <rect x="17" y="14" width="4" height="6" rx="2" stroke="currentColor" strokeWidth="1.8" />
+        <path d="M12 19h3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Australian Based',
+    description: 'Local & Reliable',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
+        <path d="M12 3l2.4 4.86 5.36.78-3.88 3.78.92 5.34L12 15.5l-4.8 2.52.92-5.34L4.24 8.64l5.36-.78L12 3Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+        <circle cx="12" cy="11" r="2.3" fill="currentColor" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Cybersecurity First',
+    description: 'Secure by Design',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
+        <path d="M12 3 5 6v5c0 4.6 2.98 8.88 7 10 4.02-1.12 7-5.4 7-10V6l-7-3Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+        <path d="m9.5 12 1.6 1.6 3.4-3.6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    title: '150+ Clients',
+    description: 'Across Australia',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        <circle cx="9.5" cy="8" r="3" stroke="currentColor" strokeWidth="1.8" />
+        <path d="M20.5 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        <path d="M14.5 5.13a4 4 0 0 1 0 5.74" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+];
+
+const sideStats = [
+  { title: '24/7 Monitoring', subtitle: 'Always On' },
+  { title: 'Rapid Response', subtitle: '< 15 mins' },
+  { title: 'Data Protected', subtitle: 'Secure Backups' },
+  { title: 'Local Support', subtitle: 'Australia Wide' },
+];
+
+const navIcons = [
+  (
+    <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+      <path d="M4 11.5 12 5l8 6.5V20a1 1 0 0 1-1 1h-4.5v-5h-5v5H5a1 1 0 0 1-1-1v-8.5Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+      <path d="m12 3 7 3v5c0 4.6-2.98 8.88-7 10-4.02-1.12-7-5.4-7-10V6l7-3Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+      <path d="M7 10a5 5 0 1 1 10 0c0 4-5 8-5 8s-5-4-5-8Z" stroke="currentColor" strokeWidth="1.8" />
+      <circle cx="12" cy="10" r="1.5" fill="currentColor" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+      <path d="M7 10.5a5 5 0 0 1 10 0v5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <rect x="5" y="13" width="4" height="6" rx="2" stroke="currentColor" strokeWidth="1.8" />
+      <rect x="15" y="13" width="4" height="6" rx="2" stroke="currentColor" strokeWidth="1.8" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+      <path d="M5 19h14M7 16V9m5 7V5m5 11v-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+      <path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M19.4 15a1 1 0 0 0 .2 1.1l.04.04a1.9 1.9 0 0 1-2.69 2.69l-.04-.04a1 1 0 0 0-1.1-.2 1 1 0 0 0-.6.91V20a1.9 1.9 0 0 1-3.8 0v-.06a1 1 0 0 0-.66-.95 1 1 0 0 0-1.1.2l-.04.04a1.9 1.9 0 0 1-2.69-2.69l.04-.04a1 1 0 0 0 .2-1.1 1 1 0 0 0-.91-.6H4a1.9 1.9 0 1 1 0-3.8h.06a1 1 0 0 0 .95-.66 1 1 0 0 0-.2-1.1l-.04-.04A1.9 1.9 0 1 1 7.46 5.7l.04.04a1 1 0 0 0 1.1.2h.09a1 1 0 0 0 .6-.91V5a1.9 1.9 0 1 1 3.8 0v.06a1 1 0 0 0 .66.95 1 1 0 0 0 1.1-.2l.04-.04a1.9 1.9 0 1 1 2.69 2.69l-.04.04a1 1 0 0 0-.2 1.1v.09a1 1 0 0 0 .91.6H20a1.9 1.9 0 1 1 0 3.8h-.06a1 1 0 0 0-.95.66Z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
+    </svg>
+  ),
+];
+
+const linePoints = [
+  [0, 88],
+  [10, 82],
+  [20, 85],
+  [30, 77],
+  [40, 79],
+  [50, 67],
+  [60, 70],
+  [70, 63],
+  [80, 60],
+  [90, 44],
+  [100, 48],
+];
+
+const buildPolyline = (points) =>
+  points.map(([x, y]) => `${x},${y}`).join(' ');
 
 const VideoHero = () => {
-  const imageRef = useRef(null);
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const [isMarqueePaused, setIsMarqueePaused] = useState(false);
-  const [deviceSize, setDeviceSize] = useState('desktop');
-  const [imageSource, setImageSource] = useState('');
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [slideTransition, setSlideTransition] = useState(true);
-  const navigate = useNavigate();
-
-  // Device breakpoints
-  const breakpoints = {
-    mobileS: 320,
-    mobileM: 375,
-    mobileL: 425,
-    tablet: 768,
-    laptop: 1024,
-    laptopL: 1440,
-    desktop: 1920,
-    monitor: 2560
-  };
-
-  // Cover image slides for the hero section
-  const coverSlides = [
-    '/video/CoverWhiteT (1).png',
-    '/video/CoverWhiteT (2).png',
-    '/video/CoverWhiteT (3).png',
-    '/video/CoverWhiteT(4).png',
-    '/video/CoverWhiteT(5).png'
-  ];
-
-  const sliderImages = {
-    mobileS: coverSlides,
-    mobileM: coverSlides,
-    mobileL: coverSlides,
-    tablet: coverSlides,
-    laptop: coverSlides,
-    laptopL: coverSlides,
-    desktop: coverSlides,
-    monitor: coverSlides
-  };
-
-  const slideCount = sliderImages[deviceSize]?.length || sliderImages.desktop.length;
-
-  // Fallback image sources if some sizes are not available
-  const getImageSource = (device, slideIndex) => {
-    const fallbackSources = {
-      mobileS: sliderImages.mobileS?.[slideIndex] || sliderImages.mobileM?.[slideIndex] || sliderImages.mobileL?.[slideIndex] || sliderImages.tablet?.[slideIndex],
-      mobileM: sliderImages.mobileM?.[slideIndex] || sliderImages.mobileL?.[slideIndex] || sliderImages.tablet?.[slideIndex],
-      mobileL: sliderImages.mobileL?.[slideIndex] || sliderImages.tablet?.[slideIndex],
-      tablet: sliderImages.tablet?.[slideIndex] || sliderImages.laptop?.[slideIndex],
-      laptop: sliderImages.laptop?.[slideIndex] || sliderImages.laptopL?.[slideIndex] || sliderImages.desktop?.[slideIndex],
-      laptopL: sliderImages.laptopL?.[slideIndex] || sliderImages.desktop?.[slideIndex],
-      desktop: sliderImages.desktop?.[slideIndex] || sliderImages.monitor?.[slideIndex],
-      monitor: sliderImages.monitor?.[slideIndex] || sliderImages.desktop?.[slideIndex]
-    };
-    
-    return fallbackSources[device] || sliderImages.desktop?.[slideIndex] || '/video/hero-image1.jpg';
-  };
-
-  const services = [
-    { name: "Cloud", link: "/syscare-services#infrastructure", icon: <FiCloud className="service-icon" /> },
-    { name: "IT Security", link: "/syscare-services#security", icon: <FiShield className="service-icon" /> },
-    { name: "IT Support", link: "/syscare-services#support", icon: <FiUserPlus className="service-icon" /> },
-    { name: "Projects & Automation", link: "/syscare-services#solutions", icon: <FiPackage className="service-icon" /> },
-    { name: "Internet & VOIP", link: "/syscare-services#infrastructure", icon: <FiGlobe className="service-icon" /> },
-    { name: "IT Training", link: "/syscare-services#training", icon: <FiBook className="service-icon" /> },
-    { name: "Digital Services", link: "/syscare-services#solutions", icon: <FiSmartphone className="service-icon" /> },
-    { name: "CRM & ERP Solutions", link: "/syscare-services#solutions", icon: <FiServer className="service-icon" /> }
-  ];
-
-  const sub_service = [
-    { name: "Service Desk", link: "/Service-Desk", icon: <FiCloud className="service-icon" /> },
-    { name: "Managed IT", link: "/Managed-IT-Services", icon: <FiShield className="service-icon" /> },
-    { name: "CyberSecurity Consultancy", link: "/CyberSecurityConsultancyServices", icon: <FiUserPlus className="service-icon" /> },
-    { name: "Managed Security", link: "/ManagedSecurityServices", icon: <FiPackage className="service-icon" /> },
-    { name: "Cloud Solutions", link: "/SysCare-Private-Cloud", icon: <FiGlobe className="service-icon" /> },
-    { name: "Hosted Solutions", link: "/Hosted-Services", icon: <FiBook className="service-icon" /> },
-    { name: "IT Infra Projects", link: "/ITInfraProjects", icon: <FiSmartphone className="service-icon" /> },
-    { name: "Office IT Automation", link: "/DevelopmentAutomation", icon: <FiServer className="service-icon" /> },
-    { name: "Connectivity", link: "/Connectivity", icon: <FiServer className="service-icon" /> },
-    { name: "VoIP and Video", link: "/VoiceVideo", icon: <FiServer className="service-icon" /> },
-    { name: "Web Design and Development", link: "/DesignDev", icon: <FiServer className="service-icon" /> },
-    { name: "MultiMedia and Digital Marketing", link: "/DigitalMarketing", icon: <FiServer className="service-icon" /> },
-    { name: "Small Business", link: "/SmallBusiness", icon: <FiServer className="service-icon" /> },
-    { name: "Enterprise", link: "/Enterprise", icon: <FiServer className="service-icon" /> },
-    { name: "Security Training", link: "/Security", icon: <FiServer className="service-icon" /> },
-    { name: "Cloud Training", link: "/Cloud", icon: <FiServer className="service-icon" /> },
-  ];
-
-  // Determine device size based on breakpoints
-  const getDeviceSize = (width) => {
-    if (width < breakpoints.mobileS) return 'mobileS';
-    if (width < breakpoints.mobileM) return 'mobileM';
-    if (width < breakpoints.mobileL) return 'mobileL';
-    if (width < breakpoints.tablet) return 'tablet';
-    if (width < breakpoints.laptop) return 'laptop';
-    if (width < breakpoints.laptopL) return 'laptopL';
-    if (width < breakpoints.desktop) return 'desktop';
-    return 'monitor';
-  };
-
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      const currentDeviceSize = getDeviceSize(width);
-      
-      setDeviceSize(currentDeviceSize);
-      
-      // Set appropriate image source based on device size
-      const newImageSource = getImageSource(currentDeviceSize, currentSlide);
-      setImageSource(newImageSource);
-    };
-
-    // Initial setup
-    handleResize();
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [currentSlide]);
-
-  // Image slider auto-play effect
-  useEffect(() => {
-    if (!isAutoPlaying) return;
-
-    const slideInterval = setInterval(() => {
-      setSlideTransition(true);
-      setCurrentSlide((prev) => (prev + 1) % slideCount);
-    }, 5000); // Change slide every 5 seconds
-
-    return () => clearInterval(slideInterval);
-  }, [isAutoPlaying, slideCount]);
-
-  // Update image source when slide changes
-  useEffect(() => {
-    const newImageSource = getImageSource(deviceSize, currentSlide);
-    setImageSource(newImageSource);
-    setIsImageLoaded(false);
-  }, [currentSlide, deviceSize]);
-
-  // Image load handler
-  useEffect(() => {
-    const image = imageRef.current;
-    if (!image) return;
-
-    const handleLoad = () => {
-      setIsImageLoaded(true);
-    };
-
-    const handleError = () => {
-      console.error("Image failed to load:", imageSource);
-      setIsImageLoaded(false);
-      // Fallback to first image if current fails
-      if (currentSlide !== 0) {
-        setTimeout(() => {
-          setCurrentSlide(0);
-        }, 1000);
-      }
-    };
-
-    // If image source changes and it's already loaded, trigger load
-    if (image.complete && image.src === imageSource) {
-      setIsImageLoaded(true);
-    } else {
-      image.addEventListener('load', handleLoad);
-      image.addEventListener('error', handleError);
-    }
-
-    return () => {
-      image.removeEventListener('load', handleLoad);
-      image.removeEventListener('error', handleError);
-    };
-  }, [imageSource, currentSlide]);
-
-  const handleServiceClick = (serviceLink) => {
-    console.log(`Navigating to: ${serviceLink}`);
-    navigate(serviceLink);
-  };
-
-  // FIXED: Slider navigation functions
-  const nextSlide = () => {
-    setSlideTransition(true);
-    setIsAutoPlaying(false);
-    setCurrentSlide((prev) => (prev + 1) % slideCount);
-    
-    // Restart auto-play after 10 seconds
-    setTimeout(() => {
-      setIsAutoPlaying(true);
-    }, 10000);
-  };
-
-  const prevSlide = () => {
-    setSlideTransition(true);
-    setIsAutoPlaying(false);
-    setCurrentSlide((prev) => (prev - 1 + slideCount) % slideCount);
-    
-    // Restart auto-play after 10 seconds
-    setTimeout(() => {
-      setIsAutoPlaying(true);
-    }, 10000);
-  };
-
-  // FIXED: Go to specific slide
-  const goToSlide = (index) => {
-    if (index === currentSlide) return; // Don't do anything if clicking current slide
-    
-    setSlideTransition(true);
-    setIsAutoPlaying(false);
-    setCurrentSlide(index);
-    
-    // Restart auto-play after 10 seconds
-    setTimeout(() => {
-      setIsAutoPlaying(true);
-    }, 10000);
-  };
-
-  // Helper function to check if device is mobile
-  const isMobile = deviceSize === 'mobileS' || deviceSize === 'mobileM' || deviceSize === 'mobileL';
-  const isTablet = deviceSize === 'tablet';
-
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-black pt-10 md:pt-12 lg:pt-14">
-      {/* Services Marquee */}
-      <div
-        className="block absolute bottom-0 left-0 w-full z-30 overflow-hidden py-3 xs:py-4"
-        onMouseEnter={() => setIsMarqueePaused(true)}
-        onMouseLeave={() => setIsMarqueePaused(false)}
-      >
-        <div className="relative bg-gradient-to-r from-[#0a2a3e] via-[#103d5d] to-[#245684] py-3 xs:py-4 shadow-2xl">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#15f4ee] to-[#008080] opacity-80"></div>
-          <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-black/40 to-black/20"></div>
-          
-          <div className={`flex whitespace-nowrap ${isMarqueePaused ? '' : 'animate-marquee'}`}>
-            {[...sub_service, ...sub_service].map((service, index) => (
-              <div
-                key={index}
-                className="inline-flex items-center mx-3 xs:mx-4 sm:mx-6 md:mx-8 text-white cursor-pointer group relative"
-                onClick={() => handleServiceClick(service.link)}
+    <section className="relative overflow-hidden bg-[#f6f9ff]">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_90%_22%,rgba(88,146,255,0.18),transparent_26%),radial-gradient(circle_at_8%_92%,rgba(77,145,255,0.12),transparent_24%),linear-gradient(180deg,#ffffff_0%,#eef4ff_100%)]" />
+      <div className="absolute inset-0 opacity-50 [background-image:linear-gradient(rgba(82,125,210,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(82,125,210,0.08)_1px,transparent_1px)] [background-size:90px_90px]" />
+
+      <div className="relative mx-auto max-w-[1320px] px-4 pb-8 pt-6 sm:px-6 md:pb-10 md:pt-8 lg:px-10 lg:pb-10">
+        <div className="grid items-center gap-8 lg:grid-cols-[0.76fr_1fr] lg:gap-6">
+          <div className="max-w-[460px] pt-1 lg:pl-2">
+            <p className="mb-4 text-[9px] font-extrabold uppercase tracking-[0.2em] text-[#24356a] sm:text-[10px] md:text-[11px]">
+              Your trusted IT partner in Australia
+            </p>
+
+            <h1 className="max-w-[10ch] text-[2.2rem] font-black leading-[1.02] tracking-[-0.05em] text-[#1b2b69] sm:text-[2.65rem] md:text-[3rem] lg:text-[3.35rem]">
+              Managed IT Services That Keep <span className="text-[#3a6cff]">Australian</span> Businesses Running
+            </h1>
+
+            <p className="mt-4 max-w-[360px] text-[0.88rem] leading-[1.65] text-[#29457d] sm:text-[0.92rem] md:text-[0.95rem]">
+              24/7 support, cybersecurity, cloud, automation, and proactive IT management tailored for growing businesses.
+            </p>
+
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <Link
+                to="/contact-Us"
+                className="inline-flex min-h-[46px] min-w-[170px] items-center justify-center rounded-[14px] bg-[#3768f5] px-5 text-[0.86rem] font-bold text-white shadow-[0_16px_34px_rgba(61,113,255,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2e5ff0] hover:shadow-[0_18px_36px_rgba(61,113,255,0.3)]"
               >
-                <div className="relative mr-2 xs:mr-3">
-                  <div className="w-3 h-3 xs:w-4 xs:h-4 bg-gradient-to-br from-[#15f4ee] to-[#008080] rounded-full shadow-lg shadow-cyan-500/50 group-hover:shadow-cyan-400/70 transition-all duration-300 transform group-hover:scale-125"></div>
-                  <div className="absolute inset-0 w-3 h-3 xs:w-4 xs:h-4 bg-[#15f4ee] rounded-full opacity-20 group-hover:opacity-40 animate-pulse"></div>
-                </div>
-                
-                <span className="font-bold text-xs xs:text-sm sm:text-base md:text-lg relative">
-                  <span className="relative z-10 bg-gradient-to-r from-white to-cyan-100 bg-clip-text text-transparent group-hover:from-[#15f4ee] group-hover:to-cyan-300 transition-all duration-300">
-                    {service.name}
-                  </span>
-                  <span className="absolute inset-0 bg-gradient-to-r from-white to-cyan-100 bg-clip-text text-transparent opacity-50 blur-sm group-hover:opacity-70 group-hover:from-[#15f4ee] group-hover:to-cyan-300 transition-all duration-300">
-                    {service.name}
-                  </span>
-                </span>
+                Get Free IT Assessment
+                <svg viewBox="0 0 20 20" fill="currentColor" className="ml-3 h-4 w-4">
+                  <path fillRule="evenodd" d="M10.293 4.293a1 1 0 0 1 1.414 0l4 4a1 1 0 0 1 0 1.414l-4 4a1 1 0 1 1-1.414-1.414L12.586 10H5a1 1 0 1 1 0-2h7.586L10.293 5.707a1 1 0 0 1 0-1.414Z" clipRule="evenodd" />
+                </svg>
+              </Link>
 
-                <div className="ml-2 xs:ml-3 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
-                  <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    className="h-3 w-3 xs:h-4 xs:w-4 text-[#15f4ee] transform group-hover:scale-110 transition-transform duration-300" 
-                    viewBox="0 0 20 20" 
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
-
-                <div className="absolute -right-2 top-1/2 w-4 xs:w-6 h-0.5 bg-gradient-to-r from-cyan-500/30 to-transparent transform -translate-y-1/2"></div>
-              </div>
-            ))}
-          </div>
-
-          <div className="absolute top-0 left-0 h-full w-20 bg-gradient-to-r from-[#0a2a3e] to-transparent pointer-events-none"></div>
-          <div className="absolute top-0 right-0 h-full w-20 bg-gradient-to-l from-[#245684] to-transparent pointer-events-none"></div>
-        </div>
-
-        <div className="absolute -bottom-2 left-0 w-full h-3 bg-gradient-to-t from-cyan-500/10 to-transparent blur-sm"></div>
-      </div>
-
-      {/* Image Background Slider - FIXED */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden">
-        {/* Current Slide with proper sizing */}
-        <div className="relative w-full h-full">
-          <img
-            ref={imageRef}
-            src={imageSource}
-            alt={`SysCare IT Solutions Background ${currentSlide + 1}`}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-              isImageLoaded ? 'opacity-100' : 'opacity-0'
-            } ${slideTransition ? 'transition-all duration-1000 ease-in-out' : ''}`}
-            style={{
-              objectFit: 'cover',
-              objectPosition: 'center'
-            }}
-            onLoad={() => setIsImageLoaded(true)}
-            onError={() => {
-              console.error(`Failed to load image: ${imageSource}`);
-              setIsImageLoaded(false);
-            }}
-          />
-        </div>
-
-        {/* Loading fallback */}
-        {!isImageLoaded && (
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-700 flex items-center justify-center">
-            <div className="text-white text-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#15f4ee] mx-auto mb-4"></div>
-              <p className="text-sm">Loading...</p>
+              <Link
+                to="/contact-Us"
+                className="inline-flex min-h-[46px] min-w-[162px] items-center justify-center rounded-[14px] border border-[#7ea7ff] bg-white px-5 text-[0.86rem] font-bold text-[#19316f] shadow-[0_10px_22px_rgba(18,47,116,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#2f6bff] hover:shadow-[0_14px_26px_rgba(18,47,116,0.1)]"
+              >
+                Talk to an Expert
+                <svg viewBox="0 0 24 24" fill="none" className="ml-3 h-4 w-4" aria-hidden="true">
+                  <path d="M6.7 4h2.15a1 1 0 0 1 .98.8l.55 2.75a1 1 0 0 1-.5 1.08l-1.54.88a13.08 13.08 0 0 0 6.15 6.15l.88-1.54a1 1 0 0 1 1.08-.5l2.75.55a1 1 0 0 1 .8.98v2.15a1 1 0 0 1-1 1h-1.3C10.58 20.34 3.66 13.42 3.66 5V4.99a1 1 0 0 1 1-1Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+                </svg>
+              </Link>
             </div>
           </div>
-        )}
+
+          <div className="relative min-h-[320px] sm:min-h-[360px] md:min-h-[400px] lg:min-h-[450px]">
+            <div className="absolute right-4 top-6 h-40 w-40 rounded-full bg-[#78acff]/18 blur-3xl sm:h-48 sm:w-48 md:h-56 md:w-56" />
+            <div className="absolute bottom-4 right-6 h-20 w-44 rounded-full bg-[#4a82ff]/20 blur-3xl sm:h-24 sm:w-52 md:h-28 md:w-60" />
+
+            <div className="absolute left-[10px] top-[54px] hidden w-[58px] rounded-[24px] border border-white/10 bg-[#132760] p-2.5 shadow-[0_20px_42px_rgba(10,27,74,0.24)] md:block lg:left-[20px] lg:top-[64px] lg:w-[64px]">
+              <div className="space-y-3 rounded-[22px] bg-[#10214f] py-4">
+                {navIcons.map((icon, index) => (
+                  <div
+                    key={index}
+                    className={`mx-auto flex h-8 w-8 items-center justify-center rounded-[12px] lg:h-9 lg:w-9 lg:rounded-[14px] ${
+                      index === 0
+                        ? 'bg-[#3d72ff] text-white shadow-[0_12px_22px_rgba(47,107,255,0.36)]'
+                        : 'text-white/75'
+                    }`}
+                  >
+                    {icon}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="absolute left-0 top-0 right-0 overflow-hidden rounded-[24px] border border-[#4f76dd]/40 bg-[#1b2f68] p-3 text-white shadow-[0_34px_80px_rgba(10,24,68,0.38)] sm:left-[24px] sm:right-[24px] sm:p-4 md:left-[70px] md:right-[16px] lg:left-[78px] lg:right-[28px] lg:rounded-[30px] lg:p-5">
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_18%,rgba(136,185,255,0.42),transparent_24%),radial-gradient(circle_at_25%_100%,rgba(60,118,255,0.28),transparent_30%),linear-gradient(180deg,rgba(39,65,130,0.98)_0%,rgba(20,33,76,1)_100%)]" />
+              <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />
+              <div className="pointer-events-none absolute -bottom-6 left-1/2 h-24 w-52 -translate-x-1/2 rounded-full bg-[#4f8cff]/30 blur-3xl" />
+              <div className="relative">
+                <div className="mb-3 flex items-center justify-between">
+                  <div>
+                    <p className="text-[10px] font-bold text-white/85 sm:text-[11px]">System Operations</p>
+                  </div>
+                </div>
+
+                <div className="grid gap-3 md:grid-cols-[1.08fr_0.62fr]">
+                  <div className="rounded-[20px] border border-[#b8d0ff]/55 bg-[linear-gradient(180deg,rgba(255,255,255,0.1),rgba(255,255,255,0.04))] p-3.5 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.24),0_18px_36px_rgba(9,19,56,0.2)] lg:rounded-[22px]">
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <p className="text-[9px] font-bold text-white/82 sm:text-[10px] lg:text-[11px]">Live Monitoring</p>
+                        <p className="mt-2 text-[9px] font-bold leading-4 text-[#4ef08d] sm:text-[10px] lg:mt-3 lg:text-[11px] lg:leading-5">+ All Systems Operational</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-[9px] font-bold text-white/55 sm:text-[10px] lg:text-[11px]">Uptime (30 Days)</p>
+                        <p className="mt-1.5 text-[2rem] font-black leading-none tracking-[-0.06em] sm:text-[2.35rem] lg:mt-2 lg:text-[2.6rem]">99.9%</p>
+                        <p className="mt-1 text-[8px] font-bold text-[#4ef08d] sm:text-[9px] lg:mt-1.5 lg:text-[10px]">+ 0.2% vs last month</p>
+                      </div>
+                    </div>
+
+                    <div className="mt-5 lg:mt-6">
+                      <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="h-16 w-full sm:h-20 lg:h-24">
+                        <defs>
+                          <linearGradient id="hero-line" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stopColor="#3e79ff" />
+                            <stop offset="50%" stopColor="#6f9fff" />
+                            <stop offset="100%" stopColor="#6fe6ff" />
+                          </linearGradient>
+                          <linearGradient id="hero-fill" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stopColor="rgba(96, 164, 255, 0.55)" />
+                            <stop offset="100%" stopColor="rgba(56, 124, 255, 0)" />
+                          </linearGradient>
+                          <filter id="hero-glow">
+                            <feGaussianBlur stdDeviation="2.4" result="blur" />
+                            <feMerge>
+                              <feMergeNode in="blur" />
+                              <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                          </filter>
+                        </defs>
+                        <polyline
+                          fill="url(#hero-fill)"
+                          stroke="none"
+                          points={`${buildPolyline(linePoints)} 100,100 0,100`}
+                        />
+                        <polyline
+                          fill="none"
+                          stroke="rgba(151,206,255,0.3)"
+                          strokeWidth="6"
+                          strokeLinecap="round"
+                          points={buildPolyline(linePoints)}
+                        />
+                        <polyline
+                          fill="none"
+                          stroke="url(#hero-line)"
+                          strokeWidth="2.8"
+                          strokeLinejoin="round"
+                          strokeLinecap="round"
+                          filter="url(#hero-glow)"
+                          points={buildPolyline(linePoints)}
+                        />
+                        {linePoints.map(([x, y], index) => (
+                          <circle key={index} cx={x} cy={y} r="1.7" fill="#aee2ff" />
+                        ))}
+                      </svg>
+                    </div>
+
+                    <div className="mt-1.5 grid grid-cols-5 text-[7px] font-bold text-white/40 sm:text-[8px] lg:text-[9px]">
+                      <span>May 1</span>
+                      <span className="text-center">May 8</span>
+                      <span className="text-center">May 15</span>
+                      <span className="text-center">May 22</span>
+                      <span className="text-right">Jun 5</span>
+                    </div>
+                  </div>
+
+                  <div className="grid gap-3">
+                    {sideStats.map((item) => (
+                      <div key={item.title} className="group rounded-[18px] border border-white/90 bg-[linear-gradient(180deg,#ffffff_0%,#f4f8ff_100%)] px-3 py-3 text-[#224184] shadow-[0_18px_34px_rgba(33,73,170,0.16)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_40px_rgba(33,73,170,0.22)] lg:px-3.5 lg:py-3.5">
+                        <div className="flex items-start gap-3">
+                          <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-[12px] bg-[linear-gradient(180deg,#eef4ff_0%,#dce9ff_100%)] text-[#2f6bff] shadow-[inset_0_1px_0_rgba(255,255,255,0.95),0_8px_18px_rgba(47,107,255,0.12)] transition-transform duration-300 group-hover:scale-105 lg:h-9 lg:w-9 lg:rounded-[14px]">
+                            <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4 lg:h-5 lg:w-5" aria-hidden="true">
+                              <path d="M12 3 5 6v6c0 4.6 2.98 8.88 7 10 4.02-1.12 7-5.4 7-10V6l-7-3Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+                              <path d="m9.5 12 1.6 1.6 3.4-3.6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                          </div>
+                          <div>
+                            <p className="text-[0.75rem] font-extrabold leading-4 text-[#24448d] sm:text-[0.8rem] lg:text-[0.84rem]">{item.title}</p>
+                            <p className="mt-0.5 text-[9px] font-bold text-[#6278a8] sm:text-[10px] lg:text-[11px]">{item.subtitle}</p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-4 grid gap-2 sm:grid-cols-3">
+                  <div className="rounded-[18px] border border-white/10 bg-[linear-gradient(180deg,rgba(30,51,108,0.98),rgba(20,37,83,0.98))] p-3 shadow-[0_18px_34px_rgba(7,19,52,0.24)]">
+                    <p className="text-[9px] font-bold text-white/55 sm:text-[10px] lg:text-[11px]">Threats Blocked</p>
+                    <p className="mt-2 text-[1.7rem] font-black leading-none tracking-[-0.06em] sm:text-[2rem] lg:mt-3 lg:text-[2.25rem]">3,264</p>
+                    <p className="mt-1 text-[8px] font-bold text-[#ff7381] sm:text-[9px] lg:text-[10px]">120 This Month</p>
+                    <div className="mt-2.5 h-6 rounded-full bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0))] lg:mt-3 lg:h-8">
+                      <div className="h-full w-full rounded-full bg-[linear-gradient(90deg,rgba(255,95,123,0.38),rgba(255,95,123,0.03))]" />
+                    </div>
+                  </div>
+
+                  <div className="rounded-[18px] border border-white/10 bg-[linear-gradient(180deg,rgba(30,51,108,0.98),rgba(20,37,83,0.98))] p-3 shadow-[0_18px_34px_rgba(7,19,52,0.24)]">
+                    <p className="text-[9px] font-bold text-white/55 sm:text-[10px] lg:text-[11px]">Active Devices</p>
+                    <p className="mt-2 text-[1.7rem] font-black leading-none tracking-[-0.06em] sm:text-[2rem] lg:mt-3 lg:text-[2.25rem]">1,246</p>
+                    <p className="mt-1 text-[8px] font-bold text-[#57d788] sm:text-[9px] lg:text-[10px]">Online</p>
+                    <div className="mt-3 h-1.5 rounded-full bg-white/10 lg:mt-4">
+                      <div className="h-full w-[90%] rounded-full bg-[linear-gradient(90deg,#37dd77_0%,#78f59a_100%)] shadow-[0_0_12px_rgba(63,224,126,0.35)]" />
+                    </div>
+                    <p className="mt-1.5 text-right text-[8px] font-black text-white/45 sm:text-[9px]">90%</p>
+                  </div>
+
+                  <div className="relative overflow-hidden rounded-[18px] border border-white/10 bg-[linear-gradient(180deg,rgba(30,51,108,0.98),rgba(20,37,83,0.98))] p-3 shadow-[0_18px_34px_rgba(7,19,52,0.24)]">
+                    <div className="pointer-events-none absolute right-0 top-0 h-20 w-24 rounded-full bg-[#5a8fff]/22 blur-2xl" />
+                    <p className="text-[9px] font-bold text-white/55 sm:text-[10px] lg:text-[11px]">Backups</p>
+                    <p className="mt-2 text-[1.7rem] font-black leading-none tracking-[-0.06em] sm:text-[2rem] lg:mt-3 lg:text-[2.25rem]">100%</p>
+                    <p className="mt-1 text-[8px] font-bold text-[#57d788] sm:text-[9px] lg:text-[10px]">Successful</p>
+                    <p className="mt-2 text-[8px] text-white/45 sm:text-[9px] lg:mt-3 lg:text-[10px]">All systems protected</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="absolute bottom-[14px] right-2 h-16 w-40 rounded-[999px] bg-[radial-gradient(circle_at_center,_rgba(114,176,255,0.82)_0%,_rgba(53,117,255,0.55)_42%,_rgba(53,117,255,0.08)_72%,_transparent_75%)] blur-[2px] sm:h-18 sm:w-52 lg:h-20 lg:w-64" />
+            <div className="absolute bottom-[24px] right-10 h-10 w-32 rounded-[999px] border border-white/50 bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(206,226,255,0.74))] shadow-[0_18px_30px_rgba(67,124,255,0.2)] sm:right-12 sm:h-12 sm:w-40 lg:bottom-[30px] lg:right-16 lg:h-14 lg:w-48" />
+          </div>
+        </div>
+
+        <div className="mt-4 grid gap-2 rounded-[24px] border border-white/70 bg-white/82 px-3 py-3 shadow-[0_18px_42px_rgba(45,89,180,0.1)] backdrop-blur-md sm:grid-cols-2 sm:gap-3 sm:px-4 sm:py-4 lg:grid-cols-4 lg:gap-2 lg:px-5 lg:py-3.5">
+          {heroHighlights.map((item) => (
+            <div key={item.title} className="flex items-center gap-2.5 rounded-2xl px-1 py-1">
+              <div className="flex h-9 w-9 items-center justify-center rounded-[14px] bg-[#eef4ff] text-[#2f6bff] sm:h-10 sm:w-10 sm:rounded-[16px]">
+                {item.icon}
+              </div>
+              <div>
+                <p className="text-[0.8rem] font-extrabold text-[#284483] sm:text-[0.84rem]">{item.title}</p>
+                <p className="text-[9px] font-bold text-[#7888aa] sm:text-[10px]">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-
-      {/* FIXED: Slider Controls */}
-      <div className="absolute inset-0 z-10 flex items-center justify-between px-3 xs:px-4 sm:px-6 lg:px-8">
-        <button
-          onClick={prevSlide}
-          className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black/30 hover:bg-black/50 text-white rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border border-white/20 hover:border-[#15f4ee]/50"
-          aria-label="Previous image"
-        >
-          <FiChevronLeft className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
-        </button>
-
-        <button
-          onClick={nextSlide}
-          className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black/30 hover:bg-black/50 text-white rounded-full transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border border-white/20 hover:border-[#15f4ee]/50"
-          aria-label="Next image"
-        >
-          <FiChevronRight className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
-        </button>
-      </div>
-
-      {/* FIXED: Slider Indicators */}
-      <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2 xs:space-x-3">
-        {Array.from({ length: slideCount }, (_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`w-3 h-3 xs:w-4 xs:h-4 rounded-full transition-all duration-300 cursor-pointer ${
-              currentSlide === index 
-                ? 'bg-[#15f4ee] scale-125 shadow-lg shadow-cyan-500/50' 
-                : 'bg-white/50 hover:bg-white/70 hover:scale-110'
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-            aria-current={currentSlide === index ? 'true' : 'false'}
-          />
-        ))}
-      </div>
-
-      {/* Animated grid pattern overlay */}
-      <div className="absolute inset-0 z-0 opacity-5 bg-grid-pattern"></div>
-
-      {/* Floating particles */}
-      <div className="absolute inset-0 z-0">
-        {[...Array(isMobile ? 6 : isTablet ? 10 : 15)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full bg-[#103d5d] opacity-10 animate-float"
-            style={{
-              width: Math.random() * (isMobile ? 12 : isTablet ? 15 : 20) + 5 + 'px',
-              height: Math.random() * (isMobile ? 12 : isTablet ? 15 : 20) + 5 + 'px',
-              top: Math.random() * 100 + '%',
-              left: Math.random() * 100 + '%',
-              animationDelay: Math.random() * 5 + 's',
-              animationDuration: Math.random() * 10 + 10 + 's'
-            }}
-          ></div>
-        ))}
-      </div>
-
-      <style jsx>{`
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-          animation: marquee 25s linear infinite;
-        }
-        
-        @keyframes float {
-          0% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
-          100% { transform: translateY(0px); }
-        }
-        .animate-float {
-          animation: float 5s infinite ease-in-out;
-        }
-        
-        @keyframes scroll {
-          0% { transform: translateY(0); opacity: 1; }
-          100% { transform: translateY(10px); opacity: 0; }
-        }
-        .animate-scroll {
-          animation: scroll 2s infinite;
-        }
-        
-        .bg-grid-pattern {
-          background-image: linear-gradient(to right, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
-                            linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
-          background-size: 40px 40px;
-        }
-
-        .bg-grid-pattern-2d {
-          background-image: 
-            radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 2px, transparent 0),
-            radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.1) 2px, transparent 0);
-          background-size: 30px 30px;
-        }
-
-        @keyframes gradient-border {
-          0% { background-position: -100% 0; }
-          100% { background-position: 200% 0; }
-        }
-
-        .animate-gradient-border {
-          background-size: 200% 100%;
-          animation: gradient-border 3s linear infinite;
-          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-          mask-composite: xor;
-          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-          -webkit-mask-composite: xor;
-          padding: 2px;
-          border-radius: inherit;
-        }
-
-        .service-icon-2d {
-          filter: drop-shadow(0 0 2px rgba(0, 255, 255, 0.5));
-        }
-
-        @keyframes text-glow {
-          0%, 100% { 
-            filter: drop-shadow(0 0 2px rgba(21, 244, 238, 0.3));
-          }
-          50% { 
-            filter: drop-shadow(0 0 4px rgba(21, 244, 238, 0.6)) 
-                    drop-shadow(0 0 8px rgba(21, 244, 238, 0.4));
-          }
-        }
-
-        .group:hover .bg-clip-text {
-          animation: text-glow 1s ease-in-out;
-        }
-
-        @keyframes bullet-pulse {
-          0%, 100% { 
-            transform: scale(1);
-            box-shadow: 0 0 10px rgba(21, 244, 238, 0.5);
-          }
-          50% { 
-            transform: scale(1.1);
-            box-shadow: 0 0 15px rgba(21, 244, 238, 0.8);
-          }
-        }
-
-        .group:hover .relative .bg-gradient-to-br {
-          animation: bullet-pulse 0.6s ease-in-out;
-        }
-
-        .shadow-3d {
-          box-shadow: 
-            0 10px 25px rgba(0, 0, 0, 0.3),
-            0 5px 10px rgba(0, 0, 0, 0.2),
-            inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 320px) {
-          .bg-grid-pattern {
-            background-size: 15px 15px;
-          }
-          .bg-grid-pattern-2d {
-            background-size: 20px 20px;
-          }
-        }
-        @media (min-width: 321px) and (max-width: 375px) {
-          .bg-grid-pattern {
-            background-size: 18px 18px;
-          }
-          .bg-grid-pattern-2d {
-            background-size: 25px 25px;
-          }
-        }
-        @media (min-width: 376px) and (max-width: 425px) {
-          .bg-grid-pattern {
-            background-size: 20px 20px;
-          }
-          .bg-grid-pattern-2d {
-            background-size: 25px 25px;
-          }
-        }
-        @media (min-width: 426px) and (max-width: 768px) {
-          .bg-grid-pattern {
-            background-size: 25px 25px;
-          }
-          .bg-grid-pattern-2d {
-            background-size: 30px 30px;
-          }
-        }
-        @media (min-width: 769px) and (max-width: 1024px) {
-          .bg-grid-pattern {
-            background-size: 30px 30px;
-          }
-          .bg-grid-pattern-2d {
-            background-size: 35px 35px;
-          }
-        }
-
-        .group:hover .bg-grid-pattern-2d {
-          background-image: 
-            radial-gradient(circle at 25% 25%, rgba(0, 255, 255, 0.3) 2px, transparent 0),
-            radial-gradient(circle at 75% 75%, rgba(0, 255, 255, 0.3) 2px, transparent 0);
-        }
-
-        @keyframes gradient {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        .animate-gradient {
-          background-size: 200% 200%;
-          animation: gradient 3s ease infinite;
-        }
-      `}</style>
-
-      {/* Service icon styling */}
-      <style jsx>{`
-        .service-icon {
-          display: inline-block;
-        }
-        @media (max-width: 320px) {
-          .service-icon {
-            font-size: 0.875rem;
-          }
-        }
-        @media (min-width: 321px) and (max-width: 375px) {
-          .service-icon {
-            font-size: 1rem;
-          }
-        }
-        @media (min-width: 376px) and (max-width: 425px) {
-          .service-icon {
-            font-size: 1.125rem;
-          }
-        }
-        @media (min-width: 426px) and (max-width: 768px) {
-          .service-icon {
-            font-size: 1.25rem;
-          }
-        }
-        @media (min-width: 769px) and (max-width: 1024px) {
-          .service-icon {
-            font-size: 1.5rem;
-          }
-        }
-        @media (min-width: 1025px) and (max-width: 1440px) {
-          .service-icon {
-            font-size: 1.75rem;
-          }
-        }
-        @media (min-width: 1441px) {
-          .service-icon {
-            font-size: 2rem;
-          }
-        }
-      `}</style>
     </section>
   );
 };
