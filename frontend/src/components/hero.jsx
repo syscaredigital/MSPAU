@@ -1,6 +1,119 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+const heroAnimations = `
+  @keyframes heroFadeUp {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 28px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes heroFloat {
+    0%, 100% {
+      transform: rotateX(7deg) rotateY(-8deg) translateZ(-24px) translateY(0);
+    }
+    50% {
+      transform: rotateX(7deg) rotateY(-8deg) translateZ(-24px) translateY(-8px);
+    }
+  }
+
+  @keyframes heroGlowPulse {
+    0%, 100% {
+      opacity: 0.45;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.72;
+      transform: scale(1.08);
+    }
+  }
+
+  @keyframes heroLineDrift {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(6px);
+    }
+  }
+
+  @keyframes heroCardLift {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+
+  @keyframes heroBadgeShimmer {
+    0% {
+      transform: translateX(-120%);
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateX(180%);
+      opacity: 0;
+    }
+  }
+
+  .hero-fade-up {
+    opacity: 0;
+    animation: heroFadeUp 0.8s ease-out forwards;
+  }
+
+  .hero-fade-delay-1 { animation-delay: 0.08s; }
+  .hero-fade-delay-2 { animation-delay: 0.16s; }
+  .hero-fade-delay-3 { animation-delay: 0.24s; }
+  .hero-fade-delay-4 { animation-delay: 0.32s; }
+  .hero-fade-delay-5 { animation-delay: 0.4s; }
+
+  .hero-dashboard-float {
+    animation: heroFloat 7s ease-in-out infinite;
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+
+  .hero-glow-pulse {
+    animation: heroGlowPulse 5s ease-in-out infinite;
+  }
+
+  .hero-line-drift {
+    animation: heroLineDrift 4.8s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  .hero-card-lift {
+    animation: heroCardLift 5s ease-in-out infinite;
+  }
+
+  .hero-card-lift:nth-child(2) { animation-delay: 0.6s; }
+  .hero-card-lift:nth-child(3) { animation-delay: 1.2s; }
+  .hero-card-lift:nth-child(4) { animation-delay: 1.8s; }
+
+  .hero-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.28) 50%, transparent 80%);
+    animation: heroBadgeShimmer 5s linear infinite;
+    pointer-events: none;
+  }
+`;
+
 const heroHighlights = [
   {
     title: '24/7 Support',
@@ -113,28 +226,31 @@ const buildPolyline = (points) =>
 const VideoHero = () => {
   return (
     <section className="relative overflow-hidden bg-[#f6f9ff]">
+      <style>{heroAnimations}</style>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_90%_22%,rgba(88,146,255,0.18),transparent_26%),radial-gradient(circle_at_8%_92%,rgba(77,145,255,0.12),transparent_24%),linear-gradient(180deg,#ffffff_0%,#eef4ff_100%)]" />
       <div className="absolute inset-0 opacity-50 [background-image:linear-gradient(rgba(82,125,210,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(82,125,210,0.08)_1px,transparent_1px)] [background-size:90px_90px]" />
+      <div className="hero-glow-pulse absolute left-[8%] top-[16%] h-28 w-28 rounded-full bg-[#8cb7ff]/20 blur-3xl" />
+      <div className="hero-glow-pulse absolute bottom-[14%] right-[10%] h-36 w-36 rounded-full bg-[#5f90ff]/18 blur-3xl [animation-delay:1.2s]" />
 
       <div className="relative mx-auto max-w-[1320px] px-4 pb-8 pt-6 sm:px-6 md:pb-10 md:pt-8 lg:px-10 lg:pb-10">
         <div className="grid items-center gap-8 lg:grid-cols-[0.76fr_1fr] lg:gap-6">
           <div className="max-w-[460px] pt-1 lg:pl-2">
-            <p className="mb-4 text-[9px] font-extrabold uppercase tracking-[0.2em] text-[#24356a] sm:text-[10px] md:text-[11px]">
+            <p className="hero-fade-up mb-4 text-[9px] font-extrabold uppercase tracking-[0.2em] text-[#24356a] sm:text-[10px] md:text-[11px]">
               Your trusted IT partner in Australia
             </p>
 
-            <h1 className="max-w-[10ch] text-[2.2rem] font-black leading-[1.02] tracking-[-0.05em] text-[#1b2b69] sm:text-[2.65rem] md:text-[3rem] lg:text-[3.35rem]">
+            <h1 className="hero-fade-up hero-fade-delay-1 max-w-[10ch] text-[2.2rem] font-black leading-[1.02] tracking-[-0.05em] text-[#1b2b69] sm:text-[2.65rem] md:text-[3rem] lg:text-[3.35rem]">
               Managed IT Services That Keep <span className="text-[#3a6cff]">Australian</span> Businesses Running
             </h1>
 
-            <p className="mt-4 max-w-[360px] text-[0.88rem] leading-[1.65] text-[#29457d] sm:text-[0.92rem] md:text-[0.95rem]">
+            <p className="hero-fade-up hero-fade-delay-2 mt-4 max-w-[360px] text-[0.88rem] leading-[1.65] text-[#29457d] sm:text-[0.92rem] md:text-[0.95rem]">
               24/7 support, cybersecurity, cloud, automation, and proactive IT management tailored for growing businesses.
             </p>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <div className="hero-fade-up hero-fade-delay-3 mt-6 flex flex-col gap-3 sm:flex-row">
               <Link
                 to="/contact-Us"
-                className="inline-flex min-h-[46px] min-w-[170px] items-center justify-center rounded-[14px] bg-[#3768f5] px-5 text-[0.86rem] font-bold text-white shadow-[0_16px_34px_rgba(61,113,255,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2e5ff0] hover:shadow-[0_18px_36px_rgba(61,113,255,0.3)]"
+                className="hero-shimmer inline-flex min-h-[46px] min-w-[170px] items-center justify-center rounded-[14px] bg-[#3768f5] px-5 text-[0.86rem] font-bold text-white shadow-[0_16px_34px_rgba(61,113,255,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2e5ff0] hover:shadow-[0_18px_36px_rgba(61,113,255,0.3)]"
               >
                 Get Free IT Assessment
                 <svg viewBox="0 0 20 20" fill="currentColor" className="ml-3 h-4 w-4">
@@ -154,16 +270,17 @@ const VideoHero = () => {
             </div>
           </div>
 
-          <div className="relative min-h-[320px] sm:min-h-[360px] md:min-h-[400px] lg:min-h-[450px]">
-            <div className="absolute right-4 top-6 h-40 w-40 rounded-full bg-[#78acff]/18 blur-3xl sm:h-48 sm:w-48 md:h-56 md:w-56" />
-            <div className="absolute bottom-4 right-6 h-20 w-44 rounded-full bg-[#4a82ff]/20 blur-3xl sm:h-24 sm:w-52 md:h-28 md:w-60" />
+          <div className="hero-fade-up hero-fade-delay-4 relative min-h-[300px] perspective-[1800px] sm:min-h-[340px] md:min-h-[370px] lg:min-h-[405px]">
+            <div className="absolute right-6 top-10 h-36 w-36 rounded-full bg-[#78acff]/16 blur-3xl sm:h-44 sm:w-44 md:h-52 md:w-52" />
+            <div className="absolute bottom-8 right-10 h-20 w-40 rounded-full bg-[#4a82ff]/16 blur-3xl sm:h-22 sm:w-48 md:h-24 md:w-56" />
+            <div className="absolute left-[34px] top-[84px] hidden h-[290px] w-[calc(100%-90px)] rounded-[26px] bg-[#10214f]/18 blur-2xl md:block lg:left-[52px] lg:top-[92px]" />
 
-            <div className="absolute left-[10px] top-[54px] hidden w-[58px] rounded-[24px] border border-white/10 bg-[#132760] p-2.5 shadow-[0_20px_42px_rgba(10,27,74,0.24)] md:block lg:left-[20px] lg:top-[64px] lg:w-[64px]">
-              <div className="space-y-3 rounded-[22px] bg-[#10214f] py-4">
+            <div className="absolute left-[14px] top-[52px] hidden w-[52px] rounded-[22px] border border-white/10 bg-[#132760] p-2 shadow-[0_18px_34px_rgba(10,27,74,0.22)] md:block lg:left-[18px] lg:top-[60px] lg:w-[58px]">
+              <div className="space-y-2.5 rounded-[18px] bg-[#10214f] py-3">
                 {navIcons.map((icon, index) => (
                   <div
                     key={index}
-                    className={`mx-auto flex h-8 w-8 items-center justify-center rounded-[12px] lg:h-9 lg:w-9 lg:rounded-[14px] ${
+                    className={`mx-auto flex h-7 w-7 items-center justify-center rounded-[10px] lg:h-8 lg:w-8 lg:rounded-[12px] ${
                       index === 0
                         ? 'bg-[#3d72ff] text-white shadow-[0_12px_22px_rgba(47,107,255,0.36)]'
                         : 'text-white/75'
@@ -175,10 +292,9 @@ const VideoHero = () => {
               </div>
             </div>
 
-            <div className="absolute left-0 top-0 right-0 overflow-hidden rounded-[24px] border border-[#4f76dd]/40 bg-[#1b2f68] p-3 text-white shadow-[0_34px_80px_rgba(10,24,68,0.38)] sm:left-[24px] sm:right-[24px] sm:p-4 md:left-[70px] md:right-[16px] lg:left-[78px] lg:right-[28px] lg:rounded-[30px] lg:p-5">
+            <div className="hero-dashboard-float absolute left-0 top-1 right-0 overflow-hidden rounded-[22px] border border-[#4f76dd]/40 bg-[#1b2f68] p-3 text-white shadow-[0_34px_70px_rgba(10,24,68,0.32)] [transform:rotateX(7deg)_rotateY(-8deg)_translateZ(-24px)] sm:left-[20px] sm:right-[20px] sm:p-3.5 md:left-[60px] md:right-[12px] lg:left-[70px] lg:right-[20px] lg:rounded-[24px] lg:p-4">
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_18%,rgba(136,185,255,0.42),transparent_24%),radial-gradient(circle_at_25%_100%,rgba(60,118,255,0.28),transparent_30%),linear-gradient(180deg,rgba(39,65,130,0.98)_0%,rgba(20,33,76,1)_100%)]" />
               <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />
-              <div className="pointer-events-none absolute -bottom-6 left-1/2 h-24 w-52 -translate-x-1/2 rounded-full bg-[#4f8cff]/30 blur-3xl" />
               <div className="relative">
                 <div className="mb-3 flex items-center justify-between">
                   <div>
@@ -186,8 +302,8 @@ const VideoHero = () => {
                   </div>
                 </div>
 
-                <div className="grid gap-3 md:grid-cols-[1.08fr_0.62fr]">
-                  <div className="rounded-[20px] border border-[#b8d0ff]/55 bg-[linear-gradient(180deg,rgba(255,255,255,0.1),rgba(255,255,255,0.04))] p-3.5 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.24),0_18px_36px_rgba(9,19,56,0.2)] lg:rounded-[22px]">
+                <div className="grid gap-3 md:grid-cols-[1.25fr_0.72fr]">
+                  <div className="rounded-[18px] border border-[#b8d0ff]/50 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] p-3 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_14px_28px_rgba(9,19,56,0.18)] lg:rounded-[20px]">
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <p className="text-[9px] font-bold text-white/82 sm:text-[10px] lg:text-[11px]">Live Monitoring</p>
@@ -200,8 +316,8 @@ const VideoHero = () => {
                       </div>
                     </div>
 
-                    <div className="mt-5 lg:mt-6">
-                      <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="h-16 w-full sm:h-20 lg:h-24">
+                    <div className="mt-4 lg:mt-5">
+                      <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="hero-line-drift h-14 w-full sm:h-16 lg:h-[4.5rem]">
                         <defs>
                           <linearGradient id="hero-line" x1="0%" y1="0%" x2="100%" y2="0%">
                             <stop offset="0%" stopColor="#3e79ff" />
@@ -247,7 +363,7 @@ const VideoHero = () => {
                       </svg>
                     </div>
 
-                    <div className="mt-1.5 grid grid-cols-5 text-[7px] font-bold text-white/40 sm:text-[8px] lg:text-[9px]">
+                    <div className="mt-1.5 grid grid-cols-5 text-[7px] font-bold text-white/40 sm:text-[8px] lg:text-[8px]">
                       <span>May 1</span>
                       <span className="text-center">May 8</span>
                       <span className="text-center">May 15</span>
@@ -256,19 +372,19 @@ const VideoHero = () => {
                     </div>
                   </div>
 
-                  <div className="grid gap-3">
+                  <div className="grid gap-2.5">
                     {sideStats.map((item) => (
-                      <div key={item.title} className="group rounded-[18px] border border-white/90 bg-[linear-gradient(180deg,#ffffff_0%,#f4f8ff_100%)] px-3 py-3 text-[#224184] shadow-[0_18px_34px_rgba(33,73,170,0.16)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_40px_rgba(33,73,170,0.22)] lg:px-3.5 lg:py-3.5">
-                        <div className="flex items-start gap-3">
-                          <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-[12px] bg-[linear-gradient(180deg,#eef4ff_0%,#dce9ff_100%)] text-[#2f6bff] shadow-[inset_0_1px_0_rgba(255,255,255,0.95),0_8px_18px_rgba(47,107,255,0.12)] transition-transform duration-300 group-hover:scale-105 lg:h-9 lg:w-9 lg:rounded-[14px]">
+                      <div key={item.title} className="hero-card-lift group rounded-[16px] border border-white/90 bg-[linear-gradient(180deg,#ffffff_0%,#f4f8ff_100%)] px-3 py-2.5 text-[#224184] shadow-[0_14px_24px_rgba(33,73,170,0.14)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_28px_rgba(33,73,170,0.18)] lg:px-3 lg:py-3">
+                        <div className="flex items-start gap-2.5">
+                          <div className="mt-0.5 flex h-7 w-7 items-center justify-center rounded-[10px] bg-[linear-gradient(180deg,#eef4ff_0%,#dce9ff_100%)] text-[#2f6bff] shadow-[inset_0_1px_0_rgba(255,255,255,0.95),0_8px_18px_rgba(47,107,255,0.12)] transition-transform duration-300 group-hover:scale-105 lg:h-8 lg:w-8 lg:rounded-[12px]">
                             <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4 lg:h-5 lg:w-5" aria-hidden="true">
                               <path d="M12 3 5 6v6c0 4.6 2.98 8.88 7 10 4.02-1.12 7-5.4 7-10V6l-7-3Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
                               <path d="m9.5 12 1.6 1.6 3.4-3.6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                           </div>
                           <div>
-                            <p className="text-[0.75rem] font-extrabold leading-4 text-[#24448d] sm:text-[0.8rem] lg:text-[0.84rem]">{item.title}</p>
-                            <p className="mt-0.5 text-[9px] font-bold text-[#6278a8] sm:text-[10px] lg:text-[11px]">{item.subtitle}</p>
+                            <p className="text-[0.72rem] font-extrabold leading-4 text-[#24448d] sm:text-[0.76rem] lg:text-[0.8rem]">{item.title}</p>
+                            <p className="mt-0.5 text-[8px] font-bold text-[#6278a8] sm:text-[9px] lg:text-[10px]">{item.subtitle}</p>
                           </div>
                         </div>
                       </div>
@@ -276,45 +392,43 @@ const VideoHero = () => {
                   </div>
                 </div>
 
-                <div className="mt-4 grid gap-2 sm:grid-cols-3">
-                  <div className="rounded-[18px] border border-white/10 bg-[linear-gradient(180deg,rgba(30,51,108,0.98),rgba(20,37,83,0.98))] p-3 shadow-[0_18px_34px_rgba(7,19,52,0.24)]">
+                <div className="mt-3 grid gap-2 sm:grid-cols-3">
+                  <div className="rounded-[16px] border border-white/10 bg-[linear-gradient(180deg,rgba(30,51,108,0.98),rgba(20,37,83,0.98))] p-2.5 shadow-[0_14px_28px_rgba(7,19,52,0.22)]">
                     <p className="text-[9px] font-bold text-white/55 sm:text-[10px] lg:text-[11px]">Threats Blocked</p>
-                    <p className="mt-2 text-[1.7rem] font-black leading-none tracking-[-0.06em] sm:text-[2rem] lg:mt-3 lg:text-[2.25rem]">3,264</p>
+                    <p className="mt-2 text-[1.45rem] font-black leading-none tracking-[-0.06em] sm:text-[1.7rem] lg:mt-2.5 lg:text-[1.95rem]">3,264</p>
                     <p className="mt-1 text-[8px] font-bold text-[#ff7381] sm:text-[9px] lg:text-[10px]">120 This Month</p>
-                    <div className="mt-2.5 h-6 rounded-full bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0))] lg:mt-3 lg:h-8">
+                    <div className="mt-2 h-5 rounded-full bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0))] lg:mt-2.5 lg:h-6">
                       <div className="h-full w-full rounded-full bg-[linear-gradient(90deg,rgba(255,95,123,0.38),rgba(255,95,123,0.03))]" />
                     </div>
                   </div>
 
-                  <div className="rounded-[18px] border border-white/10 bg-[linear-gradient(180deg,rgba(30,51,108,0.98),rgba(20,37,83,0.98))] p-3 shadow-[0_18px_34px_rgba(7,19,52,0.24)]">
+                  <div className="rounded-[16px] border border-white/10 bg-[linear-gradient(180deg,rgba(30,51,108,0.98),rgba(20,37,83,0.98))] p-2.5 shadow-[0_14px_28px_rgba(7,19,52,0.22)]">
                     <p className="text-[9px] font-bold text-white/55 sm:text-[10px] lg:text-[11px]">Active Devices</p>
-                    <p className="mt-2 text-[1.7rem] font-black leading-none tracking-[-0.06em] sm:text-[2rem] lg:mt-3 lg:text-[2.25rem]">1,246</p>
+                    <p className="mt-2 text-[1.45rem] font-black leading-none tracking-[-0.06em] sm:text-[1.7rem] lg:mt-2.5 lg:text-[1.95rem]">1,246</p>
                     <p className="mt-1 text-[8px] font-bold text-[#57d788] sm:text-[9px] lg:text-[10px]">Online</p>
-                    <div className="mt-3 h-1.5 rounded-full bg-white/10 lg:mt-4">
+                    <div className="mt-2.5 h-1.5 rounded-full bg-white/10 lg:mt-3">
                       <div className="h-full w-[90%] rounded-full bg-[linear-gradient(90deg,#37dd77_0%,#78f59a_100%)] shadow-[0_0_12px_rgba(63,224,126,0.35)]" />
                     </div>
                     <p className="mt-1.5 text-right text-[8px] font-black text-white/45 sm:text-[9px]">90%</p>
                   </div>
 
-                  <div className="relative overflow-hidden rounded-[18px] border border-white/10 bg-[linear-gradient(180deg,rgba(30,51,108,0.98),rgba(20,37,83,0.98))] p-3 shadow-[0_18px_34px_rgba(7,19,52,0.24)]">
-                    <div className="pointer-events-none absolute right-0 top-0 h-20 w-24 rounded-full bg-[#5a8fff]/22 blur-2xl" />
+                  <div className="relative overflow-hidden rounded-[16px] border border-white/10 bg-[linear-gradient(180deg,rgba(30,51,108,0.98),rgba(20,37,83,0.98))] p-2.5 shadow-[0_14px_28px_rgba(7,19,52,0.22)]">
                     <p className="text-[9px] font-bold text-white/55 sm:text-[10px] lg:text-[11px]">Backups</p>
-                    <p className="mt-2 text-[1.7rem] font-black leading-none tracking-[-0.06em] sm:text-[2rem] lg:mt-3 lg:text-[2.25rem]">100%</p>
+                    <p className="mt-2 text-[1.45rem] font-black leading-none tracking-[-0.06em] sm:text-[1.7rem] lg:mt-2.5 lg:text-[1.95rem]">100%</p>
                     <p className="mt-1 text-[8px] font-bold text-[#57d788] sm:text-[9px] lg:text-[10px]">Successful</p>
-                    <p className="mt-2 text-[8px] text-white/45 sm:text-[9px] lg:mt-3 lg:text-[10px]">All systems protected</p>
+                    <p className="mt-2 text-[8px] text-white/45 sm:text-[9px] lg:mt-2.5 lg:text-[10px]">All systems protected</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="absolute bottom-[14px] right-2 h-16 w-40 rounded-[999px] bg-[radial-gradient(circle_at_center,_rgba(114,176,255,0.82)_0%,_rgba(53,117,255,0.55)_42%,_rgba(53,117,255,0.08)_72%,_transparent_75%)] blur-[2px] sm:h-18 sm:w-52 lg:h-20 lg:w-64" />
-            <div className="absolute bottom-[24px] right-10 h-10 w-32 rounded-[999px] border border-white/50 bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(206,226,255,0.74))] shadow-[0_18px_30px_rgba(67,124,255,0.2)] sm:right-12 sm:h-12 sm:w-40 lg:bottom-[30px] lg:right-16 lg:h-14 lg:w-48" />
+            <div className="absolute bottom-[2px] right-4 h-12 w-36 rounded-[999px] bg-[radial-gradient(circle_at_center,_rgba(114,176,255,0.7)_0%,_rgba(53,117,255,0.32)_42%,_rgba(53,117,255,0.04)_72%,_transparent_75%)] blur-[3px] sm:h-14 sm:w-44 lg:h-16 lg:w-52" />
           </div>
         </div>
 
-        <div className="mt-4 grid gap-2 rounded-[24px] border border-white/70 bg-white/82 px-3 py-3 shadow-[0_18px_42px_rgba(45,89,180,0.1)] backdrop-blur-md sm:grid-cols-2 sm:gap-3 sm:px-4 sm:py-4 lg:grid-cols-4 lg:gap-2 lg:px-5 lg:py-3.5">
+        <div className="hero-fade-up hero-fade-delay-5 mt-4 grid gap-2 rounded-[24px] border border-white/70 bg-white/82 px-3 py-3 shadow-[0_18px_42px_rgba(45,89,180,0.1)] backdrop-blur-md sm:grid-cols-2 sm:gap-3 sm:px-4 sm:py-4 lg:grid-cols-4 lg:gap-2 lg:px-5 lg:py-3.5">
           {heroHighlights.map((item) => (
-            <div key={item.title} className="flex items-center gap-2.5 rounded-2xl px-1 py-1">
+            <div key={item.title} className="group flex items-center gap-2.5 rounded-2xl px-1 py-1 transition-transform duration-300 hover:-translate-y-1">
               <div className="flex h-9 w-9 items-center justify-center rounded-[14px] bg-[#eef4ff] text-[#2f6bff] sm:h-10 sm:w-10 sm:rounded-[16px]">
                 {item.icon}
               </div>
