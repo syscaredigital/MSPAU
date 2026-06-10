@@ -17,6 +17,7 @@
     "globe.gl": "^2.43.0",
     "gsap": "^3.13.0",
     "lottie-web": "^5.13.0",
+    "lucide-react": "^1.14.0",
     "particles.js": "^2.0.0",
     "react": "^19.1.0",
     "react-countup": "^6.5.3",
